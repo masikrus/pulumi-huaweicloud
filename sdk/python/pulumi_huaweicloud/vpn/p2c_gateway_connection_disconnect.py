@@ -25,6 +25,7 @@ class P2cGatewayConnectionDisconnectArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a P2cGatewayConnectionDisconnect resource.
+
         :param pulumi.Input[_builtins.str] connection_id: Specifies the connection ID of a P2C VPN gateway.
         :param pulumi.Input[_builtins.str] p2c_vgw_id: Specifies the instance ID of a P2C VPN gateway.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -95,6 +96,7 @@ class _P2cGatewayConnectionDisconnectState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering P2cGatewayConnectionDisconnect resources.
+
         :param pulumi.Input[_builtins.str] connection_id: Specifies the connection ID of a P2C VPN gateway.
         :param pulumi.Input[_builtins.str] p2c_vgw_id: Specifies the instance ID of a P2C VPN gateway.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -158,7 +160,7 @@ class _P2cGatewayConnectionDisconnectState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/p2cGatewayConnectionDisconnect:P2cGatewayConnectionDisconnect")
+@pulumi.type_token("huaweicloud:Vpn/p2cGatewayConnectionDisconnect:P2cGatewayConnectionDisconnect")
 class P2cGatewayConnectionDisconnect(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -185,6 +187,7 @@ class P2cGatewayConnectionDisconnect(pulumi.CustomResource):
             p2c_vgw_id=p2c_vgw_id,
             connection_id=connection_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -216,6 +219,7 @@ class P2cGatewayConnectionDisconnect(pulumi.CustomResource):
             p2c_vgw_id=p2c_vgw_id,
             connection_id=connection_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param P2cGatewayConnectionDisconnectArgs args: The arguments to use to populate this resource's properties.
@@ -254,7 +258,7 @@ class P2cGatewayConnectionDisconnect(pulumi.CustomResource):
             __props__.__dict__["p2c_vgw_id"] = p2c_vgw_id
             __props__.__dict__["region"] = region
         super(P2cGatewayConnectionDisconnect, __self__).__init__(
-            'huaweicloud:vpn/p2cGatewayConnectionDisconnect:P2cGatewayConnectionDisconnect',
+            'huaweicloud:Vpn/p2cGatewayConnectionDisconnect:P2cGatewayConnectionDisconnect',
             resource_name,
             __props__,
             opts)

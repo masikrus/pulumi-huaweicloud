@@ -19,6 +19,8 @@ from .get_backup import *
 from .get_backup_metadata import *
 from .get_backups import *
 from .get_external_vaults import *
+from .get_feature import *
+from .get_features import *
 from .get_migrate_status import *
 from .get_operation_logs import *
 from .get_policies import *

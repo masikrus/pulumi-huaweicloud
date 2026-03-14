@@ -26,6 +26,7 @@ class PipelineTagArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PipelineTag resource.
+
         :param pulumi.Input[_builtins.str] color: Specifies the tag color.
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
         :param pulumi.Input[_builtins.str] name: Specifies the tag name.
@@ -113,6 +114,7 @@ class _PipelineTagState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelineTag resources.
+
         :param pulumi.Input[_builtins.str] color: Specifies the tag color.
         :param pulumi.Input[_builtins.str] name: Specifies the tag name.
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
@@ -206,7 +208,7 @@ class _PipelineTagState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineTag:PipelineTag")
+@pulumi.type_token("huaweicloud:Codearts/pipelineTag:PipelineTag")
 class PipelineTag(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -241,11 +243,10 @@ class PipelineTag(pulumi.CustomResource):
 
         The tag can be imported using `project_id` and `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineTag:PipelineTag test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineTag:PipelineTag test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -285,11 +286,10 @@ class PipelineTag(pulumi.CustomResource):
 
         The tag can be imported using `project_id` and `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineTag:PipelineTag test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineTag:PipelineTag test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelineTagArgs args: The arguments to use to populate this resource's properties.
@@ -331,7 +331,7 @@ class PipelineTag(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["project_name"] = None
         super(PipelineTag, __self__).__init__(
-            'huaweicloud:codearts/pipelineTag:PipelineTag',
+            'huaweicloud:Codearts/pipelineTag:PipelineTag',
             resource_name,
             __props__,
             opts)

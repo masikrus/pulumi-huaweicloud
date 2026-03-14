@@ -75,7 +75,7 @@ def get_upgradation_version(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getUpgradationVersion:getUpgradationVersion', __args__, opts=opts, typ=GetUpgradationVersionResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getUpgradationVersion:getUpgradationVersion', __args__, opts=opts, typ=GetUpgradationVersionResult).value
 
     return AwaitableGetUpgradationVersionResult(
         id=pulumi.get(__ret__, 'id'),
@@ -89,7 +89,7 @@ def get_upgradation_version_output(region: Optional[pulumi.Input[Optional[_built
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getUpgradationVersion:getUpgradationVersion', __args__, opts=opts, typ=GetUpgradationVersionResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getUpgradationVersion:getUpgradationVersion', __args__, opts=opts, typ=GetUpgradationVersionResult)
     return __ret__.apply(lambda __response__: GetUpgradationVersionResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

@@ -30,6 +30,7 @@ class MemberArgs:
                  weight: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Member resource.
+
         :param pulumi.Input[_builtins.str] address: The IP address of the member to receive traffic from the load balancer.
                Changing this creates a new member.
         :param pulumi.Input[_builtins.str] pool_id: The id of the pool that this member will be assigned to.
@@ -180,6 +181,7 @@ class _MemberState:
                  weight: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Member resources.
+
         :param pulumi.Input[_builtins.str] address: The IP address of the member to receive traffic from the load balancer.
                Changing this creates a new member.
         :param pulumi.Input[_builtins.str] created_at: The time when the backend server was added. The format is **yyyy-MM-dd'T'HH:mm:ss'Z' (UTC time)**.
@@ -483,11 +485,10 @@ class Member(pulumi.CustomResource):
 
         ELB member can be imported using the `pool_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/member:Member member_1 <pool_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -540,11 +541,10 @@ class Member(pulumi.CustomResource):
 
         ELB member can be imported using the `pool_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/member:Member member_1 <pool_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MemberArgs args: The arguments to use to populate this resource's properties.

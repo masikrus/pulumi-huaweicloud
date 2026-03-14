@@ -21,6 +21,8 @@ __all__ = [
     'InstanceBandwidthArgsDict',
     'InstanceDataDiskArgs',
     'InstanceDataDiskArgsDict',
+    'InstanceEnclaveOptionsArgs',
+    'InstanceEnclaveOptionsArgsDict',
     'InstanceNetworkArgs',
     'InstanceNetworkArgsDict',
     'InstanceSchedulerHintArgs',
@@ -33,6 +35,8 @@ __all__ = [
     'InstanceV2BandwidthArgsDict',
     'InstanceV2DataDiskArgs',
     'InstanceV2DataDiskArgsDict',
+    'InstanceV2EnclaveOptionsArgs',
+    'InstanceV2EnclaveOptionsArgsDict',
     'InstanceV2NetworkArgs',
     'InstanceV2NetworkArgsDict',
     'InstanceV2SchedulerHintArgs',
@@ -41,51 +45,94 @@ __all__ = [
     'InstanceV2VolumeAttachedArgsDict',
     'InstanceVolumeAttachedArgs',
     'InstanceVolumeAttachedArgsDict',
+    'OsChangeOsChangeValueArgs',
+    'OsChangeOsChangeValueArgsDict',
+    'OsChangeOsChangeValueMetadataArgs',
+    'OsChangeOsChangeValueMetadataArgsDict',
+    'OsReinstallOsReinstallValueArgs',
+    'OsReinstallOsReinstallValueArgsDict',
+    'OsReinstallOsReinstallValueMetadataArgs',
+    'OsReinstallOsReinstallValueMetadataArgsDict',
     'SecgroupV2RuleArgs',
     'SecgroupV2RuleArgsDict',
+    'TemplateTemplateDataArgs',
+    'TemplateTemplateDataArgsDict',
+    'TemplateTemplateDataBlockDeviceMappingArgs',
+    'TemplateTemplateDataBlockDeviceMappingArgsDict',
+    'TemplateTemplateDataBlockDeviceMappingAttachmentArgs',
+    'TemplateTemplateDataBlockDeviceMappingAttachmentArgsDict',
+    'TemplateTemplateDataInternetAccessArgs',
+    'TemplateTemplateDataInternetAccessArgsDict',
+    'TemplateTemplateDataInternetAccessPublicipArgs',
+    'TemplateTemplateDataInternetAccessPublicipArgsDict',
+    'TemplateTemplateDataInternetAccessPublicipBandwidthArgs',
+    'TemplateTemplateDataInternetAccessPublicipBandwidthArgsDict',
+    'TemplateTemplateDataMarketOptionsArgs',
+    'TemplateTemplateDataMarketOptionsArgsDict',
+    'TemplateTemplateDataMarketOptionsSpotOptionsArgs',
+    'TemplateTemplateDataMarketOptionsSpotOptionsArgsDict',
+    'TemplateTemplateDataNetworkInterfaceArgs',
+    'TemplateTemplateDataNetworkInterfaceArgsDict',
+    'TemplateTemplateDataNetworkInterfaceAttachmentArgs',
+    'TemplateTemplateDataNetworkInterfaceAttachmentArgsDict',
+    'TemplateTemplateDataOsProfileArgs',
+    'TemplateTemplateDataOsProfileArgsDict',
+    'TemplateTemplateDataTagOptionArgs',
+    'TemplateTemplateDataTagOptionArgsDict',
+    'TemplateTemplateDataTagOptionTagArgs',
+    'TemplateTemplateDataTagOptionTagArgsDict',
+    'GetSupplyRecommendationsFlavorConstraintArgs',
+    'GetSupplyRecommendationsFlavorConstraintArgsDict',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgs',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgsDict',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgs',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgsDict',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgs',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgsDict',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgs',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgsDict',
+    'GetSupplyRecommendationsLocationArgs',
+    'GetSupplyRecommendationsLocationArgsDict',
+    'GetSupplyRecommendationsOptionArgs',
+    'GetSupplyRecommendationsOptionArgsDict',
 ]
 
-MYPY = False
+class AutoLaunchGroupOverrideArgsDict(TypedDict):
+    availability_zone: pulumi.Input[_builtins.str]
+    """
+    Specifies the availability zone which the instance in.
+    Please refer to the document link [reference](https://developer.huaweicloud.com/intl/en-us/endpoint/?ECS) for values.
+    Changing this creates a new resource.
+    """
+    flavor_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the flavor ID of the instance. You can get available flavor id
+    through data source `ecs_get_flavors`.
+    Changing this creates a new resource.
+    """
+    priority: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the priority for launching. The smaller the value, the higher the
+    priority, and the launch will be given first. Valid value is from zero to max value of integer.
+    Changing this creates a new resource.
+    """
+    spot_price: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the highest price a user is willing to pay per hour for a Spot
+    instance. Changing this creates a new resource.
+    """
+    weighted_capacity: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the weight of the instance specification. The higher the
+    value, the greater the ability of a single instance to meet computing power requirements, and the smaller the number
+    of instances required. It must be bigger than zero. The weight value can be calculated based on the computing power of
+    the specified instance specification and the minimum computing power of a single node in the cluster.
 
-if not MYPY:
-    class AutoLaunchGroupOverrideArgsDict(TypedDict):
-        availability_zone: pulumi.Input[_builtins.str]
-        """
-        Specifies the availability zone which the instance in.
-        Please refer to the document link [reference](https://developer.huaweicloud.com/intl/en-us/endpoint/?ECS) for values.
-        Changing this creates a new resource.
-        """
-        flavor_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the flavor ID of the instance. You can get available flavor id
-        through data source `ecs_get_flavors`.
-        Changing this creates a new resource.
-        """
-        priority: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the priority for launching. The smaller the value, the higher the
-        priority, and the launch will be given first. Valid value is from zero to max value of integer.
-        Changing this creates a new resource.
-        """
-        spot_price: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the highest price a user is willing to pay per hour for a Spot
-        instance. Changing this creates a new resource.
-        """
-        weighted_capacity: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the weight of the instance specification. The higher the
-        value, the greater the ability of a single instance to meet computing power requirements, and the smaller the number
-        of instances required. It must be bigger than zero. The weight value can be calculated based on the computing power of
-        the specified instance specification and the minimum computing power of a single node in the cluster.
+    Assuming that the minimum computing power of a single node is 8vCPU and 60GB, the weight of the 8vCPU and 60GB
+    instance specification can be set to 1, and the weight of the 16vCPU and 120GB instance specification can be set to 2.
 
-        Assuming that the minimum computing power of a single node is 8vCPU and 60GB, the weight of the 8vCPU and 60GB
-        instance specification can be set to 1, and the weight of the 16vCPU and 120GB instance specification can be set to 2.
-
-        Changing this creates a new resource.
-        """
-elif False:
-    AutoLaunchGroupOverrideArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class AutoLaunchGroupOverrideArgs:
@@ -202,64 +249,64 @@ class AutoLaunchGroupOverrideArgs:
         pulumi.set(self, "weighted_capacity", value)
 
 
-if not MYPY:
-    class InstanceBandwidthArgsDict(TypedDict):
-        share_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the bandwidth sharing type. Changing this creates a new instance.
-        Possible values are as follows:
-        + **PER**: Dedicated bandwidth
-        + **WHOLE**: Shared bandwidth
-        """
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the bandwidth billing mode. The value can be *traffic* or *bandwidth*.
-        Changing this creates a new instance.
-        """
-        extend_param: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the additional EIP information.
-        Changing this creates a new instance.
+class InstanceBandwidthArgsDict(TypedDict):
+    share_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the bandwidth sharing type. Changing this creates a new
+    instance.
+    Possible values are as follows:
+    + **PER**: Dedicated bandwidth
+    + **WHOLE**: Shared bandwidth
+    """
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the bandwidth billing mode. The value can be *traffic* or
+    *bandwidth*.
+    Changing this creates a new instance.
+    """
+    extend_param: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the additional EIP information.
+    Changing this creates a new instance.
 
-        > Currently, only the `charging_mode` key is supported and the value can be **prePaid** or **postPaid**.
-        The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this table.
+    > Currently, only the `charging_mode` key is supported and the value can be **prePaid** or **postPaid**.
+    The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this
+    table.
 
-        <!-- markdownlint-disable MD033 -->
-        <table class="tg"><thead>
-        <tr>
-        <th class="tg-0pky"><span style="font-weight:bold">charging_mode</span> of instance</th>
-        <th class="tg-0pky">this <span style="font-weight:bold">charging_mode</span></th>
-        <th class="tg-0pky"><span style="font-weight:bold">charge_mode</span></th>
-        </tr></thead>
-        <tbody>
-        <tr>
-        <td class="tg-0pky" rowspan="2"><span style="font-weight:bold">prePaid</span></td>
-        <td class="tg-0pky"><span style="font-weight:bold">prePaid</span> (default value)</td>
-        <td class="tg-0pky"><span style="font-weight:bold">bandwidth</span></td>
-        </tr>
-        <tr>
-        <td class="tg-fymr"><span style="font-weight:bold">postPaid</span></td>
-        <td class="tg-0pky"><span style="font-weight:bold">traffic</span> or <span style="font-weight:bold">bandwidth</span></td>
-        </tr>
-        <tr>
-        <td class="tg-0pky"><span style="font-weight:bold">postPaid</span></td>
-        <td class="tg-0pky"><span style="font-weight:bold">postPaid</span> (default value)</td>
-        <td class="tg-0pky"><span style="font-weight:bold">traffic</span> or <span style="font-weight:bold">bandwidth</span></td>
-        </tr>
-        </tbody></table>
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the **shared** bandwidth id. This parameter is mandatory when
-        `share_type` is set to **WHOLE**. Changing this creates a new instance.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the bandwidth size. The value ranges from 1 to 300 Mbit/s.
-        This parameter is mandatory when `share_type` is set to **PER**. Changing this creates a new instance.
-        """
-elif False:
-    InstanceBandwidthArgsDict: TypeAlias = Mapping[str, Any]
+    <!-- markdownlint-disable MD033 -->
+    <table class="tg"><thead>
+    <tr>
+    <th class="tg-0pky"><span style="font-weight:bold">charging_mode</span> of instance</th>
+    <th class="tg-0pky">this <span style="font-weight:bold">charging_mode</span></th>
+    <th class="tg-0pky"><span style="font-weight:bold">charge_mode</span></th>
+    </tr></thead>
+    <tbody>
+    <tr>
+    <td class="tg-0pky" rowspan="2"><span style="font-weight:bold">prePaid</span></td>
+    <td class="tg-0pky"><span style="font-weight:bold">prePaid</span> (default value)</td>
+    <td class="tg-0pky"><span style="font-weight:bold">bandwidth</span></td>
+    </tr>
+    <tr>
+    <td class="tg-fymr"><span style="font-weight:bold">postPaid</span></td>
+    <td class="tg-0pky"><span style="font-weight:bold">traffic</span> or <span style="font-weight:bold">bandwidth</span></td>
+    </tr>
+    <tr>
+    <td class="tg-0pky"><span style="font-weight:bold">postPaid</span></td>
+    <td class="tg-0pky"><span style="font-weight:bold">postPaid</span> (default value)</td>
+    <td class="tg-0pky"><span style="font-weight:bold">traffic</span> or <span style="font-weight:bold">bandwidth</span></td>
+    </tr>
+    </tbody></table>
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the **shared** bandwidth id. This parameter is mandatory when
+    `share_type` is set to **WHOLE**. Changing this creates a new instance.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the bandwidth size. The value ranges from 1 to 300 Mbit/s.
+    This parameter is mandatory when `share_type` is set to **PER**. Changing this creates a new instance.
+    """
 
 @pulumi.input_type
 class InstanceBandwidthArgs:
@@ -270,17 +317,20 @@ class InstanceBandwidthArgs:
                  id: Optional[pulumi.Input[_builtins.str]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.str] share_type: Specifies the bandwidth sharing type. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] share_type: Specifies the bandwidth sharing type. Changing this creates a new
+               instance.
                Possible values are as follows:
                + **PER**: Dedicated bandwidth
                + **WHOLE**: Shared bandwidth
-        :param pulumi.Input[_builtins.str] charge_mode: Specifies the bandwidth billing mode. The value can be *traffic* or *bandwidth*.
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the bandwidth billing mode. The value can be *traffic* or
+               *bandwidth*.
                Changing this creates a new instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extend_param: Specifies the additional EIP information.
                Changing this creates a new instance.
                
                > Currently, only the `charging_mode` key is supported and the value can be **prePaid** or **postPaid**.
-               The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this table.
+               The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this
+               table.
                
                <!-- markdownlint-disable MD033 -->
                <table class="tg"><thead>
@@ -324,7 +374,8 @@ class InstanceBandwidthArgs:
     @pulumi.getter(name="shareType")
     def share_type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the bandwidth sharing type. Changing this creates a new instance.
+        Specifies the bandwidth sharing type. Changing this creates a new
+        instance.
         Possible values are as follows:
         + **PER**: Dedicated bandwidth
         + **WHOLE**: Shared bandwidth
@@ -339,7 +390,8 @@ class InstanceBandwidthArgs:
     @pulumi.getter(name="chargeMode")
     def charge_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the bandwidth billing mode. The value can be *traffic* or *bandwidth*.
+        Specifies the bandwidth billing mode. The value can be *traffic* or
+        *bandwidth*.
         Changing this creates a new instance.
         """
         return pulumi.get(self, "charge_mode")
@@ -356,7 +408,8 @@ class InstanceBandwidthArgs:
         Changing this creates a new instance.
 
         > Currently, only the `charging_mode` key is supported and the value can be **prePaid** or **postPaid**.
-        The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this table.
+        The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this
+        table.
 
         <!-- markdownlint-disable MD033 -->
         <table class="tg"><thead>
@@ -415,70 +468,67 @@ class InstanceBandwidthArgs:
         pulumi.set(self, "size", value)
 
 
-if not MYPY:
-    class InstanceDataDiskArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the data disk size, in GB. The value ranges form 10 to 32768.
-        Changing this creates a new instance.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the ECS data disk type. Changing this creates a new instance.
+class InstanceDataDiskArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the data disk size, in GB. The value ranges form 10 to 32768.
+    Changing this creates a new instance.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the ECS data disk type. Changing this creates a new instance.
 
-        For details about disk types, see
-        [Disk Types and Disk Performance](https://support.huaweicloud.com/en-us/productdesc-evs/en-us_topic_0014580744.html).
-        Available options are:
-        + `SAS`: High I/O disk type.
-        + `SSD`: Ultra-high I/O disk type.
-        + `GPSSD`: General purpose SSD disk type.
-        + `ESSD`: Extreme SSD type.
-        + `GPSSD2`: General purpose SSD V2 type.
-        + `ESSD2`: Extreme SSD V2 type.
+    For details about disk types, see
+    [Disk Types and Disk Performance](https://support.huaweicloud.com/en-us/productdesc-evs/en-us_topic_0014580744.html).
+    Available options are:
+    + `SAS`: High I/O disk type.
+    + `SSD`: Ultra-high I/O disk type.
+    + `GPSSD`: General purpose SSD disk type.
+    + `ESSD`: Extreme SSD type.
+    + `GPSSD2`: General purpose SSD V2 type.
+    + `ESSD2`: Extreme SSD V2 type.
 
-        > If the specified disk type is not available in the AZ, the disk will fail to create.
-        The disk type **ESSD2** only support in postpaid charging mode.
-        """
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data disk DSS pool ID. This field is used
-        only for dedicated storage. Changing this parameter will create a new resource.
-        """
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the IOPS(Input/Output Operations Per Second) for the disk.
-        The field is valid and required when `type` is set to **GPSSD2** or **ESSD2**.
+    > If the specified disk type is not available in the AZ, the disk will fail to create.
+    The disk type **ESSD2** only support in postpaid charging mode.
+    """
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data disk DSS pool ID. This field is used
+    only for dedicated storage. Changing this parameter will create a new resource.
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the IOPS(Input/Output Operations Per Second) for the disk.
+    The field is valid and required when `type` is set to **GPSSD2** or **ESSD2**.
 
-        + If `type` is set to **GPSSD2**. The field `iops` ranging from 3,000 to 128,000.
-        This IOPS must also be less than or equal to 500 multiplying the capacity.
+    + If `type` is set to **GPSSD2**. The field `iops` ranging from 3,000 to 128,000.
+    This IOPS must also be less than or equal to 500 multiplying the capacity.
 
-        + If `type` is set to **ESSD2**. The field `iops` ranging from 100 to 256,000.
-        This IOPS must also be less than or equal to 1000 multiplying the capacity.
+    + If `type` is set to **ESSD2**. The field `iops` ranging from 100 to 256,000.
+    This IOPS must also be less than or equal to 1000 multiplying the capacity.
 
-        Changing this creates a new instance.
-        """
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of a KMS key. This is used to encrypt the disk.
-        Changing this creates a new instance.
-        """
-        snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the EVS snapshot ID or ID of the original data disk contained in
-        the full-ECS image. Changing this creates a new instance.
-        """
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the throughput for the disk. The Unit is MiB/s.
-        The field is valid and required when `type` is set to **GPSSD2**.
+    Changing this creates a new instance.
+    """
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of a KMS key. This is used to encrypt the disk.
+    Changing this creates a new instance.
+    """
+    snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the EVS snapshot ID or ID of the original data disk contained
+    in the full-ECS image. Changing this creates a new instance.
+    """
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the throughput for the disk. The Unit is MiB/s.
+    The field is valid and required when `type` is set to **GPSSD2**.
 
-        + If `type` is set to **GPSSD2**. The field `throughput` ranging from 125 to 1,000.
-        This throughput must also be less than or equal to the IOPS divided by 4.
+    + If `type` is set to **GPSSD2**. The field `throughput` ranging from 125 to 1,000.
+    This throughput must also be less than or equal to the IOPS divided by 4.
 
-        Changing this creates a new instance.
-        """
-elif False:
-    InstanceDataDiskArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this creates a new instance.
+    """
 
 @pulumi.input_type
 class InstanceDataDiskArgs:
@@ -521,8 +571,8 @@ class InstanceDataDiskArgs:
                Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] kms_key_id: Specifies the ID of a KMS key. This is used to encrypt the disk.
                Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] snapshot_id: Specifies the EVS snapshot ID or ID of the original data disk contained in
-               the full-ECS image. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] snapshot_id: Specifies the EVS snapshot ID or ID of the original data disk contained
+               in the full-ECS image. Changing this creates a new instance.
         :param pulumi.Input[_builtins.int] throughput: Specifies the throughput for the disk. The Unit is MiB/s.
                The field is valid and required when `type` is set to **GPSSD2**.
                
@@ -633,8 +683,8 @@ class InstanceDataDiskArgs:
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the EVS snapshot ID or ID of the original data disk contained in
-        the full-ECS image. Changing this creates a new instance.
+        Specifies the EVS snapshot ID or ID of the original data disk contained
+        in the full-ECS image. Changing this creates a new instance.
         """
         return pulumi.get(self, "snapshot_id")
 
@@ -661,48 +711,76 @@ class InstanceDataDiskArgs:
         pulumi.set(self, "throughput", value)
 
 
-if not MYPY:
-    class InstanceNetworkArgsDict(TypedDict):
-        access_network: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies if this network should be used for provisioning access.
-        Accepts true or false. Defaults to false.
+class InstanceEnclaveOptionsArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether to enable Enclave.
+    Changing this creates a new instance.
+    """
 
-        > The `uuid` and `fixed_ip_v4` can be updated when there is only one network block.
+@pulumi.input_type
+class InstanceEnclaveOptionsArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[_builtins.bool]):
         """
-        fixed_ip_v4: NotRequired[pulumi.Input[_builtins.str]]
+        :param pulumi.Input[_builtins.bool] enabled: Specifies whether to enable Enclave.
+               Changing this creates a new instance.
         """
-        Specifies a fixed IPv4 address to be used on this network.
+        pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.bool]:
         """
-        fixed_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
+        Specifies whether to enable Enclave.
+        Changing this creates a new instance.
         """
-        The Fixed IPv6 address of the instance on that network.
-        """
-        ipv6_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the IPv6 function is enabled for the nic.
-        Defaults to false. Changing this creates a new instance.
-        """
-        mac: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The MAC address of the NIC on that network.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port ID corresponding to the IP address on that network.
-        """
-        source_dest_check: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the ECS processes only traffic that is destined specifically
-        for it. This function is enabled by default but should be disabled if the ECS functions as a SNAT server or has a
-        virtual IP address bound to it.
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the network UUID to attach to the instance.
-        """
-elif False:
-    InstanceNetworkArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enabled", value)
+
+
+class InstanceNetworkArgsDict(TypedDict):
+    access_network: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if this network should be used for provisioning access.
+    Accepts true or false. Defaults to false.
+
+    > The `uuid` and `fixed_ip_v4` can be updated when there is only one network block.
+    """
+    fixed_ip_v4: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a fixed IPv4 address to be used on this network.
+    """
+    fixed_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Fixed IPv6 address of the instance on that network.
+    """
+    ipv6_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the IPv6 function is enabled for the nic.
+    Defaults to false. Changing this creates a new instance.
+    """
+    mac: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The MAC address of the NIC on that network.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port ID corresponding to the IP address on that network.
+    """
+    source_dest_check: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the ECS processes only traffic that is destined specifically
+    for it. This function is enabled by default but should be disabled if the ECS functions as a SNAT server or has a
+    virtual IP address bound to it.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network UUID to attach to the instance.
+    """
 
 @pulumi.input_type
 class InstanceNetworkArgs:
@@ -851,30 +929,29 @@ class InstanceNetworkArgs:
         pulumi.set(self, "uuid", value)
 
 
-if not MYPY:
-    class InstanceSchedulerHintArgsDict(TypedDict):
-        deh_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of DeH.
-        This parameter takes effect only when the value of tenancy is dedicated. Changing this creates a new instance.
-        """
-        fault_domain: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Internal
-        """
-        group: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies a UUID of a Server Group.
-        The instance will be placed into that group. Changing this creates a new instance.
-        """
-        tenancy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the tenancy specifies whether the ECS is to be created on a
-        Dedicated Host
-        (DeH) or in a shared pool. Changing this creates a new instance.
-        """
-elif False:
-    InstanceSchedulerHintArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceSchedulerHintArgsDict(TypedDict):
+    deh_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of DeH. This parameter takes effect only when the value of tenancy is
+    **dedicated**.
+
+    <a name="enclave_options"></a>
+    The `enclave_options` block supports:
+    """
+    fault_domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Internal
+    """
+    group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a UUID of a Server Group.
+    The instance will be placed into that group. Changing this creates a new instance.
+    """
+    tenancy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tenancy specifies whether the ECS is to be created on a Dedicated
+    Host(DeH) or in a shared pool. Value options: **share**, **dedicate**.
+    """
 
 @pulumi.input_type
 class InstanceSchedulerHintArgs:
@@ -884,14 +961,16 @@ class InstanceSchedulerHintArgs:
                  group: Optional[pulumi.Input[_builtins.str]] = None,
                  tenancy: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] deh_id: Specifies the ID of DeH.
-               This parameter takes effect only when the value of tenancy is dedicated. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] deh_id: Specifies the ID of DeH. This parameter takes effect only when the value of tenancy is
+               **dedicated**.
+               
+               <a name="enclave_options"></a>
+               The `enclave_options` block supports:
         :param pulumi.Input[_builtins.str] fault_domain: schema: Internal
         :param pulumi.Input[_builtins.str] group: Specifies a UUID of a Server Group.
                The instance will be placed into that group. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] tenancy: Specifies the tenancy specifies whether the ECS is to be created on a
-               Dedicated Host
-               (DeH) or in a shared pool. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] tenancy: Specifies the tenancy specifies whether the ECS is to be created on a Dedicated
+               Host(DeH) or in a shared pool. Value options: **share**, **dedicate**.
         """
         if deh_id is not None:
             pulumi.set(__self__, "deh_id", deh_id)
@@ -906,8 +985,11 @@ class InstanceSchedulerHintArgs:
     @pulumi.getter(name="dehId")
     def deh_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of DeH.
-        This parameter takes effect only when the value of tenancy is dedicated. Changing this creates a new instance.
+        Specifies the ID of DeH. This parameter takes effect only when the value of tenancy is
+        **dedicated**.
+
+        <a name="enclave_options"></a>
+        The `enclave_options` block supports:
         """
         return pulumi.get(self, "deh_id")
 
@@ -944,9 +1026,8 @@ class InstanceSchedulerHintArgs:
     @pulumi.getter
     def tenancy(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the tenancy specifies whether the ECS is to be created on a
-        Dedicated Host
-        (DeH) or in a shared pool. Changing this creates a new instance.
+        Specifies the tenancy specifies whether the ECS is to be created on a Dedicated
+        Host(DeH) or in a shared pool. Value options: **share**, **dedicate**.
         """
         return pulumi.get(self, "tenancy")
 
@@ -955,13 +1036,10 @@ class InstanceSchedulerHintArgs:
         pulumi.set(self, "tenancy", value)
 
 
-if not MYPY:
-    class InstanceV1DataDiskArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        type: pulumi.Input[_builtins.str]
-        snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV1DataDiskArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV1DataDiskArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    type: pulumi.Input[_builtins.str]
+    snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV1DataDiskArgs:
@@ -1002,14 +1080,11 @@ class InstanceV1DataDiskArgs:
         pulumi.set(self, "snapshot_id", value)
 
 
-if not MYPY:
-    class InstanceV1NicArgsDict(TypedDict):
-        network_id: pulumi.Input[_builtins.str]
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        mac_address: NotRequired[pulumi.Input[_builtins.str]]
-        port_id: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV1NicArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV1NicArgsDict(TypedDict):
+    network_id: pulumi.Input[_builtins.str]
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    mac_address: NotRequired[pulumi.Input[_builtins.str]]
+    port_id: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV1NicArgs:
@@ -1063,15 +1138,12 @@ class InstanceV1NicArgs:
         pulumi.set(self, "port_id", value)
 
 
-if not MYPY:
-    class InstanceV2BandwidthArgsDict(TypedDict):
-        share_type: pulumi.Input[_builtins.str]
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        extend_param: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        size: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    InstanceV2BandwidthArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV2BandwidthArgsDict(TypedDict):
+    share_type: pulumi.Input[_builtins.str]
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    extend_param: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class InstanceV2BandwidthArgs:
@@ -1137,17 +1209,14 @@ class InstanceV2BandwidthArgs:
         pulumi.set(self, "size", value)
 
 
-if not MYPY:
-    class InstanceV2DataDiskArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        type: pulumi.Input[_builtins.str]
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    InstanceV2DataDiskArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV2DataDiskArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    type: pulumi.Input[_builtins.str]
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class InstanceV2DataDiskArgs:
@@ -1236,27 +1305,43 @@ class InstanceV2DataDiskArgs:
         pulumi.set(self, "throughput", value)
 
 
-if not MYPY:
-    class InstanceV2NetworkArgsDict(TypedDict):
-        access_network: NotRequired[pulumi.Input[_builtins.bool]]
-        fixed_ip_v4: NotRequired[pulumi.Input[_builtins.str]]
-        fixed_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Computed
-        """
-        ipv6_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        mac: NotRequired[pulumi.Input[_builtins.str]]
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Computed
-        """
-        source_dest_check: NotRequired[pulumi.Input[_builtins.bool]]
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Required
-        """
-elif False:
-    InstanceV2NetworkArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV2EnclaveOptionsArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+
+@pulumi.input_type
+class InstanceV2EnclaveOptionsArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[_builtins.bool]):
+        pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enabled", value)
+
+
+class InstanceV2NetworkArgsDict(TypedDict):
+    access_network: NotRequired[pulumi.Input[_builtins.bool]]
+    fixed_ip_v4: NotRequired[pulumi.Input[_builtins.str]]
+    fixed_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Computed
+    """
+    ipv6_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    mac: NotRequired[pulumi.Input[_builtins.str]]
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Computed
+    """
+    source_dest_check: NotRequired[pulumi.Input[_builtins.bool]]
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Required
+    """
 
 @pulumi.input_type
 class InstanceV2NetworkArgs:
@@ -1373,17 +1458,14 @@ class InstanceV2NetworkArgs:
         pulumi.set(self, "uuid", value)
 
 
-if not MYPY:
-    class InstanceV2SchedulerHintArgsDict(TypedDict):
-        deh_id: NotRequired[pulumi.Input[_builtins.str]]
-        fault_domain: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Internal
-        """
-        group: NotRequired[pulumi.Input[_builtins.str]]
-        tenancy: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV2SchedulerHintArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV2SchedulerHintArgsDict(TypedDict):
+    deh_id: NotRequired[pulumi.Input[_builtins.str]]
+    fault_domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Internal
+    """
+    group: NotRequired[pulumi.Input[_builtins.str]]
+    tenancy: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV2SchedulerHintArgs:
@@ -1444,16 +1526,13 @@ class InstanceV2SchedulerHintArgs:
         pulumi.set(self, "tenancy", value)
 
 
-if not MYPY:
-    class InstanceV2VolumeAttachedArgsDict(TypedDict):
-        boot_index: NotRequired[pulumi.Input[_builtins.int]]
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        pci_address: NotRequired[pulumi.Input[_builtins.str]]
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV2VolumeAttachedArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV2VolumeAttachedArgsDict(TypedDict):
+    boot_index: NotRequired[pulumi.Input[_builtins.int]]
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    pci_address: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV2VolumeAttachedArgs:
@@ -1532,35 +1611,32 @@ class InstanceV2VolumeAttachedArgs:
         pulumi.set(self, "volume_id", value)
 
 
-if not MYPY:
-    class InstanceVolumeAttachedArgsDict(TypedDict):
-        boot_index: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The volume boot index on that attachment.
-        """
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of a KMS key. This is used to encrypt the disk.
-        Changing this creates a new instance.
-        """
-        pci_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume pci address on that attachment.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The volume size on that attachment.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume type on that attachment.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume ID on that attachment.
-        """
-elif False:
-    InstanceVolumeAttachedArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceVolumeAttachedArgsDict(TypedDict):
+    boot_index: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The volume boot index on that attachment.
+    """
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of a KMS key. This is used to encrypt the disk.
+    Changing this creates a new instance.
+    """
+    pci_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume pci address on that attachment.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The volume size on that attachment.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume type on that attachment.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume ID on that attachment.
+    """
 
 @pulumi.input_type
 class InstanceVolumeAttachedArgs:
@@ -1667,17 +1743,497 @@ class InstanceVolumeAttachedArgs:
         pulumi.set(self, "volume_id", value)
 
 
-if not MYPY:
-    class SecgroupV2RuleArgsDict(TypedDict):
-        from_port: pulumi.Input[_builtins.int]
-        ip_protocol: pulumi.Input[_builtins.str]
-        to_port: pulumi.Input[_builtins.int]
-        cidr: NotRequired[pulumi.Input[_builtins.str]]
-        from_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        self: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    SecgroupV2RuleArgsDict: TypeAlias = Mapping[str, Any]
+class OsChangeOsChangeValueArgsDict(TypedDict):
+    imageid: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the new image in UUID format.
+    """
+    adminpass: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the initial password of the ECS administrator. The Windows
+    administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+    + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+    sequence as they appear in the username.
+    + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+    + Either `adminpass` or `keyname` is specified.
+    + If both `adminpass` and `keyname` are empty, Linux ECSs can use `user_data` specified in `metadata`.
+    """
+    keyname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key name.
+    """
+    metadata: NotRequired[pulumi.Input['OsChangeOsChangeValueMetadataArgsDict']]
+    """
+    Specifies the metadata of the ECS for which the OS is to be changed.
+    The metadata structure is documented below.
+
+    <a name="os_change_metadata_struct"></a>
+    The `metadata` block supports:
+    """
+    mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether the ECS supports OS changeation when the ECS is running.
+    If the parameter value is **withStopServer**, the ECS supports OS changeation when the ECS is running. In such a case,
+    the system automatically stops the ECS before changeing its OS.
+    """
+    userid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user ID. When the `keyname` parameter is being specified, the
+    value of this parameter is used preferentially. If this parameter is left blank, the user ID in the token is used by default.
+    """
+
+@pulumi.input_type
+class OsChangeOsChangeValueArgs:
+    def __init__(__self__, *,
+                 imageid: pulumi.Input[_builtins.str],
+                 adminpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 keyname: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input['OsChangeOsChangeValueMetadataArgs']] = None,
+                 mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 userid: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] imageid: Specifies the ID of the new image in UUID format.
+        :param pulumi.Input[_builtins.str] adminpass: Specifies the initial password of the ECS administrator. The Windows
+               administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+               + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+               sequence as they appear in the username.
+               + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+               + Either `adminpass` or `keyname` is specified.
+               + If both `adminpass` and `keyname` are empty, Linux ECSs can use `user_data` specified in `metadata`.
+        :param pulumi.Input[_builtins.str] keyname: Specifies the key name.
+        :param pulumi.Input['OsChangeOsChangeValueMetadataArgs'] metadata: Specifies the metadata of the ECS for which the OS is to be changed.
+               The metadata structure is documented below.
+               
+               <a name="os_change_metadata_struct"></a>
+               The `metadata` block supports:
+        :param pulumi.Input[_builtins.str] mode: Specifies whether the ECS supports OS changeation when the ECS is running.
+               If the parameter value is **withStopServer**, the ECS supports OS changeation when the ECS is running. In such a case,
+               the system automatically stops the ECS before changeing its OS.
+        :param pulumi.Input[_builtins.str] userid: Specifies the user ID. When the `keyname` parameter is being specified, the
+               value of this parameter is used preferentially. If this parameter is left blank, the user ID in the token is used by default.
+        """
+        pulumi.set(__self__, "imageid", imageid)
+        if adminpass is not None:
+            pulumi.set(__self__, "adminpass", adminpass)
+        if keyname is not None:
+            pulumi.set(__self__, "keyname", keyname)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if userid is not None:
+            pulumi.set(__self__, "userid", userid)
+
+    @_builtins.property
+    @pulumi.getter
+    def imageid(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the ID of the new image in UUID format.
+        """
+        return pulumi.get(self, "imageid")
+
+    @imageid.setter
+    def imageid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "imageid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def adminpass(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the initial password of the ECS administrator. The Windows
+        administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+        + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+        sequence as they appear in the username.
+        + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+        + Either `adminpass` or `keyname` is specified.
+        + If both `adminpass` and `keyname` are empty, Linux ECSs can use `user_data` specified in `metadata`.
+        """
+        return pulumi.get(self, "adminpass")
+
+    @adminpass.setter
+    def adminpass(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "adminpass", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def keyname(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the key name.
+        """
+        return pulumi.get(self, "keyname")
+
+    @keyname.setter
+    def keyname(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "keyname", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input['OsChangeOsChangeValueMetadataArgs']]:
+        """
+        Specifies the metadata of the ECS for which the OS is to be changed.
+        The metadata structure is documented below.
+
+        <a name="os_change_metadata_struct"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input['OsChangeOsChangeValueMetadataArgs']]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether the ECS supports OS changeation when the ECS is running.
+        If the parameter value is **withStopServer**, the ECS supports OS changeation when the ECS is running. In such a case,
+        the system automatically stops the ECS before changeing its OS.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mode", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def userid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the user ID. When the `keyname` parameter is being specified, the
+        value of this parameter is used preferentially. If this parameter is left blank, the user ID in the token is used by default.
+        """
+        return pulumi.get(self, "userid")
+
+    @userid.setter
+    def userid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "userid", value)
+
+
+class OsChangeOsChangeValueMetadataArgsDict(TypedDict):
+    __system_cmkid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CMK ID, which indicates encryption in `metadata`.
+    This parameter must be used with `__system__encrypted`.
+    """
+    __system_encrypted: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encryption field in `metadata`.
+    + **0**: indicates a non-encrypted disk.
+    + **1**: indicates an encrypted disk.
+    """
+    user_data: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user data to be injected to the ECS during the creation.
+    Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+    """
+
+@pulumi.input_type
+class OsChangeOsChangeValueMetadataArgs:
+    def __init__(__self__, *,
+                 __system_cmkid: Optional[pulumi.Input[_builtins.str]] = None,
+                 __system_encrypted: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_data: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] __system_cmkid: Specifies the CMK ID, which indicates encryption in `metadata`.
+               This parameter must be used with `__system__encrypted`.
+        :param pulumi.Input[_builtins.str] __system_encrypted: Specifies the encryption field in `metadata`.
+               + **0**: indicates a non-encrypted disk.
+               + **1**: indicates an encrypted disk.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected to the ECS during the creation.
+               Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+        """
+        if __system_cmkid is not None:
+            pulumi.set(__self__, "__system_cmkid", __system_cmkid)
+        if __system_encrypted is not None:
+            pulumi.set(__self__, "__system_encrypted", __system_encrypted)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemCmkid")
+    def __system_cmkid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the CMK ID, which indicates encryption in `metadata`.
+        This parameter must be used with `__system__encrypted`.
+        """
+        return pulumi.get(self, "__system_cmkid")
+
+    @__system_cmkid.setter
+    def __system_cmkid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "__system_cmkid", value)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemEncrypted")
+    def __system_encrypted(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the encryption field in `metadata`.
+        + **0**: indicates a non-encrypted disk.
+        + **1**: indicates an encrypted disk.
+        """
+        return pulumi.get(self, "__system_encrypted")
+
+    @__system_encrypted.setter
+    def __system_encrypted(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "__system_encrypted", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the user data to be injected to the ECS during the creation.
+        Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+        """
+        return pulumi.get(self, "user_data")
+
+    @user_data.setter
+    def user_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_data", value)
+
+
+class OsReinstallOsReinstallValueArgsDict(TypedDict):
+    adminpass: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the initial password of the ECS administrator. The Windows
+    administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+    + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+    sequence as they appear in the username.
+    + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+    + Either `adminpass` or `keyname` is specified.
+    + If both `adminpass` and `keyname` are empty, `user_data` in metadata must be set.
+    + The `password` must contain **8** to **26** characters.
+    + The `password` must contain at least three of the following character types: uppercase letters, lowercase letters,
+    digits, and special characters (!@$%^-_=+[{}]:,./?~#*).
+    """
+    keyname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key name.
+    """
+    metadata: NotRequired[pulumi.Input['OsReinstallOsReinstallValueMetadataArgsDict']]
+    """
+    Specifies the metadata of the reinstalled ECS.
+    The metadata structure is documented below.
+
+    <a name="os_reinstall_metadata_struct"></a>
+    The `metadata` block supports:
+    """
+    mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether the ECS supports OS reinstallation when the ECS is running.
+    If the parameter value is **withStopServer**, the ECS supports OS reinstallation when the ECS is running. In such a case,
+    the system automatically stops the ECS before reinstalling its OS.
+    """
+    userid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user ID.
+    """
+
+@pulumi.input_type
+class OsReinstallOsReinstallValueArgs:
+    def __init__(__self__, *,
+                 adminpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 keyname: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input['OsReinstallOsReinstallValueMetadataArgs']] = None,
+                 mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 userid: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] adminpass: Specifies the initial password of the ECS administrator. The Windows
+               administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+               + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+               sequence as they appear in the username.
+               + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+               + Either `adminpass` or `keyname` is specified.
+               + If both `adminpass` and `keyname` are empty, `user_data` in metadata must be set.
+               + The `password` must contain **8** to **26** characters.
+               + The `password` must contain at least three of the following character types: uppercase letters, lowercase letters,
+               digits, and special characters (!@$%^-_=+[{}]:,./?~#*).
+        :param pulumi.Input[_builtins.str] keyname: Specifies the key name.
+        :param pulumi.Input['OsReinstallOsReinstallValueMetadataArgs'] metadata: Specifies the metadata of the reinstalled ECS.
+               The metadata structure is documented below.
+               
+               <a name="os_reinstall_metadata_struct"></a>
+               The `metadata` block supports:
+        :param pulumi.Input[_builtins.str] mode: Specifies whether the ECS supports OS reinstallation when the ECS is running.
+               If the parameter value is **withStopServer**, the ECS supports OS reinstallation when the ECS is running. In such a case,
+               the system automatically stops the ECS before reinstalling its OS.
+        :param pulumi.Input[_builtins.str] userid: Specifies the user ID.
+        """
+        if adminpass is not None:
+            pulumi.set(__self__, "adminpass", adminpass)
+        if keyname is not None:
+            pulumi.set(__self__, "keyname", keyname)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if userid is not None:
+            pulumi.set(__self__, "userid", userid)
+
+    @_builtins.property
+    @pulumi.getter
+    def adminpass(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the initial password of the ECS administrator. The Windows
+        administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+        + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+        sequence as they appear in the username.
+        + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+        + Either `adminpass` or `keyname` is specified.
+        + If both `adminpass` and `keyname` are empty, `user_data` in metadata must be set.
+        + The `password` must contain **8** to **26** characters.
+        + The `password` must contain at least three of the following character types: uppercase letters, lowercase letters,
+        digits, and special characters (!@$%^-_=+[{}]:,./?~#*).
+        """
+        return pulumi.get(self, "adminpass")
+
+    @adminpass.setter
+    def adminpass(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "adminpass", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def keyname(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the key name.
+        """
+        return pulumi.get(self, "keyname")
+
+    @keyname.setter
+    def keyname(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "keyname", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input['OsReinstallOsReinstallValueMetadataArgs']]:
+        """
+        Specifies the metadata of the reinstalled ECS.
+        The metadata structure is documented below.
+
+        <a name="os_reinstall_metadata_struct"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input['OsReinstallOsReinstallValueMetadataArgs']]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether the ECS supports OS reinstallation when the ECS is running.
+        If the parameter value is **withStopServer**, the ECS supports OS reinstallation when the ECS is running. In such a case,
+        the system automatically stops the ECS before reinstalling its OS.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mode", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def userid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the user ID.
+        """
+        return pulumi.get(self, "userid")
+
+    @userid.setter
+    def userid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "userid", value)
+
+
+class OsReinstallOsReinstallValueMetadataArgsDict(TypedDict):
+    __system_cmkid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CMK ID, which indicates encryption in `metadata`.
+    This parameter must be used with `__system__encrypted`.
+    """
+    __system_encrypted: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encryption field in `metadata`.
+    + **0**: indicates a non-encrypted disk.
+    + **1**: indicates an encrypted disk.
+    """
+    user_data: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user data to be injected to the ECS during the creation.
+    Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+    """
+
+@pulumi.input_type
+class OsReinstallOsReinstallValueMetadataArgs:
+    def __init__(__self__, *,
+                 __system_cmkid: Optional[pulumi.Input[_builtins.str]] = None,
+                 __system_encrypted: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_data: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] __system_cmkid: Specifies the CMK ID, which indicates encryption in `metadata`.
+               This parameter must be used with `__system__encrypted`.
+        :param pulumi.Input[_builtins.str] __system_encrypted: Specifies the encryption field in `metadata`.
+               + **0**: indicates a non-encrypted disk.
+               + **1**: indicates an encrypted disk.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected to the ECS during the creation.
+               Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+        """
+        if __system_cmkid is not None:
+            pulumi.set(__self__, "__system_cmkid", __system_cmkid)
+        if __system_encrypted is not None:
+            pulumi.set(__self__, "__system_encrypted", __system_encrypted)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemCmkid")
+    def __system_cmkid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the CMK ID, which indicates encryption in `metadata`.
+        This parameter must be used with `__system__encrypted`.
+        """
+        return pulumi.get(self, "__system_cmkid")
+
+    @__system_cmkid.setter
+    def __system_cmkid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "__system_cmkid", value)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemEncrypted")
+    def __system_encrypted(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the encryption field in `metadata`.
+        + **0**: indicates a non-encrypted disk.
+        + **1**: indicates an encrypted disk.
+        """
+        return pulumi.get(self, "__system_encrypted")
+
+    @__system_encrypted.setter
+    def __system_encrypted(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "__system_encrypted", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the user data to be injected to the ECS during the creation.
+        Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+        """
+        return pulumi.get(self, "user_data")
+
+    @user_data.setter
+    def user_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_data", value)
+
+
+class SecgroupV2RuleArgsDict(TypedDict):
+    from_port: pulumi.Input[_builtins.int]
+    ip_protocol: pulumi.Input[_builtins.str]
+    to_port: pulumi.Input[_builtins.int]
+    cidr: NotRequired[pulumi.Input[_builtins.str]]
+    from_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    self: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class SecgroupV2RuleArgs:
@@ -1763,5 +2319,1695 @@ class SecgroupV2RuleArgs:
     @self.setter
     def self(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "self", value)
+
+
+class TemplateTemplateDataArgsDict(TypedDict):
+    auto_recovery: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether enable auto-recovery.
+    """
+    availability_zone_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the AZ.
+    """
+    block_device_mappings: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataBlockDeviceMappingArgsDict']]]]
+    """
+    Specifies the BDM mounting information.
+    The block_device_mappings structure is documented below.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ECS description.
+    """
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID.
+    """
+    flavor_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the flavor ID of the ECS to be created based on the template.
+    """
+    internet_access: NotRequired[pulumi.Input['TemplateTemplateDataInternetAccessArgsDict']]
+    """
+    Specifies the public network access.
+    The internet_access structure is documented below.
+    """
+    market_options: NotRequired[pulumi.Input['TemplateTemplateDataMarketOptionsArgsDict']]
+    """
+    Specifies the billing information.
+    The market_options structure is documented below.
+    """
+    metadata: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the metadata.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ECS name.
+    """
+    network_interfaces: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataNetworkInterfaceArgsDict']]]]
+    """
+    Specifies the network interfaces.
+    The network_interfaces structure is documented below.
+    """
+    os_profile: NotRequired[pulumi.Input['TemplateTemplateDataOsProfileArgsDict']]
+    """
+    Specifies the image attribute.
+    The os_profile structure is documented below.
+    """
+    security_group_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the security group ID list.
+    """
+    tag_options: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionArgsDict']]]]
+    """
+    Specifies the VM tags. Currently, only VMs can be tagged. In the future,
+    associated resources such as volumes can be tagged, too.
+    The tag_options structure is documented below.
+
+    <a name="os_profile_struct"></a>
+    The `os_profile` block supports:
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataArgs:
+    def __init__(__self__, *,
+                 auto_recovery: Optional[pulumi.Input[_builtins.bool]] = None,
+                 availability_zone_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 block_device_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataBlockDeviceMappingArgs']]]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 internet_access: Optional[pulumi.Input['TemplateTemplateDataInternetAccessArgs']] = None,
+                 market_options: Optional[pulumi.Input['TemplateTemplateDataMarketOptionsArgs']] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataNetworkInterfaceArgs']]]] = None,
+                 os_profile: Optional[pulumi.Input['TemplateTemplateDataOsProfileArgs']] = None,
+                 security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tag_options: Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionArgs']]]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] auto_recovery: Specifies whether enable auto-recovery.
+        :param pulumi.Input[_builtins.str] availability_zone_id: Specifies the AZ.
+        :param pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataBlockDeviceMappingArgs']]] block_device_mappings: Specifies the BDM mounting information.
+               The block_device_mappings structure is documented below.
+        :param pulumi.Input[_builtins.str] description: Specifies the ECS description.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
+        :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the ECS to be created based on the template.
+        :param pulumi.Input['TemplateTemplateDataInternetAccessArgs'] internet_access: Specifies the public network access.
+               The internet_access structure is documented below.
+        :param pulumi.Input['TemplateTemplateDataMarketOptionsArgs'] market_options: Specifies the billing information.
+               The market_options structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the metadata.
+        :param pulumi.Input[_builtins.str] name: Specifies the ECS name.
+        :param pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataNetworkInterfaceArgs']]] network_interfaces: Specifies the network interfaces.
+               The network_interfaces structure is documented below.
+        :param pulumi.Input['TemplateTemplateDataOsProfileArgs'] os_profile: Specifies the image attribute.
+               The os_profile structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_group_ids: Specifies the security group ID list.
+        :param pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionArgs']]] tag_options: Specifies the VM tags. Currently, only VMs can be tagged. In the future,
+               associated resources such as volumes can be tagged, too.
+               The tag_options structure is documented below.
+               
+               <a name="os_profile_struct"></a>
+               The `os_profile` block supports:
+        """
+        if auto_recovery is not None:
+            pulumi.set(__self__, "auto_recovery", auto_recovery)
+        if availability_zone_id is not None:
+            pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+        if block_device_mappings is not None:
+            pulumi.set(__self__, "block_device_mappings", block_device_mappings)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if flavor_id is not None:
+            pulumi.set(__self__, "flavor_id", flavor_id)
+        if internet_access is not None:
+            pulumi.set(__self__, "internet_access", internet_access)
+        if market_options is not None:
+            pulumi.set(__self__, "market_options", market_options)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if network_interfaces is not None:
+            pulumi.set(__self__, "network_interfaces", network_interfaces)
+        if os_profile is not None:
+            pulumi.set(__self__, "os_profile", os_profile)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if tag_options is not None:
+            pulumi.set(__self__, "tag_options", tag_options)
+
+    @_builtins.property
+    @pulumi.getter(name="autoRecovery")
+    def auto_recovery(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether enable auto-recovery.
+        """
+        return pulumi.get(self, "auto_recovery")
+
+    @auto_recovery.setter
+    def auto_recovery(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "auto_recovery", value)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the AZ.
+        """
+        return pulumi.get(self, "availability_zone_id")
+
+    @availability_zone_id.setter
+    def availability_zone_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "availability_zone_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="blockDeviceMappings")
+    def block_device_mappings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataBlockDeviceMappingArgs']]]]:
+        """
+        Specifies the BDM mounting information.
+        The block_device_mappings structure is documented below.
+        """
+        return pulumi.get(self, "block_device_mappings")
+
+    @block_device_mappings.setter
+    def block_device_mappings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataBlockDeviceMappingArgs']]]]):
+        pulumi.set(self, "block_device_mappings", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ECS description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="flavorId")
+    def flavor_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the flavor ID of the ECS to be created based on the template.
+        """
+        return pulumi.get(self, "flavor_id")
+
+    @flavor_id.setter
+    def flavor_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "flavor_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="internetAccess")
+    def internet_access(self) -> Optional[pulumi.Input['TemplateTemplateDataInternetAccessArgs']]:
+        """
+        Specifies the public network access.
+        The internet_access structure is documented below.
+        """
+        return pulumi.get(self, "internet_access")
+
+    @internet_access.setter
+    def internet_access(self, value: Optional[pulumi.Input['TemplateTemplateDataInternetAccessArgs']]):
+        pulumi.set(self, "internet_access", value)
+
+    @_builtins.property
+    @pulumi.getter(name="marketOptions")
+    def market_options(self) -> Optional[pulumi.Input['TemplateTemplateDataMarketOptionsArgs']]:
+        """
+        Specifies the billing information.
+        The market_options structure is documented below.
+        """
+        return pulumi.get(self, "market_options")
+
+    @market_options.setter
+    def market_options(self, value: Optional[pulumi.Input['TemplateTemplateDataMarketOptionsArgs']]):
+        pulumi.set(self, "market_options", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the metadata.
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ECS name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="networkInterfaces")
+    def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataNetworkInterfaceArgs']]]]:
+        """
+        Specifies the network interfaces.
+        The network_interfaces structure is documented below.
+        """
+        return pulumi.get(self, "network_interfaces")
+
+    @network_interfaces.setter
+    def network_interfaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataNetworkInterfaceArgs']]]]):
+        pulumi.set(self, "network_interfaces", value)
+
+    @_builtins.property
+    @pulumi.getter(name="osProfile")
+    def os_profile(self) -> Optional[pulumi.Input['TemplateTemplateDataOsProfileArgs']]:
+        """
+        Specifies the image attribute.
+        The os_profile structure is documented below.
+        """
+        return pulumi.get(self, "os_profile")
+
+    @os_profile.setter
+    def os_profile(self, value: Optional[pulumi.Input['TemplateTemplateDataOsProfileArgs']]):
+        pulumi.set(self, "os_profile", value)
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the security group ID list.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @security_group_ids.setter
+    def security_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "security_group_ids", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tagOptions")
+    def tag_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionArgs']]]]:
+        """
+        Specifies the VM tags. Currently, only VMs can be tagged. In the future,
+        associated resources such as volumes can be tagged, too.
+        The tag_options structure is documented below.
+
+        <a name="os_profile_struct"></a>
+        The `os_profile` block supports:
+        """
+        return pulumi.get(self, "tag_options")
+
+    @tag_options.setter
+    def tag_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionArgs']]]]):
+        pulumi.set(self, "tag_options", value)
+
+
+class TemplateTemplateDataBlockDeviceMappingArgsDict(TypedDict):
+    attachment: NotRequired[pulumi.Input['TemplateTemplateDataBlockDeviceMappingAttachmentArgsDict']]
+    """
+    Specifies the disk interface.
+    The block_device_mappings_attachment structure is documented below.
+
+    <a name="block_device_mappings_attachment_struct"></a>
+    The `block_device_mappings_attachment` block supports:
+    """
+    cmk_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key ID.
+    """
+    encrypted: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the encrypted or not.
+    """
+    source_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VM volume data source type.
+    """
+    source_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source type of the volume device.
+    """
+    volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the volume size.
+    """
+    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the volume type.
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataBlockDeviceMappingArgs:
+    def __init__(__self__, *,
+                 attachment: Optional[pulumi.Input['TemplateTemplateDataBlockDeviceMappingAttachmentArgs']] = None,
+                 cmk_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
+                 source_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 source_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 volume_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input['TemplateTemplateDataBlockDeviceMappingAttachmentArgs'] attachment: Specifies the disk interface.
+               The block_device_mappings_attachment structure is documented below.
+               
+               <a name="block_device_mappings_attachment_struct"></a>
+               The `block_device_mappings_attachment` block supports:
+        :param pulumi.Input[_builtins.str] cmk_id: Specifies the key ID.
+        :param pulumi.Input[_builtins.bool] encrypted: Specifies the encrypted or not.
+        :param pulumi.Input[_builtins.str] source_id: Specifies the VM volume data source type.
+        :param pulumi.Input[_builtins.str] source_type: Specifies the source type of the volume device.
+        :param pulumi.Input[_builtins.int] volume_size: Specifies the volume size.
+        :param pulumi.Input[_builtins.str] volume_type: Specifies the volume type.
+        """
+        if attachment is not None:
+            pulumi.set(__self__, "attachment", attachment)
+        if cmk_id is not None:
+            pulumi.set(__self__, "cmk_id", cmk_id)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if source_id is not None:
+            pulumi.set(__self__, "source_id", source_id)
+        if source_type is not None:
+            pulumi.set(__self__, "source_type", source_type)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def attachment(self) -> Optional[pulumi.Input['TemplateTemplateDataBlockDeviceMappingAttachmentArgs']]:
+        """
+        Specifies the disk interface.
+        The block_device_mappings_attachment structure is documented below.
+
+        <a name="block_device_mappings_attachment_struct"></a>
+        The `block_device_mappings_attachment` block supports:
+        """
+        return pulumi.get(self, "attachment")
+
+    @attachment.setter
+    def attachment(self, value: Optional[pulumi.Input['TemplateTemplateDataBlockDeviceMappingAttachmentArgs']]):
+        pulumi.set(self, "attachment", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cmkId")
+    def cmk_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the key ID.
+        """
+        return pulumi.get(self, "cmk_id")
+
+    @cmk_id.setter
+    def cmk_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cmk_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def encrypted(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies the encrypted or not.
+        """
+        return pulumi.get(self, "encrypted")
+
+    @encrypted.setter
+    def encrypted(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "encrypted", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceId")
+    def source_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the VM volume data source type.
+        """
+        return pulumi.get(self, "source_id")
+
+    @source_id.setter
+    def source_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "source_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the source type of the volume device.
+        """
+        return pulumi.get(self, "source_type")
+
+    @source_type.setter
+    def source_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "source_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="volumeSize")
+    def volume_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the volume size.
+        """
+        return pulumi.get(self, "volume_size")
+
+    @volume_size.setter
+    def volume_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "volume_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the volume type.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @volume_type.setter
+    def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "volume_type", value)
+
+
+class TemplateTemplateDataBlockDeviceMappingAttachmentArgsDict(TypedDict):
+    boot_index: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the loading sequence. The value **0** indicates the system disk.
+    """
+    delete_on_termination: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the EIP is released along with the instance.
+
+    <a name="bandwidth_struct"></a>
+    The `bandwidth` block supports:
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataBlockDeviceMappingAttachmentArgs:
+    def __init__(__self__, *,
+                 boot_index: Optional[pulumi.Input[_builtins.int]] = None,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.int] boot_index: Specifies the loading sequence. The value **0** indicates the system disk.
+        :param pulumi.Input[_builtins.bool] delete_on_termination: Specifies whether the EIP is released along with the instance.
+               
+               <a name="bandwidth_struct"></a>
+               The `bandwidth` block supports:
+        """
+        if boot_index is not None:
+            pulumi.set(__self__, "boot_index", boot_index)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+
+    @_builtins.property
+    @pulumi.getter(name="bootIndex")
+    def boot_index(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the loading sequence. The value **0** indicates the system disk.
+        """
+        return pulumi.get(self, "boot_index")
+
+    @boot_index.setter
+    def boot_index(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "boot_index", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the EIP is released along with the instance.
+
+        <a name="bandwidth_struct"></a>
+        The `bandwidth` block supports:
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+
+class TemplateTemplateDataInternetAccessArgsDict(TypedDict):
+    publicip: NotRequired[pulumi.Input['TemplateTemplateDataInternetAccessPublicipArgsDict']]
+    """
+    Specifies the public network access.
+    The publicip structure is documented below.
+
+    <a name="publicip_struct"></a>
+    The `publicip` block supports:
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataInternetAccessArgs:
+    def __init__(__self__, *,
+                 publicip: Optional[pulumi.Input['TemplateTemplateDataInternetAccessPublicipArgs']] = None):
+        """
+        :param pulumi.Input['TemplateTemplateDataInternetAccessPublicipArgs'] publicip: Specifies the public network access.
+               The publicip structure is documented below.
+               
+               <a name="publicip_struct"></a>
+               The `publicip` block supports:
+        """
+        if publicip is not None:
+            pulumi.set(__self__, "publicip", publicip)
+
+    @_builtins.property
+    @pulumi.getter
+    def publicip(self) -> Optional[pulumi.Input['TemplateTemplateDataInternetAccessPublicipArgs']]:
+        """
+        Specifies the public network access.
+        The publicip structure is documented below.
+
+        <a name="publicip_struct"></a>
+        The `publicip` block supports:
+        """
+        return pulumi.get(self, "publicip")
+
+    @publicip.setter
+    def publicip(self, value: Optional[pulumi.Input['TemplateTemplateDataInternetAccessPublicipArgs']]):
+        pulumi.set(self, "publicip", value)
+
+
+class TemplateTemplateDataInternetAccessPublicipArgsDict(TypedDict):
+    bandwidth: NotRequired[pulumi.Input['TemplateTemplateDataInternetAccessPublicipBandwidthArgsDict']]
+    """
+    Specifies the bandwidth.
+    The bandwidth structure is documented below.
+    """
+    charging_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the EIP billing mode.
+    """
+    delete_on_termination: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the EIP is released along with the instance.
+
+    <a name="bandwidth_struct"></a>
+    The `bandwidth` block supports:
+    """
+    publicip_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the EIP type.
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataInternetAccessPublicipArgs:
+    def __init__(__self__, *,
+                 bandwidth: Optional[pulumi.Input['TemplateTemplateDataInternetAccessPublicipBandwidthArgs']] = None,
+                 charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.bool]] = None,
+                 publicip_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input['TemplateTemplateDataInternetAccessPublicipBandwidthArgs'] bandwidth: Specifies the bandwidth.
+               The bandwidth structure is documented below.
+        :param pulumi.Input[_builtins.str] charging_mode: Specifies the EIP billing mode.
+        :param pulumi.Input[_builtins.bool] delete_on_termination: Specifies whether the EIP is released along with the instance.
+               
+               <a name="bandwidth_struct"></a>
+               The `bandwidth` block supports:
+        :param pulumi.Input[_builtins.str] publicip_type: Specifies the EIP type.
+        """
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
+        if charging_mode is not None:
+            pulumi.set(__self__, "charging_mode", charging_mode)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if publicip_type is not None:
+            pulumi.set(__self__, "publicip_type", publicip_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def bandwidth(self) -> Optional[pulumi.Input['TemplateTemplateDataInternetAccessPublicipBandwidthArgs']]:
+        """
+        Specifies the bandwidth.
+        The bandwidth structure is documented below.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @bandwidth.setter
+    def bandwidth(self, value: Optional[pulumi.Input['TemplateTemplateDataInternetAccessPublicipBandwidthArgs']]):
+        pulumi.set(self, "bandwidth", value)
+
+    @_builtins.property
+    @pulumi.getter(name="chargingMode")
+    def charging_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the EIP billing mode.
+        """
+        return pulumi.get(self, "charging_mode")
+
+    @charging_mode.setter
+    def charging_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "charging_mode", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the EIP is released along with the instance.
+
+        <a name="bandwidth_struct"></a>
+        The `bandwidth` block supports:
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicipType")
+    def publicip_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the EIP type.
+        """
+        return pulumi.get(self, "publicip_type")
+
+    @publicip_type.setter
+    def publicip_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "publicip_type", value)
+
+
+class TemplateTemplateDataInternetAccessPublicipBandwidthArgsDict(TypedDict):
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the billing mode.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the bandwidth ID. You can use an existing shared bandwidth when
+    applying for an EIP for the bandwidth of type **WHOLE**.
+
+    <a name="tag_options_struct"></a>
+    The `tag_options` block supports:
+    """
+    share_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the bandwidth type.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the bandwidth size.
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataInternetAccessPublicipBandwidthArgs:
+    def __init__(__self__, *,
+                 charge_mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 share_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 size: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing mode.
+        :param pulumi.Input[_builtins.str] id: Specifies the bandwidth ID. You can use an existing shared bandwidth when
+               applying for an EIP for the bandwidth of type **WHOLE**.
+               
+               <a name="tag_options_struct"></a>
+               The `tag_options` block supports:
+        :param pulumi.Input[_builtins.str] share_type: Specifies the bandwidth type.
+        :param pulumi.Input[_builtins.int] size: Specifies the bandwidth size.
+        """
+        if charge_mode is not None:
+            pulumi.set(__self__, "charge_mode", charge_mode)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if share_type is not None:
+            pulumi.set(__self__, "share_type", share_type)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter(name="chargeMode")
+    def charge_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the billing mode.
+        """
+        return pulumi.get(self, "charge_mode")
+
+    @charge_mode.setter
+    def charge_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "charge_mode", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the bandwidth ID. You can use an existing shared bandwidth when
+        applying for an EIP for the bandwidth of type **WHOLE**.
+
+        <a name="tag_options_struct"></a>
+        The `tag_options` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="shareType")
+    def share_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the bandwidth type.
+        """
+        return pulumi.get(self, "share_type")
+
+    @share_type.setter
+    def share_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "share_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the bandwidth size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+
+class TemplateTemplateDataMarketOptionsArgsDict(TypedDict):
+    market_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the billing mode. Value options: **postpaid**, **spot**.
+    """
+    spot_options: NotRequired[pulumi.Input['TemplateTemplateDataMarketOptionsSpotOptionsArgsDict']]
+    """
+    Specifies the spot instance parameters.
+    The spot_options structure is documented below.
+
+    <a name="spot_options_struct"></a>
+    The `spot_options` block supports:
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataMarketOptionsArgs:
+    def __init__(__self__, *,
+                 market_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 spot_options: Optional[pulumi.Input['TemplateTemplateDataMarketOptionsSpotOptionsArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] market_type: Specifies the billing mode. Value options: **postpaid**, **spot**.
+        :param pulumi.Input['TemplateTemplateDataMarketOptionsSpotOptionsArgs'] spot_options: Specifies the spot instance parameters.
+               The spot_options structure is documented below.
+               
+               <a name="spot_options_struct"></a>
+               The `spot_options` block supports:
+        """
+        if market_type is not None:
+            pulumi.set(__self__, "market_type", market_type)
+        if spot_options is not None:
+            pulumi.set(__self__, "spot_options", spot_options)
+
+    @_builtins.property
+    @pulumi.getter(name="marketType")
+    def market_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the billing mode. Value options: **postpaid**, **spot**.
+        """
+        return pulumi.get(self, "market_type")
+
+    @market_type.setter
+    def market_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "market_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="spotOptions")
+    def spot_options(self) -> Optional[pulumi.Input['TemplateTemplateDataMarketOptionsSpotOptionsArgs']]:
+        """
+        Specifies the spot instance parameters.
+        The spot_options structure is documented below.
+
+        <a name="spot_options_struct"></a>
+        The `spot_options` block supports:
+        """
+        return pulumi.get(self, "spot_options")
+
+    @spot_options.setter
+    def spot_options(self, value: Optional[pulumi.Input['TemplateTemplateDataMarketOptionsSpotOptionsArgs']]):
+        pulumi.set(self, "spot_options", value)
+
+
+class TemplateTemplateDataMarketOptionsSpotOptionsArgsDict(TypedDict):
+    block_duration_minutes: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the predefined duration of the spot ECS.
+    """
+    instance_interruption_behavior: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the spot ECS interruption policy, which
+    can only be set to **immediate** currently.
+
+    <a name="internet_access_struct"></a>
+    The `internet_access` block supports:
+    """
+    spot_price: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the highest price per hour you are willing to pay for a spot
+    ECS.
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataMarketOptionsSpotOptionsArgs:
+    def __init__(__self__, *,
+                 block_duration_minutes: Optional[pulumi.Input[_builtins.int]] = None,
+                 instance_interruption_behavior: Optional[pulumi.Input[_builtins.str]] = None,
+                 spot_price: Optional[pulumi.Input[_builtins.float]] = None):
+        """
+        :param pulumi.Input[_builtins.int] block_duration_minutes: Specifies the predefined duration of the spot ECS.
+        :param pulumi.Input[_builtins.str] instance_interruption_behavior: Specifies the spot ECS interruption policy, which
+               can only be set to **immediate** currently.
+               
+               <a name="internet_access_struct"></a>
+               The `internet_access` block supports:
+        :param pulumi.Input[_builtins.float] spot_price: Specifies the highest price per hour you are willing to pay for a spot
+               ECS.
+        """
+        if block_duration_minutes is not None:
+            pulumi.set(__self__, "block_duration_minutes", block_duration_minutes)
+        if instance_interruption_behavior is not None:
+            pulumi.set(__self__, "instance_interruption_behavior", instance_interruption_behavior)
+        if spot_price is not None:
+            pulumi.set(__self__, "spot_price", spot_price)
+
+    @_builtins.property
+    @pulumi.getter(name="blockDurationMinutes")
+    def block_duration_minutes(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the predefined duration of the spot ECS.
+        """
+        return pulumi.get(self, "block_duration_minutes")
+
+    @block_duration_minutes.setter
+    def block_duration_minutes(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "block_duration_minutes", value)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceInterruptionBehavior")
+    def instance_interruption_behavior(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the spot ECS interruption policy, which
+        can only be set to **immediate** currently.
+
+        <a name="internet_access_struct"></a>
+        The `internet_access` block supports:
+        """
+        return pulumi.get(self, "instance_interruption_behavior")
+
+    @instance_interruption_behavior.setter
+    def instance_interruption_behavior(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "instance_interruption_behavior", value)
+
+    @_builtins.property
+    @pulumi.getter(name="spotPrice")
+    def spot_price(self) -> Optional[pulumi.Input[_builtins.float]]:
+        """
+        Specifies the highest price per hour you are willing to pay for a spot
+        ECS.
+        """
+        return pulumi.get(self, "spot_price")
+
+    @spot_price.setter
+    def spot_price(self, value: Optional[pulumi.Input[_builtins.float]]):
+        pulumi.set(self, "spot_price", value)
+
+
+class TemplateTemplateDataNetworkInterfaceArgsDict(TypedDict):
+    attachment: NotRequired[pulumi.Input['TemplateTemplateDataNetworkInterfaceAttachmentArgsDict']]
+    """
+    Specifies the disk interface.
+    The block_device_mappings_attachment structure is documented below.
+
+    <a name="block_device_mappings_attachment_struct"></a>
+    The `block_device_mappings_attachment` block supports:
+    """
+    virsubnet_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subnet ID.
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataNetworkInterfaceArgs:
+    def __init__(__self__, *,
+                 attachment: Optional[pulumi.Input['TemplateTemplateDataNetworkInterfaceAttachmentArgs']] = None,
+                 virsubnet_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input['TemplateTemplateDataNetworkInterfaceAttachmentArgs'] attachment: Specifies the disk interface.
+               The block_device_mappings_attachment structure is documented below.
+               
+               <a name="block_device_mappings_attachment_struct"></a>
+               The `block_device_mappings_attachment` block supports:
+        :param pulumi.Input[_builtins.str] virsubnet_id: Specifies the subnet ID.
+        """
+        if attachment is not None:
+            pulumi.set(__self__, "attachment", attachment)
+        if virsubnet_id is not None:
+            pulumi.set(__self__, "virsubnet_id", virsubnet_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def attachment(self) -> Optional[pulumi.Input['TemplateTemplateDataNetworkInterfaceAttachmentArgs']]:
+        """
+        Specifies the disk interface.
+        The block_device_mappings_attachment structure is documented below.
+
+        <a name="block_device_mappings_attachment_struct"></a>
+        The `block_device_mappings_attachment` block supports:
+        """
+        return pulumi.get(self, "attachment")
+
+    @attachment.setter
+    def attachment(self, value: Optional[pulumi.Input['TemplateTemplateDataNetworkInterfaceAttachmentArgs']]):
+        pulumi.set(self, "attachment", value)
+
+    @_builtins.property
+    @pulumi.getter(name="virsubnetId")
+    def virsubnet_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the subnet ID.
+        """
+        return pulumi.get(self, "virsubnet_id")
+
+    @virsubnet_id.setter
+    def virsubnet_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "virsubnet_id", value)
+
+
+class TemplateTemplateDataNetworkInterfaceAttachmentArgsDict(TypedDict):
+    device_index: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the loading sequence. The value **0** indicates the primary
+    network interface.
+
+    <a name="block_device_mappings_struct"></a>
+    The `block_device_mappings` block supports:
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataNetworkInterfaceAttachmentArgs:
+    def __init__(__self__, *,
+                 device_index: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] device_index: Specifies the loading sequence. The value **0** indicates the primary
+               network interface.
+               
+               <a name="block_device_mappings_struct"></a>
+               The `block_device_mappings` block supports:
+        """
+        if device_index is not None:
+            pulumi.set(__self__, "device_index", device_index)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceIndex")
+    def device_index(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the loading sequence. The value **0** indicates the primary
+        network interface.
+
+        <a name="block_device_mappings_struct"></a>
+        The `block_device_mappings` block supports:
+        """
+        return pulumi.get(self, "device_index")
+
+    @device_index.setter
+    def device_index(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "device_index", value)
+
+
+class TemplateTemplateDataOsProfileArgsDict(TypedDict):
+    enable_monitoring_service: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether enable HSS.
+
+    <a name="network_interfaces_struct"></a>
+    The `network_interfaces` block supports:
+    """
+    iam_agency_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the agency name.
+    """
+    key_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key name.
+    """
+    user_data: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom user data to be injected into the instance during
+    instance creation. Text and text files can be injected.
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataOsProfileArgs:
+    def __init__(__self__, *,
+                 enable_monitoring_service: Optional[pulumi.Input[_builtins.bool]] = None,
+                 iam_agency_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_data: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] enable_monitoring_service: Specifies whether enable HSS.
+               
+               <a name="network_interfaces_struct"></a>
+               The `network_interfaces` block supports:
+        :param pulumi.Input[_builtins.str] iam_agency_name: Specifies the agency name.
+        :param pulumi.Input[_builtins.str] key_name: Specifies the key name.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the custom user data to be injected into the instance during
+               instance creation. Text and text files can be injected.
+        """
+        if enable_monitoring_service is not None:
+            pulumi.set(__self__, "enable_monitoring_service", enable_monitoring_service)
+        if iam_agency_name is not None:
+            pulumi.set(__self__, "iam_agency_name", iam_agency_name)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="enableMonitoringService")
+    def enable_monitoring_service(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether enable HSS.
+
+        <a name="network_interfaces_struct"></a>
+        The `network_interfaces` block supports:
+        """
+        return pulumi.get(self, "enable_monitoring_service")
+
+    @enable_monitoring_service.setter
+    def enable_monitoring_service(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_monitoring_service", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iamAgencyName")
+    def iam_agency_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the agency name.
+        """
+        return pulumi.get(self, "iam_agency_name")
+
+    @iam_agency_name.setter
+    def iam_agency_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "iam_agency_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the key name.
+        """
+        return pulumi.get(self, "key_name")
+
+    @key_name.setter
+    def key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the custom user data to be injected into the instance during
+        instance creation. Text and text files can be injected.
+        """
+        return pulumi.get(self, "user_data")
+
+    @user_data.setter
+    def user_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_data", value)
+
+
+class TemplateTemplateDataTagOptionArgsDict(TypedDict):
+    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionTagArgsDict']]]]
+    """
+    Specifies the tags.
+    The tags structure is documented below.
+
+    <a name="tags_struct"></a>
+    The `tags` block supports:
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataTagOptionArgs:
+    def __init__(__self__, *,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionTagArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionTagArgs']]] tags: Specifies the tags.
+               The tags structure is documented below.
+               
+               <a name="tags_struct"></a>
+               The `tags` block supports:
+        """
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionTagArgs']]]]:
+        """
+        Specifies the tags.
+        The tags structure is documented below.
+
+        <a name="tags_struct"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TemplateTemplateDataTagOptionTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+
+class TemplateTemplateDataTagOptionTagArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tag key.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tag value.
+    """
+
+@pulumi.input_type
+class TemplateTemplateDataTagOptionTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[_builtins.str]] = None,
+                 value: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] key: Specifies the tag key.
+        :param pulumi.Input[_builtins.str] value: Specifies the tag value.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the tag value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+
+class GetSupplyRecommendationsFlavorConstraintArgsDict(TypedDict):
+    architecture_types: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the architecture type.
+    """
+    flavor_requirements: NotRequired[Sequence['GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgsDict']]
+    """
+    Specifies the flavor requirements.
+    The flavor_requirements structure is documented below.
+
+    <a name="flavor_requirements_struct"></a>
+    The `flavor_requirements` block supports:
+    """
+
+@pulumi.input_type
+class GetSupplyRecommendationsFlavorConstraintArgs:
+    def __init__(__self__, *,
+                 architecture_types: Optional[Sequence[_builtins.str]] = None,
+                 flavor_requirements: Optional[Sequence['GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgs']] = None):
+        """
+        :param Sequence[_builtins.str] architecture_types: Specifies the architecture type.
+        :param Sequence['GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgs'] flavor_requirements: Specifies the flavor requirements.
+               The flavor_requirements structure is documented below.
+               
+               <a name="flavor_requirements_struct"></a>
+               The `flavor_requirements` block supports:
+        """
+        if architecture_types is not None:
+            pulumi.set(__self__, "architecture_types", architecture_types)
+        if flavor_requirements is not None:
+            pulumi.set(__self__, "flavor_requirements", flavor_requirements)
+
+    @_builtins.property
+    @pulumi.getter(name="architectureTypes")
+    def architecture_types(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the architecture type.
+        """
+        return pulumi.get(self, "architecture_types")
+
+    @architecture_types.setter
+    def architecture_types(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "architecture_types", value)
+
+    @_builtins.property
+    @pulumi.getter(name="flavorRequirements")
+    def flavor_requirements(self) -> Optional[Sequence['GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgs']]:
+        """
+        Specifies the flavor requirements.
+        The flavor_requirements structure is documented below.
+
+        <a name="flavor_requirements_struct"></a>
+        The `flavor_requirements` block supports:
+        """
+        return pulumi.get(self, "flavor_requirements")
+
+    @flavor_requirements.setter
+    def flavor_requirements(self, value: Optional[Sequence['GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgs']]):
+        pulumi.set(self, "flavor_requirements", value)
+
+
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgsDict(TypedDict):
+    cpu_manufacturers: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the cpu manufacturers.
+    """
+    instance_generations: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the instance generations.
+
+    <a name="vcpu_count_struct"></a>
+    The `vcpu_count` block supports:
+    """
+    memory_gb_per_vcpu: NotRequired['GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgsDict']
+    """
+    Specifies the memory gb per vcpu.
+    The memory_gb_per_vcpu structure is documented below.
+    """
+    memory_mb: NotRequired['GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgsDict']
+    """
+    Specifies the memory in MByte (MB).
+    The memory_mb structure is documented below.
+    """
+    vcpu_count: NotRequired['GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgsDict']
+    """
+    Specifies the vcpu count.
+    The vcpu_count structure is documented below.
+    """
+
+@pulumi.input_type
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgs:
+    def __init__(__self__, *,
+                 cpu_manufacturers: Optional[Sequence[_builtins.str]] = None,
+                 instance_generations: Optional[Sequence[_builtins.str]] = None,
+                 memory_gb_per_vcpu: Optional['GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgs'] = None,
+                 memory_mb: Optional['GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgs'] = None,
+                 vcpu_count: Optional['GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgs'] = None):
+        """
+        :param Sequence[_builtins.str] cpu_manufacturers: Specifies the cpu manufacturers.
+        :param Sequence[_builtins.str] instance_generations: Specifies the instance generations.
+               
+               <a name="vcpu_count_struct"></a>
+               The `vcpu_count` block supports:
+        :param 'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgs' memory_gb_per_vcpu: Specifies the memory gb per vcpu.
+               The memory_gb_per_vcpu structure is documented below.
+        :param 'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgs' memory_mb: Specifies the memory in MByte (MB).
+               The memory_mb structure is documented below.
+        :param 'GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgs' vcpu_count: Specifies the vcpu count.
+               The vcpu_count structure is documented below.
+        """
+        if cpu_manufacturers is not None:
+            pulumi.set(__self__, "cpu_manufacturers", cpu_manufacturers)
+        if instance_generations is not None:
+            pulumi.set(__self__, "instance_generations", instance_generations)
+        if memory_gb_per_vcpu is not None:
+            pulumi.set(__self__, "memory_gb_per_vcpu", memory_gb_per_vcpu)
+        if memory_mb is not None:
+            pulumi.set(__self__, "memory_mb", memory_mb)
+        if vcpu_count is not None:
+            pulumi.set(__self__, "vcpu_count", vcpu_count)
+
+    @_builtins.property
+    @pulumi.getter(name="cpuManufacturers")
+    def cpu_manufacturers(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the cpu manufacturers.
+        """
+        return pulumi.get(self, "cpu_manufacturers")
+
+    @cpu_manufacturers.setter
+    def cpu_manufacturers(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "cpu_manufacturers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceGenerations")
+    def instance_generations(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the instance generations.
+
+        <a name="vcpu_count_struct"></a>
+        The `vcpu_count` block supports:
+        """
+        return pulumi.get(self, "instance_generations")
+
+    @instance_generations.setter
+    def instance_generations(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "instance_generations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryGbPerVcpu")
+    def memory_gb_per_vcpu(self) -> Optional['GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgs']:
+        """
+        Specifies the memory gb per vcpu.
+        The memory_gb_per_vcpu structure is documented below.
+        """
+        return pulumi.get(self, "memory_gb_per_vcpu")
+
+    @memory_gb_per_vcpu.setter
+    def memory_gb_per_vcpu(self, value: Optional['GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgs']):
+        pulumi.set(self, "memory_gb_per_vcpu", value)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> Optional['GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgs']:
+        """
+        Specifies the memory in MByte (MB).
+        The memory_mb structure is documented below.
+        """
+        return pulumi.get(self, "memory_mb")
+
+    @memory_mb.setter
+    def memory_mb(self, value: Optional['GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgs']):
+        pulumi.set(self, "memory_mb", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vcpuCount")
+    def vcpu_count(self) -> Optional['GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgs']:
+        """
+        Specifies the vcpu count.
+        The vcpu_count structure is documented below.
+        """
+        return pulumi.get(self, "vcpu_count")
+
+    @vcpu_count.setter
+    def vcpu_count(self, value: Optional['GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgs']):
+        pulumi.set(self, "vcpu_count", value)
+
+
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgsDict(TypedDict):
+    max: NotRequired[_builtins.float]
+    """
+    Specifies the max value. **-1** means no limit.
+    """
+    min: NotRequired[_builtins.float]
+    """
+    Specifies the min value. **-1** means no limit.
+
+    <a name="locations_struct"></a>
+    The `locations` block supports:
+    """
+
+@pulumi.input_type
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgs:
+    def __init__(__self__, *,
+                 max: Optional[_builtins.float] = None,
+                 min: Optional[_builtins.float] = None):
+        """
+        :param _builtins.float max: Specifies the max value. **-1** means no limit.
+        :param _builtins.float min: Specifies the min value. **-1** means no limit.
+               
+               <a name="locations_struct"></a>
+               The `locations` block supports:
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> Optional[_builtins.float]:
+        """
+        Specifies the max value. **-1** means no limit.
+        """
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[_builtins.float]):
+        pulumi.set(self, "max", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> Optional[_builtins.float]:
+        """
+        Specifies the min value. **-1** means no limit.
+
+        <a name="locations_struct"></a>
+        The `locations` block supports:
+        """
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[_builtins.float]):
+        pulumi.set(self, "min", value)
+
+
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgsDict(TypedDict):
+    max: NotRequired[_builtins.int]
+    """
+    Specifies the max value. **-1** means no limit.
+    """
+    min: NotRequired[_builtins.int]
+    """
+    Specifies the min value. **-1** means no limit.
+
+    <a name="locations_struct"></a>
+    The `locations` block supports:
+    """
+
+@pulumi.input_type
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgs:
+    def __init__(__self__, *,
+                 max: Optional[_builtins.int] = None,
+                 min: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int max: Specifies the max value. **-1** means no limit.
+        :param _builtins.int min: Specifies the min value. **-1** means no limit.
+               
+               <a name="locations_struct"></a>
+               The `locations` block supports:
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> Optional[_builtins.int]:
+        """
+        Specifies the max value. **-1** means no limit.
+        """
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[_builtins.int]):
+        pulumi.set(self, "max", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> Optional[_builtins.int]:
+        """
+        Specifies the min value. **-1** means no limit.
+
+        <a name="locations_struct"></a>
+        The `locations` block supports:
+        """
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[_builtins.int]):
+        pulumi.set(self, "min", value)
+
+
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgsDict(TypedDict):
+    max: NotRequired[_builtins.int]
+    """
+    Specifies the max value. **-1** means no limit.
+    """
+    min: NotRequired[_builtins.int]
+    """
+    Specifies the min value. **-1** means no limit.
+
+    <a name="locations_struct"></a>
+    The `locations` block supports:
+    """
+
+@pulumi.input_type
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgs:
+    def __init__(__self__, *,
+                 max: Optional[_builtins.int] = None,
+                 min: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int max: Specifies the max value. **-1** means no limit.
+        :param _builtins.int min: Specifies the min value. **-1** means no limit.
+               
+               <a name="locations_struct"></a>
+               The `locations` block supports:
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> Optional[_builtins.int]:
+        """
+        Specifies the max value. **-1** means no limit.
+        """
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[_builtins.int]):
+        pulumi.set(self, "max", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> Optional[_builtins.int]:
+        """
+        Specifies the min value. **-1** means no limit.
+
+        <a name="locations_struct"></a>
+        The `locations` block supports:
+        """
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[_builtins.int]):
+        pulumi.set(self, "min", value)
+
+
+class GetSupplyRecommendationsLocationArgsDict(TypedDict):
+    region_id: _builtins.str
+    """
+    Specifies the region ID.
+    """
+    availability_zone_id: NotRequired[_builtins.str]
+    """
+    Specifies the availability zone ID.
+
+    <a name="option_struct"></a>
+    The `option` block supports:
+    """
+
+@pulumi.input_type
+class GetSupplyRecommendationsLocationArgs:
+    def __init__(__self__, *,
+                 region_id: _builtins.str,
+                 availability_zone_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str availability_zone_id: Specifies the availability zone ID.
+               
+               <a name="option_struct"></a>
+               The `option` block supports:
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        if availability_zone_id is not None:
+            pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: _builtins.str):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the availability zone ID.
+
+        <a name="option_struct"></a>
+        The `option` block supports:
+        """
+        return pulumi.get(self, "availability_zone_id")
+
+    @availability_zone_id.setter
+    def availability_zone_id(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "availability_zone_id", value)
+
+
+class GetSupplyRecommendationsOptionArgsDict(TypedDict):
+    enable_spot: NotRequired[_builtins.str]
+    """
+    Specifies whether enable spot. Value options: **true**, **false**.
+    """
+    result_granularity: NotRequired[_builtins.str]
+    """
+    Specifies the result granularity. Value options: **BY_REGION**, **BY_AZ**,
+    **BY_FLAVOR**, **BY_FLAVOR_AND_REGION** and **BY_FLAVOR_AND_AZ**.
+    """
+
+@pulumi.input_type
+class GetSupplyRecommendationsOptionArgs:
+    def __init__(__self__, *,
+                 enable_spot: Optional[_builtins.str] = None,
+                 result_granularity: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str enable_spot: Specifies whether enable spot. Value options: **true**, **false**.
+        :param _builtins.str result_granularity: Specifies the result granularity. Value options: **BY_REGION**, **BY_AZ**,
+               **BY_FLAVOR**, **BY_FLAVOR_AND_REGION** and **BY_FLAVOR_AND_AZ**.
+        """
+        if enable_spot is not None:
+            pulumi.set(__self__, "enable_spot", enable_spot)
+        if result_granularity is not None:
+            pulumi.set(__self__, "result_granularity", result_granularity)
+
+    @_builtins.property
+    @pulumi.getter(name="enableSpot")
+    def enable_spot(self) -> Optional[_builtins.str]:
+        """
+        Specifies whether enable spot. Value options: **true**, **false**.
+        """
+        return pulumi.get(self, "enable_spot")
+
+    @enable_spot.setter
+    def enable_spot(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "enable_spot", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resultGranularity")
+    def result_granularity(self) -> Optional[_builtins.str]:
+        """
+        Specifies the result granularity. Value options: **BY_REGION**, **BY_AZ**,
+        **BY_FLAVOR**, **BY_FLAVOR_AND_REGION** and **BY_FLAVOR_AND_AZ**.
+        """
+        return pulumi.get(self, "result_granularity")
+
+    @result_granularity.setter
+    def result_granularity(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "result_granularity", value)
 
 

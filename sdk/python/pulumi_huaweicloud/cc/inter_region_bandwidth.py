@@ -28,6 +28,7 @@ class InterRegionBandwidthArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InterRegionBandwidth resource.
+
         :param pulumi.Input[_builtins.int] bandwidth: Inter-region bandwidth size.
         :param pulumi.Input[_builtins.str] bandwidth_package_id: Bandwidth package ID.
                
@@ -127,6 +128,7 @@ class _InterRegionBandwidthState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InterRegionBandwidth resources.
+
         :param pulumi.Input[_builtins.int] bandwidth: Inter-region bandwidth size.
         :param pulumi.Input[_builtins.str] bandwidth_package_id: Bandwidth package ID.
                
@@ -281,11 +283,10 @@ class InterRegionBandwidth(pulumi.CustomResource):
 
         The inter-region bandwidth can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/interRegionBandwidth:InterRegionBandwidth test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -341,11 +342,10 @@ class InterRegionBandwidth(pulumi.CustomResource):
 
         The inter-region bandwidth can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/interRegionBandwidth:InterRegionBandwidth test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InterRegionBandwidthArgs args: The arguments to use to populate this resource's properties.

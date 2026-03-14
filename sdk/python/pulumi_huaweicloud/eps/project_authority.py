@@ -46,6 +46,7 @@ class ProjectAuthority(pulumi.CustomResource):
         test = huaweicloud.eps.ProjectAuthority("test")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -68,6 +69,7 @@ class ProjectAuthority(pulumi.CustomResource):
 
         test = huaweicloud.eps.ProjectAuthority("test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectAuthorityArgs args: The arguments to use to populate this resource's properties.

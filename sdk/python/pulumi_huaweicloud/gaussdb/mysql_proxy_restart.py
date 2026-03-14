@@ -24,6 +24,7 @@ class MysqlProxyRestartArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlProxyRestart resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] proxy_id: Specifies the ID of the GaussDB MySQL proxy. Changing this parameter will
@@ -84,6 +85,7 @@ class _MysqlProxyRestartState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlProxyRestart resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] proxy_id: Specifies the ID of the GaussDB MySQL proxy. Changing this parameter will
@@ -165,6 +167,7 @@ class MysqlProxyRestart(pulumi.CustomResource):
             proxy_id=proxy_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance. Changing this parameter
@@ -196,6 +199,7 @@ class MysqlProxyRestart(pulumi.CustomResource):
             instance_id=instance_id,
             proxy_id=proxy_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlProxyRestartArgs args: The arguments to use to populate this resource's properties.

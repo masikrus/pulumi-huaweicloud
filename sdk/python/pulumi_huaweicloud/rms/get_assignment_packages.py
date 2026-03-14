@@ -110,7 +110,7 @@ def get_assignment_packages(name: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     assignment_package_name = config.require_object("assignmentPackageName")
-    test = huaweicloud.rms.get_assignment_packages(name=assignment_package_name,
+    test = huaweicloud.Rms.get_assignment_packages(name=assignment_package_name,
         status="CREATE_SUCCESSFUL")
     ```
 
@@ -124,7 +124,7 @@ def get_assignment_packages(name: Optional[_builtins.str] = None,
     __args__['packageId'] = package_id
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getAssignmentPackages:getAssignmentPackages', __args__, opts=opts, typ=GetAssignmentPackagesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getAssignmentPackages:getAssignmentPackages', __args__, opts=opts, typ=GetAssignmentPackagesResult).value
 
     return AwaitableGetAssignmentPackagesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -147,7 +147,7 @@ def get_assignment_packages_output(name: Optional[pulumi.Input[Optional[_builtin
 
     config = pulumi.Config()
     assignment_package_name = config.require_object("assignmentPackageName")
-    test = huaweicloud.rms.get_assignment_packages(name=assignment_package_name,
+    test = huaweicloud.Rms.get_assignment_packages(name=assignment_package_name,
         status="CREATE_SUCCESSFUL")
     ```
 
@@ -161,7 +161,7 @@ def get_assignment_packages_output(name: Optional[pulumi.Input[Optional[_builtin
     __args__['packageId'] = package_id
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getAssignmentPackages:getAssignmentPackages', __args__, opts=opts, typ=GetAssignmentPackagesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getAssignmentPackages:getAssignmentPackages', __args__, opts=opts, typ=GetAssignmentPackagesResult)
     return __ret__.apply(lambda __response__: GetAssignmentPackagesResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

@@ -27,6 +27,7 @@ class PeeringConnectionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PeeringConnection resource.
+
         :param pulumi.Input[_builtins.str] peer_vpc_id: Specifies the VPC ID of the accepter tenant. Changing this creates a new
                VPC peering connection.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the ID of a VPC involved in a VPC peering connection. Changing this
@@ -140,6 +141,7 @@ class _PeeringConnectionState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PeeringConnection resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the VPC peering connection.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the VPC peering connection. The value can contain 1 to 64
                characters.
@@ -298,11 +300,10 @@ class PeeringConnection(pulumi.CustomResource):
 
         VPC Peering resources can be imported using the `vpc peering id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/peeringConnection:PeeringConnection test_connection 22b76469-08e3-4937-8c1d-7aad34892be1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -349,11 +350,10 @@ class PeeringConnection(pulumi.CustomResource):
 
         VPC Peering resources can be imported using the `vpc peering id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/peeringConnection:PeeringConnection test_connection 22b76469-08e3-4937-8c1d-7aad34892be1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PeeringConnectionArgs args: The arguments to use to populate this resource's properties.

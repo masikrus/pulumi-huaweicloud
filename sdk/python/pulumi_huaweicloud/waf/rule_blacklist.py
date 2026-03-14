@@ -30,6 +30,7 @@ class RuleBlacklistArgs:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RuleBlacklist resource.
+
         :param pulumi.Input[_builtins.str] policy_id: Specifies the WAF policy ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] action: Specifies the protective action. Defaults to `0`. The value can be:
         :param pulumi.Input[_builtins.str] address_group_id: Specifies the WAF address group ID.
@@ -209,6 +210,7 @@ class _RuleBlacklistState:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RuleBlacklist resources.
+
         :param pulumi.Input[_builtins.int] action: Specifies the protective action. Defaults to `0`. The value can be:
         :param pulumi.Input[_builtins.str] address_group_id: Specifies the WAF address group ID.
                This parameter is required when `ip_address` is not specified. The parameter `address_group_id` and `ip_address`
@@ -468,19 +470,16 @@ class RuleBlacklist(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleBlacklist:RuleBlacklist test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleBlacklist:RuleBlacklist test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -562,19 +561,16 @@ class RuleBlacklist(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleBlacklist:RuleBlacklist test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleBlacklist:RuleBlacklist test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleBlacklistArgs args: The arguments to use to populate this resource's properties.

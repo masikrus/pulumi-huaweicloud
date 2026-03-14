@@ -105,7 +105,7 @@ def get_phone_connections(client_type: Optional[_builtins.str] = None,
     config = pulumi.Config()
     phone_ids = config.require_object("phoneIds")
     client_type = config.require_object("clientType")
-    test = huaweicloud.cph.get_phone_connections(phone_ids=phone_ids,
+    test = huaweicloud.Cph.get_phone_connections(phone_ids=phone_ids,
         client_type=client_type)
     ```
 
@@ -126,7 +126,7 @@ def get_phone_connections(client_type: Optional[_builtins.str] = None,
     __args__['phoneIds'] = phone_ids
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cph/getPhoneConnections:getPhoneConnections', __args__, opts=opts, typ=GetPhoneConnectionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cph/getPhoneConnections:getPhoneConnections', __args__, opts=opts, typ=GetPhoneConnectionsResult).value
 
     return AwaitableGetPhoneConnectionsResult(
         client_type=pulumi.get(__ret__, 'client_type'),
@@ -150,7 +150,7 @@ def get_phone_connections_output(client_type: Optional[pulumi.Input[_builtins.st
     config = pulumi.Config()
     phone_ids = config.require_object("phoneIds")
     client_type = config.require_object("clientType")
-    test = huaweicloud.cph.get_phone_connections(phone_ids=phone_ids,
+    test = huaweicloud.Cph.get_phone_connections(phone_ids=phone_ids,
         client_type=client_type)
     ```
 
@@ -171,7 +171,7 @@ def get_phone_connections_output(client_type: Optional[pulumi.Input[_builtins.st
     __args__['phoneIds'] = phone_ids
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cph/getPhoneConnections:getPhoneConnections', __args__, opts=opts, typ=GetPhoneConnectionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cph/getPhoneConnections:getPhoneConnections', __args__, opts=opts, typ=GetPhoneConnectionsResult)
     return __ret__.apply(lambda __response__: GetPhoneConnectionsResult(
         client_type=pulumi.get(__response__, 'client_type'),
         connect_infos=pulumi.get(__response__, 'connect_infos'),

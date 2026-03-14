@@ -22,6 +22,7 @@ __all__ = ['DedicatedDomainArgs', 'DedicatedDomain']
 class DedicatedDomainArgs:
     def __init__(__self__, *,
                  domain: pulumi.Input[_builtins.str],
+                 access_status: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
                  cipher: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_protection: Optional[pulumi.Input['DedicatedDomainConnectionProtectionArgs']] = None,
@@ -50,8 +51,10 @@ class DedicatedDomainArgs:
                  website_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DedicatedDomain resource.
+
         :param pulumi.Input[_builtins.str] domain: Specifies the protected domain name or IP address (port allowed). For example,
                `www.example.com` or `*.example.com` or `www.example.com:89`.
+        :param pulumi.Input[_builtins.int] access_status: Specifies whether a domain name is connected to WAF. Valid values are:
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the certificate ID. This parameter is mandatory when `client_protocol`
                is set to **HTTPS**.
         :param pulumi.Input[_builtins.str] cipher: Specifies the cipher suite of domain. The valid values are: **cipher_1**, **cipher_2**,
@@ -153,6 +156,8 @@ class DedicatedDomainArgs:
                characters. The website name must be unique within this account.
         """
         pulumi.set(__self__, "domain", domain)
+        if access_status is not None:
+            pulumi.set(__self__, "access_status", access_status)
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
         if cipher is not None:
@@ -218,6 +223,18 @@ class DedicatedDomainArgs:
     @domain.setter
     def domain(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "domain", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accessStatus")
+    def access_status(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies whether a domain name is connected to WAF. Valid values are:
+        """
+        return pulumi.get(self, "access_status")
+
+    @access_status.setter
+    def access_status(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "access_status", value)
 
     @_builtins.property
     @pulumi.getter(name="certificateId")
@@ -645,7 +662,8 @@ class _DedicatedDomainState:
                  website_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DedicatedDomain resources.
-        :param pulumi.Input[_builtins.int] access_status: Whether a domain name is connected to WAF. Valid values are:
+
+        :param pulumi.Input[_builtins.int] access_status: Specifies whether a domain name is connected to WAF. Valid values are:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alarm_page: The alarm page of domain. Valid values are:
         :param pulumi.Input[Sequence[pulumi.Input['DedicatedDomainBlockPageArgs']]] block_pages: The alarm page configuration.
                The block_page structure is documented below.
@@ -839,7 +857,7 @@ class _DedicatedDomainState:
     @pulumi.getter(name="accessStatus")
     def access_status(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Whether a domain name is connected to WAF. Valid values are:
+        Specifies whether a domain name is connected to WAF. Valid values are:
         """
         return pulumi.get(self, "access_status")
 
@@ -1361,6 +1379,7 @@ class DedicatedDomain(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_status: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
                  cipher: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_protection: Optional[pulumi.Input[Union['DedicatedDomainConnectionProtectionArgs', 'DedicatedDomainConnectionProtectionArgsDict']]] = None,
@@ -1489,22 +1508,20 @@ class DedicatedDomain(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/dedicatedDomain:DedicatedDomain test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/dedicatedDomain:DedicatedDomain test <id>/<enterprise_project_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.int] access_status: Specifies whether a domain name is connected to WAF. Valid values are:
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the certificate ID. This parameter is mandatory when `client_protocol`
                is set to **HTTPS**.
         :param pulumi.Input[_builtins.str] cipher: Specifies the cipher suite of domain. The valid values are: **cipher_1**, **cipher_2**,
@@ -1713,19 +1730,16 @@ class DedicatedDomain(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/dedicatedDomain:DedicatedDomain test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/dedicatedDomain:DedicatedDomain test <id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DedicatedDomainArgs args: The arguments to use to populate this resource's properties.
@@ -1742,6 +1756,7 @@ class DedicatedDomain(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_status: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
                  cipher: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_protection: Optional[pulumi.Input[Union['DedicatedDomainConnectionProtectionArgs', 'DedicatedDomainConnectionProtectionArgsDict']]] = None,
@@ -1778,6 +1793,7 @@ class DedicatedDomain(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DedicatedDomainArgs.__new__(DedicatedDomainArgs)
 
+            __props__.__dict__["access_status"] = access_status
             __props__.__dict__["certificate_id"] = certificate_id
             __props__.__dict__["cipher"] = cipher
             __props__.__dict__["connection_protection"] = connection_protection
@@ -1807,7 +1823,6 @@ class DedicatedDomain(pulumi.CustomResource):
             __props__.__dict__["tls"] = tls
             __props__.__dict__["traffic_mark"] = traffic_mark
             __props__.__dict__["website_name"] = website_name
-            __props__.__dict__["access_status"] = None
             __props__.__dict__["alarm_page"] = None
             __props__.__dict__["block_pages"] = None
             __props__.__dict__["certificate_name"] = None
@@ -1871,7 +1886,7 @@ class DedicatedDomain(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] access_status: Whether a domain name is connected to WAF. Valid values are:
+        :param pulumi.Input[_builtins.int] access_status: Specifies whether a domain name is connected to WAF. Valid values are:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alarm_page: The alarm page of domain. Valid values are:
         :param pulumi.Input[Sequence[pulumi.Input[Union['DedicatedDomainBlockPageArgs', 'DedicatedDomainBlockPageArgsDict']]]] block_pages: The alarm page configuration.
                The block_page structure is documented below.
@@ -2033,7 +2048,7 @@ class DedicatedDomain(pulumi.CustomResource):
     @pulumi.getter(name="accessStatus")
     def access_status(self) -> pulumi.Output[_builtins.int]:
         """
-        Whether a domain name is connected to WAF. Valid values are:
+        Specifies whether a domain name is connected to WAF. Valid values are:
         """
         return pulumi.get(self, "access_status")
 

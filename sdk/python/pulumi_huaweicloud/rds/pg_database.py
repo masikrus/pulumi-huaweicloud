@@ -32,6 +32,7 @@ class PgDatabaseArgs:
                  template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgDatabase resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS PostgreSQL instance.
         :param pulumi.Input[_builtins.str] character_set: Specifies the database character set.
                For details, see [documentation](https://www.postgresql.org/docs/16/infoschema-character-sets.html).
@@ -258,6 +259,7 @@ class _PgDatabaseState:
                  template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PgDatabase resources.
+
         :param pulumi.Input[_builtins.str] character_set: Specifies the database character set.
                For details, see [documentation](https://www.postgresql.org/docs/16/infoschema-character-sets.html).
                Defaults to **UTF8**.
@@ -521,39 +523,16 @@ class PgDatabase(pulumi.CustomResource):
 
         The RDS postgresql database can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgDatabase:PgDatabase test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template`, `is_revoke_public_privilege`
-
         `lc_ctype`. It is generally recommended running `pulumi preview` after importing the RDS PostgreSQL database. You can
-
         then decide if changes should be applied to the RDS PostgreSQL database, or the resource definition should be updated
-
         to align with the RDS PostgreSQL database. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_pg_database" "account_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template, is_revoke_public_privilege, lc_ctype,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -617,39 +596,16 @@ class PgDatabase(pulumi.CustomResource):
 
         The RDS postgresql database can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgDatabase:PgDatabase test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template`, `is_revoke_public_privilege`
-
         `lc_ctype`. It is generally recommended running `pulumi preview` after importing the RDS PostgreSQL database. You can
-
         then decide if changes should be applied to the RDS PostgreSQL database, or the resource definition should be updated
-
         to align with the RDS PostgreSQL database. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_pg_database" "account_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template, is_revoke_public_privilege, lc_ctype,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PgDatabaseArgs args: The arguments to use to populate this resource's properties.

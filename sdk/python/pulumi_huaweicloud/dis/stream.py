@@ -36,6 +36,7 @@ class StreamArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Stream resource.
+
         :param pulumi.Input[_builtins.int] partition_count: Number of the expect partitions. NOTE: Each stream can be scaled up and down a
                total of five times within one hour. After the stream is successfully scaled up or down, it cannot be scaled up or
                down again within the next one hour.
@@ -51,14 +52,14 @@ class StreamArgs:
                resource.
         :param pulumi.Input[_builtins.str] data_schema: User's JSON, CSV format data schema, described with Avro schema. Changing
                this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] data_type: Data type of the data putting into the stream. The value is one of **BLOB**,
-               **JSON** and **CSV**. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] data_type: Data type of the data putting into the stream. The value is one of
+               **BLOB**, **JSON** and **CSV**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project id of the dis stream, Value 0
                indicates the default enterprise project. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: The region in which to create the DIS stream resource. If omitted, the
                provider-level region will be used. Changing this creates a new DIS Stream resource.
-        :param pulumi.Input[_builtins.int] retention_period: The number of hours for which data from the stream will be retained in DIS.
-               Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.int] retention_period: The number of hours for which data from the stream will be retained in
+               DIS. Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] stream_type: Stream Type. The value is COMMON(means 1M bandwidth) or ADVANCED(means 5M
                bandwidth). Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the stream.
@@ -184,8 +185,8 @@ class StreamArgs:
     @pulumi.getter(name="dataType")
     def data_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Data type of the data putting into the stream. The value is one of **BLOB**,
-        **JSON** and **CSV**. Changing this parameter will create a new resource.
+        Data type of the data putting into the stream. The value is one of
+        **BLOB**, **JSON** and **CSV**. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "data_type")
 
@@ -223,8 +224,8 @@ class StreamArgs:
     @pulumi.getter(name="retentionPeriod")
     def retention_period(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The number of hours for which data from the stream will be retained in DIS.
-        Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
+        The number of hours for which data from the stream will be retained in
+        DIS. Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "retention_period")
 
@@ -282,6 +283,7 @@ class _StreamState:
                  writable_partition_count: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Stream resources.
+
         :param pulumi.Input[_builtins.int] auto_scale_max_partition_count: Maximum number of partition for automatic scaling.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] auto_scale_min_partition_count: Minimum number of partition for automatic scaling.
@@ -293,8 +295,8 @@ class _StreamState:
                resource.
         :param pulumi.Input[_builtins.str] data_schema: User's JSON, CSV format data schema, described with Avro schema. Changing
                this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] data_type: Data type of the data putting into the stream. The value is one of **BLOB**,
-               **JSON** and **CSV**. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] data_type: Data type of the data putting into the stream. The value is one of
+               **BLOB**, **JSON** and **CSV**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project id of the dis stream, Value 0
                indicates the default enterprise project. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] partition_count: Number of the expect partitions. NOTE: Each stream can be scaled up and down a
@@ -304,8 +306,8 @@ class _StreamState:
         :param pulumi.Input[_builtins.int] readable_partition_count: Total number of readable partitions (including partitions in ACTIVE state only).
         :param pulumi.Input[_builtins.str] region: The region in which to create the DIS stream resource. If omitted, the
                provider-level region will be used. Changing this creates a new DIS Stream resource.
-        :param pulumi.Input[_builtins.int] retention_period: The number of hours for which data from the stream will be retained in DIS.
-               Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.int] retention_period: The number of hours for which data from the stream will be retained in
+               DIS. Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] status: The status of the partition.
         :param pulumi.Input[_builtins.str] stream_id: Indicates a stream ID in UUID format.
         :param pulumi.Input[_builtins.str] stream_name: Name of the DIS stream to be created.
@@ -435,8 +437,8 @@ class _StreamState:
     @pulumi.getter(name="dataType")
     def data_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Data type of the data putting into the stream. The value is one of **BLOB**,
-        **JSON** and **CSV**. Changing this parameter will create a new resource.
+        Data type of the data putting into the stream. The value is one of
+        **BLOB**, **JSON** and **CSV**. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "data_type")
 
@@ -512,8 +514,8 @@ class _StreamState:
     @pulumi.getter(name="retentionPeriod")
     def retention_period(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The number of hours for which data from the stream will be retained in DIS.
-        Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
+        The number of hours for which data from the stream will be retained in
+        DIS. Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "retention_period")
 
@@ -649,11 +651,10 @@ class Stream(pulumi.CustomResource):
 
         Dis stream can be imported by `stream_name`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dis/stream:Stream example _abc123
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -667,8 +668,8 @@ class Stream(pulumi.CustomResource):
                resource.
         :param pulumi.Input[_builtins.str] data_schema: User's JSON, CSV format data schema, described with Avro schema. Changing
                this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] data_type: Data type of the data putting into the stream. The value is one of **BLOB**,
-               **JSON** and **CSV**. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] data_type: Data type of the data putting into the stream. The value is one of
+               **BLOB**, **JSON** and **CSV**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project id of the dis stream, Value 0
                indicates the default enterprise project. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] partition_count: Number of the expect partitions. NOTE: Each stream can be scaled up and down a
@@ -676,8 +677,8 @@ class Stream(pulumi.CustomResource):
                down again within the next one hour.
         :param pulumi.Input[_builtins.str] region: The region in which to create the DIS stream resource. If omitted, the
                provider-level region will be used. Changing this creates a new DIS Stream resource.
-        :param pulumi.Input[_builtins.int] retention_period: The number of hours for which data from the stream will be retained in DIS.
-               Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.int] retention_period: The number of hours for which data from the stream will be retained in
+               DIS. Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] stream_name: Name of the DIS stream to be created.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] stream_type: Stream Type. The value is COMMON(means 1M bandwidth) or ADVANCED(means 5M
@@ -723,11 +724,10 @@ class Stream(pulumi.CustomResource):
 
         Dis stream can be imported by `stream_name`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dis/stream:Stream example _abc123
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StreamArgs args: The arguments to use to populate this resource's properties.
@@ -836,8 +836,8 @@ class Stream(pulumi.CustomResource):
                resource.
         :param pulumi.Input[_builtins.str] data_schema: User's JSON, CSV format data schema, described with Avro schema. Changing
                this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] data_type: Data type of the data putting into the stream. The value is one of **BLOB**,
-               **JSON** and **CSV**. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] data_type: Data type of the data putting into the stream. The value is one of
+               **BLOB**, **JSON** and **CSV**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project id of the dis stream, Value 0
                indicates the default enterprise project. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] partition_count: Number of the expect partitions. NOTE: Each stream can be scaled up and down a
@@ -847,8 +847,8 @@ class Stream(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] readable_partition_count: Total number of readable partitions (including partitions in ACTIVE state only).
         :param pulumi.Input[_builtins.str] region: The region in which to create the DIS stream resource. If omitted, the
                provider-level region will be used. Changing this creates a new DIS Stream resource.
-        :param pulumi.Input[_builtins.int] retention_period: The number of hours for which data from the stream will be retained in DIS.
-               Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.int] retention_period: The number of hours for which data from the stream will be retained in
+               DIS. Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] status: The status of the partition.
         :param pulumi.Input[_builtins.str] stream_id: Indicates a stream ID in UUID format.
         :param pulumi.Input[_builtins.str] stream_name: Name of the DIS stream to be created.
@@ -940,8 +940,8 @@ class Stream(pulumi.CustomResource):
     @pulumi.getter(name="dataType")
     def data_type(self) -> pulumi.Output[_builtins.str]:
         """
-        Data type of the data putting into the stream. The value is one of **BLOB**,
-        **JSON** and **CSV**. Changing this parameter will create a new resource.
+        Data type of the data putting into the stream. The value is one of
+        **BLOB**, **JSON** and **CSV**. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "data_type")
 
@@ -993,8 +993,8 @@ class Stream(pulumi.CustomResource):
     @pulumi.getter(name="retentionPeriod")
     def retention_period(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        The number of hours for which data from the stream will be retained in DIS.
-        Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
+        The number of hours for which data from the stream will be retained in
+        DIS. Value range: `24` to `72`. Unit: **hour**. Default:`24`. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "retention_period")
 

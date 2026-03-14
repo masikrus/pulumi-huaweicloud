@@ -21,7 +21,7 @@ __all__ = ['BucketArgs', 'Bucket']
 @pulumi.input_type
 class BucketArgs:
     def __init__(__self__, *,
-                 bucket: pulumi.Input[_builtins.str],
+                 bucket_value: pulumi.Input[_builtins.str],
                  acl: Optional[pulumi.Input[_builtins.str]] = None,
                  cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input['BucketCorsRuleArgs']]]] = None,
                  encryption: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -45,7 +45,8 @@ class BucketArgs:
                  website: Optional[pulumi.Input['BucketWebsiteArgs']] = None):
         """
         The set of arguments for constructing a Bucket resource.
-        :param pulumi.Input[_builtins.str] bucket: Specifies the name of the bucket. Changing this parameter will create a new
+
+        :param pulumi.Input[_builtins.str] bucket_value: Specifies the name of the bucket. Changing this parameter will create a new
                resource. A bucket must be named according to the globally applied DNS naming regulations as follows:
                + The name must be globally unique in OBS.
                + The name must contain 3 to 63 characters. Only lowercase letters, digits, hyphens (-), and periods (.) are
@@ -113,7 +114,7 @@ class BucketArgs:
                unversioned state. You can, however, suspend versioning on that bucket.
         :param pulumi.Input['BucketWebsiteArgs'] website: A website object (documented below).
         """
-        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "bucket_value", bucket_value)
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if cors_rules is not None:
@@ -158,8 +159,8 @@ class BucketArgs:
             pulumi.set(__self__, "website", website)
 
     @_builtins.property
-    @pulumi.getter
-    def bucket(self) -> pulumi.Input[_builtins.str]:
+    @pulumi.getter(name="BucketValue")
+    def bucket_value(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the name of the bucket. Changing this parameter will create a new
         resource. A bucket must be named according to the globally applied DNS naming regulations as follows:
@@ -172,11 +173,11 @@ class BucketArgs:
         + If the name contains any periods (.), a security certificate verification message may appear when you access the
         bucket or its objects by entering a domain name.
         """
-        return pulumi.get(self, "bucket")
+        return pulumi.get(self, "bucket_value")
 
-    @bucket.setter
-    def bucket(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "bucket", value)
+    @bucket_value.setter
+    def bucket_value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "bucket_value", value)
 
     @_builtins.property
     @pulumi.getter
@@ -470,8 +471,8 @@ class BucketArgs:
 @pulumi.input_type
 class _BucketState:
     def __init__(__self__, *,
+                 bucket_value: Optional[pulumi.Input[_builtins.str]] = None,
                  acl: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
                  bucket_domain_name: Optional[pulumi.Input[_builtins.str]] = None,
                  bucket_version: Optional[pulumi.Input[_builtins.str]] = None,
                  cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input['BucketCorsRuleArgs']]]] = None,
@@ -497,9 +498,8 @@ class _BucketState:
                  website: Optional[pulumi.Input['BucketWebsiteArgs']] = None):
         """
         Input properties used for looking up and filtering Bucket resources.
-        :param pulumi.Input[_builtins.str] acl: Specifies the ACL policy for a bucket. The predefined common policies are as follows:
-               "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
-        :param pulumi.Input[_builtins.str] bucket: Specifies the name of the bucket. Changing this parameter will create a new
+
+        :param pulumi.Input[_builtins.str] bucket_value: Specifies the name of the bucket. Changing this parameter will create a new
                resource. A bucket must be named according to the globally applied DNS naming regulations as follows:
                + The name must be globally unique in OBS.
                + The name must contain 3 to 63 characters. Only lowercase letters, digits, hyphens (-), and periods (.) are
@@ -509,6 +509,8 @@ class _BucketState:
                + The name cannot be an IP address.
                + If the name contains any periods (.), a security certificate verification message may appear when you access the
                bucket or its objects by entering a domain name.
+        :param pulumi.Input[_builtins.str] acl: Specifies the ACL policy for a bucket. The predefined common policies are as follows:
+               "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
         :param pulumi.Input[_builtins.str] bucket_domain_name: The bucket domain name. Will be of format `bucketname.obs.region.myhuaweicloud.com`.
         :param pulumi.Input[_builtins.str] bucket_version: The OBS version of the bucket.
         :param pulumi.Input[Sequence[pulumi.Input['BucketCorsRuleArgs']]] cors_rules: A rule of Cross-Origin Resource Sharing (documented below).
@@ -569,10 +571,10 @@ class _BucketState:
                unversioned state. You can, however, suspend versioning on that bucket.
         :param pulumi.Input['BucketWebsiteArgs'] website: A website object (documented below).
         """
+        if bucket_value is not None:
+            pulumi.set(__self__, "bucket_value", bucket_value)
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
-        if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
         if bucket_domain_name is not None:
             pulumi.set(__self__, "bucket_domain_name", bucket_domain_name)
         if bucket_version is not None:
@@ -621,21 +623,8 @@ class _BucketState:
             pulumi.set(__self__, "website", website)
 
     @_builtins.property
-    @pulumi.getter
-    def acl(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Specifies the ACL policy for a bucket. The predefined common policies are as follows:
-        "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
-        """
-        return pulumi.get(self, "acl")
-
-    @acl.setter
-    def acl(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "acl", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    @pulumi.getter(name="BucketValue")
+    def bucket_value(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the name of the bucket. Changing this parameter will create a new
         resource. A bucket must be named according to the globally applied DNS naming regulations as follows:
@@ -648,11 +637,24 @@ class _BucketState:
         + If the name contains any periods (.), a security certificate verification message may appear when you access the
         bucket or its objects by entering a domain name.
         """
-        return pulumi.get(self, "bucket")
+        return pulumi.get(self, "bucket_value")
 
-    @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "bucket", value)
+    @bucket_value.setter
+    def bucket_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bucket_value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def acl(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ACL policy for a bucket. The predefined common policies are as follows:
+        "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
+        """
+        return pulumi.get(self, "acl")
+
+    @acl.setter
+    def acl(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "acl", value)
 
     @_builtins.property
     @pulumi.getter(name="bucketDomainName")
@@ -973,8 +975,8 @@ class Bucket(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket_value: Optional[pulumi.Input[_builtins.str]] = None,
                  acl: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
                  cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BucketCorsRuleArgs', 'BucketCorsRuleArgsDict']]]]] = None,
                  encryption: Optional[pulumi.Input[_builtins.bool]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1008,7 +1010,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         b = huaweicloud.obs.Bucket("b",
-            bucket="my-tf-test-bucket",
+            bucket_value="my-tf-test-bucket",
             acl="private",
             tags={
                 "foo": "bar",
@@ -1023,7 +1025,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         b = huaweicloud.obs.Bucket("b",
-            bucket="my-tf-test-bucket",
+            bucket_value="my-tf-test-bucket",
             acl="private",
             versioning=True)
         ```
@@ -1038,10 +1040,10 @@ class Bucket(pulumi.CustomResource):
         agency_name = config.require_object("agencyName")
         # The agency must be an OBS cloud service agency and has the `PutObject` permission.
         log_bucket = huaweicloud.obs.Bucket("log_bucket",
-            bucket="my-tf-log-bucket",
+            bucket_value="my-tf-log-bucket",
             acl="log-delivery-write")
         b = huaweicloud.obs.Bucket("b",
-            bucket="my-tf-test-bucket",
+            bucket_value="my-tf-test-bucket",
             acl="private",
             loggings=[{
                 "target_bucket": log_bucket.id,
@@ -1057,7 +1059,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         b = huaweicloud.obs.Bucket("b",
-            bucket="obs-website-test.hashicorp.com",
+            bucket_value="obs-website-test.hashicorp.com",
             acl="public-read",
             website={
                 "index_document": "index.html",
@@ -1081,7 +1083,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         b = huaweicloud.obs.Bucket("b",
-            bucket="obs-website-test.hashicorp.com",
+            bucket_value="obs-website-test.hashicorp.com",
             acl="public-read",
             cors_rules=[{
                 "allowed_origins": ["https://obs-website-test.hashicorp.com"],
@@ -1102,7 +1104,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         bucket = huaweicloud.obs.Bucket("bucket",
-            bucket="my-bucket",
+            bucket_value="my-bucket",
             acl="private",
             versioning=True,
             lifecycle_rules=[
@@ -1154,7 +1156,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         bucket = huaweicloud.obs.Bucket("bucket",
-            bucket="my-tf-encryption-bucket",
+            bucket_value="my-tf-encryption-bucket",
             storage_class="STANDARD",
             acl="private",
             encryption=True,
@@ -1168,49 +1170,24 @@ class Bucket(pulumi.CustomResource):
 
         OBS bucket can be imported using the `bucket`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucket:Bucket bucket <bucket-name>
         ```
 
         OBS bucket with S3 format bucket policy can be imported using the `bucket` and "s3" by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucket:Bucket bucket_with_s3_policy <bucket-name>/s3
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include `acl` and `force_destroy`. It is generally recommended
-
         running `pulumi preview` after importing an OBS bucket. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_obs_bucket" "bucket" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              acl, force_destroy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] acl: Specifies the ACL policy for a bucket. The predefined common policies are as follows:
-               "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
-        :param pulumi.Input[_builtins.str] bucket: Specifies the name of the bucket. Changing this parameter will create a new
+        :param pulumi.Input[_builtins.str] bucket_value: Specifies the name of the bucket. Changing this parameter will create a new
                resource. A bucket must be named according to the globally applied DNS naming regulations as follows:
                + The name must be globally unique in OBS.
                + The name must contain 3 to 63 characters. Only lowercase letters, digits, hyphens (-), and periods (.) are
@@ -1220,6 +1197,8 @@ class Bucket(pulumi.CustomResource):
                + The name cannot be an IP address.
                + If the name contains any periods (.), a security certificate verification message may appear when you access the
                bucket or its objects by entering a domain name.
+        :param pulumi.Input[_builtins.str] acl: Specifies the ACL policy for a bucket. The predefined common policies are as follows:
+               "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BucketCorsRuleArgs', 'BucketCorsRuleArgsDict']]]] cors_rules: A rule of Cross-Origin Resource Sharing (documented below).
         :param pulumi.Input[_builtins.bool] encryption: Whether to enable default server-side encryption of the bucket.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project id of the OBS bucket.
@@ -1294,7 +1273,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         b = huaweicloud.obs.Bucket("b",
-            bucket="my-tf-test-bucket",
+            bucket_value="my-tf-test-bucket",
             acl="private",
             tags={
                 "foo": "bar",
@@ -1309,7 +1288,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         b = huaweicloud.obs.Bucket("b",
-            bucket="my-tf-test-bucket",
+            bucket_value="my-tf-test-bucket",
             acl="private",
             versioning=True)
         ```
@@ -1324,10 +1303,10 @@ class Bucket(pulumi.CustomResource):
         agency_name = config.require_object("agencyName")
         # The agency must be an OBS cloud service agency and has the `PutObject` permission.
         log_bucket = huaweicloud.obs.Bucket("log_bucket",
-            bucket="my-tf-log-bucket",
+            bucket_value="my-tf-log-bucket",
             acl="log-delivery-write")
         b = huaweicloud.obs.Bucket("b",
-            bucket="my-tf-test-bucket",
+            bucket_value="my-tf-test-bucket",
             acl="private",
             loggings=[{
                 "target_bucket": log_bucket.id,
@@ -1343,7 +1322,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         b = huaweicloud.obs.Bucket("b",
-            bucket="obs-website-test.hashicorp.com",
+            bucket_value="obs-website-test.hashicorp.com",
             acl="public-read",
             website={
                 "index_document": "index.html",
@@ -1367,7 +1346,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         b = huaweicloud.obs.Bucket("b",
-            bucket="obs-website-test.hashicorp.com",
+            bucket_value="obs-website-test.hashicorp.com",
             acl="public-read",
             cors_rules=[{
                 "allowed_origins": ["https://obs-website-test.hashicorp.com"],
@@ -1388,7 +1367,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         bucket = huaweicloud.obs.Bucket("bucket",
-            bucket="my-bucket",
+            bucket_value="my-bucket",
             acl="private",
             versioning=True,
             lifecycle_rules=[
@@ -1440,7 +1419,7 @@ class Bucket(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         bucket = huaweicloud.obs.Bucket("bucket",
-            bucket="my-tf-encryption-bucket",
+            bucket_value="my-tf-encryption-bucket",
             storage_class="STANDARD",
             acl="private",
             encryption=True,
@@ -1454,43 +1433,20 @@ class Bucket(pulumi.CustomResource):
 
         OBS bucket can be imported using the `bucket`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucket:Bucket bucket <bucket-name>
         ```
 
         OBS bucket with S3 format bucket policy can be imported using the `bucket` and "s3" by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucket:Bucket bucket_with_s3_policy <bucket-name>/s3
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include `acl` and `force_destroy`. It is generally recommended
-
         running `pulumi preview` after importing an OBS bucket. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_obs_bucket" "bucket" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              acl, force_destroy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param BucketArgs args: The arguments to use to populate this resource's properties.
@@ -1507,8 +1463,8 @@ class Bucket(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket_value: Optional[pulumi.Input[_builtins.str]] = None,
                  acl: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
                  cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BucketCorsRuleArgs', 'BucketCorsRuleArgsDict']]]]] = None,
                  encryption: Optional[pulumi.Input[_builtins.bool]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1538,10 +1494,10 @@ class Bucket(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BucketArgs.__new__(BucketArgs)
 
+            if bucket_value is None and not opts.urn:
+                raise TypeError("Missing required property 'bucket_value'")
+            __props__.__dict__["bucket_value"] = bucket_value
             __props__.__dict__["acl"] = acl
-            if bucket is None and not opts.urn:
-                raise TypeError("Missing required property 'bucket'")
-            __props__.__dict__["bucket"] = bucket
             __props__.__dict__["cors_rules"] = cors_rules
             __props__.__dict__["encryption"] = encryption
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
@@ -1575,8 +1531,8 @@ class Bucket(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            bucket_value: Optional[pulumi.Input[_builtins.str]] = None,
             acl: Optional[pulumi.Input[_builtins.str]] = None,
-            bucket: Optional[pulumi.Input[_builtins.str]] = None,
             bucket_domain_name: Optional[pulumi.Input[_builtins.str]] = None,
             bucket_version: Optional[pulumi.Input[_builtins.str]] = None,
             cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BucketCorsRuleArgs', 'BucketCorsRuleArgsDict']]]]] = None,
@@ -1607,9 +1563,7 @@ class Bucket(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] acl: Specifies the ACL policy for a bucket. The predefined common policies are as follows:
-               "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
-        :param pulumi.Input[_builtins.str] bucket: Specifies the name of the bucket. Changing this parameter will create a new
+        :param pulumi.Input[_builtins.str] bucket_value: Specifies the name of the bucket. Changing this parameter will create a new
                resource. A bucket must be named according to the globally applied DNS naming regulations as follows:
                + The name must be globally unique in OBS.
                + The name must contain 3 to 63 characters. Only lowercase letters, digits, hyphens (-), and periods (.) are
@@ -1619,6 +1573,8 @@ class Bucket(pulumi.CustomResource):
                + The name cannot be an IP address.
                + If the name contains any periods (.), a security certificate verification message may appear when you access the
                bucket or its objects by entering a domain name.
+        :param pulumi.Input[_builtins.str] acl: Specifies the ACL policy for a bucket. The predefined common policies are as follows:
+               "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
         :param pulumi.Input[_builtins.str] bucket_domain_name: The bucket domain name. Will be of format `bucketname.obs.region.myhuaweicloud.com`.
         :param pulumi.Input[_builtins.str] bucket_version: The OBS version of the bucket.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BucketCorsRuleArgs', 'BucketCorsRuleArgsDict']]]] cors_rules: A rule of Cross-Origin Resource Sharing (documented below).
@@ -1683,8 +1639,8 @@ class Bucket(pulumi.CustomResource):
 
         __props__ = _BucketState.__new__(_BucketState)
 
+        __props__.__dict__["bucket_value"] = bucket_value
         __props__.__dict__["acl"] = acl
-        __props__.__dict__["bucket"] = bucket
         __props__.__dict__["bucket_domain_name"] = bucket_domain_name
         __props__.__dict__["bucket_version"] = bucket_version
         __props__.__dict__["cors_rules"] = cors_rules
@@ -1711,17 +1667,8 @@ class Bucket(pulumi.CustomResource):
         return Bucket(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter
-    def acl(self) -> pulumi.Output[Optional[_builtins.str]]:
-        """
-        Specifies the ACL policy for a bucket. The predefined common policies are as follows:
-        "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
-        """
-        return pulumi.get(self, "acl")
-
-    @_builtins.property
-    @pulumi.getter
-    def bucket(self) -> pulumi.Output[_builtins.str]:
+    @pulumi.getter(name="BucketValue")
+    def bucket_value(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the name of the bucket. Changing this parameter will create a new
         resource. A bucket must be named according to the globally applied DNS naming regulations as follows:
@@ -1734,7 +1681,16 @@ class Bucket(pulumi.CustomResource):
         + If the name contains any periods (.), a security certificate verification message may appear when you access the
         bucket or its objects by entering a domain name.
         """
-        return pulumi.get(self, "bucket")
+        return pulumi.get(self, "bucket_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def acl(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ACL policy for a bucket. The predefined common policies are as follows:
+        "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to `private`.
+        """
+        return pulumi.get(self, "acl")
 
     @_builtins.property
     @pulumi.getter(name="bucketDomainName")

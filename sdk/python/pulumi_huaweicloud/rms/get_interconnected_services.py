@@ -72,12 +72,12 @@ def get_interconnected_services(opts: Optional[pulumi.InvokeOptions] = None) -> 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_interconnected_services()
+    test = huaweicloud.Rms.get_interconnected_services()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getInterconnectedServices:getInterconnectedServices', __args__, opts=opts, typ=GetInterconnectedServicesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getInterconnectedServices:getInterconnectedServices', __args__, opts=opts, typ=GetInterconnectedServicesResult).value
 
     return AwaitableGetInterconnectedServicesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -92,12 +92,12 @@ def get_interconnected_services_output(opts: Optional[Union[pulumi.InvokeOptions
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_interconnected_services()
+    test = huaweicloud.Rms.get_interconnected_services()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getInterconnectedServices:getInterconnectedServices', __args__, opts=opts, typ=GetInterconnectedServicesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getInterconnectedServices:getInterconnectedServices', __args__, opts=opts, typ=GetInterconnectedServicesResult)
     return __ret__.apply(lambda __response__: GetInterconnectedServicesResult(
         id=pulumi.get(__response__, 'id'),
         resource_providers=pulumi.get(__response__, 'resource_providers')))

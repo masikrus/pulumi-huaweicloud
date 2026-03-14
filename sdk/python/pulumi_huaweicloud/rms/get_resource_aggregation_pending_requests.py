@@ -82,7 +82,7 @@ def get_resource_aggregation_pending_requests(account_id: Optional[_builtins.str
     __args__ = dict()
     __args__['accountId'] = account_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceAggregationPendingRequests:getResourceAggregationPendingRequests', __args__, opts=opts, typ=GetResourceAggregationPendingRequestsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceAggregationPendingRequests:getResourceAggregationPendingRequests', __args__, opts=opts, typ=GetResourceAggregationPendingRequestsResult).value
 
     return AwaitableGetResourceAggregationPendingRequestsResult(
         account_id=pulumi.get(__ret__, 'account_id'),
@@ -99,7 +99,7 @@ def get_resource_aggregation_pending_requests_output(account_id: Optional[pulumi
     __args__ = dict()
     __args__['accountId'] = account_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceAggregationPendingRequests:getResourceAggregationPendingRequests', __args__, opts=opts, typ=GetResourceAggregationPendingRequestsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceAggregationPendingRequests:getResourceAggregationPendingRequests', __args__, opts=opts, typ=GetResourceAggregationPendingRequestsResult)
     return __ret__.apply(lambda __response__: GetResourceAggregationPendingRequestsResult(
         account_id=pulumi.get(__response__, 'account_id'),
         id=pulumi.get(__response__, 'id'),

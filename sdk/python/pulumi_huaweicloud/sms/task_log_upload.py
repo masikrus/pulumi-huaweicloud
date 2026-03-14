@@ -24,6 +24,7 @@ class TaskLogUploadArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TaskLogUpload resource.
+
         :param pulumi.Input[_builtins.str] log_bucket: Specifies the bucket name.
         :param pulumi.Input[_builtins.str] task_id: Specifies the migration task ID.
         """
@@ -74,6 +75,7 @@ class _TaskLogUploadState:
                  task_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TaskLogUpload resources.
+
         :param pulumi.Input[_builtins.str] log_bucket: Specifies the bucket name.
         :param pulumi.Input[_builtins.str] task_id: Specifies the migration task ID.
         """
@@ -147,6 +149,7 @@ class TaskLogUpload(pulumi.CustomResource):
             log_bucket=log_bucket)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] log_bucket: Specifies the bucket name.
@@ -176,6 +179,7 @@ class TaskLogUpload(pulumi.CustomResource):
             task_id=task_id,
             log_bucket=log_bucket)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TaskLogUploadArgs args: The arguments to use to populate this resource's properties.

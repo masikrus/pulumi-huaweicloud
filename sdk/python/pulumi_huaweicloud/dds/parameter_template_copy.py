@@ -28,6 +28,7 @@ class ParameterTemplateCopyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ParameterTemplateCopy resource.
+
         :param pulumi.Input[_builtins.str] configuration_id: Specifies the parameter template ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of replicated parameter template.
@@ -139,6 +140,7 @@ class _ParameterTemplateCopyState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ParameterTemplateCopy resources.
+
         :param pulumi.Input[_builtins.str] configuration_id: Specifies the parameter template ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] created_at: The create time of the parameter template.
@@ -333,41 +335,17 @@ class ParameterTemplateCopy(pulumi.CustomResource):
 
         The DDS copyed parameter template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/parameterTemplateCopy:ParameterTemplateCopy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `configuration_id`.
-
         It is generally recommended running `pulumi preview` after importing an template.
-
         You can then decide if changes should be applied to the template, or the resource definition should be updated to
-
         align with the template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dds_parameter_template_copy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              configuration_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -415,41 +393,17 @@ class ParameterTemplateCopy(pulumi.CustomResource):
 
         The DDS copyed parameter template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/parameterTemplateCopy:ParameterTemplateCopy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `configuration_id`.
-
         It is generally recommended running `pulumi preview` after importing an template.
-
         You can then decide if changes should be applied to the template, or the resource definition should be updated to
-
         align with the template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dds_parameter_template_copy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              configuration_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ParameterTemplateCopyArgs args: The arguments to use to populate this resource's properties.

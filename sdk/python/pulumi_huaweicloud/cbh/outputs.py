@@ -13,11 +13,27 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'GetAvailabilityZonesAvailabilityZoneResult',
     'GetFlavorsFlavorResult',
     'GetInstanceTagsTagResult',
+    'GetInstancesByTagsMatchResult',
+    'GetInstancesByTagsNotTagResult',
+    'GetInstancesByTagsNotTagsAnyResult',
+    'GetInstancesByTagsResourceResult',
+    'GetInstancesByTagsResourceResourceDetailResult',
+    'GetInstancesByTagsResourceResourceDetailAzInfoResult',
+    'GetInstancesByTagsResourceResourceDetailHaInfoResult',
+    'GetInstancesByTagsResourceResourceDetailNetworkResult',
+    'GetInstancesByTagsResourceResourceDetailResourceInfoResult',
+    'GetInstancesByTagsResourceResourceDetailStatusInfoResult',
+    'GetInstancesByTagsResourceSysTagResult',
+    'GetInstancesByTagsResourceTagResult',
+    'GetInstancesByTagsSysTagResult',
+    'GetInstancesByTagsTagResult',
+    'GetInstancesByTagsTagsAnyResult',
     'GetInstancesInstanceResult',
 ]
 
@@ -211,6 +227,995 @@ class GetInstanceTagsTagResult(dict):
     def values(self) -> Sequence[_builtins.str]:
         """
         The list of the tag values.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetInstancesByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The field to match against.
+        :param _builtins.str value: The value to match.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The field to match against.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to match.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesByTagsNotTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The field to match against.
+        :param Sequence[_builtins.str] values: The list of values for the tag.
+               
+               <a name="cbh_instances_matches"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The field to match against.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The list of values for the tag.
+
+        <a name="cbh_instances_matches"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetInstancesByTagsNotTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The field to match against.
+        :param Sequence[_builtins.str] values: The list of values for the tag.
+               
+               <a name="cbh_instances_matches"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The field to match against.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The list of values for the tag.
+
+        <a name="cbh_instances_matches"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_details: Sequence['outputs.GetInstancesByTagsResourceResourceDetailResult'],
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 sys_tags: Sequence['outputs.GetInstancesByTagsResourceSysTagResult'],
+                 tags: Sequence['outputs.GetInstancesByTagsResourceTagResult']):
+        """
+        :param Sequence['GetInstancesByTagsResourceResourceDetailArgs'] resource_details: The detailed information of the instance.
+               The resource_detail structure is documented below.
+        :param _builtins.str resource_id: The resource ID.
+        :param _builtins.str resource_name: The name of the resource.
+        :param Sequence['GetInstancesByTagsResourceSysTagArgs'] sys_tags: Specifies the system tags value.
+               Only users with the op_service permission can use this field to filter resources.
+               Only one tag structure is contained when this API is called by Tag Management Service (TMS).
+               The key: **_sys_enterprise_project_id** and the value: Enterprise project ID list.
+               Currently, key contains only one value. `0` indicates the default enterprise project.
+               Field `sys_tags` and tenant tag filtering conditions (`without_any_tag`, `tags`, `tags_any`, `not_tags`, and
+               `not_tags_any`) cannot be used at the same time.
+               If `sys_tags` is not specified, filter the resources with other tag filtering criteria. If no tag filtering criteria
+               is specified, full data is returned.
+               
+               The sys_tags structure is documented below.
+        :param Sequence['GetInstancesByTagsResourceTagArgs'] tags: Specifies the tags value. The resources to be queried contain tags listed in `tags`.
+               Each resource to be queried contains a maximum of `50` keys. Each tag key can have a maximum of `10` tag values.
+               The tag value corresponding to each tag key can be an empty array but the structure cannot be missing.
+               The key must be unique, and the values of the same key must be unique. Resources containing all tags are returned.
+               Keys in this list are in AND relationship. While values in the key-value pairs are in OR relationship.
+               If no tag filtering condition is specified, full data is returned.
+               
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_details", resource_details)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "sys_tags", sys_tags)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetails")
+    def resource_details(self) -> Sequence['outputs.GetInstancesByTagsResourceResourceDetailResult']:
+        """
+        The detailed information of the instance.
+        The resource_detail structure is documented below.
+        """
+        return pulumi.get(self, "resource_details")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The name of the resource.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter(name="sysTags")
+    def sys_tags(self) -> Sequence['outputs.GetInstancesByTagsResourceSysTagResult']:
+        """
+        Specifies the system tags value.
+        Only users with the op_service permission can use this field to filter resources.
+        Only one tag structure is contained when this API is called by Tag Management Service (TMS).
+        The key: **_sys_enterprise_project_id** and the value: Enterprise project ID list.
+        Currently, key contains only one value. `0` indicates the default enterprise project.
+        Field `sys_tags` and tenant tag filtering conditions (`without_any_tag`, `tags`, `tags_any`, `not_tags`, and
+        `not_tags_any`) cannot be used at the same time.
+        If `sys_tags` is not specified, filter the resources with other tag filtering criteria. If no tag filtering criteria
+        is specified, full data is returned.
+
+        The sys_tags structure is documented below.
+        """
+        return pulumi.get(self, "sys_tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetInstancesByTagsResourceTagResult']:
+        """
+        Specifies the tags value. The resources to be queried contain tags listed in `tags`.
+        Each resource to be queried contains a maximum of `50` keys. Each tag key can have a maximum of `10` tag values.
+        The tag value corresponding to each tag key can be an empty array but the structure cannot be missing.
+        The key must be unique, and the values of the same key must be unique. Resources containing all tags are returned.
+        Keys in this list are in AND relationship. While values in the key-value pairs are in OR relationship.
+        If no tag filtering condition is specified, full data is returned.
+
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceResourceDetailResult(dict):
+    def __init__(__self__, *,
+                 alter_permit: _builtins.bool,
+                 az_infos: Sequence['outputs.GetInstancesByTagsResourceResourceDetailAzInfoResult'],
+                 bastion_version: _builtins.str,
+                 created_time: _builtins.str,
+                 end_time: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 ha_infos: Sequence['outputs.GetInstancesByTagsResourceResourceDetailHaInfoResult'],
+                 instance_id: _builtins.str,
+                 name: _builtins.str,
+                 networks: Sequence['outputs.GetInstancesByTagsResourceResourceDetailNetworkResult'],
+                 period_num: _builtins.str,
+                 resource_infos: Sequence['outputs.GetInstancesByTagsResourceResourceDetailResourceInfoResult'],
+                 server_id: _builtins.str,
+                 start_time: _builtins.str,
+                 status_infos: Sequence['outputs.GetInstancesByTagsResourceResourceDetailStatusInfoResult'],
+                 update: _builtins.str,
+                 upgrade_time: _builtins.int):
+        """
+        :param _builtins.bool alter_permit: Whether the CBH instance can be expanded.
+        :param Sequence['GetInstancesByTagsResourceResourceDetailAzInfoArgs'] az_infos: The availability zone information of the instance.
+               The az_info structure is documented below.
+        :param _builtins.str bastion_version: The current version of the CBH instance.
+        :param _builtins.str created_time: The creation time of the CBH instance in UTC format.
+        :param _builtins.str end_time: The end time of the CBH instance in timestamp format.
+        :param _builtins.str enterprise_project_id: The ID of the enterprise project.
+        :param Sequence['GetInstancesByTagsResourceResourceDetailHaInfoArgs'] ha_infos: The high availability information of the instance.
+               The ha_info structure is documented below.
+        :param _builtins.str instance_id: The CBH instance ID.
+        :param _builtins.str name: The CBH instance name.
+        :param Sequence['GetInstancesByTagsResourceResourceDetailNetworkArgs'] networks: The network information of the instance.
+               The network structure is documented below.
+        :param _builtins.str period_num: The number of subscription periods of a CBH instance.
+        :param Sequence['GetInstancesByTagsResourceResourceDetailResourceInfoArgs'] resource_infos: The resource information of the instance.
+               The resource_info structure is documented below.
+        :param _builtins.str server_id: The ID of the server where the CBH instance is deployed.
+        :param _builtins.str start_time: The start time of the CBH instance in timestamp format.
+        :param Sequence['GetInstancesByTagsResourceResourceDetailStatusInfoArgs'] status_infos: The status information of the instance.
+               The status_info structure is documented below.
+        :param _builtins.str update: Whether the CBH instance can be upgraded. Valid values are:
+               + **OLD**: The current version is the latest one.
+               + **NEW**: Can be upgraded.
+               + **CROSS_OS**: Can be upgraded to any later versions.
+               + **ROLLBACK**: Can be rolled back.
+        :param _builtins.int upgrade_time: The upgrade schedule of the CBH instance, in the format of timestamp.
+        """
+        pulumi.set(__self__, "alter_permit", alter_permit)
+        pulumi.set(__self__, "az_infos", az_infos)
+        pulumi.set(__self__, "bastion_version", bastion_version)
+        pulumi.set(__self__, "created_time", created_time)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "ha_infos", ha_infos)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "networks", networks)
+        pulumi.set(__self__, "period_num", period_num)
+        pulumi.set(__self__, "resource_infos", resource_infos)
+        pulumi.set(__self__, "server_id", server_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status_infos", status_infos)
+        pulumi.set(__self__, "update", update)
+        pulumi.set(__self__, "upgrade_time", upgrade_time)
+
+    @_builtins.property
+    @pulumi.getter(name="alterPermit")
+    def alter_permit(self) -> _builtins.bool:
+        """
+        Whether the CBH instance can be expanded.
+        """
+        return pulumi.get(self, "alter_permit")
+
+    @_builtins.property
+    @pulumi.getter(name="azInfos")
+    def az_infos(self) -> Sequence['outputs.GetInstancesByTagsResourceResourceDetailAzInfoResult']:
+        """
+        The availability zone information of the instance.
+        The az_info structure is documented below.
+        """
+        return pulumi.get(self, "az_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="bastionVersion")
+    def bastion_version(self) -> _builtins.str:
+        """
+        The current version of the CBH instance.
+        """
+        return pulumi.get(self, "bastion_version")
+
+    @_builtins.property
+    @pulumi.getter(name="createdTime")
+    def created_time(self) -> _builtins.str:
+        """
+        The creation time of the CBH instance in UTC format.
+        """
+        return pulumi.get(self, "created_time")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.str:
+        """
+        The end time of the CBH instance in timestamp format.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        The ID of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="haInfos")
+    def ha_infos(self) -> Sequence['outputs.GetInstancesByTagsResourceResourceDetailHaInfoResult']:
+        """
+        The high availability information of the instance.
+        The ha_info structure is documented below.
+        """
+        return pulumi.get(self, "ha_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        The CBH instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The CBH instance name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def networks(self) -> Sequence['outputs.GetInstancesByTagsResourceResourceDetailNetworkResult']:
+        """
+        The network information of the instance.
+        The network structure is documented below.
+        """
+        return pulumi.get(self, "networks")
+
+    @_builtins.property
+    @pulumi.getter(name="periodNum")
+    def period_num(self) -> _builtins.str:
+        """
+        The number of subscription periods of a CBH instance.
+        """
+        return pulumi.get(self, "period_num")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceInfos")
+    def resource_infos(self) -> Sequence['outputs.GetInstancesByTagsResourceResourceDetailResourceInfoResult']:
+        """
+        The resource information of the instance.
+        The resource_info structure is documented below.
+        """
+        return pulumi.get(self, "resource_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> _builtins.str:
+        """
+        The ID of the server where the CBH instance is deployed.
+        """
+        return pulumi.get(self, "server_id")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        The start time of the CBH instance in timestamp format.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="statusInfos")
+    def status_infos(self) -> Sequence['outputs.GetInstancesByTagsResourceResourceDetailStatusInfoResult']:
+        """
+        The status information of the instance.
+        The status_info structure is documented below.
+        """
+        return pulumi.get(self, "status_infos")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> _builtins.str:
+        """
+        Whether the CBH instance can be upgraded. Valid values are:
+        + **OLD**: The current version is the latest one.
+        + **NEW**: Can be upgraded.
+        + **CROSS_OS**: Can be upgraded to any later versions.
+        + **ROLLBACK**: Can be rolled back.
+        """
+        return pulumi.get(self, "update")
+
+    @_builtins.property
+    @pulumi.getter(name="upgradeTime")
+    def upgrade_time(self) -> _builtins.int:
+        """
+        The upgrade schedule of the CBH instance, in the format of timestamp.
+        """
+        return pulumi.get(self, "upgrade_time")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceResourceDetailAzInfoResult(dict):
+    def __init__(__self__, *,
+                 availability_zone_display: _builtins.str,
+                 region: _builtins.str,
+                 slave_zone: _builtins.str,
+                 slave_zone_display: _builtins.str,
+                 zone: _builtins.str):
+        """
+        :param _builtins.str availability_zone_display: The AZ where the CBH instance locates. (In primary/standby mode, the ID of the AZ where
+               the primary instance locates is required.)
+        :param _builtins.str region: Specifies the region in which to query the CBH instances.
+               If omitted, the provider-level region will be used.
+        :param _builtins.str slave_zone: The AZ where the standby CBH instance locates.
+        :param _builtins.str slave_zone_display: The AZ where the standby CBH instance locates.
+        :param _builtins.str zone: The ID of the AZ where the CBH instance locates. (In primary/standby mode, the ID of the AZ where the primary
+               instance locates is required.)
+        """
+        pulumi.set(__self__, "availability_zone_display", availability_zone_display)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "slave_zone", slave_zone)
+        pulumi.set(__self__, "slave_zone_display", slave_zone_display)
+        pulumi.set(__self__, "zone", zone)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneDisplay")
+    def availability_zone_display(self) -> _builtins.str:
+        """
+        The AZ where the CBH instance locates. (In primary/standby mode, the ID of the AZ where
+        the primary instance locates is required.)
+        """
+        return pulumi.get(self, "availability_zone_display")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to query the CBH instances.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="slaveZone")
+    def slave_zone(self) -> _builtins.str:
+        """
+        The AZ where the standby CBH instance locates.
+        """
+        return pulumi.get(self, "slave_zone")
+
+    @_builtins.property
+    @pulumi.getter(name="slaveZoneDisplay")
+    def slave_zone_display(self) -> _builtins.str:
+        """
+        The AZ where the standby CBH instance locates.
+        """
+        return pulumi.get(self, "slave_zone_display")
+
+    @_builtins.property
+    @pulumi.getter
+    def zone(self) -> _builtins.str:
+        """
+        The ID of the AZ where the CBH instance locates. (In primary/standby mode, the ID of the AZ where the primary
+        instance locates is required.)
+        """
+        return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceResourceDetailHaInfoResult(dict):
+    def __init__(__self__, *,
+                 ha_id: _builtins.str,
+                 instance_type: _builtins.str):
+        """
+        :param _builtins.str ha_id: The IDs of the primary and standby instances.
+        :param _builtins.str instance_type: The type of the instance (**master** or **slave**).
+        """
+        pulumi.set(__self__, "ha_id", ha_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+
+    @_builtins.property
+    @pulumi.getter(name="haId")
+    def ha_id(self) -> _builtins.str:
+        """
+        The IDs of the primary and standby instances.
+        """
+        return pulumi.get(self, "ha_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> _builtins.str:
+        """
+        The type of the instance (**master** or **slave**).
+        """
+        return pulumi.get(self, "instance_type")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceResourceDetailNetworkResult(dict):
+    def __init__(__self__, *,
+                 private_ip: _builtins.str,
+                 public_id: _builtins.str,
+                 public_ip: _builtins.str,
+                 security_group_id: _builtins.str,
+                 subnet_id: _builtins.str,
+                 vip: _builtins.str,
+                 vpc_id: _builtins.str,
+                 web_port: _builtins.str):
+        """
+        :param _builtins.str private_ip: The private IP address of the CBH instance.
+        :param _builtins.str public_id: The ID of the EIP bound to the CBH instance, in the UUID format.
+        :param _builtins.str public_ip: The EIP bound to the CBH instance.
+        :param _builtins.str security_group_id: The ID of the Security group where the CBH instance locates.
+        :param _builtins.str subnet_id: The ID of the subnet where the CBH instance locates.
+        :param _builtins.str vip: The floating IP address of the CBH instance. (This field is returned when the instance is deployed in
+               primary/standby mode.)
+        :param _builtins.str vpc_id: The ID of the VPC where the CBH instance locates.
+        :param _builtins.str web_port: The port used for accessing the CBH instance with a web browser.
+        """
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_id", public_id)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "security_group_id", security_group_id)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "vip", vip)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "web_port", web_port)
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The private IP address of the CBH instance.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicId")
+    def public_id(self) -> _builtins.str:
+        """
+        The ID of the EIP bound to the CBH instance, in the UUID format.
+        """
+        return pulumi.get(self, "public_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        The EIP bound to the CBH instance.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> _builtins.str:
+        """
+        The ID of the Security group where the CBH instance locates.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> _builtins.str:
+        """
+        The ID of the subnet where the CBH instance locates.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def vip(self) -> _builtins.str:
+        """
+        The floating IP address of the CBH instance. (This field is returned when the instance is deployed in
+        primary/standby mode.)
+        """
+        return pulumi.get(self, "vip")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> _builtins.str:
+        """
+        The ID of the VPC where the CBH instance locates.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @_builtins.property
+    @pulumi.getter(name="webPort")
+    def web_port(self) -> _builtins.str:
+        """
+        The port used for accessing the CBH instance with a web browser.
+        """
+        return pulumi.get(self, "web_port")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceResourceDetailResourceInfoResult(dict):
+    def __init__(__self__, *,
+                 data_disk_size: _builtins.int,
+                 disk_resource_ids: Sequence[_builtins.str],
+                 order_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 specification: _builtins.str):
+        """
+        :param _builtins.int data_disk_size: The size of the data disk.
+        :param Sequence[_builtins.str] disk_resource_ids: The list of disk resource IDs.
+        :param _builtins.str order_id: The order ID.
+        :param _builtins.str resource_id: The resource ID.
+        :param _builtins.str specification: The specification of the instance.
+        """
+        pulumi.set(__self__, "data_disk_size", data_disk_size)
+        pulumi.set(__self__, "disk_resource_ids", disk_resource_ids)
+        pulumi.set(__self__, "order_id", order_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "specification", specification)
+
+    @_builtins.property
+    @pulumi.getter(name="dataDiskSize")
+    def data_disk_size(self) -> _builtins.int:
+        """
+        The size of the data disk.
+        """
+        return pulumi.get(self, "data_disk_size")
+
+    @_builtins.property
+    @pulumi.getter(name="diskResourceIds")
+    def disk_resource_ids(self) -> Sequence[_builtins.str]:
+        """
+        The list of disk resource IDs.
+        """
+        return pulumi.get(self, "disk_resource_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="orderId")
+    def order_id(self) -> _builtins.str:
+        """
+        The order ID.
+        """
+        return pulumi.get(self, "order_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def specification(self) -> _builtins.str:
+        """
+        The specification of the instance.
+        """
+        return pulumi.get(self, "specification")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceResourceDetailStatusInfoResult(dict):
+    def __init__(__self__, *,
+                 create_instance_status: _builtins.str,
+                 fail_reason: _builtins.str,
+                 instance_description: _builtins.str,
+                 instance_status: _builtins.str,
+                 status: _builtins.str,
+                 task_status: _builtins.str):
+        """
+        :param _builtins.str create_instance_status: The creation status of the instance. Valid valus are:
+               + **waiting-for-payment**: Waiting for payment
+               + **creating-network**: Creating a network.
+               + **creating-server**: Creating the service.
+               + **tranfering-horizontal-network**: Establishing network connections.
+               + **adding-policy-route**: Adding a routing policy.
+               + **configing-dns**: Configuring DNS.
+               + **starting-cbs-service**: The service is running.
+               + **setting-init-conf**: Initializing
+               + **buying-EIP**: Buying an EIP.
+        :param _builtins.str fail_reason: The failure reason if the instance creation fails.
+        :param _builtins.str instance_description: The description of the instance status.
+        :param _builtins.str instance_status: The status of the instance. Valid values are:
+               + **building**: Creating
+               + **deleting**: Deleting
+               + **deleted**: Deleted
+               + **unpaid**: Unpaid
+               + **upgrading**: Upgrading
+               + **resizing**: Resizing
+               + **abnormal**: Abnormal
+               + **error**: Faulty
+               + **ok**: Normal
+        :param _builtins.str status: The status of the instance. Valid values are:
+               + **SHOUTOFF**: Closed
+               + **ACTIVE**: Running
+               + **DELETING**: Deleting
+               + **BUILD**: Creating
+               + **DELETED**: Deleting
+               + **ERROR**: Faulty
+               + **HAWAIT**: Waiting for the standby node to be created
+               + **FROZEN**: Frozen
+               + **UPGRADING**: Upgrading
+               + **UNPAID**: Pending Payment
+               + **RESIZE**: Changing specifications
+               + **DILATATION**: Expanding capacity
+               + **HA**: Configuring HA
+        :param _builtins.str task_status: The task status of the instance. Valid valus are:
+               + **powering-on**: Started
+               + **powering-off**: Stopped
+               + **rebooting**: Rebooting
+               + **delete_wait**: Deleting
+               + **frozen**: Frozen
+               + **NO_TASK**: Running
+               + **unfrozen**: Unfrozen
+               + **alter**: Changing
+               + **updating**: Upgrading
+               + **configuring-ha**: Configuring HA
+               + **data-migrating**: Migrating data
+               + **rollback**: Rolling back to the previous version.
+               + **traffic-switchover**: Traffic switching
+        """
+        pulumi.set(__self__, "create_instance_status", create_instance_status)
+        pulumi.set(__self__, "fail_reason", fail_reason)
+        pulumi.set(__self__, "instance_description", instance_description)
+        pulumi.set(__self__, "instance_status", instance_status)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "task_status", task_status)
+
+    @_builtins.property
+    @pulumi.getter(name="createInstanceStatus")
+    def create_instance_status(self) -> _builtins.str:
+        """
+        The creation status of the instance. Valid valus are:
+        + **waiting-for-payment**: Waiting for payment
+        + **creating-network**: Creating a network.
+        + **creating-server**: Creating the service.
+        + **tranfering-horizontal-network**: Establishing network connections.
+        + **adding-policy-route**: Adding a routing policy.
+        + **configing-dns**: Configuring DNS.
+        + **starting-cbs-service**: The service is running.
+        + **setting-init-conf**: Initializing
+        + **buying-EIP**: Buying an EIP.
+        """
+        return pulumi.get(self, "create_instance_status")
+
+    @_builtins.property
+    @pulumi.getter(name="failReason")
+    def fail_reason(self) -> _builtins.str:
+        """
+        The failure reason if the instance creation fails.
+        """
+        return pulumi.get(self, "fail_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceDescription")
+    def instance_description(self) -> _builtins.str:
+        """
+        The description of the instance status.
+        """
+        return pulumi.get(self, "instance_description")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceStatus")
+    def instance_status(self) -> _builtins.str:
+        """
+        The status of the instance. Valid values are:
+        + **building**: Creating
+        + **deleting**: Deleting
+        + **deleted**: Deleted
+        + **unpaid**: Unpaid
+        + **upgrading**: Upgrading
+        + **resizing**: Resizing
+        + **abnormal**: Abnormal
+        + **error**: Faulty
+        + **ok**: Normal
+        """
+        return pulumi.get(self, "instance_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the instance. Valid values are:
+        + **SHOUTOFF**: Closed
+        + **ACTIVE**: Running
+        + **DELETING**: Deleting
+        + **BUILD**: Creating
+        + **DELETED**: Deleting
+        + **ERROR**: Faulty
+        + **HAWAIT**: Waiting for the standby node to be created
+        + **FROZEN**: Frozen
+        + **UPGRADING**: Upgrading
+        + **UNPAID**: Pending Payment
+        + **RESIZE**: Changing specifications
+        + **DILATATION**: Expanding capacity
+        + **HA**: Configuring HA
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> _builtins.str:
+        """
+        The task status of the instance. Valid valus are:
+        + **powering-on**: Started
+        + **powering-off**: Stopped
+        + **rebooting**: Rebooting
+        + **delete_wait**: Deleting
+        + **frozen**: Frozen
+        + **NO_TASK**: Running
+        + **unfrozen**: Unfrozen
+        + **alter**: Changing
+        + **updating**: Upgrading
+        + **configuring-ha**: Configuring HA
+        + **data-migrating**: Migrating data
+        + **rollback**: Rolling back to the previous version.
+        + **traffic-switchover**: Traffic switching
+        """
+        return pulumi.get(self, "task_status")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceSysTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The field to match against.
+        :param _builtins.str value: The value to match.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The field to match against.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to match.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The field to match against.
+        :param _builtins.str value: The value to match.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The field to match against.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to match.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesByTagsSysTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The field to match against.
+        :param Sequence[_builtins.str] values: The list of values for the tag.
+               
+               <a name="cbh_instances_matches"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The field to match against.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The list of values for the tag.
+
+        <a name="cbh_instances_matches"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetInstancesByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The field to match against.
+        :param Sequence[_builtins.str] values: The list of values for the tag.
+               
+               <a name="cbh_instances_matches"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The field to match against.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The list of values for the tag.
+
+        <a name="cbh_instances_matches"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetInstancesByTagsTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The field to match against.
+        :param Sequence[_builtins.str] values: The list of values for the tag.
+               
+               <a name="cbh_instances_matches"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The field to match against.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The list of values for the tag.
+
+        <a name="cbh_instances_matches"></a>
+        The `matches` block supports:
         """
         return pulumi.get(self, "values")
 

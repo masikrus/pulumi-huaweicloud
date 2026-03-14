@@ -30,6 +30,7 @@ class PgAccountArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgAccount resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS PostgreSQL instance.
         :param pulumi.Input[_builtins.str] password: Specifies the password of the DB account. The value must be 8 to 32 characters long
                and contain at least three types of the following characters: uppercase letters, lowercase letters, digits, and special
@@ -157,6 +158,7 @@ class _PgAccountState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PgAccount resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['PgAccountAttributeArgs']]] attributes: Indicates the permission attributes of a user.
                The attributes structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the remarks of the DB account. The parameter must be 1 to 512 characters.
@@ -326,39 +328,16 @@ class PgAccount(pulumi.CustomResource):
 
         The RDS PostgreSQL account can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgAccount:PgAccount test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`. It is generally recommended
-
         running `pulumi preview` after importing the RDS PostgreSQL account. You can then decide if changes should be applied to
-
         the RDS PostgreSQL account, or the resource definition should be updated to align with the RDS PostgreSQL account. Also
-
         you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_pg_account" "account_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -403,39 +382,16 @@ class PgAccount(pulumi.CustomResource):
 
         The RDS PostgreSQL account can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgAccount:PgAccount test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`. It is generally recommended
-
         running `pulumi preview` after importing the RDS PostgreSQL account. You can then decide if changes should be applied to
-
         the RDS PostgreSQL account, or the resource definition should be updated to align with the RDS PostgreSQL account. Also
-
         you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_pg_account" "account_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PgAccountArgs args: The arguments to use to populate this resource's properties.

@@ -112,7 +112,7 @@ def get_resource_aggregators(aggregator_id: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceAggregators:getResourceAggregators', __args__, opts=opts, typ=GetResourceAggregatorsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceAggregators:getResourceAggregators', __args__, opts=opts, typ=GetResourceAggregatorsResult).value
 
     return AwaitableGetResourceAggregatorsResult(
         aggregator_id=pulumi.get(__ret__, 'aggregator_id'),
@@ -137,7 +137,7 @@ def get_resource_aggregators_output(aggregator_id: Optional[pulumi.Input[Optiona
     __args__['name'] = name
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceAggregators:getResourceAggregators', __args__, opts=opts, typ=GetResourceAggregatorsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceAggregators:getResourceAggregators', __args__, opts=opts, typ=GetResourceAggregatorsResult)
     return __ret__.apply(lambda __response__: GetResourceAggregatorsResult(
         aggregator_id=pulumi.get(__response__, 'aggregator_id'),
         aggregators=pulumi.get(__response__, 'aggregators'),

@@ -24,6 +24,7 @@ class MysqlScheduledTaskDeleteArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlScheduledTaskDelete resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] job_id: Specifies the task ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -80,6 +81,7 @@ class _MysqlScheduledTaskDeleteState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlScheduledTaskDelete resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] job_id: Specifies the task ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -161,6 +163,7 @@ class MysqlScheduledTaskDelete(pulumi.CustomResource):
             job_id=job_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID. Changing this parameter will create a new resource.
@@ -194,6 +197,7 @@ class MysqlScheduledTaskDelete(pulumi.CustomResource):
             instance_id=instance_id,
             job_id=job_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlScheduledTaskDeleteArgs args: The arguments to use to populate this resource's properties.

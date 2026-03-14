@@ -33,6 +33,7 @@ class StructuringCustomConfigurationArgs:
                  tokenizer: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StructuringCustomConfiguration resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the field content.
         :param pulumi.Input[Sequence[pulumi.Input['StructuringCustomConfigurationDemoFieldArgs']]] demo_fields: Specifies the list of example fields. The maximum length is `200`. The field sequence
                in `demo_fields` must be the same as that in `content`. The listed fields will be used as log extraction fields.
@@ -233,6 +234,7 @@ class _StructuringCustomConfigurationState:
                  tokenizer: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StructuringCustomConfiguration resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the field content.
         :param pulumi.Input[Sequence[pulumi.Input['StructuringCustomConfigurationDemoFieldArgs']]] demo_fields: Specifies the list of example fields. The maximum length is `200`. The field sequence
                in `demo_fields` must be the same as that in `content`. The listed fields will be used as log extraction fields.
@@ -583,54 +585,19 @@ class StructuringCustomConfiguration(pulumi.CustomResource):
         ## Import
 
         The LTS structuring custom configuration can be imported using `log_group_id` and `log_stream_id`, separated by a slash,
-
         e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Lts/structuringCustomConfiguration:StructuringCustomConfiguration test <log_group_id>/<log_stream_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `demo_fields`, `regex_rules`, `layers`,
-
         `tokenizer`, `log_format`, `tag_fields`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_structuring_custom_configuration" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              demo_fields,
-            
-              regex_rules,
-            
-              layers,
-            
-              tokenizer,
-            
-              log_format,
-            
-              tag_fields,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -813,54 +780,19 @@ class StructuringCustomConfiguration(pulumi.CustomResource):
         ## Import
 
         The LTS structuring custom configuration can be imported using `log_group_id` and `log_stream_id`, separated by a slash,
-
         e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Lts/structuringCustomConfiguration:StructuringCustomConfiguration test <log_group_id>/<log_stream_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `demo_fields`, `regex_rules`, `layers`,
-
         `tokenizer`, `log_format`, `tag_fields`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_structuring_custom_configuration" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              demo_fields,
-            
-              regex_rules,
-            
-              layers,
-            
-              tokenizer,
-            
-              log_format,
-            
-              tag_fields,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param StructuringCustomConfigurationArgs args: The arguments to use to populate this resource's properties.

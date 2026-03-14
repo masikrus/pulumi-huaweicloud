@@ -28,6 +28,7 @@ class IpgroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Ipgroup resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['IpgroupIpListArgs']]] ip_lists: Specifies an array of one or more ip addresses. The ip_list object structure is
                documented below. The ip_list structure is documented below.
         :param pulumi.Input[_builtins.str] description: Human-readable description for the ip.
@@ -130,6 +131,7 @@ class _IpgroupState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Ipgroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the ip group.
         :param pulumi.Input[_builtins.str] description: Human-readable description for the ip.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project id of the ip group. Changing this
@@ -299,11 +301,10 @@ class Ipgroup(pulumi.CustomResource):
 
         The ELB IP group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/ipgroup:Ipgroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -347,11 +348,10 @@ class Ipgroup(pulumi.CustomResource):
 
         The ELB IP group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/ipgroup:Ipgroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IpgroupArgs args: The arguments to use to populate this resource's properties.

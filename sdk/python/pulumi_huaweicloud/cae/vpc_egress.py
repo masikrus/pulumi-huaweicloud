@@ -22,9 +22,11 @@ class VpcEgressArgs:
                  cidr: pulumi.Input[_builtins.str],
                  environment_id: pulumi.Input[_builtins.str],
                  route_table_id: pulumi.Input[_builtins.str],
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcEgress resource.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the destination CIDR of the routing table corresponding to the subnet
                to which the CAE environment belongs.
                Changing this creates a new resource.
@@ -33,6 +35,12 @@ class VpcEgressArgs:
         :param pulumi.Input[_builtins.str] route_table_id: Specifies the ID of the route table corresponding to the subnet to which
                the CAE environment belongs.
                Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               VPC egress belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -40,6 +48,8 @@ class VpcEgressArgs:
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "environment_id", environment_id)
         pulumi.set(__self__, "route_table_id", route_table_id)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -85,6 +95,23 @@ class VpcEgressArgs:
         pulumi.set(self, "route_table_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        VPC egress belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -103,14 +130,22 @@ class VpcEgressArgs:
 class _VpcEgressState:
     def __init__(__self__, *,
                  cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  route_table_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcEgress resources.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the destination CIDR of the routing table corresponding to the subnet
                to which the CAE environment belongs.
                Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               VPC egress belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -122,6 +157,8 @@ class _VpcEgressState:
         """
         if cidr is not None:
             pulumi.set(__self__, "cidr", cidr)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if region is not None:
@@ -142,6 +179,23 @@ class _VpcEgressState:
     @cidr.setter
     def cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "cidr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        VPC egress belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -185,13 +239,14 @@ class _VpcEgressState:
         pulumi.set(self, "route_table_id", value)
 
 
-@pulumi.type_token("huaweicloud:cae/vpcEgress:VpcEgress")
+@pulumi.type_token("huaweicloud:Cae/vpcEgress:VpcEgress")
 class VpcEgress(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  route_table_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -219,17 +274,29 @@ class VpcEgress(pulumi.CustomResource):
 
         The resource can be imported using `environment_id`, `route_table_id`, and `cidr`, separated by commas (,), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/vpcEgress:VpcEgress test <environment_id>,<route_table_id>,<cidr>
+        ```
+
+        For the VPC egress with the non-default enterprise project ID, its enterprise project ID need to be specified
+        additionanlly when importing. All fields are separated by commas (,), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/vpcEgress:VpcEgress test <environment_id>,<route_table_id>,<cidr>
+        $ pulumi import huaweicloud:Cae/vpcEgress:VpcEgress test <environment_id>,<route_table_id>,<cidr>,<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cidr: Specifies the destination CIDR of the routing table corresponding to the subnet
                to which the CAE environment belongs.
                Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               VPC egress belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -268,11 +335,17 @@ class VpcEgress(pulumi.CustomResource):
 
         The resource can be imported using `environment_id`, `route_table_id`, and `cidr`, separated by commas (,), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/vpcEgress:VpcEgress test <environment_id>,<route_table_id>,<cidr>
+        ```
+
+        For the VPC egress with the non-default enterprise project ID, its enterprise project ID need to be specified
+        additionanlly when importing. All fields are separated by commas (,), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/vpcEgress:VpcEgress test <environment_id>,<route_table_id>,<cidr>
+        $ pulumi import huaweicloud:Cae/vpcEgress:VpcEgress test <environment_id>,<route_table_id>,<cidr>,<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcEgressArgs args: The arguments to use to populate this resource's properties.
@@ -290,6 +363,7 @@ class VpcEgress(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  route_table_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -305,6 +379,7 @@ class VpcEgress(pulumi.CustomResource):
             if cidr is None and not opts.urn:
                 raise TypeError("Missing required property 'cidr'")
             __props__.__dict__["cidr"] = cidr
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if environment_id is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_id'")
             __props__.__dict__["environment_id"] = environment_id
@@ -313,7 +388,7 @@ class VpcEgress(pulumi.CustomResource):
                 raise TypeError("Missing required property 'route_table_id'")
             __props__.__dict__["route_table_id"] = route_table_id
         super(VpcEgress, __self__).__init__(
-            'huaweicloud:cae/vpcEgress:VpcEgress',
+            'huaweicloud:Cae/vpcEgress:VpcEgress',
             resource_name,
             __props__,
             opts)
@@ -323,6 +398,7 @@ class VpcEgress(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cidr: Optional[pulumi.Input[_builtins.str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             environment_id: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             route_table_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'VpcEgress':
@@ -336,6 +412,12 @@ class VpcEgress(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cidr: Specifies the destination CIDR of the routing table corresponding to the subnet
                to which the CAE environment belongs.
                Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               VPC egress belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -350,6 +432,7 @@ class VpcEgress(pulumi.CustomResource):
         __props__ = _VpcEgressState.__new__(_VpcEgressState)
 
         __props__.__dict__["cidr"] = cidr
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["region"] = region
         __props__.__dict__["route_table_id"] = route_table_id
@@ -364,6 +447,19 @@ class VpcEgress(pulumi.CustomResource):
         Changing this creates a new resource.
         """
         return pulumi.get(self, "cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        VPC egress belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")

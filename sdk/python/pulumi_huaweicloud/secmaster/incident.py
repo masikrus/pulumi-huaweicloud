@@ -21,12 +21,12 @@ __all__ = ['IncidentArgs', 'Incident']
 @pulumi.input_type
 class IncidentArgs:
     def __init__(__self__, *,
+                 incident_type_value: pulumi.Input['IncidentIncidentTypeValueArgs'],
                  data_source: pulumi.Input['IncidentDataSourceArgs'],
                  description: pulumi.Input[_builtins.str],
                  first_occurrence_time: pulumi.Input[_builtins.str],
                  level: pulumi.Input[_builtins.str],
                  status: pulumi.Input[_builtins.str],
-                 type: pulumi.Input['IncidentTypeArgs'],
                  workspace_id: pulumi.Input[_builtins.str],
                  close_comment: Optional[pulumi.Input[_builtins.str]] = None,
                  close_reason: Optional[pulumi.Input[_builtins.str]] = None,
@@ -41,6 +41,11 @@ class IncidentArgs:
                  verification_status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Incident resource.
+
+        :param pulumi.Input['IncidentIncidentTypeValueArgs'] incident_type_value: Specifies the incident type configuration.
+               The IncidentType structure is documented below.
+               
+               Changing this parameter will create a new resource.
         :param pulumi.Input['IncidentDataSourceArgs'] data_source: Specifies the data source configuration.
                The IncidentDataSource structure is documented below.
                
@@ -53,10 +58,6 @@ class IncidentArgs:
                The value can be **Tips**, **Low**, **Medium**, **High** and **Fatal**.
         :param pulumi.Input[_builtins.str] status: Specifies the incident status.
                The value can be **Open**, **Block** and **Closed**.
-        :param pulumi.Input['IncidentTypeArgs'] type: Specifies the incident type configuration.
-               The IncidentType structure is documented below.
-               
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the incident belongs.
                
                Changing this parameter will create a new resource.
@@ -82,12 +83,12 @@ class IncidentArgs:
         :param pulumi.Input[_builtins.str] verification_status: Specifies the verification status.
                The value can be **Unknown**, **True_Positive**, **False_Positive**, defaults to **Unknown**.
         """
+        pulumi.set(__self__, "incident_type_value", incident_type_value)
         pulumi.set(__self__, "data_source", data_source)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "first_occurrence_time", first_occurrence_time)
         pulumi.set(__self__, "level", level)
         pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "workspace_id", workspace_id)
         if close_comment is not None:
             pulumi.set(__self__, "close_comment", close_comment)
@@ -111,6 +112,21 @@ class IncidentArgs:
             pulumi.set(__self__, "stage", stage)
         if verification_status is not None:
             pulumi.set(__self__, "verification_status", verification_status)
+
+    @_builtins.property
+    @pulumi.getter(name="IncidentTypeValue")
+    def incident_type_value(self) -> pulumi.Input['IncidentIncidentTypeValueArgs']:
+        """
+        Specifies the incident type configuration.
+        The IncidentType structure is documented below.
+
+        Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "incident_type_value")
+
+    @incident_type_value.setter
+    def incident_type_value(self, value: pulumi.Input['IncidentIncidentTypeValueArgs']):
+        pulumi.set(self, "incident_type_value", value)
 
     @_builtins.property
     @pulumi.getter(name="dataSource")
@@ -178,21 +194,6 @@ class IncidentArgs:
     @status.setter
     def status(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "status", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> pulumi.Input['IncidentTypeArgs']:
-        """
-        Specifies the incident type configuration.
-        The IncidentType structure is documented below.
-
-        Changing this parameter will create a new resource.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input['IncidentTypeArgs']):
-        pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceId")
@@ -354,6 +355,7 @@ class IncidentArgs:
 @pulumi.input_type
 class _IncidentState:
     def __init__(__self__, *,
+                 incident_type_value: Optional[pulumi.Input['IncidentIncidentTypeValueArgs']] = None,
                  close_comment: Optional[pulumi.Input[_builtins.str]] = None,
                  close_reason: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -371,12 +373,16 @@ class _IncidentState:
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  stage: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input['IncidentTypeArgs']] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  verification_status: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Incident resources.
+
+        :param pulumi.Input['IncidentIncidentTypeValueArgs'] incident_type_value: Specifies the incident type configuration.
+               The IncidentType structure is documented below.
+               
+               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] close_comment: Specifies the close comment.
                
                <a name="Incident_IncidentType"></a>
@@ -410,10 +416,6 @@ class _IncidentState:
                Defaults to **Preparation**.
         :param pulumi.Input[_builtins.str] status: Specifies the incident status.
                The value can be **Open**, **Block** and **Closed**.
-        :param pulumi.Input['IncidentTypeArgs'] type: Specifies the incident type configuration.
-               The IncidentType structure is documented below.
-               
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] updated_at: The updated time.
         :param pulumi.Input[_builtins.str] verification_status: Specifies the verification status.
                The value can be **Unknown**, **True_Positive**, **False_Positive**, defaults to **Unknown**.
@@ -421,6 +423,8 @@ class _IncidentState:
                
                Changing this parameter will create a new resource.
         """
+        if incident_type_value is not None:
+            pulumi.set(__self__, "incident_type_value", incident_type_value)
         if close_comment is not None:
             pulumi.set(__self__, "close_comment", close_comment)
         if close_reason is not None:
@@ -455,14 +459,27 @@ class _IncidentState:
             pulumi.set(__self__, "stage", stage)
         if status is not None:
             pulumi.set(__self__, "status", status)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if verification_status is not None:
             pulumi.set(__self__, "verification_status", verification_status)
         if workspace_id is not None:
             pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="IncidentTypeValue")
+    def incident_type_value(self) -> Optional[pulumi.Input['IncidentIncidentTypeValueArgs']]:
+        """
+        Specifies the incident type configuration.
+        The IncidentType structure is documented below.
+
+        Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "incident_type_value")
+
+    @incident_type_value.setter
+    def incident_type_value(self, value: Optional[pulumi.Input['IncidentIncidentTypeValueArgs']]):
+        pulumi.set(self, "incident_type_value", value)
 
     @_builtins.property
     @pulumi.getter(name="closeComment")
@@ -685,21 +702,6 @@ class _IncidentState:
         pulumi.set(self, "status", value)
 
     @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input['IncidentTypeArgs']]:
-        """
-        Specifies the incident type configuration.
-        The IncidentType structure is documented below.
-
-        Changing this parameter will create a new resource.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input['IncidentTypeArgs']]):
-        pulumi.set(self, "type", value)
-
-    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -739,12 +741,13 @@ class _IncidentState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/incident:Incident")
+@pulumi.type_token("huaweicloud:Secmaster/incident:Incident")
 class Incident(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 incident_type_value: Optional[pulumi.Input[Union['IncidentIncidentTypeValueArgs', 'IncidentIncidentTypeValueArgsDict']]] = None,
                  close_comment: Optional[pulumi.Input[_builtins.str]] = None,
                  close_reason: Optional[pulumi.Input[_builtins.str]] = None,
                  data_source: Optional[pulumi.Input[Union['IncidentDataSourceArgs', 'IncidentDataSourceArgsDict']]] = None,
@@ -760,7 +763,6 @@ class Incident(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  stage: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[Union['IncidentTypeArgs', 'IncidentTypeArgsDict']]] = None,
                  verification_status: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -779,7 +781,7 @@ class Incident(pulumi.CustomResource):
             workspace_id=workspace_id,
             name="test-incident",
             description="test incident",
-            type={
+            incident_type_value={
                 "category": "DDoS",
                 "incident_type": "ACK Flood",
             },
@@ -804,14 +806,17 @@ class Incident(pulumi.CustomResource):
 
         The incident can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/incident:Incident test 40b57838-2019-443a-bb07-30a7a50a4780
+        $ pulumi import huaweicloud:Secmaster/incident:Incident test 40b57838-2019-443a-bb07-30a7a50a4780
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['IncidentIncidentTypeValueArgs', 'IncidentIncidentTypeValueArgsDict']] incident_type_value: Specifies the incident type configuration.
+               The IncidentType structure is documented below.
+               
+               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] close_comment: Specifies the close comment.
                
                <a name="Incident_IncidentType"></a>
@@ -843,10 +848,6 @@ class Incident(pulumi.CustomResource):
                Defaults to **Preparation**.
         :param pulumi.Input[_builtins.str] status: Specifies the incident status.
                The value can be **Open**, **Block** and **Closed**.
-        :param pulumi.Input[Union['IncidentTypeArgs', 'IncidentTypeArgsDict']] type: Specifies the incident type configuration.
-               The IncidentType structure is documented below.
-               
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] verification_status: Specifies the verification status.
                The value can be **Unknown**, **True_Positive**, **False_Positive**, defaults to **Unknown**.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the incident belongs.
@@ -874,7 +875,7 @@ class Incident(pulumi.CustomResource):
             workspace_id=workspace_id,
             name="test-incident",
             description="test incident",
-            type={
+            incident_type_value={
                 "category": "DDoS",
                 "incident_type": "ACK Flood",
             },
@@ -899,11 +900,10 @@ class Incident(pulumi.CustomResource):
 
         The incident can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/incident:Incident test 40b57838-2019-443a-bb07-30a7a50a4780
+        $ pulumi import huaweicloud:Secmaster/incident:Incident test 40b57838-2019-443a-bb07-30a7a50a4780
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IncidentArgs args: The arguments to use to populate this resource's properties.
@@ -920,6 +920,7 @@ class Incident(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 incident_type_value: Optional[pulumi.Input[Union['IncidentIncidentTypeValueArgs', 'IncidentIncidentTypeValueArgsDict']]] = None,
                  close_comment: Optional[pulumi.Input[_builtins.str]] = None,
                  close_reason: Optional[pulumi.Input[_builtins.str]] = None,
                  data_source: Optional[pulumi.Input[Union['IncidentDataSourceArgs', 'IncidentDataSourceArgsDict']]] = None,
@@ -935,7 +936,6 @@ class Incident(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  stage: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[Union['IncidentTypeArgs', 'IncidentTypeArgsDict']]] = None,
                  verification_status: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -947,6 +947,9 @@ class Incident(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IncidentArgs.__new__(IncidentArgs)
 
+            if incident_type_value is None and not opts.urn:
+                raise TypeError("Missing required property 'incident_type_value'")
+            __props__.__dict__["incident_type_value"] = incident_type_value
             __props__.__dict__["close_comment"] = close_comment
             __props__.__dict__["close_reason"] = close_reason
             if data_source is None and not opts.urn:
@@ -972,9 +975,6 @@ class Incident(pulumi.CustomResource):
             if status is None and not opts.urn:
                 raise TypeError("Missing required property 'status'")
             __props__.__dict__["status"] = status
-            if type is None and not opts.urn:
-                raise TypeError("Missing required property 'type'")
-            __props__.__dict__["type"] = type
             __props__.__dict__["verification_status"] = verification_status
             if workspace_id is None and not opts.urn:
                 raise TypeError("Missing required property 'workspace_id'")
@@ -983,7 +983,7 @@ class Incident(pulumi.CustomResource):
             __props__.__dict__["creator"] = None
             __props__.__dict__["updated_at"] = None
         super(Incident, __self__).__init__(
-            'huaweicloud:secmaster/incident:Incident',
+            'huaweicloud:Secmaster/incident:Incident',
             resource_name,
             __props__,
             opts)
@@ -992,6 +992,7 @@ class Incident(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            incident_type_value: Optional[pulumi.Input[Union['IncidentIncidentTypeValueArgs', 'IncidentIncidentTypeValueArgsDict']]] = None,
             close_comment: Optional[pulumi.Input[_builtins.str]] = None,
             close_reason: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1009,7 +1010,6 @@ class Incident(pulumi.CustomResource):
             region: Optional[pulumi.Input[_builtins.str]] = None,
             stage: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[Union['IncidentTypeArgs', 'IncidentTypeArgsDict']]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
             verification_status: Optional[pulumi.Input[_builtins.str]] = None,
             workspace_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Incident':
@@ -1020,6 +1020,10 @@ class Incident(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['IncidentIncidentTypeValueArgs', 'IncidentIncidentTypeValueArgsDict']] incident_type_value: Specifies the incident type configuration.
+               The IncidentType structure is documented below.
+               
+               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] close_comment: Specifies the close comment.
                
                <a name="Incident_IncidentType"></a>
@@ -1053,10 +1057,6 @@ class Incident(pulumi.CustomResource):
                Defaults to **Preparation**.
         :param pulumi.Input[_builtins.str] status: Specifies the incident status.
                The value can be **Open**, **Block** and **Closed**.
-        :param pulumi.Input[Union['IncidentTypeArgs', 'IncidentTypeArgsDict']] type: Specifies the incident type configuration.
-               The IncidentType structure is documented below.
-               
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] updated_at: The updated time.
         :param pulumi.Input[_builtins.str] verification_status: Specifies the verification status.
                The value can be **Unknown**, **True_Positive**, **False_Positive**, defaults to **Unknown**.
@@ -1068,6 +1068,7 @@ class Incident(pulumi.CustomResource):
 
         __props__ = _IncidentState.__new__(_IncidentState)
 
+        __props__.__dict__["incident_type_value"] = incident_type_value
         __props__.__dict__["close_comment"] = close_comment
         __props__.__dict__["close_reason"] = close_reason
         __props__.__dict__["created_at"] = created_at
@@ -1085,11 +1086,21 @@ class Incident(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["stage"] = stage
         __props__.__dict__["status"] = status
-        __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["verification_status"] = verification_status
         __props__.__dict__["workspace_id"] = workspace_id
         return Incident(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="IncidentTypeValue")
+    def incident_type_value(self) -> pulumi.Output['outputs.IncidentIncidentTypeValue']:
+        """
+        Specifies the incident type configuration.
+        The IncidentType structure is documented below.
+
+        Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "incident_type_value")
 
     @_builtins.property
     @pulumi.getter(name="closeComment")
@@ -1242,17 +1253,6 @@ class Incident(pulumi.CustomResource):
         The value can be **Open**, **Block** and **Closed**.
         """
         return pulumi.get(self, "status")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> pulumi.Output['outputs.IncidentType']:
-        """
-        Specifies the incident type configuration.
-        The IncidentType structure is documented below.
-
-        Changing this parameter will create a new resource.
-        """
-        return pulumi.get(self, "type")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

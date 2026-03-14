@@ -26,6 +26,7 @@ class RepoPasswordAuthorizationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RepoPasswordAuthorization resource.
+
         :param pulumi.Input[_builtins.str] password: Specified the repository password.
                Changing this parameter will create a new authorization.
         :param pulumi.Input[_builtins.str] type: Specified the repository type. The valid values are as follows:
@@ -137,6 +138,7 @@ class _RepoPasswordAuthorizationState:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RepoPasswordAuthorization resources.
+
         :param pulumi.Input[_builtins.str] name: Specified the authorization name.  
                The name can contain of `4` to `63` characters, only letters, digits, underscores (_), hyphens (-) and dots (.) are
                allowed. Changing this parameter will create a new authorization.
@@ -261,11 +263,10 @@ class RepoPasswordAuthorization(pulumi.CustomResource):
 
         Authorizations can be imported using their `id` or `name`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/repoPasswordAuthorization:RepoPasswordAuthorization test terraform-test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -302,11 +303,10 @@ class RepoPasswordAuthorization(pulumi.CustomResource):
 
         Authorizations can be imported using their `id` or `name`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/repoPasswordAuthorization:RepoPasswordAuthorization test terraform-test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RepoPasswordAuthorizationArgs args: The arguments to use to populate this resource's properties.

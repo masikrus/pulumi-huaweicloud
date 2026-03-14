@@ -23,6 +23,7 @@ class MysqlInstantTaskDeleteArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlInstantTaskDelete resource.
+
         :param pulumi.Input[_builtins.str] job_id: Specifies the task ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -64,6 +65,7 @@ class _MysqlInstantTaskDeleteState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlInstantTaskDelete resources.
+
         :param pulumi.Input[_builtins.str] job_id: Specifies the task ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -126,6 +128,7 @@ class MysqlInstantTaskDelete(pulumi.CustomResource):
         test = huaweicloud.gaussdb.MysqlInstantTaskDelete("test", job_id=job_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] job_id: Specifies the task ID. Changing this parameter will create a new resource.
@@ -155,6 +158,7 @@ class MysqlInstantTaskDelete(pulumi.CustomResource):
         job_id = config.require_object("jobId")
         test = huaweicloud.gaussdb.MysqlInstantTaskDelete("test", job_id=job_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlInstantTaskDeleteArgs args: The arguments to use to populate this resource's properties.

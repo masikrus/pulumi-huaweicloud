@@ -150,7 +150,7 @@ def get_resource_share_associations(association_type: Optional[_builtins.str] = 
 
     config = pulumi.Config()
     association_type = config.require_object("associationType")
-    test = huaweicloud.ram.get_resource_share_associations(association_type=association_type)
+    test = huaweicloud.Ram.get_resource_share_associations(association_type=association_type)
     ```
 
 
@@ -172,7 +172,7 @@ def get_resource_share_associations(association_type: Optional[_builtins.str] = 
     __args__['resourceUrn'] = resource_urn
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ram/getResourceShareAssociations:getResourceShareAssociations', __args__, opts=opts, typ=GetResourceShareAssociationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ram/getResourceShareAssociations:getResourceShareAssociations', __args__, opts=opts, typ=GetResourceShareAssociationsResult).value
 
     return AwaitableGetResourceShareAssociationsResult(
         association_type=pulumi.get(__ret__, 'association_type'),
@@ -203,7 +203,7 @@ def get_resource_share_associations_output(association_type: Optional[pulumi.Inp
 
     config = pulumi.Config()
     association_type = config.require_object("associationType")
-    test = huaweicloud.ram.get_resource_share_associations(association_type=association_type)
+    test = huaweicloud.Ram.get_resource_share_associations(association_type=association_type)
     ```
 
 
@@ -225,7 +225,7 @@ def get_resource_share_associations_output(association_type: Optional[pulumi.Inp
     __args__['resourceUrn'] = resource_urn
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ram/getResourceShareAssociations:getResourceShareAssociations', __args__, opts=opts, typ=GetResourceShareAssociationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ram/getResourceShareAssociations:getResourceShareAssociations', __args__, opts=opts, typ=GetResourceShareAssociationsResult)
     return __ret__.apply(lambda __response__: GetResourceShareAssociationsResult(
         association_type=pulumi.get(__response__, 'association_type'),
         associations=pulumi.get(__response__, 'associations'),

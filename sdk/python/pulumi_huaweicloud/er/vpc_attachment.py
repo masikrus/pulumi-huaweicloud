@@ -29,6 +29,7 @@ class VpcAttachmentArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a VpcAttachment resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the ER instance to which the VPC attachment
                belongs.
                Changing this parameter will create a new resource.
@@ -197,6 +198,7 @@ class _VpcAttachmentState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcAttachment resources.
+
         :param pulumi.Input[_builtins.bool] auto_create_vpc_routes: Specifies whether to automatically configure routes for the VPC
                which pointing to the ER instance.
                The destination CIDRs of the routes are fixed as follows:
@@ -443,11 +445,10 @@ class VpcAttachment(pulumi.CustomResource):
 
         VPC attachments can be imported using their `id` and the related `instance_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/vpcAttachment:VpcAttachment test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -513,11 +514,10 @@ class VpcAttachment(pulumi.CustomResource):
 
         VPC attachments can be imported using their `id` and the related `instance_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/vpcAttachment:VpcAttachment test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcAttachmentArgs args: The arguments to use to populate this resource's properties.

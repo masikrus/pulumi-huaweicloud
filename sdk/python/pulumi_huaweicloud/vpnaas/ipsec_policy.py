@@ -306,7 +306,7 @@ class _IpsecPolicyState:
         pulumi.set(self, "value_specs", value)
 
 
-@pulumi.type_token("huaweicloud:vpnaas/ipsecPolicy:IpsecPolicy")
+@pulumi.type_token("huaweicloud:Vpnaas/ipsecPolicy:IpsecPolicy")
 class IpsecPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -326,6 +326,7 @@ class IpsecPolicy(pulumi.CustomResource):
                  __props__=None):
         """
         Create a IpsecPolicy resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -337,6 +338,7 @@ class IpsecPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a IpsecPolicy resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param IpsecPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -384,7 +386,7 @@ class IpsecPolicy(pulumi.CustomResource):
             __props__.__dict__["transform_protocol"] = transform_protocol
             __props__.__dict__["value_specs"] = value_specs
         super(IpsecPolicy, __self__).__init__(
-            'huaweicloud:vpnaas/ipsecPolicy:IpsecPolicy',
+            'huaweicloud:Vpnaas/ipsecPolicy:IpsecPolicy',
             resource_name,
             __props__,
             opts)

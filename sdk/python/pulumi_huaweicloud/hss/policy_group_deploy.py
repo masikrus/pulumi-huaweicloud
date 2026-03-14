@@ -27,6 +27,7 @@ class PolicyGroupDeployArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PolicyGroupDeploy resource.
+
         :param pulumi.Input[_builtins.str] target_policy_group_id: Specifies the ID of the policy group to be deployed.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project.
                This parameter is valid only when the enterprise project function is enabled.
@@ -140,6 +141,7 @@ class _PolicyGroupDeployState:
                  target_policy_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PolicyGroupDeploy resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project.
                This parameter is valid only when the enterprise project function is enabled.
                For enterprise users, if omitted, default enterprise project will be used.
@@ -243,7 +245,7 @@ class _PolicyGroupDeployState:
         pulumi.set(self, "target_policy_group_id", value)
 
 
-@pulumi.type_token("huaweicloud:hss/policyGroupDeploy:PolicyGroupDeploy")
+@pulumi.type_token("huaweicloud:Hss/policyGroupDeploy:PolicyGroupDeploy")
 class PolicyGroupDeploy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -279,6 +281,7 @@ class PolicyGroupDeploy(pulumi.CustomResource):
             operate_all=operate_all,
             host_id_lists=host_id_list)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -325,6 +328,7 @@ class PolicyGroupDeploy(pulumi.CustomResource):
             host_id_lists=host_id_list)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param PolicyGroupDeployArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -364,7 +368,7 @@ class PolicyGroupDeploy(pulumi.CustomResource):
                 raise TypeError("Missing required property 'target_policy_group_id'")
             __props__.__dict__["target_policy_group_id"] = target_policy_group_id
         super(PolicyGroupDeploy, __self__).__init__(
-            'huaweicloud:hss/policyGroupDeploy:PolicyGroupDeploy',
+            'huaweicloud:Hss/policyGroupDeploy:PolicyGroupDeploy',
             resource_name,
             __props__,
             opts)

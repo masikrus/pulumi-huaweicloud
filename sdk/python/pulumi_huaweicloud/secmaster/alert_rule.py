@@ -39,6 +39,7 @@ class AlertRuleArgs:
                  suppression: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AlertRule resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the alert rule.
         :param pulumi.Input[_builtins.str] pipeline_id: Specifies the pipeline ID of the alert rule.
                
@@ -333,6 +334,7 @@ class _AlertRuleState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlertRule resources.
+
         :param pulumi.Input[_builtins.str] created_at: The created time.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_information: Specifies the custom information of the alert rule.
         :param pulumi.Input[_builtins.bool] debugging_alarm: Specifies whether to generate debugging alarms.
@@ -644,7 +646,7 @@ class _AlertRuleState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/alertRule:AlertRule")
+@pulumi.type_token("huaweicloud:Secmaster/alertRule:AlertRule")
 class AlertRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -711,11 +713,10 @@ class AlertRule(pulumi.CustomResource):
 
         The alert rule can be imported using theworkspace ID and the alert rule, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/alertRule:AlertRule test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/alertRule:AlertRule test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -805,11 +806,10 @@ class AlertRule(pulumi.CustomResource):
 
         The alert rule can be imported using theworkspace ID and the alert rule, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/alertRule:AlertRule test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/alertRule:AlertRule test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlertRuleArgs args: The arguments to use to populate this resource's properties.
@@ -890,7 +890,7 @@ class AlertRule(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(AlertRule, __self__).__init__(
-            'huaweicloud:secmaster/alertRule:AlertRule',
+            'huaweicloud:Secmaster/alertRule:AlertRule',
             resource_name,
             __props__,
             opts)

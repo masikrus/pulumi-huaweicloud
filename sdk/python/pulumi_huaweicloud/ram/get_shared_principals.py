@@ -118,7 +118,7 @@ def get_shared_principals(principal: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     resource_urn = config.require_object("resourceUrn")
-    test = huaweicloud.ram.get_shared_principals(resource_owner="self",
+    test = huaweicloud.Ram.get_shared_principals(resource_owner="self",
         resource_urn=resource_urn)
     ```
 
@@ -142,7 +142,7 @@ def get_shared_principals(principal: Optional[_builtins.str] = None,
     __args__['resourceShareId'] = resource_share_id
     __args__['resourceUrn'] = resource_urn
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ram/getSharedPrincipals:getSharedPrincipals', __args__, opts=opts, typ=GetSharedPrincipalsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ram/getSharedPrincipals:getSharedPrincipals', __args__, opts=opts, typ=GetSharedPrincipalsResult).value
 
     return AwaitableGetSharedPrincipalsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -167,7 +167,7 @@ def get_shared_principals_output(principal: Optional[pulumi.Input[Optional[_buil
 
     config = pulumi.Config()
     resource_urn = config.require_object("resourceUrn")
-    test = huaweicloud.ram.get_shared_principals(resource_owner="self",
+    test = huaweicloud.Ram.get_shared_principals(resource_owner="self",
         resource_urn=resource_urn)
     ```
 
@@ -191,7 +191,7 @@ def get_shared_principals_output(principal: Optional[pulumi.Input[Optional[_buil
     __args__['resourceShareId'] = resource_share_id
     __args__['resourceUrn'] = resource_urn
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ram/getSharedPrincipals:getSharedPrincipals', __args__, opts=opts, typ=GetSharedPrincipalsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ram/getSharedPrincipals:getSharedPrincipals', __args__, opts=opts, typ=GetSharedPrincipalsResult)
     return __ret__.apply(lambda __response__: GetSharedPrincipalsResult(
         id=pulumi.get(__response__, 'id'),
         principal=pulumi.get(__response__, 'principal'),

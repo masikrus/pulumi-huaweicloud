@@ -31,6 +31,7 @@ class InternetBandwidthArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InternetBandwidth resource.
+
         :param pulumi.Input[_builtins.str] access_site: Specifies the access site name.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] charge_mode: Specifies the charge mode.
@@ -224,6 +225,7 @@ class _InternetBandwidthState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InternetBandwidth resources.
+
         :param pulumi.Input[_builtins.str] access_site: Specifies the access site name.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] charge_mode: Specifies the charge mode.
@@ -476,7 +478,7 @@ class _InternetBandwidthState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:global/internetBandwidth:InternetBandwidth")
+@pulumi.type_token("huaweicloud:Global/internetBandwidth:InternetBandwidth")
 class InternetBandwidth(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -505,7 +507,7 @@ class InternetBandwidth(pulumi.CustomResource):
         config = pulumi.Config()
         enterprise_project_id = config.require_object("enterpriseProjectId")
         bandwidth_name = config.require_object("bandwidthName")
-        all = huaweicloud.global.get_eip_pools()
+        all = huaweicloud.Global.get_eip_pools()
         test = huaweicloud.global_.InternetBandwidth("test",
             access_site=all.geip_pools[0].access_site,
             charge_mode="95peak_guar",
@@ -524,11 +526,10 @@ class InternetBandwidth(pulumi.CustomResource):
 
         The global internet bandwidth can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:global/internetBandwidth:InternetBandwidth test <id>
+        $ pulumi import huaweicloud:Global/internetBandwidth:InternetBandwidth test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -573,7 +574,7 @@ class InternetBandwidth(pulumi.CustomResource):
         config = pulumi.Config()
         enterprise_project_id = config.require_object("enterpriseProjectId")
         bandwidth_name = config.require_object("bandwidthName")
-        all = huaweicloud.global.get_eip_pools()
+        all = huaweicloud.Global.get_eip_pools()
         test = huaweicloud.global_.InternetBandwidth("test",
             access_site=all.geip_pools[0].access_site,
             charge_mode="95peak_guar",
@@ -592,11 +593,10 @@ class InternetBandwidth(pulumi.CustomResource):
 
         The global internet bandwidth can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:global/internetBandwidth:InternetBandwidth test <id>
+        $ pulumi import huaweicloud:Global/internetBandwidth:InternetBandwidth test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InternetBandwidthArgs args: The arguments to use to populate this resource's properties.
@@ -656,7 +656,7 @@ class InternetBandwidth(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(InternetBandwidth, __self__).__init__(
-            'huaweicloud:global/internetBandwidth:InternetBandwidth',
+            'huaweicloud:Global/internetBandwidth:InternetBandwidth',
             resource_name,
             __props__,
             opts)

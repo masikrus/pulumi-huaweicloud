@@ -140,7 +140,7 @@ def get_connection_health_checks(connection_id: Optional[_builtins.str] = None,
     status = config.require_object("status")
     source_ip = config.require_object("sourceIp")
     destination_ip = config.require_object("destinationIp")
-    services = huaweicloud.vpn.get_connection_health_checks(connection_id=connection_id,
+    services = huaweicloud.Vpn.get_connection_health_checks(connection_id=connection_id,
         status=status,
         source_ip=source_ip,
         destination_ip=destination_ip)
@@ -161,7 +161,7 @@ def get_connection_health_checks(connection_id: Optional[_builtins.str] = None,
     __args__['sourceIp'] = source_ip
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getConnectionHealthChecks:getConnectionHealthChecks', __args__, opts=opts, typ=GetConnectionHealthChecksResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getConnectionHealthChecks:getConnectionHealthChecks', __args__, opts=opts, typ=GetConnectionHealthChecksResult).value
 
     return AwaitableGetConnectionHealthChecksResult(
         connection_health_checks=pulumi.get(__ret__, 'connection_health_checks'),
@@ -191,7 +191,7 @@ def get_connection_health_checks_output(connection_id: Optional[pulumi.Input[Opt
     status = config.require_object("status")
     source_ip = config.require_object("sourceIp")
     destination_ip = config.require_object("destinationIp")
-    services = huaweicloud.vpn.get_connection_health_checks(connection_id=connection_id,
+    services = huaweicloud.Vpn.get_connection_health_checks(connection_id=connection_id,
         status=status,
         source_ip=source_ip,
         destination_ip=destination_ip)
@@ -212,7 +212,7 @@ def get_connection_health_checks_output(connection_id: Optional[pulumi.Input[Opt
     __args__['sourceIp'] = source_ip
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getConnectionHealthChecks:getConnectionHealthChecks', __args__, opts=opts, typ=GetConnectionHealthChecksResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getConnectionHealthChecks:getConnectionHealthChecks', __args__, opts=opts, typ=GetConnectionHealthChecksResult)
     return __ret__.apply(lambda __response__: GetConnectionHealthChecksResult(
         connection_health_checks=pulumi.get(__response__, 'connection_health_checks'),
         connection_id=pulumi.get(__response__, 'connection_id'),

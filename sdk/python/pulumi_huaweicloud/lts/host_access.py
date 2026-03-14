@@ -38,6 +38,7 @@ class HostAccessArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a HostAccess resource.
+
         :param pulumi.Input['HostAccessAccessConfigArgs'] access_config: Specifies the configurations of host access.
                The access_config structure is documented below.
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the log group ID.
@@ -361,6 +362,7 @@ class _HostAccessState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering HostAccess resources.
+
         :param pulumi.Input['HostAccessAccessConfigArgs'] access_config: Specifies the configurations of host access.
                The access_config structure is documented below.
         :param pulumi.Input[_builtins.str] access_type: The log access type.
@@ -776,41 +778,17 @@ class HostAccess(pulumi.CustomResource):
 
         The host access can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/hostAccess:HostAccess test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `processors`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_host_access" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              processors,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -904,41 +882,17 @@ class HostAccess(pulumi.CustomResource):
 
         The host access can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/hostAccess:HostAccess test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `processors`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_host_access" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              processors,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param HostAccessArgs args: The arguments to use to populate this resource's properties.

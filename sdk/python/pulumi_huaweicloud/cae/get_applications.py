@@ -27,13 +27,16 @@ class GetApplicationsResult:
     """
     A collection of values returned by getApplications.
     """
-    def __init__(__self__, application_id=None, applications=None, environment_id=None, id=None, name=None, region=None):
+    def __init__(__self__, application_id=None, applications=None, enterprise_project_id=None, environment_id=None, id=None, name=None, region=None):
         if application_id and not isinstance(application_id, str):
             raise TypeError("Expected argument 'application_id' to be a str")
         pulumi.set(__self__, "application_id", application_id)
         if applications and not isinstance(applications, list):
             raise TypeError("Expected argument 'applications' to be a list")
         pulumi.set(__self__, "applications", applications)
+        if enterprise_project_id and not isinstance(enterprise_project_id, str):
+            raise TypeError("Expected argument 'enterprise_project_id' to be a str")
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id and not isinstance(environment_id, str):
             raise TypeError("Expected argument 'environment_id' to be a str")
         pulumi.set(__self__, "environment_id", environment_id)
@@ -60,6 +63,11 @@ class GetApplicationsResult:
         The applications structure is documented below.
         """
         return pulumi.get(self, "applications")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -96,6 +104,7 @@ class AwaitableGetApplicationsResult(GetApplicationsResult):
         return GetApplicationsResult(
             application_id=self.application_id,
             applications=self.applications,
+            enterprise_project_id=self.enterprise_project_id,
             environment_id=self.environment_id,
             id=self.id,
             name=self.name,
@@ -103,14 +112,17 @@ class AwaitableGetApplicationsResult(GetApplicationsResult):
 
 
 def get_applications(application_id: Optional[_builtins.str] = None,
+                     enterprise_project_id: Optional[_builtins.str] = None,
                      environment_id: Optional[_builtins.str] = None,
                      name: Optional[_builtins.str] = None,
                      region: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApplicationsResult:
     """
-    Use this data source to get the list of CAE applications.
+    Use this data source to get the list of CAE applications within HuaweiCloud.
 
     ## Example Usage
+
+    ### Query all applications under the default enterprise project or EPS service is not enable
 
     ```python
     import pulumi
@@ -118,11 +130,30 @@ def get_applications(application_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     environment_id = config.require_object("environmentId")
-    test = huaweicloud.cae.get_applications(environment_id=environment_id)
+    test = huaweicloud.Cae.get_applications(environment_id=environment_id)
+    ```
+
+    ### Query the application under the specified enterprise project by application ID
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    environment_id = config.require_object("environmentId")
+    application_id = config.require_object("applicationId")
+    enterprise_project_id = config.require_object("enterpriseProjectId")
+    filter_by_application_id = huaweicloud.Cae.get_applications(environment_id=environment_id,
+        application_id=application_id,
+        enterprise_project_id=enterprise_project_id)
     ```
 
 
     :param _builtins.str application_id: Specifies the ID of the application to be queried.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the applications
+           belong.
+           If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+           for enterprise users.
     :param _builtins.str environment_id: Specifies the ID of the environment to which the applications belong.
     :param _builtins.str name: Specifies the name of the application to be queried.
            The name can contain `2` to `64` characters, only lowercase letters, digits, and hyphens (-) allowed.
@@ -132,28 +163,33 @@ def get_applications(application_id: Optional[_builtins.str] = None,
     """
     __args__ = dict()
     __args__['applicationId'] = application_id
+    __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['environmentId'] = environment_id
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cae/getApplications:getApplications', __args__, opts=opts, typ=GetApplicationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cae/getApplications:getApplications', __args__, opts=opts, typ=GetApplicationsResult).value
 
     return AwaitableGetApplicationsResult(
         application_id=pulumi.get(__ret__, 'application_id'),
         applications=pulumi.get(__ret__, 'applications'),
+        enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
         environment_id=pulumi.get(__ret__, 'environment_id'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         region=pulumi.get(__ret__, 'region'))
 def get_applications_output(application_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                            enterprise_project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                             name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApplicationsResult]:
     """
-    Use this data source to get the list of CAE applications.
+    Use this data source to get the list of CAE applications within HuaweiCloud.
 
     ## Example Usage
+
+    ### Query all applications under the default enterprise project or EPS service is not enable
 
     ```python
     import pulumi
@@ -161,11 +197,30 @@ def get_applications_output(application_id: Optional[pulumi.Input[Optional[_buil
 
     config = pulumi.Config()
     environment_id = config.require_object("environmentId")
-    test = huaweicloud.cae.get_applications(environment_id=environment_id)
+    test = huaweicloud.Cae.get_applications(environment_id=environment_id)
+    ```
+
+    ### Query the application under the specified enterprise project by application ID
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    environment_id = config.require_object("environmentId")
+    application_id = config.require_object("applicationId")
+    enterprise_project_id = config.require_object("enterpriseProjectId")
+    filter_by_application_id = huaweicloud.Cae.get_applications(environment_id=environment_id,
+        application_id=application_id,
+        enterprise_project_id=enterprise_project_id)
     ```
 
 
     :param _builtins.str application_id: Specifies the ID of the application to be queried.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the applications
+           belong.
+           If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+           for enterprise users.
     :param _builtins.str environment_id: Specifies the ID of the environment to which the applications belong.
     :param _builtins.str name: Specifies the name of the application to be queried.
            The name can contain `2` to `64` characters, only lowercase letters, digits, and hyphens (-) allowed.
@@ -175,14 +230,16 @@ def get_applications_output(application_id: Optional[pulumi.Input[Optional[_buil
     """
     __args__ = dict()
     __args__['applicationId'] = application_id
+    __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['environmentId'] = environment_id
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cae/getApplications:getApplications', __args__, opts=opts, typ=GetApplicationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cae/getApplications:getApplications', __args__, opts=opts, typ=GetApplicationsResult)
     return __ret__.apply(lambda __response__: GetApplicationsResult(
         application_id=pulumi.get(__response__, 'application_id'),
         applications=pulumi.get(__response__, 'applications'),
+        enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         environment_id=pulumi.get(__response__, 'environment_id'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

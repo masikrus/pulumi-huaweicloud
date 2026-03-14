@@ -122,7 +122,7 @@ def get_accounts(instance_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     ddm_instance_id = config.require_object("ddmInstanceId")
     account_name = config.require_object("accountName")
-    test = huaweicloud.ddm.get_accounts(instance_id=ddm_instance_id,
+    test = huaweicloud.Ddm.get_accounts(instance_id=ddm_instance_id,
         name=account_name)
     ```
 
@@ -139,7 +139,7 @@ def get_accounts(instance_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getAccounts:getAccounts', __args__, opts=opts, typ=GetAccountsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getAccounts:getAccounts', __args__, opts=opts, typ=GetAccountsResult).value
 
     return AwaitableGetAccountsResult(
         accounts=pulumi.get(__ret__, 'accounts'),
@@ -165,7 +165,7 @@ def get_accounts_output(instance_id: Optional[pulumi.Input[_builtins.str]] = Non
     config = pulumi.Config()
     ddm_instance_id = config.require_object("ddmInstanceId")
     account_name = config.require_object("accountName")
-    test = huaweicloud.ddm.get_accounts(instance_id=ddm_instance_id,
+    test = huaweicloud.Ddm.get_accounts(instance_id=ddm_instance_id,
         name=account_name)
     ```
 
@@ -182,7 +182,7 @@ def get_accounts_output(instance_id: Optional[pulumi.Input[_builtins.str]] = Non
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getAccounts:getAccounts', __args__, opts=opts, typ=GetAccountsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getAccounts:getAccounts', __args__, opts=opts, typ=GetAccountsResult)
     return __ret__.apply(lambda __response__: GetAccountsResult(
         accounts=pulumi.get(__response__, 'accounts'),
         id=pulumi.get(__response__, 'id'),

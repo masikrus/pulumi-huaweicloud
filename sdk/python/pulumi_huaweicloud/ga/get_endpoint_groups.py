@@ -124,7 +124,7 @@ def get_endpoint_groups(endpoint_group_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     endpoint_group_name = config.require_object("endpointGroupName")
-    test = huaweicloud.ga.get_endpoint_groups(name=endpoint_group_name)
+    test = huaweicloud.Ga.get_endpoint_groups(name=endpoint_group_name)
     ```
 
 
@@ -142,7 +142,7 @@ def get_endpoint_groups(endpoint_group_id: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ga/getEndpointGroups:getEndpointGroups', __args__, opts=opts, typ=GetEndpointGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ga/getEndpointGroups:getEndpointGroups', __args__, opts=opts, typ=GetEndpointGroupsResult).value
 
     return AwaitableGetEndpointGroupsResult(
         endpoint_group_id=pulumi.get(__ret__, 'endpoint_group_id'),
@@ -167,7 +167,7 @@ def get_endpoint_groups_output(endpoint_group_id: Optional[pulumi.Input[Optional
 
     config = pulumi.Config()
     endpoint_group_name = config.require_object("endpointGroupName")
-    test = huaweicloud.ga.get_endpoint_groups(name=endpoint_group_name)
+    test = huaweicloud.Ga.get_endpoint_groups(name=endpoint_group_name)
     ```
 
 
@@ -185,7 +185,7 @@ def get_endpoint_groups_output(endpoint_group_id: Optional[pulumi.Input[Optional
     __args__['name'] = name
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ga/getEndpointGroups:getEndpointGroups', __args__, opts=opts, typ=GetEndpointGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ga/getEndpointGroups:getEndpointGroups', __args__, opts=opts, typ=GetEndpointGroupsResult)
     return __ret__.apply(lambda __response__: GetEndpointGroupsResult(
         endpoint_group_id=pulumi.get(__response__, 'endpoint_group_id'),
         endpoint_groups=pulumi.get(__response__, 'endpoint_groups'),

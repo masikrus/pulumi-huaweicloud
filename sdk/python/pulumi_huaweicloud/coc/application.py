@@ -26,6 +26,7 @@ class ApplicationArgs:
                  parent_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Application resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description.
         :param pulumi.Input[_builtins.bool] is_collection: Specifies whether to add to collection. The default value is `false`.
                
@@ -118,6 +119,7 @@ class _ApplicationState:
                  update_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Application resources.
+
         :param pulumi.Input[_builtins.str] code: Indicates the application code.
         :param pulumi.Input[_builtins.str] create_time: Indicates the creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description.
@@ -256,7 +258,7 @@ class _ApplicationState:
         pulumi.set(self, "update_time", value)
 
 
-@pulumi.type_token("huaweicloud:coc/application:Application")
+@pulumi.type_token("huaweicloud:Coc/application:Application")
 class Application(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -286,11 +288,10 @@ class Application(pulumi.CustomResource):
 
         The COC application can be imported by `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/application:Application test <id>
+        $ pulumi import huaweicloud:Coc/application:Application test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -325,11 +326,10 @@ class Application(pulumi.CustomResource):
 
         The COC application can be imported by `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/application:Application test <id>
+        $ pulumi import huaweicloud:Coc/application:Application test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationArgs args: The arguments to use to populate this resource's properties.
@@ -370,7 +370,7 @@ class Application(pulumi.CustomResource):
             __props__.__dict__["path"] = None
             __props__.__dict__["update_time"] = None
         super(Application, __self__).__init__(
-            'huaweicloud:coc/application:Application',
+            'huaweicloud:Coc/application:Application',
             resource_name,
             __props__,
             opts)

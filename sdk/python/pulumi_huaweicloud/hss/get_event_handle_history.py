@@ -249,7 +249,7 @@ def get_event_handle_history(asset_value: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_handle_history()
+    test = huaweicloud.Hss.get_event_handle_history()
     ```
 
 
@@ -490,7 +490,7 @@ def get_event_handle_history(asset_value: Optional[_builtins.str] = None,
     __args__['sortDir'] = sort_dir
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getEventHandleHistory:getEventHandleHistory', __args__, opts=opts, typ=GetEventHandleHistoryResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getEventHandleHistory:getEventHandleHistory', __args__, opts=opts, typ=GetEventHandleHistoryResult).value
 
     return AwaitableGetEventHandleHistoryResult(
         asset_value=pulumi.get(__ret__, 'asset_value'),
@@ -535,7 +535,7 @@ def get_event_handle_history_output(asset_value: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_handle_history()
+    test = huaweicloud.Hss.get_event_handle_history()
     ```
 
 
@@ -776,7 +776,7 @@ def get_event_handle_history_output(asset_value: Optional[pulumi.Input[Optional[
     __args__['sortDir'] = sort_dir
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getEventHandleHistory:getEventHandleHistory', __args__, opts=opts, typ=GetEventHandleHistoryResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getEventHandleHistory:getEventHandleHistory', __args__, opts=opts, typ=GetEventHandleHistoryResult)
     return __ret__.apply(lambda __response__: GetEventHandleHistoryResult(
         asset_value=pulumi.get(__response__, 'asset_value'),
         attack_tag=pulumi.get(__response__, 'attack_tag'),

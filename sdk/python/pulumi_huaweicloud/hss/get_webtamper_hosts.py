@@ -196,7 +196,7 @@ def get_webtamper_hosts(enterprise_project_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_webtamper_hosts(host_id=host_id)
+    test = huaweicloud.Hss.get_webtamper_hosts(host_id=host_id)
     ```
 
 
@@ -230,7 +230,7 @@ def get_webtamper_hosts(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['raspProtectStatus'] = rasp_protect_status
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getWebtamperHosts:getWebtamperHosts', __args__, opts=opts, typ=GetWebtamperHostsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getWebtamperHosts:getWebtamperHosts', __args__, opts=opts, typ=GetWebtamperHostsResult).value
 
     return AwaitableGetWebtamperHostsResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -267,7 +267,7 @@ def get_webtamper_hosts_output(enterprise_project_id: Optional[pulumi.Input[Opti
 
     config = pulumi.Config()
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_webtamper_hosts(host_id=host_id)
+    test = huaweicloud.Hss.get_webtamper_hosts(host_id=host_id)
     ```
 
 
@@ -301,7 +301,7 @@ def get_webtamper_hosts_output(enterprise_project_id: Optional[pulumi.Input[Opti
     __args__['raspProtectStatus'] = rasp_protect_status
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getWebtamperHosts:getWebtamperHosts', __args__, opts=opts, typ=GetWebtamperHostsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getWebtamperHosts:getWebtamperHosts', __args__, opts=opts, typ=GetWebtamperHostsResult)
     return __ret__.apply(lambda __response__: GetWebtamperHostsResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         group_name=pulumi.get(__response__, 'group_name'),

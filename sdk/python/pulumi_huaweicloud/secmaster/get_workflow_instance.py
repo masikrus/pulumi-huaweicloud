@@ -226,7 +226,20 @@ def get_workflow_instance(instance_id: Optional[_builtins.str] = None,
                           workspace_id: Optional[_builtins.str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWorkflowInstanceResult:
     """
-    Use this data source to query a specfice workflow instance detail.
+    Use this data source to query a specific workflow instance detail.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    workspace_id = config.require_object("workspaceId")
+    instance_id = config.require_object("instanceId")
+    test = huaweicloud.Secmaster.get_workflow_instance(workspace_id=workspace_id,
+        instance_id=instance_id)
+    ```
 
 
     :param _builtins.str instance_id: Specifies the workflow instance ID.
@@ -239,7 +252,7 @@ def get_workflow_instance(instance_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getWorkflowInstance:getWorkflowInstance', __args__, opts=opts, typ=GetWorkflowInstanceResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getWorkflowInstance:getWorkflowInstance', __args__, opts=opts, typ=GetWorkflowInstanceResult).value
 
     return AwaitableGetWorkflowInstanceResult(
         dataclasses=pulumi.get(__ret__, 'dataclasses'),
@@ -263,7 +276,20 @@ def get_workflow_instance_output(instance_id: Optional[pulumi.Input[_builtins.st
                                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWorkflowInstanceResult]:
     """
-    Use this data source to query a specfice workflow instance detail.
+    Use this data source to query a specific workflow instance detail.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    workspace_id = config.require_object("workspaceId")
+    instance_id = config.require_object("instanceId")
+    test = huaweicloud.Secmaster.get_workflow_instance(workspace_id=workspace_id,
+        instance_id=instance_id)
+    ```
 
 
     :param _builtins.str instance_id: Specifies the workflow instance ID.
@@ -276,7 +302,7 @@ def get_workflow_instance_output(instance_id: Optional[pulumi.Input[_builtins.st
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getWorkflowInstance:getWorkflowInstance', __args__, opts=opts, typ=GetWorkflowInstanceResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getWorkflowInstance:getWorkflowInstance', __args__, opts=opts, typ=GetWorkflowInstanceResult)
     return __ret__.apply(lambda __response__: GetWorkflowInstanceResult(
         dataclasses=pulumi.get(__response__, 'dataclasses'),
         dataobject_id=pulumi.get(__response__, 'dataobject_id'),

@@ -27,6 +27,7 @@ class VipArgs:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Vip resource.
+
         :param pulumi.Input[_builtins.str] network_id: Specifies the network ID of the VPC subnet to which the VIP belongs.
                Changing this will create a new VIP resource.
         :param pulumi.Input[_builtins.str] ip_address: Specifies the IP address desired in the subnet for this VIP.
@@ -141,6 +142,7 @@ class _VipState:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Vip resources.
+
         :param pulumi.Input[_builtins.str] device_owner: The device owner of the VIP.
         :param pulumi.Input[_builtins.str] ip_address: Specifies the IP address desired in the subnet for this VIP.
                Changing this will create a new VIP resource.
@@ -307,11 +309,10 @@ class Vip(pulumi.CustomResource):
 
         Network VIPs can be imported using their `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/vip:Vip test ce595799-da26-4015-8db5-7733c6db292e
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -338,11 +339,10 @@ class Vip(pulumi.CustomResource):
 
         Network VIPs can be imported using their `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/vip:Vip test ce595799-da26-4015-8db5-7733c6db292e
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VipArgs args: The arguments to use to populate this resource's properties.

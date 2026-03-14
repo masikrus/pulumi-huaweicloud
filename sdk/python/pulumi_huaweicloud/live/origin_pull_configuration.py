@@ -29,6 +29,7 @@ class OriginPullConfigurationArgs:
                  sources_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a OriginPullConfiguration resource.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the streaming domain name.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] source_type: Specifies the type of return to the source.
@@ -205,6 +206,7 @@ class _OriginPullConfigurationState:
                  sources_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering OriginPullConfiguration resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_args: Specifies the parameters carried in the URL when returning to the source client's
                website.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the streaming domain name.
@@ -430,39 +432,16 @@ class OriginPullConfiguration(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/originPullConfiguration:OriginPullConfiguration test <domain_name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `additional_args`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_live_origin_pull_configuration" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              additional_args,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -547,39 +526,16 @@ class OriginPullConfiguration(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/originPullConfiguration:OriginPullConfiguration test <domain_name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `additional_args`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_live_origin_pull_configuration" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              additional_args,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param OriginPullConfigurationArgs args: The arguments to use to populate this resource's properties.

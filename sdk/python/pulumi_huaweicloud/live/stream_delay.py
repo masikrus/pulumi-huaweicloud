@@ -25,6 +25,7 @@ class StreamDelayArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StreamDelay resource.
+
         :param pulumi.Input[_builtins.int] delay: Specifies the delay time, in ms. The options are as follows:
                + `2,000` (low).
                + `4,000` (medium).
@@ -115,6 +116,7 @@ class _StreamDelayState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StreamDelay resources.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name. Defaults to **live**.
                
                Changing this will create a new resource.
@@ -230,11 +232,10 @@ class StreamDelay(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/streamDelay:StreamDelay test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -280,11 +281,10 @@ class StreamDelay(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/streamDelay:StreamDelay test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StreamDelayArgs args: The arguments to use to populate this resource's properties.

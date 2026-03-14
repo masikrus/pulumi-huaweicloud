@@ -19,13 +19,18 @@ __all__ = ['ResourceAggregationAuthorizationArgs', 'ResourceAggregationAuthoriza
 @pulumi.input_type
 class ResourceAggregationAuthorizationArgs:
     def __init__(__self__, *,
-                 account_id: pulumi.Input[_builtins.str]):
+                 account_id: pulumi.Input[_builtins.str],
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ResourceAggregationAuthorization resource.
+
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the resource aggregation account to be authorized.
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the aggregation authorization.
         """
         pulumi.set(__self__, "account_id", account_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
     @pulumi.getter(name="accountId")
@@ -40,26 +45,55 @@ class ResourceAggregationAuthorizationArgs:
     def account_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "account_id", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the key/value pairs to associate with the aggregation authorization.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _ResourceAggregationAuthorizationState:
     def __init__(__self__, *,
+                 resource_aggregation_authorization_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  account_id: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ResourceAggregationAuthorization resources.
+
+        :param pulumi.Input[_builtins.str] resource_aggregation_authorization_urn: Indicates the authorization identifier of the resource aggregation account.
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the resource aggregation account to be authorized.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the resource aggregation account was authorized.
-        :param pulumi.Input[_builtins.str] urn: Indicates the authorization identifier of the resource aggregation account.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the aggregation authorization.
         """
+        if resource_aggregation_authorization_urn is not None:
+            pulumi.set(__self__, "resource_aggregation_authorization_urn", resource_aggregation_authorization_urn)
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="ResourceAggregationAuthorizationUrn")
+    def resource_aggregation_authorization_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the authorization identifier of the resource aggregation account.
+        """
+        return pulumi.get(self, "resource_aggregation_authorization_urn")
+
+    @resource_aggregation_authorization_urn.setter
+    def resource_aggregation_authorization_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_aggregation_authorization_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="accountId")
@@ -88,24 +122,25 @@ class _ResourceAggregationAuthorizationState:
 
     @_builtins.property
     @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Indicates the authorization identifier of the resource aggregation account.
+        Specifies the key/value pairs to associate with the aggregation authorization.
         """
-        return pulumi.get(self, "urn")
+        return pulumi.get(self, "tags")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
 
 
-@pulumi.type_token("huaweicloud:rms/resourceAggregationAuthorization:ResourceAggregationAuthorization")
+@pulumi.type_token("huaweicloud:Rms/resourceAggregationAuthorization:ResourceAggregationAuthorization")
 class ResourceAggregationAuthorization(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Manages a RMS aggregation authorization resource within HuaweiCloud.
@@ -125,16 +160,16 @@ class ResourceAggregationAuthorization(pulumi.CustomResource):
 
         The aggregation authorization can be imported using the `account_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/resourceAggregationAuthorization:ResourceAggregationAuthorization test 036a12ef8327c4194346684fdbe0b37e
+        $ pulumi import huaweicloud:Rms/resourceAggregationAuthorization:ResourceAggregationAuthorization test 036a12ef8327c4194346684fdbe0b37e
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the resource aggregation account to be authorized.
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the aggregation authorization.
         """
         ...
     @overload
@@ -160,11 +195,10 @@ class ResourceAggregationAuthorization(pulumi.CustomResource):
 
         The aggregation authorization can be imported using the `account_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/resourceAggregationAuthorization:ResourceAggregationAuthorization test 036a12ef8327c4194346684fdbe0b37e
+        $ pulumi import huaweicloud:Rms/resourceAggregationAuthorization:ResourceAggregationAuthorization test 036a12ef8327c4194346684fdbe0b37e
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResourceAggregationAuthorizationArgs args: The arguments to use to populate this resource's properties.
@@ -182,6 +216,7 @@ class ResourceAggregationAuthorization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -194,10 +229,11 @@ class ResourceAggregationAuthorization(pulumi.CustomResource):
             if account_id is None and not opts.urn:
                 raise TypeError("Missing required property 'account_id'")
             __props__.__dict__["account_id"] = account_id
+            __props__.__dict__["tags"] = tags
+            __props__.__dict__["resource_aggregation_authorization_urn"] = None
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["urn"] = None
         super(ResourceAggregationAuthorization, __self__).__init__(
-            'huaweicloud:rms/resourceAggregationAuthorization:ResourceAggregationAuthorization',
+            'huaweicloud:Rms/resourceAggregationAuthorization:ResourceAggregationAuthorization',
             resource_name,
             __props__,
             opts)
@@ -206,9 +242,10 @@ class ResourceAggregationAuthorization(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            resource_aggregation_authorization_urn: Optional[pulumi.Input[_builtins.str]] = None,
             account_id: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'ResourceAggregationAuthorization':
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> 'ResourceAggregationAuthorization':
         """
         Get an existing ResourceAggregationAuthorization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -216,19 +253,29 @@ class ResourceAggregationAuthorization(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] resource_aggregation_authorization_urn: Indicates the authorization identifier of the resource aggregation account.
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the resource aggregation account to be authorized.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the resource aggregation account was authorized.
-        :param pulumi.Input[_builtins.str] urn: Indicates the authorization identifier of the resource aggregation account.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the aggregation authorization.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ResourceAggregationAuthorizationState.__new__(_ResourceAggregationAuthorizationState)
 
+        __props__.__dict__["resource_aggregation_authorization_urn"] = resource_aggregation_authorization_urn
         __props__.__dict__["account_id"] = account_id
         __props__.__dict__["created_at"] = created_at
-        __props__.__dict__["urn"] = urn
+        __props__.__dict__["tags"] = tags
         return ResourceAggregationAuthorization(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="ResourceAggregationAuthorizationUrn")
+    def resource_aggregation_authorization_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the authorization identifier of the resource aggregation account.
+        """
+        return pulumi.get(self, "resource_aggregation_authorization_urn")
 
     @_builtins.property
     @pulumi.getter(name="accountId")
@@ -249,9 +296,9 @@ class ResourceAggregationAuthorization(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
+    def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
-        Indicates the authorization identifier of the resource aggregation account.
+        Specifies the key/value pairs to associate with the aggregation authorization.
         """
-        return pulumi.get(self, "urn")
+        return pulumi.get(self, "tags")
 

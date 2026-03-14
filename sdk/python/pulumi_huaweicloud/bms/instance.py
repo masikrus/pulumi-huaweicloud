@@ -43,6 +43,7 @@ class InstanceArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 power_action: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  sharetype: Optional[pulumi.Input[_builtins.str]] = None,
@@ -52,21 +53,23 @@ class InstanceArgs:
                  user_data: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone in which to create the instance.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint?BMS)
                for the values. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the desired flavor for the instance. Changing
                this creates a new instance.
-        :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the desired image for the instance. Changing this
-               creates a new instance.
+        :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the desired image for the instance. Only a stopped BMS or a
+               BMS on which changing the OS failed supports changing OS. And when changing this parameter, the instance will be
+               shutdown first if the `power_action` is not **OFF**.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceNicArgs']]] nics: Specifies an array of one or more networks to attach to the instance. The network
                object structure is documented below.
-        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID. You can obtain the user ID from My Credential on the
-               management console. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID. You can obtain the user ID from My Credential on the management
+               console. It can only be modified when `image_id` is modified.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies id of vpc in which to create the instance. Changing this creates a
                new instance.
-        :param pulumi.Input[_builtins.str] admin_pass: Specifies the login password of the administrator for logging in to the
-               BMS using password authentication. Changing this creates a new instance. The password must meet the following
+        :param pulumi.Input[_builtins.str] admin_pass: Specifies the login password of the administrator for logging in to the BMS using
+               password authentication. It can only be modified when `image_id` is modified. The password must meet the following
                complexity requirements:
                + Contains 8 to 26 characters.
                + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
@@ -97,7 +100,7 @@ class InstanceArgs:
                Available options are:
         :param pulumi.Input[_builtins.str] key_pair: Specifies the name of a key pair for logging in to the BMS using key pair
                authentication. The key pair must already be created and associated with the tenant's account. The parameter is
-               required when using a Windows image to create a BMS. Changing this creates a new instance.
+               required when using a Windows image to create a BMS. It can only be modified when `image_id` is modified.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                + A metadata key contains of a maximum of 255 Unicode characters which can be letters, digits, hyphens (-),
                underscores (_), colons (:), and point (.).
@@ -110,6 +113,10 @@ class InstanceArgs:
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance. Valid values are *
                month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a new
                instance.
+        :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the instance.
+               Value options: **ON**, **OFF** and **REBOOT**.
+               
+               > **NOTE:** The `power_action` is a one-time action.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the instance. If omitted, the
                provider-level region will be used. Changing this creates a new instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: Specifies an array of one or more security group IDs to associate with
@@ -129,9 +136,9 @@ class InstanceArgs:
                + `GPSSD`: general purpose SSD disk type.
                + `SAS`: high I/O disk type.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the instance.
-        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected during the instance creation. Text
-               and text files can be injected. `user_data` can come from a variety of sources: inline, read in from the *file*
-               function. The content of `user_data` can be plaint text or encoded with base64. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected during the instance creation. Text and text
+               files can be injected. `user_data` can come from a variety of sources: inline, read in from the **file** function. The
+               content of `user_data` can be plaint text or encoded with base64. It can only be modified when `image_id` is modified.
                
                > **NOTE:** 1. If the `user_data` field is specified for a Linux BMS that is created using an image with Cloud-Init
                installed, the `admin_pass` field becomes invalid.
@@ -175,6 +182,8 @@ class InstanceArgs:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if power_action is not None:
+            pulumi.set(__self__, "power_action", power_action)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if security_groups is not None:
@@ -221,8 +230,9 @@ class InstanceArgs:
     @pulumi.getter(name="imageId")
     def image_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the image ID of the desired image for the instance. Changing this
-        creates a new instance.
+        Specifies the image ID of the desired image for the instance. Only a stopped BMS or a
+        BMS on which changing the OS failed supports changing OS. And when changing this parameter, the instance will be
+        shutdown first if the `power_action` is not **OFF**.
         """
         return pulumi.get(self, "image_id")
 
@@ -247,8 +257,8 @@ class InstanceArgs:
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the user ID. You can obtain the user ID from My Credential on the
-        management console. Changing this creates a new instance.
+        Specifies the user ID. You can obtain the user ID from My Credential on the management
+        console. It can only be modified when `image_id` is modified.
         """
         return pulumi.get(self, "user_id")
 
@@ -273,8 +283,8 @@ class InstanceArgs:
     @pulumi.getter(name="adminPass")
     def admin_pass(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the login password of the administrator for logging in to the
-        BMS using password authentication. Changing this creates a new instance. The password must meet the following
+        Specifies the login password of the administrator for logging in to the BMS using
+        password authentication. It can only be modified when `image_id` is modified. The password must meet the following
         complexity requirements:
         + Contains 8 to 26 characters.
         + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
@@ -426,7 +436,7 @@ class InstanceArgs:
         """
         Specifies the name of a key pair for logging in to the BMS using key pair
         authentication. The key pair must already be created and associated with the tenant's account. The parameter is
-        required when using a Windows image to create a BMS. Changing this creates a new instance.
+        required when using a Windows image to create a BMS. It can only be modified when `image_id` is modified.
         """
         return pulumi.get(self, "key_pair")
 
@@ -489,6 +499,21 @@ class InstanceArgs:
     @period_unit.setter
     def period_unit(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "period_unit", value)
+
+    @_builtins.property
+    @pulumi.getter(name="powerAction")
+    def power_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the power action to be done for the instance.
+        Value options: **ON**, **OFF** and **REBOOT**.
+
+        > **NOTE:** The `power_action` is a one-time action.
+        """
+        return pulumi.get(self, "power_action")
+
+    @power_action.setter
+    def power_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "power_action", value)
 
     @_builtins.property
     @pulumi.getter
@@ -579,9 +604,9 @@ class InstanceArgs:
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the user data to be injected during the instance creation. Text
-        and text files can be injected. `user_data` can come from a variety of sources: inline, read in from the *file*
-        function. The content of `user_data` can be plaint text or encoded with base64. Changing this creates a new instance.
+        Specifies the user data to be injected during the instance creation. Text and text
+        files can be injected. `user_data` can come from a variety of sources: inline, read in from the **file** function. The
+        content of `user_data` can be plaint text or encoded with base64. It can only be modified when `image_id` is modified.
 
         > **NOTE:** 1. If the `user_data` field is specified for a Linux BMS that is created using an image with Cloud-Init
         installed, the `admin_pass` field becomes invalid.
@@ -621,6 +646,7 @@ class _InstanceState:
                  nics: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNicArgs']]]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 power_action: Optional[pulumi.Input[_builtins.str]] = None,
                  public_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -634,8 +660,9 @@ class _InstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
-        :param pulumi.Input[_builtins.str] admin_pass: Specifies the login password of the administrator for logging in to the
-               BMS using password authentication. Changing this creates a new instance. The password must meet the following
+
+        :param pulumi.Input[_builtins.str] admin_pass: Specifies the login password of the administrator for logging in to the BMS using
+               password authentication. It can only be modified when `image_id` is modified. The password must meet the following
                complexity requirements:
                + Contains 8 to 26 characters.
                + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
@@ -670,14 +697,15 @@ class _InstanceState:
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the desired flavor for the instance. Changing
                this creates a new instance.
         :param pulumi.Input[_builtins.str] host_id: The host ID of the instance.
-        :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the desired image for the instance. Changing this
-               creates a new instance.
+        :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the desired image for the instance. Only a stopped BMS or a
+               BMS on which changing the OS failed supports changing OS. And when changing this parameter, the instance will be
+               shutdown first if the `power_action` is not **OFF**.
         :param pulumi.Input[_builtins.str] image_name: The image_name of the instance.
         :param pulumi.Input[_builtins.str] iptype: Elastic IP type. Changing this creates a new instance.
                Available options are:
         :param pulumi.Input[_builtins.str] key_pair: Specifies the name of a key pair for logging in to the BMS using key pair
                authentication. The key pair must already be created and associated with the tenant's account. The parameter is
-               required when using a Windows image to create a BMS. Changing this creates a new instance.
+               required when using a Windows image to create a BMS. It can only be modified when `image_id` is modified.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                + A metadata key contains of a maximum of 255 Unicode characters which can be letters, digits, hyphens (-),
                underscores (_), colons (:), and point (.).
@@ -692,6 +720,10 @@ class _InstanceState:
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance. Valid values are *
                month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a new
                instance.
+        :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the instance.
+               Value options: **ON**, **OFF** and **REBOOT**.
+               
+               > **NOTE:** The `power_action` is a one-time action.
         :param pulumi.Input[_builtins.str] public_ip: The EIP address that is associated to the instance.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the instance. If omitted, the
                provider-level region will be used. Changing this creates a new instance.
@@ -713,15 +745,15 @@ class _InstanceState:
                + `GPSSD`: general purpose SSD disk type.
                + `SAS`: high I/O disk type.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the instance.
-        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected during the instance creation. Text
-               and text files can be injected. `user_data` can come from a variety of sources: inline, read in from the *file*
-               function. The content of `user_data` can be plaint text or encoded with base64. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected during the instance creation. Text and text
+               files can be injected. `user_data` can come from a variety of sources: inline, read in from the **file** function. The
+               content of `user_data` can be plaint text or encoded with base64. It can only be modified when `image_id` is modified.
                
                > **NOTE:** 1. If the `user_data` field is specified for a Linux BMS that is created using an image with Cloud-Init
                installed, the `admin_pass` field becomes invalid.
                <br/>2. If both `key_name` and `user_data` are specified, `user_data` only injects user data.
-        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID. You can obtain the user ID from My Credential on the
-               management console. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID. You can obtain the user ID from My Credential on the management
+               console. It can only be modified when `image_id` is modified.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies id of vpc in which to create the instance. Changing this creates a
                new instance.
         """
@@ -773,6 +805,8 @@ class _InstanceState:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if power_action is not None:
+            pulumi.set(__self__, "power_action", power_action)
         if public_ip is not None:
             pulumi.set(__self__, "public_ip", public_ip)
         if region is not None:
@@ -800,8 +834,8 @@ class _InstanceState:
     @pulumi.getter(name="adminPass")
     def admin_pass(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the login password of the administrator for logging in to the
-        BMS using password authentication. Changing this creates a new instance. The password must meet the following
+        Specifies the login password of the administrator for logging in to the BMS using
+        password authentication. It can only be modified when `image_id` is modified. The password must meet the following
         complexity requirements:
         + Contains 8 to 26 characters.
         + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
@@ -1001,8 +1035,9 @@ class _InstanceState:
     @pulumi.getter(name="imageId")
     def image_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the image ID of the desired image for the instance. Changing this
-        creates a new instance.
+        Specifies the image ID of the desired image for the instance. Only a stopped BMS or a
+        BMS on which changing the OS failed supports changing OS. And when changing this parameter, the instance will be
+        shutdown first if the `power_action` is not **OFF**.
         """
         return pulumi.get(self, "image_id")
 
@@ -1041,7 +1076,7 @@ class _InstanceState:
         """
         Specifies the name of a key pair for logging in to the BMS using key pair
         authentication. The key pair must already be created and associated with the tenant's account. The parameter is
-        required when using a Windows image to create a BMS. Changing this creates a new instance.
+        required when using a Windows image to create a BMS. It can only be modified when `image_id` is modified.
         """
         return pulumi.get(self, "key_pair")
 
@@ -1117,6 +1152,21 @@ class _InstanceState:
     @period_unit.setter
     def period_unit(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "period_unit", value)
+
+    @_builtins.property
+    @pulumi.getter(name="powerAction")
+    def power_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the power action to be done for the instance.
+        Value options: **ON**, **OFF** and **REBOOT**.
+
+        > **NOTE:** The `power_action` is a one-time action.
+        """
+        return pulumi.get(self, "power_action")
+
+    @power_action.setter
+    def power_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "power_action", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIp")
@@ -1231,9 +1281,9 @@ class _InstanceState:
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the user data to be injected during the instance creation. Text
-        and text files can be injected. `user_data` can come from a variety of sources: inline, read in from the *file*
-        function. The content of `user_data` can be plaint text or encoded with base64. Changing this creates a new instance.
+        Specifies the user data to be injected during the instance creation. Text and text
+        files can be injected. `user_data` can come from a variety of sources: inline, read in from the **file** function. The
+        content of `user_data` can be plaint text or encoded with base64. It can only be modified when `image_id` is modified.
 
         > **NOTE:** 1. If the `user_data` field is specified for a Linux BMS that is created using an image with Cloud-Init
         installed, the `admin_pass` field becomes invalid.
@@ -1249,8 +1299,8 @@ class _InstanceState:
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the user ID. You can obtain the user ID from My Credential on the
-        management console. Changing this creates a new instance.
+        Specifies the user ID. You can obtain the user ID from My Credential on the management
+        console. It can only be modified when `image_id` is modified.
         """
         return pulumi.get(self, "user_id")
 
@@ -1298,6 +1348,7 @@ class Instance(pulumi.CustomResource):
                  nics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceNicArgs', 'InstanceNicArgsDict']]]]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 power_action: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  sharetype: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1327,7 +1378,7 @@ class Instance(pulumi.CustomResource):
         key_pair = config.require_object("keyPair")
         eip_id = config.require_object("eipId")
         enterprise_project_id = config.require_object("enterpriseProjectId")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         myvpc = huaweicloud.Vpc.get_vpc(name="vpc-default")
         mynet = huaweicloud.Vpc.get_subnet(name="subnet-default")
         mysecgroup = huaweicloud.Vpc.get_secgroup(name="default")
@@ -1361,10 +1412,11 @@ class Instance(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] admin_pass: Specifies the login password of the administrator for logging in to the
-               BMS using password authentication. Changing this creates a new instance. The password must meet the following
+        :param pulumi.Input[_builtins.str] admin_pass: Specifies the login password of the administrator for logging in to the BMS using
+               password authentication. It can only be modified when `image_id` is modified. The password must meet the following
                complexity requirements:
                + Contains 8 to 26 characters.
                + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
@@ -1396,13 +1448,14 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies a unique id in UUID format of enterprise project.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the desired flavor for the instance. Changing
                this creates a new instance.
-        :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the desired image for the instance. Changing this
-               creates a new instance.
+        :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the desired image for the instance. Only a stopped BMS or a
+               BMS on which changing the OS failed supports changing OS. And when changing this parameter, the instance will be
+               shutdown first if the `power_action` is not **OFF**.
         :param pulumi.Input[_builtins.str] iptype: Elastic IP type. Changing this creates a new instance.
                Available options are:
         :param pulumi.Input[_builtins.str] key_pair: Specifies the name of a key pair for logging in to the BMS using key pair
                authentication. The key pair must already be created and associated with the tenant's account. The parameter is
-               required when using a Windows image to create a BMS. Changing this creates a new instance.
+               required when using a Windows image to create a BMS. It can only be modified when `image_id` is modified.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                + A metadata key contains of a maximum of 255 Unicode characters which can be letters, digits, hyphens (-),
                underscores (_), colons (:), and point (.).
@@ -1417,6 +1470,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance. Valid values are *
                month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a new
                instance.
+        :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the instance.
+               Value options: **ON**, **OFF** and **REBOOT**.
+               
+               > **NOTE:** The `power_action` is a one-time action.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the instance. If omitted, the
                provider-level region will be used. Changing this creates a new instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: Specifies an array of one or more security group IDs to associate with
@@ -1436,15 +1493,15 @@ class Instance(pulumi.CustomResource):
                + `GPSSD`: general purpose SSD disk type.
                + `SAS`: high I/O disk type.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the instance.
-        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected during the instance creation. Text
-               and text files can be injected. `user_data` can come from a variety of sources: inline, read in from the *file*
-               function. The content of `user_data` can be plaint text or encoded with base64. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected during the instance creation. Text and text
+               files can be injected. `user_data` can come from a variety of sources: inline, read in from the **file** function. The
+               content of `user_data` can be plaint text or encoded with base64. It can only be modified when `image_id` is modified.
                
                > **NOTE:** 1. If the `user_data` field is specified for a Linux BMS that is created using an image with Cloud-Init
                installed, the `admin_pass` field becomes invalid.
                <br/>2. If both `key_name` and `user_data` are specified, `user_data` only injects user data.
-        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID. You can obtain the user ID from My Credential on the
-               management console. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID. You can obtain the user ID from My Credential on the management
+               console. It can only be modified when `image_id` is modified.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies id of vpc in which to create the instance. Changing this creates a
                new instance.
         """
@@ -1473,7 +1530,7 @@ class Instance(pulumi.CustomResource):
         key_pair = config.require_object("keyPair")
         eip_id = config.require_object("eipId")
         enterprise_project_id = config.require_object("enterpriseProjectId")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         myvpc = huaweicloud.Vpc.get_vpc(name="vpc-default")
         mynet = huaweicloud.Vpc.get_subnet(name="subnet-default")
         mysecgroup = huaweicloud.Vpc.get_secgroup(name="default")
@@ -1506,6 +1563,7 @@ class Instance(pulumi.CustomResource):
                 "key": "value",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -1542,6 +1600,7 @@ class Instance(pulumi.CustomResource):
                  nics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceNicArgs', 'InstanceNicArgsDict']]]]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 power_action: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  sharetype: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1588,6 +1647,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["nics"] = nics
             __props__.__dict__["period"] = period
             __props__.__dict__["period_unit"] = period_unit
+            __props__.__dict__["power_action"] = power_action
             __props__.__dict__["region"] = region
             __props__.__dict__["security_groups"] = security_groups
             __props__.__dict__["sharetype"] = sharetype
@@ -1643,6 +1703,7 @@ class Instance(pulumi.CustomResource):
             nics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceNicArgs', 'InstanceNicArgsDict']]]]] = None,
             period: Optional[pulumi.Input[_builtins.int]] = None,
             period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+            power_action: Optional[pulumi.Input[_builtins.str]] = None,
             public_ip: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1661,8 +1722,8 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] admin_pass: Specifies the login password of the administrator for logging in to the
-               BMS using password authentication. Changing this creates a new instance. The password must meet the following
+        :param pulumi.Input[_builtins.str] admin_pass: Specifies the login password of the administrator for logging in to the BMS using
+               password authentication. It can only be modified when `image_id` is modified. The password must meet the following
                complexity requirements:
                + Contains 8 to 26 characters.
                + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
@@ -1697,14 +1758,15 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the desired flavor for the instance. Changing
                this creates a new instance.
         :param pulumi.Input[_builtins.str] host_id: The host ID of the instance.
-        :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the desired image for the instance. Changing this
-               creates a new instance.
+        :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the desired image for the instance. Only a stopped BMS or a
+               BMS on which changing the OS failed supports changing OS. And when changing this parameter, the instance will be
+               shutdown first if the `power_action` is not **OFF**.
         :param pulumi.Input[_builtins.str] image_name: The image_name of the instance.
         :param pulumi.Input[_builtins.str] iptype: Elastic IP type. Changing this creates a new instance.
                Available options are:
         :param pulumi.Input[_builtins.str] key_pair: Specifies the name of a key pair for logging in to the BMS using key pair
                authentication. The key pair must already be created and associated with the tenant's account. The parameter is
-               required when using a Windows image to create a BMS. Changing this creates a new instance.
+               required when using a Windows image to create a BMS. It can only be modified when `image_id` is modified.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                + A metadata key contains of a maximum of 255 Unicode characters which can be letters, digits, hyphens (-),
                underscores (_), colons (:), and point (.).
@@ -1719,6 +1781,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance. Valid values are *
                month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a new
                instance.
+        :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the instance.
+               Value options: **ON**, **OFF** and **REBOOT**.
+               
+               > **NOTE:** The `power_action` is a one-time action.
         :param pulumi.Input[_builtins.str] public_ip: The EIP address that is associated to the instance.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the instance. If omitted, the
                provider-level region will be used. Changing this creates a new instance.
@@ -1740,15 +1806,15 @@ class Instance(pulumi.CustomResource):
                + `GPSSD`: general purpose SSD disk type.
                + `SAS`: high I/O disk type.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the instance.
-        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected during the instance creation. Text
-               and text files can be injected. `user_data` can come from a variety of sources: inline, read in from the *file*
-               function. The content of `user_data` can be plaint text or encoded with base64. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the user data to be injected during the instance creation. Text and text
+               files can be injected. `user_data` can come from a variety of sources: inline, read in from the **file** function. The
+               content of `user_data` can be plaint text or encoded with base64. It can only be modified when `image_id` is modified.
                
                > **NOTE:** 1. If the `user_data` field is specified for a Linux BMS that is created using an image with Cloud-Init
                installed, the `admin_pass` field becomes invalid.
                <br/>2. If both `key_name` and `user_data` are specified, `user_data` only injects user data.
-        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID. You can obtain the user ID from My Credential on the
-               management console. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID. You can obtain the user ID from My Credential on the management
+               console. It can only be modified when `image_id` is modified.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies id of vpc in which to create the instance. Changing this creates a
                new instance.
         """
@@ -1780,6 +1846,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["nics"] = nics
         __props__.__dict__["period"] = period
         __props__.__dict__["period_unit"] = period_unit
+        __props__.__dict__["power_action"] = power_action
         __props__.__dict__["public_ip"] = public_ip
         __props__.__dict__["region"] = region
         __props__.__dict__["security_groups"] = security_groups
@@ -1797,8 +1864,8 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="adminPass")
     def admin_pass(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the login password of the administrator for logging in to the
-        BMS using password authentication. Changing this creates a new instance. The password must meet the following
+        Specifies the login password of the administrator for logging in to the BMS using
+        password authentication. It can only be modified when `image_id` is modified. The password must meet the following
         complexity requirements:
         + Contains 8 to 26 characters.
         + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
@@ -1938,8 +2005,9 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="imageId")
     def image_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the image ID of the desired image for the instance. Changing this
-        creates a new instance.
+        Specifies the image ID of the desired image for the instance. Only a stopped BMS or a
+        BMS on which changing the OS failed supports changing OS. And when changing this parameter, the instance will be
+        shutdown first if the `power_action` is not **OFF**.
         """
         return pulumi.get(self, "image_id")
 
@@ -1966,7 +2034,7 @@ class Instance(pulumi.CustomResource):
         """
         Specifies the name of a key pair for logging in to the BMS using key pair
         authentication. The key pair must already be created and associated with the tenant's account. The parameter is
-        required when using a Windows image to create a BMS. Changing this creates a new instance.
+        required when using a Windows image to create a BMS. It can only be modified when `image_id` is modified.
         """
         return pulumi.get(self, "key_pair")
 
@@ -2018,6 +2086,17 @@ class Instance(pulumi.CustomResource):
         instance.
         """
         return pulumi.get(self, "period_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="powerAction")
+    def power_action(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the power action to be done for the instance.
+        Value options: **ON**, **OFF** and **REBOOT**.
+
+        > **NOTE:** The `power_action` is a one-time action.
+        """
+        return pulumi.get(self, "power_action")
 
     @_builtins.property
     @pulumi.getter(name="publicIp")
@@ -2100,9 +2179,9 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="userData")
     def user_data(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the user data to be injected during the instance creation. Text
-        and text files can be injected. `user_data` can come from a variety of sources: inline, read in from the *file*
-        function. The content of `user_data` can be plaint text or encoded with base64. Changing this creates a new instance.
+        Specifies the user data to be injected during the instance creation. Text and text
+        files can be injected. `user_data` can come from a variety of sources: inline, read in from the **file** function. The
+        content of `user_data` can be plaint text or encoded with base64. It can only be modified when `image_id` is modified.
 
         > **NOTE:** 1. If the `user_data` field is specified for a Linux BMS that is created using an image with Cloud-Init
         installed, the `admin_pass` field becomes invalid.
@@ -2114,8 +2193,8 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the user ID. You can obtain the user ID from My Credential on the
-        management console. Changing this creates a new instance.
+        Specifies the user ID. You can obtain the user ID from My Credential on the management
+        console. It can only be modified when `image_id` is modified.
         """
         return pulumi.get(self, "user_id")
 

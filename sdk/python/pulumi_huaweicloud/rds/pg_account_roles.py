@@ -26,6 +26,7 @@ class PgAccountRolesArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgAccountRoles resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS PostgreSQL instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Specifies the list of roles.
         :param pulumi.Input[_builtins.str] user: Specifies the username of the account.
@@ -109,6 +110,7 @@ class _PgAccountRolesState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PgAccountRoles resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS PostgreSQL instance.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -221,11 +223,10 @@ class PgAccountRoles(pulumi.CustomResource):
 
         The RDS PostgreSQL account roles can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgAccountRoles:PgAccountRoles test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -265,11 +266,10 @@ class PgAccountRoles(pulumi.CustomResource):
 
         The RDS PostgreSQL account roles can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgAccountRoles:PgAccountRoles test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PgAccountRolesArgs args: The arguments to use to populate this resource's properties.

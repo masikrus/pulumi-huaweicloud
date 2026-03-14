@@ -30,6 +30,7 @@ class EventLoginWhiteListArgs:
                  remarks: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EventLoginWhiteList resource.
+
         :param pulumi.Input[_builtins.str] login_ip: Specifies the login IP address.
         :param pulumi.Input[_builtins.str] login_user_name: Specifies the login username.
         :param pulumi.Input[_builtins.str] private_ip: Specifies the private IP address of the host.
@@ -191,6 +192,7 @@ class _EventLoginWhiteListState:
                  update_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering EventLoginWhiteList resources.
+
         :param pulumi.Input[_builtins.bool] delete_all: Specifies whether to delete all login white lists. When set to `true`, all
                login white lists under HSS will be deleted.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.  
@@ -369,7 +371,7 @@ class _EventLoginWhiteListState:
         pulumi.set(self, "update_time", value)
 
 
-@pulumi.type_token("huaweicloud:hss/eventLoginWhiteList:EventLoginWhiteList")
+@pulumi.type_token("huaweicloud:Hss/eventLoginWhiteList:EventLoginWhiteList")
 class EventLoginWhiteList(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -403,6 +405,7 @@ class EventLoginWhiteList(pulumi.CustomResource):
             login_ip=login_ip,
             login_user_name=login_user_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -446,6 +449,7 @@ class EventLoginWhiteList(pulumi.CustomResource):
             login_ip=login_ip,
             login_user_name=login_user_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EventLoginWhiteListArgs args: The arguments to use to populate this resource's properties.
@@ -498,7 +502,7 @@ class EventLoginWhiteList(pulumi.CustomResource):
             __props__.__dict__["enterprise_project_name"] = None
             __props__.__dict__["update_time"] = None
         super(EventLoginWhiteList, __self__).__init__(
-            'huaweicloud:hss/eventLoginWhiteList:EventLoginWhiteList',
+            'huaweicloud:Hss/eventLoginWhiteList:EventLoginWhiteList',
             resource_name,
             __props__,
             opts)

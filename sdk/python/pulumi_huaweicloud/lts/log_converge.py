@@ -29,6 +29,7 @@ class LogConvergeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogConverge resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['LogConvergeLogMappingConfigArgs']]] log_mapping_configs: Specifies the log converge configurations.  
                The log_mapping_config structure is documented below.
         :param pulumi.Input[_builtins.str] management_account_id: Specifies the administrator account ID used to manage log converge.
@@ -155,6 +156,7 @@ class _LogConvergeState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogConverge resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the log converge configuration.
         :param pulumi.Input[Sequence[pulumi.Input['LogConvergeLogMappingConfigArgs']]] log_mapping_configs: Specifies the log converge configurations.  
                The log_mapping_config structure is documented below.
@@ -397,11 +399,10 @@ class LogConverge(pulumi.CustomResource):
 
         The log converge can be imported using the `organization_id` and `member_account_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/logConverge:LogConverge test <organization_id>/<member_account_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -512,11 +513,10 @@ class LogConverge(pulumi.CustomResource):
 
         The log converge can be imported using the `organization_id` and `member_account_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/logConverge:LogConverge test <organization_id>/<member_account_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogConvergeArgs args: The arguments to use to populate this resource's properties.

@@ -33,6 +33,7 @@ class RuleGlobalProtectionWhitelistArgs:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RuleGlobalProtectionWhitelist resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['RuleGlobalProtectionWhitelistConditionArgs']]] conditions: Specifies the match condition list.
                The conditions structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domains: Specifies the protected domain name bound with the policy or manually enter a single
@@ -255,6 +256,7 @@ class _RuleGlobalProtectionWhitelistState:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RuleGlobalProtectionWhitelist resources.
+
         :param pulumi.Input[_builtins.str] advanced_content: Specifies the advanced content value to ignore. This parameter is valid only
                when `advanced_field` is set to **params**, **cookie** or **header**.
                If not specified, WAF will ignore all attack events of the specific field.
@@ -548,19 +550,16 @@ class RuleGlobalProtectionWhitelist(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleGlobalProtectionWhitelist:RuleGlobalProtectionWhitelist test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleGlobalProtectionWhitelist:RuleGlobalProtectionWhitelist test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -675,19 +674,16 @@ class RuleGlobalProtectionWhitelist(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleGlobalProtectionWhitelist:RuleGlobalProtectionWhitelist test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleGlobalProtectionWhitelist:RuleGlobalProtectionWhitelist test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleGlobalProtectionWhitelistArgs args: The arguments to use to populate this resource's properties.

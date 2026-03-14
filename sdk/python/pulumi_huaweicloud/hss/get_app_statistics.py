@@ -116,7 +116,7 @@ def get_app_statistics(app_name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_app_statistics()
+    test = huaweicloud.Hss.get_app_statistics()
     ```
 
 
@@ -138,7 +138,7 @@ def get_app_statistics(app_name: Optional[_builtins.str] = None,
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAppStatistics:getAppStatistics', __args__, opts=opts, typ=GetAppStatisticsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAppStatistics:getAppStatistics', __args__, opts=opts, typ=GetAppStatisticsResult).value
 
     return AwaitableGetAppStatisticsResult(
         app_name=pulumi.get(__ret__, 'app_name'),
@@ -161,7 +161,7 @@ def get_app_statistics_output(app_name: Optional[pulumi.Input[Optional[_builtins
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_app_statistics()
+    test = huaweicloud.Hss.get_app_statistics()
     ```
 
 
@@ -183,7 +183,7 @@ def get_app_statistics_output(app_name: Optional[pulumi.Input[Optional[_builtins
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAppStatistics:getAppStatistics', __args__, opts=opts, typ=GetAppStatisticsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAppStatistics:getAppStatistics', __args__, opts=opts, typ=GetAppStatisticsResult)
     return __ret__.apply(lambda __response__: GetAppStatisticsResult(
         app_name=pulumi.get(__response__, 'app_name'),
         category=pulumi.get(__response__, 'category'),

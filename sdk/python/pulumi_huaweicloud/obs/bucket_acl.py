@@ -29,6 +29,7 @@ class BucketAclArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketAcl resource.
+
         :param pulumi.Input[_builtins.str] bucket: Specifies the name of the bucket to which to set the acl.
                
                Changing this parameter will create a new resource.
@@ -158,6 +159,7 @@ class _BucketAclState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BucketAcl resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['BucketAclAccountPermissionArgs']]] account_permissions: Specifies the account permissions.
                The account_permission_struct structure is documented below.
                
@@ -361,11 +363,10 @@ class BucketAcl(pulumi.CustomResource):
 
         The obs bucket acl can be imported using the `bucket`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketAcl:BucketAcl test <bucket-name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -466,11 +467,10 @@ class BucketAcl(pulumi.CustomResource):
 
         The obs bucket acl can be imported using the `bucket`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketAcl:BucketAcl test <bucket-name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BucketAclArgs args: The arguments to use to populate this resource's properties.

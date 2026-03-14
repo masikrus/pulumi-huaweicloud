@@ -93,7 +93,7 @@ def get_resource_policy_states_summary(resource_id: Optional[_builtins.str] = No
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_resource_policy_states_summary()
+    test = huaweicloud.Rms.get_resource_policy_states_summary()
     ```
 
 
@@ -104,7 +104,7 @@ def get_resource_policy_states_summary(resource_id: Optional[_builtins.str] = No
     __args__['resourceId'] = resource_id
     __args__['resourceName'] = resource_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourcePolicyStatesSummary:getResourcePolicyStatesSummary', __args__, opts=opts, typ=GetResourcePolicyStatesSummaryResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourcePolicyStatesSummary:getResourcePolicyStatesSummary', __args__, opts=opts, typ=GetResourcePolicyStatesSummaryResult).value
 
     return AwaitableGetResourcePolicyStatesSummaryResult(
         id=pulumi.get(__ret__, 'id'),
@@ -123,7 +123,7 @@ def get_resource_policy_states_summary_output(resource_id: Optional[pulumi.Input
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_resource_policy_states_summary()
+    test = huaweicloud.Rms.get_resource_policy_states_summary()
     ```
 
 
@@ -134,7 +134,7 @@ def get_resource_policy_states_summary_output(resource_id: Optional[pulumi.Input
     __args__['resourceId'] = resource_id
     __args__['resourceName'] = resource_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourcePolicyStatesSummary:getResourcePolicyStatesSummary', __args__, opts=opts, typ=GetResourcePolicyStatesSummaryResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourcePolicyStatesSummary:getResourcePolicyStatesSummary', __args__, opts=opts, typ=GetResourcePolicyStatesSummaryResult)
     return __ret__.apply(lambda __response__: GetResourcePolicyStatesSummaryResult(
         id=pulumi.get(__response__, 'id'),
         resource_id=pulumi.get(__response__, 'resource_id'),

@@ -94,7 +94,7 @@ def get_access_policies(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     vpn_server_id = config.require_object("vpnServerId")
-    test = huaweicloud.vpn.get_access_policies(vpn_server_id=vpn_server_id)
+    test = huaweicloud.Vpn.get_access_policies(vpn_server_id=vpn_server_id)
     ```
 
 
@@ -106,7 +106,7 @@ def get_access_policies(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['vpnServerId'] = vpn_server_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getAccessPolicies:getAccessPolicies', __args__, opts=opts, typ=GetAccessPoliciesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getAccessPolicies:getAccessPolicies', __args__, opts=opts, typ=GetAccessPoliciesResult).value
 
     return AwaitableGetAccessPoliciesResult(
         access_policies=pulumi.get(__ret__, 'access_policies'),
@@ -127,7 +127,7 @@ def get_access_policies_output(region: Optional[pulumi.Input[Optional[_builtins.
 
     config = pulumi.Config()
     vpn_server_id = config.require_object("vpnServerId")
-    test = huaweicloud.vpn.get_access_policies(vpn_server_id=vpn_server_id)
+    test = huaweicloud.Vpn.get_access_policies(vpn_server_id=vpn_server_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_access_policies_output(region: Optional[pulumi.Input[Optional[_builtins.
     __args__['region'] = region
     __args__['vpnServerId'] = vpn_server_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getAccessPolicies:getAccessPolicies', __args__, opts=opts, typ=GetAccessPoliciesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getAccessPolicies:getAccessPolicies', __args__, opts=opts, typ=GetAccessPoliciesResult)
     return __ret__.apply(lambda __response__: GetAccessPoliciesResult(
         access_policies=pulumi.get(__response__, 'access_policies'),
         id=pulumi.get(__response__, 'id'),

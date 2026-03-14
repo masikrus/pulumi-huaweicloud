@@ -24,6 +24,7 @@ class ContainerSyncClusterInformationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ContainerSyncClusterInformation resource.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.  
                This parameter is valid only when the enterprise project is enabled.
                The default value is **0**, indicating the default enterprise project.
@@ -88,6 +89,7 @@ class _ContainerSyncClusterInformationState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ContainerSyncClusterInformation resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.  
                This parameter is valid only when the enterprise project is enabled.
                The default value is **0**, indicating the default enterprise project.
@@ -144,7 +146,7 @@ class _ContainerSyncClusterInformationState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:hss/containerSyncClusterInformation:ContainerSyncClusterInformation")
+@pulumi.type_token("huaweicloud:Hss/containerSyncClusterInformation:ContainerSyncClusterInformation")
 class ContainerSyncClusterInformation(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -168,6 +170,7 @@ class ContainerSyncClusterInformation(pulumi.CustomResource):
 
         test = huaweicloud.hss.ContainerSyncClusterInformation("test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -201,6 +204,7 @@ class ContainerSyncClusterInformation(pulumi.CustomResource):
         test = huaweicloud.hss.ContainerSyncClusterInformation("test")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ContainerSyncClusterInformationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -232,7 +236,7 @@ class ContainerSyncClusterInformation(pulumi.CustomResource):
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["region"] = region
         super(ContainerSyncClusterInformation, __self__).__init__(
-            'huaweicloud:hss/containerSyncClusterInformation:ContainerSyncClusterInformation',
+            'huaweicloud:Hss/containerSyncClusterInformation:ContainerSyncClusterInformation',
             resource_name,
             __props__,
             opts)

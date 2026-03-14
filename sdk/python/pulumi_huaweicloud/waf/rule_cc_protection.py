@@ -42,6 +42,7 @@ class RuleCcProtectionArgs:
                  user_identifier: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RuleCcProtection resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['RuleCcProtectionConditionArgs']]] conditions: Specifies the match condition list.
                The conditions structure is documented below.
         :param pulumi.Input[_builtins.int] limit_num: Specifies the number of requests allowed from a web visitor in a rate limiting period.
@@ -414,6 +415,7 @@ class _RuleCcProtectionState:
                  user_identifier: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RuleCcProtection resources.
+
         :param pulumi.Input[_builtins.bool] all_waf_instances: Specifies whether to enable global counting. Default to **false**.
         :param pulumi.Input[_builtins.str] block_page_type: Specifies the type of the returned page. The options are **application/json**,
                **text/html** and **text/xml**. This parameter is valid when `protective_action` is set to **block** or **dynamic_block**.
@@ -847,19 +849,16 @@ class RuleCcProtection(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleCcProtection:RuleCcProtection test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleCcProtection:RuleCcProtection test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -975,19 +974,16 @@ class RuleCcProtection(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleCcProtection:RuleCcProtection test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleCcProtection:RuleCcProtection test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleCcProtectionArgs args: The arguments to use to populate this resource's properties.

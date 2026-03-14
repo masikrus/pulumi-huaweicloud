@@ -36,6 +36,7 @@ class WarRoomArgs:
                  region_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a WarRoom resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_id_lists: Specifies the ID list of the affected applications.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
         :param pulumi.Input[_builtins.str] incident_number: Specifies the incident ticket ID.
@@ -277,6 +278,7 @@ class _WarRoomState:
                  war_room_statuses: Optional[pulumi.Input[Sequence[pulumi.Input['WarRoomWarRoomStatusArgs']]]] = None):
         """
         Input properties used for looking up and filtering WarRoom resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_id_lists: Specifies the ID list of the affected applications.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_names: Specifies the application name list.
         :param pulumi.Input[_builtins.str] change_num: Indicates the change ticket number.
@@ -746,7 +748,7 @@ class _WarRoomState:
         pulumi.set(self, "war_room_statuses", value)
 
 
-@pulumi.type_token("huaweicloud:coc/warRoom:WarRoom")
+@pulumi.type_token("huaweicloud:Coc/warRoom:WarRoom")
 class WarRoom(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -775,41 +777,17 @@ class WarRoom(pulumi.CustomResource):
 
         The COC war room can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/warRoom:WarRoom test <id>
+        $ pulumi import huaweicloud:Coc/warRoom:WarRoom test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `schedule_group`, `participant` and `notification_type`.
-
         It is generally recommended running `pulumi preview`  after importing a war room.
-
         You can then decide if changes should be applied to the war room, or the resource definition should be updated to
-
         align with the war room. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_coc_war_room" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              schedule_group, participant, notification_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -850,41 +828,17 @@ class WarRoom(pulumi.CustomResource):
 
         The COC war room can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/warRoom:WarRoom test <id>
+        $ pulumi import huaweicloud:Coc/warRoom:WarRoom test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `schedule_group`, `participant` and `notification_type`.
-
         It is generally recommended running `pulumi preview`  after importing a war room.
-
         You can then decide if changes should be applied to the war room, or the resource definition should be updated to
-
         align with the war room. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_coc_war_room" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              schedule_group, participant, notification_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param WarRoomArgs args: The arguments to use to populate this resource's properties.
@@ -966,7 +920,7 @@ class WarRoom(pulumi.CustomResource):
             __props__.__dict__["war_room_id"] = None
             __props__.__dict__["war_room_statuses"] = None
         super(WarRoom, __self__).__init__(
-            'huaweicloud:coc/warRoom:WarRoom',
+            'huaweicloud:Coc/warRoom:WarRoom',
             resource_name,
             __props__,
             opts)

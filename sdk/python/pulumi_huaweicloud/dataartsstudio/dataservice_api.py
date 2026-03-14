@@ -39,6 +39,7 @@ class DataserviceApiArgs:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataserviceApi resource.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the authentication type.  
                The valid values are as follows:
                + **APP**
@@ -369,6 +370,7 @@ class _DataserviceApiState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataserviceApi resources.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the authentication type.  
                The valid values are as follows:
                + **APP**
@@ -910,53 +912,26 @@ class DataserviceApi(pulumi.CustomResource):
 
         The API can be imported using `workspace_id`, `dlm_type` and `id` separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceApi:DataserviceApi test <workspace_id>/<dlm_type>/<id>
         ```
 
         Also, you can omit `dlm_type` and provide just `workspace_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceApi:DataserviceApi test <workspace_id>/<id>
         ```
 
-        ~> This way only supports importing the API of the **SHARED** type, but does not support the API imported for
-
+        > This way only supports importing the API of the **SHARED** type, but does not support the API imported for
            **EXCLUSIVE** type. If an error is reported, please carefully check the `dlm_type` value to which imported API
-
            you want.
 
         Note that the imported state may not be identical to your resource definition, because the attributes are missing in the
-
         API response. The missing attributes includes: `auth_type`, `catalog_id` and `visibility`.
-
         It is generally recommended running `pulumi preview` after importing an resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_dataservice_api" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              auth_type, catalog_id, visibility,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1117,53 +1092,26 @@ class DataserviceApi(pulumi.CustomResource):
 
         The API can be imported using `workspace_id`, `dlm_type` and `id` separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceApi:DataserviceApi test <workspace_id>/<dlm_type>/<id>
         ```
 
         Also, you can omit `dlm_type` and provide just `workspace_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceApi:DataserviceApi test <workspace_id>/<id>
         ```
 
-        ~> This way only supports importing the API of the **SHARED** type, but does not support the API imported for
-
+        > This way only supports importing the API of the **SHARED** type, but does not support the API imported for
            **EXCLUSIVE** type. If an error is reported, please carefully check the `dlm_type` value to which imported API
-
            you want.
 
         Note that the imported state may not be identical to your resource definition, because the attributes are missing in the
-
         API response. The missing attributes includes: `auth_type`, `catalog_id` and `visibility`.
-
         It is generally recommended running `pulumi preview` after importing an resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_dataservice_api" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              auth_type, catalog_id, visibility,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DataserviceApiArgs args: The arguments to use to populate this resource's properties.

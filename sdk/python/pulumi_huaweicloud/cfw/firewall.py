@@ -38,6 +38,7 @@ class FirewallArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Firewall resource.
+
         :param pulumi.Input['FirewallFlavorArgs'] flavor: Specifies the flavor of the firewall.
                Changing this parameter will create a new resource.
                The flavor structure is documented below.
@@ -359,6 +360,7 @@ class _FirewallState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Firewall resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
                Valid values are **true** and **false**. Defaults to **false**.
                
@@ -887,41 +889,17 @@ class Firewall(pulumi.CustomResource):
 
         The firewall can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/firewall:Firewall test 6cb1ce47-9990-447e-b071-d167c5393871
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `period_unit`, `period` and `auto_renew`. It is generally
-
         recommended running `pulumi preview` after importing an CFW firewall. You can then decide if changes should be applied to
-
         the firewall, or the resource definition should be updated to align with the firewall. Also you can ignore changes as
-
         below.
 
-        hcl
-
-        resource "huaweicloud_cfw_firewall" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1070,41 +1048,17 @@ class Firewall(pulumi.CustomResource):
 
         The firewall can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/firewall:Firewall test 6cb1ce47-9990-447e-b071-d167c5393871
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `period_unit`, `period` and `auto_renew`. It is generally
-
         recommended running `pulumi preview` after importing an CFW firewall. You can then decide if changes should be applied to
-
         the firewall, or the resource definition should be updated to align with the firewall. Also you can ignore changes as
-
         below.
 
-        hcl
-
-        resource "huaweicloud_cfw_firewall" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param FirewallArgs args: The arguments to use to populate this resource's properties.

@@ -31,27 +31,22 @@ __all__ = [
     'InstanceSfsTurboArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class InstanceBlockInfoArgsDict(TypedDict):
-        block_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the volume of the block, the unit is MB. The default value is 2.
-        Changing this creates a new instance.
-        """
-        generation_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the block generation time, the unit is second. The default
-        value is 2. Changing this creates a new instance.
-        """
-        transaction_quantity: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of transactions included in the block. The
-        default value is 500. Changing this creates a new instance.
-        """
-elif False:
-    InstanceBlockInfoArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceBlockInfoArgsDict(TypedDict):
+    block_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the volume of the block, the unit is MB. The default value is 2.
+    Changing this creates a new instance.
+    """
+    generation_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the block generation time, the unit is second. The default
+    value is 2. Changing this creates a new instance.
+    """
+    transaction_quantity: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of transactions included in the block. The
+    default value is 500. Changing this creates a new instance.
+    """
 
 @pulumi.input_type
 class InstanceBlockInfoArgs:
@@ -114,19 +109,16 @@ class InstanceBlockInfoArgs:
         pulumi.set(self, "transaction_quantity", value)
 
 
-if not MYPY:
-    class InstanceChannelArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the channel. Changing this creates a new instance.
-        """
-        org_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the name of the peer organization. Changing this creates a new
-        instance.
-        """
-elif False:
-    InstanceChannelArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceChannelArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the channel. Changing this creates a new instance.
+    """
+    org_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the name of the peer organization. Changing this creates a new
+    instance.
+    """
 
 @pulumi.input_type
 class InstanceChannelArgs:
@@ -168,21 +160,18 @@ class InstanceChannelArgs:
         pulumi.set(self, "org_names", value)
 
 
-if not MYPY:
-    class InstanceCouchdbArgsDict(TypedDict):
-        password: pulumi.Input[_builtins.str]
-        """
-        Specifies the password of the couch database. The password consists of 8 to
-        26 characters and must consist at least three of following: uppercase letters, lowercase letters, digits, special
-        characters(!@$%^-_=+[{}]:,./?). Changing this creates a new instance.
-        """
-        user_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the user name of the couch database. Changing this creates a new
-        instance.
-        """
-elif False:
-    InstanceCouchdbArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceCouchdbArgsDict(TypedDict):
+    password: pulumi.Input[_builtins.str]
+    """
+    Specifies the password of the couch database. The password consists of 8 to
+    26 characters and must consist at least three of following: uppercase letters, lowercase letters, digits, special
+    characters(!@$%^-_=+[{}]:,./?). Changing this creates a new instance.
+    """
+    user_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the user name of the couch database. Changing this creates a new
+    instance.
+    """
 
 @pulumi.input_type
 class InstanceCouchdbArgs:
@@ -227,40 +216,37 @@ class InstanceCouchdbArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class InstanceKafkaArgsDict(TypedDict):
-        availability_zones: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the availability zone in which to create the kafka. The
-        list must contain one or more than three availability zone. Please
-        following [reference](https://developer.huaweicloud.com/en-us/endpoint/?all) for the values. Changing this creates a
-        new instance.
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the kafka flavor type. Changing this creates a new instance.
-        + `c3.mini` : Mini type, the reference bandwidth is 100MB/s.
-        + `c3.small.2` : Small type, the reference bandwidth is 300MB/s.
-        + `c3.middle.2` : Middle type, the reference bandwidth is 600MB/s.
-        + `c3.high.2` : High type, the reference bandwidth is 1200MB/s.
-        """
-        storage_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the kafka storage capacity. The storage capacity must be an
-        integral multiple of 100 and the maximum is 90000GB. Changing this creates a new instance.
-        + The minimum storage capacity of mini type is 600GB.
-        + The minimum storage capacity of small type is 1200GB.
-        + The minimum storage capacity of middle type is 2400GB.
-        + The minimum storage capacity of high type is 4800GB.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies a unique name of the BCS instance. The name consists of 4 to 24
-        characters, including letters, digits, chinese characters and hyphens (-), and the name cannot start with a hyphen.
-        Changing this will create a new instance.
-        """
-elif False:
-    InstanceKafkaArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceKafkaArgsDict(TypedDict):
+    availability_zones: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the availability zone in which to create the kafka. The
+    list must contain one or more than three availability zone. Please
+    following [reference](https://developer.huaweicloud.com/en-us/endpoint/?all) for the values. Changing this creates a
+    new instance.
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the kafka flavor type. Changing this creates a new instance.
+    + `c3.mini` : Mini type, the reference bandwidth is 100MB/s.
+    + `c3.small.2` : Small type, the reference bandwidth is 300MB/s.
+    + `c3.middle.2` : Middle type, the reference bandwidth is 600MB/s.
+    + `c3.high.2` : High type, the reference bandwidth is 1200MB/s.
+    """
+    storage_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the kafka storage capacity. The storage capacity must be an
+    integral multiple of 100 and the maximum is 90000GB. Changing this creates a new instance.
+    + The minimum storage capacity of mini type is 600GB.
+    + The minimum storage capacity of small type is 1200GB.
+    + The minimum storage capacity of middle type is 2400GB.
+    + The minimum storage capacity of high type is 4800GB.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a unique name of the BCS instance. The name consists of 4 to 24
+    characters, including letters, digits, chinese characters and hyphens (-), and the name cannot start with a hyphen.
+    Changing this will create a new instance.
+    """
 
 @pulumi.input_type
 class InstanceKafkaArgs:
@@ -358,27 +344,24 @@ class InstanceKafkaArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class InstancePeerOrgArgsDict(TypedDict):
-        count: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of peers in organization. Changing this creates a new
-        instance.
-        """
-        org_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the peer organization. Changing this creates a new
-        instance.
-        """
-        addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input['InstancePeerOrgAddressArgsDict']]]]
-        pvc_name: NotRequired[pulumi.Input[_builtins.str]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the BCS instance.
-        """
-        status_detail: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstancePeerOrgArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePeerOrgArgsDict(TypedDict):
+    count: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of peers in organization. Changing this creates a new
+    instance.
+    """
+    org_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the peer organization. Changing this creates a new
+    instance.
+    """
+    addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input['InstancePeerOrgAddressArgsDict']]]]
+    pvc_name: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the BCS instance.
+    """
+    status_detail: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstancePeerOrgArgs:
@@ -473,12 +456,9 @@ class InstancePeerOrgArgs:
         pulumi.set(self, "status_detail", value)
 
 
-if not MYPY:
-    class InstancePeerOrgAddressArgsDict(TypedDict):
-        domain_port: NotRequired[pulumi.Input[_builtins.str]]
-        ip_port: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstancePeerOrgAddressArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePeerOrgAddressArgsDict(TypedDict):
+    domain_port: NotRequired[pulumi.Input[_builtins.str]]
+    ip_port: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstancePeerOrgAddressArgs:
@@ -509,29 +489,26 @@ class InstancePeerOrgAddressArgs:
         pulumi.set(self, "ip_port", value)
 
 
-if not MYPY:
-    class InstanceSfsTurboArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the availability zone in which to create the SFS turbo.
-        Please following [reference](https://developer.huaweicloud.com/en-us/endpoint/?all) for the values. Changing this
-        creates a new instance.
-        """
-        flavor: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the flavor of SFS turbo. Changing this creates a new instance.
-        """
-        share_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the share type of the SFS turbo. Changing this creates a new
-        instance.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of SFS turbo. Changing this creates a new instance.
-        """
-elif False:
-    InstanceSfsTurboArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceSfsTurboArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the availability zone in which to create the SFS turbo.
+    Please following [reference](https://developer.huaweicloud.com/en-us/endpoint/?all) for the values. Changing this
+    creates a new instance.
+    """
+    flavor: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the flavor of SFS turbo. Changing this creates a new instance.
+    """
+    share_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the share type of the SFS turbo. Changing this creates a new
+    instance.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of SFS turbo. Changing this creates a new instance.
+    """
 
 @pulumi.input_type
 class InstanceSfsTurboArgs:

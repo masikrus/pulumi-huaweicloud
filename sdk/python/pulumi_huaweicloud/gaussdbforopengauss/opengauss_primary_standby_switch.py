@@ -26,6 +26,7 @@ class OpengaussPrimaryStandbySwitchArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussPrimaryStandbySwitch resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
                
                Changing this parameter will create a new resource.
@@ -100,6 +101,7 @@ class _OpengaussPrimaryStandbySwitchState:
                  shards: Optional[pulumi.Input[Sequence[pulumi.Input['OpengaussPrimaryStandbySwitchShardArgs']]]] = None):
         """
         Input properties used for looking up and filtering OpengaussPrimaryStandbySwitch resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
                
                Changing this parameter will create a new resource.
@@ -199,6 +201,7 @@ class OpengaussPrimaryStandbySwitch(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
@@ -241,6 +244,7 @@ class OpengaussPrimaryStandbySwitch(pulumi.CustomResource):
                 "component_id": component_id,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussPrimaryStandbySwitchArgs args: The arguments to use to populate this resource's properties.

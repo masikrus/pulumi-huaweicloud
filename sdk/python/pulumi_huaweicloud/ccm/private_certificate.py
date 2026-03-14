@@ -40,6 +40,7 @@ class PrivateCertificateArgs:
                  time_stamping: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a PrivateCertificate resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['PrivateCertificateDistinguishedNameArgs']]] distinguished_names: Specifies the distinguished name of private certificate.
                Changing this parameter will create a new resource.
                The distinguished_name structure is documented below.
@@ -403,6 +404,7 @@ class _PrivateCertificateState:
                  validities: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateCertificateValidityArgs']]]] = None):
         """
         Input properties used for looking up and filtering PrivateCertificate resources.
+
         :param pulumi.Input[_builtins.bool] client_auth: Specifies whether to enable client authentication. Defaults to **false**.
                Changing this parameter will create a new resource.
                
@@ -851,7 +853,7 @@ class _PrivateCertificateState:
         pulumi.set(self, "validities", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/privateCertificate:PrivateCertificate")
+@pulumi.type_token("huaweicloud:Ccm/privateCertificate:PrivateCertificate")
 class PrivateCertificate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -904,61 +906,18 @@ class PrivateCertificate(pulumi.CustomResource):
 
         The CCM private certificate can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ccm/privateCertificate:PrivateCertificate test <id>
+        $ pulumi import huaweicloud:Ccm/privateCertificate:PrivateCertificate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
           API response, security or some other reason. The missing attributes include: `validity`,`key_usage`,`server_auth`,
-
         `client_auth`,`code_signing`,`email_protection`,`time_stamping`,`object_identifier`,`object_identifier_value`,
-
         `subject_alternative_names`.
-
         It is generally recommended running `pulumi preview` after importing a private certificate. You can then decide if
-
         changes should be applied to the private certificate, or the resource definition should be updated to align with the
-
         private certificate. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ccm_private_certificate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-                validity,
-            
-                key_usage,
-            
-                server_auth,
-            
-                client_auth,
-            
-                code_signing,
-            
-                email_protection,
-            
-                time_stamping,
-            
-                object_identifier,
-            
-                object_identifier_value,
-            
-                subject_alternative_names,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1056,61 +1015,18 @@ class PrivateCertificate(pulumi.CustomResource):
 
         The CCM private certificate can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ccm/privateCertificate:PrivateCertificate test <id>
+        $ pulumi import huaweicloud:Ccm/privateCertificate:PrivateCertificate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
           API response, security or some other reason. The missing attributes include: `validity`,`key_usage`,`server_auth`,
-
         `client_auth`,`code_signing`,`email_protection`,`time_stamping`,`object_identifier`,`object_identifier_value`,
-
         `subject_alternative_names`.
-
         It is generally recommended running `pulumi preview` after importing a private certificate. You can then decide if
-
         changes should be applied to the private certificate, or the resource definition should be updated to align with the
-
         private certificate. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ccm_private_certificate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-                validity,
-            
-                key_usage,
-            
-                server_auth,
-            
-                client_auth,
-            
-                code_signing,
-            
-                email_protection,
-            
-                time_stamping,
-            
-                object_identifier,
-            
-                object_identifier_value,
-            
-                subject_alternative_names,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PrivateCertificateArgs args: The arguments to use to populate this resource's properties.
@@ -1187,7 +1103,7 @@ class PrivateCertificate(pulumi.CustomResource):
             __props__.__dict__["start_at"] = None
             __props__.__dict__["status"] = None
         super(PrivateCertificate, __self__).__init__(
-            'huaweicloud:ccm/privateCertificate:PrivateCertificate',
+            'huaweicloud:Ccm/privateCertificate:PrivateCertificate',
             resource_name,
             __props__,
             opts)

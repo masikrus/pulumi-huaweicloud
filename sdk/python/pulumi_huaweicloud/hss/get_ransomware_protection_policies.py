@@ -131,7 +131,7 @@ def get_ransomware_protection_policies(enterprise_project_id: Optional[_builtins
 
     config = pulumi.Config()
     policy_id = config.require_object("policyId")
-    test = huaweicloud.hss.get_ransomware_protection_policies(policy_id=policy_id)
+    test = huaweicloud.Hss.get_ransomware_protection_policies(policy_id=policy_id)
     ```
 
 
@@ -154,7 +154,7 @@ def get_ransomware_protection_policies(enterprise_project_id: Optional[_builtins
     __args__['policyId'] = policy_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getRansomwareProtectionPolicies:getRansomwareProtectionPolicies', __args__, opts=opts, typ=GetRansomwareProtectionPoliciesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getRansomwareProtectionPolicies:getRansomwareProtectionPolicies', __args__, opts=opts, typ=GetRansomwareProtectionPoliciesResult).value
 
     return AwaitableGetRansomwareProtectionPoliciesResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -181,7 +181,7 @@ def get_ransomware_protection_policies_output(enterprise_project_id: Optional[pu
 
     config = pulumi.Config()
     policy_id = config.require_object("policyId")
-    test = huaweicloud.hss.get_ransomware_protection_policies(policy_id=policy_id)
+    test = huaweicloud.Hss.get_ransomware_protection_policies(policy_id=policy_id)
     ```
 
 
@@ -204,7 +204,7 @@ def get_ransomware_protection_policies_output(enterprise_project_id: Optional[pu
     __args__['policyId'] = policy_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getRansomwareProtectionPolicies:getRansomwareProtectionPolicies', __args__, opts=opts, typ=GetRansomwareProtectionPoliciesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getRansomwareProtectionPolicies:getRansomwareProtectionPolicies', __args__, opts=opts, typ=GetRansomwareProtectionPoliciesResult)
     return __ret__.apply(lambda __response__: GetRansomwareProtectionPoliciesResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         id=pulumi.get(__response__, 'id'),

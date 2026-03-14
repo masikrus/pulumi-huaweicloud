@@ -33,6 +33,7 @@ class RabbitmqQueueArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RabbitmqQueue resource.
+
         :param pulumi.Input[_builtins.bool] auto_delete: Specifies whether to enable auto delete.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
@@ -231,6 +232,7 @@ class _RabbitmqQueueState:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RabbitmqQueue resources.
+
         :param pulumi.Input[_builtins.bool] auto_delete: Specifies whether to enable auto delete.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['RabbitmqQueueConsumerDetailArgs']]] consumer_details: Indicates the details of subscribed consumers.
@@ -538,20 +540,16 @@ class RabbitmqQueue(pulumi.CustomResource):
         ## Import
 
         The RabbitMQ queue can be imported using the `instance_id`, `vhost` and `name` separated by slashes or commas, but if
-
         `name` contains slashes, the import ID can only be separated by commas e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqQueue:RabbitmqQueue test <instance_id>/<vhost>/<name>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqQueue:RabbitmqQueue test <instance_id>,<vhost>,<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -616,20 +614,16 @@ class RabbitmqQueue(pulumi.CustomResource):
         ## Import
 
         The RabbitMQ queue can be imported using the `instance_id`, `vhost` and `name` separated by slashes or commas, but if
-
         `name` contains slashes, the import ID can only be separated by commas e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqQueue:RabbitmqQueue test <instance_id>/<vhost>/<name>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqQueue:RabbitmqQueue test <instance_id>,<vhost>,<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RabbitmqQueueArgs args: The arguments to use to populate this resource's properties.

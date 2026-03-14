@@ -23,6 +23,8 @@ __all__ = [
     'OrganizationalPolicyAssignmentPolicyFilterArgsDict',
     'PolicyAssignmentCustomPolicyArgs',
     'PolicyAssignmentCustomPolicyArgsDict',
+    'PolicyAssignmentEvaluateResultUpdatePolicyResourceArgs',
+    'PolicyAssignmentEvaluateResultUpdatePolicyResourceArgsDict',
     'PolicyAssignmentPolicyFilterArgs',
     'PolicyAssignmentPolicyFilterArgsDict',
     'RemediationConfigurationResourceParameterArgs',
@@ -49,20 +51,15 @@ __all__ = [
     'GetResourceInstancesTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AssignmentPackageVarsStructureArgsDict(TypedDict):
-        var_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of a parameter. It contains 1 to 64 characters.
-        """
-        var_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of a parameter. It's a json string.
-        """
-elif False:
-    AssignmentPackageVarsStructureArgsDict: TypeAlias = Mapping[str, Any]
+class AssignmentPackageVarsStructureArgsDict(TypedDict):
+    var_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of a parameter. It contains 1 to 64 characters.
+    """
+    var_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of a parameter. It's a json string.
+    """
 
 @pulumi.input_type
 class AssignmentPackageVarsStructureArgs:
@@ -103,18 +100,15 @@ class AssignmentPackageVarsStructureArgs:
         pulumi.set(self, "var_value", value)
 
 
-if not MYPY:
-    class OrganizationalAssignmentPackageVarsStructureArgsDict(TypedDict):
-        var_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of a parameter. It contains `1` to `64` characters.
-        """
-        var_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of a parameter. It's a json string.
-        """
-elif False:
-    OrganizationalAssignmentPackageVarsStructureArgsDict: TypeAlias = Mapping[str, Any]
+class OrganizationalAssignmentPackageVarsStructureArgsDict(TypedDict):
+    var_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of a parameter. It contains `1` to `64` characters.
+    """
+    var_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of a parameter. It's a json string.
+    """
 
 @pulumi.input_type
 class OrganizationalAssignmentPackageVarsStructureArgs:
@@ -155,36 +149,33 @@ class OrganizationalAssignmentPackageVarsStructureArgs:
         pulumi.set(self, "var_value", value)
 
 
-if not MYPY:
-    class OrganizationalPolicyAssignmentPolicyFilterArgsDict(TypedDict):
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the region to which the filtered resources belong.
-        """
-        resource_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the resource ID used to filter a specified resource.
-        """
-        resource_provider: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the service name to which the filtered resources belong.
-        """
-        resource_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the resource type of the filtered resources.
-        """
-        tag_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the tag name used to filter resources.  
-        This parameter and `resource_id` are alternative.
-        """
-        tag_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the tag value used to filter resources.  
-        Required if `tag_key` is set.
-        """
-elif False:
-    OrganizationalPolicyAssignmentPolicyFilterArgsDict: TypeAlias = Mapping[str, Any]
+class OrganizationalPolicyAssignmentPolicyFilterArgsDict(TypedDict):
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the region to which the filtered resources belong.
+    """
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource ID used to filter a specified resource.
+    """
+    resource_provider: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service name to which the filtered resources belong.
+    """
+    resource_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource type of the filtered resources.
+    """
+    tag_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tag name used to filter resources.  
+    This parameter and `resource_id` are alternative.
+    """
+    tag_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tag value used to filter resources.  
+    Required if `tag_key` is set.
+    """
 
 @pulumi.input_type
 class OrganizationalPolicyAssignmentPolicyFilterArgs:
@@ -293,22 +284,19 @@ class OrganizationalPolicyAssignmentPolicyFilterArgs:
         pulumi.set(self, "tag_value", value)
 
 
-if not MYPY:
-    class PolicyAssignmentCustomPolicyArgsDict(TypedDict):
-        auth_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the authorization type of the custom policy.
-        """
-        function_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the function URN used to create the custom policy.
-        """
-        auth_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the authorization value of the custom policy.
-        """
-elif False:
-    PolicyAssignmentCustomPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class PolicyAssignmentCustomPolicyArgsDict(TypedDict):
+    auth_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the authorization type of the custom policy.
+    """
+    function_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the function URN used to create the custom policy.
+    """
+    auth_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the authorization value of the custom policy.
+    """
 
 @pulumi.input_type
 class PolicyAssignmentCustomPolicyArgs:
@@ -363,39 +351,165 @@ class PolicyAssignmentCustomPolicyArgs:
         pulumi.set(self, "auth_value", value)
 
 
-if not MYPY:
-    class PolicyAssignmentPolicyFilterArgsDict(TypedDict):
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the region to which the filtered resources belong.
-        """
-        resource_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the resource ID used to filter a specified resource.
-        """
-        resource_provider: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the service name to which the filtered resources belong.
-        """
-        resource_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the resource type of the filtered resources.
-        """
-        tag_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the tag name used to filter resources.  
-        This parameter and `resource_id` are alternative.
-        """
-        tag_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the tag value used to filter resources.  
-        Required if `tag_key` is set.
+class PolicyAssignmentEvaluateResultUpdatePolicyResourceArgsDict(TypedDict):
+    domain_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the user to which the resource belongs.
+    """
+    region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region ID.
+    """
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource ID.
+    """
+    resource_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource name.
+    """
+    resource_provider: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cloud service name.
+    """
+    resource_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource type.
+    """
 
-        <a name="rms_custom_policy"></a>
-        The `custom_policy` block supports:
+@pulumi.input_type
+class PolicyAssignmentEvaluateResultUpdatePolicyResourceArgs:
+    def __init__(__self__, *,
+                 domain_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-elif False:
-    PolicyAssignmentPolicyFilterArgsDict: TypeAlias = Mapping[str, Any]
+        :param pulumi.Input[_builtins.str] domain_id: Specifies the ID of the user to which the resource belongs.
+        :param pulumi.Input[_builtins.str] region_id: Specifies the region ID.
+        :param pulumi.Input[_builtins.str] resource_id: Specifies the resource ID.
+        :param pulumi.Input[_builtins.str] resource_name: Specifies the resource name.
+        :param pulumi.Input[_builtins.str] resource_provider: Specifies the cloud service name.
+        :param pulumi.Input[_builtins.str] resource_type: Specifies the resource type.
+        """
+        if domain_id is not None:
+            pulumi.set(__self__, "domain_id", domain_id)
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if resource_id is not None:
+            pulumi.set(__self__, "resource_id", resource_id)
+        if resource_name is not None:
+            pulumi.set(__self__, "resource_name", resource_name)
+        if resource_provider is not None:
+            pulumi.set(__self__, "resource_provider", resource_provider)
+        if resource_type is not None:
+            pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the user to which the resource belongs.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @domain_id.setter
+    def domain_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "domain_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @resource_id.setter
+    def resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @resource_name.setter
+    def resource_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceProvider")
+    def resource_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the cloud service name.
+        """
+        return pulumi.get(self, "resource_provider")
+
+    @resource_provider.setter
+    def resource_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_provider", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @resource_type.setter
+    def resource_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_type", value)
+
+
+class PolicyAssignmentPolicyFilterArgsDict(TypedDict):
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the region to which the filtered resources belong.
+    """
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource ID used to filter a specified resource.
+    """
+    resource_provider: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service name to which the filtered resources belong.
+    """
+    resource_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource type of the filtered resources.
+    """
+    tag_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tag name used to filter resources.  
+    This parameter and `resource_id` are alternative.
+    """
+    tag_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tag value used to filter resources.  
+    Required if `tag_key` is set.
+
+    <a name="rms_custom_policy"></a>
+    The `custom_policy` block supports:
+    """
 
 @pulumi.input_type
 class PolicyAssignmentPolicyFilterArgs:
@@ -510,17 +624,14 @@ class PolicyAssignmentPolicyFilterArgs:
         pulumi.set(self, "tag_value", value)
 
 
-if not MYPY:
-    class RemediationConfigurationResourceParameterArgsDict(TypedDict):
-        resource_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name for passing the resource ID.
+class RemediationConfigurationResourceParameterArgsDict(TypedDict):
+    resource_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name for passing the resource ID.
 
-        <a name="static_parameter_struct"></a>
-        The `static_parameter` block supports:
-        """
-elif False:
-    RemediationConfigurationResourceParameterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="static_parameter_struct"></a>
+    The `static_parameter` block supports:
+    """
 
 @pulumi.input_type
 class RemediationConfigurationResourceParameterArgs:
@@ -550,18 +661,15 @@ class RemediationConfigurationResourceParameterArgs:
         pulumi.set(self, "resource_id", value)
 
 
-if not MYPY:
-    class RemediationConfigurationStaticParameterArgsDict(TypedDict):
-        var_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the static parameter name.
-        """
-        var_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the static parameter value in JSON format.
-        """
-elif False:
-    RemediationConfigurationStaticParameterArgsDict: TypeAlias = Mapping[str, Any]
+class RemediationConfigurationStaticParameterArgsDict(TypedDict):
+    var_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the static parameter name.
+    """
+    var_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the static parameter value in JSON format.
+    """
 
 @pulumi.input_type
 class RemediationConfigurationStaticParameterArgs:
@@ -602,26 +710,23 @@ class RemediationConfigurationStaticParameterArgs:
         pulumi.set(self, "var_value", value)
 
 
-if not MYPY:
-    class RemediationExceptionExceptionArgsDict(TypedDict):
-        resource_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource ID.
-        """
-        created_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creator of a remediation exception.
-        """
-        joined_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time when a remediation exception is added.
-        """
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the reason for adding an exception.
-        """
-elif False:
-    RemediationExceptionExceptionArgsDict: TypeAlias = Mapping[str, Any]
+class RemediationExceptionExceptionArgsDict(TypedDict):
+    resource_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource ID.
+    """
+    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creator of a remediation exception.
+    """
+    joined_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time when a remediation exception is added.
+    """
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the reason for adding an exception.
+    """
 
 @pulumi.input_type
 class RemediationExceptionExceptionArgs:
@@ -693,42 +798,39 @@ class RemediationExceptionExceptionArgs:
         pulumi.set(self, "message", value)
 
 
-if not MYPY:
-    class RemediationExecutionResultArgsDict(TypedDict):
-        automatic: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the remediation is automatic.
-        """
-        invocation_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The start time of remediation.
-        """
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The information of remediation execution.
-        """
-        resource_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The resource ID.
-        """
-        resource_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The resource name.
-        """
-        resource_provider: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The cloud service name.
-        """
-        resource_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The resource type.
-        """
-        state: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The execution state of remediation.
-        """
-elif False:
-    RemediationExecutionResultArgsDict: TypeAlias = Mapping[str, Any]
+class RemediationExecutionResultArgsDict(TypedDict):
+    automatic: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the remediation is automatic.
+    """
+    invocation_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The start time of remediation.
+    """
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The information of remediation execution.
+    """
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The resource ID.
+    """
+    resource_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The resource name.
+    """
+    resource_provider: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The cloud service name.
+    """
+    resource_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The resource type.
+    """
+    state: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The execution state of remediation.
+    """
 
 @pulumi.input_type
 class RemediationExecutionResultArgs:
@@ -865,18 +967,15 @@ class RemediationExecutionResultArgs:
         pulumi.set(self, "state", value)
 
 
-if not MYPY:
-    class ResourceRecorderObsChannelArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        Specifies the OBS bucket name used for data dumping.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region where this SMN topic is located.
-        """
-elif False:
-    ResourceRecorderObsChannelArgsDict: TypeAlias = Mapping[str, Any]
+class ResourceRecorderObsChannelArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    Specifies the OBS bucket name used for data dumping.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region where this SMN topic is located.
+    """
 
 @pulumi.input_type
 class ResourceRecorderObsChannelArgs:
@@ -915,22 +1014,19 @@ class ResourceRecorderObsChannelArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class ResourceRecorderSelectorArgsDict(TypedDict):
-        all_supported: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether to select all supported resources.
-        """
-        resource_types: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the resource type list. For details about the supported services and
-        resource types, see [Supported Services and Resource Types](https://support.huaweicloud.com/intl/en-us/api-rms/rms_06_0100.html).
+class ResourceRecorderSelectorArgsDict(TypedDict):
+    all_supported: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether to select all supported resources.
+    """
+    resource_types: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the resource type list. For details about the supported services and
+    resource types, see [Supported Services and Resource Types](https://support.huaweicloud.com/intl/en-us/api-rms/rms_06_0100.html).
 
-        <a name="Recorder_TrackerOBSChannelConfigBody"></a>
-        The `obs_channel` block supports:
-        """
-elif False:
-    ResourceRecorderSelectorArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Recorder_TrackerOBSChannelConfigBody"></a>
+    The `obs_channel` block supports:
+    """
 
 @pulumi.input_type
 class ResourceRecorderSelectorArgs:
@@ -978,22 +1074,19 @@ class ResourceRecorderSelectorArgs:
         pulumi.set(self, "resource_types", value)
 
 
-if not MYPY:
-    class ResourceRecorderSmnChannelArgsDict(TypedDict):
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the SMN topic URN used to send notifications.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the project ID where this SMN topic is located.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the region where this SMN topic is located.
-        """
-elif False:
-    ResourceRecorderSmnChannelArgsDict: TypeAlias = Mapping[str, Any]
+class ResourceRecorderSmnChannelArgsDict(TypedDict):
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the SMN topic URN used to send notifications.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID where this SMN topic is located.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region where this SMN topic is located.
+    """
 
 @pulumi.input_type
 class ResourceRecorderSmnChannelArgs:
@@ -1049,22 +1142,19 @@ class ResourceRecorderSmnChannelArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class GetRemediationExecutionStatusesResourceKeyArgsDict(TypedDict):
-        resource_id: _builtins.str
-        """
-        The resource ID.
-        """
-        resource_provider: _builtins.str
-        """
-        The cloud service name.
-        """
-        resource_type: _builtins.str
-        """
-        The resource type.
-        """
-elif False:
-    GetRemediationExecutionStatusesResourceKeyArgsDict: TypeAlias = Mapping[str, Any]
+class GetRemediationExecutionStatusesResourceKeyArgsDict(TypedDict):
+    resource_id: _builtins.str
+    """
+    The resource ID.
+    """
+    resource_provider: _builtins.str
+    """
+    The cloud service name.
+    """
+    resource_type: _builtins.str
+    """
+    The resource type.
+    """
 
 @pulumi.input_type
 class GetRemediationExecutionStatusesResourceKeyArgs:
@@ -1118,26 +1208,23 @@ class GetRemediationExecutionStatusesResourceKeyArgs:
         pulumi.set(self, "resource_type", value)
 
 
-if not MYPY:
-    class GetResourceAggregatorDiscoveredResourcesFilterArgsDict(TypedDict):
-        account_id: NotRequired[_builtins.str]
-        """
-        Specifies the ID of account to which the resource belongs.
-        """
-        region_id: NotRequired[_builtins.str]
-        """
-        Specifies the ID of region to which the resource belongs.
-        """
-        resource_id: NotRequired[_builtins.str]
-        """
-        Specifies resource ID.
-        """
-        resource_name: NotRequired[_builtins.str]
-        """
-        Specifies resource name.
-        """
-elif False:
-    GetResourceAggregatorDiscoveredResourcesFilterArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourceAggregatorDiscoveredResourcesFilterArgsDict(TypedDict):
+    account_id: NotRequired[_builtins.str]
+    """
+    Specifies the ID of account to which the resource belongs.
+    """
+    region_id: NotRequired[_builtins.str]
+    """
+    Specifies the ID of region to which the resource belongs.
+    """
+    resource_id: NotRequired[_builtins.str]
+    """
+    Specifies resource ID.
+    """
+    resource_name: NotRequired[_builtins.str]
+    """
+    Specifies resource name.
+    """
 
 @pulumi.input_type
 class GetResourceAggregatorDiscoveredResourcesFilterArgs:
@@ -1210,23 +1297,20 @@ class GetResourceAggregatorDiscoveredResourcesFilterArgs:
         pulumi.set(self, "resource_name", value)
 
 
-if not MYPY:
-    class GetResourceAggregatorPolicyAssignmentsFilterArgsDict(TypedDict):
-        account_id: NotRequired[_builtins.str]
-        """
-        Specifies the ID of account to which the resource belongs.
-        """
-        compliance_state: NotRequired[_builtins.str]
-        """
-        Specifies the compliance state.
-        The value can be: **Compliant** and **NonCompliant**.
-        """
-        policy_assignment_name: NotRequired[_builtins.str]
-        """
-        Specifies the policy assignment name.
-        """
-elif False:
-    GetResourceAggregatorPolicyAssignmentsFilterArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourceAggregatorPolicyAssignmentsFilterArgsDict(TypedDict):
+    account_id: NotRequired[_builtins.str]
+    """
+    Specifies the ID of account to which the resource belongs.
+    """
+    compliance_state: NotRequired[_builtins.str]
+    """
+    Specifies the compliance state.
+    The value can be: **Compliant** and **NonCompliant**.
+    """
+    policy_assignment_name: NotRequired[_builtins.str]
+    """
+    Specifies the policy assignment name.
+    """
 
 @pulumi.input_type
 class GetResourceAggregatorPolicyAssignmentsFilterArgs:
@@ -1285,18 +1369,15 @@ class GetResourceAggregatorPolicyAssignmentsFilterArgs:
         pulumi.set(self, "policy_assignment_name", value)
 
 
-if not MYPY:
-    class GetResourceInstancesTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the tag key.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the tag values.
-        """
-elif False:
-    GetResourceInstancesTagArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourceInstancesTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values.
+    """
 
 @pulumi.input_type
 class GetResourceInstancesTagArgs:

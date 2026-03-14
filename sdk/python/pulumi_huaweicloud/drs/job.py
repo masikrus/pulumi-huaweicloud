@@ -58,6 +58,7 @@ class JobArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Job resource.
+
         :param pulumi.Input['JobDestinationDbArgs'] destination_db: Specifies the destination database configuration.
                The db_info structure of the `destination_db` is documented below.
                Changing this parameter will create a new resource.
@@ -808,6 +809,7 @@ class _JobState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Job resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action of job. The options are as follows:
                + **stop**: Stop the job. Available when job status is **FULL_TRANSFER_STARTED**, **FULL_TRANSFER_COMPLETE** or
                **INCRE_TRANSFER_STARTED**.
@@ -1768,51 +1770,22 @@ class Job(pulumi.CustomResource):
 
         The DRS job can be imported by `id`. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Drs/job:Job test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enterprise_project_id`, `force_destroy`,
-
         `source_db.0.password`, `destination_db.0.password`, `source_db.0.ip`, `destination_db.0.ip`,
-
         `source_db.0.kafka_security_config.0.trust_store_password`, `destination_db.0.kafka_security_config.0.trust_store_password`,
-
         `source_db.0.kafka_security_config.0.key_store_password`,`destination_db.0.kafka_security_config.0.key_store_password`,
-
         `source_db.0.kafka_security_config.0.key_password`, `destination_db.0.kafka_security_config.0.key_password`,
-
         `action`, `is_sync_re_edit`, `pause_mode`, `auto_renew`, `alarm_notify.0.topic_urn`, `policy_config`, `engine_type`,
-
         `public_ip_list`, `start_time`.
-
         It is generally recommended running **pulumi preview** after importing a job. You can then
-
         decide if changes should be applied to the job, or the resource definition should be updated to align with the job. Also
-
         you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_drs_job" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_db.0.password, destination_db.0.password, action,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1954,51 +1927,22 @@ class Job(pulumi.CustomResource):
 
         The DRS job can be imported by `id`. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Drs/job:Job test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enterprise_project_id`, `force_destroy`,
-
         `source_db.0.password`, `destination_db.0.password`, `source_db.0.ip`, `destination_db.0.ip`,
-
         `source_db.0.kafka_security_config.0.trust_store_password`, `destination_db.0.kafka_security_config.0.trust_store_password`,
-
         `source_db.0.kafka_security_config.0.key_store_password`,`destination_db.0.kafka_security_config.0.key_store_password`,
-
         `source_db.0.kafka_security_config.0.key_password`, `destination_db.0.kafka_security_config.0.key_password`,
-
         `action`, `is_sync_re_edit`, `pause_mode`, `auto_renew`, `alarm_notify.0.topic_urn`, `policy_config`, `engine_type`,
-
         `public_ip_list`, `start_time`.
-
         It is generally recommended running **pulumi preview** after importing a job. You can then
-
         decide if changes should be applied to the job, or the resource definition should be updated to align with the job. Also
-
         you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_drs_job" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_db.0.password, destination_db.0.password, action,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param JobArgs args: The arguments to use to populate this resource's properties.

@@ -28,6 +28,7 @@ class DataObjectRelationsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataObjectRelations resource.
+
         :param pulumi.Input[_builtins.str] data_class: Specifies the data class to which the data object belongs.
                The value can be **incidents**, **alerts** and **indicators**.
         :param pulumi.Input[_builtins.str] data_object_id: Specifies the ID of the data object.
@@ -147,6 +148,7 @@ class _DataObjectRelationsState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataObjectRelations resources.
+
         :param pulumi.Input[_builtins.str] data_class: Specifies the data class to which the data object belongs.
                The value can be **incidents**, **alerts** and **indicators**.
         :param pulumi.Input[_builtins.str] data_object_id: Specifies the ID of the data object.
@@ -259,7 +261,7 @@ class _DataObjectRelationsState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/dataObjectRelations:DataObjectRelations")
+@pulumi.type_token("huaweicloud:Secmaster/dataObjectRelations:DataObjectRelations")
 class DataObjectRelations(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -297,14 +299,12 @@ class DataObjectRelations(pulumi.CustomResource):
         ## Import
 
         The SecMaster data object relations can be imported using `workspace_id`, `data_class`, `data_object_id` and
-
         `related_data_class` separated by slashs, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/dataObjectRelations:DataObjectRelations test <workspace_id>/<data_class>/<data_object_id>/<related_data_class>
+        $ pulumi import huaweicloud:Secmaster/dataObjectRelations:DataObjectRelations test <workspace_id>/<data_class>/<data_object_id>/<related_data_class>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -349,14 +349,12 @@ class DataObjectRelations(pulumi.CustomResource):
         ## Import
 
         The SecMaster data object relations can be imported using `workspace_id`, `data_class`, `data_object_id` and
-
         `related_data_class` separated by slashs, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/dataObjectRelations:DataObjectRelations test <workspace_id>/<data_class>/<data_object_id>/<related_data_class>
+        $ pulumi import huaweicloud:Secmaster/dataObjectRelations:DataObjectRelations test <workspace_id>/<data_class>/<data_object_id>/<related_data_class>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataObjectRelationsArgs args: The arguments to use to populate this resource's properties.
@@ -407,7 +405,7 @@ class DataObjectRelations(pulumi.CustomResource):
                 raise TypeError("Missing required property 'workspace_id'")
             __props__.__dict__["workspace_id"] = workspace_id
         super(DataObjectRelations, __self__).__init__(
-            'huaweicloud:secmaster/dataObjectRelations:DataObjectRelations',
+            'huaweicloud:Secmaster/dataObjectRelations:DataObjectRelations',
             resource_name,
             __props__,
             opts)

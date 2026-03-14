@@ -84,7 +84,7 @@ def get_inspector_website_scan_tasks(domain_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     domain_id = config.require_object("domainId")
-    test = huaweicloud.codearts.get_inspector_website_scan_tasks(domain_id=domain_id)
+    test = huaweicloud.Codearts.get_inspector_website_scan_tasks(domain_id=domain_id)
     ```
 
 
@@ -93,7 +93,7 @@ def get_inspector_website_scan_tasks(domain_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['domainId'] = domain_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getInspectorWebsiteScanTasks:getInspectorWebsiteScanTasks', __args__, opts=opts, typ=GetInspectorWebsiteScanTasksResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getInspectorWebsiteScanTasks:getInspectorWebsiteScanTasks', __args__, opts=opts, typ=GetInspectorWebsiteScanTasksResult).value
 
     return AwaitableGetInspectorWebsiteScanTasksResult(
         domain_id=pulumi.get(__ret__, 'domain_id'),
@@ -112,7 +112,7 @@ def get_inspector_website_scan_tasks_output(domain_id: Optional[pulumi.Input[_bu
 
     config = pulumi.Config()
     domain_id = config.require_object("domainId")
-    test = huaweicloud.codearts.get_inspector_website_scan_tasks(domain_id=domain_id)
+    test = huaweicloud.Codearts.get_inspector_website_scan_tasks(domain_id=domain_id)
     ```
 
 
@@ -121,7 +121,7 @@ def get_inspector_website_scan_tasks_output(domain_id: Optional[pulumi.Input[_bu
     __args__ = dict()
     __args__['domainId'] = domain_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getInspectorWebsiteScanTasks:getInspectorWebsiteScanTasks', __args__, opts=opts, typ=GetInspectorWebsiteScanTasksResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getInspectorWebsiteScanTasks:getInspectorWebsiteScanTasks', __args__, opts=opts, typ=GetInspectorWebsiteScanTasksResult)
     return __ret__.apply(lambda __response__: GetInspectorWebsiteScanTasksResult(
         domain_id=pulumi.get(__response__, 'domain_id'),
         id=pulumi.get(__response__, 'id'),

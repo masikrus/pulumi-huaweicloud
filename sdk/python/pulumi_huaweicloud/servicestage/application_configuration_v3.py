@@ -28,6 +28,7 @@ class ApplicationConfigurationV3Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApplicationConfigurationV3 resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application to which the configuration
                belongs.
         :param pulumi.Input['ApplicationConfigurationV3ConfigurationArgs'] configuration: Specifies the configuration of the application.  
@@ -123,6 +124,7 @@ class _ApplicationConfigurationV3State:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ApplicationConfigurationV3 resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application to which the configuration
                belongs.
         :param pulumi.Input['ApplicationConfigurationV3ConfigurationArgs'] configuration: Specifies the configuration of the application.  
@@ -243,7 +245,7 @@ class ApplicationConfigurationV3(pulumi.CustomResource):
                 "envs": [{
                     "name": entry["value"]["name"],
                     "value": entry["value"]["value"],
-                } for entry in [{"key": k, "value": v} for k, v in environment_variables]],
+                } for entry in [{"key": k, "value": v} for k, v in environment_variables.items()]],
                 "assign_strategy": True,
             })
         ```
@@ -252,11 +254,10 @@ class ApplicationConfigurationV3(pulumi.CustomResource):
 
         Application configuration can be imported using `environment_id` and `application_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/applicationConfigurationV3:ApplicationConfigurationV3 test <environment_id>/<application_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -298,7 +299,7 @@ class ApplicationConfigurationV3(pulumi.CustomResource):
                 "envs": [{
                     "name": entry["value"]["name"],
                     "value": entry["value"]["value"],
-                } for entry in [{"key": k, "value": v} for k, v in environment_variables]],
+                } for entry in [{"key": k, "value": v} for k, v in environment_variables.items()]],
                 "assign_strategy": True,
             })
         ```
@@ -307,11 +308,10 @@ class ApplicationConfigurationV3(pulumi.CustomResource):
 
         Application configuration can be imported using `environment_id` and `application_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/applicationConfigurationV3:ApplicationConfigurationV3 test <environment_id>/<application_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationConfigurationV3Args args: The arguments to use to populate this resource's properties.

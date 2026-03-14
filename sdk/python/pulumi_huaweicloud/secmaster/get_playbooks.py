@@ -150,7 +150,7 @@ def get_playbooks(data_class_name: Optional[_builtins.str] = None,
     config = pulumi.Config()
     name = config.require_object("name")
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_playbooks(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbooks(workspace_id=workspace_id,
         name=name)
     ```
 
@@ -171,7 +171,7 @@ def get_playbooks(data_class_name: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getPlaybooks:getPlaybooks', __args__, opts=opts, typ=GetPlaybooksResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getPlaybooks:getPlaybooks', __args__, opts=opts, typ=GetPlaybooksResult).value
 
     return AwaitableGetPlaybooksResult(
         data_class_name=pulumi.get(__ret__, 'data_class_name'),
@@ -201,7 +201,7 @@ def get_playbooks_output(data_class_name: Optional[pulumi.Input[Optional[_builti
     config = pulumi.Config()
     name = config.require_object("name")
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_playbooks(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbooks(workspace_id=workspace_id,
         name=name)
     ```
 
@@ -222,7 +222,7 @@ def get_playbooks_output(data_class_name: Optional[pulumi.Input[Optional[_builti
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getPlaybooks:getPlaybooks', __args__, opts=opts, typ=GetPlaybooksResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getPlaybooks:getPlaybooks', __args__, opts=opts, typ=GetPlaybooksResult)
     return __ret__.apply(lambda __response__: GetPlaybooksResult(
         data_class_name=pulumi.get(__response__, 'data_class_name'),
         description=pulumi.get(__response__, 'description'),

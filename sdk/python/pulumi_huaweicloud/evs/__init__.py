@@ -10,6 +10,9 @@ from .get_availability_zones import *
 from .get_availability_zones_v3 import *
 from .get_quotas import *
 from .get_quotas_v3 import *
+from .get_recycle_bin_policy import *
+from .get_recycle_bin_volume_detail import *
+from .get_recycle_bin_volumes_detail import *
 from .get_snapshot_chains import *
 from .get_snapshot_groups import *
 from .get_snapshot_groups_tags import *
@@ -29,6 +32,9 @@ from .get_volume_types_v3 import *
 from .get_volumes import *
 from .get_volumes_by_tags import *
 from .get_volumes_v3 import *
+from .recycle_bin_policy import *
+from .recycle_bin_volume_delete import *
+from .recycle_bin_volume_revert import *
 from .snapshot import *
 from .snapshot_group import *
 from .snapshot_metadata import *

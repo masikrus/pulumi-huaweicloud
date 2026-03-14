@@ -25,6 +25,7 @@ class ServiceGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceGroup resource.
+
         :param pulumi.Input[_builtins.str] object_id: Specifies the protected object ID.
                
                Changing this parameter will create a new resource.
@@ -102,6 +103,7 @@ class _ServiceGroupState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceGroup resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the service group description.
         :param pulumi.Input[_builtins.str] name: Specifies the service group name.
         :param pulumi.Input[_builtins.str] object_id: Specifies the protected object ID.
@@ -205,11 +207,10 @@ class ServiceGroup(pulumi.CustomResource):
 
         The service group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/serviceGroup:ServiceGroup test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -250,11 +251,10 @@ class ServiceGroup(pulumi.CustomResource):
 
         The service group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/serviceGroup:ServiceGroup test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceGroupArgs args: The arguments to use to populate this resource's properties.

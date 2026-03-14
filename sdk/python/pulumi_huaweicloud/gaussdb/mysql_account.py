@@ -27,6 +27,7 @@ class MysqlAccountArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlAccount resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance.
                
                Changing this parameter will create a new resource.
@@ -157,6 +158,7 @@ class _MysqlAccountState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlAccount resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the database user remarks. The value can consist of up to 512 characters,
                and cannot contain the carriage return characters or special characters (!<"='>&).This field is only suitable for
                instances 2.0.13.0 or later.
@@ -313,39 +315,16 @@ class MysqlAccount(pulumi.CustomResource):
 
         The GaussDB MySQL account can be imported using the `instance_id`, `name` and `host` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlAccount:MysqlAccount test <instance_id>/<name>/<host>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`. It is generally recommended
-
         running `pulumi preview` after importing a cluster. You can then decide if changes should be applied to the GaussDB
-
         MySQL account, or the resource definition should be updated to align with the GaussDB MySQL account. Also you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_mysql_account" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -398,39 +377,16 @@ class MysqlAccount(pulumi.CustomResource):
 
         The GaussDB MySQL account can be imported using the `instance_id`, `name` and `host` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlAccount:MysqlAccount test <instance_id>/<name>/<host>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`. It is generally recommended
-
         running `pulumi preview` after importing a cluster. You can then decide if changes should be applied to the GaussDB
-
         MySQL account, or the resource definition should be updated to align with the GaussDB MySQL account. Also you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_mysql_account" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param MysqlAccountArgs args: The arguments to use to populate this resource's properties.

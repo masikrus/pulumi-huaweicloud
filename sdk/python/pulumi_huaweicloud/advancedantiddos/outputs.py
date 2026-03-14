@@ -17,16 +17,20 @@ from . import outputs
 
 __all__ = [
     'ChangeSpecificationUpgradeData',
+    'DomainCertificateCertInfo',
     'GetAttackEventsEventResult',
     'GetAttackEventsEventBackendResult',
     'GetBandwidthCurveCurveResult',
     'GetBlackWhiteListsIpResult',
+    'GetConnectionNumbersDataResult',
+    'GetConnectionNumbersDataListResult',
     'GetCustomRulesItemResult',
     'GetCustomRulesItemActionResult',
     'GetCustomRulesItemConditionResult',
     'GetDdosAttackProtectionInfoFlowBpResult',
     'GetDdosAttackProtectionInfoFlowPpResult',
     'GetDomainCertificateCertInfoResult',
+    'GetDomainGlobalConfigCipherResult',
     'GetDomainsItemResult',
     'GetFlowBlockIpResult',
     'GetFrequencyControlRulesItemResult',
@@ -39,9 +43,12 @@ __all__ = [
     'GetInstanceDomainsDomainResult',
     'GetInstancesItemResult',
     'GetInstancesItemIpResult',
+    'GetInstancesV2ItemResult',
+    'GetInstancesV2ItemVipResult',
     'GetPolicyBlackWhiteListsBlackResult',
     'GetPolicyBlackWhiteListsWhiteResult',
     'GetQpsCurveCurveResult',
+    'GetSourceIpListIpResult',
     'GetUnblockRecordsUnblockRecordResult',
     'GetWebProtectionPoliciesOptionResult',
 ]
@@ -136,6 +143,96 @@ class ChangeSpecificationUpgradeData(dict):
         Specifies the service bandwidth (Mbps).
         """
         return pulumi.get(self, "service_bandwidth")
+
+
+@pulumi.output_type
+class DomainCertificateCertInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "applyDomain":
+            suggest = "apply_domain"
+        elif key == "certName":
+            suggest = "cert_name"
+        elif key == "expireStatus":
+            suggest = "expire_status"
+        elif key == "expireTime":
+            suggest = "expire_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DomainCertificateCertInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DomainCertificateCertInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DomainCertificateCertInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 apply_domain: Optional[_builtins.str] = None,
+                 cert_name: Optional[_builtins.str] = None,
+                 expire_status: Optional[_builtins.int] = None,
+                 expire_time: Optional[_builtins.int] = None,
+                 id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str apply_domain: The applicable domain.
+        :param _builtins.str cert_name: Specifies the certificate name.
+        :param _builtins.int expire_status: The expiration status.
+        :param _builtins.int expire_time: The expiration time.
+        :param _builtins.str id: The certificate ID.
+        """
+        if apply_domain is not None:
+            pulumi.set(__self__, "apply_domain", apply_domain)
+        if cert_name is not None:
+            pulumi.set(__self__, "cert_name", cert_name)
+        if expire_status is not None:
+            pulumi.set(__self__, "expire_status", expire_status)
+        if expire_time is not None:
+            pulumi.set(__self__, "expire_time", expire_time)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="applyDomain")
+    def apply_domain(self) -> Optional[_builtins.str]:
+        """
+        The applicable domain.
+        """
+        return pulumi.get(self, "apply_domain")
+
+    @_builtins.property
+    @pulumi.getter(name="certName")
+    def cert_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the certificate name.
+        """
+        return pulumi.get(self, "cert_name")
+
+    @_builtins.property
+    @pulumi.getter(name="expireStatus")
+    def expire_status(self) -> Optional[_builtins.int]:
+        """
+        The expiration status.
+        """
+        return pulumi.get(self, "expire_status")
+
+    @_builtins.property
+    @pulumi.getter(name="expireTime")
+    def expire_time(self) -> Optional[_builtins.int]:
+        """
+        The expiration time.
+        """
+        return pulumi.get(self, "expire_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The certificate ID.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -342,6 +439,66 @@ class GetBlackWhiteListsIpResult(dict):
         The black white IP address.
         """
         return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
+class GetConnectionNumbersDataResult(dict):
+    def __init__(__self__, *,
+                 lists: Sequence['outputs.GetConnectionNumbersDataListResult'],
+                 name: _builtins.str):
+        """
+        :param Sequence['GetConnectionNumbersDataListArgs'] lists: The connection number data items.  
+               The list structure is documented below.
+        :param _builtins.str name: The connection number name.
+        """
+        pulumi.set(__self__, "lists", lists)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def lists(self) -> Sequence['outputs.GetConnectionNumbersDataListResult']:
+        """
+        The connection number data items.  
+        The list structure is documented below.
+        """
+        return pulumi.get(self, "lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The connection number name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetConnectionNumbersDataListResult(dict):
+    def __init__(__self__, *,
+                 time: _builtins.int,
+                 value: _builtins.int):
+        """
+        :param _builtins.int time: The timestamp in milliseconds.
+        :param _builtins.int value: The connection number value.
+        """
+        pulumi.set(__self__, "time", time)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The timestamp in milliseconds.
+        """
+        return pulumi.get(self, "time")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.int:
+        """
+        The connection number value.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -716,6 +873,57 @@ class GetDomainCertificateCertInfoResult(dict):
         The certificate ID.
         """
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetDomainGlobalConfigCipherResult(dict):
+    def __init__(__self__, *,
+                 algo: _builtins.str,
+                 desc_cn: _builtins.str,
+                 desc_en: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str algo: The cryptographic algorithm.
+        :param _builtins.str desc_cn: The Chinese description.
+        :param _builtins.str desc_en: The English description.
+        :param _builtins.str name: The suite name.
+        """
+        pulumi.set(__self__, "algo", algo)
+        pulumi.set(__self__, "desc_cn", desc_cn)
+        pulumi.set(__self__, "desc_en", desc_en)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def algo(self) -> _builtins.str:
+        """
+        The cryptographic algorithm.
+        """
+        return pulumi.get(self, "algo")
+
+    @_builtins.property
+    @pulumi.getter(name="descCn")
+    def desc_cn(self) -> _builtins.str:
+        """
+        The Chinese description.
+        """
+        return pulumi.get(self, "desc_cn")
+
+    @_builtins.property
+    @pulumi.getter(name="descEn")
+    def desc_en(self) -> _builtins.str:
+        """
+        The English description.
+        """
+        return pulumi.get(self, "desc_en")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The suite name.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -1692,6 +1900,136 @@ class GetInstancesItemIpResult(dict):
 
 
 @pulumi.output_type
+class GetInstancesV2ItemResult(dict):
+    def __init__(__self__, *,
+                 enterprise_project_id: _builtins.str,
+                 instance_access_type: _builtins.str,
+                 instance_id: _builtins.str,
+                 instance_name: _builtins.str,
+                 overseas_type: _builtins.int,
+                 pp_enable: _builtins.int,
+                 pp_support: _builtins.int,
+                 vips: Sequence['outputs.GetInstancesV2ItemVipResult']):
+        """
+        :param _builtins.str enterprise_project_id: The enterprise project ID.
+        :param _builtins.str instance_access_type: Specifies the access type.  
+               The valid values are as follows:
+               + **0**: Website instance.
+               + **1**: IP access instance.
+        :param _builtins.str instance_id: The instance ID.
+        :param _builtins.str instance_name: The name of the instance.
+        :param _builtins.int overseas_type: The protection region. `0` indicates mainland China, and `1` indicates overseas.
+        :param _builtins.int pp_enable: Whether the customer has enabled PP. `1` indicates enabled, and `0` indicates disabled.
+        :param _builtins.int pp_support: Whether PP is supported. `1` indicates supported, and `0` indicates not supported.
+        :param Sequence['GetInstancesV2ItemVipArgs'] vips: The high-defense IP information.
+        """
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "instance_access_type", instance_access_type)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "overseas_type", overseas_type)
+        pulumi.set(__self__, "pp_enable", pp_enable)
+        pulumi.set(__self__, "pp_support", pp_support)
+        pulumi.set(__self__, "vips", vips)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        The enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceAccessType")
+    def instance_access_type(self) -> _builtins.str:
+        """
+        Specifies the access type.  
+        The valid values are as follows:
+        + **0**: Website instance.
+        + **1**: IP access instance.
+        """
+        return pulumi.get(self, "instance_access_type")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        The instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> _builtins.str:
+        """
+        The name of the instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @_builtins.property
+    @pulumi.getter(name="overseasType")
+    def overseas_type(self) -> _builtins.int:
+        """
+        The protection region. `0` indicates mainland China, and `1` indicates overseas.
+        """
+        return pulumi.get(self, "overseas_type")
+
+    @_builtins.property
+    @pulumi.getter(name="ppEnable")
+    def pp_enable(self) -> _builtins.int:
+        """
+        Whether the customer has enabled PP. `1` indicates enabled, and `0` indicates disabled.
+        """
+        return pulumi.get(self, "pp_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="ppSupport")
+    def pp_support(self) -> _builtins.int:
+        """
+        Whether PP is supported. `1` indicates supported, and `0` indicates not supported.
+        """
+        return pulumi.get(self, "pp_support")
+
+    @_builtins.property
+    @pulumi.getter
+    def vips(self) -> Sequence['outputs.GetInstancesV2ItemVipResult']:
+        """
+        The high-defense IP information.
+        """
+        return pulumi.get(self, "vips")
+
+
+@pulumi.output_type
+class GetInstancesV2ItemVipResult(dict):
+    def __init__(__self__, *,
+                 ip: _builtins.str,
+                 isp: _builtins.str):
+        """
+        :param _builtins.str ip: The IP address.
+        :param _builtins.str isp: The line.
+        """
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "isp", isp)
+
+    @_builtins.property
+    @pulumi.getter
+    def ip(self) -> _builtins.str:
+        """
+        The IP address.
+        """
+        return pulumi.get(self, "ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def isp(self) -> _builtins.str:
+        """
+        The line.
+        """
+        return pulumi.get(self, "isp")
+
+
+@pulumi.output_type
 class GetPolicyBlackWhiteListsBlackResult(dict):
     def __init__(__self__, *,
                  domain_id: _builtins.str,
@@ -1864,6 +2202,46 @@ class GetQpsCurveCurveResult(dict):
         The total number of requests.
         """
         return pulumi.get(self, "total")
+
+
+@pulumi.output_type
+class GetSourceIpListIpResult(dict):
+    def __init__(__self__, *,
+                 data_center: _builtins.str,
+                 ips: Sequence[_builtins.str],
+                 isp: _builtins.str):
+        """
+        :param _builtins.str data_center: The data center.
+        :param Sequence[_builtins.str] ips: The instance IP address.
+        :param _builtins.str isp: The line.
+        """
+        pulumi.set(__self__, "data_center", data_center)
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "isp", isp)
+
+    @_builtins.property
+    @pulumi.getter(name="dataCenter")
+    def data_center(self) -> _builtins.str:
+        """
+        The data center.
+        """
+        return pulumi.get(self, "data_center")
+
+    @_builtins.property
+    @pulumi.getter
+    def ips(self) -> Sequence[_builtins.str]:
+        """
+        The instance IP address.
+        """
+        return pulumi.get(self, "ips")
+
+    @_builtins.property
+    @pulumi.getter
+    def isp(self) -> _builtins.str:
+        """
+        The line.
+        """
+        return pulumi.get(self, "isp")
 
 
 @pulumi.output_type

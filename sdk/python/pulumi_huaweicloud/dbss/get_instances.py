@@ -85,7 +85,7 @@ def get_instances(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dbss.get_instances()
+    test = huaweicloud.Dbss.get_instances()
     ```
 
 
@@ -95,7 +95,7 @@ def get_instances(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dbss/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dbss/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
 
     return AwaitableGetInstancesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -112,7 +112,7 @@ def get_instances_output(region: Optional[pulumi.Input[Optional[_builtins.str]]]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dbss.get_instances()
+    test = huaweicloud.Dbss.get_instances()
     ```
 
 
@@ -122,7 +122,7 @@ def get_instances_output(region: Optional[pulumi.Input[Optional[_builtins.str]]]
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dbss/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dbss/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
     return __ret__.apply(lambda __response__: GetInstancesResult(
         id=pulumi.get(__response__, 'id'),
         instances=pulumi.get(__response__, 'instances'),

@@ -15,6 +15,14 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'AlarmActionTargetInstanceArgs',
+    'AlarmActionTargetInstanceArgsDict',
+    'AlarmActionTargetInstanceSubTargetInstanceArgs',
+    'AlarmActionTargetInstanceSubTargetInstanceArgsDict',
+    'ChangeUpdateSubTicketArgs',
+    'ChangeUpdateSubTicketArgsDict',
+    'DiagnosisTaskNodeListArgs',
+    'DiagnosisTaskNodeListArgsDict',
     'DocumentExecuteExecutionParameterArgs',
     'DocumentExecuteExecutionParameterArgsDict',
     'DocumentExecuteParameterArgs',
@@ -25,38 +33,708 @@ __all__ = [
     'DocumentExecuteTargetArgsDict',
     'DocumentVersionArgs',
     'DocumentVersionArgsDict',
+    'GroupRelationConfigurationArgs',
+    'GroupRelationConfigurationArgsDict',
+    'GroupSyncRuleArgs',
+    'GroupSyncRuleArgsDict',
     'IncidentEnumDataListArgs',
     'IncidentEnumDataListArgsDict',
+    'IssueEnumDataListArgs',
+    'IssueEnumDataListArgsDict',
+    'IssueSubTicketArgs',
+    'IssueSubTicketArgsDict',
+    'OtherResourceUniagentSyncResourceInfoArgs',
+    'OtherResourceUniagentSyncResourceInfoArgsDict',
+    'PublicScriptExecuteExecuteBatchArgs',
+    'PublicScriptExecuteExecuteBatchArgsDict',
+    'PublicScriptExecuteExecuteBatchTargetInstanceArgs',
+    'PublicScriptExecuteExecuteBatchTargetInstanceArgsDict',
+    'PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgs',
+    'PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgsDict',
+    'PublicScriptExecuteScriptParamArgs',
+    'PublicScriptExecuteScriptParamArgsDict',
+    'PublicScriptExecuteScriptParamParamReferArgs',
+    'PublicScriptExecuteScriptParamParamReferArgsDict',
+    'ResourceUniagentSyncResourceInfoArgs',
+    'ResourceUniagentSyncResourceInfoArgsDict',
+    'ScheduledTaskMessageNotificationArgs',
+    'ScheduledTaskMessageNotificationArgsDict',
+    'ScheduledTaskReviewerNotificationArgs',
+    'ScheduledTaskReviewerNotificationArgsDict',
+    'ScheduledTaskTargetInstanceArgs',
+    'ScheduledTaskTargetInstanceArgsDict',
+    'ScheduledTaskTargetInstanceSubTargetInstanceArgs',
+    'ScheduledTaskTargetInstanceSubTargetInstanceArgsDict',
+    'ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgs',
+    'ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgsDict',
+    'ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgs',
+    'ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgsDict',
+    'ScheduledTaskTargetInstanceTargetResourceArgs',
+    'ScheduledTaskTargetInstanceTargetResourceArgsDict',
+    'ScheduledTaskTargetInstanceTargetResourceParamArgs',
+    'ScheduledTaskTargetInstanceTargetResourceParamArgsDict',
+    'ScheduledTaskTicketInfoArgs',
+    'ScheduledTaskTicketInfoArgsDict',
+    'ScheduledTaskTriggerTimeArgs',
+    'ScheduledTaskTriggerTimeArgsDict',
     'ScriptExecuteParameterArgs',
     'ScriptExecuteParameterArgsDict',
     'ScriptParameterArgs',
     'ScriptParameterArgsDict',
+    'ScriptReviewerArgs',
+    'ScriptReviewerArgsDict',
+    'TicketAddSubTicketArgs',
+    'TicketAddSubTicketArgsDict',
     'WarRoomIncidentArgs',
     'WarRoomIncidentArgsDict',
     'WarRoomScheduleGroupArgs',
     'WarRoomScheduleGroupArgsDict',
     'WarRoomWarRoomStatusArgs',
     'WarRoomWarRoomStatusArgsDict',
+    'GetApplicationCapacitiesProviderObjArgs',
+    'GetApplicationCapacitiesProviderObjArgsDict',
+    'GetIncidentActionHistoriesCountFilterArgs',
+    'GetIncidentActionHistoriesCountFilterArgsDict',
+    'GetIncidentActionHistoriesCountFilterFilterArgs',
+    'GetIncidentActionHistoriesCountFilterFilterArgsDict',
+    'GetIncidentActionHistoriesGroupByFilterArgs',
+    'GetIncidentActionHistoriesGroupByFilterArgsDict',
+    'GetIncidentActionHistoriesIntFilterArgs',
+    'GetIncidentActionHistoriesIntFilterArgsDict',
+    'GetIncidentActionHistoriesSortFilterArgs',
+    'GetIncidentActionHistoriesSortFilterArgsDict',
+    'GetIncidentActionHistoriesStringFilterArgs',
+    'GetIncidentActionHistoriesStringFilterArgsDict',
+    'GetIncidentsCountFilterArgs',
+    'GetIncidentsCountFilterArgsDict',
+    'GetIncidentsCountFilterFilterArgs',
+    'GetIncidentsCountFilterFilterArgsDict',
+    'GetIncidentsGroupByFilterArgs',
+    'GetIncidentsGroupByFilterArgsDict',
+    'GetIncidentsIntFilterArgs',
+    'GetIncidentsIntFilterArgsDict',
+    'GetIncidentsSortFilterArgs',
+    'GetIncidentsSortFilterArgsDict',
+    'GetIncidentsStringFilterArgs',
+    'GetIncidentsStringFilterArgsDict',
+    'GetInstanceBatchesTargetInstanceArgs',
+    'GetInstanceBatchesTargetInstanceArgsDict',
+    'GetInstanceBatchesTargetInstanceCustomAttributeArgs',
+    'GetInstanceBatchesTargetInstanceCustomAttributeArgsDict',
+    'GetInstanceBatchesTargetInstancePropertiesArgs',
+    'GetInstanceBatchesTargetInstancePropertiesArgsDict',
+    'GetIssueTicketsSortFilterArgs',
+    'GetIssueTicketsSortFilterArgsDict',
+    'GetIssueTicketsStringFilterArgs',
+    'GetIssueTicketsStringFilterArgsDict',
+    'GetTicketOperationHistoriesSortFilterArgs',
+    'GetTicketOperationHistoriesSortFilterArgsDict',
+    'GetTicketOperationHistoriesStringFilterArgs',
+    'GetTicketOperationHistoriesStringFilterArgsDict',
 ]
 
-MYPY = False
+class AlarmActionTargetInstanceArgsDict(TypedDict):
+    order_no: pulumi.Input[_builtins.int]
+    """
+    Specifies the step number.
+    """
+    target_selection: pulumi.Input[_builtins.str]
+    """
+    Specifies the target selection method.
+    The valid values are as follows:
+    + **ALL**: All instances.
+    + **MANUAL**: Manually select an instance.
+    + **NONE**: No instance.
+    """
+    batch_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the batching strategy.
+    The valid values are as follows:
+    + **AUTO_BATCH**: Automatic batching.
+    + **MANUAL_BATCH**: Manual batching.
+    + **NONE**: No batching.
+    """
+    sub_target_instances: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmActionTargetInstanceSubTargetInstanceArgsDict']]]]
+    """
+    Specifies the incident number.
 
-if not MYPY:
-    class DocumentExecuteExecutionParameterArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the dimension of the instantiated execution target.
-        The enumeration value as **InstanceValues**, **BatchValues**.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value.
+    The sub_target_instances structure is documented below.
+    """
+    target_instances: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance information.
+    """
 
-        <a name="targets_struct"></a>
-        The `targets` blocks support:
+@pulumi.input_type
+class AlarmActionTargetInstanceArgs:
+    def __init__(__self__, *,
+                 order_no: pulumi.Input[_builtins.int],
+                 target_selection: pulumi.Input[_builtins.str],
+                 batch_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 sub_target_instances: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmActionTargetInstanceSubTargetInstanceArgs']]]] = None,
+                 target_instances: Optional[pulumi.Input[_builtins.str]] = None):
         """
-elif False:
-    DocumentExecuteExecutionParameterArgsDict: TypeAlias = Mapping[str, Any]
+        :param pulumi.Input[_builtins.int] order_no: Specifies the step number.
+        :param pulumi.Input[_builtins.str] target_selection: Specifies the target selection method.
+               The valid values are as follows:
+               + **ALL**: All instances.
+               + **MANUAL**: Manually select an instance.
+               + **NONE**: No instance.
+        :param pulumi.Input[_builtins.str] batch_strategy: Specifies the batching strategy.
+               The valid values are as follows:
+               + **AUTO_BATCH**: Automatic batching.
+               + **MANUAL_BATCH**: Manual batching.
+               + **NONE**: No batching.
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmActionTargetInstanceSubTargetInstanceArgs']]] sub_target_instances: Specifies the incident number.
+               
+               The sub_target_instances structure is documented below.
+        :param pulumi.Input[_builtins.str] target_instances: Specifies the instance information.
+        """
+        pulumi.set(__self__, "order_no", order_no)
+        pulumi.set(__self__, "target_selection", target_selection)
+        if batch_strategy is not None:
+            pulumi.set(__self__, "batch_strategy", batch_strategy)
+        if sub_target_instances is not None:
+            pulumi.set(__self__, "sub_target_instances", sub_target_instances)
+        if target_instances is not None:
+            pulumi.set(__self__, "target_instances", target_instances)
+
+    @_builtins.property
+    @pulumi.getter(name="orderNo")
+    def order_no(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the step number.
+        """
+        return pulumi.get(self, "order_no")
+
+    @order_no.setter
+    def order_no(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "order_no", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetSelection")
+    def target_selection(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the target selection method.
+        The valid values are as follows:
+        + **ALL**: All instances.
+        + **MANUAL**: Manually select an instance.
+        + **NONE**: No instance.
+        """
+        return pulumi.get(self, "target_selection")
+
+    @target_selection.setter
+    def target_selection(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "target_selection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="batchStrategy")
+    def batch_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the batching strategy.
+        The valid values are as follows:
+        + **AUTO_BATCH**: Automatic batching.
+        + **MANUAL_BATCH**: Manual batching.
+        + **NONE**: No batching.
+        """
+        return pulumi.get(self, "batch_strategy")
+
+    @batch_strategy.setter
+    def batch_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "batch_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subTargetInstances")
+    def sub_target_instances(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlarmActionTargetInstanceSubTargetInstanceArgs']]]]:
+        """
+        Specifies the incident number.
+
+        The sub_target_instances structure is documented below.
+        """
+        return pulumi.get(self, "sub_target_instances")
+
+    @sub_target_instances.setter
+    def sub_target_instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmActionTargetInstanceSubTargetInstanceArgs']]]]):
+        pulumi.set(self, "sub_target_instances", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance information.
+        """
+        return pulumi.get(self, "target_instances")
+
+    @target_instances.setter
+    def target_instances(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target_instances", value)
+
+
+class AlarmActionTargetInstanceSubTargetInstanceArgsDict(TypedDict):
+    order_no: pulumi.Input[_builtins.int]
+    """
+    Specifies the step number.
+    """
+    target_selection: pulumi.Input[_builtins.str]
+    """
+    Specifies the target selection method.
+    The valid values are as follows:
+    + **ALL**: All instances.
+    + **MANUAL**: Manually select an instance.
+    + **NONE**: No instance.
+    """
+    batch_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the batching strategy.
+    The valid values are as follows:
+    + **AUTO_BATCH**: Automatic batching.
+    + **MANUAL_BATCH**: Manual batching.
+    + **NONE**: No batching.
+    """
+    target_instances: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance information.
+    """
+
+@pulumi.input_type
+class AlarmActionTargetInstanceSubTargetInstanceArgs:
+    def __init__(__self__, *,
+                 order_no: pulumi.Input[_builtins.int],
+                 target_selection: pulumi.Input[_builtins.str],
+                 batch_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_instances: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] order_no: Specifies the step number.
+        :param pulumi.Input[_builtins.str] target_selection: Specifies the target selection method.
+               The valid values are as follows:
+               + **ALL**: All instances.
+               + **MANUAL**: Manually select an instance.
+               + **NONE**: No instance.
+        :param pulumi.Input[_builtins.str] batch_strategy: Specifies the batching strategy.
+               The valid values are as follows:
+               + **AUTO_BATCH**: Automatic batching.
+               + **MANUAL_BATCH**: Manual batching.
+               + **NONE**: No batching.
+        :param pulumi.Input[_builtins.str] target_instances: Specifies the instance information.
+        """
+        pulumi.set(__self__, "order_no", order_no)
+        pulumi.set(__self__, "target_selection", target_selection)
+        if batch_strategy is not None:
+            pulumi.set(__self__, "batch_strategy", batch_strategy)
+        if target_instances is not None:
+            pulumi.set(__self__, "target_instances", target_instances)
+
+    @_builtins.property
+    @pulumi.getter(name="orderNo")
+    def order_no(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the step number.
+        """
+        return pulumi.get(self, "order_no")
+
+    @order_no.setter
+    def order_no(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "order_no", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetSelection")
+    def target_selection(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the target selection method.
+        The valid values are as follows:
+        + **ALL**: All instances.
+        + **MANUAL**: Manually select an instance.
+        + **NONE**: No instance.
+        """
+        return pulumi.get(self, "target_selection")
+
+    @target_selection.setter
+    def target_selection(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "target_selection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="batchStrategy")
+    def batch_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the batching strategy.
+        The valid values are as follows:
+        + **AUTO_BATCH**: Automatic batching.
+        + **MANUAL_BATCH**: Manual batching.
+        + **NONE**: No batching.
+        """
+        return pulumi.get(self, "batch_strategy")
+
+    @batch_strategy.setter
+    def batch_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "batch_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance information.
+        """
+        return pulumi.get(self, "target_instances")
+
+    @target_instances.setter
+    def target_instances(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target_instances", value)
+
+
+class ChangeUpdateSubTicketArgsDict(TypedDict):
+    change_fail_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the change failure type.
+    """
+    change_result: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the result of the change.
+    """
+    comment: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the reason why the change failed.
+    """
+    is_monitor_found: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the device is detected by monitoring.
+    """
+    is_rollback_success: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the rollback is successful.
+    """
+    is_verified_in_change_time: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether verification is possible within the
+    time window.
+    """
+    rollback_end_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the rollback end time.
+    """
+    rollback_start_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the rollback start time.
+    """
+    ticket_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the sub-order ID.
+    """
+    verified_docs: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the verification document ID.
+    """
+
+@pulumi.input_type
+class ChangeUpdateSubTicketArgs:
+    def __init__(__self__, *,
+                 change_fail_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 change_result: Optional[pulumi.Input[_builtins.str]] = None,
+                 comment: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_monitor_found: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_rollback_success: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_verified_in_change_time: Optional[pulumi.Input[_builtins.bool]] = None,
+                 rollback_end_time: Optional[pulumi.Input[_builtins.int]] = None,
+                 rollback_start_time: Optional[pulumi.Input[_builtins.int]] = None,
+                 ticket_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 verified_docs: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] change_fail_type: Specifies the change failure type.
+        :param pulumi.Input[_builtins.str] change_result: Specifies the result of the change.
+        :param pulumi.Input[_builtins.str] comment: Specifies the reason why the change failed.
+        :param pulumi.Input[_builtins.bool] is_monitor_found: Specifies whether the device is detected by monitoring.
+        :param pulumi.Input[_builtins.bool] is_rollback_success: Specifies whether the rollback is successful.
+        :param pulumi.Input[_builtins.bool] is_verified_in_change_time: Specifies whether verification is possible within the
+               time window.
+        :param pulumi.Input[_builtins.int] rollback_end_time: Specifies the rollback end time.
+        :param pulumi.Input[_builtins.int] rollback_start_time: Specifies the rollback start time.
+        :param pulumi.Input[_builtins.str] ticket_id: Specifies the sub-order ID.
+        :param pulumi.Input[_builtins.str] verified_docs: Specifies the verification document ID.
+        """
+        if change_fail_type is not None:
+            pulumi.set(__self__, "change_fail_type", change_fail_type)
+        if change_result is not None:
+            pulumi.set(__self__, "change_result", change_result)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if is_monitor_found is not None:
+            pulumi.set(__self__, "is_monitor_found", is_monitor_found)
+        if is_rollback_success is not None:
+            pulumi.set(__self__, "is_rollback_success", is_rollback_success)
+        if is_verified_in_change_time is not None:
+            pulumi.set(__self__, "is_verified_in_change_time", is_verified_in_change_time)
+        if rollback_end_time is not None:
+            pulumi.set(__self__, "rollback_end_time", rollback_end_time)
+        if rollback_start_time is not None:
+            pulumi.set(__self__, "rollback_start_time", rollback_start_time)
+        if ticket_id is not None:
+            pulumi.set(__self__, "ticket_id", ticket_id)
+        if verified_docs is not None:
+            pulumi.set(__self__, "verified_docs", verified_docs)
+
+    @_builtins.property
+    @pulumi.getter(name="changeFailType")
+    def change_fail_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the change failure type.
+        """
+        return pulumi.get(self, "change_fail_type")
+
+    @change_fail_type.setter
+    def change_fail_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "change_fail_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="changeResult")
+    def change_result(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the result of the change.
+        """
+        return pulumi.get(self, "change_result")
+
+    @change_result.setter
+    def change_result(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "change_result", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the reason why the change failed.
+        """
+        return pulumi.get(self, "comment")
+
+    @comment.setter
+    def comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "comment", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isMonitorFound")
+    def is_monitor_found(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the device is detected by monitoring.
+        """
+        return pulumi.get(self, "is_monitor_found")
+
+    @is_monitor_found.setter
+    def is_monitor_found(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_monitor_found", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isRollbackSuccess")
+    def is_rollback_success(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the rollback is successful.
+        """
+        return pulumi.get(self, "is_rollback_success")
+
+    @is_rollback_success.setter
+    def is_rollback_success(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_rollback_success", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isVerifiedInChangeTime")
+    def is_verified_in_change_time(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether verification is possible within the
+        time window.
+        """
+        return pulumi.get(self, "is_verified_in_change_time")
+
+    @is_verified_in_change_time.setter
+    def is_verified_in_change_time(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_verified_in_change_time", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rollbackEndTime")
+    def rollback_end_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the rollback end time.
+        """
+        return pulumi.get(self, "rollback_end_time")
+
+    @rollback_end_time.setter
+    def rollback_end_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "rollback_end_time", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rollbackStartTime")
+    def rollback_start_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the rollback start time.
+        """
+        return pulumi.get(self, "rollback_start_time")
+
+    @rollback_start_time.setter
+    def rollback_start_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "rollback_start_time", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the sub-order ID.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @ticket_id.setter
+    def ticket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ticket_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="verifiedDocs")
+    def verified_docs(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the verification document ID.
+        """
+        return pulumi.get(self, "verified_docs")
+
+    @verified_docs.setter
+    def verified_docs(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "verified_docs", value)
+
+
+class DiagnosisTaskNodeListArgsDict(TypedDict):
+    code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the step code.
+    """
+    diagnosis_task_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnostic task ID.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnostic task node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnosis step name.
+    """
+    name_zh: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the Chinese name of the diagnostic step.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the execution status of the diagnostic task.
+    """
+
+@pulumi.input_type
+class DiagnosisTaskNodeListArgs:
+    def __init__(__self__, *,
+                 code: Optional[pulumi.Input[_builtins.str]] = None,
+                 diagnosis_task_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 name_zh: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] code: Indicates the step code.
+        :param pulumi.Input[_builtins.str] diagnosis_task_id: Indicates the diagnostic task ID.
+        :param pulumi.Input[_builtins.str] id: Indicates the diagnostic task node ID.
+        :param pulumi.Input[_builtins.str] name: Indicates the diagnosis step name.
+        :param pulumi.Input[_builtins.str] name_zh: Indicates the Chinese name of the diagnostic step.
+        :param pulumi.Input[_builtins.str] status: Indicates the execution status of the diagnostic task.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if diagnosis_task_id is not None:
+            pulumi.set(__self__, "diagnosis_task_id", diagnosis_task_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if name_zh is not None:
+            pulumi.set(__self__, "name_zh", name_zh)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the step code.
+        """
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "code", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diagnosisTaskId")
+    def diagnosis_task_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the diagnostic task ID.
+        """
+        return pulumi.get(self, "diagnosis_task_id")
+
+    @diagnosis_task_id.setter
+    def diagnosis_task_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "diagnosis_task_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the diagnostic task node ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the diagnosis step name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nameZh")
+    def name_zh(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the Chinese name of the diagnostic step.
+        """
+        return pulumi.get(self, "name_zh")
+
+    @name_zh.setter
+    def name_zh(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name_zh", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the execution status of the diagnostic task.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+
+class DocumentExecuteExecutionParameterArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the dimension of the instantiated execution target.
+    The enumeration value as **InstanceValues**, **BatchValues**.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value.
+
+    <a name="targets_struct"></a>
+    The `targets` blocks support:
+    """
 
 @pulumi.input_type
 class DocumentExecuteExecutionParameterArgs:
@@ -105,22 +783,19 @@ class DocumentExecuteExecutionParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DocumentExecuteParameterArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the dimension of the instantiated execution target.
-        The enumeration value as **InstanceValues**, **BatchValues**.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value.
+class DocumentExecuteParameterArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the dimension of the instantiated execution target.
+    The enumeration value as **InstanceValues**, **BatchValues**.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value.
 
-        <a name="targets_struct"></a>
-        The `targets` blocks support:
-        """
-elif False:
-    DocumentExecuteParameterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="targets_struct"></a>
+    The `targets` blocks support:
+    """
 
 @pulumi.input_type
 class DocumentExecuteParameterArgs:
@@ -169,22 +844,19 @@ class DocumentExecuteParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DocumentExecuteSysTagArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the dimension of the instantiated execution target.
-        The enumeration value as **InstanceValues**, **BatchValues**.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value.
+class DocumentExecuteSysTagArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the dimension of the instantiated execution target.
+    The enumeration value as **InstanceValues**, **BatchValues**.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value.
 
-        <a name="targets_struct"></a>
-        The `targets` blocks support:
-        """
-elif False:
-    DocumentExecuteSysTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="targets_struct"></a>
+    The `targets` blocks support:
+    """
 
 @pulumi.input_type
 class DocumentExecuteSysTagArgs:
@@ -233,20 +905,17 @@ class DocumentExecuteSysTagArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DocumentExecuteTargetArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the dimension of the instantiated execution target.
-        The enumeration value as **InstanceValues**, **BatchValues**.
-        """
-        values: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the target instance to be executed based on the global parameter
-        specified by `target_parameter_name`.
-        """
-elif False:
-    DocumentExecuteTargetArgsDict: TypeAlias = Mapping[str, Any]
+class DocumentExecuteTargetArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the dimension of the instantiated execution target.
+    The enumeration value as **InstanceValues**, **BatchValues**.
+    """
+    values: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the target instance to be executed based on the global parameter
+    specified by `target_parameter_name`.
+    """
 
 @pulumi.input_type
 class DocumentExecuteTargetArgs:
@@ -291,22 +960,19 @@ class DocumentExecuteTargetArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class DocumentVersionArgsDict(TypedDict):
-        create_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the version creation time.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the version number, such as **v1**.
-        """
-        version_uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the version ID.
-        """
-elif False:
-    DocumentVersionArgsDict: TypeAlias = Mapping[str, Any]
+class DocumentVersionArgsDict(TypedDict):
+    create_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the version creation time.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the version number, such as **v1**.
+    """
+    version_uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the version ID.
+    """
 
 @pulumi.input_type
 class DocumentVersionArgs:
@@ -363,26 +1029,130 @@ class DocumentVersionArgs:
         pulumi.set(self, "version_uuid", value)
 
 
-if not MYPY:
-    class IncidentEnumDataListArgsDict(TypedDict):
-        enum_key: NotRequired[pulumi.Input[_builtins.str]]
+class GroupRelationConfigurationArgsDict(TypedDict):
+    parameters: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the configuration parameters.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the configuration type.
+    """
+
+@pulumi.input_type
+class GroupRelationConfigurationArgs:
+    def __init__(__self__, *,
+                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Indicates the enum key.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] parameters: Specifies the configuration parameters.
+        :param pulumi.Input[_builtins.str] type: Specifies the configuration type.
         """
-        filed_key: NotRequired[pulumi.Input[_builtins.str]]
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Indicates the filed key.
+        Specifies the configuration parameters.
         """
-        name_en: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "parameters", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates the English name.
+        Specifies the configuration type.
         """
-        name_zh: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class GroupSyncRuleArgsDict(TypedDict):
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID.
+    """
+    rule_tags: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the associated tag.
+
+    <a name="relation_configurations_struct"></a>
+    The `relation_configurations` block supports:
+    """
+
+@pulumi.input_type
+class GroupSyncRuleArgs:
+    def __init__(__self__, *,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 rule_tags: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Indicates the Chinese name.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
+        :param pulumi.Input[_builtins.str] rule_tags: Specifies the associated tag.
+               
+               <a name="relation_configurations_struct"></a>
+               The `relation_configurations` block supports:
         """
-elif False:
-    IncidentEnumDataListArgsDict: TypeAlias = Mapping[str, Any]
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if rule_tags is not None:
+            pulumi.set(__self__, "rule_tags", rule_tags)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleTags")
+    def rule_tags(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the associated tag.
+
+        <a name="relation_configurations_struct"></a>
+        The `relation_configurations` block supports:
+        """
+        return pulumi.get(self, "rule_tags")
+
+    @rule_tags.setter
+    def rule_tags(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "rule_tags", value)
+
+
+class IncidentEnumDataListArgsDict(TypedDict):
+    enum_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the enum key.
+    """
+    filed_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the filed key.
+    """
+    name_en: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the English name.
+    """
+    name_zh: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the Chinese name.
+    """
 
 @pulumi.input_type
 class IncidentEnumDataListArgs:
@@ -455,18 +1225,2601 @@ class IncidentEnumDataListArgs:
         pulumi.set(self, "name_zh", value)
 
 
-if not MYPY:
-    class ScriptExecuteParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
+class IssueEnumDataListArgsDict(TypedDict):
+    biz_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the unique id corresponding to the enumeration value.
+    """
+    is_deleted: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether it has been deleted.
+    """
+    match_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the matching enumeration type.
+    """
+    model_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the model ID corresponding to different background applications.
+    """
+    name_en: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the English name.
+    """
+    name_zh: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the Chinese name.
+    """
+    prop_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the type corresponding to the current enumeration value.
+    """
+    real_ticket_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the work order number.
+    """
+    ticket_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the current work order ID.
+    """
+
+@pulumi.input_type
+class IssueEnumDataListArgs:
+    def __init__(__self__, *,
+                 biz_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_deleted: Optional[pulumi.Input[_builtins.bool]] = None,
+                 match_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 model_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name_en: Optional[pulumi.Input[_builtins.str]] = None,
+                 name_zh: Optional[pulumi.Input[_builtins.str]] = None,
+                 prop_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 real_ticket_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ticket_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Specifies the name of the parameter.
+        :param pulumi.Input[_builtins.str] biz_id: Indicates the unique id corresponding to the enumeration value.
+        :param pulumi.Input[_builtins.bool] is_deleted: Indicates whether it has been deleted.
+        :param pulumi.Input[_builtins.str] match_type: Indicates the matching enumeration type.
+        :param pulumi.Input[_builtins.str] model_id: Indicates the model ID corresponding to different background applications.
+        :param pulumi.Input[_builtins.str] name_en: Indicates the English name.
+        :param pulumi.Input[_builtins.str] name_zh: Indicates the Chinese name.
+        :param pulumi.Input[_builtins.str] prop_id: Indicates the type corresponding to the current enumeration value.
+        :param pulumi.Input[_builtins.str] real_ticket_id: Indicates the work order number.
+        :param pulumi.Input[_builtins.str] ticket_id: Indicates the current work order ID.
         """
-        value: pulumi.Input[_builtins.str]
+        if biz_id is not None:
+            pulumi.set(__self__, "biz_id", biz_id)
+        if is_deleted is not None:
+            pulumi.set(__self__, "is_deleted", is_deleted)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if model_id is not None:
+            pulumi.set(__self__, "model_id", model_id)
+        if name_en is not None:
+            pulumi.set(__self__, "name_en", name_en)
+        if name_zh is not None:
+            pulumi.set(__self__, "name_zh", name_zh)
+        if prop_id is not None:
+            pulumi.set(__self__, "prop_id", prop_id)
+        if real_ticket_id is not None:
+            pulumi.set(__self__, "real_ticket_id", real_ticket_id)
+        if ticket_id is not None:
+            pulumi.set(__self__, "ticket_id", ticket_id)
+
+    @_builtins.property
+    @pulumi.getter(name="bizId")
+    def biz_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the value of the parameter.
+        Indicates the unique id corresponding to the enumeration value.
         """
-elif False:
-    ScriptExecuteParameterArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "biz_id")
+
+    @biz_id.setter
+    def biz_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "biz_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether it has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @is_deleted.setter
+    def is_deleted(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_deleted", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the matching enumeration type.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="modelId")
+    def model_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the model ID corresponding to different background applications.
+        """
+        return pulumi.get(self, "model_id")
+
+    @model_id.setter
+    def model_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "model_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nameEn")
+    def name_en(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the English name.
+        """
+        return pulumi.get(self, "name_en")
+
+    @name_en.setter
+    def name_en(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name_en", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nameZh")
+    def name_zh(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the Chinese name.
+        """
+        return pulumi.get(self, "name_zh")
+
+    @name_zh.setter
+    def name_zh(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name_zh", value)
+
+    @_builtins.property
+    @pulumi.getter(name="propId")
+    def prop_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the type corresponding to the current enumeration value.
+        """
+        return pulumi.get(self, "prop_id")
+
+    @prop_id.setter
+    def prop_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "prop_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realTicketId")
+    def real_ticket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the work order number.
+        """
+        return pulumi.get(self, "real_ticket_id")
+
+    @real_ticket_id.setter
+    def real_ticket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "real_ticket_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the current work order ID.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @ticket_id.setter
+    def ticket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ticket_id", value)
+
+
+class IssueSubTicketArgsDict(TypedDict):
+    create_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the time when the work order was created.
+    """
+    creator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the work order creator.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the work order ID.
+    """
+    is_deleted: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether it has been deleted.
+    """
+    main_ticket_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the work order primary key ID.
+    """
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the work order operator.
+    """
+    parent_ticket_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parent work order ID.
+    """
+    real_ticket_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the work order number.
+    """
+    target_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the sub-order type.
+    """
+    target_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the region information.
+    """
+    ticket_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the current work order ID.
+    """
+    ticket_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the work order path.
+    """
+    update_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the time when the work order was updated.
+    """
+
+@pulumi.input_type
+class IssueSubTicketArgs:
+    def __init__(__self__, *,
+                 create_time: Optional[pulumi.Input[_builtins.int]] = None,
+                 creator: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_deleted: Optional[pulumi.Input[_builtins.bool]] = None,
+                 main_ticket_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 operator: Optional[pulumi.Input[_builtins.str]] = None,
+                 parent_ticket_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 real_ticket_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_value: Optional[pulumi.Input[_builtins.str]] = None,
+                 ticket_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ticket_path: Optional[pulumi.Input[_builtins.str]] = None,
+                 update_time: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] create_time: Indicates the time when the work order was created.
+        :param pulumi.Input[_builtins.str] creator: Indicates the ID of the work order creator.
+        :param pulumi.Input[_builtins.str] id: Indicates the work order ID.
+        :param pulumi.Input[_builtins.bool] is_deleted: Indicates whether it has been deleted.
+        :param pulumi.Input[_builtins.str] main_ticket_id: Indicates the work order primary key ID.
+        :param pulumi.Input[_builtins.str] operator: Indicates the ID of the work order operator.
+        :param pulumi.Input[_builtins.str] parent_ticket_id: Indicates the parent work order ID.
+        :param pulumi.Input[_builtins.str] real_ticket_id: Indicates the work order number.
+        :param pulumi.Input[_builtins.str] target_type: Indicates the sub-order type.
+        :param pulumi.Input[_builtins.str] target_value: Indicates the region information.
+        :param pulumi.Input[_builtins.str] ticket_id: Indicates the current work order ID.
+        :param pulumi.Input[_builtins.str] ticket_path: Indicates the work order path.
+        :param pulumi.Input[_builtins.int] update_time: Indicates the time when the work order was updated.
+        """
+        if create_time is not None:
+            pulumi.set(__self__, "create_time", create_time)
+        if creator is not None:
+            pulumi.set(__self__, "creator", creator)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_deleted is not None:
+            pulumi.set(__self__, "is_deleted", is_deleted)
+        if main_ticket_id is not None:
+            pulumi.set(__self__, "main_ticket_id", main_ticket_id)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if parent_ticket_id is not None:
+            pulumi.set(__self__, "parent_ticket_id", parent_ticket_id)
+        if real_ticket_id is not None:
+            pulumi.set(__self__, "real_ticket_id", real_ticket_id)
+        if target_type is not None:
+            pulumi.set(__self__, "target_type", target_type)
+        if target_value is not None:
+            pulumi.set(__self__, "target_value", target_value)
+        if ticket_id is not None:
+            pulumi.set(__self__, "ticket_id", ticket_id)
+        if ticket_path is not None:
+            pulumi.set(__self__, "ticket_path", ticket_path)
+        if update_time is not None:
+            pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Indicates the time when the work order was created.
+        """
+        return pulumi.get(self, "create_time")
+
+    @create_time.setter
+    def create_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "create_time", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def creator(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the ID of the work order creator.
+        """
+        return pulumi.get(self, "creator")
+
+    @creator.setter
+    def creator(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "creator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the work order ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether it has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @is_deleted.setter
+    def is_deleted(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_deleted", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mainTicketId")
+    def main_ticket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the work order primary key ID.
+        """
+        return pulumi.get(self, "main_ticket_id")
+
+    @main_ticket_id.setter
+    def main_ticket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "main_ticket_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the ID of the work order operator.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter(name="parentTicketId")
+    def parent_ticket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the parent work order ID.
+        """
+        return pulumi.get(self, "parent_ticket_id")
+
+    @parent_ticket_id.setter
+    def parent_ticket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "parent_ticket_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realTicketId")
+    def real_ticket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the work order number.
+        """
+        return pulumi.get(self, "real_ticket_id")
+
+    @real_ticket_id.setter
+    def real_ticket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "real_ticket_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the sub-order type.
+        """
+        return pulumi.get(self, "target_type")
+
+    @target_type.setter
+    def target_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetValue")
+    def target_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the region information.
+        """
+        return pulumi.get(self, "target_value")
+
+    @target_value.setter
+    def target_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target_value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the current work order ID.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @ticket_id.setter
+    def ticket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ticket_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ticketPath")
+    def ticket_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the work order path.
+        """
+        return pulumi.get(self, "ticket_path")
+
+    @ticket_path.setter
+    def ticket_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ticket_path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Indicates the time when the work order was updated.
+        """
+        return pulumi.get(self, "update_time")
+
+    @update_time.setter
+    def update_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "update_time", value)
+
+
+class OtherResourceUniagentSyncResourceInfoArgsDict(TypedDict):
+    region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region ID to which the resource belongs.
+    """
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource ID.
+    """
+
+@pulumi.input_type
+class OtherResourceUniagentSyncResourceInfoArgs:
+    def __init__(__self__, *,
+                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] region_id: Specifies the region ID to which the resource belongs.
+        :param pulumi.Input[_builtins.str] resource_id: Specifies the resource ID.
+        """
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if resource_id is not None:
+            pulumi.set(__self__, "resource_id", resource_id)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region ID to which the resource belongs.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @resource_id.setter
+    def resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_id", value)
+
+
+class PublicScriptExecuteExecuteBatchArgsDict(TypedDict):
+    batch_index: pulumi.Input[_builtins.int]
+    """
+    Specifies the batch index, starting from **1**.
+    """
+    rotation_strategy: pulumi.Input[_builtins.str]
+    """
+    Specifies the pause-resume policy.
+    Values can be **CONTINUE** or **PAUSE**.
+
+    <a name="execute_batches_target_instances_struct"></a>
+    The `target_instances` block supports:
+    """
+    target_instances: pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceArgsDict']]]
+    """
+    Specifies the list of target nodes.
+    The target_instances structure is documented below.
+    """
+
+@pulumi.input_type
+class PublicScriptExecuteExecuteBatchArgs:
+    def __init__(__self__, *,
+                 batch_index: pulumi.Input[_builtins.int],
+                 rotation_strategy: pulumi.Input[_builtins.str],
+                 target_instances: pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceArgs']]]):
+        """
+        :param pulumi.Input[_builtins.int] batch_index: Specifies the batch index, starting from **1**.
+        :param pulumi.Input[_builtins.str] rotation_strategy: Specifies the pause-resume policy.
+               Values can be **CONTINUE** or **PAUSE**.
+               
+               <a name="execute_batches_target_instances_struct"></a>
+               The `target_instances` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceArgs']]] target_instances: Specifies the list of target nodes.
+               The target_instances structure is documented below.
+        """
+        pulumi.set(__self__, "batch_index", batch_index)
+        pulumi.set(__self__, "rotation_strategy", rotation_strategy)
+        pulumi.set(__self__, "target_instances", target_instances)
+
+    @_builtins.property
+    @pulumi.getter(name="batchIndex")
+    def batch_index(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the batch index, starting from **1**.
+        """
+        return pulumi.get(self, "batch_index")
+
+    @batch_index.setter
+    def batch_index(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "batch_index", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotationStrategy")
+    def rotation_strategy(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the pause-resume policy.
+        Values can be **CONTINUE** or **PAUSE**.
+
+        <a name="execute_batches_target_instances_struct"></a>
+        The `target_instances` block supports:
+        """
+        return pulumi.get(self, "rotation_strategy")
+
+    @rotation_strategy.setter
+    def rotation_strategy(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "rotation_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceArgs']]]:
+        """
+        Specifies the list of target nodes.
+        The target_instances structure is documented below.
+        """
+        return pulumi.get(self, "target_instances")
+
+    @target_instances.setter
+    def target_instances(self, value: pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceArgs']]]):
+        pulumi.set(self, "target_instances", value)
+
+
+class PublicScriptExecuteExecuteBatchTargetInstanceArgsDict(TypedDict):
+    region_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the region ID.
+    """
+    resource_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ECS cloud server ID.
+    """
+    cloud_service_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource provider. The default value is **ECS**.
+    """
+    custom_attributes: NotRequired[pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgsDict']]]]
+    """
+    Specifies the five user-defined attributes in the key_value
+    format are supported.
+    The custom_attributes structure is documented below.
+
+    <a name="execute_batches_target_instances_custom_attributes_struct"></a>
+    The `custom_attributes` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource type under the resource provider. The default value
+    is **CLOUDSERVER**.
+    """
+
+@pulumi.input_type
+class PublicScriptExecuteExecuteBatchTargetInstanceArgs:
+    def __init__(__self__, *,
+                 region_id: pulumi.Input[_builtins.str],
+                 resource_id: pulumi.Input[_builtins.str],
+                 cloud_service_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 custom_attributes: Optional[pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgs']]]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] region_id: Specifies the region ID.
+        :param pulumi.Input[_builtins.str] resource_id: Specifies the ECS cloud server ID.
+        :param pulumi.Input[_builtins.str] cloud_service_name: Specifies the resource provider. The default value is **ECS**.
+        :param pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgs']]] custom_attributes: Specifies the five user-defined attributes in the key_value
+               format are supported.
+               The custom_attributes structure is documented below.
+               
+               <a name="execute_batches_target_instances_custom_attributes_struct"></a>
+               The `custom_attributes` block supports:
+        :param pulumi.Input[_builtins.str] type: Specifies the resource type under the resource provider. The default value
+               is **CLOUDSERVER**.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        if cloud_service_name is not None:
+            pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        if custom_attributes is not None:
+            pulumi.set(__self__, "custom_attributes", custom_attributes)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the ECS cloud server ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @resource_id.setter
+    def resource_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "resource_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource provider. The default value is **ECS**.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @cloud_service_name.setter
+    def cloud_service_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cloud_service_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="customAttributes")
+    def custom_attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgs']]]]:
+        """
+        Specifies the five user-defined attributes in the key_value
+        format are supported.
+        The custom_attributes structure is documented below.
+
+        <a name="execute_batches_target_instances_custom_attributes_struct"></a>
+        The `custom_attributes` block supports:
+        """
+        return pulumi.get(self, "custom_attributes")
+
+    @custom_attributes.setter
+    def custom_attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgs']]]]):
+        pulumi.set(self, "custom_attributes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource type under the resource provider. The default value
+        is **CLOUDSERVER**.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the custom attribute key.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the custom attribute value.
+
+    <a name="script_params_struct"></a>
+    The `script_params` block supports:
+    """
+
+@pulumi.input_type
+class PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] key: Specifies the custom attribute key.
+        :param pulumi.Input[_builtins.str] value: Specifies the custom attribute value.
+               
+               <a name="script_params_struct"></a>
+               The `script_params` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the custom attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the custom attribute value.
+
+        <a name="script_params_struct"></a>
+        The `script_params` block supports:
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class PublicScriptExecuteScriptParamArgsDict(TypedDict):
+    param_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the script input parameter.
+    The parameter name cannot be repeated in the same script.
+    """
+    param_value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the script input parameter.
+
+    > This is required by default. It can be empty when **param_refer** is not empty.
+    """
+    param_refer: NotRequired[pulumi.Input['PublicScriptExecuteScriptParamParamReferArgsDict']]
+    """
+    Specifies the parameter reference.
+    The param_refer structure is documented below.
+
+    <a name="script_params_param_refer_struct"></a>
+    The `param_refer` block supports:
+    """
+
+@pulumi.input_type
+class PublicScriptExecuteScriptParamArgs:
+    def __init__(__self__, *,
+                 param_name: pulumi.Input[_builtins.str],
+                 param_value: pulumi.Input[_builtins.str],
+                 param_refer: Optional[pulumi.Input['PublicScriptExecuteScriptParamParamReferArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] param_name: Specifies the name of the script input parameter.
+               The parameter name cannot be repeated in the same script.
+        :param pulumi.Input[_builtins.str] param_value: Specifies the value of the script input parameter.
+               
+               > This is required by default. It can be empty when **param_refer** is not empty.
+        :param pulumi.Input['PublicScriptExecuteScriptParamParamReferArgs'] param_refer: Specifies the parameter reference.
+               The param_refer structure is documented below.
+               
+               <a name="script_params_param_refer_struct"></a>
+               The `param_refer` block supports:
+        """
+        pulumi.set(__self__, "param_name", param_name)
+        pulumi.set(__self__, "param_value", param_value)
+        if param_refer is not None:
+            pulumi.set(__self__, "param_refer", param_refer)
+
+    @_builtins.property
+    @pulumi.getter(name="paramName")
+    def param_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name of the script input parameter.
+        The parameter name cannot be repeated in the same script.
+        """
+        return pulumi.get(self, "param_name")
+
+    @param_name.setter
+    def param_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "param_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="paramValue")
+    def param_value(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the value of the script input parameter.
+
+        > This is required by default. It can be empty when **param_refer** is not empty.
+        """
+        return pulumi.get(self, "param_value")
+
+    @param_value.setter
+    def param_value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "param_value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="paramRefer")
+    def param_refer(self) -> Optional[pulumi.Input['PublicScriptExecuteScriptParamParamReferArgs']]:
+        """
+        Specifies the parameter reference.
+        The param_refer structure is documented below.
+
+        <a name="script_params_param_refer_struct"></a>
+        The `param_refer` block supports:
+        """
+        return pulumi.get(self, "param_refer")
+
+    @param_refer.setter
+    def param_refer(self, value: Optional[pulumi.Input['PublicScriptExecuteScriptParamParamReferArgs']]):
+        pulumi.set(self, "param_refer", value)
+
+
+class PublicScriptExecuteScriptParamParamReferArgsDict(TypedDict):
+    param_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the unique primary key id of the reference parameter.
+    Values can be **LOW**, **MEDIUM** and **HIGH**.
+    """
+    refer_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter reference type: PARAM_STORE.
+    """
+    param_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version number of the reference parameter.
+    """
+
+@pulumi.input_type
+class PublicScriptExecuteScriptParamParamReferArgs:
+    def __init__(__self__, *,
+                 param_id: pulumi.Input[_builtins.str],
+                 refer_type: pulumi.Input[_builtins.str],
+                 param_version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] param_id: Specifies the unique primary key id of the reference parameter.
+               Values can be **LOW**, **MEDIUM** and **HIGH**.
+        :param pulumi.Input[_builtins.str] refer_type: Specifies the parameter reference type: PARAM_STORE.
+        :param pulumi.Input[_builtins.str] param_version: Specifies the version number of the reference parameter.
+        """
+        pulumi.set(__self__, "param_id", param_id)
+        pulumi.set(__self__, "refer_type", refer_type)
+        if param_version is not None:
+            pulumi.set(__self__, "param_version", param_version)
+
+    @_builtins.property
+    @pulumi.getter(name="paramId")
+    def param_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the unique primary key id of the reference parameter.
+        Values can be **LOW**, **MEDIUM** and **HIGH**.
+        """
+        return pulumi.get(self, "param_id")
+
+    @param_id.setter
+    def param_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "param_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="referType")
+    def refer_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the parameter reference type: PARAM_STORE.
+        """
+        return pulumi.get(self, "refer_type")
+
+    @refer_type.setter
+    def refer_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "refer_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="paramVersion")
+    def param_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the version number of the reference parameter.
+        """
+        return pulumi.get(self, "param_version")
+
+    @param_version.setter
+    def param_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "param_version", value)
+
+
+class ResourceUniagentSyncResourceInfoArgsDict(TypedDict):
+    region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region ID to which the resource belongs.
+    """
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource ID.
+    """
+
+@pulumi.input_type
+class ResourceUniagentSyncResourceInfoArgs:
+    def __init__(__self__, *,
+                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] region_id: Specifies the region ID to which the resource belongs.
+        :param pulumi.Input[_builtins.str] resource_id: Specifies the resource ID.
+        """
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if resource_id is not None:
+            pulumi.set(__self__, "resource_id", resource_id)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region ID to which the resource belongs.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @resource_id.setter
+    def resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_id", value)
+
+
+class ScheduledTaskMessageNotificationArgsDict(TypedDict):
+    notification_endpoint_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification endpoint type. The default value is
+    **ONCALL**.
+    Values can be as follows:
+    + **ONCALL**: Scheduled.
+    + **USER**: Individual.
+    """
+    policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the notification policy.
+    Values can be as follows:
+    + **START_EXECUTION**: Starts execution.
+    + **EXECUTION_FAILED**: Execution failed.
+    + **EXECUTION_SUCCEEDED**: Execution succeeded.
+
+    > This value is required when `enable_message_notification` is **true**.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the notification channel. The default value is **DEFAULT**.
+    Values can be as follows:
+    + **DEFAULT**: Selects one of your subscribed notification channels.
+    + **NONE**: No notification.
+    + **SMS**: SMS.
+    + **EMAIL**: Email.
+    + **DINGDING**: DingTalk.
+    + **LARK**: Lark.
+    + **CALLNOTIFY**: Voice.
+    + **WECHAT**: WeChat Work.
+    """
+    recipients: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the notification recipient.
+
+    > This value is required if the notification recipient type is **USER**.
+    """
+    schedule_role_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the schedule role ID.
+
+    > This value is required if the notification recipient type is **ONCALL**.
+    """
+    schedule_scene_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the schedule scenario ID.
+
+    > This value is required if the notification recipient type is **ONCALL**.
+    """
+
+@pulumi.input_type
+class ScheduledTaskMessageNotificationArgs:
+    def __init__(__self__, *,
+                 notification_endpoint_type: pulumi.Input[_builtins.str],
+                 policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 recipients: Optional[pulumi.Input[_builtins.str]] = None,
+                 schedule_role_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 schedule_scene_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] notification_endpoint_type: Specifies the notification endpoint type. The default value is
+               **ONCALL**.
+               Values can be as follows:
+               + **ONCALL**: Scheduled.
+               + **USER**: Individual.
+        :param pulumi.Input[_builtins.str] policy: Specifies the notification policy.
+               Values can be as follows:
+               + **START_EXECUTION**: Starts execution.
+               + **EXECUTION_FAILED**: Execution failed.
+               + **EXECUTION_SUCCEEDED**: Execution succeeded.
+               
+               > This value is required when `enable_message_notification` is **true**.
+        :param pulumi.Input[_builtins.str] protocol: Specifies the notification channel. The default value is **DEFAULT**.
+               Values can be as follows:
+               + **DEFAULT**: Selects one of your subscribed notification channels.
+               + **NONE**: No notification.
+               + **SMS**: SMS.
+               + **EMAIL**: Email.
+               + **DINGDING**: DingTalk.
+               + **LARK**: Lark.
+               + **CALLNOTIFY**: Voice.
+               + **WECHAT**: WeChat Work.
+        :param pulumi.Input[_builtins.str] recipients: Specifies the ID of the notification recipient.
+               
+               > This value is required if the notification recipient type is **USER**.
+        :param pulumi.Input[_builtins.str] schedule_role_id: Specifies the schedule role ID.
+               
+               > This value is required if the notification recipient type is **ONCALL**.
+        :param pulumi.Input[_builtins.str] schedule_scene_id: Specifies the schedule scenario ID.
+               
+               > This value is required if the notification recipient type is **ONCALL**.
+        """
+        pulumi.set(__self__, "notification_endpoint_type", notification_endpoint_type)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if schedule_role_id is not None:
+            pulumi.set(__self__, "schedule_role_id", schedule_role_id)
+        if schedule_scene_id is not None:
+            pulumi.set(__self__, "schedule_scene_id", schedule_scene_id)
+
+    @_builtins.property
+    @pulumi.getter(name="notificationEndpointType")
+    def notification_endpoint_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the notification endpoint type. The default value is
+        **ONCALL**.
+        Values can be as follows:
+        + **ONCALL**: Scheduled.
+        + **USER**: Individual.
+        """
+        return pulumi.get(self, "notification_endpoint_type")
+
+    @notification_endpoint_type.setter
+    def notification_endpoint_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "notification_endpoint_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the notification policy.
+        Values can be as follows:
+        + **START_EXECUTION**: Starts execution.
+        + **EXECUTION_FAILED**: Execution failed.
+        + **EXECUTION_SUCCEEDED**: Execution succeeded.
+
+        > This value is required when `enable_message_notification` is **true**.
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "policy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the notification channel. The default value is **DEFAULT**.
+        Values can be as follows:
+        + **DEFAULT**: Selects one of your subscribed notification channels.
+        + **NONE**: No notification.
+        + **SMS**: SMS.
+        + **EMAIL**: Email.
+        + **DINGDING**: DingTalk.
+        + **LARK**: Lark.
+        + **CALLNOTIFY**: Voice.
+        + **WECHAT**: WeChat Work.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the notification recipient.
+
+        > This value is required if the notification recipient type is **USER**.
+        """
+        return pulumi.get(self, "recipients")
+
+    @recipients.setter
+    def recipients(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "recipients", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleRoleId")
+    def schedule_role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the schedule role ID.
+
+        > This value is required if the notification recipient type is **ONCALL**.
+        """
+        return pulumi.get(self, "schedule_role_id")
+
+    @schedule_role_id.setter
+    def schedule_role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "schedule_role_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleSceneId")
+    def schedule_scene_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the schedule scenario ID.
+
+        > This value is required if the notification recipient type is **ONCALL**.
+        """
+        return pulumi.get(self, "schedule_scene_id")
+
+    @schedule_scene_id.setter
+    def schedule_scene_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "schedule_scene_id", value)
+
+
+class ScheduledTaskReviewerNotificationArgsDict(TypedDict):
+    notification_endpoint_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification endpoint type. The default value is
+    **ONCALL**.
+    Values can be as follows:
+    + **ONCALL**: Scheduled.
+    + **USER**: Individual.
+    """
+    policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the notification policy.
+    Values can be as follows:
+    + **START_EXECUTION**: Starts execution.
+    + **EXECUTION_FAILED**: Execution failed.
+    + **EXECUTION_SUCCEEDED**: Execution succeeded.
+
+    > This value is required when `enable_message_notification` is **true**.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the notification channel. The default value is **DEFAULT**.
+    Values can be as follows:
+    + **DEFAULT**: Selects one of your subscribed notification channels.
+    + **NONE**: No notification.
+    + **SMS**: SMS.
+    + **EMAIL**: Email.
+    + **DINGDING**: DingTalk.
+    + **LARK**: Lark.
+    + **CALLNOTIFY**: Voice.
+    + **WECHAT**: WeChat Work.
+    """
+    recipients: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the notification recipient.
+
+    > This value is required if the notification recipient type is **USER**.
+    """
+    schedule_role_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the schedule role ID.
+
+    > This value is required if the notification recipient type is **ONCALL**.
+    """
+    schedule_scene_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the schedule scenario ID.
+
+    > This value is required if the notification recipient type is **ONCALL**.
+    """
+
+@pulumi.input_type
+class ScheduledTaskReviewerNotificationArgs:
+    def __init__(__self__, *,
+                 notification_endpoint_type: pulumi.Input[_builtins.str],
+                 policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 recipients: Optional[pulumi.Input[_builtins.str]] = None,
+                 schedule_role_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 schedule_scene_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] notification_endpoint_type: Specifies the notification endpoint type. The default value is
+               **ONCALL**.
+               Values can be as follows:
+               + **ONCALL**: Scheduled.
+               + **USER**: Individual.
+        :param pulumi.Input[_builtins.str] policy: Specifies the notification policy.
+               Values can be as follows:
+               + **START_EXECUTION**: Starts execution.
+               + **EXECUTION_FAILED**: Execution failed.
+               + **EXECUTION_SUCCEEDED**: Execution succeeded.
+               
+               > This value is required when `enable_message_notification` is **true**.
+        :param pulumi.Input[_builtins.str] protocol: Specifies the notification channel. The default value is **DEFAULT**.
+               Values can be as follows:
+               + **DEFAULT**: Selects one of your subscribed notification channels.
+               + **NONE**: No notification.
+               + **SMS**: SMS.
+               + **EMAIL**: Email.
+               + **DINGDING**: DingTalk.
+               + **LARK**: Lark.
+               + **CALLNOTIFY**: Voice.
+               + **WECHAT**: WeChat Work.
+        :param pulumi.Input[_builtins.str] recipients: Specifies the ID of the notification recipient.
+               
+               > This value is required if the notification recipient type is **USER**.
+        :param pulumi.Input[_builtins.str] schedule_role_id: Specifies the schedule role ID.
+               
+               > This value is required if the notification recipient type is **ONCALL**.
+        :param pulumi.Input[_builtins.str] schedule_scene_id: Specifies the schedule scenario ID.
+               
+               > This value is required if the notification recipient type is **ONCALL**.
+        """
+        pulumi.set(__self__, "notification_endpoint_type", notification_endpoint_type)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if schedule_role_id is not None:
+            pulumi.set(__self__, "schedule_role_id", schedule_role_id)
+        if schedule_scene_id is not None:
+            pulumi.set(__self__, "schedule_scene_id", schedule_scene_id)
+
+    @_builtins.property
+    @pulumi.getter(name="notificationEndpointType")
+    def notification_endpoint_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the notification endpoint type. The default value is
+        **ONCALL**.
+        Values can be as follows:
+        + **ONCALL**: Scheduled.
+        + **USER**: Individual.
+        """
+        return pulumi.get(self, "notification_endpoint_type")
+
+    @notification_endpoint_type.setter
+    def notification_endpoint_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "notification_endpoint_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the notification policy.
+        Values can be as follows:
+        + **START_EXECUTION**: Starts execution.
+        + **EXECUTION_FAILED**: Execution failed.
+        + **EXECUTION_SUCCEEDED**: Execution succeeded.
+
+        > This value is required when `enable_message_notification` is **true**.
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "policy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the notification channel. The default value is **DEFAULT**.
+        Values can be as follows:
+        + **DEFAULT**: Selects one of your subscribed notification channels.
+        + **NONE**: No notification.
+        + **SMS**: SMS.
+        + **EMAIL**: Email.
+        + **DINGDING**: DingTalk.
+        + **LARK**: Lark.
+        + **CALLNOTIFY**: Voice.
+        + **WECHAT**: WeChat Work.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the notification recipient.
+
+        > This value is required if the notification recipient type is **USER**.
+        """
+        return pulumi.get(self, "recipients")
+
+    @recipients.setter
+    def recipients(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "recipients", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleRoleId")
+    def schedule_role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the schedule role ID.
+
+        > This value is required if the notification recipient type is **ONCALL**.
+        """
+        return pulumi.get(self, "schedule_role_id")
+
+    @schedule_role_id.setter
+    def schedule_role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "schedule_role_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleSceneId")
+    def schedule_scene_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the schedule scenario ID.
+
+        > This value is required if the notification recipient type is **ONCALL**.
+        """
+        return pulumi.get(self, "schedule_scene_id")
+
+    @schedule_scene_id.setter
+    def schedule_scene_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "schedule_scene_id", value)
+
+
+class ScheduledTaskTargetInstanceArgsDict(TypedDict):
+    order_no: pulumi.Input[_builtins.int]
+    """
+    Specifies the step number.
+    + When a scheduled task is associated with a script, this value is **1**.
+    + When a scheduled task is associated with a job, this value indicates the step number within the job.
+    """
+    target_selection: pulumi.Input[_builtins.str]
+    """
+    Specifies the target instance selection method. The default value is **MANUAL**.
+    Values can be as follows:
+    + **ALL**: All instances.
+    + **MANUAL**: Manual selection.
+    + **NONE**: No instance specified.
+    """
+    batch_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance batching strategy.
+    Values can be as follows:
+    + **AUTO_BATCH**: Automatic batching.
+    + **MANUAL_BATCH**: Manual batching.
+    + **NONE**: No batching.
+
+    > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+    value must be **NONE**.
+    <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+    <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+    """
+    create_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the target instance creation time.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region or application ID.
+    """
+    schedule_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the schedule task ID.
+    """
+    sub_target_instances: NotRequired[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceArgsDict']]]]
+    """
+    Specifies the secondary resource instance information.
+
+    The sub_target_instances structure is documented below.
+
+    > If a step in a job associated with a scheduled task has multiple tasks and the `runbook_instance_mode` is **DIFF**,
+    this value is required. This means that each task specifies a separate resource instance for the operation.
+
+    <a name="target_instances_target_resource_struct"></a>
+    The `target_resource` block supports:
+    """
+    target_instances: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance information.
+
+    > This field is required if the `target_selection` is **MANUAL**.
+    """
+    target_resource: NotRequired[pulumi.Input['ScheduledTaskTargetInstanceTargetResourceArgsDict']]
+    """
+    Specifies the target instance query condition. The default value is empty.
+
+    The target_resource structure is documented below.
+
+    > This field is required if the `target_selection` is **ALL**.
+    """
+    update_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the target instance update time.
+    """
+
+@pulumi.input_type
+class ScheduledTaskTargetInstanceArgs:
+    def __init__(__self__, *,
+                 order_no: pulumi.Input[_builtins.int],
+                 target_selection: pulumi.Input[_builtins.str],
+                 batch_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 create_time: Optional[pulumi.Input[_builtins.int]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 schedule_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 sub_target_instances: Optional[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceArgs']]]] = None,
+                 target_instances: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_resource: Optional[pulumi.Input['ScheduledTaskTargetInstanceTargetResourceArgs']] = None,
+                 update_time: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] order_no: Specifies the step number.
+               + When a scheduled task is associated with a script, this value is **1**.
+               + When a scheduled task is associated with a job, this value indicates the step number within the job.
+        :param pulumi.Input[_builtins.str] target_selection: Specifies the target instance selection method. The default value is **MANUAL**.
+               Values can be as follows:
+               + **ALL**: All instances.
+               + **MANUAL**: Manual selection.
+               + **NONE**: No instance specified.
+        :param pulumi.Input[_builtins.str] batch_strategy: Specifies the instance batching strategy.
+               Values can be as follows:
+               + **AUTO_BATCH**: Automatic batching.
+               + **MANUAL_BATCH**: Manual batching.
+               + **NONE**: No batching.
+               
+               > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+               value must be **NONE**.
+               <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+               <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+        :param pulumi.Input[_builtins.int] create_time: Indicates the target instance creation time.
+        :param pulumi.Input[_builtins.str] id: Specifies the region or application ID.
+        :param pulumi.Input[_builtins.str] schedule_id: Indicates the schedule task ID.
+        :param pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceArgs']]] sub_target_instances: Specifies the secondary resource instance information.
+               
+               The sub_target_instances structure is documented below.
+               
+               > If a step in a job associated with a scheduled task has multiple tasks and the `runbook_instance_mode` is **DIFF**,
+               this value is required. This means that each task specifies a separate resource instance for the operation.
+               
+               <a name="target_instances_target_resource_struct"></a>
+               The `target_resource` block supports:
+        :param pulumi.Input[_builtins.str] target_instances: Specifies the instance information.
+               
+               > This field is required if the `target_selection` is **MANUAL**.
+        :param pulumi.Input['ScheduledTaskTargetInstanceTargetResourceArgs'] target_resource: Specifies the target instance query condition. The default value is empty.
+               
+               The target_resource structure is documented below.
+               
+               > This field is required if the `target_selection` is **ALL**.
+        :param pulumi.Input[_builtins.int] update_time: Indicates the target instance update time.
+        """
+        pulumi.set(__self__, "order_no", order_no)
+        pulumi.set(__self__, "target_selection", target_selection)
+        if batch_strategy is not None:
+            pulumi.set(__self__, "batch_strategy", batch_strategy)
+        if create_time is not None:
+            pulumi.set(__self__, "create_time", create_time)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if schedule_id is not None:
+            pulumi.set(__self__, "schedule_id", schedule_id)
+        if sub_target_instances is not None:
+            pulumi.set(__self__, "sub_target_instances", sub_target_instances)
+        if target_instances is not None:
+            pulumi.set(__self__, "target_instances", target_instances)
+        if target_resource is not None:
+            pulumi.set(__self__, "target_resource", target_resource)
+        if update_time is not None:
+            pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="orderNo")
+    def order_no(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the step number.
+        + When a scheduled task is associated with a script, this value is **1**.
+        + When a scheduled task is associated with a job, this value indicates the step number within the job.
+        """
+        return pulumi.get(self, "order_no")
+
+    @order_no.setter
+    def order_no(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "order_no", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetSelection")
+    def target_selection(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the target instance selection method. The default value is **MANUAL**.
+        Values can be as follows:
+        + **ALL**: All instances.
+        + **MANUAL**: Manual selection.
+        + **NONE**: No instance specified.
+        """
+        return pulumi.get(self, "target_selection")
+
+    @target_selection.setter
+    def target_selection(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "target_selection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="batchStrategy")
+    def batch_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance batching strategy.
+        Values can be as follows:
+        + **AUTO_BATCH**: Automatic batching.
+        + **MANUAL_BATCH**: Manual batching.
+        + **NONE**: No batching.
+
+        > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+        value must be **NONE**.
+        <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+        <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+        """
+        return pulumi.get(self, "batch_strategy")
+
+    @batch_strategy.setter
+    def batch_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "batch_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Indicates the target instance creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @create_time.setter
+    def create_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "create_time", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region or application ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleId")
+    def schedule_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the schedule task ID.
+        """
+        return pulumi.get(self, "schedule_id")
+
+    @schedule_id.setter
+    def schedule_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "schedule_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subTargetInstances")
+    def sub_target_instances(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceArgs']]]]:
+        """
+        Specifies the secondary resource instance information.
+
+        The sub_target_instances structure is documented below.
+
+        > If a step in a job associated with a scheduled task has multiple tasks and the `runbook_instance_mode` is **DIFF**,
+        this value is required. This means that each task specifies a separate resource instance for the operation.
+
+        <a name="target_instances_target_resource_struct"></a>
+        The `target_resource` block supports:
+        """
+        return pulumi.get(self, "sub_target_instances")
+
+    @sub_target_instances.setter
+    def sub_target_instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceArgs']]]]):
+        pulumi.set(self, "sub_target_instances", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance information.
+
+        > This field is required if the `target_selection` is **MANUAL**.
+        """
+        return pulumi.get(self, "target_instances")
+
+    @target_instances.setter
+    def target_instances(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target_instances", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetResource")
+    def target_resource(self) -> Optional[pulumi.Input['ScheduledTaskTargetInstanceTargetResourceArgs']]:
+        """
+        Specifies the target instance query condition. The default value is empty.
+
+        The target_resource structure is documented below.
+
+        > This field is required if the `target_selection` is **ALL**.
+        """
+        return pulumi.get(self, "target_resource")
+
+    @target_resource.setter
+    def target_resource(self, value: Optional[pulumi.Input['ScheduledTaskTargetInstanceTargetResourceArgs']]):
+        pulumi.set(self, "target_resource", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Indicates the target instance update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @update_time.setter
+    def update_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "update_time", value)
+
+
+class ScheduledTaskTargetInstanceSubTargetInstanceArgsDict(TypedDict):
+    order_no: pulumi.Input[_builtins.int]
+    """
+    Specifies the step number.
+    + When a scheduled task is associated with a script, this value is **1**.
+    + When a scheduled task is associated with a job, this value indicates the step number within the job.
+    """
+    target_selection: pulumi.Input[_builtins.str]
+    """
+    Specifies the target instance selection method. The default value is **MANUAL**.
+    Values can be as follows:
+    + **ALL**: All instances.
+    + **MANUAL**: Manual selection.
+    + **NONE**: No instance specified.
+    """
+    batch_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance batching strategy.
+    Values can be as follows:
+    + **AUTO_BATCH**: Automatic batching.
+    + **MANUAL_BATCH**: Manual batching.
+    + **NONE**: No batching.
+
+    > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+    value must be **NONE**.
+    <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+    <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+    """
+    target_instances: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance information.
+
+    > This field is required if the `target_selection` is **MANUAL**.
+    """
+    target_resource: NotRequired[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgsDict']]
+    """
+    Specifies the target instance query condition. The default value is empty.
+
+    The target_resource structure is documented below.
+
+    > This field is required if the `target_selection` is **ALL**.
+    """
+
+@pulumi.input_type
+class ScheduledTaskTargetInstanceSubTargetInstanceArgs:
+    def __init__(__self__, *,
+                 order_no: pulumi.Input[_builtins.int],
+                 target_selection: pulumi.Input[_builtins.str],
+                 batch_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_instances: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_resource: Optional[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.int] order_no: Specifies the step number.
+               + When a scheduled task is associated with a script, this value is **1**.
+               + When a scheduled task is associated with a job, this value indicates the step number within the job.
+        :param pulumi.Input[_builtins.str] target_selection: Specifies the target instance selection method. The default value is **MANUAL**.
+               Values can be as follows:
+               + **ALL**: All instances.
+               + **MANUAL**: Manual selection.
+               + **NONE**: No instance specified.
+        :param pulumi.Input[_builtins.str] batch_strategy: Specifies the instance batching strategy.
+               Values can be as follows:
+               + **AUTO_BATCH**: Automatic batching.
+               + **MANUAL_BATCH**: Manual batching.
+               + **NONE**: No batching.
+               
+               > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+               value must be **NONE**.
+               <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+               <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+        :param pulumi.Input[_builtins.str] target_instances: Specifies the instance information.
+               
+               > This field is required if the `target_selection` is **MANUAL**.
+        :param pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgs'] target_resource: Specifies the target instance query condition. The default value is empty.
+               
+               The target_resource structure is documented below.
+               
+               > This field is required if the `target_selection` is **ALL**.
+        """
+        pulumi.set(__self__, "order_no", order_no)
+        pulumi.set(__self__, "target_selection", target_selection)
+        if batch_strategy is not None:
+            pulumi.set(__self__, "batch_strategy", batch_strategy)
+        if target_instances is not None:
+            pulumi.set(__self__, "target_instances", target_instances)
+        if target_resource is not None:
+            pulumi.set(__self__, "target_resource", target_resource)
+
+    @_builtins.property
+    @pulumi.getter(name="orderNo")
+    def order_no(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the step number.
+        + When a scheduled task is associated with a script, this value is **1**.
+        + When a scheduled task is associated with a job, this value indicates the step number within the job.
+        """
+        return pulumi.get(self, "order_no")
+
+    @order_no.setter
+    def order_no(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "order_no", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetSelection")
+    def target_selection(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the target instance selection method. The default value is **MANUAL**.
+        Values can be as follows:
+        + **ALL**: All instances.
+        + **MANUAL**: Manual selection.
+        + **NONE**: No instance specified.
+        """
+        return pulumi.get(self, "target_selection")
+
+    @target_selection.setter
+    def target_selection(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "target_selection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="batchStrategy")
+    def batch_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance batching strategy.
+        Values can be as follows:
+        + **AUTO_BATCH**: Automatic batching.
+        + **MANUAL_BATCH**: Manual batching.
+        + **NONE**: No batching.
+
+        > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+        value must be **NONE**.
+        <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+        <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+        """
+        return pulumi.get(self, "batch_strategy")
+
+    @batch_strategy.setter
+    def batch_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "batch_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance information.
+
+        > This field is required if the `target_selection` is **MANUAL**.
+        """
+        return pulumi.get(self, "target_instances")
+
+    @target_instances.setter
+    def target_instances(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target_instances", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetResource")
+    def target_resource(self) -> Optional[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgs']]:
+        """
+        Specifies the target instance query condition. The default value is empty.
+
+        The target_resource structure is documented below.
+
+        > This field is required if the `target_selection` is **ALL**.
+        """
+        return pulumi.get(self, "target_resource")
+
+    @target_resource.setter
+    def target_resource(self, value: Optional[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgs']]):
+        pulumi.set(self, "target_resource", value)
+
+
+class ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgsDict(TypedDict):
+    app_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the application name. Separate hierarchical elements with dot(.).
+
+    > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+    selected application.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region or application ID.
+    """
+    params: NotRequired[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgsDict']]]]
+    """
+    Specifies the dynamic query conditions for resource instances.
+
+    The params structure is documented below.
+
+    <a name="target_instances_target_resource_params_struct"></a>
+    The `params` block supports:
+    """
+    region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region ID which the application is associated.
+
+    > When the resource selection method is **APPLICATION**, this value is required.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource selection method. The default value is **REGION**.
+    Values can be as follows:
+    + **REGION**: Selects resource instances by region.
+    + **APPLICATION**: Selects resource instances by application.
+    """
+
+@pulumi.input_type
+class ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgs:
+    def __init__(__self__, *,
+                 app_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 params: Optional[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgs']]]] = None,
+                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] app_name: Specifies the application name. Separate hierarchical elements with dot(.).
+               
+               > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+               selected application.
+        :param pulumi.Input[_builtins.str] id: Specifies the region or application ID.
+        :param pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgs']]] params: Specifies the dynamic query conditions for resource instances.
+               
+               The params structure is documented below.
+               
+               <a name="target_instances_target_resource_params_struct"></a>
+               The `params` block supports:
+        :param pulumi.Input[_builtins.str] region_id: Specifies the region ID which the application is associated.
+               
+               > When the resource selection method is **APPLICATION**, this value is required.
+        :param pulumi.Input[_builtins.str] type: Specifies the resource selection method. The default value is **REGION**.
+               Values can be as follows:
+               + **REGION**: Selects resource instances by region.
+               + **APPLICATION**: Selects resource instances by application.
+        """
+        if app_name is not None:
+            pulumi.set(__self__, "app_name", app_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if params is not None:
+            pulumi.set(__self__, "params", params)
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the application name. Separate hierarchical elements with dot(.).
+
+        > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+        selected application.
+        """
+        return pulumi.get(self, "app_name")
+
+    @app_name.setter
+    def app_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "app_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region or application ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def params(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgs']]]]:
+        """
+        Specifies the dynamic query conditions for resource instances.
+
+        The params structure is documented below.
+
+        <a name="target_instances_target_resource_params_struct"></a>
+        The `params` block supports:
+        """
+        return pulumi.get(self, "params")
+
+    @params.setter
+    def params(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgs']]]]):
+        pulumi.set(self, "params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region ID which the application is associated.
+
+        > When the resource selection method is **APPLICATION**, this value is required.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource selection method. The default value is **REGION**.
+        Values can be as follows:
+        + **REGION**: Selects resource instances by region.
+        + **APPLICATION**: Selects resource instances by application.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value corresponding to the resource attribute.
+
+    <a name="ticket_infos_struct"></a>
+    The `ticket_infos` block supports:
+    """
+
+@pulumi.input_type
+class ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] key: Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+        :param pulumi.Input[_builtins.str] value: Specifies the parameter value corresponding to the resource attribute.
+               
+               <a name="ticket_infos_struct"></a>
+               The `ticket_infos` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the parameter value corresponding to the resource attribute.
+
+        <a name="ticket_infos_struct"></a>
+        The `ticket_infos` block supports:
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class ScheduledTaskTargetInstanceTargetResourceArgsDict(TypedDict):
+    app_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the application name. Separate hierarchical elements with dot(.).
+
+    > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+    selected application.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region or application ID.
+    """
+    params: NotRequired[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceTargetResourceParamArgsDict']]]]
+    """
+    Specifies the dynamic query conditions for resource instances.
+
+    The params structure is documented below.
+
+    <a name="target_instances_target_resource_params_struct"></a>
+    The `params` block supports:
+    """
+    region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region ID which the application is associated.
+
+    > When the resource selection method is **APPLICATION**, this value is required.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource selection method. The default value is **REGION**.
+    Values can be as follows:
+    + **REGION**: Selects resource instances by region.
+    + **APPLICATION**: Selects resource instances by application.
+    """
+
+@pulumi.input_type
+class ScheduledTaskTargetInstanceTargetResourceArgs:
+    def __init__(__self__, *,
+                 app_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 params: Optional[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceTargetResourceParamArgs']]]] = None,
+                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] app_name: Specifies the application name. Separate hierarchical elements with dot(.).
+               
+               > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+               selected application.
+        :param pulumi.Input[_builtins.str] id: Specifies the region or application ID.
+        :param pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceTargetResourceParamArgs']]] params: Specifies the dynamic query conditions for resource instances.
+               
+               The params structure is documented below.
+               
+               <a name="target_instances_target_resource_params_struct"></a>
+               The `params` block supports:
+        :param pulumi.Input[_builtins.str] region_id: Specifies the region ID which the application is associated.
+               
+               > When the resource selection method is **APPLICATION**, this value is required.
+        :param pulumi.Input[_builtins.str] type: Specifies the resource selection method. The default value is **REGION**.
+               Values can be as follows:
+               + **REGION**: Selects resource instances by region.
+               + **APPLICATION**: Selects resource instances by application.
+        """
+        if app_name is not None:
+            pulumi.set(__self__, "app_name", app_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if params is not None:
+            pulumi.set(__self__, "params", params)
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the application name. Separate hierarchical elements with dot(.).
+
+        > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+        selected application.
+        """
+        return pulumi.get(self, "app_name")
+
+    @app_name.setter
+    def app_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "app_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region or application ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def params(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceTargetResourceParamArgs']]]]:
+        """
+        Specifies the dynamic query conditions for resource instances.
+
+        The params structure is documented below.
+
+        <a name="target_instances_target_resource_params_struct"></a>
+        The `params` block supports:
+        """
+        return pulumi.get(self, "params")
+
+    @params.setter
+    def params(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScheduledTaskTargetInstanceTargetResourceParamArgs']]]]):
+        pulumi.set(self, "params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region ID which the application is associated.
+
+        > When the resource selection method is **APPLICATION**, this value is required.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource selection method. The default value is **REGION**.
+        Values can be as follows:
+        + **REGION**: Selects resource instances by region.
+        + **APPLICATION**: Selects resource instances by application.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class ScheduledTaskTargetInstanceTargetResourceParamArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value corresponding to the resource attribute.
+
+    <a name="ticket_infos_struct"></a>
+    The `ticket_infos` block supports:
+    """
+
+@pulumi.input_type
+class ScheduledTaskTargetInstanceTargetResourceParamArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] key: Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+        :param pulumi.Input[_builtins.str] value: Specifies the parameter value corresponding to the resource attribute.
+               
+               <a name="ticket_infos_struct"></a>
+               The `ticket_infos` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the parameter value corresponding to the resource attribute.
+
+        <a name="ticket_infos_struct"></a>
+        The `ticket_infos` block supports:
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class ScheduledTaskTicketInfoArgsDict(TypedDict):
+    scope_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region ID.
+
+    <a name="message_notification_struct"></a>
+    The `reviewer_notification` and `message_notification` block supports:
+    """
+    target_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the application ID associated with the work order.
+    """
+    ticket_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the work order related to the change management.
+    """
+    ticket_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the work order type.
+    Values can be as follows:
+    + **CHANGE**: Change order.
+    + **INCIDENT**: Incident order.
+    + **WARROOM**: War room order.
+    """
+
+@pulumi.input_type
+class ScheduledTaskTicketInfoArgs:
+    def __init__(__self__, *,
+                 scope_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ticket_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ticket_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] scope_id: Specifies the region ID.
+               
+               <a name="message_notification_struct"></a>
+               The `reviewer_notification` and `message_notification` block supports:
+        :param pulumi.Input[_builtins.str] target_id: Specifies the application ID associated with the work order.
+        :param pulumi.Input[_builtins.str] ticket_id: Specifies the ID of the work order related to the change management.
+        :param pulumi.Input[_builtins.str] ticket_type: Specifies the work order type.
+               Values can be as follows:
+               + **CHANGE**: Change order.
+               + **INCIDENT**: Incident order.
+               + **WARROOM**: War room order.
+        """
+        if scope_id is not None:
+            pulumi.set(__self__, "scope_id", scope_id)
+        if target_id is not None:
+            pulumi.set(__self__, "target_id", target_id)
+        if ticket_id is not None:
+            pulumi.set(__self__, "ticket_id", ticket_id)
+        if ticket_type is not None:
+            pulumi.set(__self__, "ticket_type", ticket_type)
+
+    @_builtins.property
+    @pulumi.getter(name="scopeId")
+    def scope_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region ID.
+
+        <a name="message_notification_struct"></a>
+        The `reviewer_notification` and `message_notification` block supports:
+        """
+        return pulumi.get(self, "scope_id")
+
+    @scope_id.setter
+    def scope_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "scope_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetId")
+    def target_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the application ID associated with the work order.
+        """
+        return pulumi.get(self, "target_id")
+
+    @target_id.setter
+    def target_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the work order related to the change management.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @ticket_id.setter
+    def ticket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ticket_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ticketType")
+    def ticket_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the work order type.
+        Values can be as follows:
+        + **CHANGE**: Change order.
+        + **INCIDENT**: Incident order.
+        + **WARROOM**: War room order.
+        """
+        return pulumi.get(self, "ticket_type")
+
+    @ticket_type.setter
+    def ticket_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ticket_type", value)
+
+
+class ScheduledTaskTriggerTimeArgsDict(TypedDict):
+    policy: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification policy.
+    Values can be as follows:
+    + **START_EXECUTION**: Starts execution.
+    + **EXECUTION_FAILED**: Execution failed.
+    + **EXECUTION_SUCCEEDED**: Execution succeeded.
+
+    > This value is required when `enable_message_notification` is **true**.
+    """
+    time_zone: pulumi.Input[_builtins.str]
+    """
+    Specifies the time zone. The default value is **Asia/Shanghai**.
+    """
+    cron: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the specific CRON expression value for executing a scheduled task based on a
+    CRON expression.
+
+    > This value is required if the scheduled task execution policy is **CRON**. A valid CRON expression is sufficient.
+    For example, to execute a task at 10:15 AM every day, use `0 15 10 ? * *`.
+    """
+    period: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the specific week list for periodic scheduled tasks.
+
+    > This value is required if the scheduled task execution policy is **PERIODIC**. Days of the week are separated by
+    commas. For example, Sunday is **1** and Monday is **3**. If a task is to be executed on Monday, Wednesday, Thursday,
+    and Sunday, the value would be **1,2,4,5**.
+    """
+    periodic_scheduled_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the daily execution time for periodic scheduled tasks.
+
+    > This value is required if the scheduled task execution policy is **PERIODIC**. A 24-hour time string. For example,
+    if a task is to be executed at 5:30 PM on a given day, it would be **17:30:00**.
+    """
+    scheduled_close_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the deadline for scheduled task execution.
+
+    > This value is required if the scheduled task execution policy is **PERIODIC** or **CRON**. It specifies the
+    timestamp of the scheduled task rule deadline. UTC timestamp in milliseconds.
+
+    <a name="target_instances_struct"></a>
+    The `target_instances` block supports:
+    """
+    single_scheduled_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the execution time of a single scheduled task.
+
+    > This value is required if the scheduled task execution policy is **ONCE**. UTC timestamp in milliseconds.
+    """
+
+@pulumi.input_type
+class ScheduledTaskTriggerTimeArgs:
+    def __init__(__self__, *,
+                 policy: pulumi.Input[_builtins.str],
+                 time_zone: pulumi.Input[_builtins.str],
+                 cron: Optional[pulumi.Input[_builtins.str]] = None,
+                 period: Optional[pulumi.Input[_builtins.str]] = None,
+                 periodic_scheduled_time: Optional[pulumi.Input[_builtins.str]] = None,
+                 scheduled_close_time: Optional[pulumi.Input[_builtins.int]] = None,
+                 single_scheduled_time: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] policy: Specifies the notification policy.
+               Values can be as follows:
+               + **START_EXECUTION**: Starts execution.
+               + **EXECUTION_FAILED**: Execution failed.
+               + **EXECUTION_SUCCEEDED**: Execution succeeded.
+               
+               > This value is required when `enable_message_notification` is **true**.
+        :param pulumi.Input[_builtins.str] time_zone: Specifies the time zone. The default value is **Asia/Shanghai**.
+        :param pulumi.Input[_builtins.str] cron: Specifies the specific CRON expression value for executing a scheduled task based on a
+               CRON expression.
+               
+               > This value is required if the scheduled task execution policy is **CRON**. A valid CRON expression is sufficient.
+               For example, to execute a task at 10:15 AM every day, use `0 15 10 ? * *`.
+        :param pulumi.Input[_builtins.str] period: Specifies the specific week list for periodic scheduled tasks.
+               
+               > This value is required if the scheduled task execution policy is **PERIODIC**. Days of the week are separated by
+               commas. For example, Sunday is **1** and Monday is **3**. If a task is to be executed on Monday, Wednesday, Thursday,
+               and Sunday, the value would be **1,2,4,5**.
+        :param pulumi.Input[_builtins.str] periodic_scheduled_time: Specifies the daily execution time for periodic scheduled tasks.
+               
+               > This value is required if the scheduled task execution policy is **PERIODIC**. A 24-hour time string. For example,
+               if a task is to be executed at 5:30 PM on a given day, it would be **17:30:00**.
+        :param pulumi.Input[_builtins.int] scheduled_close_time: Specifies the deadline for scheduled task execution.
+               
+               > This value is required if the scheduled task execution policy is **PERIODIC** or **CRON**. It specifies the
+               timestamp of the scheduled task rule deadline. UTC timestamp in milliseconds.
+               
+               <a name="target_instances_struct"></a>
+               The `target_instances` block supports:
+        :param pulumi.Input[_builtins.int] single_scheduled_time: Specifies the execution time of a single scheduled task.
+               
+               > This value is required if the scheduled task execution policy is **ONCE**. UTC timestamp in milliseconds.
+        """
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "time_zone", time_zone)
+        if cron is not None:
+            pulumi.set(__self__, "cron", cron)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if periodic_scheduled_time is not None:
+            pulumi.set(__self__, "periodic_scheduled_time", periodic_scheduled_time)
+        if scheduled_close_time is not None:
+            pulumi.set(__self__, "scheduled_close_time", scheduled_close_time)
+        if single_scheduled_time is not None:
+            pulumi.set(__self__, "single_scheduled_time", single_scheduled_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the notification policy.
+        Values can be as follows:
+        + **START_EXECUTION**: Starts execution.
+        + **EXECUTION_FAILED**: Execution failed.
+        + **EXECUTION_SUCCEEDED**: Execution succeeded.
+
+        > This value is required when `enable_message_notification` is **true**.
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "policy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the time zone. The default value is **Asia/Shanghai**.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @time_zone.setter
+    def time_zone(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "time_zone", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cron(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the specific CRON expression value for executing a scheduled task based on a
+        CRON expression.
+
+        > This value is required if the scheduled task execution policy is **CRON**. A valid CRON expression is sufficient.
+        For example, to execute a task at 10:15 AM every day, use `0 15 10 ? * *`.
+        """
+        return pulumi.get(self, "cron")
+
+    @cron.setter
+    def cron(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cron", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the specific week list for periodic scheduled tasks.
+
+        > This value is required if the scheduled task execution policy is **PERIODIC**. Days of the week are separated by
+        commas. For example, Sunday is **1** and Monday is **3**. If a task is to be executed on Monday, Wednesday, Thursday,
+        and Sunday, the value would be **1,2,4,5**.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "period", value)
+
+    @_builtins.property
+    @pulumi.getter(name="periodicScheduledTime")
+    def periodic_scheduled_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the daily execution time for periodic scheduled tasks.
+
+        > This value is required if the scheduled task execution policy is **PERIODIC**. A 24-hour time string. For example,
+        if a task is to be executed at 5:30 PM on a given day, it would be **17:30:00**.
+        """
+        return pulumi.get(self, "periodic_scheduled_time")
+
+    @periodic_scheduled_time.setter
+    def periodic_scheduled_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "periodic_scheduled_time", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scheduledCloseTime")
+    def scheduled_close_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the deadline for scheduled task execution.
+
+        > This value is required if the scheduled task execution policy is **PERIODIC** or **CRON**. It specifies the
+        timestamp of the scheduled task rule deadline. UTC timestamp in milliseconds.
+
+        <a name="target_instances_struct"></a>
+        The `target_instances` block supports:
+        """
+        return pulumi.get(self, "scheduled_close_time")
+
+    @scheduled_close_time.setter
+    def scheduled_close_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "scheduled_close_time", value)
+
+    @_builtins.property
+    @pulumi.getter(name="singleScheduledTime")
+    def single_scheduled_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the execution time of a single scheduled task.
+
+        > This value is required if the scheduled task execution policy is **ONCE**. UTC timestamp in milliseconds.
+        """
+        return pulumi.get(self, "single_scheduled_time")
+
+    @single_scheduled_time.setter
+    def single_scheduled_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "single_scheduled_time", value)
+
+
+class ScriptExecuteParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parameter.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the parameter.
+    """
 
 @pulumi.input_type
 class ScriptExecuteParameterArgs:
@@ -505,26 +3858,23 @@ class ScriptExecuteParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ScriptParameterArgsDict(TypedDict):
-        description: pulumi.Input[_builtins.str]
-        """
-        Specifies the description of the parameter.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parameter.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the **default** value of the parameter.
-        """
-        sensitive: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the parameter is sensitive.
-        """
-elif False:
-    ScriptParameterArgsDict: TypeAlias = Mapping[str, Any]
+class ScriptParameterArgsDict(TypedDict):
+    description: pulumi.Input[_builtins.str]
+    """
+    Specifies the description of the parameter.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parameter.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the **default** value of the parameter.
+    """
+    sensitive: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the parameter is sensitive.
+    """
 
 @pulumi.input_type
 class ScriptParameterArgs:
@@ -594,30 +3944,303 @@ class ScriptParameterArgs:
         pulumi.set(self, "sensitive", value)
 
 
-if not MYPY:
-    class WarRoomIncidentArgsDict(TypedDict):
-        failure_level: NotRequired[pulumi.Input[_builtins.str]]
+class ScriptReviewerArgsDict(TypedDict):
+    reviewer_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the reviewer.
+
+    <a name="block--parameters"></a>
+    The `parameters` block supports:
+    """
+    reviewer_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the reviewer.
+    """
+
+@pulumi.input_type
+class ScriptReviewerArgs:
+    def __init__(__self__, *,
+                 reviewer_id: pulumi.Input[_builtins.str],
+                 reviewer_name: pulumi.Input[_builtins.str]):
         """
-        Indicates the incident level.
+        :param pulumi.Input[_builtins.str] reviewer_id: Specifies the ID of the reviewer.
+               
+               <a name="block--parameters"></a>
+               The `parameters` block supports:
+        :param pulumi.Input[_builtins.str] reviewer_name: Specifies the name of the reviewer.
         """
-        id: NotRequired[pulumi.Input[_builtins.str]]
+        pulumi.set(__self__, "reviewer_id", reviewer_id)
+        pulumi.set(__self__, "reviewer_name", reviewer_name)
+
+    @_builtins.property
+    @pulumi.getter(name="reviewerId")
+    def reviewer_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Indicates the war room status enumeration value ID .
+        Specifies the ID of the reviewer.
+
+        <a name="block--parameters"></a>
+        The `parameters` block supports:
         """
-        incident_id: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "reviewer_id")
+
+    @reviewer_id.setter
+    def reviewer_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "reviewer_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="reviewerName")
+    def reviewer_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Indicates the incident ID.
+        Specifies the name of the reviewer.
         """
-        incident_url: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "reviewer_name")
+
+    @reviewer_name.setter
+    def reviewer_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "reviewer_name", value)
+
+
+class TicketAddSubTicketArgsDict(TypedDict):
+    app_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the change service.
+
+    > When `target_type` is set to **change_scope**, this field must contain the corresponding change service name in Chinese.
+    """
+    cooperators: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the person to collaborate on the change order.
+
+    > This value is valid only when `target_type` is **child_ticket**.
+    """
+    executors: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the person who will implement the change order.
+
+    > This value is valid only when `target_type` is **child_ticket**.
+    """
+    expected_end_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timestamp of the change order's scheduled end time.
+
+    > This value is valid only when `target_type` is **child_ticket**.
+    """
+    expected_start_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timestamp of the change order's scheduled start time.
+
+    > This value is valid only when `target_type` is **child_ticket**.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the change region.
+
+    > When `target_type` is set to **change_scope**, this field must contain the corresponding change region ID.
+    """
+    target_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the target option information.
+    Values can be as follows:
+    + **change_scope**: Change application.
+    + **child_ticket**: Change plan.
+    """
+    target_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region ID of the change order to be transferred.
+
+    > This value is valid only when `target_type` is **child_ticket**.
+    """
+
+@pulumi.input_type
+class TicketAddSubTicketArgs:
+    def __init__(__self__, *,
+                 app_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 cooperators: Optional[pulumi.Input[_builtins.str]] = None,
+                 executors: Optional[pulumi.Input[_builtins.str]] = None,
+                 expected_end_time: Optional[pulumi.Input[_builtins.int]] = None,
+                 expected_start_time: Optional[pulumi.Input[_builtins.int]] = None,
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_value: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Indicates the incident URL.
+        :param pulumi.Input[_builtins.str] app_name: Specifies the change service.
+               
+               > When `target_type` is set to **change_scope**, this field must contain the corresponding change service name in Chinese.
+        :param pulumi.Input[_builtins.str] cooperators: Specifies the person to collaborate on the change order.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
+        :param pulumi.Input[_builtins.str] executors: Specifies the person who will implement the change order.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
+        :param pulumi.Input[_builtins.int] expected_end_time: Specifies the timestamp of the change order's scheduled end time.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
+        :param pulumi.Input[_builtins.int] expected_start_time: Specifies the timestamp of the change order's scheduled start time.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
+        :param pulumi.Input[_builtins.str] region: Specifies the change region.
+               
+               > When `target_type` is set to **change_scope**, this field must contain the corresponding change region ID.
+        :param pulumi.Input[_builtins.str] target_type: Specifies the target option information.
+               Values can be as follows:
+               + **change_scope**: Change application.
+               + **child_ticket**: Change plan.
+        :param pulumi.Input[_builtins.str] target_value: Specifies the region ID of the change order to be transferred.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
         """
-        is_change_event: NotRequired[pulumi.Input[_builtins.bool]]
+        if app_name is not None:
+            pulumi.set(__self__, "app_name", app_name)
+        if cooperators is not None:
+            pulumi.set(__self__, "cooperators", cooperators)
+        if executors is not None:
+            pulumi.set(__self__, "executors", executors)
+        if expected_end_time is not None:
+            pulumi.set(__self__, "expected_end_time", expected_end_time)
+        if expected_start_time is not None:
+            pulumi.set(__self__, "expected_start_time", expected_start_time)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if target_type is not None:
+            pulumi.set(__self__, "target_type", target_type)
+        if target_value is not None:
+            pulumi.set(__self__, "target_value", target_value)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates whether the incident is a change incident.
+        Specifies the change service.
+
+        > When `target_type` is set to **change_scope**, this field must contain the corresponding change service name in Chinese.
         """
-elif False:
-    WarRoomIncidentArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "app_name")
+
+    @app_name.setter
+    def app_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "app_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cooperators(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the person to collaborate on the change order.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "cooperators")
+
+    @cooperators.setter
+    def cooperators(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cooperators", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def executors(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the person who will implement the change order.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "executors")
+
+    @executors.setter
+    def executors(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "executors", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expectedEndTime")
+    def expected_end_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the timestamp of the change order's scheduled end time.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "expected_end_time")
+
+    @expected_end_time.setter
+    def expected_end_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "expected_end_time", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expectedStartTime")
+    def expected_start_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the timestamp of the change order's scheduled start time.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "expected_start_time")
+
+    @expected_start_time.setter
+    def expected_start_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "expected_start_time", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the change region.
+
+        > When `target_type` is set to **change_scope**, this field must contain the corresponding change region ID.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the target option information.
+        Values can be as follows:
+        + **change_scope**: Change application.
+        + **child_ticket**: Change plan.
+        """
+        return pulumi.get(self, "target_type")
+
+    @target_type.setter
+    def target_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetValue")
+    def target_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region ID of the change order to be transferred.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "target_value")
+
+    @target_value.setter
+    def target_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target_value", value)
+
+
+class WarRoomIncidentArgsDict(TypedDict):
+    failure_level: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the incident level.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the war room status enumeration value ID .
+    """
+    incident_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the incident ID.
+    """
+    incident_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the incident URL.
+    """
+    is_change_event: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the incident is a change incident.
+    """
 
 @pulumi.input_type
 class WarRoomIncidentArgs:
@@ -706,18 +4329,15 @@ class WarRoomIncidentArgs:
         pulumi.set(self, "is_change_event", value)
 
 
-if not MYPY:
-    class WarRoomScheduleGroupArgsDict(TypedDict):
-        role_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the role ID.
-        """
-        scene_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the scenario ID.
-        """
-elif False:
-    WarRoomScheduleGroupArgsDict: TypeAlias = Mapping[str, Any]
+class WarRoomScheduleGroupArgsDict(TypedDict):
+    role_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the role ID.
+    """
+    scene_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the scenario ID.
+    """
 
 @pulumi.input_type
 class WarRoomScheduleGroupArgs:
@@ -756,26 +4376,23 @@ class WarRoomScheduleGroupArgs:
         pulumi.set(self, "scene_id", value)
 
 
-if not MYPY:
-    class WarRoomWarRoomStatusArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the war room status enumeration value ID .
-        """
-        name_en: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the English name of the war room status enumeration value.
-        """
-        name_zh: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the Chinese name of the war room status enumeration value.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the war room status enumeration type.
-        """
-elif False:
-    WarRoomWarRoomStatusArgsDict: TypeAlias = Mapping[str, Any]
+class WarRoomWarRoomStatusArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the war room status enumeration value ID .
+    """
+    name_en: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the English name of the war room status enumeration value.
+    """
+    name_zh: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the Chinese name of the war room status enumeration value.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the war room status enumeration type.
+    """
 
 @pulumi.input_type
 class WarRoomWarRoomStatusArgs:
@@ -846,5 +4463,2401 @@ class WarRoomWarRoomStatusArgs:
     @type.setter
     def type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "type", value)
+
+
+class GetApplicationCapacitiesProviderObjArgsDict(TypedDict):
+    cloud_service_name: NotRequired[_builtins.str]
+    """
+    Specifies the cloud service name.
+    The value can be **ecs**, **cce**, **rds** and so on.
+    """
+    type: NotRequired[_builtins.str]
+    """
+    Specifies the resource type name.
+    There are many resource types. Choose the resource type based on your business needs. Common resource types are as follows:
+    + **cloudservers**: Elastic Cloud Servers.
+    + **servers**: Bare Metal Servers.
+    + **clusters**: Cloud Container Engines.
+    + **instances**: Cloud Databases.
+    """
+
+@pulumi.input_type
+class GetApplicationCapacitiesProviderObjArgs:
+    def __init__(__self__, *,
+                 cloud_service_name: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str cloud_service_name: Specifies the cloud service name.
+               The value can be **ecs**, **cce**, **rds** and so on.
+        :param _builtins.str type: Specifies the resource type name.
+               There are many resource types. Choose the resource type based on your business needs. Common resource types are as follows:
+               + **cloudservers**: Elastic Cloud Servers.
+               + **servers**: Bare Metal Servers.
+               + **clusters**: Cloud Container Engines.
+               + **instances**: Cloud Databases.
+        """
+        if cloud_service_name is not None:
+            pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the cloud service name.
+        The value can be **ecs**, **cce**, **rds** and so on.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @cloud_service_name.setter
+    def cloud_service_name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "cloud_service_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource type name.
+        There are many resource types. Choose the resource type based on your business needs. Common resource types are as follows:
+        + **cloudservers**: Elastic Cloud Servers.
+        + **servers**: Bare Metal Servers.
+        + **clusters**: Cloud Container Engines.
+        + **instances**: Cloud Databases.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+
+class GetIncidentActionHistoriesCountFilterArgsDict(TypedDict):
+    filters: NotRequired[Sequence['GetIncidentActionHistoriesCountFilterFilterArgsDict']]
+    """
+    Specifies the list of filters.
+
+    The filters structure is documented below.
+
+    <a name="filters_struct"></a>
+    The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+
+@pulumi.input_type
+class GetIncidentActionHistoriesCountFilterArgs:
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['GetIncidentActionHistoriesCountFilterFilterArgs']] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param Sequence['GetIncidentActionHistoriesCountFilterFilterArgs'] filters: Specifies the list of filters.
+               
+               The filters structure is documented below.
+               
+               <a name="filters_struct"></a>
+               The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        """
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['GetIncidentActionHistoriesCountFilterFilterArgs']]:
+        """
+        Specifies the list of filters.
+
+        The filters structure is documented below.
+
+        <a name="filters_struct"></a>
+        The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+        """
+        return pulumi.get(self, "filters")
+
+    @filters.setter
+    def filters(self, value: Optional[Sequence['GetIncidentActionHistoriesCountFilterFilterArgs']]):
+        pulumi.set(self, "filters", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+
+class GetIncidentActionHistoriesCountFilterFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentActionHistoriesCountFilterFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetIncidentActionHistoriesGroupByFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentActionHistoriesGroupByFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetIncidentActionHistoriesIntFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentActionHistoriesIntFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetIncidentActionHistoriesSortFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentActionHistoriesSortFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetIncidentActionHistoriesStringFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentActionHistoriesStringFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetIncidentsCountFilterArgsDict(TypedDict):
+    filters: NotRequired[Sequence['GetIncidentsCountFilterFilterArgsDict']]
+    """
+    Specifies the list of filters.
+
+    The filters structure is documented below.
+
+    <a name="filters_struct"></a>
+    The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+
+@pulumi.input_type
+class GetIncidentsCountFilterArgs:
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['GetIncidentsCountFilterFilterArgs']] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param Sequence['GetIncidentsCountFilterFilterArgs'] filters: Specifies the list of filters.
+               
+               The filters structure is documented below.
+               
+               <a name="filters_struct"></a>
+               The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        """
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['GetIncidentsCountFilterFilterArgs']]:
+        """
+        Specifies the list of filters.
+
+        The filters structure is documented below.
+
+        <a name="filters_struct"></a>
+        The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+        """
+        return pulumi.get(self, "filters")
+
+    @filters.setter
+    def filters(self, value: Optional[Sequence['GetIncidentsCountFilterFilterArgs']]):
+        pulumi.set(self, "filters", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+
+class GetIncidentsCountFilterFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentsCountFilterFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetIncidentsGroupByFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentsGroupByFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetIncidentsIntFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentsIntFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetIncidentsSortFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentsSortFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetIncidentsStringFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the field key. For values, refer to the return field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+    """
+    group: NotRequired[_builtins.str]
+    """
+    Specifies the group to query information.
+    """
+    match_type: NotRequired[_builtins.str]
+    """
+    Specifies the matching method.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the filter name for condition expression splicing.
+    """
+    priority_type: NotRequired[_builtins.str]
+    """
+    Specifies the priority processing method.
+    """
+
+@pulumi.input_type
+class GetIncidentsStringFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "match_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+    @priority_type.setter
+    def priority_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "priority_type", value)
+
+
+class GetInstanceBatchesTargetInstanceArgsDict(TypedDict):
+    cloud_service_name: _builtins.str
+    """
+    Specifies the resource provider: ECS. For a single script ticket, the
+    provider is the same for each instance.
+    """
+    region_id: _builtins.str
+    """
+    Specifies the region ID.
+    """
+    resource_id: _builtins.str
+    """
+    Specifies the unique ID of the instance.
+    """
+    type: _builtins.str
+    """
+    Specifies the resource type under the resource provider. If not specified, it defaults to
+    **CLOUDSERVER**.
+    """
+    custom_attributes: NotRequired[Sequence['GetInstanceBatchesTargetInstanceCustomAttributeArgsDict']]
+    """
+    Specifies the users can customize five attributes in the key_value format.
+
+    The custom_attributes structure is documented below.
+    """
+    properties: NotRequired['GetInstanceBatchesTargetInstancePropertiesArgsDict']
+    """
+    Specifies the additional host properties.
+
+    The properties structure is documented below.
+
+    <a name="target_instances_custom_attributes_struct"></a>
+    The `custom_attributes` block supports:
+    """
+
+@pulumi.input_type
+class GetInstanceBatchesTargetInstanceArgs:
+    def __init__(__self__, *,
+                 cloud_service_name: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 type: _builtins.str,
+                 custom_attributes: Optional[Sequence['GetInstanceBatchesTargetInstanceCustomAttributeArgs']] = None,
+                 properties: Optional['GetInstanceBatchesTargetInstancePropertiesArgs'] = None):
+        """
+        :param _builtins.str cloud_service_name: Specifies the resource provider: ECS. For a single script ticket, the
+               provider is the same for each instance.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str resource_id: Specifies the unique ID of the instance.
+        :param _builtins.str type: Specifies the resource type under the resource provider. If not specified, it defaults to
+               **CLOUDSERVER**.
+        :param Sequence['GetInstanceBatchesTargetInstanceCustomAttributeArgs'] custom_attributes: Specifies the users can customize five attributes in the key_value format.
+               
+               The custom_attributes structure is documented below.
+        :param 'GetInstanceBatchesTargetInstancePropertiesArgs' properties: Specifies the additional host properties.
+               
+               The properties structure is documented below.
+               
+               <a name="target_instances_custom_attributes_struct"></a>
+               The `custom_attributes` block supports:
+        """
+        pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "type", type)
+        if custom_attributes is not None:
+            pulumi.set(__self__, "custom_attributes", custom_attributes)
+        if properties is not None:
+            pulumi.set(__self__, "properties", properties)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> _builtins.str:
+        """
+        Specifies the resource provider: ECS. For a single script ticket, the
+        provider is the same for each instance.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @cloud_service_name.setter
+    def cloud_service_name(self, value: _builtins.str):
+        pulumi.set(self, "cloud_service_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: _builtins.str):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Specifies the unique ID of the instance.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @resource_id.setter
+    def resource_id(self, value: _builtins.str):
+        pulumi.set(self, "resource_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the resource type under the resource provider. If not specified, it defaults to
+        **CLOUDSERVER**.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: _builtins.str):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="customAttributes")
+    def custom_attributes(self) -> Optional[Sequence['GetInstanceBatchesTargetInstanceCustomAttributeArgs']]:
+        """
+        Specifies the users can customize five attributes in the key_value format.
+
+        The custom_attributes structure is documented below.
+        """
+        return pulumi.get(self, "custom_attributes")
+
+    @custom_attributes.setter
+    def custom_attributes(self, value: Optional[Sequence['GetInstanceBatchesTargetInstanceCustomAttributeArgs']]):
+        pulumi.set(self, "custom_attributes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Optional['GetInstanceBatchesTargetInstancePropertiesArgs']:
+        """
+        Specifies the additional host properties.
+
+        The properties structure is documented below.
+
+        <a name="target_instances_custom_attributes_struct"></a>
+        The `custom_attributes` block supports:
+        """
+        return pulumi.get(self, "properties")
+
+    @properties.setter
+    def properties(self, value: Optional['GetInstanceBatchesTargetInstancePropertiesArgs']):
+        pulumi.set(self, "properties", value)
+
+
+class GetInstanceBatchesTargetInstanceCustomAttributeArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the custom attribute key.
+    """
+    value: _builtins.str
+    """
+    Specifies the custom attribute value.
+
+    <a name="target_instances_properties_struct"></a>
+    The `properties` block supports:
+    """
+
+@pulumi.input_type
+class GetInstanceBatchesTargetInstanceCustomAttributeArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the custom attribute key.
+        :param _builtins.str value: Specifies the custom attribute value.
+               
+               <a name="target_instances_properties_struct"></a>
+               The `properties` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the custom attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the custom attribute value.
+
+        <a name="target_instances_properties_struct"></a>
+        The `properties` block supports:
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetInstanceBatchesTargetInstancePropertiesArgsDict(TypedDict):
+    fixed_ip: _builtins.str
+    """
+    Specifies the fixed IP.
+    """
+    host_name: _builtins.str
+    """
+    Specifies the host name.
+    """
+    region_id: _builtins.str
+    """
+    Specifies the region ID.
+    """
+    zone_id: _builtins.str
+    """
+    Specifies the availability zone.
+    """
+
+@pulumi.input_type
+class GetInstanceBatchesTargetInstancePropertiesArgs:
+    def __init__(__self__, *,
+                 fixed_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 region_id: _builtins.str,
+                 zone_id: _builtins.str):
+        """
+        :param _builtins.str fixed_ip: Specifies the fixed IP.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str zone_id: Specifies the availability zone.
+        """
+        pulumi.set(__self__, "fixed_ip", fixed_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @_builtins.property
+    @pulumi.getter(name="fixedIp")
+    def fixed_ip(self) -> _builtins.str:
+        """
+        Specifies the fixed IP.
+        """
+        return pulumi.get(self, "fixed_ip")
+
+    @fixed_ip.setter
+    def fixed_ip(self, value: _builtins.str):
+        pulumi.set(self, "fixed_ip", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @host_name.setter
+    def host_name(self, value: _builtins.str):
+        pulumi.set(self, "host_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: _builtins.str):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> _builtins.str:
+        """
+        Specifies the availability zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @zone_id.setter
+    def zone_id(self, value: _builtins.str):
+        pulumi.set(self, "zone_id", value)
+
+
+class GetIssueTicketsSortFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the name of the field to be operated.
+    + When querying work orders, the field name is **ticket_id**.
+    + When sorting the query results by creation time, the condition value is result field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    + When querying work orders, the condition value is the work order ID.
+    + When sorting the query results by creation time, the condition value is result field name.
+    """
+
+@pulumi.input_type
+class GetIssueTicketsSortFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str field: Specifies the name of the field to be operated.
+               + When querying work orders, the field name is **ticket_id**.
+               + When sorting the query results by creation time, the condition value is result field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               + When querying work orders, the condition value is the work order ID.
+               + When sorting the query results by creation time, the condition value is result field name.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the name of the field to be operated.
+        + When querying work orders, the field name is **ticket_id**.
+        + When sorting the query results by creation time, the condition value is result field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        + When querying work orders, the condition value is the work order ID.
+        + When sorting the query results by creation time, the condition value is result field name.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetIssueTicketsStringFilterArgsDict(TypedDict):
+    field: _builtins.str
+    """
+    Specifies the name of the field to be operated.
+    + When querying work orders, the field name is **ticket_id**.
+    + When sorting the query results by creation time, the condition value is result field name.
+    """
+    operator: _builtins.str
+    """
+    Specifies the operator.
+    The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value to be filtered.
+    + When querying work orders, the condition value is the work order ID.
+    + When sorting the query results by creation time, the condition value is result field name.
+    """
+
+@pulumi.input_type
+class GetIssueTicketsStringFilterArgs:
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str field: Specifies the name of the field to be operated.
+               + When querying work orders, the field name is **ticket_id**.
+               + When sorting the query results by creation time, the condition value is result field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               + When querying work orders, the condition value is the work order ID.
+               + When sorting the query results by creation time, the condition value is result field name.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the name of the field to be operated.
+        + When querying work orders, the field name is **ticket_id**.
+        + When sorting the query results by creation time, the condition value is result field name.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: _builtins.str):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: _builtins.str):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        + When querying work orders, the condition value is the work order ID.
+        + When sorting the query results by creation time, the condition value is result field name.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetTicketOperationHistoriesSortFilterArgsDict(TypedDict):
+    field: NotRequired[_builtins.str]
+    """
+    Specifies the name of the field that needs to be operated.
+    + When querying tickets, the field name is **ticket_id**.
+    + When sorting and filtering the query results by creation time, the field name is **start_time**.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the name of the condition that requires action.
+    + When querying tickets, the field name is **ticket_id**.
+    + When sorting and filtering the query results by creation time, the field name is **start_time**.
+    """
+    operator: NotRequired[_builtins.str]
+    """
+    Specifies the expression operators.
+    The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the conditional value that needs to be met when performing a certain operation
+    on a field.
+    + When querying work orders, the conditional value is the work order ID.
+    + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+    """
+
+@pulumi.input_type
+class GetTicketOperationHistoriesSortFilterArgs:
+    def __init__(__self__, *,
+                 field: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 operator: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str field: Specifies the name of the field that needs to be operated.
+               + When querying tickets, the field name is **ticket_id**.
+               + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        :param _builtins.str name: Specifies the name of the condition that requires action.
+               + When querying tickets, the field name is **ticket_id**.
+               + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        :param _builtins.str operator: Specifies the expression operators.
+               The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        :param Sequence[_builtins.str] values: Specifies the conditional value that needs to be met when performing a certain operation
+               on a field.
+               + When querying work orders, the conditional value is the work order ID.
+               + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+        """
+        if field is not None:
+            pulumi.set(__self__, "field", field)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the field that needs to be operated.
+        + When querying tickets, the field name is **ticket_id**.
+        + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the condition that requires action.
+        + When querying tickets, the field name is **ticket_id**.
+        + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> Optional[_builtins.str]:
+        """
+        Specifies the expression operators.
+        The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the conditional value that needs to be met when performing a certain operation
+        on a field.
+        + When querying work orders, the conditional value is the work order ID.
+        + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
+
+
+class GetTicketOperationHistoriesStringFilterArgsDict(TypedDict):
+    field: NotRequired[_builtins.str]
+    """
+    Specifies the name of the field that needs to be operated.
+    + When querying tickets, the field name is **ticket_id**.
+    + When sorting and filtering the query results by creation time, the field name is **start_time**.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the name of the condition that requires action.
+    + When querying tickets, the field name is **ticket_id**.
+    + When sorting and filtering the query results by creation time, the field name is **start_time**.
+    """
+    operator: NotRequired[_builtins.str]
+    """
+    Specifies the expression operators.
+    The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the conditional value that needs to be met when performing a certain operation
+    on a field.
+    + When querying work orders, the conditional value is the work order ID.
+    + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+    """
+
+@pulumi.input_type
+class GetTicketOperationHistoriesStringFilterArgs:
+    def __init__(__self__, *,
+                 field: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 operator: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str field: Specifies the name of the field that needs to be operated.
+               + When querying tickets, the field name is **ticket_id**.
+               + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        :param _builtins.str name: Specifies the name of the condition that requires action.
+               + When querying tickets, the field name is **ticket_id**.
+               + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        :param _builtins.str operator: Specifies the expression operators.
+               The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        :param Sequence[_builtins.str] values: Specifies the conditional value that needs to be met when performing a certain operation
+               on a field.
+               + When querying work orders, the conditional value is the work order ID.
+               + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+        """
+        if field is not None:
+            pulumi.set(__self__, "field", field)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the field that needs to be operated.
+        + When querying tickets, the field name is **ticket_id**.
+        + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the condition that requires action.
+        + When querying tickets, the field name is **ticket_id**.
+        + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> Optional[_builtins.str]:
+        """
+        Specifies the expression operators.
+        The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the conditional value that needs to be met when performing a certain operation
+        on a field.
+        + When querying work orders, the conditional value is the work order ID.
+        + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
 
 

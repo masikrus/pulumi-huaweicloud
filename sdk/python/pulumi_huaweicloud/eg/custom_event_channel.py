@@ -26,6 +26,7 @@ class CustomEventChannelArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomEventChannel resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cross_account_ids: Specifies the list of domain IDs (other tenants) for the cross-account policy.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the custom event channel.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the custom
@@ -128,6 +129,7 @@ class _CustomEventChannelState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomEventChannel resources.
+
         :param pulumi.Input[_builtins.str] created_at: The (UTC) creation time of the custom channel, in RFC3339 format.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cross_account_ids: Specifies the list of domain IDs (other tenants) for the cross-account policy.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the custom event channel.
@@ -308,13 +310,20 @@ class CustomEventChannel(pulumi.CustomResource):
 
         ## Import
 
-        ### with enterprise project association
+        Custom channels can be imported by their `id` and `enterprise_project_id` (with enterprise project association), e.g.
 
-        bash
+        ### without enterprise project association
+
+        ```sh
+        $ pulumi import huaweicloud:eg/customEventChannel:CustomEventChannel test <id>
+        ```
+
+        ### with enterprise project association
 
         ```sh
         $ pulumi import huaweicloud:eg/customEventChannel:CustomEventChannel test <id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -384,13 +393,20 @@ class CustomEventChannel(pulumi.CustomResource):
 
         ## Import
 
-        ### with enterprise project association
+        Custom channels can be imported by their `id` and `enterprise_project_id` (with enterprise project association), e.g.
 
-        bash
+        ### without enterprise project association
+
+        ```sh
+        $ pulumi import huaweicloud:eg/customEventChannel:CustomEventChannel test <id>
+        ```
+
+        ### with enterprise project association
 
         ```sh
         $ pulumi import huaweicloud:eg/customEventChannel:CustomEventChannel test <id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomEventChannelArgs args: The arguments to use to populate this resource's properties.

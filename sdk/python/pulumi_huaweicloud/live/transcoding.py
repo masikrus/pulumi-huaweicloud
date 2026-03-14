@@ -30,6 +30,7 @@ class TranscodingArgs:
                  trans_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Transcoding resource.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the ingest domain name.
@@ -178,6 +179,7 @@ class _TranscodingState:
                  video_encoding: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Transcoding resources.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the ingest domain name.
@@ -364,39 +366,16 @@ class Transcoding(pulumi.CustomResource):
 
         The resource can be imported using the `domain_name` and `app_name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/transcoding:Transcoding test <domian_name>/<app_name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `trans_type`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_live_transcoding" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              trans_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -462,39 +441,16 @@ class Transcoding(pulumi.CustomResource):
 
         The resource can be imported using the `domain_name` and `app_name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/transcoding:Transcoding test <domian_name>/<app_name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `trans_type`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_live_transcoding" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              trans_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param TranscodingArgs args: The arguments to use to populate this resource's properties.

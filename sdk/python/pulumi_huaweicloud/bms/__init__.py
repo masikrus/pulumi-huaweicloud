@@ -6,8 +6,19 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_available_resources import *
 from .get_flavors import *
+from .get_instance_password import *
+from .get_instance_remotely_login_address import *
 from .get_instances import *
+from .get_interface_attachments import *
+from .get_quotas import *
+from .get_volume_attachments import *
 from .instance import *
+from .instance_password_delete import *
+from .instance_password_reset import *
+from .instance_restart import *
+from .os_reinstall import *
+from .volume_attach import *
 from ._inputs import *
 from . import outputs

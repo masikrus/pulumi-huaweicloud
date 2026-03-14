@@ -166,7 +166,7 @@ def get_container_kubernetes(cluster_container: Optional[_builtins.bool] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_kubernetes()
+    test = huaweicloud.Hss.get_container_kubernetes()
     ```
 
 
@@ -191,7 +191,7 @@ def get_container_kubernetes(cluster_container: Optional[_builtins.bool] = None,
     __args__['podName'] = pod_name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getContainerKubernetes:getContainerKubernetes', __args__, opts=opts, typ=GetContainerKubernetesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getContainerKubernetes:getContainerKubernetes', __args__, opts=opts, typ=GetContainerKubernetesResult).value
 
     return AwaitableGetContainerKubernetesResult(
         cluster_container=pulumi.get(__ret__, 'cluster_container'),
@@ -220,7 +220,7 @@ def get_container_kubernetes_output(cluster_container: Optional[pulumi.Input[Opt
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_kubernetes()
+    test = huaweicloud.Hss.get_container_kubernetes()
     ```
 
 
@@ -245,7 +245,7 @@ def get_container_kubernetes_output(cluster_container: Optional[pulumi.Input[Opt
     __args__['podName'] = pod_name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getContainerKubernetes:getContainerKubernetes', __args__, opts=opts, typ=GetContainerKubernetesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getContainerKubernetes:getContainerKubernetes', __args__, opts=opts, typ=GetContainerKubernetesResult)
     return __ret__.apply(lambda __response__: GetContainerKubernetesResult(
         cluster_container=pulumi.get(__response__, 'cluster_container'),
         container_name=pulumi.get(__response__, 'container_name'),

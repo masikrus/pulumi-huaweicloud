@@ -27,6 +27,7 @@ class DataserviceAppArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataserviceApp resource.
+
         :param pulumi.Input[_builtins.str] dlm_type: Specifies the type of DLM engine.  
                The valid values are as follows:
                + **SHARED**: Shared data service.
@@ -163,6 +164,7 @@ class _DataserviceAppState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataserviceApp resources.
+
         :param pulumi.Input[_builtins.str] app_key: The key of the app.
         :param pulumi.Input[_builtins.str] app_secret: The secret of the app.
         :param pulumi.Input[_builtins.str] app_type: Specifies the type of the application.  
@@ -356,39 +358,16 @@ class DataserviceApp(pulumi.CustomResource):
 
         The DataArts DataService app can be imported using `workspace_id`, `dlm_type` and `id` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceApp:DataserviceApp test <workspace_id>/<dlm_type>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `app_type`.
-
         It is generally recommended running `pulumi preview` after importing an application.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the application. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_dataservice_app" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              app_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -446,39 +425,16 @@ class DataserviceApp(pulumi.CustomResource):
 
         The DataArts DataService app can be imported using `workspace_id`, `dlm_type` and `id` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceApp:DataserviceApp test <workspace_id>/<dlm_type>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `app_type`.
-
         It is generally recommended running `pulumi preview` after importing an application.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the application. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_dataservice_app" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              app_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DataserviceAppArgs args: The arguments to use to populate this resource's properties.

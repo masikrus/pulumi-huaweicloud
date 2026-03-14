@@ -28,6 +28,7 @@ class DrInstanceDrCapabilityArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DrInstanceDrCapability resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
         :param pulumi.Input[_builtins.str] target_instance_id: Specifies the ID of the primary DB instance.
         :param pulumi.Input[_builtins.str] target_ip: Specifies the data VIP of the primary DB instance.
@@ -150,6 +151,7 @@ class _DrInstanceDrCapabilityState:
                  wal_write_replay_delay_in_mb: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DrInstanceDrCapability resources.
+
         :param pulumi.Input[_builtins.str] build_process: Indicates the process for configuring disaster recovery (DR). The value can be:
                + **master**: process of configuring DR capability for the primary instance
                + **slave**: process of configuring DR for the DR instance
@@ -416,11 +418,10 @@ class DrInstanceDrCapability(pulumi.CustomResource):
 
         The RDS DR instance DR capability can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/drInstanceDrCapability:DrInstanceDrCapability test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -466,11 +467,10 @@ class DrInstanceDrCapability(pulumi.CustomResource):
 
         The RDS DR instance DR capability can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/drInstanceDrCapability:DrInstanceDrCapability test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DrInstanceDrCapabilityArgs args: The arguments to use to populate this resource's properties.

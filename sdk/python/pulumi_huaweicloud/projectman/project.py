@@ -28,6 +28,7 @@ class ProjectArgs:
                  template_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Project resource.
+
         :param pulumi.Input[_builtins.str] type: The type of project.
         :param pulumi.Input[_builtins.str] description: The description about the project.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID of the project.
@@ -146,6 +147,7 @@ class _ProjectState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Project resources.
+
         :param pulumi.Input[_builtins.int] archive: Whether the project is archived.
         :param pulumi.Input[_builtins.str] description: The description about the project.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID of the project.
@@ -311,6 +313,7 @@ class Project(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Project resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description about the project.
@@ -328,6 +331,7 @@ class Project(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Project resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ProjectArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

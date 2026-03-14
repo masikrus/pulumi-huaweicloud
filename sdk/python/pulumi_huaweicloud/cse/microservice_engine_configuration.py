@@ -30,6 +30,7 @@ class MicroserviceEngineConfigurationArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a MicroserviceEngineConfiguration resource.
+
         :param pulumi.Input[_builtins.str] auth_address: Specifies the address that used to request the access token.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] connect_address: Specifies the address that used to access engine and manages
@@ -247,6 +248,7 @@ class _MicroserviceEngineConfigurationState:
                  value_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MicroserviceEngineConfiguration resources.
+
         :param pulumi.Input[_builtins.str] admin_pass: Specifies the account password for **RBAC** login.
                The password format must meet the following conditions:
                + Must be `8` to `32` characters long.
@@ -609,22 +611,15 @@ class MicroserviceEngineConfiguration(pulumi.CustomResource):
         ## Import
 
         If the related engine is disable the `RBAC`, configurations (key/value pairs) can be imported using their
-
         `auth_address`, `connect_address` and `key`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngineConfiguration:MicroserviceEngineConfiguration test <auth_address>/<connect_address>/<key>
         ```
 
         If you enabled the **RBAC** authorization in the microservice engine, it's necessary to provide the account
-
         name (`admin_user`) and password (`admin_pass`) of the microservice engine.
-
         All fields separated by the slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngineConfiguration:MicroserviceEngineConfiguration test <auth_address>/<connect_address>/<key>/<admin_user>/<admin_pass>
@@ -632,43 +627,19 @@ class MicroserviceEngineConfiguration(pulumi.CustomResource):
 
         The single quotes (') or backslashes (\\\\) can help you solve the problem of special characters reporting errors on bash.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngineConfiguration:MicroserviceEngineConfiguration test https://124.70.26.32:30100/https://124.70.26.32:30110/demo/root/Test\\!123
         ```
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngineConfiguration:MicroserviceEngineConfiguration test 'https://124.70.26.32:30100/https://124.70.26.32:30110/demo/root/Test!123'
         ```
 
         Note that the imported state may not be identical to your resource definition, due to security reason.
-
         The missing attribute is `admin_pass`. It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the resource, or the definition should be updated to align with the
-
         resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cse_microservice_engine_configuration" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              admin_pass,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -803,22 +774,15 @@ class MicroserviceEngineConfiguration(pulumi.CustomResource):
         ## Import
 
         If the related engine is disable the `RBAC`, configurations (key/value pairs) can be imported using their
-
         `auth_address`, `connect_address` and `key`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngineConfiguration:MicroserviceEngineConfiguration test <auth_address>/<connect_address>/<key>
         ```
 
         If you enabled the **RBAC** authorization in the microservice engine, it's necessary to provide the account
-
         name (`admin_user`) and password (`admin_pass`) of the microservice engine.
-
         All fields separated by the slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngineConfiguration:MicroserviceEngineConfiguration test <auth_address>/<connect_address>/<key>/<admin_user>/<admin_pass>
@@ -826,43 +790,19 @@ class MicroserviceEngineConfiguration(pulumi.CustomResource):
 
         The single quotes (') or backslashes (\\\\) can help you solve the problem of special characters reporting errors on bash.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngineConfiguration:MicroserviceEngineConfiguration test https://124.70.26.32:30100/https://124.70.26.32:30110/demo/root/Test\\!123
         ```
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngineConfiguration:MicroserviceEngineConfiguration test 'https://124.70.26.32:30100/https://124.70.26.32:30110/demo/root/Test!123'
         ```
 
         Note that the imported state may not be identical to your resource definition, due to security reason.
-
         The missing attribute is `admin_pass`. It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the resource, or the definition should be updated to align with the
-
         resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cse_microservice_engine_configuration" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              admin_pass,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param MicroserviceEngineConfigurationArgs args: The arguments to use to populate this resource's properties.

@@ -28,6 +28,7 @@ class RabbitmqExchangeAssociateArgs:
                  routing_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RabbitmqExchangeAssociate resource.
+
         :param pulumi.Input[_builtins.str] destination: Specifies the name of a target exchange or queue.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] destination_type: Specifies the type of the binding target.
@@ -156,6 +157,7 @@ class _RabbitmqExchangeAssociateState:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RabbitmqExchangeAssociate resources.
+
         :param pulumi.Input[_builtins.str] destination: Specifies the name of a target exchange or queue.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] destination_type: Specifies the type of the binding target.
@@ -332,12 +334,9 @@ class RabbitmqExchangeAssociate(pulumi.CustomResource):
         ## Import
 
         The RabbitMQ exchange association can be imported using the `instance_id`, `vhost`, `exchange`, `destination_type`,
-
         `destination` and `routing_key` separated by commas.
 
         If `routing_key` is empty e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqExchangeAssociate:RabbitmqExchangeAssociate test <instance_id>,<vhost>,<exchange>,<destination_type>,<destination>
@@ -345,11 +344,10 @@ class RabbitmqExchangeAssociate(pulumi.CustomResource):
 
         If `routing_key` is specified e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqExchangeAssociate:RabbitmqExchangeAssociate test <instance_id>,<vhost>,<exchange>,<destination_type>,<destination>,<routing_key>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -400,12 +398,9 @@ class RabbitmqExchangeAssociate(pulumi.CustomResource):
         ## Import
 
         The RabbitMQ exchange association can be imported using the `instance_id`, `vhost`, `exchange`, `destination_type`,
-
         `destination` and `routing_key` separated by commas.
 
         If `routing_key` is empty e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqExchangeAssociate:RabbitmqExchangeAssociate test <instance_id>,<vhost>,<exchange>,<destination_type>,<destination>
@@ -413,11 +408,10 @@ class RabbitmqExchangeAssociate(pulumi.CustomResource):
 
         If `routing_key` is specified e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqExchangeAssociate:RabbitmqExchangeAssociate test <instance_id>,<vhost>,<exchange>,<destination_type>,<destination>,<routing_key>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RabbitmqExchangeAssociateArgs args: The arguments to use to populate this resource's properties.

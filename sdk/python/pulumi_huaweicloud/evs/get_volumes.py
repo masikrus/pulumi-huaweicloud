@@ -284,6 +284,20 @@ def get_volumes(availability_zone: Optional[_builtins.str] = None,
     """
     Use this data source to query the detailed information list of the EVS disks within HuaweiCloud.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+    import pulumi_std as std
+
+    config = pulumi.Config()
+    target_server = config.require_object("targetServer")
+    test = huaweicloud.Evs.get_volumes(server_id=target_server,
+        ids=std.index.urlencode(input="['XXX','XXX']")["result"],
+        metadata=std.index.urlencode(input="{\\"hw:passthrough\\": \\"true\\"}")["result"])
+    ```
+
 
     :param _builtins.str availability_zone: Specifies the availability zone for the disks.
     :param _builtins.str dedicated_storage_id: Specifies the dedicated storage pool ID. All disks in the dedicated storage
@@ -389,6 +403,20 @@ def get_volumes_output(availability_zone: Optional[pulumi.Input[Optional[_builti
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVolumesResult]:
     """
     Use this data source to query the detailed information list of the EVS disks within HuaweiCloud.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+    import pulumi_std as std
+
+    config = pulumi.Config()
+    target_server = config.require_object("targetServer")
+    test = huaweicloud.Evs.get_volumes(server_id=target_server,
+        ids=std.index.urlencode(input="['XXX','XXX']")["result"],
+        metadata=std.index.urlencode(input="{\\"hw:passthrough\\": \\"true\\"}")["result"])
+    ```
 
 
     :param _builtins.str availability_zone: Specifies the availability zone for the disks.

@@ -33,6 +33,7 @@ class SecurityDataRecognitionRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityDataRecognitionRule resource.
+
         :param pulumi.Input[_builtins.str] rule_type: Spedifies the type of data recognition rule.
                The valid values are **CUSTOM** and **BUILTIN**.
                Changing this parameter will create a new data recognition rule.
@@ -299,6 +300,7 @@ class _SecurityDataRecognitionRuleState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityDataRecognitionRule resources.
+
         :param pulumi.Input[_builtins.str] builtin_rule_id: Specifies the ID of built-in data recognition rule.
                The system has built-in 100+ sensitive data identification and desensitization rules,
                which can detect personal sensitive information (ID card, bank card, etc.),
@@ -732,32 +734,11 @@ class SecurityDataRecognitionRule(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `secrecy_level_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_security_data_recognition_rule" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              secrecy_level_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -869,32 +850,11 @@ class SecurityDataRecognitionRule(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `secrecy_level_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_security_data_recognition_rule" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              secrecy_level_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param SecurityDataRecognitionRuleArgs args: The arguments to use to populate this resource's properties.

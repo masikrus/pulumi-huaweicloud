@@ -52,6 +52,7 @@ class GroupArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['GroupNetworkArgs']]] networks: Specifies an array of one or more network IDs. The system supports up to five networks.
                The networks structure is documented below.
         :param pulumi.Input[_builtins.str] scaling_group_name: Specifies the name of the scaling group. The name can contain
@@ -96,8 +97,8 @@ class GroupArgs:
                
                > This parameter is valid only when the instance health check method of the AS group is **ELB_AUDIT**.
         :param pulumi.Input[_builtins.str] health_periodic_audit_method: Specifies the health check method for instances in the AS group.
-               The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value of
-               this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
+               The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value
+               of this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
         :param pulumi.Input[_builtins.int] health_periodic_audit_time: Specifies the health check period for instances. The unit is minute
                and value includes **0**, **1**, **5** (default), **15**, **60**, and **180**.
                If the value is set to **0**, health check is performed every 10 seconds.
@@ -106,7 +107,8 @@ class GroupArgs:
                
                + **OLD_CONFIG_OLD_INSTANCE** (default): The earlier-created instances based on the earlier-created AS configurations
                are removed first.
-               + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed first.
+               + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed
+               first.
                + **OLD_INSTANCE**: The earlier-created instances are removed first.
                + **NEW_INSTANCE**: The later-created instances are removed first.
         :param pulumi.Input[_builtins.str] lb_listener_id: The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
@@ -420,8 +422,8 @@ class GroupArgs:
     def health_periodic_audit_method(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the health check method for instances in the AS group.
-        The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value of
-        this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
+        The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value
+        of this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
         """
         return pulumi.get(self, "health_periodic_audit_method")
 
@@ -452,7 +454,8 @@ class GroupArgs:
 
         + **OLD_CONFIG_OLD_INSTANCE** (default): The earlier-created instances based on the earlier-created AS configurations
         are removed first.
-        + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed first.
+        + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed
+        first.
         + **OLD_INSTANCE**: The earlier-created instances are removed first.
         + **NEW_INSTANCE**: The later-created instances are removed first.
         """
@@ -643,6 +646,7 @@ class _GroupState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[_builtins.str] activity_type: The scaling activity type of the AS group.
         :param pulumi.Input[_builtins.str] agency_name: Specifies the IAM agency name. If you change the agency,
                the new agency will be available for ECSs scaled out after the change.
@@ -686,8 +690,8 @@ class _GroupState:
                
                > This parameter is valid only when the instance health check method of the AS group is **ELB_AUDIT**.
         :param pulumi.Input[_builtins.str] health_periodic_audit_method: Specifies the health check method for instances in the AS group.
-               The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value of
-               this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
+               The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value
+               of this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
         :param pulumi.Input[_builtins.int] health_periodic_audit_time: Specifies the health check period for instances. The unit is minute
                and value includes **0**, **1**, **5** (default), **15**, **60**, and **180**.
                If the value is set to **0**, health check is performed every 10 seconds.
@@ -696,7 +700,8 @@ class _GroupState:
                
                + **OLD_CONFIG_OLD_INSTANCE** (default): The earlier-created instances based on the earlier-created AS configurations
                are removed first.
-               + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed first.
+               + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed
+               first.
                + **OLD_INSTANCE**: The earlier-created instances are removed first.
                + **NEW_INSTANCE**: The later-created instances are removed first.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] instances: The instances IDs of the AS group.
@@ -1048,8 +1053,8 @@ class _GroupState:
     def health_periodic_audit_method(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the health check method for instances in the AS group.
-        The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value of
-        this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
+        The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value
+        of this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
         """
         return pulumi.get(self, "health_periodic_audit_method")
 
@@ -1080,7 +1085,8 @@ class _GroupState:
 
         + **OLD_CONFIG_OLD_INSTANCE** (default): The earlier-created instances based on the earlier-created AS configurations
         are removed first.
-        + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed first.
+        + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed
+        first.
         + **OLD_INSTANCE**: The earlier-created instances are removed first.
         + **NEW_INSTANCE**: The later-created instances are removed first.
         """
@@ -1452,39 +1458,16 @@ class Group(pulumi.CustomResource):
 
         AS groups can be imported by their `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:As/group:Group test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `delete_instances`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the group. Also, you can ignore
-
         changes as below.
 
-        hcl
-
-        resource "huaweicloud_as_group" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_instances,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1527,8 +1510,8 @@ class Group(pulumi.CustomResource):
                
                > This parameter is valid only when the instance health check method of the AS group is **ELB_AUDIT**.
         :param pulumi.Input[_builtins.str] health_periodic_audit_method: Specifies the health check method for instances in the AS group.
-               The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value of
-               this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
+               The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value
+               of this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
         :param pulumi.Input[_builtins.int] health_periodic_audit_time: Specifies the health check period for instances. The unit is minute
                and value includes **0**, **1**, **5** (default), **15**, **60**, and **180**.
                If the value is set to **0**, health check is performed every 10 seconds.
@@ -1537,7 +1520,8 @@ class Group(pulumi.CustomResource):
                
                + **OLD_CONFIG_OLD_INSTANCE** (default): The earlier-created instances based on the earlier-created AS configurations
                are removed first.
-               + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed first.
+               + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed
+               first.
                + **OLD_INSTANCE**: The earlier-created instances are removed first.
                + **NEW_INSTANCE**: The later-created instances are removed first.
         :param pulumi.Input[_builtins.str] lb_listener_id: The system supports the binding of up to six ELB listeners, the IDs of which are separated using a comma.
@@ -1680,39 +1664,16 @@ class Group(pulumi.CustomResource):
 
         AS groups can be imported by their `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:As/group:Group test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `delete_instances`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the group. Also, you can ignore
-
         changes as below.
 
-        hcl
-
-        resource "huaweicloud_as_group" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_instances,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.
@@ -1907,8 +1868,8 @@ class Group(pulumi.CustomResource):
                
                > This parameter is valid only when the instance health check method of the AS group is **ELB_AUDIT**.
         :param pulumi.Input[_builtins.str] health_periodic_audit_method: Specifies the health check method for instances in the AS group.
-               The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value of
-               this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
+               The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value
+               of this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
         :param pulumi.Input[_builtins.int] health_periodic_audit_time: Specifies the health check period for instances. The unit is minute
                and value includes **0**, **1**, **5** (default), **15**, **60**, and **180**.
                If the value is set to **0**, health check is performed every 10 seconds.
@@ -1917,7 +1878,8 @@ class Group(pulumi.CustomResource):
                
                + **OLD_CONFIG_OLD_INSTANCE** (default): The earlier-created instances based on the earlier-created AS configurations
                are removed first.
-               + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed first.
+               + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed
+               first.
                + **OLD_INSTANCE**: The earlier-created instances are removed first.
                + **NEW_INSTANCE**: The later-created instances are removed first.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] instances: The instances IDs of the AS group.
@@ -2072,7 +2034,7 @@ class Group(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="deletePublicip")
-    def delete_publicip(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def delete_publicip(self) -> pulumi.Output[_builtins.bool]:
         """
         Specifies whether to release the EIPs bound to ECSs when the ECSs are removed
         from the AS group. Defaults to **false**.
@@ -2166,8 +2128,8 @@ class Group(pulumi.CustomResource):
     def health_periodic_audit_method(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Specifies the health check method for instances in the AS group.
-        The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value of
-        this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
+        The health check methods include **ELB_AUDIT** and **NOVA_AUDIT**. If load balancing is configured, the default value
+        of this parameter is **ELB_AUDIT**. Otherwise, the default value is **NOVA_AUDIT**.
         """
         return pulumi.get(self, "health_periodic_audit_method")
 
@@ -2190,7 +2152,8 @@ class Group(pulumi.CustomResource):
 
         + **OLD_CONFIG_OLD_INSTANCE** (default): The earlier-created instances based on the earlier-created AS configurations
         are removed first.
-        + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed first.
+        + **OLD_CONFIG_NEW_INSTANCE**: The later-created instances based on the earlier-created AS configurations are removed
+        first.
         + **OLD_INSTANCE**: The earlier-created instances are removed first.
         + **NEW_INSTANCE**: The later-created instances are removed first.
         """

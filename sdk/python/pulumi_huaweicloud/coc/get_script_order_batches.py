@@ -84,7 +84,7 @@ def get_script_order_batches(execute_uuid: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     execute_uuid = config.require_object("executeUuid")
-    test = huaweicloud.coc.get_script_order_batches(execute_uuid=execute_uuid)
+    test = huaweicloud.Coc.get_script_order_batches(execute_uuid=execute_uuid)
     ```
 
 
@@ -93,7 +93,7 @@ def get_script_order_batches(execute_uuid: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['executeUuid'] = execute_uuid
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getScriptOrderBatches:getScriptOrderBatches', __args__, opts=opts, typ=GetScriptOrderBatchesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getScriptOrderBatches:getScriptOrderBatches', __args__, opts=opts, typ=GetScriptOrderBatchesResult).value
 
     return AwaitableGetScriptOrderBatchesResult(
         datas=pulumi.get(__ret__, 'datas'),
@@ -112,7 +112,7 @@ def get_script_order_batches_output(execute_uuid: Optional[pulumi.Input[_builtin
 
     config = pulumi.Config()
     execute_uuid = config.require_object("executeUuid")
-    test = huaweicloud.coc.get_script_order_batches(execute_uuid=execute_uuid)
+    test = huaweicloud.Coc.get_script_order_batches(execute_uuid=execute_uuid)
     ```
 
 
@@ -121,7 +121,7 @@ def get_script_order_batches_output(execute_uuid: Optional[pulumi.Input[_builtin
     __args__ = dict()
     __args__['executeUuid'] = execute_uuid
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getScriptOrderBatches:getScriptOrderBatches', __args__, opts=opts, typ=GetScriptOrderBatchesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getScriptOrderBatches:getScriptOrderBatches', __args__, opts=opts, typ=GetScriptOrderBatchesResult)
     return __ret__.apply(lambda __response__: GetScriptOrderBatchesResult(
         datas=pulumi.get(__response__, 'datas'),
         execute_uuid=pulumi.get(__response__, 'execute_uuid'),

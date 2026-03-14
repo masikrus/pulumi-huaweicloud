@@ -111,7 +111,7 @@ def get_availability_zones(display_name: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     availability_zone_name = config.require_object("availabilityZoneName")
-    test = huaweicloud.cbh.get_availability_zones(name=availability_zone_name)
+    test = huaweicloud.Cbh.get_availability_zones(name=availability_zone_name)
     ```
 
 
@@ -125,7 +125,7 @@ def get_availability_zones(display_name: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cbh/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cbh/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult).value
 
     return AwaitableGetAvailabilityZonesResult(
         availability_zones=pulumi.get(__ret__, 'availability_zones'),
@@ -148,7 +148,7 @@ def get_availability_zones_output(display_name: Optional[pulumi.Input[Optional[_
 
     config = pulumi.Config()
     availability_zone_name = config.require_object("availabilityZoneName")
-    test = huaweicloud.cbh.get_availability_zones(name=availability_zone_name)
+    test = huaweicloud.Cbh.get_availability_zones(name=availability_zone_name)
     ```
 
 
@@ -162,7 +162,7 @@ def get_availability_zones_output(display_name: Optional[pulumi.Input[Optional[_
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cbh/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cbh/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult)
     return __ret__.apply(lambda __response__: GetAvailabilityZonesResult(
         availability_zones=pulumi.get(__response__, 'availability_zones'),
         display_name=pulumi.get(__response__, 'display_name'),

@@ -25,6 +25,7 @@ class NodeBatchDeleteV2Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NodeBatchDeleteV2 resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_names: Specifies the name list of resource nodes to be deleted.
         :param pulumi.Input[_builtins.str] resource_pool_name: Specifies the resource pool name to which the resource nodes
                belong.
@@ -95,6 +96,7 @@ class _NodeBatchDeleteV2State:
                  resource_pool_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NodeBatchDeleteV2 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_names: Specifies the name list of resource nodes to be deleted.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the resource nodes are located.  
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -191,6 +193,7 @@ class NodeBatchDeleteV2(pulumi.CustomResource):
             node_names=node_names)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_names: Specifies the name list of resource nodes to be deleted.
@@ -226,6 +229,7 @@ class NodeBatchDeleteV2(pulumi.CustomResource):
             resource_pool_name=resource_pool_name,
             node_names=node_names)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NodeBatchDeleteV2Args args: The arguments to use to populate this resource's properties.

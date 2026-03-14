@@ -33,6 +33,7 @@ class ClusterArgs:
                  service_provider: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
+
         :param pulumi.Input[_builtins.str] category: Specifies the category of the cloud.
                
                Changing this parameter will create a new resource.
@@ -280,6 +281,7 @@ class _ClusterState:
                  service_provider: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies the annotations of the cluster to register.
                
                Changing this parameter will create a new resource.
@@ -526,7 +528,7 @@ class _ClusterState:
         pulumi.set(self, "service_provider", value)
 
 
-@pulumi.type_token("huaweicloud:ucs/cluster:Cluster")
+@pulumi.type_token("huaweicloud:Ucs/cluster:Cluster")
 class Cluster(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -594,39 +596,16 @@ class Cluster(pulumi.CustomResource):
 
         The UCS cluster can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ucs/cluster:Cluster test b84c0d09-26cc-11ee-b6b2-0255ac100263
+        $ pulumi import huaweicloud:Ucs/cluster:Cluster test b84c0d09-26cc-11ee-b6b2-0255ac100263
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `annotations`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ucs_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              annotations
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -722,39 +701,16 @@ class Cluster(pulumi.CustomResource):
 
         The UCS cluster can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ucs/cluster:Cluster test b84c0d09-26cc-11ee-b6b2-0255ac100263
+        $ pulumi import huaweicloud:Ucs/cluster:Cluster test b84c0d09-26cc-11ee-b6b2-0255ac100263
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `annotations`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ucs_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              annotations
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.
@@ -810,7 +766,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["service_provider"] = service_provider
             __props__.__dict__["manage_type"] = None
         super(Cluster, __self__).__init__(
-            'huaweicloud:ucs/cluster:Cluster',
+            'huaweicloud:Ucs/cluster:Cluster',
             resource_name,
             __props__,
             opts)

@@ -27,7 +27,10 @@ class GetNotificationRulesResult:
     """
     A collection of values returned by getNotificationRules.
     """
-    def __init__(__self__, id=None, region=None, rules=None):
+    def __init__(__self__, enterprise_project_id=None, id=None, region=None, rules=None):
+        if enterprise_project_id and not isinstance(enterprise_project_id, str):
+            raise TypeError("Expected argument 'enterprise_project_id' to be a str")
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -37,6 +40,11 @@ class GetNotificationRulesResult:
         if rules and not isinstance(rules, list):
             raise TypeError("Expected argument 'rules' to be a list")
         pulumi.set(__self__, "rules", rules)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter
@@ -66,12 +74,14 @@ class AwaitableGetNotificationRulesResult(GetNotificationRulesResult):
         if False:
             yield self
         return GetNotificationRulesResult(
+            enterprise_project_id=self.enterprise_project_id,
             id=self.id,
             region=self.region,
             rules=self.rules)
 
 
-def get_notification_rules(region: Optional[_builtins.str] = None,
+def get_notification_rules(enterprise_project_id: Optional[_builtins.str] = None,
+                           region: Optional[_builtins.str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationRulesResult:
     """
     Use this data source to get the list of the event notification rules within HuaweiCloud.
@@ -82,7 +92,7 @@ def get_notification_rules(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cae.get_notification_rules()
+    test = huaweicloud.Cae.get_notification_rules()
     ```
 
 
@@ -90,15 +100,18 @@ def get_notification_rules(region: Optional[_builtins.str] = None,
            If omitted, the provider-level region will be used.
     """
     __args__ = dict()
+    __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cae/getNotificationRules:getNotificationRules', __args__, opts=opts, typ=GetNotificationRulesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cae/getNotificationRules:getNotificationRules', __args__, opts=opts, typ=GetNotificationRulesResult).value
 
     return AwaitableGetNotificationRulesResult(
+        enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
         id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'),
         rules=pulumi.get(__ret__, 'rules'))
-def get_notification_rules_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_notification_rules_output(enterprise_project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                                  region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationRulesResult]:
     """
     Use this data source to get the list of the event notification rules within HuaweiCloud.
@@ -109,7 +122,7 @@ def get_notification_rules_output(region: Optional[pulumi.Input[Optional[_builti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cae.get_notification_rules()
+    test = huaweicloud.Cae.get_notification_rules()
     ```
 
 
@@ -117,10 +130,12 @@ def get_notification_rules_output(region: Optional[pulumi.Input[Optional[_builti
            If omitted, the provider-level region will be used.
     """
     __args__ = dict()
+    __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cae/getNotificationRules:getNotificationRules', __args__, opts=opts, typ=GetNotificationRulesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cae/getNotificationRules:getNotificationRules', __args__, opts=opts, typ=GetNotificationRulesResult)
     return __ret__.apply(lambda __response__: GetNotificationRulesResult(
+        enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),
         rules=pulumi.get(__response__, 'rules')))

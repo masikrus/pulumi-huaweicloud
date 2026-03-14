@@ -137,7 +137,7 @@ def get_listeners(accelerator_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     listener_name = config.require_object("listenerName")
-    test = huaweicloud.ga.get_listeners(name=listener_name)
+    test = huaweicloud.Ga.get_listeners(name=listener_name)
     ```
 
 
@@ -160,7 +160,7 @@ def get_listeners(accelerator_id: Optional[_builtins.str] = None,
     __args__['protocol'] = protocol
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ga/getListeners:getListeners', __args__, opts=opts, typ=GetListenersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ga/getListeners:getListeners', __args__, opts=opts, typ=GetListenersResult).value
 
     return AwaitableGetListenersResult(
         accelerator_id=pulumi.get(__ret__, 'accelerator_id'),
@@ -187,7 +187,7 @@ def get_listeners_output(accelerator_id: Optional[pulumi.Input[Optional[_builtin
 
     config = pulumi.Config()
     listener_name = config.require_object("listenerName")
-    test = huaweicloud.ga.get_listeners(name=listener_name)
+    test = huaweicloud.Ga.get_listeners(name=listener_name)
     ```
 
 
@@ -210,7 +210,7 @@ def get_listeners_output(accelerator_id: Optional[pulumi.Input[Optional[_builtin
     __args__['protocol'] = protocol
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ga/getListeners:getListeners', __args__, opts=opts, typ=GetListenersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ga/getListeners:getListeners', __args__, opts=opts, typ=GetListenersResult)
     return __ret__.apply(lambda __response__: GetListenersResult(
         accelerator_id=pulumi.get(__response__, 'accelerator_id'),
         id=pulumi.get(__response__, 'id'),

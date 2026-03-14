@@ -112,8 +112,7 @@ def get_nameservers(region: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
+    :param _builtins.str region: The region where the name server is located.
     :param _builtins.str server_region: Specifies the region to which the name server belongs.
            This parameter cannot be set when `type` is `public`.
     :param _builtins.str type: Specifies the type of the name server.
@@ -151,8 +150,7 @@ def get_nameservers_output(region: Optional[pulumi.Input[Optional[_builtins.str]
     ```
 
 
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
+    :param _builtins.str region: The region where the name server is located.
     :param _builtins.str server_region: Specifies the region to which the name server belongs.
            This parameter cannot be set when `type` is `public`.
     :param _builtins.str type: Specifies the type of the name server.

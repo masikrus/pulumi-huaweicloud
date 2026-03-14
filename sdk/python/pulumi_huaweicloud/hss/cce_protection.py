@@ -36,6 +36,7 @@ class CceProtectionArgs:
                  schedule_info: Optional[pulumi.Input['CceProtectionScheduleInfoArgs']] = None):
         """
         The set of arguments for constructing a CceProtection resource.
+
         :param pulumi.Input[_builtins.str] cce_protection_type: Specifies the CCE protection type.
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the CCE cluster ID.
@@ -251,6 +252,7 @@ class _CceProtectionState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CceProtection resources.
+
         :param pulumi.Input[_builtins.str] agent_version: Specifies the agent version.
         :param pulumi.Input[_builtins.bool] auto_upgrade: Specifies whether to enable automatic agent upgrade.
         :param pulumi.Input[_builtins.str] cce_protection_type: Specifies the CCE protection type.
@@ -565,7 +567,7 @@ class _CceProtectionState:
         pulumi.set(self, "vpc_id", value)
 
 
-@pulumi.type_token("huaweicloud:hss/cceProtection:CceProtection")
+@pulumi.type_token("huaweicloud:Hss/cceProtection:CceProtection")
 class CceProtection(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -587,6 +589,7 @@ class CceProtection(pulumi.CustomResource):
                  __props__=None):
         """
         Create a CceProtection resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] agent_version: Specifies the agent version.
@@ -610,6 +613,7 @@ class CceProtection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a CceProtection resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param CceProtectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -679,7 +683,7 @@ class CceProtection(pulumi.CustomResource):
             __props__.__dict__["unprotect_node_num"] = None
             __props__.__dict__["vpc_id"] = None
         super(CceProtection, __self__).__init__(
-            'huaweicloud:hss/cceProtection:CceProtection',
+            'huaweicloud:Hss/cceProtection:CceProtection',
             resource_name,
             __props__,
             opts)

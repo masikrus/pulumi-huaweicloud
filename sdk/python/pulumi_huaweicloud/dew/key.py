@@ -34,6 +34,7 @@ class KeyArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Key resource.
+
         :param pulumi.Input[_builtins.str] key_alias: Specifies the alias name of the KMS key.
                Only letters, digits, underscores(_), hyphens(-), colons(:) and slash(/) are allowed.
                The valid length is limited from `1` to `255` characters.
@@ -296,6 +297,7 @@ class KeyArgs:
 @pulumi.input_type
 class _KeyState:
     def __init__(__self__, *,
+                 key_state_value: Optional[pulumi.Input[_builtins.str]] = None,
                  creation_date: Optional[pulumi.Input[_builtins.str]] = None,
                  default_key_flag: Optional[pulumi.Input[_builtins.str]] = None,
                  domain_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -306,7 +308,6 @@ class _KeyState:
                  key_alias: Optional[pulumi.Input[_builtins.str]] = None,
                  key_description: Optional[pulumi.Input[_builtins.str]] = None,
                  key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_state: Optional[pulumi.Input[_builtins.str]] = None,
                  key_usage: Optional[pulumi.Input[_builtins.str]] = None,
                  keystore_id: Optional[pulumi.Input[_builtins.str]] = None,
                  origin: Optional[pulumi.Input[_builtins.str]] = None,
@@ -319,6 +320,14 @@ class _KeyState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Key resources.
+
+        :param pulumi.Input[_builtins.str] key_state_value: The current status of the KMS key.
+               The valid values are as follows:
+               + **1**: To be activated.
+               + **2**: Enabled.
+               + **3**: Disabled.
+               + **4**: Pending deletion.
+               + **5**: Pending import.
         :param pulumi.Input[_builtins.str] creation_date: The creation time of the KMS key.
                The value is a time stamp, e.g. **1723272402000**.
         :param pulumi.Input[_builtins.str] default_key_flag: The default master Key identifier.
@@ -350,13 +359,6 @@ class _KeyState:
                The name must be different from the alias of the default master key.
         :param pulumi.Input[_builtins.str] key_description: Specifies the description of the KMS key.
         :param pulumi.Input[_builtins.str] key_id: The ID of the KMS key.
-        :param pulumi.Input[_builtins.str] key_state: The current status of the KMS key.
-               The valid values are as follows:
-               + **1**: To be activated.
-               + **2**: Enabled.
-               + **3**: Disabled.
-               + **4**: Pending deletion.
-               + **5**: Pending import.
         :param pulumi.Input[_builtins.str] key_usage: Specifies the KMS key usage.
                Changing this parameter will create a new resource.
                The value can be **ENCRYPT_DECRYPT** (symmetric key default value) or **SIGN_VERIFY** (asymmetric key default value).
@@ -383,6 +385,8 @@ class _KeyState:
                The value is a time stamp, e.g. **1723272402000**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the KMS key.
         """
+        if key_state_value is not None:
+            pulumi.set(__self__, "key_state_value", key_state_value)
         if creation_date is not None:
             pulumi.set(__self__, "creation_date", creation_date)
         if default_key_flag is not None:
@@ -403,8 +407,6 @@ class _KeyState:
             pulumi.set(__self__, "key_description", key_description)
         if key_id is not None:
             pulumi.set(__self__, "key_id", key_id)
-        if key_state is not None:
-            pulumi.set(__self__, "key_state", key_state)
         if key_usage is not None:
             pulumi.set(__self__, "key_usage", key_usage)
         if keystore_id is not None:
@@ -425,6 +427,24 @@ class _KeyState:
             pulumi.set(__self__, "scheduled_deletion_date", scheduled_deletion_date)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="KeyStateValue")
+    def key_state_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The current status of the KMS key.
+        The valid values are as follows:
+        + **1**: To be activated.
+        + **2**: Enabled.
+        + **3**: Disabled.
+        + **4**: Pending deletion.
+        + **5**: Pending import.
+        """
+        return pulumi.get(self, "key_state_value")
+
+    @key_state_value.setter
+    def key_state_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_state_value", value)
 
     @_builtins.property
     @pulumi.getter(name="creationDate")
@@ -566,24 +586,6 @@ class _KeyState:
     @key_id.setter
     def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "key_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="keyState")
-    def key_state(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The current status of the KMS key.
-        The valid values are as follows:
-        + **1**: To be activated.
-        + **2**: Enabled.
-        + **3**: Disabled.
-        + **4**: Pending deletion.
-        + **5**: Pending import.
-        """
-        return pulumi.get(self, "key_state")
-
-    @key_state.setter
-    def key_state(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "key_state", value)
 
     @_builtins.property
     @pulumi.getter(name="keyUsage")
@@ -761,41 +763,17 @@ class Key(pulumi.CustomResource):
 
         The KMS Key resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/key:Key test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `pending_days` and `is_enabled`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_kms_key" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              pending_days, is_enabled
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -870,41 +848,17 @@ class Key(pulumi.CustomResource):
 
         The KMS Key resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/key:Key test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `pending_days` and `is_enabled`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_kms_key" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              pending_days, is_enabled
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param KeyArgs args: The arguments to use to populate this resource's properties.
@@ -958,12 +912,12 @@ class Key(pulumi.CustomResource):
             __props__.__dict__["rotation_enabled"] = rotation_enabled
             __props__.__dict__["rotation_interval"] = rotation_interval
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["key_state_value"] = None
             __props__.__dict__["creation_date"] = None
             __props__.__dict__["default_key_flag"] = None
             __props__.__dict__["domain_id"] = None
             __props__.__dict__["expiration_time"] = None
             __props__.__dict__["key_id"] = None
-            __props__.__dict__["key_state"] = None
             __props__.__dict__["rotation_number"] = None
             __props__.__dict__["scheduled_deletion_date"] = None
         super(Key, __self__).__init__(
@@ -976,6 +930,7 @@ class Key(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            key_state_value: Optional[pulumi.Input[_builtins.str]] = None,
             creation_date: Optional[pulumi.Input[_builtins.str]] = None,
             default_key_flag: Optional[pulumi.Input[_builtins.str]] = None,
             domain_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -986,7 +941,6 @@ class Key(pulumi.CustomResource):
             key_alias: Optional[pulumi.Input[_builtins.str]] = None,
             key_description: Optional[pulumi.Input[_builtins.str]] = None,
             key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            key_state: Optional[pulumi.Input[_builtins.str]] = None,
             key_usage: Optional[pulumi.Input[_builtins.str]] = None,
             keystore_id: Optional[pulumi.Input[_builtins.str]] = None,
             origin: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1004,6 +958,13 @@ class Key(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] key_state_value: The current status of the KMS key.
+               The valid values are as follows:
+               + **1**: To be activated.
+               + **2**: Enabled.
+               + **3**: Disabled.
+               + **4**: Pending deletion.
+               + **5**: Pending import.
         :param pulumi.Input[_builtins.str] creation_date: The creation time of the KMS key.
                The value is a time stamp, e.g. **1723272402000**.
         :param pulumi.Input[_builtins.str] default_key_flag: The default master Key identifier.
@@ -1035,13 +996,6 @@ class Key(pulumi.CustomResource):
                The name must be different from the alias of the default master key.
         :param pulumi.Input[_builtins.str] key_description: Specifies the description of the KMS key.
         :param pulumi.Input[_builtins.str] key_id: The ID of the KMS key.
-        :param pulumi.Input[_builtins.str] key_state: The current status of the KMS key.
-               The valid values are as follows:
-               + **1**: To be activated.
-               + **2**: Enabled.
-               + **3**: Disabled.
-               + **4**: Pending deletion.
-               + **5**: Pending import.
         :param pulumi.Input[_builtins.str] key_usage: Specifies the KMS key usage.
                Changing this parameter will create a new resource.
                The value can be **ENCRYPT_DECRYPT** (symmetric key default value) or **SIGN_VERIFY** (asymmetric key default value).
@@ -1072,6 +1026,7 @@ class Key(pulumi.CustomResource):
 
         __props__ = _KeyState.__new__(_KeyState)
 
+        __props__.__dict__["key_state_value"] = key_state_value
         __props__.__dict__["creation_date"] = creation_date
         __props__.__dict__["default_key_flag"] = default_key_flag
         __props__.__dict__["domain_id"] = domain_id
@@ -1082,7 +1037,6 @@ class Key(pulumi.CustomResource):
         __props__.__dict__["key_alias"] = key_alias
         __props__.__dict__["key_description"] = key_description
         __props__.__dict__["key_id"] = key_id
-        __props__.__dict__["key_state"] = key_state
         __props__.__dict__["key_usage"] = key_usage
         __props__.__dict__["keystore_id"] = keystore_id
         __props__.__dict__["origin"] = origin
@@ -1094,6 +1048,20 @@ class Key(pulumi.CustomResource):
         __props__.__dict__["scheduled_deletion_date"] = scheduled_deletion_date
         __props__.__dict__["tags"] = tags
         return Key(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="KeyStateValue")
+    def key_state_value(self) -> pulumi.Output[_builtins.str]:
+        """
+        The current status of the KMS key.
+        The valid values are as follows:
+        + **1**: To be activated.
+        + **2**: Enabled.
+        + **3**: Disabled.
+        + **4**: Pending deletion.
+        + **5**: Pending import.
+        """
+        return pulumi.get(self, "key_state_value")
 
     @_builtins.property
     @pulumi.getter(name="creationDate")
@@ -1195,20 +1163,6 @@ class Key(pulumi.CustomResource):
         The ID of the KMS key.
         """
         return pulumi.get(self, "key_id")
-
-    @_builtins.property
-    @pulumi.getter(name="keyState")
-    def key_state(self) -> pulumi.Output[_builtins.str]:
-        """
-        The current status of the KMS key.
-        The valid values are as follows:
-        + **1**: To be activated.
-        + **2**: Enabled.
-        + **3**: Disabled.
-        + **4**: Pending deletion.
-        + **5**: Pending import.
-        """
-        return pulumi.get(self, "key_state")
 
     @_builtins.property
     @pulumi.getter(name="keyUsage")

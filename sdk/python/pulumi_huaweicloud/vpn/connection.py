@@ -40,6 +40,7 @@ class ConnectionArgs:
                  tunnel_peer_address: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Connection resource.
+
         :param pulumi.Input[_builtins.str] customer_gateway_id: The customer gateway ID.
         :param pulumi.Input[_builtins.str] gateway_id: The VPN gateway ID.
                
@@ -366,6 +367,7 @@ class _ConnectionState:
                  vpn_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Connection resources.
+
         :param pulumi.Input[_builtins.str] created_at: The create time.
         :param pulumi.Input[_builtins.str] customer_gateway_id: The customer gateway ID.
         :param pulumi.Input[_builtins.bool] enable_nqa: Whether to enable NQA check. Defaults to **false**.
@@ -717,7 +719,7 @@ class _ConnectionState:
         pulumi.set(self, "vpn_type", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/connection:Connection")
+@pulumi.type_token("huaweicloud:Vpn/connection:Connection")
 class Connection(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -810,11 +812,10 @@ class Connection(pulumi.CustomResource):
 
         The connection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/connection:Connection test <id>
+        $ pulumi import huaweicloud:Vpn/connection:Connection test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -935,11 +936,10 @@ class Connection(pulumi.CustomResource):
 
         The connection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/connection:Connection test <id>
+        $ pulumi import huaweicloud:Vpn/connection:Connection test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConnectionArgs args: The arguments to use to populate this resource's properties.
@@ -1013,7 +1013,7 @@ class Connection(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Connection, __self__).__init__(
-            'huaweicloud:vpn/connection:Connection',
+            'huaweicloud:Vpn/connection:Connection',
             resource_name,
             __props__,
             opts)

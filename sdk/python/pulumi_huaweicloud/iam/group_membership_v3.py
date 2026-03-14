@@ -20,16 +20,31 @@ __all__ = ['GroupMembershipV3Args', 'GroupMembershipV3']
 class GroupMembershipV3Args:
     def __init__(__self__, *,
                  group: pulumi.Input[_builtins.str],
-                 users: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+                 users: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 users_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a GroupMembershipV3 resource.
+
+        :param pulumi.Input[_builtins.str] group: The ID of the group to which the users belong.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] users: The list of user IDs associated with the group.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] users_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'users'.
         """
         pulumi.set(__self__, "group", group)
         pulumi.set(__self__, "users", users)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if users_origins is not None:
+            pulumi.set(__self__, "users_origins", users_origins)
 
     @_builtins.property
     @pulumi.getter
     def group(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the group to which the users belong.
+        """
         return pulumi.get(self, "group")
 
     @group.setter
@@ -39,29 +54,84 @@ class GroupMembershipV3Args:
     @_builtins.property
     @pulumi.getter
     def users(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        The list of user IDs associated with the group.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
     def users(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "users", value)
 
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usersOrigins")
+    def users_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'users'.
+        """
+        return pulumi.get(self, "users_origins")
+
+    @users_origins.setter
+    def users_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "users_origins", value)
+
 
 @pulumi.input_type
 class _GroupMembershipV3State:
     def __init__(__self__, *,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  group: Optional[pulumi.Input[_builtins.str]] = None,
-                 users: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 users: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 users_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering GroupMembershipV3 resources.
+
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] group: The ID of the group to which the users belong.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] users: The list of user IDs associated with the group.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] users_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'users'.
         """
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if group is not None:
             pulumi.set(__self__, "group", group)
         if users is not None:
             pulumi.set(__self__, "users", users)
+        if users_origins is not None:
+            pulumi.set(__self__, "users_origins", users_origins)
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
 
     @_builtins.property
     @pulumi.getter
     def group(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the group to which the users belong.
+        """
         return pulumi.get(self, "group")
 
     @group.setter
@@ -71,11 +141,27 @@ class _GroupMembershipV3State:
     @_builtins.property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The list of user IDs associated with the group.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
     def users(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "users", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usersOrigins")
+    def users_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'users'.
+        """
+        return pulumi.get(self, "users_origins")
+
+    @users_origins.setter
+    def users_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "users_origins", value)
 
 
 @pulumi.type_token("huaweicloud:Iam/groupMembershipV3:GroupMembershipV3")
@@ -84,13 +170,21 @@ class GroupMembershipV3(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  group: Optional[pulumi.Input[_builtins.str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 users_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Create a GroupMembershipV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] group: The ID of the group to which the users belong.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] users: The list of user IDs associated with the group.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] users_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'users'.
         """
         ...
     @overload
@@ -100,6 +194,7 @@ class GroupMembershipV3(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a GroupMembershipV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param GroupMembershipV3Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -115,8 +210,10 @@ class GroupMembershipV3(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  group: Optional[pulumi.Input[_builtins.str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 users_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -126,12 +223,14 @@ class GroupMembershipV3(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = GroupMembershipV3Args.__new__(GroupMembershipV3Args)
 
+            __props__.__dict__["enable_force_new"] = enable_force_new
             if group is None and not opts.urn:
                 raise TypeError("Missing required property 'group'")
             __props__.__dict__["group"] = group
             if users is None and not opts.urn:
                 raise TypeError("Missing required property 'users'")
             __props__.__dict__["users"] = users
+            __props__.__dict__["users_origins"] = users_origins
         super(GroupMembershipV3, __self__).__init__(
             'huaweicloud:Iam/groupMembershipV3:GroupMembershipV3',
             resource_name,
@@ -142,8 +241,10 @@ class GroupMembershipV3(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             group: Optional[pulumi.Input[_builtins.str]] = None,
-            users: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'GroupMembershipV3':
+            users: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            users_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'GroupMembershipV3':
         """
         Get an existing GroupMembershipV3 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -151,22 +252,52 @@ class GroupMembershipV3(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] group: The ID of the group to which the users belong.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] users: The list of user IDs associated with the group.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] users_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'users'.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _GroupMembershipV3State.__new__(_GroupMembershipV3State)
 
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["group"] = group
         __props__.__dict__["users"] = users
+        __props__.__dict__["users_origins"] = users_origins
         return GroupMembershipV3(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter
     def group(self) -> pulumi.Output[_builtins.str]:
+        """
+        The ID of the group to which the users belong.
+        """
         return pulumi.get(self, "group")
 
     @_builtins.property
     @pulumi.getter
     def users(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        The list of user IDs associated with the group.
+        """
         return pulumi.get(self, "users")
+
+    @_builtins.property
+    @pulumi.getter(name="usersOrigins")
+    def users_origins(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'users'.
+        """
+        return pulumi.get(self, "users_origins")
 

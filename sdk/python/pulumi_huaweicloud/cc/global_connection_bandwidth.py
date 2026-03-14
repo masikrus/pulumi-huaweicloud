@@ -36,6 +36,7 @@ class GlobalConnectionBandwidthArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a GlobalConnectionBandwidth resource.
+
         :param pulumi.Input[_builtins.bool] bordercross: Specifies whether the GCB involves traveling from Chinese mainland to other
                countries. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] charge_mode: Specifies the GCB charge mode.
@@ -317,6 +318,7 @@ class _GlobalConnectionBandwidthState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GlobalConnectionBandwidth resources.
+
         :param pulumi.Input[_builtins.str] binding_service: Specifies whether to limit the GCB only bind with specific instance. Default is
                **ALL**.
                
@@ -699,11 +701,10 @@ class GlobalConnectionBandwidth(pulumi.CustomResource):
 
         The global connection bandwidth can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/globalConnectionBandwidth:GlobalConnectionBandwidth test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -782,11 +783,10 @@ class GlobalConnectionBandwidth(pulumi.CustomResource):
 
         The global connection bandwidth can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/globalConnectionBandwidth:GlobalConnectionBandwidth test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GlobalConnectionBandwidthArgs args: The arguments to use to populate this resource's properties.

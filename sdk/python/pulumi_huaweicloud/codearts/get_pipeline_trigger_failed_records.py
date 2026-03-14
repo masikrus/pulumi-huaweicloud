@@ -106,7 +106,7 @@ def get_pipeline_trigger_failed_records(pipeline_id: Optional[_builtins.str] = N
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
     pipeline_id = config.require_object("pipelineId")
-    test = huaweicloud.codearts.get_pipeline_trigger_failed_records(project_id=codearts_project_id,
+    test = huaweicloud.Codearts.get_pipeline_trigger_failed_records(project_id=codearts_project_id,
         pipeline_id=pipeline_id)
     ```
 
@@ -121,7 +121,7 @@ def get_pipeline_trigger_failed_records(pipeline_id: Optional[_builtins.str] = N
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineTriggerFailedRecords:getPipelineTriggerFailedRecords', __args__, opts=opts, typ=GetPipelineTriggerFailedRecordsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineTriggerFailedRecords:getPipelineTriggerFailedRecords', __args__, opts=opts, typ=GetPipelineTriggerFailedRecordsResult).value
 
     return AwaitableGetPipelineTriggerFailedRecordsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -145,7 +145,7 @@ def get_pipeline_trigger_failed_records_output(pipeline_id: Optional[pulumi.Inpu
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
     pipeline_id = config.require_object("pipelineId")
-    test = huaweicloud.codearts.get_pipeline_trigger_failed_records(project_id=codearts_project_id,
+    test = huaweicloud.Codearts.get_pipeline_trigger_failed_records(project_id=codearts_project_id,
         pipeline_id=pipeline_id)
     ```
 
@@ -160,7 +160,7 @@ def get_pipeline_trigger_failed_records_output(pipeline_id: Optional[pulumi.Inpu
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineTriggerFailedRecords:getPipelineTriggerFailedRecords', __args__, opts=opts, typ=GetPipelineTriggerFailedRecordsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineTriggerFailedRecords:getPipelineTriggerFailedRecords', __args__, opts=opts, typ=GetPipelineTriggerFailedRecordsResult)
     return __ret__.apply(lambda __response__: GetPipelineTriggerFailedRecordsResult(
         id=pulumi.get(__response__, 'id'),
         pipeline_id=pulumi.get(__response__, 'pipeline_id'),

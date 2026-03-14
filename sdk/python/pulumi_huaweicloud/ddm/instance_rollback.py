@@ -23,6 +23,7 @@ class InstanceRollbackArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceRollback resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -66,6 +67,7 @@ class _InstanceRollbackState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceRollback resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -103,7 +105,7 @@ class _InstanceRollbackState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:ddm/instanceRollback:InstanceRollback")
+@pulumi.type_token("huaweicloud:Ddm/instanceRollback:InstanceRollback")
 class InstanceRollback(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -128,6 +130,7 @@ class InstanceRollback(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.ddm.InstanceRollback("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -158,6 +161,7 @@ class InstanceRollback(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.ddm.InstanceRollback("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceRollbackArgs args: The arguments to use to populate this resource's properties.
@@ -190,7 +194,7 @@ class InstanceRollback(pulumi.CustomResource):
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["region"] = region
         super(InstanceRollback, __self__).__init__(
-            'huaweicloud:ddm/instanceRollback:InstanceRollback',
+            'huaweicloud:Ddm/instanceRollback:InstanceRollback',
             resource_name,
             __props__,
             opts)

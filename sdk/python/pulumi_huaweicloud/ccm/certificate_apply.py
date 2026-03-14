@@ -41,6 +41,7 @@ class CertificateApplyArgs:
                  sans: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CertificateApply resource.
+
         :param pulumi.Input[_builtins.str] applicant_email: Specifies the email of the applicant.
                
                Changing this parameter will create a new resource.
@@ -481,6 +482,7 @@ class _CertificateApplyState:
                  sans: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CertificateApply resources.
+
         :param pulumi.Input[_builtins.str] applicant_email: Specifies the email of the applicant.
                
                Changing this parameter will create a new resource.
@@ -902,7 +904,7 @@ class _CertificateApplyState:
         pulumi.set(self, "sans", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/certificateApply:CertificateApply")
+@pulumi.type_token("huaweicloud:Ccm/certificateApply:CertificateApply")
 class CertificateApply(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -958,6 +960,7 @@ class CertificateApply(pulumi.CustomResource):
             applicant_email=applicant_email,
             domain_method=domain_method)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1077,6 +1080,7 @@ class CertificateApply(pulumi.CustomResource):
             domain_method=domain_method)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param CertificateApplyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1154,7 +1158,7 @@ class CertificateApply(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["sans"] = sans
         super(CertificateApply, __self__).__init__(
-            'huaweicloud:ccm/certificateApply:CertificateApply',
+            'huaweicloud:Ccm/certificateApply:CertificateApply',
             resource_name,
             __props__,
             opts)

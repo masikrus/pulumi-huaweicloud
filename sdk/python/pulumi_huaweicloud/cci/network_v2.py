@@ -31,6 +31,7 @@ class NetworkV2Args:
                  subnets: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkV2SubnetArgs']]]] = None):
         """
         The set of arguments for constructing a NetworkV2 resource.
+
         :param pulumi.Input[_builtins.str] namespace: Specifies the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies the annotations of the CCI network.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_families: Specifies the IP families of the CCI network.
@@ -165,6 +166,7 @@ class _NetworkV2State:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NetworkV2 resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies the annotations of the CCI network.
         :param pulumi.Input[_builtins.str] api_version: The API version of the CCI network.
         :param pulumi.Input[_builtins.str] creation_timestamp: The creation timestamp of the namespace.
@@ -402,6 +404,7 @@ class NetworkV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a NetworkV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies the annotations of the CCI network.
@@ -419,6 +422,7 @@ class NetworkV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a NetworkV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param NetworkV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

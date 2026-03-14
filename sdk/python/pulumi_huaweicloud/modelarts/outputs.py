@@ -7341,7 +7341,8 @@ class GetResourcePoolsV2ResourcePoolResourceVolumeGroupConfigResult(dict):
         """
         :param _builtins.int docker_thin_pool: The percentage of container volumes to data volumes on resource pool nodes.
         :param Sequence['GetResourcePoolsV2ResourcePoolResourceVolumeGroupConfigLvmConfigArgs'] lvm_configs: The configuration of the LVM management.  
-               The lvm_config structure is documented below.
+               The lvm_config structure is documented
+               below.
         :param Sequence[_builtins.str] types: The storage types of the volume group.
         :param _builtins.str volume_group: The name of the volume group.
         """
@@ -7363,7 +7364,8 @@ class GetResourcePoolsV2ResourcePoolResourceVolumeGroupConfigResult(dict):
     def lvm_configs(self) -> Sequence['outputs.GetResourcePoolsV2ResourcePoolResourceVolumeGroupConfigLvmConfigResult']:
         """
         The configuration of the LVM management.  
-        The lvm_config structure is documented below.
+        The lvm_config structure is documented
+        below.
         """
         return pulumi.get(self, "lvm_configs")
 
@@ -8019,7 +8021,8 @@ class GetResourcePoolsV2ResourcePoolSpecResourceVolumeGroupConfigResult(dict):
         """
         :param _builtins.int docker_thin_pool: The percentage of container volumes to data volumes on resource pool nodes.
         :param Sequence['GetResourcePoolsV2ResourcePoolSpecResourceVolumeGroupConfigLvmConfigArgs'] lvm_configs: The configuration of the LVM management.  
-               The lvm_config structure is documented below.
+               The lvm_config structure is documented
+               below.
         :param Sequence[_builtins.str] types: The storage types of the volume group.
         :param _builtins.str volume_group: The name of the volume group.
         """
@@ -8041,7 +8044,8 @@ class GetResourcePoolsV2ResourcePoolSpecResourceVolumeGroupConfigResult(dict):
     def lvm_configs(self) -> Sequence['outputs.GetResourcePoolsV2ResourcePoolSpecResourceVolumeGroupConfigLvmConfigResult']:
         """
         The configuration of the LVM management.  
-        The lvm_config structure is documented below.
+        The lvm_config structure is documented
+        below.
         """
         return pulumi.get(self, "lvm_configs")
 

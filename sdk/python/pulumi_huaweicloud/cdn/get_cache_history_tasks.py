@@ -73,7 +73,9 @@ class GetCacheHistoryTasksResult:
     @pulumi.getter(name="fileType")
     def file_type(self) -> Optional[_builtins.str]:
         """
-        Indicates the file type. Possible values: **file** and **directory**.
+        The file type.  
+        + **file**
+        + **directory**
         """
         return pulumi.get(self, "file_type")
 
@@ -104,8 +106,9 @@ class GetCacheHistoryTasksResult:
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
         """
-        Indicates the task result. Possible values: **task_done** (task is completed) and
-        **task_inprocess** (task is being processed).
+        The task result.  
+        + **task_done**: task is completed.
+        + **task_inprocess**: task is being processed.
         """
         return pulumi.get(self, "status")
 
@@ -113,7 +116,9 @@ class GetCacheHistoryTasksResult:
     @pulumi.getter(name="taskType")
     def task_type(self) -> Optional[_builtins.str]:
         """
-        Indicates the task type. Possible values: **refresh** (cache refresh) and **preheating** (cache preheat).
+        The task type.  
+        + **refresh**: cache refresh.
+        + **preheating**: cache preheat.
         """
         return pulumi.get(self, "task_type")
 
@@ -121,7 +126,7 @@ class GetCacheHistoryTasksResult:
     @pulumi.getter
     def tasks(self) -> Sequence['outputs.GetCacheHistoryTasksTaskResult']:
         """
-        The history task list.
+        The list of history tasks that matched filter parameters.
         The tasks structure is documented below.
         """
         return pulumi.get(self, "tasks")
@@ -173,24 +178,36 @@ def get_cache_history_tasks(end_date: Optional[_builtins.int] = None,
            This parameter is valid only when the enterprise project function is enabled. The value **all** indicates all projects.
            This parameter is mandatory when you are an IAM user.
            For enterprise users, if omitted, default enterprise project will be used.
-    :param _builtins.str file_type: Specifies the file type. Possible values: **file** and **directory**.
-    :param _builtins.str order_field: Specifies the field used for sorting. Supported fields include
-           **task_type** (task type), **total** (total number of URLs), **processing** (number of URLs that are being processed),
-           **succeed** (number of processed URLs), **failed** (number of URLs that fail to be processed),
-           and **create_time** (task creation time). Both `order_field` and `order_type` must be set together.
+    :param _builtins.str file_type: Specifies the file type.  
+           The valid values are as follows:
+           + **file**
+           + **directory**
+    :param _builtins.str order_field: Specifies the field used for sorting.  
+           Both `order_field` and `order_type` must be set together.
            Otherwise, the default values **create_time** and **desc** are used.
-    :param _builtins.str order_type: Specifies the sorting type. Valid values are as follows:
+           The valid values are as follows:
+           + **task_type**: task type.
+           + **total**: total number of URLs.
+           + **processing**: number of URLs that are being processed.
+           + **succeed**: number of processed URLs.
+           + **failed**: number of URLs that fail to be processed.
+           + **create_time**: task creation time.
+    :param _builtins.str order_type: Specifies the sorting type.  
+           The valid values are as follows:
            + **desc**: Descending order.
            + **asc**: Ascending order.
            
            Defaults to **desc**.
     :param _builtins.int start_date: Specifies the query start time. The value is the number of milliseconds since
            the UNIX epoch (Jan 1, 1970).
-    :param _builtins.str status: Specifies the task status. Valid values are as follows:
+    :param _builtins.str status: Specifies the task status.  
+           The valid values are as follows:
            + **task_inprocess**: The task is being processed.
            + **task_done**: The task is completed.
-    :param _builtins.str task_type: Specifies the task type. Possible values: **refresh** (cache refresh) and
-           **preheating** (cache preheat).
+    :param _builtins.str task_type: Specifies the task type.  
+           The valid values are as follows:
+           + **refresh**: cache refresh.
+           + **preheating**: cache preheat.
     """
     __args__ = dict()
     __args__['endDate'] = end_date
@@ -243,24 +260,36 @@ def get_cache_history_tasks_output(end_date: Optional[pulumi.Input[Optional[_bui
            This parameter is valid only when the enterprise project function is enabled. The value **all** indicates all projects.
            This parameter is mandatory when you are an IAM user.
            For enterprise users, if omitted, default enterprise project will be used.
-    :param _builtins.str file_type: Specifies the file type. Possible values: **file** and **directory**.
-    :param _builtins.str order_field: Specifies the field used for sorting. Supported fields include
-           **task_type** (task type), **total** (total number of URLs), **processing** (number of URLs that are being processed),
-           **succeed** (number of processed URLs), **failed** (number of URLs that fail to be processed),
-           and **create_time** (task creation time). Both `order_field` and `order_type` must be set together.
+    :param _builtins.str file_type: Specifies the file type.  
+           The valid values are as follows:
+           + **file**
+           + **directory**
+    :param _builtins.str order_field: Specifies the field used for sorting.  
+           Both `order_field` and `order_type` must be set together.
            Otherwise, the default values **create_time** and **desc** are used.
-    :param _builtins.str order_type: Specifies the sorting type. Valid values are as follows:
+           The valid values are as follows:
+           + **task_type**: task type.
+           + **total**: total number of URLs.
+           + **processing**: number of URLs that are being processed.
+           + **succeed**: number of processed URLs.
+           + **failed**: number of URLs that fail to be processed.
+           + **create_time**: task creation time.
+    :param _builtins.str order_type: Specifies the sorting type.  
+           The valid values are as follows:
            + **desc**: Descending order.
            + **asc**: Ascending order.
            
            Defaults to **desc**.
     :param _builtins.int start_date: Specifies the query start time. The value is the number of milliseconds since
            the UNIX epoch (Jan 1, 1970).
-    :param _builtins.str status: Specifies the task status. Valid values are as follows:
+    :param _builtins.str status: Specifies the task status.  
+           The valid values are as follows:
            + **task_inprocess**: The task is being processed.
            + **task_done**: The task is completed.
-    :param _builtins.str task_type: Specifies the task type. Possible values: **refresh** (cache refresh) and
-           **preheating** (cache preheat).
+    :param _builtins.str task_type: Specifies the task type.  
+           The valid values are as follows:
+           + **refresh**: cache refresh.
+           + **preheating**: cache preheat.
     """
     __args__ = dict()
     __args__['endDate'] = end_date

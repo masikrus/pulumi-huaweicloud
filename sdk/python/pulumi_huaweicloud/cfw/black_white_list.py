@@ -30,6 +30,7 @@ class BlackWhiteListArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BlackWhiteList resource.
+
         :param pulumi.Input[_builtins.str] address: Specifies the address.
         :param pulumi.Input[_builtins.int] address_type: Specifies the IP address type.
                The options are `0` (ipv4), `1` (ipv6) and `2` (domain).
@@ -204,6 +205,7 @@ class _BlackWhiteListState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BlackWhiteList resources.
+
         :param pulumi.Input[_builtins.str] address: Specifies the address.
         :param pulumi.Input[_builtins.int] address_type: Specifies the IP address type.
                The options are `0` (ipv4), `1` (ipv6) and `2` (domain).
@@ -417,11 +419,10 @@ class BlackWhiteList(pulumi.CustomResource):
 
         The black whitelist can be imported using `object_id`, `list_type`, `address`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/blackWhiteList:BlackWhiteList test <object_id>/<list_type>/<address>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -486,11 +487,10 @@ class BlackWhiteList(pulumi.CustomResource):
 
         The black whitelist can be imported using `object_id`, `list_type`, `address`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/blackWhiteList:BlackWhiteList test <object_id>/<list_type>/<address>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BlackWhiteListArgs args: The arguments to use to populate this resource's properties.

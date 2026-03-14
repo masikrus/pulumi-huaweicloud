@@ -22,34 +22,51 @@ __all__ = ['AclArgs', 'Acl']
 class AclArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_ciders_orders: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidersOrderArgs']]]] = None,
                  ip_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidrArgs']]]] = None,
-                 ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]]] = None):
+                 ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]]] = None,
+                 ip_ranges_orders: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangesOrderArgs']]]] = None):
         """
         The set of arguments for constructing a Acl resource.
-        :param pulumi.Input[_builtins.str] type: Specifies the ACL is created through the Console or API.
-               Valid values are **console** and **api**. Changing this parameter will create a new ACL.
-        :param pulumi.Input[Sequence[pulumi.Input['AclIpCidrArgs']]] ip_cidrs: Specifies the IPv4 CIDR blocks from which console access or api access is allowed.
-               The `ip_cidrs` cannot repeat. The object structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]] ip_ranges: Specifies the IP address ranges from which console access or api access is allowed.
-               The `ip_ranges` cannot repeat. The object structure is documented below.
+
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the ACL policy.  
+               The valid values are as follows:
+               + **console**
+               + **api**
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[Sequence[pulumi.Input['AclIpCidersOrderArgs']]] ip_ciders_orders: The origin list of IPv4 CIDR blocks that used to reorder the 'ip_cidrs' parameter.
+        :param pulumi.Input[Sequence[pulumi.Input['AclIpCidrArgs']]] ip_cidrs: Specifies the IPv4 CIDR blocks from which console access or API access is allowed.
+               The ip_cidrs structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]] ip_ranges: Specifies the IP address ranges from which console access or API access is allowed.
+               The ip_ranges structure is documented below.
                
-               > **NOTE:** Up to 200 `ip_cidrs` and `ip_ranges` can be created in total for each access method.
+               > Up to `200` **ip_cidrs** and **ip_ranges** can be created in total for each access method.
                
-               <a name="ip_cidrs_object"></a>
+               <a name="iam_acl_ip_cidrs"></a>
                The `ip_cidrs` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input['AclIpRangesOrderArgs']]] ip_ranges_orders: The origin list of IPv4 ranges that used to reorder the 'ip_ranges' parameter.
         """
         pulumi.set(__self__, "type", type)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if ip_ciders_orders is not None:
+            pulumi.set(__self__, "ip_ciders_orders", ip_ciders_orders)
         if ip_cidrs is not None:
             pulumi.set(__self__, "ip_cidrs", ip_cidrs)
         if ip_ranges is not None:
             pulumi.set(__self__, "ip_ranges", ip_ranges)
+        if ip_ranges_orders is not None:
+            pulumi.set(__self__, "ip_ranges_orders", ip_ranges_orders)
 
     @_builtins.property
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the ACL is created through the Console or API.
-        Valid values are **console** and **api**. Changing this parameter will create a new ACL.
+        Specifies the type of the ACL policy.  
+        The valid values are as follows:
+        + **console**
+        + **api**
         """
         return pulumi.get(self, "type")
 
@@ -58,11 +75,35 @@ class AclArgs:
         pulumi.set(self, "type", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipCidersOrders")
+    def ip_ciders_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidersOrderArgs']]]]:
+        """
+        The origin list of IPv4 CIDR blocks that used to reorder the 'ip_cidrs' parameter.
+        """
+        return pulumi.get(self, "ip_ciders_orders")
+
+    @ip_ciders_orders.setter
+    def ip_ciders_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidersOrderArgs']]]]):
+        pulumi.set(self, "ip_ciders_orders", value)
+
+    @_builtins.property
     @pulumi.getter(name="ipCidrs")
     def ip_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidrArgs']]]]:
         """
-        Specifies the IPv4 CIDR blocks from which console access or api access is allowed.
-        The `ip_cidrs` cannot repeat. The object structure is documented below.
+        Specifies the IPv4 CIDR blocks from which console access or API access is allowed.
+        The ip_cidrs structure is documented below.
         """
         return pulumi.get(self, "ip_cidrs")
 
@@ -74,12 +115,12 @@ class AclArgs:
     @pulumi.getter(name="ipRanges")
     def ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]]]:
         """
-        Specifies the IP address ranges from which console access or api access is allowed.
-        The `ip_ranges` cannot repeat. The object structure is documented below.
+        Specifies the IP address ranges from which console access or API access is allowed.
+        The ip_ranges structure is documented below.
 
-        > **NOTE:** Up to 200 `ip_cidrs` and `ip_ranges` can be created in total for each access method.
+        > Up to `200` **ip_cidrs** and **ip_ranges** can be created in total for each access method.
 
-        <a name="ip_cidrs_object"></a>
+        <a name="iam_acl_ip_cidrs"></a>
         The `ip_cidrs` block supports:
         """
         return pulumi.get(self, "ip_ranges")
@@ -87,41 +128,92 @@ class AclArgs:
     @ip_ranges.setter
     def ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]]]):
         pulumi.set(self, "ip_ranges", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipRangesOrders")
+    def ip_ranges_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangesOrderArgs']]]]:
+        """
+        The origin list of IPv4 ranges that used to reorder the 'ip_ranges' parameter.
+        """
+        return pulumi.get(self, "ip_ranges_orders")
+
+    @ip_ranges_orders.setter
+    def ip_ranges_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangesOrderArgs']]]]):
+        pulumi.set(self, "ip_ranges_orders", value)
 
 
 @pulumi.input_type
 class _AclState:
     def __init__(__self__, *,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_ciders_orders: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidersOrderArgs']]]] = None,
                  ip_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidrArgs']]]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]]] = None,
+                 ip_ranges_orders: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangesOrderArgs']]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
-        :param pulumi.Input[Sequence[pulumi.Input['AclIpCidrArgs']]] ip_cidrs: Specifies the IPv4 CIDR blocks from which console access or api access is allowed.
-               The `ip_cidrs` cannot repeat. The object structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]] ip_ranges: Specifies the IP address ranges from which console access or api access is allowed.
-               The `ip_ranges` cannot repeat. The object structure is documented below.
+
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[Sequence[pulumi.Input['AclIpCidersOrderArgs']]] ip_ciders_orders: The origin list of IPv4 CIDR blocks that used to reorder the 'ip_cidrs' parameter.
+        :param pulumi.Input[Sequence[pulumi.Input['AclIpCidrArgs']]] ip_cidrs: Specifies the IPv4 CIDR blocks from which console access or API access is allowed.
+               The ip_cidrs structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]] ip_ranges: Specifies the IP address ranges from which console access or API access is allowed.
+               The ip_ranges structure is documented below.
                
-               > **NOTE:** Up to 200 `ip_cidrs` and `ip_ranges` can be created in total for each access method.
+               > Up to `200` **ip_cidrs** and **ip_ranges** can be created in total for each access method.
                
-               <a name="ip_cidrs_object"></a>
+               <a name="iam_acl_ip_cidrs"></a>
                The `ip_cidrs` block supports:
-        :param pulumi.Input[_builtins.str] type: Specifies the ACL is created through the Console or API.
-               Valid values are **console** and **api**. Changing this parameter will create a new ACL.
+        :param pulumi.Input[Sequence[pulumi.Input['AclIpRangesOrderArgs']]] ip_ranges_orders: The origin list of IPv4 ranges that used to reorder the 'ip_ranges' parameter.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the ACL policy.  
+               The valid values are as follows:
+               + **console**
+               + **api**
         """
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if ip_ciders_orders is not None:
+            pulumi.set(__self__, "ip_ciders_orders", ip_ciders_orders)
         if ip_cidrs is not None:
             pulumi.set(__self__, "ip_cidrs", ip_cidrs)
         if ip_ranges is not None:
             pulumi.set(__self__, "ip_ranges", ip_ranges)
+        if ip_ranges_orders is not None:
+            pulumi.set(__self__, "ip_ranges_orders", ip_ranges_orders)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipCidersOrders")
+    def ip_ciders_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidersOrderArgs']]]]:
+        """
+        The origin list of IPv4 CIDR blocks that used to reorder the 'ip_cidrs' parameter.
+        """
+        return pulumi.get(self, "ip_ciders_orders")
+
+    @ip_ciders_orders.setter
+    def ip_ciders_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidersOrderArgs']]]]):
+        pulumi.set(self, "ip_ciders_orders", value)
 
     @_builtins.property
     @pulumi.getter(name="ipCidrs")
     def ip_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclIpCidrArgs']]]]:
         """
-        Specifies the IPv4 CIDR blocks from which console access or api access is allowed.
-        The `ip_cidrs` cannot repeat. The object structure is documented below.
+        Specifies the IPv4 CIDR blocks from which console access or API access is allowed.
+        The ip_cidrs structure is documented below.
         """
         return pulumi.get(self, "ip_cidrs")
 
@@ -133,12 +225,12 @@ class _AclState:
     @pulumi.getter(name="ipRanges")
     def ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangeArgs']]]]:
         """
-        Specifies the IP address ranges from which console access or api access is allowed.
-        The `ip_ranges` cannot repeat. The object structure is documented below.
+        Specifies the IP address ranges from which console access or API access is allowed.
+        The ip_ranges structure is documented below.
 
-        > **NOTE:** Up to 200 `ip_cidrs` and `ip_ranges` can be created in total for each access method.
+        > Up to `200` **ip_cidrs** and **ip_ranges** can be created in total for each access method.
 
-        <a name="ip_cidrs_object"></a>
+        <a name="iam_acl_ip_cidrs"></a>
         The `ip_cidrs` block supports:
         """
         return pulumi.get(self, "ip_ranges")
@@ -148,11 +240,25 @@ class _AclState:
         pulumi.set(self, "ip_ranges", value)
 
     @_builtins.property
+    @pulumi.getter(name="ipRangesOrders")
+    def ip_ranges_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangesOrderArgs']]]]:
+        """
+        The origin list of IPv4 ranges that used to reorder the 'ip_ranges' parameter.
+        """
+        return pulumi.get(self, "ip_ranges_orders")
+
+    @ip_ranges_orders.setter
+    def ip_ranges_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclIpRangesOrderArgs']]]]):
+        pulumi.set(self, "ip_ranges_orders", value)
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ACL is created through the Console or API.
-        Valid values are **console** and **api**. Changing this parameter will create a new ACL.
+        Specifies the type of the ACL policy.  
+        The valid values are as follows:
+        + **console**
+        + **api**
         """
         return pulumi.get(self, "type")
 
@@ -167,15 +273,22 @@ class Acl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_ciders_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidersOrderArgs', 'AclIpCidersOrderArgsDict']]]]] = None,
                  ip_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidrArgs', 'AclIpCidrArgsDict']]]]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangeArgs', 'AclIpRangeArgsDict']]]]] = None,
+                 ip_ranges_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangesOrderArgs', 'AclIpRangesOrderArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages an ACL resource within HuaweiCloud IAM service. The ACL allowing user access only from specified IP address
-        ranges and IPv4 CIDR blocks. The ACL take effect for IAM users under the Domain account rather than the account itself.
+        Manages an ACL policy resource within HuaweiCloud.\\
+        The ACL policies allowing user access only from specified IP address ranges and IPv4 CIDR blocks.
 
-        > **NOTE:** You *must* have admin privileges to use this resource.
+        > You **must** have admin privileges to use this resource.<br>
+           The ACL take effect for IAM users under the Domain account rather than the account itself.
+
+        > If you are managing ACL policy with **API** type, please ensure that the current execution machine's EIP is added to
+           access addresses to guarantee that provider resource can correctly call the IAM APIs.
 
         ## Example Usage
 
@@ -184,30 +297,36 @@ class Acl(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         acl = huaweicloud.iam.Acl("acl",
-            type="console",
+            type="api",
             ip_cidrs=[{
                 "cidr": "159.138.39.192/32",
-                "description": "This is a test ip address",
+                "description": "This is a test CIDR block",
             }],
             ip_ranges=[{
                 "range": "0.0.0.0-255.255.255.0",
-                "description": "This is a test ip range",
+                "description": "This is a test IP range",
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidrArgs', 'AclIpCidrArgsDict']]]] ip_cidrs: Specifies the IPv4 CIDR blocks from which console access or api access is allowed.
-               The `ip_cidrs` cannot repeat. The object structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangeArgs', 'AclIpRangeArgsDict']]]] ip_ranges: Specifies the IP address ranges from which console access or api access is allowed.
-               The `ip_ranges` cannot repeat. The object structure is documented below.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidersOrderArgs', 'AclIpCidersOrderArgsDict']]]] ip_ciders_orders: The origin list of IPv4 CIDR blocks that used to reorder the 'ip_cidrs' parameter.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidrArgs', 'AclIpCidrArgsDict']]]] ip_cidrs: Specifies the IPv4 CIDR blocks from which console access or API access is allowed.
+               The ip_cidrs structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangeArgs', 'AclIpRangeArgsDict']]]] ip_ranges: Specifies the IP address ranges from which console access or API access is allowed.
+               The ip_ranges structure is documented below.
                
-               > **NOTE:** Up to 200 `ip_cidrs` and `ip_ranges` can be created in total for each access method.
+               > Up to `200` **ip_cidrs** and **ip_ranges** can be created in total for each access method.
                
-               <a name="ip_cidrs_object"></a>
+               <a name="iam_acl_ip_cidrs"></a>
                The `ip_cidrs` block supports:
-        :param pulumi.Input[_builtins.str] type: Specifies the ACL is created through the Console or API.
-               Valid values are **console** and **api**. Changing this parameter will create a new ACL.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangesOrderArgs', 'AclIpRangesOrderArgsDict']]]] ip_ranges_orders: The origin list of IPv4 ranges that used to reorder the 'ip_ranges' parameter.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the ACL policy.  
+               The valid values are as follows:
+               + **console**
+               + **api**
         """
         ...
     @overload
@@ -216,10 +335,14 @@ class Acl(pulumi.CustomResource):
                  args: AclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an ACL resource within HuaweiCloud IAM service. The ACL allowing user access only from specified IP address
-        ranges and IPv4 CIDR blocks. The ACL take effect for IAM users under the Domain account rather than the account itself.
+        Manages an ACL policy resource within HuaweiCloud.\\
+        The ACL policies allowing user access only from specified IP address ranges and IPv4 CIDR blocks.
 
-        > **NOTE:** You *must* have admin privileges to use this resource.
+        > You **must** have admin privileges to use this resource.<br>
+           The ACL take effect for IAM users under the Domain account rather than the account itself.
+
+        > If you are managing ACL policy with **API** type, please ensure that the current execution machine's EIP is added to
+           access addresses to guarantee that provider resource can correctly call the IAM APIs.
 
         ## Example Usage
 
@@ -228,16 +351,17 @@ class Acl(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         acl = huaweicloud.iam.Acl("acl",
-            type="console",
+            type="api",
             ip_cidrs=[{
                 "cidr": "159.138.39.192/32",
-                "description": "This is a test ip address",
+                "description": "This is a test CIDR block",
             }],
             ip_ranges=[{
                 "range": "0.0.0.0-255.255.255.0",
-                "description": "This is a test ip range",
+                "description": "This is a test IP range",
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclArgs args: The arguments to use to populate this resource's properties.
@@ -254,8 +378,11 @@ class Acl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_ciders_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidersOrderArgs', 'AclIpCidersOrderArgsDict']]]]] = None,
                  ip_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidrArgs', 'AclIpCidrArgsDict']]]]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangeArgs', 'AclIpRangeArgsDict']]]]] = None,
+                 ip_ranges_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangesOrderArgs', 'AclIpRangesOrderArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -266,8 +393,11 @@ class Acl(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AclArgs.__new__(AclArgs)
 
+            __props__.__dict__["enable_force_new"] = enable_force_new
+            __props__.__dict__["ip_ciders_orders"] = ip_ciders_orders
             __props__.__dict__["ip_cidrs"] = ip_cidrs
             __props__.__dict__["ip_ranges"] = ip_ranges
+            __props__.__dict__["ip_ranges_orders"] = ip_ranges_orders
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -281,8 +411,11 @@ class Acl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+            ip_ciders_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidersOrderArgs', 'AclIpCidersOrderArgsDict']]]]] = None,
             ip_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidrArgs', 'AclIpCidrArgsDict']]]]] = None,
             ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangeArgs', 'AclIpRangeArgsDict']]]]] = None,
+            ip_ranges_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangesOrderArgs', 'AclIpRangesOrderArgsDict']]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Acl':
         """
         Get an existing Acl resource's state with the given name, id, and optional extra
@@ -291,33 +424,57 @@ class Acl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidrArgs', 'AclIpCidrArgsDict']]]] ip_cidrs: Specifies the IPv4 CIDR blocks from which console access or api access is allowed.
-               The `ip_cidrs` cannot repeat. The object structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangeArgs', 'AclIpRangeArgsDict']]]] ip_ranges: Specifies the IP address ranges from which console access or api access is allowed.
-               The `ip_ranges` cannot repeat. The object structure is documented below.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidersOrderArgs', 'AclIpCidersOrderArgsDict']]]] ip_ciders_orders: The origin list of IPv4 CIDR blocks that used to reorder the 'ip_cidrs' parameter.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpCidrArgs', 'AclIpCidrArgsDict']]]] ip_cidrs: Specifies the IPv4 CIDR blocks from which console access or API access is allowed.
+               The ip_cidrs structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangeArgs', 'AclIpRangeArgsDict']]]] ip_ranges: Specifies the IP address ranges from which console access or API access is allowed.
+               The ip_ranges structure is documented below.
                
-               > **NOTE:** Up to 200 `ip_cidrs` and `ip_ranges` can be created in total for each access method.
+               > Up to `200` **ip_cidrs** and **ip_ranges** can be created in total for each access method.
                
-               <a name="ip_cidrs_object"></a>
+               <a name="iam_acl_ip_cidrs"></a>
                The `ip_cidrs` block supports:
-        :param pulumi.Input[_builtins.str] type: Specifies the ACL is created through the Console or API.
-               Valid values are **console** and **api**. Changing this parameter will create a new ACL.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclIpRangesOrderArgs', 'AclIpRangesOrderArgsDict']]]] ip_ranges_orders: The origin list of IPv4 ranges that used to reorder the 'ip_ranges' parameter.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the ACL policy.  
+               The valid values are as follows:
+               + **console**
+               + **api**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AclState.__new__(_AclState)
 
+        __props__.__dict__["enable_force_new"] = enable_force_new
+        __props__.__dict__["ip_ciders_orders"] = ip_ciders_orders
         __props__.__dict__["ip_cidrs"] = ip_cidrs
         __props__.__dict__["ip_ranges"] = ip_ranges
+        __props__.__dict__["ip_ranges_orders"] = ip_ranges_orders
         __props__.__dict__["type"] = type
         return Acl(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @_builtins.property
+    @pulumi.getter(name="ipCidersOrders")
+    def ip_ciders_orders(self) -> pulumi.Output[Sequence['outputs.AclIpCidersOrder']]:
+        """
+        The origin list of IPv4 CIDR blocks that used to reorder the 'ip_cidrs' parameter.
+        """
+        return pulumi.get(self, "ip_ciders_orders")
 
     @_builtins.property
     @pulumi.getter(name="ipCidrs")
     def ip_cidrs(self) -> pulumi.Output[Optional[Sequence['outputs.AclIpCidr']]]:
         """
-        Specifies the IPv4 CIDR blocks from which console access or api access is allowed.
-        The `ip_cidrs` cannot repeat. The object structure is documented below.
+        Specifies the IPv4 CIDR blocks from which console access or API access is allowed.
+        The ip_cidrs structure is documented below.
         """
         return pulumi.get(self, "ip_cidrs")
 
@@ -325,22 +482,32 @@ class Acl(pulumi.CustomResource):
     @pulumi.getter(name="ipRanges")
     def ip_ranges(self) -> pulumi.Output[Optional[Sequence['outputs.AclIpRange']]]:
         """
-        Specifies the IP address ranges from which console access or api access is allowed.
-        The `ip_ranges` cannot repeat. The object structure is documented below.
+        Specifies the IP address ranges from which console access or API access is allowed.
+        The ip_ranges structure is documented below.
 
-        > **NOTE:** Up to 200 `ip_cidrs` and `ip_ranges` can be created in total for each access method.
+        > Up to `200` **ip_cidrs** and **ip_ranges** can be created in total for each access method.
 
-        <a name="ip_cidrs_object"></a>
+        <a name="iam_acl_ip_cidrs"></a>
         The `ip_cidrs` block supports:
         """
         return pulumi.get(self, "ip_ranges")
 
     @_builtins.property
+    @pulumi.getter(name="ipRangesOrders")
+    def ip_ranges_orders(self) -> pulumi.Output[Sequence['outputs.AclIpRangesOrder']]:
+        """
+        The origin list of IPv4 ranges that used to reorder the 'ip_ranges' parameter.
+        """
+        return pulumi.get(self, "ip_ranges_orders")
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the ACL is created through the Console or API.
-        Valid values are **console** and **api**. Changing this parameter will create a new ACL.
+        Specifies the type of the ACL policy.  
+        The valid values are as follows:
+        + **console**
+        + **api**
         """
         return pulumi.get(self, "type")
 

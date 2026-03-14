@@ -28,6 +28,7 @@ class EndpointGroupArgs:
                  traffic_dial_percentage: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a EndpointGroup resource.
+
         :param pulumi.Input['EndpointGroupListenersArgs'] listeners: Specifies the listeners associated with the endpoint group.
                The Id structure is documented below.
                
@@ -140,6 +141,7 @@ class _EndpointGroupState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EndpointGroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates when the endpoint group was created.
         :param pulumi.Input[_builtins.str] description: Specifies the information about the endpoint group.  
                The description contain a maximum of `255` characters, and the angle brackets (< and >) are not allowed.
@@ -304,7 +306,7 @@ class _EndpointGroupState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:ga/endpointGroup:EndpointGroup")
+@pulumi.type_token("huaweicloud:Ga/endpointGroup:EndpointGroup")
 class EndpointGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -342,11 +344,10 @@ class EndpointGroup(pulumi.CustomResource):
 
         The endpoint group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/endpointGroup:EndpointGroup test <id>
+        $ pulumi import huaweicloud:Ga/endpointGroup:EndpointGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -399,11 +400,10 @@ class EndpointGroup(pulumi.CustomResource):
 
         The endpoint group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/endpointGroup:EndpointGroup test <id>
+        $ pulumi import huaweicloud:Ga/endpointGroup:EndpointGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EndpointGroupArgs args: The arguments to use to populate this resource's properties.
@@ -448,7 +448,7 @@ class EndpointGroup(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(EndpointGroup, __self__).__init__(
-            'huaweicloud:ga/endpointGroup:EndpointGroup',
+            'huaweicloud:Ga/endpointGroup:EndpointGroup',
             resource_name,
             __props__,
             opts)

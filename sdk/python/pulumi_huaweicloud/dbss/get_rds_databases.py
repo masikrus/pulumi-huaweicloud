@@ -97,7 +97,7 @@ def get_rds_databases(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     type = config.require_object("type")
-    test = huaweicloud.dbss.get_rds_databases(type=type)
+    test = huaweicloud.Dbss.get_rds_databases(type=type)
     ```
 
 
@@ -117,7 +117,7 @@ def get_rds_databases(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dbss/getRdsDatabases:getRdsDatabases', __args__, opts=opts, typ=GetRdsDatabasesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dbss/getRdsDatabases:getRdsDatabases', __args__, opts=opts, typ=GetRdsDatabasesResult).value
 
     return AwaitableGetRdsDatabasesResult(
         databases=pulumi.get(__ret__, 'databases'),
@@ -138,7 +138,7 @@ def get_rds_databases_output(region: Optional[pulumi.Input[Optional[_builtins.st
 
     config = pulumi.Config()
     type = config.require_object("type")
-    test = huaweicloud.dbss.get_rds_databases(type=type)
+    test = huaweicloud.Dbss.get_rds_databases(type=type)
     ```
 
 
@@ -158,7 +158,7 @@ def get_rds_databases_output(region: Optional[pulumi.Input[Optional[_builtins.st
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dbss/getRdsDatabases:getRdsDatabases', __args__, opts=opts, typ=GetRdsDatabasesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dbss/getRdsDatabases:getRdsDatabases', __args__, opts=opts, typ=GetRdsDatabasesResult)
     return __ret__.apply(lambda __response__: GetRdsDatabasesResult(
         databases=pulumi.get(__response__, 'databases'),
         id=pulumi.get(__response__, 'id'),

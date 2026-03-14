@@ -28,6 +28,7 @@ class PolicyArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Policy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_user_ids: Specifies the list of IAM user IDs to associate to the policy.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the UCS policy.
                The value can be: **readonly**, **develop**, **admin** and **custom**.
@@ -136,6 +137,7 @@ class _PolicyState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
+
         :param pulumi.Input[_builtins.str] created_at: The created time.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the UCS policy.
                The description consists of 0 to 255 characters.
@@ -264,7 +266,7 @@ class _PolicyState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:ucs/policy:Policy")
+@pulumi.type_token("huaweicloud:Ucs/policy:Policy")
 class Policy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -327,11 +329,10 @@ class Policy(pulumi.CustomResource):
 
         The UCS policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ucs/policy:Policy test 8b12072c-0c25-11ee-b6b2-0255ac1000de
+        $ pulumi import huaweicloud:Ucs/policy:Policy test 8b12072c-0c25-11ee-b6b2-0255ac1000de
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -408,11 +409,10 @@ class Policy(pulumi.CustomResource):
 
         The UCS policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ucs/policy:Policy test 8b12072c-0c25-11ee-b6b2-0255ac1000de
+        $ pulumi import huaweicloud:Ucs/policy:Policy test 8b12072c-0c25-11ee-b6b2-0255ac1000de
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyArgs args: The arguments to use to populate this resource's properties.
@@ -455,7 +455,7 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(Policy, __self__).__init__(
-            'huaweicloud:ucs/policy:Policy',
+            'huaweicloud:Ucs/policy:Policy',
             resource_name,
             __props__,
             opts)

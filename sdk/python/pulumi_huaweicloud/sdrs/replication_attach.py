@@ -25,6 +25,7 @@ class ReplicationAttachArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ReplicationAttach resource.
+
         :param pulumi.Input[_builtins.str] device: Specifies the disk device name of a replication pair. There are several
                restrictions on this field as follows：
                
@@ -135,6 +136,7 @@ class _ReplicationAttachState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ReplicationAttach resources.
+
         :param pulumi.Input[_builtins.str] device: Specifies the disk device name of a replication pair. There are several
                restrictions on this field as follows：
                
@@ -253,7 +255,7 @@ class _ReplicationAttachState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/replicationAttach:ReplicationAttach")
+@pulumi.type_token("huaweicloud:Sdrs/replicationAttach:ReplicationAttach")
 class ReplicationAttach(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -290,14 +292,12 @@ class ReplicationAttach(pulumi.CustomResource):
         ## Import
 
         The SDRS replication attach can be imported using the `protected_instance_id` and `replication_id`, separated
-
         by a slash , e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/replicationAttach:ReplicationAttach test <protected_instance_id>/<replication_id>
+        $ pulumi import huaweicloud:Sdrs/replicationAttach:ReplicationAttach test <protected_instance_id>/<replication_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -358,14 +358,12 @@ class ReplicationAttach(pulumi.CustomResource):
         ## Import
 
         The SDRS replication attach can be imported using the `protected_instance_id` and `replication_id`, separated
-
         by a slash , e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/replicationAttach:ReplicationAttach test <protected_instance_id>/<replication_id>
+        $ pulumi import huaweicloud:Sdrs/replicationAttach:ReplicationAttach test <protected_instance_id>/<replication_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ReplicationAttachArgs args: The arguments to use to populate this resource's properties.
@@ -407,7 +405,7 @@ class ReplicationAttach(pulumi.CustomResource):
             __props__.__dict__["replication_id"] = replication_id
             __props__.__dict__["status"] = None
         super(ReplicationAttach, __self__).__init__(
-            'huaweicloud:sdrs/replicationAttach:ReplicationAttach',
+            'huaweicloud:Sdrs/replicationAttach:ReplicationAttach',
             resource_name,
             __props__,
             opts)

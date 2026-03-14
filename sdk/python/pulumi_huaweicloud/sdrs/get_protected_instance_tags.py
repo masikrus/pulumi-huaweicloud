@@ -82,7 +82,7 @@ def get_protected_instance_tags(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protected_instance_tags()
+    test = huaweicloud.Sdrs.get_protected_instance_tags()
     ```
 
 
@@ -92,7 +92,7 @@ def get_protected_instance_tags(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:sdrs/getProtectedInstanceTags:getProtectedInstanceTags', __args__, opts=opts, typ=GetProtectedInstanceTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Sdrs/getProtectedInstanceTags:getProtectedInstanceTags', __args__, opts=opts, typ=GetProtectedInstanceTagsResult).value
 
     return AwaitableGetProtectedInstanceTagsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_protected_instance_tags_output(region: Optional[pulumi.Input[Optional[_b
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protected_instance_tags()
+    test = huaweicloud.Sdrs.get_protected_instance_tags()
     ```
 
 
@@ -119,7 +119,7 @@ def get_protected_instance_tags_output(region: Optional[pulumi.Input[Optional[_b
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:sdrs/getProtectedInstanceTags:getProtectedInstanceTags', __args__, opts=opts, typ=GetProtectedInstanceTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Sdrs/getProtectedInstanceTags:getProtectedInstanceTags', __args__, opts=opts, typ=GetProtectedInstanceTagsResult)
     return __ret__.apply(lambda __response__: GetProtectedInstanceTagsResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

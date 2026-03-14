@@ -43,6 +43,7 @@ class InstanceArgs:
                  vpcep_service_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] edition: Specifies the edition of the dedicated instance.  
                The valid values are as follows:
                + **BASIC**: Basic Edition instance.
@@ -456,6 +457,7 @@ class _InstanceState:
                  vpcep_service_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: Specifies the name list of availability zones for the dedicated
                instance.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint?APIG) for list elements.
@@ -1028,7 +1030,7 @@ class Instance(pulumi.CustomResource):
         subnet_id = config.require_object("subnetId")
         security_group_id = config.require_object("securityGroupId")
         enterprise_project_id = config.require_object("enterpriseProjectId")
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         test_instance = huaweicloud.dedicatedapig.Instance("test",
             name=instance_name,
             edition="BASIC",
@@ -1052,11 +1054,10 @@ class Instance(pulumi.CustomResource):
 
         Dedicated instances can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/instance:Instance test de379eed30aa4d31a84f426ea3c7ef4e
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1142,7 +1143,7 @@ class Instance(pulumi.CustomResource):
         subnet_id = config.require_object("subnetId")
         security_group_id = config.require_object("securityGroupId")
         enterprise_project_id = config.require_object("enterpriseProjectId")
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         test_instance = huaweicloud.dedicatedapig.Instance("test",
             name=instance_name,
             edition="BASIC",
@@ -1166,11 +1167,10 @@ class Instance(pulumi.CustomResource):
 
         Dedicated instances can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/instance:Instance test de379eed30aa4d31a84f426ea3c7ef4e
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.

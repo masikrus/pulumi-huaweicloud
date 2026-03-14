@@ -11,10 +11,14 @@ from .endpoint import *
 from .get_endpoints import *
 from .get_public_services import *
 from .get_quotas import *
+from .get_resources_by_tags import *
 from .get_service_connections import *
 from .get_service_permissions import *
 from .get_service_summary import *
 from .get_services import *
+from .get_tags import *
 from .service import *
+from .service_connection_update import *
+from .service_upgrade import *
 from ._inputs import *
 from . import outputs

@@ -28,6 +28,7 @@ class DeviceProxyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeviceProxy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] devices: Specifies the list of proxy device IDs. The number of IDs in the list is limited from
                `2` to `10`. All devices in the list share gateway permissions, which means that any sub device under any gateway in
                the list can go online through any gateway in the group and report data.
@@ -127,6 +128,7 @@ class _DeviceProxyState:
                  space_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeviceProxy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] devices: Specifies the list of proxy device IDs. The number of IDs in the list is limited from
                `2` to `10`. All devices in the list share gateway permissions, which means that any sub device under any gateway in
                the list can go online through any gateway in the group and report data.
@@ -272,11 +274,10 @@ class DeviceProxy(pulumi.CustomResource):
 
         The device proxy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/deviceProxy:DeviceProxy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -340,11 +341,10 @@ class DeviceProxy(pulumi.CustomResource):
 
         The device proxy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/deviceProxy:DeviceProxy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeviceProxyArgs args: The arguments to use to populate this resource's properties.

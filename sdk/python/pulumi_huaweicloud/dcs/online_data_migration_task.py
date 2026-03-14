@@ -35,6 +35,7 @@ class OnlineDataMigrationTaskArgs:
                  target_instances: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineDataMigrationTaskTargetInstanceArgs']]]] = None):
         """
         The set of arguments for constructing a OnlineDataMigrationTask resource.
+
         :param pulumi.Input[_builtins.str] security_group_id: Specifies the security group which the instance belongs to.
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the network ID of the subnet.
         :param pulumi.Input[_builtins.str] task_name: Specifies the backup import task name.
@@ -269,6 +270,7 @@ class _OnlineDataMigrationTaskState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OnlineDataMigrationTask resources.
+
         :param pulumi.Input[_builtins.str] bandwidth_limit_mb: Specifies the bandwidth limit. For incremental migration, you
                can limit the bandwidth to ensure smooth service running. When the data synchronization speed reaches the limit, it
                can no longer increase. Unit: **MB/s**. Value range: **1–10,240** (an integer greater than 0 and less than 10,241).
@@ -660,39 +662,16 @@ class OnlineDataMigrationTask(pulumi.CustomResource):
 
         The DCS backup import task can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/onlineDataMigrationTask:OnlineDataMigrationTask test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_instance.0.password` and
-
         `target_instance.0.password`. It is generally recommended running `pulumi preview` after importing the resource. You can
-
         then decide if changes should be applied to the resource, or the resource definition should be updated to align with the
-
         task. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_online_data_migration_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_instance.0.password, target_instance.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -768,39 +747,16 @@ class OnlineDataMigrationTask(pulumi.CustomResource):
 
         The DCS backup import task can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/onlineDataMigrationTask:OnlineDataMigrationTask test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_instance.0.password` and
-
         `target_instance.0.password`. It is generally recommended running `pulumi preview` after importing the resource. You can
-
         then decide if changes should be applied to the resource, or the resource definition should be updated to align with the
-
         task. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_online_data_migration_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_instance.0.password, target_instance.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param OnlineDataMigrationTaskArgs args: The arguments to use to populate this resource's properties.

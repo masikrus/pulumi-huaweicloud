@@ -24,6 +24,7 @@ class PrimaryStandbySwitchArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrimaryStandbySwitch resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of replica set node, shard node or config node.
@@ -91,6 +92,7 @@ class _PrimaryStandbySwitchState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrimaryStandbySwitch resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of replica set node, shard node or config node.
@@ -191,6 +193,7 @@ class PrimaryStandbySwitch(pulumi.CustomResource):
             node_id=node_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -238,6 +241,7 @@ class PrimaryStandbySwitch(pulumi.CustomResource):
             instance_id=instance_id,
             node_id=node_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrimaryStandbySwitchArgs args: The arguments to use to populate this resource's properties.

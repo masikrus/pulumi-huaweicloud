@@ -99,6 +99,19 @@ def get_rocketmq_message_traces(instance_id: Optional[_builtins.str] = None,
     """
     Use this data source to get the list of RocketMQ message traces.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    instance_id = config.require_object("instanceId")
+    message_id = config.require_object("messageId")
+    test = huaweicloud.Dms.get_rocketmq_message_traces(instance_id=instance_id,
+        message_id=message_id)
+    ```
+
 
     :param _builtins.str instance_id: Specifies the instance ID.
     :param _builtins.str message_id: Specifies the message ID.
@@ -124,6 +137,19 @@ def get_rocketmq_message_traces_output(instance_id: Optional[pulumi.Input[_built
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRocketmqMessageTracesResult]:
     """
     Use this data source to get the list of RocketMQ message traces.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    instance_id = config.require_object("instanceId")
+    message_id = config.require_object("messageId")
+    test = huaweicloud.Dms.get_rocketmq_message_traces(instance_id=instance_id,
+        message_id=message_id)
+    ```
 
 
     :param _builtins.str instance_id: Specifies the instance ID.

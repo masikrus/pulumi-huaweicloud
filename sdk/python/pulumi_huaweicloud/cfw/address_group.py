@@ -26,6 +26,7 @@ class AddressGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AddressGroup resource.
+
         :param pulumi.Input[_builtins.str] object_id: Specifies the protected object ID.
                
                Changing this parameter will create a new resource.
@@ -119,6 +120,7 @@ class _AddressGroupState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AddressGroup resources.
+
         :param pulumi.Input[_builtins.int] address_type: The address type. The value can be **0** (IPv4) or **1** (IPv6).
         :param pulumi.Input[_builtins.str] description: Specifies the Address group description.
         :param pulumi.Input[_builtins.str] name: Specifies the IP address group name.
@@ -238,11 +240,10 @@ class AddressGroup(pulumi.CustomResource):
 
         The ipaddressgroup can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/addressGroup:AddressGroup test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -284,11 +285,10 @@ class AddressGroup(pulumi.CustomResource):
 
         The ipaddressgroup can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/addressGroup:AddressGroup test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AddressGroupArgs args: The arguments to use to populate this resource's properties.

@@ -20,6 +20,7 @@ __all__ = [
     'OrganizationalAssignmentPackageVarsStructure',
     'OrganizationalPolicyAssignmentPolicyFilter',
     'PolicyAssignmentCustomPolicy',
+    'PolicyAssignmentEvaluateResultUpdatePolicyResource',
     'PolicyAssignmentPolicyFilter',
     'RemediationConfigurationResourceParameter',
     'RemediationConfigurationStaticParameter',
@@ -52,6 +53,7 @@ __all__ = [
     'GetPolicyAssignmentsAssignmentPolicyFilterResult',
     'GetPolicyDefinitionsDefinitionResult',
     'GetPolicyStatesStateResult',
+    'GetPolicyStatesStatisticsValueResult',
     'GetPolicyStatesSummaryResultResult',
     'GetPolicyStatesSummaryResultAssignmentDetailResult',
     'GetPolicyStatesSummaryResultResourceDetailResult',
@@ -370,6 +372,112 @@ class PolicyAssignmentCustomPolicy(dict):
         Specifies the authorization value of the custom policy.
         """
         return pulumi.get(self, "auth_value")
+
+
+@pulumi.output_type
+class PolicyAssignmentEvaluateResultUpdatePolicyResource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "domainId":
+            suggest = "domain_id"
+        elif key == "regionId":
+            suggest = "region_id"
+        elif key == "resourceId":
+            suggest = "resource_id"
+        elif key == "resourceName":
+            suggest = "resource_name"
+        elif key == "resourceProvider":
+            suggest = "resource_provider"
+        elif key == "resourceType":
+            suggest = "resource_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PolicyAssignmentEvaluateResultUpdatePolicyResource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PolicyAssignmentEvaluateResultUpdatePolicyResource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PolicyAssignmentEvaluateResultUpdatePolicyResource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 domain_id: Optional[_builtins.str] = None,
+                 region_id: Optional[_builtins.str] = None,
+                 resource_id: Optional[_builtins.str] = None,
+                 resource_name: Optional[_builtins.str] = None,
+                 resource_provider: Optional[_builtins.str] = None,
+                 resource_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str domain_id: Specifies the ID of the user to which the resource belongs.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str resource_id: Specifies the resource ID.
+        :param _builtins.str resource_name: Specifies the resource name.
+        :param _builtins.str resource_provider: Specifies the cloud service name.
+        :param _builtins.str resource_type: Specifies the resource type.
+        """
+        if domain_id is not None:
+            pulumi.set(__self__, "domain_id", domain_id)
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if resource_id is not None:
+            pulumi.set(__self__, "resource_id", resource_id)
+        if resource_name is not None:
+            pulumi.set(__self__, "resource_name", resource_name)
+        if resource_provider is not None:
+            pulumi.set(__self__, "resource_provider", resource_provider)
+        if resource_type is not None:
+            pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the user to which the resource belongs.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceProvider")
+    def resource_provider(self) -> Optional[_builtins.str]:
+        """
+        Specifies the cloud service name.
+        """
+        return pulumi.get(self, "resource_provider")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource type.
+        """
+        return pulumi.get(self, "resource_type")
 
 
 @pulumi.output_type
@@ -2554,6 +2662,68 @@ class GetPolicyStatesStateResult(dict):
         The trigger type. The value can be **resource** or **period**.
         """
         return pulumi.get(self, "trigger_type")
+
+
+@pulumi.output_type
+class GetPolicyStatesStatisticsValueResult(dict):
+    def __init__(__self__, *,
+                 non_compliant_policy_count: _builtins.int,
+                 non_compliant_resource_count: _builtins.int,
+                 statistic_date: _builtins.str,
+                 total_policy_count: _builtins.int,
+                 total_resource_count: _builtins.int):
+        """
+        :param _builtins.int non_compliant_policy_count: Indicates the count of noncompliance policy assignments
+        :param _builtins.int non_compliant_resource_count: Indicates  the count of noncompliance resources.
+        :param _builtins.str statistic_date: Indicates  the statistic date.
+        :param _builtins.int total_policy_count: Indicates the total count of policy assignments.
+        :param _builtins.int total_resource_count: Indicates the total count of resources.
+        """
+        pulumi.set(__self__, "non_compliant_policy_count", non_compliant_policy_count)
+        pulumi.set(__self__, "non_compliant_resource_count", non_compliant_resource_count)
+        pulumi.set(__self__, "statistic_date", statistic_date)
+        pulumi.set(__self__, "total_policy_count", total_policy_count)
+        pulumi.set(__self__, "total_resource_count", total_resource_count)
+
+    @_builtins.property
+    @pulumi.getter(name="nonCompliantPolicyCount")
+    def non_compliant_policy_count(self) -> _builtins.int:
+        """
+        Indicates the count of noncompliance policy assignments
+        """
+        return pulumi.get(self, "non_compliant_policy_count")
+
+    @_builtins.property
+    @pulumi.getter(name="nonCompliantResourceCount")
+    def non_compliant_resource_count(self) -> _builtins.int:
+        """
+        Indicates  the count of noncompliance resources.
+        """
+        return pulumi.get(self, "non_compliant_resource_count")
+
+    @_builtins.property
+    @pulumi.getter(name="statisticDate")
+    def statistic_date(self) -> _builtins.str:
+        """
+        Indicates  the statistic date.
+        """
+        return pulumi.get(self, "statistic_date")
+
+    @_builtins.property
+    @pulumi.getter(name="totalPolicyCount")
+    def total_policy_count(self) -> _builtins.int:
+        """
+        Indicates the total count of policy assignments.
+        """
+        return pulumi.get(self, "total_policy_count")
+
+    @_builtins.property
+    @pulumi.getter(name="totalResourceCount")
+    def total_resource_count(self) -> _builtins.int:
+        """
+        Indicates the total count of resources.
+        """
+        return pulumi.get(self, "total_resource_count")
 
 
 @pulumi.output_type

@@ -22,6 +22,7 @@ class AccountInviteDeclinerArgs:
                  invitation_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a AccountInviteDecliner resource.
+
         :param pulumi.Input[_builtins.str] invitation_id: Specifies the unique ID of an invitation (handshake).
                
                Changing this parameter will create a new resource.
@@ -49,6 +50,7 @@ class _AccountInviteDeclinerState:
                  invitation_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccountInviteDecliner resources.
+
         :param pulumi.Input[_builtins.str] invitation_id: Specifies the unique ID of an invitation (handshake).
                
                Changing this parameter will create a new resource.
@@ -71,7 +73,7 @@ class _AccountInviteDeclinerState:
         pulumi.set(self, "invitation_id", value)
 
 
-@pulumi.type_token("huaweicloud:organizations/accountInviteDecliner:AccountInviteDecliner")
+@pulumi.type_token("huaweicloud:Organizations/accountInviteDecliner:AccountInviteDecliner")
 class AccountInviteDecliner(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -92,6 +94,7 @@ class AccountInviteDecliner(pulumi.CustomResource):
         invitation_id = config.require_object("invitationId")
         test = huaweicloud.organizations.AccountInviteDecliner("test", invitation_id=invitation_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -118,6 +121,7 @@ class AccountInviteDecliner(pulumi.CustomResource):
         invitation_id = config.require_object("invitationId")
         test = huaweicloud.organizations.AccountInviteDecliner("test", invitation_id=invitation_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccountInviteDeclinerArgs args: The arguments to use to populate this resource's properties.
@@ -148,7 +152,7 @@ class AccountInviteDecliner(pulumi.CustomResource):
                 raise TypeError("Missing required property 'invitation_id'")
             __props__.__dict__["invitation_id"] = invitation_id
         super(AccountInviteDecliner, __self__).__init__(
-            'huaweicloud:organizations/accountInviteDecliner:AccountInviteDecliner',
+            'huaweicloud:Organizations/accountInviteDecliner:AccountInviteDecliner',
             resource_name,
             __props__,
             opts)

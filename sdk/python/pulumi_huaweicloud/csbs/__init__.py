@@ -10,7 +10,6 @@ from .backup import *
 from .backup_policy import *
 from .backup_policy_v1 import *
 from .backup_v1 import *
-from .get_backup import *
 from .get_backup_policy import *
 from .get_backup_policy_v1 import *
 from .get_backup_v1 import *

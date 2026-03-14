@@ -37,6 +37,7 @@ class GatewayV3Args:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a GatewayV3 resource.
+
         :param pulumi.Input[_builtins.str] spec: Specifies the specification of the NAT gateway. The valid values are as follows:
                + **1**: Small type, which supports up to `10,000` SNAT connections.
                + **2**: Medium type, which supports up to `50,000` SNAT connections.
@@ -337,6 +338,7 @@ class _GatewayV3State:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GatewayV3 resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. This parameter is only valid when
                `charging_mode` is set to **prePaid**. Valid values are **true** and **false**. Defaults to **false**.
         :param pulumi.Input[_builtins.str] billing_info: The order information of the NAT gateway.
@@ -793,41 +795,17 @@ class GatewayV3(pulumi.CustomResource):
 
         NAT gateways can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/gatewayV3:GatewayV3 test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `charging_mode`, `period_unit`,
-
         `period` and `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_natv3_gateway" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -935,41 +913,17 @@ class GatewayV3(pulumi.CustomResource):
 
         NAT gateways can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/gatewayV3:GatewayV3 test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `charging_mode`, `period_unit`,
-
         `period` and `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_natv3_gateway" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param GatewayV3Args args: The arguments to use to populate this resource's properties.

@@ -28,6 +28,7 @@ class VaultChangeChargeModeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VaultChangeChargeMode resource.
+
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the vault. Only supports **pre_paid**.
         :param pulumi.Input[_builtins.int] period_num: Specifies the number of periods to purchase.
         :param pulumi.Input[_builtins.str] period_type: Specifies the period type of the vault. Only supports **month** and **year**.
@@ -144,6 +145,7 @@ class _VaultChangeChargeModeState:
                  vault_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering VaultChangeChargeMode resources.
+
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the vault. Only supports **pre_paid**.
         :param pulumi.Input[_builtins.bool] is_auto_renew: Specifies whether to auto-renew the vault when it expires.
                Defaults to **false**.
@@ -292,6 +294,7 @@ class VaultChangeChargeMode(pulumi.CustomResource):
             is_auto_renew=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the vault. Only supports **pre_paid**.
@@ -334,6 +337,7 @@ class VaultChangeChargeMode(pulumi.CustomResource):
             period_num=1,
             is_auto_renew=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VaultChangeChargeModeArgs args: The arguments to use to populate this resource's properties.

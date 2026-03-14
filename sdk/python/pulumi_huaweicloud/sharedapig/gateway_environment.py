@@ -24,6 +24,7 @@ class GatewayEnvironmentArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GatewayEnvironment resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the environment description.
                The value can contain a maximum of `255` characters.
                Chinese characters must be in **UTF-8** or **Unicode** format.
@@ -91,6 +92,7 @@ class _GatewayEnvironmentState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GatewayEnvironment resources.
+
         :param pulumi.Input[_builtins.str] created_at: The time when the shared APIG environment was created.
         :param pulumi.Input[_builtins.str] description: Specifies the environment description.
                The value can contain a maximum of `255` characters.
@@ -192,11 +194,10 @@ class GatewayEnvironment(pulumi.CustomResource):
 
         APIG environments can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:SharedApig/gatewayEnvironment:GatewayEnvironment test_env 774438a28a574ac8a496325d1bf51807
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -233,11 +234,10 @@ class GatewayEnvironment(pulumi.CustomResource):
 
         APIG environments can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:SharedApig/gatewayEnvironment:GatewayEnvironment test_env 774438a28a574ac8a496325d1bf51807
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GatewayEnvironmentArgs args: The arguments to use to populate this resource's properties.

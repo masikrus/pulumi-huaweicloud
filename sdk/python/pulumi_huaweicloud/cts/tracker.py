@@ -34,6 +34,7 @@ class TrackerArgs:
                  validate_file: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Tracker resource.
+
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the OBS bucket to which traces will be transferred.
         :param pulumi.Input[_builtins.str] compress_type: Specifies the compression type of trace files. The value can be
                **gzip** or **json**. The default value is **gzip**.
@@ -285,6 +286,7 @@ class _TrackerState:
                  validate_file: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Tracker resources.
+
         :param pulumi.Input[_builtins.str] agency_name: The cloud service delegation name.
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the OBS bucket to which traces will be transferred.
         :param pulumi.Input[_builtins.str] compress_type: Specifies the compression type of trace files. The value can be
@@ -741,39 +743,17 @@ class Tracker(pulumi.CustomResource):
 
         CTS tracker can be imported using `name`, only **system** is available. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cts/tracker:Tracker tracker system
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `tags`, `delete_tracker`.
 
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cts_tracker" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags, delete_tracker
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -829,39 +809,17 @@ class Tracker(pulumi.CustomResource):
 
         CTS tracker can be imported using `name`, only **system** is available. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cts/tracker:Tracker tracker system
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `tags`, `delete_tracker`.
 
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cts_tracker" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags, delete_tracker
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param TrackerArgs args: The arguments to use to populate this resource's properties.

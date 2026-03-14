@@ -26,6 +26,7 @@ class TurboDirQuotaArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TurboDirQuota resource.
+
         :param pulumi.Input[_builtins.str] path: Specifies the valid full path of existing SFS Turbo directory. The parameter
                starts with "/", otherwise the parameter is illegal. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] share_id: Specifies the SFS Turbo ID. Changing this will create a new resource.
@@ -124,6 +125,7 @@ class _TurboDirQuotaState:
                  used_inode: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering TurboDirQuota resources.
+
         :param pulumi.Input[_builtins.int] capacity: Specifies the size of the directory. The default value is `0`, this value means that
                there is no quota assigned to this directory. The value can not exceed the remaining available capacity of the
                file system. The unit is `MB`.
@@ -275,6 +277,7 @@ class TurboDirQuota(pulumi.CustomResource):
             share_id=share_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] capacity: Specifies the size of the directory. The default value is `0`, this value means that
@@ -310,6 +313,7 @@ class TurboDirQuota(pulumi.CustomResource):
             path=path,
             share_id=share_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TurboDirQuotaArgs args: The arguments to use to populate this resource's properties.

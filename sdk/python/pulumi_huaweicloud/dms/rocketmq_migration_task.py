@@ -34,6 +34,7 @@ class RocketmqMigrationTaskArgs:
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input['RocketmqMigrationTaskVhostArgs']]]] = None):
         """
         The set of arguments for constructing a RocketmqMigrationTask resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RocketMQ instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] overwrite: Specifies whether to overwrite configurations with the same name.
@@ -273,6 +274,7 @@ class _RocketmqMigrationTaskState:
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input['RocketmqMigrationTaskVhostArgs']]]] = None):
         """
         Input properties used for looking up and filtering RocketmqMigrationTask resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['RocketmqMigrationTaskBindingArgs']]] bindings: Specifies the binding metadata.
                The bindings structure is documented below.
                Changing this creates a new resource.
@@ -630,42 +632,18 @@ class RocketmqMigrationTask(pulumi.CustomResource):
         ## Import
 
         The RocketMQ migration task can be imported using the RocketMQ instance ID and the RocketMQ migration task ID
-
         separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqMigrationTask:RocketmqMigrationTask test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute includes: `overwrite`.
-
         It is generally recommended running `pulumi preview` after importing the task. You can then decide
-
         if changes should be applied to the task, or the resource definition should be updated to align with the task.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dms_rocketmq_migration_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              overwrite,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -800,42 +778,18 @@ class RocketmqMigrationTask(pulumi.CustomResource):
         ## Import
 
         The RocketMQ migration task can be imported using the RocketMQ instance ID and the RocketMQ migration task ID
-
         separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqMigrationTask:RocketmqMigrationTask test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute includes: `overwrite`.
-
         It is generally recommended running `pulumi preview` after importing the task. You can then decide
-
         if changes should be applied to the task, or the resource definition should be updated to align with the task.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dms_rocketmq_migration_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              overwrite,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param RocketmqMigrationTaskArgs args: The arguments to use to populate this resource's properties.

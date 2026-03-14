@@ -6,9 +6,14 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_associated_resources import *
+from .get_configs import *
+from .get_migrate_record import *
 from .get_project import *
 from .get_project_quotas import *
 from .get_projects import *
+from .get_resources_mapping import *
+from .get_services import *
 from .project import *
 from .project_action import *
 from .project_authority import *

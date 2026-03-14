@@ -87,7 +87,7 @@ def get_availability_zones(area: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     area = config.require_object("area")
-    test = huaweicloud.ga.get_availability_zones(area=area)
+    test = huaweicloud.Ga.get_availability_zones(area=area)
     ```
 
 
@@ -99,7 +99,7 @@ def get_availability_zones(area: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['area'] = area
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ga/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ga/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult).value
 
     return AwaitableGetAvailabilityZonesResult(
         area=pulumi.get(__ret__, 'area'),
@@ -118,7 +118,7 @@ def get_availability_zones_output(area: Optional[pulumi.Input[Optional[_builtins
 
     config = pulumi.Config()
     area = config.require_object("area")
-    test = huaweicloud.ga.get_availability_zones(area=area)
+    test = huaweicloud.Ga.get_availability_zones(area=area)
     ```
 
 
@@ -130,7 +130,7 @@ def get_availability_zones_output(area: Optional[pulumi.Input[Optional[_builtins
     __args__ = dict()
     __args__['area'] = area
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ga/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ga/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult)
     return __ret__.apply(lambda __response__: GetAvailabilityZonesResult(
         area=pulumi.get(__response__, 'area'),
         id=pulumi.get(__response__, 'id'),

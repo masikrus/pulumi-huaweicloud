@@ -23,6 +23,7 @@ class FunctionToppingArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FunctionTopping resource.
+
         :param pulumi.Input[_builtins.str] function_urn: Specifies the URN of the function to be topped.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the function is located.  
@@ -66,6 +67,7 @@ class _FunctionToppingState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionTopping resources.
+
         :param pulumi.Input[_builtins.str] function_urn: Specifies the URN of the function to be topped.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the function is located.  
@@ -128,6 +130,7 @@ class FunctionTopping(pulumi.CustomResource):
         test = huaweicloud.functiongraph.FunctionTopping("test", function_urn=function_urn)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] function_urn: Specifies the URN of the function to be topped.  
@@ -156,6 +159,7 @@ class FunctionTopping(pulumi.CustomResource):
         function_urn = config.require_object("functionUrn")
         test = huaweicloud.functiongraph.FunctionTopping("test", function_urn=function_urn)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FunctionToppingArgs args: The arguments to use to populate this resource's properties.

@@ -28,6 +28,7 @@ class RepositorySharingArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RepositorySharing resource.
+
         :param pulumi.Input[_builtins.str] deadline: Specifies the end date of image sharing (UTC time in YYYY-MM-DD format,
                for example `2021-10-01`). When the value is set to forever, the image will be permanently available for the domain.
                The validity period is calculated by day. The shared images expire at 00:00:00 on the day after the end date.
@@ -161,6 +162,7 @@ class _RepositorySharingState:
                  status: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering RepositorySharing resources.
+
         :param pulumi.Input[_builtins.str] deadline: Specifies the end date of image sharing (UTC time in YYYY-MM-DD format,
                for example `2021-10-01`). When the value is set to forever, the image will be permanently available for the domain.
                The validity period is calculated by day. The shared images expire at 00:00:00 on the day after the end date.
@@ -338,14 +340,20 @@ class RepositorySharing(pulumi.CustomResource):
         ## Import
 
         Repository sharing can be imported using the organization name, repository name and sharing account
+        separated by slashes or commas, e.g.:
 
-        separated by a slash, e.g.:
-
-        bash
+        Only when repository name is with no slashes, can use slashes to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/repositorySharing:RepositorySharing test org-name/repo-name/sharing-account
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/repositorySharing:RepositorySharing test org-name,repo-name,sharing-account
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -395,14 +403,20 @@ class RepositorySharing(pulumi.CustomResource):
         ## Import
 
         Repository sharing can be imported using the organization name, repository name and sharing account
+        separated by slashes or commas, e.g.:
 
-        separated by a slash, e.g.:
-
-        bash
+        Only when repository name is with no slashes, can use slashes to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/repositorySharing:RepositorySharing test org-name/repo-name/sharing-account
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/repositorySharing:RepositorySharing test org-name,repo-name,sharing-account
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RepositorySharingArgs args: The arguments to use to populate this resource's properties.

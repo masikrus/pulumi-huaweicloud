@@ -135,32 +135,27 @@ __all__ = [
     'EnvironmentOptionalResourceArgsDict',
 ]
 
-MYPY = False
+class ApplicationConfigurationV3ConfigurationArgsDict(TypedDict):
+    envs: pulumi.Input[Sequence[pulumi.Input['ApplicationConfigurationV3ConfigurationEnvArgsDict']]]
+    """
+    Specifies the list of the environment variables.  
+    The env structure is documented below.
+    """
+    assign_strategy: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the effective strategy is the continuously effective.  
+    The valid values are as follows:
+    + **true**: First time effective. Application-level environment variables only take effect when the component is
+    first created, and subsequent modifications of the application-level environment variables will not be synchronized
+    with the environment variables in the component.
+    + **false**: Continuously effective. Environment variables during component upgrades are updated according to the
+    application-level environment variables.
 
-if not MYPY:
-    class ApplicationConfigurationV3ConfigurationArgsDict(TypedDict):
-        envs: pulumi.Input[Sequence[pulumi.Input['ApplicationConfigurationV3ConfigurationEnvArgsDict']]]
-        """
-        Specifies the list of the environment variables.  
-        The env structure is documented below.
-        """
-        assign_strategy: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the effective strategy is the continuously effective.  
-        The valid values are as follows:
-        + **true**: First time effective. Application-level environment variables only take effect when the component is
-        first created, and subsequent modifications of the application-level environment variables will not be synchronized
-        with the environment variables in the component.
-        + **false**: Continuously effective. Environment variables during component upgrades are updated according to the
-        application-level environment variables.
+    Defaults to **false**.
 
-        Defaults to **false**.
-
-        <a name="servicestage_v3_application_configuration_env"></a>
-        The `env` block supports:
-        """
-elif False:
-    ApplicationConfigurationV3ConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_application_configuration_env"></a>
+    The `env` block supports:
+    """
 
 @pulumi.input_type
 class ApplicationConfigurationV3ConfigurationArgs:
@@ -224,23 +219,20 @@ class ApplicationConfigurationV3ConfigurationArgs:
         pulumi.set(self, "assign_strategy", value)
 
 
-if not MYPY:
-    class ApplicationConfigurationV3ConfigurationEnvArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the environment variable.  
-        The valid length is limited from `1` to `64`, only Chinese characters, English letters, digits, hyphens (-),
-        underscores (\\_) and dots (.) are allowed.
-        The name must start with an English letter, hyphen (-) or underscore (\\_).
+class ApplicationConfigurationV3ConfigurationEnvArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the environment variable.  
+    The valid length is limited from `1` to `64`, only Chinese characters, English letters, digits, hyphens (-),
+    underscores (\\_) and dots (.) are allowed.
+    The name must start with an English letter, hyphen (-) or underscore (\\_).
 
-        > Variable names must be unique within the same application environment.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the environment variable.
-        """
-elif False:
-    ApplicationConfigurationV3ConfigurationEnvArgsDict: TypeAlias = Mapping[str, Any]
+    > Variable names must be unique within the same application environment.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the environment variable.
+    """
 
 @pulumi.input_type
 class ApplicationConfigurationV3ConfigurationEnvArgs:
@@ -289,22 +281,19 @@ class ApplicationConfigurationV3ConfigurationEnvArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ApplicationEnvironmentArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the environment ID to which the variables belongs.
-        """
-        variables: pulumi.Input[Sequence[pulumi.Input['ApplicationEnvironmentVariableArgsDict']]]
-        """
-        Specifies the list of environment variables.
-        The object structure is documented below.
+class ApplicationEnvironmentArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the environment ID to which the variables belongs.
+    """
+    variables: pulumi.Input[Sequence[pulumi.Input['ApplicationEnvironmentVariableArgsDict']]]
+    """
+    Specifies the list of environment variables.
+    The object structure is documented below.
 
-        <a name="servicestage_app_variables"></a>
-        The `variable` block supports:
-        """
-elif False:
-    ApplicationEnvironmentArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_app_variables"></a>
+    The `variable` block supports:
+    """
 
 @pulumi.input_type
 class ApplicationEnvironmentArgs:
@@ -351,19 +340,16 @@ class ApplicationEnvironmentArgs:
         pulumi.set(self, "variables", value)
 
 
-if not MYPY:
-    class ApplicationEnvironmentVariableArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the variable name. The name can contain `1` to `64` characters, only letters,
-        digits, underscores (_), hyphens (-) and dots (.) are allowed. The name cannot start with a digit or dot.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the variable value. The value can contain a maximum of `2,048` characters.
-        """
-elif False:
-    ApplicationEnvironmentVariableArgsDict: TypeAlias = Mapping[str, Any]
+class ApplicationEnvironmentVariableArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the variable name. The name can contain `1` to `64` characters, only letters,
+    digits, underscores (_), hyphens (-) and dots (.) are allowed. The name cannot start with a digit or dot.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the variable value. The value can contain a maximum of `2,048` characters.
+    """
 
 @pulumi.input_type
 class ApplicationEnvironmentVariableArgs:
@@ -404,53 +390,50 @@ class ApplicationEnvironmentVariableArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ComponentBuilderArgsDict(TypedDict):
-        cluster_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the cluster ID.
-        """
-        organization: pulumi.Input[_builtins.str]
-        """
-        Specifies the organization name.
-        The organization is usually **domain name**. You can find out in the organization management of SWR.
-        """
-        cluster_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster Name.
-        """
-        cluster_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster type.
-        """
-        cmd: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the build command. If omitted, the default command will be used.
-        + About the  default command or script: build.sh in the root directory will be preferentially executed.
-        If build.sh does not exist, the code will be compiled using the common method of the selected language,
-        for example, mvn clean package for Java.
-        + About the custom command: Commands will be customized using the selected language.
-        Alternatively, the default command or script will be used after build.sh is modified.
-        """
-        dockerfile_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the file path for dockerfile.
-        """
-        node_label: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the filter labels for CCE nodes.
+class ComponentBuilderArgsDict(TypedDict):
+    cluster_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the cluster ID.
+    """
+    organization: pulumi.Input[_builtins.str]
+    """
+    Specifies the organization name.
+    The organization is usually **domain name**. You can find out in the organization management of SWR.
+    """
+    cluster_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster Name.
+    """
+    cluster_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster type.
+    """
+    cmd: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the build command. If omitted, the default command will be used.
+    + About the  default command or script: build.sh in the root directory will be preferentially executed.
+    If build.sh does not exist, the code will be compiled using the common method of the selected language,
+    for example, mvn clean package for Java.
+    + About the custom command: Commands will be customized using the selected language.
+    Alternatively, the default command or script will be used after build.sh is modified.
+    """
+    dockerfile_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the file path for dockerfile.
+    """
+    node_label: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the filter labels for CCE nodes.
 
-        > Before using the label, please make sure that the node is bound to the EIP and can access the public network.
+    > Before using the label, please make sure that the node is bound to the EIP and can access the public network.
 
-        <a name="servicestage_component_properties"></a>
-        The `properties` block supports:
-        """
-        use_public_cluster: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to use the public cluster.
-        """
-elif False:
-    ComponentBuilderArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_component_properties"></a>
+    The `properties` block supports:
+    """
+    use_public_cluster: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to use the public cluster.
+    """
 
 @pulumi.input_type
 class ComponentBuilderArgs:
@@ -607,52 +590,49 @@ class ComponentBuilderArgs:
         pulumi.set(self, "use_public_cluster", value)
 
 
-if not MYPY:
-    class ComponentInstanceArtifactArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration item.
-        """
-        storage: pulumi.Input[_builtins.str]
-        """
-        Specifies the data storage configuration.
-        The object structure is documented below.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the probe type. The valid values are as follows:
-        + **command**: command execution check.
-        + **http**: HTTP request check.
-        + **tcp**: TCP port check.
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the software package or image address.
-        For a component deployed on a VM, this parameter is the software package address.
-        For a component deployed based on a container, this parameter is the image address or component name:v${index}.
-        The latter indicates that the component source code or the image automatically built using the software package
-        will be used.
-        """
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the authentication mode.
-        The valid values are **iam** and **none**. Defaults to **iam**.
-        """
-        properties: NotRequired[pulumi.Input['ComponentInstanceArtifactPropertiesArgsDict']]
-        """
-        Specifies the properties of the OBS object.
-        This parameter is available only `storage` is **obs**.
-        The object structure is documented below.
+class ComponentInstanceArtifactArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration item.
+    """
+    storage: pulumi.Input[_builtins.str]
+    """
+    Specifies the data storage configuration.
+    The object structure is documented below.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the probe type. The valid values are as follows:
+    + **command**: command execution check.
+    + **http**: HTTP request check.
+    + **tcp**: TCP port check.
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the software package or image address.
+    For a component deployed on a VM, this parameter is the software package address.
+    For a component deployed based on a container, this parameter is the image address or component name:v${index}.
+    The latter indicates that the component source code or the image automatically built using the software package
+    will be used.
+    """
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication mode.
+    The valid values are **iam** and **none**. Defaults to **iam**.
+    """
+    properties: NotRequired[pulumi.Input['ComponentInstanceArtifactPropertiesArgsDict']]
+    """
+    Specifies the properties of the OBS object.
+    This parameter is available only `storage` is **obs**.
+    The object structure is documented below.
 
-        <a name="servicestage_properties"></a>
-        The `properties` block supports:
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the version number.
-        """
-elif False:
-    ComponentInstanceArtifactArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_properties"></a>
+    The `properties` block supports:
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version number.
+    """
 
 @pulumi.input_type
 class ComponentInstanceArtifactArgs:
@@ -797,25 +777,22 @@ class ComponentInstanceArtifactArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ComponentInstanceArtifactPropertiesArgsDict(TypedDict):
-        bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the OBS bucket name.
-        """
-        endpoint: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the OBS bucket endpoint.
-        """
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the key name of the OBS object.
+class ComponentInstanceArtifactPropertiesArgsDict(TypedDict):
+    bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OBS bucket name.
+    """
+    endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OBS bucket endpoint.
+    """
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key name of the OBS object.
 
-        <a name="servicestage_configuration"></a>
-        The `configuration` block supports:
-        """
-elif False:
-    ComponentInstanceArtifactPropertiesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_configuration"></a>
+    The `configuration` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceArtifactPropertiesArgs:
@@ -878,51 +855,48 @@ class ComponentInstanceArtifactPropertiesArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationArgsDict(TypedDict):
-        env_variables: NotRequired[pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationEnvVariableArgsDict']]]]
-        """
-        Specifies the environment variables.
-        The object structure is documented below.
-        """
-        lifecycle: NotRequired[pulumi.Input['ComponentInstanceConfigurationLifecycleArgsDict']]
-        """
-        Specifies the lifecycle.
-        The object structure is documented below.
-        """
-        log_collection_policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationLogCollectionPolicyArgsDict']]]]
-        """
-        Specifies the policies of the log collection.
-        The object structure is documented below.
-        """
-        probe: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeArgsDict']]
-        """
-        Specifies the variable value.
-        The object structure is documented below.
+class ComponentInstanceConfigurationArgsDict(TypedDict):
+    env_variables: NotRequired[pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationEnvVariableArgsDict']]]]
+    """
+    Specifies the environment variables.
+    The object structure is documented below.
+    """
+    lifecycle: NotRequired[pulumi.Input['ComponentInstanceConfigurationLifecycleArgsDict']]
+    """
+    Specifies the lifecycle.
+    The object structure is documented below.
+    """
+    log_collection_policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationLogCollectionPolicyArgsDict']]]]
+    """
+    Specifies the policies of the log collection.
+    The object structure is documented below.
+    """
+    probe: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeArgsDict']]
+    """
+    Specifies the variable value.
+    The object structure is documented below.
 
-        <a name="servicestage_env_variables"></a>
-        The `env_variable` block supports:
-        """
-        scheduler: NotRequired[pulumi.Input['ComponentInstanceConfigurationSchedulerArgsDict']]
-        """
-        Specifies the scheduling policy.
-        The key indicates the component name. In the Docker container scenario, key indicates the container name.
-        If the source parameters of a component specify the software package source, this parameter is optional, and the
-        software package source of the component is inherited by default. Otherwise, this parameter is required.
-        The object structure is documented below.
-        """
-        storages: NotRequired[pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationStorageArgsDict']]]]
-        """
-        Specifies the data storage configuration.
-        The object structure is documented below.
-        """
-        strategy: NotRequired[pulumi.Input['ComponentInstanceConfigurationStrategyArgsDict']]
-        """
-        Specifies the upgrade policy.
-        The object structure is documented below.
-        """
-elif False:
-    ComponentInstanceConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_env_variables"></a>
+    The `env_variable` block supports:
+    """
+    scheduler: NotRequired[pulumi.Input['ComponentInstanceConfigurationSchedulerArgsDict']]
+    """
+    Specifies the scheduling policy.
+    The key indicates the component name. In the Docker container scenario, key indicates the container name.
+    If the source parameters of a component specify the software package source, this parameter is optional, and the
+    software package source of the component is inherited by default. Otherwise, this parameter is required.
+    The object structure is documented below.
+    """
+    storages: NotRequired[pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationStorageArgsDict']]]]
+    """
+    Specifies the data storage configuration.
+    The object structure is documented below.
+    """
+    strategy: NotRequired[pulumi.Input['ComponentInstanceConfigurationStrategyArgsDict']]
+    """
+    Specifies the upgrade policy.
+    The object structure is documented below.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationArgs:
@@ -1069,21 +1043,18 @@ class ComponentInstanceConfigurationArgs:
         pulumi.set(self, "strategy", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationEnvVariableArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration item.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the variable value.
+class ComponentInstanceConfigurationEnvVariableArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration item.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the variable value.
 
-        <a name="servicestage_storages"></a>
-        The `storage` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationEnvVariableArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_storages"></a>
+    The `storage` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationEnvVariableArgs:
@@ -1128,28 +1099,25 @@ class ComponentInstanceConfigurationEnvVariableArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationLifecycleArgsDict(TypedDict):
-        entrypoint: NotRequired[pulumi.Input['ComponentInstanceConfigurationLifecycleEntrypointArgsDict']]
-        """
-        Specifies the startup commands.
-        The object structure is documented below.
-        """
-        post_start: NotRequired[pulumi.Input['ComponentInstanceConfigurationLifecyclePostStartArgsDict']]
-        """
-        Specifies the post-start processing.
-        The object structure is documented below.
-        """
-        pre_stop: NotRequired[pulumi.Input['ComponentInstanceConfigurationLifecyclePreStopArgsDict']]
-        """
-        Specifies the pre-stop processing.
-        The object structure is documented below.
+class ComponentInstanceConfigurationLifecycleArgsDict(TypedDict):
+    entrypoint: NotRequired[pulumi.Input['ComponentInstanceConfigurationLifecycleEntrypointArgsDict']]
+    """
+    Specifies the startup commands.
+    The object structure is documented below.
+    """
+    post_start: NotRequired[pulumi.Input['ComponentInstanceConfigurationLifecyclePostStartArgsDict']]
+    """
+    Specifies the post-start processing.
+    The object structure is documented below.
+    """
+    pre_stop: NotRequired[pulumi.Input['ComponentInstanceConfigurationLifecyclePreStopArgsDict']]
+    """
+    Specifies the pre-stop processing.
+    The object structure is documented below.
 
-        <a name="servicestage_log_collection_policies"></a>
-        The `log_collection_policy` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationLifecycleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_log_collection_policies"></a>
+    The `log_collection_policy` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationLifecycleArgs:
@@ -1218,24 +1186,21 @@ class ComponentInstanceConfigurationLifecycleArgs:
         pulumi.set(self, "pre_stop", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationLifecycleEntrypointArgsDict(TypedDict):
-        args: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the running parameters.
+class ComponentInstanceConfigurationLifecycleEntrypointArgsDict(TypedDict):
+    args: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the running parameters.
 
-        <a name="servicestage_lifecycle_process"></a>
-        The `post_start` and `pre_stop` block supports:
-        """
-        commands: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the command list.
+    <a name="servicestage_lifecycle_process"></a>
+    The `post_start` and `pre_stop` block supports:
+    """
+    commands: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the command list.
 
-        <a name="servicestage_http_param"></a>
-        The `http_param` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationLifecycleEntrypointArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_http_param"></a>
+    The `http_param` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationLifecycleEntrypointArgs:
@@ -1286,25 +1251,22 @@ class ComponentInstanceConfigurationLifecycleEntrypointArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationLifecyclePostStartArgsDict(TypedDict):
-        parameters: pulumi.Input['ComponentInstanceConfigurationLifecyclePostStartParametersArgsDict']
-        """
-        Specifies the start post-processing or stop pre-processing parameters.
-        The object structure is documented below.
+class ComponentInstanceConfigurationLifecyclePostStartArgsDict(TypedDict):
+    parameters: pulumi.Input['ComponentInstanceConfigurationLifecyclePostStartParametersArgsDict']
+    """
+    Specifies the start post-processing or stop pre-processing parameters.
+    The object structure is documented below.
 
-        <a name="servicestage_process_param"></a>
-        The `parameters` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the probe type. The valid values are as follows:
-        + **command**: command execution check.
-        + **http**: HTTP request check.
-        + **tcp**: TCP port check.
-        """
-elif False:
-    ComponentInstanceConfigurationLifecyclePostStartArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_process_param"></a>
+    The `parameters` block supports:
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the probe type. The valid values are as follows:
+    + **command**: command execution check.
+    + **http**: HTTP request check.
+    + **tcp**: TCP port check.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationLifecyclePostStartArgs:
@@ -1357,32 +1319,29 @@ class ComponentInstanceConfigurationLifecyclePostStartArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationLifecyclePostStartParametersArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command list.
+class ComponentInstanceConfigurationLifecyclePostStartParametersArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command list.
 
-        <a name="servicestage_http_param"></a>
-        The `http_param` block supports:
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom IP address. The default address is pod IP address.
+    <a name="servicestage_http_param"></a>
+    The `http_param` block supports:
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom IP address. The default address is pod IP address.
 
-        <a name="servicestage_tcp_param"></a>
-        The `tcp_param` block supports:
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request path.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the listening port of the application component process.
-        """
-elif False:
-    ComponentInstanceConfigurationLifecyclePostStartParametersArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_tcp_param"></a>
+    The `tcp_param` block supports:
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request path.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the listening port of the application component process.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationLifecyclePostStartParametersArgs:
@@ -1467,25 +1426,22 @@ class ComponentInstanceConfigurationLifecyclePostStartParametersArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationLifecyclePreStopArgsDict(TypedDict):
-        parameters: pulumi.Input['ComponentInstanceConfigurationLifecyclePreStopParametersArgsDict']
-        """
-        Specifies the start post-processing or stop pre-processing parameters.
-        The object structure is documented below.
+class ComponentInstanceConfigurationLifecyclePreStopArgsDict(TypedDict):
+    parameters: pulumi.Input['ComponentInstanceConfigurationLifecyclePreStopParametersArgsDict']
+    """
+    Specifies the start post-processing or stop pre-processing parameters.
+    The object structure is documented below.
 
-        <a name="servicestage_process_param"></a>
-        The `parameters` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the probe type. The valid values are as follows:
-        + **command**: command execution check.
-        + **http**: HTTP request check.
-        + **tcp**: TCP port check.
-        """
-elif False:
-    ComponentInstanceConfigurationLifecyclePreStopArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_process_param"></a>
+    The `parameters` block supports:
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the probe type. The valid values are as follows:
+    + **command**: command execution check.
+    + **http**: HTTP request check.
+    + **tcp**: TCP port check.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationLifecyclePreStopArgs:
@@ -1538,32 +1494,29 @@ class ComponentInstanceConfigurationLifecyclePreStopArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationLifecyclePreStopParametersArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command list.
+class ComponentInstanceConfigurationLifecyclePreStopParametersArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command list.
 
-        <a name="servicestage_http_param"></a>
-        The `http_param` block supports:
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom IP address. The default address is pod IP address.
+    <a name="servicestage_http_param"></a>
+    The `http_param` block supports:
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom IP address. The default address is pod IP address.
 
-        <a name="servicestage_tcp_param"></a>
-        The `tcp_param` block supports:
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request path.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the listening port of the application component process.
-        """
-elif False:
-    ComponentInstanceConfigurationLifecyclePreStopParametersArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_tcp_param"></a>
+    The `tcp_param` block supports:
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request path.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the listening port of the application component process.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationLifecyclePreStopParametersArgs:
@@ -1648,22 +1601,19 @@ class ComponentInstanceConfigurationLifecyclePreStopParametersArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationLogCollectionPolicyArgsDict(TypedDict):
-        container_mountings: pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationLogCollectionPolicyContainerMountingArgsDict']]]
-        """
-        Specifies the configurations of the container mounting.
-        The object structure is documented below.
-        """
-        host_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the The host path that will be mounted to the specified container path.
+class ComponentInstanceConfigurationLogCollectionPolicyArgsDict(TypedDict):
+    container_mountings: pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationLogCollectionPolicyContainerMountingArgsDict']]]
+    """
+    Specifies the configurations of the container mounting.
+    The object structure is documented below.
+    """
+    host_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the The host path that will be mounted to the specified container path.
 
-        <a name="servicestage_container_mounting"></a>
-        The `container_mounting` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationLogCollectionPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_container_mounting"></a>
+    The `container_mounting` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationLogCollectionPolicyArgs:
@@ -1711,32 +1661,29 @@ class ComponentInstanceConfigurationLogCollectionPolicyArgs:
         pulumi.set(self, "host_path", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationLogCollectionPolicyContainerMountingArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the request path.
-        """
-        aging_period: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the aging period.
-        The valid values are **Hourly**, **Daily** and **Weekly**. The default value is **Hourly**.
+class ComponentInstanceConfigurationLogCollectionPolicyContainerMountingArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the request path.
+    """
+    aging_period: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the aging period.
+    The valid values are **Hourly**, **Daily** and **Weekly**. The default value is **Hourly**.
 
-        <a name="servicestage_entrypoint"></a>
-        The `entrypoint` block supports:
-        """
-        host_extend_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the extended host path.
-        This parameter can be configured only when `host_path` is configured.
-        The valid values are as follows:
-        + **PodUID**
-        + **PodName**
-        + **PodUID/ContainerName**
-        + **PodName/ContainerName**
-        """
-elif False:
-    ComponentInstanceConfigurationLogCollectionPolicyContainerMountingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_entrypoint"></a>
+    The `entrypoint` block supports:
+    """
+    host_extend_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the extended host path.
+    This parameter can be configured only when `host_path` is configured.
+    The valid values are as follows:
+    + **PodUID**
+    + **PodName**
+    + **PodUID/ContainerName**
+    + **PodName/ContainerName**
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationLogCollectionPolicyContainerMountingArgs:
@@ -1812,23 +1759,20 @@ class ComponentInstanceConfigurationLogCollectionPolicyContainerMountingArgs:
         pulumi.set(self, "host_extend_path", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationProbeArgsDict(TypedDict):
-        liveness: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeLivenessArgsDict']]
-        """
-        Specifies the component liveness probe.
-        The object structure is documented below.
-        """
-        readiness: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeReadinessArgsDict']]
-        """
-        Specifies the component service probe.
-        The object structure is documented below.
+class ComponentInstanceConfigurationProbeArgsDict(TypedDict):
+    liveness: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeLivenessArgsDict']]
+    """
+    Specifies the component liveness probe.
+    The object structure is documented below.
+    """
+    readiness: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeReadinessArgsDict']]
+    """
+    Specifies the component service probe.
+    The object structure is documented below.
 
-        <a name="servicestage_probe_detail"></a>
-        The `liveness` and `readiness` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationProbeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_probe_detail"></a>
+    The `liveness` and `readiness` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationProbeArgs:
@@ -1879,43 +1823,40 @@ class ComponentInstanceConfigurationProbeArgs:
         pulumi.set(self, "readiness", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationProbeLivenessArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the probe type. The valid values are as follows:
-        + **command**: command execution check.
-        + **http**: HTTP request check.
-        + **tcp**: TCP port check.
-        """
-        command_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeLivenessCommandParamArgsDict']]
-        """
-        Specifies the commands. Required if `type` is **command**.
-        The object structure is documented below.
-        """
-        delay: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the interval between the startup and detection.
-        """
-        http_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeLivenessHttpParamArgsDict']]
-        """
-        Specifies the commands. Required if `type` is **http**.
-        The object structure is documented below.
-        """
-        tcp_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeLivenessTcpParamArgsDict']]
-        """
-        Specifies the commands. Required if `type` is **tcp**.
-        The object structure is documented below.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the detection timeout interval.
+class ComponentInstanceConfigurationProbeLivenessArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the probe type. The valid values are as follows:
+    + **command**: command execution check.
+    + **http**: HTTP request check.
+    + **tcp**: TCP port check.
+    """
+    command_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeLivenessCommandParamArgsDict']]
+    """
+    Specifies the commands. Required if `type` is **command**.
+    The object structure is documented below.
+    """
+    delay: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the interval between the startup and detection.
+    """
+    http_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeLivenessHttpParamArgsDict']]
+    """
+    Specifies the commands. Required if `type` is **http**.
+    The object structure is documented below.
+    """
+    tcp_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeLivenessTcpParamArgsDict']]
+    """
+    Specifies the commands. Required if `type` is **tcp**.
+    The object structure is documented below.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the detection timeout interval.
 
-        <a name="servicestage_command_param"></a>
-        The `command_param` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationProbeLivenessArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_command_param"></a>
+    The `command_param` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationProbeLivenessArgs:
@@ -2037,17 +1978,14 @@ class ComponentInstanceConfigurationProbeLivenessArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationProbeLivenessCommandParamArgsDict(TypedDict):
-        commands: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the command list.
+class ComponentInstanceConfigurationProbeLivenessCommandParamArgsDict(TypedDict):
+    commands: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the command list.
 
-        <a name="servicestage_http_param"></a>
-        The `http_param` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationProbeLivenessCommandParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_http_param"></a>
+    The `http_param` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationProbeLivenessCommandParamArgs:
@@ -2077,29 +2015,26 @@ class ComponentInstanceConfigurationProbeLivenessCommandParamArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationProbeLivenessHttpParamArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the request path.
-        """
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the listening port of the application component process.
-        """
-        scheme: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol scheme. The valid values are **HTTP** and **HTTPS**.
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom IP address. The default address is pod IP address.
+class ComponentInstanceConfigurationProbeLivenessHttpParamArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the request path.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the listening port of the application component process.
+    """
+    scheme: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol scheme. The valid values are **HTTP** and **HTTPS**.
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom IP address. The default address is pod IP address.
 
-        <a name="servicestage_tcp_param"></a>
-        The `tcp_param` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationProbeLivenessHttpParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_tcp_param"></a>
+    The `tcp_param` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationProbeLivenessHttpParamArgs:
@@ -2175,14 +2110,11 @@ class ComponentInstanceConfigurationProbeLivenessHttpParamArgs:
         pulumi.set(self, "host", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationProbeLivenessTcpParamArgsDict(TypedDict):
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the listening port of the application component process.
-        """
-elif False:
-    ComponentInstanceConfigurationProbeLivenessTcpParamArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentInstanceConfigurationProbeLivenessTcpParamArgsDict(TypedDict):
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the listening port of the application component process.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationProbeLivenessTcpParamArgs:
@@ -2206,43 +2138,40 @@ class ComponentInstanceConfigurationProbeLivenessTcpParamArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationProbeReadinessArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the probe type. The valid values are as follows:
-        + **command**: command execution check.
-        + **http**: HTTP request check.
-        + **tcp**: TCP port check.
-        """
-        command_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeReadinessCommandParamArgsDict']]
-        """
-        Specifies the commands. Required if `type` is **command**.
-        The object structure is documented below.
-        """
-        delay: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the interval between the startup and detection.
-        """
-        http_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeReadinessHttpParamArgsDict']]
-        """
-        Specifies the commands. Required if `type` is **http**.
-        The object structure is documented below.
-        """
-        tcp_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeReadinessTcpParamArgsDict']]
-        """
-        Specifies the commands. Required if `type` is **tcp**.
-        The object structure is documented below.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the detection timeout interval.
+class ComponentInstanceConfigurationProbeReadinessArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the probe type. The valid values are as follows:
+    + **command**: command execution check.
+    + **http**: HTTP request check.
+    + **tcp**: TCP port check.
+    """
+    command_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeReadinessCommandParamArgsDict']]
+    """
+    Specifies the commands. Required if `type` is **command**.
+    The object structure is documented below.
+    """
+    delay: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the interval between the startup and detection.
+    """
+    http_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeReadinessHttpParamArgsDict']]
+    """
+    Specifies the commands. Required if `type` is **http**.
+    The object structure is documented below.
+    """
+    tcp_param: NotRequired[pulumi.Input['ComponentInstanceConfigurationProbeReadinessTcpParamArgsDict']]
+    """
+    Specifies the commands. Required if `type` is **tcp**.
+    The object structure is documented below.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the detection timeout interval.
 
-        <a name="servicestage_command_param"></a>
-        The `command_param` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationProbeReadinessArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_command_param"></a>
+    The `command_param` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationProbeReadinessArgs:
@@ -2364,17 +2293,14 @@ class ComponentInstanceConfigurationProbeReadinessArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationProbeReadinessCommandParamArgsDict(TypedDict):
-        commands: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the command list.
+class ComponentInstanceConfigurationProbeReadinessCommandParamArgsDict(TypedDict):
+    commands: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the command list.
 
-        <a name="servicestage_http_param"></a>
-        The `http_param` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationProbeReadinessCommandParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_http_param"></a>
+    The `http_param` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationProbeReadinessCommandParamArgs:
@@ -2404,29 +2330,26 @@ class ComponentInstanceConfigurationProbeReadinessCommandParamArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationProbeReadinessHttpParamArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the request path.
-        """
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the listening port of the application component process.
-        """
-        scheme: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol scheme. The valid values are **HTTP** and **HTTPS**.
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom IP address. The default address is pod IP address.
+class ComponentInstanceConfigurationProbeReadinessHttpParamArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the request path.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the listening port of the application component process.
+    """
+    scheme: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol scheme. The valid values are **HTTP** and **HTTPS**.
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom IP address. The default address is pod IP address.
 
-        <a name="servicestage_tcp_param"></a>
-        The `tcp_param` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationProbeReadinessHttpParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_tcp_param"></a>
+    The `tcp_param` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationProbeReadinessHttpParamArgs:
@@ -2502,14 +2425,11 @@ class ComponentInstanceConfigurationProbeReadinessHttpParamArgs:
         pulumi.set(self, "host", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationProbeReadinessTcpParamArgsDict(TypedDict):
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the listening port of the application component process.
-        """
-elif False:
-    ComponentInstanceConfigurationProbeReadinessTcpParamArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentInstanceConfigurationProbeReadinessTcpParamArgsDict(TypedDict):
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the listening port of the application component process.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationProbeReadinessTcpParamArgs:
@@ -2533,23 +2453,20 @@ class ComponentInstanceConfigurationProbeReadinessTcpParamArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationSchedulerArgsDict(TypedDict):
-        affinity: NotRequired[pulumi.Input['ComponentInstanceConfigurationSchedulerAffinityArgsDict']]
-        """
-        Specifies the commands.
-        The object structure is documented below.
-        """
-        anti_affinity: NotRequired[pulumi.Input['ComponentInstanceConfigurationSchedulerAntiAffinityArgsDict']]
-        """
-        Specifies the commands.
-        The object structure is documented below.
+class ComponentInstanceConfigurationSchedulerArgsDict(TypedDict):
+    affinity: NotRequired[pulumi.Input['ComponentInstanceConfigurationSchedulerAffinityArgsDict']]
+    """
+    Specifies the commands.
+    The object structure is documented below.
+    """
+    anti_affinity: NotRequired[pulumi.Input['ComponentInstanceConfigurationSchedulerAntiAffinityArgsDict']]
+    """
+    Specifies the commands.
+    The object structure is documented below.
 
-        <a name="servicestage_affinity"></a>
-        The `affinity` and `anti_affinity` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationSchedulerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_affinity"></a>
+    The `affinity` and `anti_affinity` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationSchedulerArgs:
@@ -2600,25 +2517,22 @@ class ComponentInstanceConfigurationSchedulerArgs:
         pulumi.set(self, "anti_affinity", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationSchedulerAffinityArgsDict(TypedDict):
-        availability_zones: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the AZ list.
-        """
-        instance_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of component instance names.
+class ComponentInstanceConfigurationSchedulerAffinityArgsDict(TypedDict):
+    availability_zones: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the AZ list.
+    """
+    instance_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of component instance names.
 
-        <a name="servicestage_probe"></a>
-        The `probe` block supports:
-        """
-        private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the node private IP address list.
-        """
-elif False:
-    ComponentInstanceConfigurationSchedulerAffinityArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_probe"></a>
+    The `probe` block supports:
+    """
+    private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the node private IP address list.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationSchedulerAffinityArgs:
@@ -2681,25 +2595,22 @@ class ComponentInstanceConfigurationSchedulerAffinityArgs:
         pulumi.set(self, "private_ips", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationSchedulerAntiAffinityArgsDict(TypedDict):
-        availability_zones: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the AZ list.
-        """
-        instance_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of component instance names.
+class ComponentInstanceConfigurationSchedulerAntiAffinityArgsDict(TypedDict):
+    availability_zones: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the AZ list.
+    """
+    instance_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of component instance names.
 
-        <a name="servicestage_probe"></a>
-        The `probe` block supports:
-        """
-        private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the node private IP address list.
-        """
-elif False:
-    ComponentInstanceConfigurationSchedulerAntiAffinityArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_probe"></a>
+    The `probe` block supports:
+    """
+    private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the node private IP address list.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationSchedulerAntiAffinityArgs:
@@ -2762,30 +2673,27 @@ class ComponentInstanceConfigurationSchedulerAntiAffinityArgs:
         pulumi.set(self, "private_ips", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationStorageArgsDict(TypedDict):
-        mounts: pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationStorageMountArgsDict']]]
-        """
-        Specifies the directory mounted to the container.
-        The object structure is documented below.
+class ComponentInstanceConfigurationStorageArgsDict(TypedDict):
+    mounts: pulumi.Input[Sequence[pulumi.Input['ComponentInstanceConfigurationStorageMountArgsDict']]]
+    """
+    Specifies the directory mounted to the container.
+    The object structure is documented below.
 
-        <a name="servicestage_storage_parameters"></a>
-        The `parameter` block supports:
-        """
-        parameter: pulumi.Input['ComponentInstanceConfigurationStorageParameterArgsDict']
-        """
-        Specifies the storage parameters.
-        The object structure is documented below.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the probe type. The valid values are as follows:
-        + **command**: command execution check.
-        + **http**: HTTP request check.
-        + **tcp**: TCP port check.
-        """
-elif False:
-    ComponentInstanceConfigurationStorageArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_storage_parameters"></a>
+    The `parameter` block supports:
+    """
+    parameter: pulumi.Input['ComponentInstanceConfigurationStorageParameterArgsDict']
+    """
+    Specifies the storage parameters.
+    The object structure is documented below.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the probe type. The valid values are as follows:
+    + **command**: command execution check.
+    + **http**: HTTP request check.
+    + **tcp**: TCP port check.
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationStorageArgs:
@@ -2855,28 +2763,25 @@ class ComponentInstanceConfigurationStorageArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationStorageMountArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the request path.
-        """
-        readonly: pulumi.Input[_builtins.bool]
-        """
-        Specifies the mounted disk permission is read-only or read-write.
-        + **true**: read-only.
-        + **false**: read-write.
-        """
-        subpath: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the subpath of the mounted disk.
-        This parameter is applicable to `http` type.
+class ComponentInstanceConfigurationStorageMountArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the request path.
+    """
+    readonly: pulumi.Input[_builtins.bool]
+    """
+    Specifies the mounted disk permission is read-only or read-write.
+    + **true**: read-only.
+    + **false**: read-write.
+    """
+    subpath: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subpath of the mounted disk.
+    This parameter is applicable to `http` type.
 
-        <a name="servicestage_strategy"></a>
-        The `strategy` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationStorageMountArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_strategy"></a>
+    The `strategy` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationStorageMountArgs:
@@ -2943,29 +2848,26 @@ class ComponentInstanceConfigurationStorageMountArgs:
         pulumi.set(self, "subpath", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationStorageParameterArgsDict(TypedDict):
-        claim_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the PVC name.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the configuration item.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request path.
-        """
-        secret_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Secret name. Required if the storage `type` is **Secret**.
+class ComponentInstanceConfigurationStorageParameterArgsDict(TypedDict):
+    claim_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the PVC name.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the configuration item.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request path.
+    """
+    secret_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Secret name. Required if the storage `type` is **Secret**.
 
-        <a name="servicestage_storage_mounts"></a>
-        The `mount` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationStorageParameterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_storage_mounts"></a>
+    The `mount` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationStorageParameterArgs:
@@ -3044,19 +2946,16 @@ class ComponentInstanceConfigurationStorageParameterArgs:
         pulumi.set(self, "secret_name", value)
 
 
-if not MYPY:
-    class ComponentInstanceConfigurationStrategyArgsDict(TypedDict):
-        upgrade: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the upgrade policy.
-        The valid values are **Recreate** or **RollingUpdate**. The default value is **RollingUpdate**.
-        The **Recreate** indicates in-place upgrade while the **RollingUpdate** indicates rolling upgrade.
+class ComponentInstanceConfigurationStrategyArgsDict(TypedDict):
+    upgrade: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the upgrade policy.
+    The valid values are **Recreate** or **RollingUpdate**. The default value is **RollingUpdate**.
+    The **Recreate** indicates in-place upgrade while the **RollingUpdate** indicates rolling upgrade.
 
-        <a name="servicestage_lifecycle"></a>
-        The `lifecycle` block supports:
-        """
-elif False:
-    ComponentInstanceConfigurationStrategyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_lifecycle"></a>
+    The `lifecycle` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceConfigurationStrategyArgs:
@@ -3091,22 +2990,19 @@ class ComponentInstanceConfigurationStrategyArgs:
         pulumi.set(self, "upgrade", value)
 
 
-if not MYPY:
-    class ComponentInstanceExternalAccessArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the access address. For example: `www.example.com`.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the listening port of the application component process.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the protocol. The valid values are **HTTP** and **HTTPS**.
-        """
-elif False:
-    ComponentInstanceExternalAccessArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentInstanceExternalAccessArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the access address. For example: `www.example.com`.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the listening port of the application component process.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol. The valid values are **HTTP** and **HTTPS**.
+    """
 
 @pulumi.input_type
 class ComponentInstanceExternalAccessArgs:
@@ -3163,36 +3059,33 @@ class ComponentInstanceExternalAccessArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class ComponentInstanceReferResourceArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource ID.
-        If the `type` is set to **ecs**, the value of this parameter must be **Default**.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the probe type. The valid values are as follows:
-        + **command**: command execution check.
-        + **http**: HTTP request check.
-        + **tcp**: TCP port check.
-        """
-        alias: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the application alias, which is provided only in DCS scenario.
-        The valid values are: **distributed_session**, **distributed_cache** and **distributed_session, distributed_cache**.
-        Defaults to **distributed_session, distributed_cache**.
-        """
-        parameters: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the start post-processing or stop pre-processing parameters.
-        The object structure is documented below.
+class ComponentInstanceReferResourceArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource ID.
+    If the `type` is set to **ecs**, the value of this parameter must be **Default**.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the probe type. The valid values are as follows:
+    + **command**: command execution check.
+    + **http**: HTTP request check.
+    + **tcp**: TCP port check.
+    """
+    alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the application alias, which is provided only in DCS scenario.
+    The valid values are: **distributed_session**, **distributed_cache** and **distributed_session, distributed_cache**.
+    Defaults to **distributed_session, distributed_cache**.
+    """
+    parameters: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the start post-processing or stop pre-processing parameters.
+    The object structure is documented below.
 
-        <a name="servicestage_process_param"></a>
-        The `parameters` block supports:
-        """
-elif False:
-    ComponentInstanceReferResourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_process_param"></a>
+    The `parameters` block supports:
+    """
 
 @pulumi.input_type
 class ComponentInstanceReferResourceArgs:
@@ -3283,46 +3176,43 @@ class ComponentInstanceReferResourceArgs:
         pulumi.set(self, "parameters", value)
 
 
-if not MYPY:
-    class ComponentSourceArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of repository source or storage.
-        The valid values are **GitHub**, **GitLab**, **Gitee**, **Bitbucket** and **package**.
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the URL of the repository or package storage.
-        """
-        authorization: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the authorization name.
-        This parameter and `storage_type` are alternative.
-        """
-        properties: NotRequired[pulumi.Input['ComponentSourcePropertiesArgsDict']]
-        """
-        Specifies the component builder's properties.
-        The object structure is documented below.
+class ComponentSourceArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of repository source or storage.
+    The valid values are **GitHub**, **GitLab**, **Gitee**, **Bitbucket** and **package**.
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the URL of the repository or package storage.
+    """
+    authorization: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authorization name.
+    This parameter and `storage_type` are alternative.
+    """
+    properties: NotRequired[pulumi.Input['ComponentSourcePropertiesArgsDict']]
+    """
+    Specifies the component builder's properties.
+    The object structure is documented below.
 
-        <a name="servicestage_component_builder"></a>
-        The `builder` block supports:
-        """
-        repo_namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the namespace name.
-        """
-        repo_ref: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the branch of the code repository.
-        The default value is `master`.
-        """
-        storage_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the storage type, such as **obs**, **swr**.
-        This parameter is conflict with `repo_ref` and `repo_namespace`.
-        """
-elif False:
-    ComponentSourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_component_builder"></a>
+    The `builder` block supports:
+    """
+    repo_namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the namespace name.
+    """
+    repo_ref: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the branch of the code repository.
+    The default value is `master`.
+    """
+    storage_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the storage type, such as **obs**, **swr**.
+    This parameter is conflict with `repo_ref` and `repo_namespace`.
+    """
 
 @pulumi.input_type
 class ComponentSourceArgs:
@@ -3457,22 +3347,19 @@ class ComponentSourceArgs:
         pulumi.set(self, "storage_type", value)
 
 
-if not MYPY:
-    class ComponentSourcePropertiesArgsDict(TypedDict):
-        bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the bucket name of obs.
-        """
-        endpoint: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the endpoint of obs.
-        """
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the key of obs.
-        """
-elif False:
-    ComponentSourcePropertiesArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentSourcePropertiesArgsDict(TypedDict):
+    bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the bucket name of obs.
+    """
+    endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the endpoint of obs.
+    """
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key of obs.
+    """
 
 @pulumi.input_type
 class ComponentSourcePropertiesArgs:
@@ -3529,31 +3416,28 @@ class ComponentSourcePropertiesArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class ComponentV3AffinityArgsDict(TypedDict):
-        condition: pulumi.Input[_builtins.str]
-        """
-        Specifies the condition type of the (anti) affinity rule.
-        """
-        kind: pulumi.Input[_builtins.str]
-        """
-        Specifies the kind of the (anti) affinity rule.
-        """
-        match_expressions: pulumi.Input[Sequence[pulumi.Input['ComponentV3AffinityMatchExpressionArgsDict']]]
-        """
-        Specifies the list of the match rules for (anti) affinity.  
-        The match_expressions structure is documented below.
-        """
-        weight: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the weight of the (anti) affinity rule.  
-        The valid value is range from `1` to `100`.
+class ComponentV3AffinityArgsDict(TypedDict):
+    condition: pulumi.Input[_builtins.str]
+    """
+    Specifies the condition type of the (anti) affinity rule.
+    """
+    kind: pulumi.Input[_builtins.str]
+    """
+    Specifies the kind of the (anti) affinity rule.
+    """
+    match_expressions: pulumi.Input[Sequence[pulumi.Input['ComponentV3AffinityMatchExpressionArgsDict']]]
+    """
+    Specifies the list of the match rules for (anti) affinity.  
+    The match_expressions structure is documented below.
+    """
+    weight: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the weight of the (anti) affinity rule.  
+    The valid value is range from `1` to `100`.
 
-        <a name="servicestage_v3_component_affinity_match_expressions"></a>
-        The `match_expressions` block supports:
-        """
-elif False:
-    ComponentV3AffinityArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_affinity_match_expressions"></a>
+    The `match_expressions` block supports:
+    """
 
 @pulumi.input_type
 class ComponentV3AffinityArgs:
@@ -3633,25 +3517,22 @@ class ComponentV3AffinityArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class ComponentV3AffinityMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key of the match rule.
-        """
-        operation: pulumi.Input[_builtins.str]
-        """
-        Specifies the operation of the match rule.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the match rule.
+class ComponentV3AffinityMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key of the match rule.
+    """
+    operation: pulumi.Input[_builtins.str]
+    """
+    Specifies the operation of the match rule.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the match rule.
 
-        <a name="servicestage_v3_component_probe"></a>
-        The `liveness_probe` and `readiness_probe` blocks support:
-        """
-elif False:
-    ComponentV3AffinityMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_probe"></a>
+    The `liveness_probe` and `readiness_probe` blocks support:
+    """
 
 @pulumi.input_type
 class ComponentV3AffinityMatchExpressionArgs:
@@ -3712,31 +3593,28 @@ class ComponentV3AffinityMatchExpressionArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ComponentV3AntiAffinityArgsDict(TypedDict):
-        condition: pulumi.Input[_builtins.str]
-        """
-        Specifies the condition type of the (anti) affinity rule.
-        """
-        kind: pulumi.Input[_builtins.str]
-        """
-        Specifies the kind of the (anti) affinity rule.
-        """
-        match_expressions: pulumi.Input[Sequence[pulumi.Input['ComponentV3AntiAffinityMatchExpressionArgsDict']]]
-        """
-        Specifies the list of the match rules for (anti) affinity.  
-        The match_expressions structure is documented below.
-        """
-        weight: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the weight of the (anti) affinity rule.  
-        The valid value is range from `1` to `100`.
+class ComponentV3AntiAffinityArgsDict(TypedDict):
+    condition: pulumi.Input[_builtins.str]
+    """
+    Specifies the condition type of the (anti) affinity rule.
+    """
+    kind: pulumi.Input[_builtins.str]
+    """
+    Specifies the kind of the (anti) affinity rule.
+    """
+    match_expressions: pulumi.Input[Sequence[pulumi.Input['ComponentV3AntiAffinityMatchExpressionArgsDict']]]
+    """
+    Specifies the list of the match rules for (anti) affinity.  
+    The match_expressions structure is documented below.
+    """
+    weight: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the weight of the (anti) affinity rule.  
+    The valid value is range from `1` to `100`.
 
-        <a name="servicestage_v3_component_affinity_match_expressions"></a>
-        The `match_expressions` block supports:
-        """
-elif False:
-    ComponentV3AntiAffinityArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_affinity_match_expressions"></a>
+    The `match_expressions` block supports:
+    """
 
 @pulumi.input_type
 class ComponentV3AntiAffinityArgs:
@@ -3816,25 +3694,22 @@ class ComponentV3AntiAffinityArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class ComponentV3AntiAffinityMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key of the match rule.
-        """
-        operation: pulumi.Input[_builtins.str]
-        """
-        Specifies the operation of the match rule.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the match rule.
+class ComponentV3AntiAffinityMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key of the match rule.
+    """
+    operation: pulumi.Input[_builtins.str]
+    """
+    Specifies the operation of the match rule.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the match rule.
 
-        <a name="servicestage_v3_component_probe"></a>
-        The `liveness_probe` and `readiness_probe` blocks support:
-        """
-elif False:
-    ComponentV3AntiAffinityMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_probe"></a>
+    The `liveness_probe` and `readiness_probe` blocks support:
+    """
 
 @pulumi.input_type
 class ComponentV3AntiAffinityMatchExpressionArgs:
@@ -3895,28 +3770,25 @@ class ComponentV3AntiAffinityMatchExpressionArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ComponentV3CustomMetricArgsDict(TypedDict):
-        dimensions: pulumi.Input[_builtins.str]
-        """
-        Specifies the monitoring dimension, such as **cpu_usage**, **mem_usage** or
-        **cpu_usage,mem_usage** (separated by a comma).
+class ComponentV3CustomMetricArgsDict(TypedDict):
+    dimensions: pulumi.Input[_builtins.str]
+    """
+    Specifies the monitoring dimension, such as **cpu_usage**, **mem_usage** or
+    **cpu_usage,mem_usage** (separated by a comma).
 
-        <a name="servicestage_v3_component_affinity"></a>
-        The `affinity` and `anti_affinity` blocks support:
-        """
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the path of the probe.  
-        This parameter is only available when the `type` is set to `http`.
-        """
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the port of the probe.  
-        This parameter is only available when the `type` is set to `tcp` or `http`.
-        """
-elif False:
-    ComponentV3CustomMetricArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_affinity"></a>
+    The `affinity` and `anti_affinity` blocks support:
+    """
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the path of the probe.  
+    This parameter is only available when the `type` is set to `http`.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the port of the probe.  
+    This parameter is only available when the `type` is set to `tcp` or `http`.
+    """
 
 @pulumi.input_type
 class ComponentV3CustomMetricArgs:
@@ -3982,42 +3854,39 @@ class ComponentV3CustomMetricArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ComponentV3DeployStrategyArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the probe.
-        + **http**
-        + **tcp**
-        + **command**
-        """
-        gray_release: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the gray release parameters, in JSON format.  
-        Required if the `type` is **GrayRelease**.
-        For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table888818707).
+class ComponentV3DeployStrategyArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the probe.
+    + **http**
+    + **tcp**
+    + **command**
+    """
+    gray_release: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the gray release parameters, in JSON format.  
+    Required if the `type` is **GrayRelease**.
+    For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table888818707).
 
-        <a name="servicestage_v3_component_lifecycle"></a>
-        The `post_start` and `pre_stop` blocks support:
-        """
-        gray_release_origin: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The script configuration value of this change is also the original value used for comparison with
-        the new value next time the change is made. The corresponding parameter name is 'deploy_strategy.0.gray_release'.
-        """
-        rolling_release: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the rolling release parameters, in JSON format.  
-        Required if the `type` is **RollingRelease**.
-        For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table4696103920).
-        """
-        rolling_release_origin: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The script configuration value of this change is also the original value used for comparison with
-        the new value next time the change is made. The corresponding parameter name is 'deploy_strategy.0.rolling_release'.
-        """
-elif False:
-    ComponentV3DeployStrategyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_lifecycle"></a>
+    The `post_start` and `pre_stop` blocks support:
+    """
+    gray_release_origin: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The script configuration value of this change is also the original value used for comparison with
+    the new value next time the change is made. The corresponding parameter name is 'deploy_strategy.0.gray_release'.
+    """
+    rolling_release: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the rolling release parameters, in JSON format.  
+    Required if the `type` is **RollingRelease**.
+    For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table4696103920).
+    """
+    rolling_release_origin: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The script configuration value of this change is also the original value used for comparison with
+    the new value next time the change is made. The corresponding parameter name is 'deploy_strategy.0.rolling_release'.
+    """
 
 @pulumi.input_type
 class ComponentV3DeployStrategyArgs:
@@ -4129,22 +3998,19 @@ class ComponentV3DeployStrategyArgs:
         pulumi.set(self, "rolling_release_origin", value)
 
 
-if not MYPY:
-    class ComponentV3EnvArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the disk where the data is stored.  
-        Only lowercase letters, digits, and hyphens (-) are allowed and must start and end with a lowercase letter or digit.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the match rule.
+class ComponentV3EnvArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the disk where the data is stored.  
+    Only lowercase letters, digits, and hyphens (-) are allowed and must start and end with a lowercase letter or digit.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the match rule.
 
-        <a name="servicestage_v3_component_probe"></a>
-        The `liveness_probe` and `readiness_probe` blocks support:
-        """
-elif False:
-    ComponentV3EnvArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_probe"></a>
+    The `liveness_probe` and `readiness_probe` blocks support:
+    """
 
 @pulumi.input_type
 class ComponentV3EnvArgs:
@@ -4192,22 +4058,19 @@ class ComponentV3EnvArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ComponentV3ExternalAccessArgsDict(TypedDict):
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol of the external access.
-        """
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the address of the external access.
-        """
-        forward_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the forward port of the external access.
-        """
-elif False:
-    ComponentV3ExternalAccessArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentV3ExternalAccessArgsDict(TypedDict):
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol of the external access.
+    """
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the address of the external access.
+    """
+    forward_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the forward port of the external access.
+    """
 
 @pulumi.input_type
 class ComponentV3ExternalAccessArgs:
@@ -4263,57 +4126,54 @@ class ComponentV3ExternalAccessArgs:
         pulumi.set(self, "forward_port", value)
 
 
-if not MYPY:
-    class ComponentV3LivenessProbeArgsDict(TypedDict):
-        delay: pulumi.Input[_builtins.int]
-        """
-        Specifies the delay time of the probe.
-        """
-        timeout: pulumi.Input[_builtins.int]
-        """
-        Specifies the timeout of the probe.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the probe.
-        + **http**
-        + **tcp**
-        + **command**
-        """
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command list of the probe.  
-        This parameter is only available when the `type` is set to `command`.
+class ComponentV3LivenessProbeArgsDict(TypedDict):
+    delay: pulumi.Input[_builtins.int]
+    """
+    Specifies the delay time of the probe.
+    """
+    timeout: pulumi.Input[_builtins.int]
+    """
+    Specifies the timeout of the probe.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the probe.
+    + **http**
+    + **tcp**
+    + **command**
+    """
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command list of the probe.  
+    This parameter is only available when the `type` is set to `command`.
 
-        <a name="servicestage_v3_component_external_accesses"></a>
-        The `external_accesses` block supports:
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the host of the probe.  
-        Defaults to pod ID, also custom IP address can be specified.
-        This parameter is only available when the `type` is set to `http`.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the path of the probe.  
-        This parameter is only available when the `type` is set to `http`.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port of the probe.  
-        This parameter is only available when the `type` is set to `tcp` or `http`.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the scheme type of the probe.
-        + **HTTP**
-        + **HTTPS**
+    <a name="servicestage_v3_component_external_accesses"></a>
+    The `external_accesses` block supports:
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the host of the probe.  
+    Defaults to pod ID, also custom IP address can be specified.
+    This parameter is only available when the `type` is set to `http`.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path of the probe.  
+    This parameter is only available when the `type` is set to `http`.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port of the probe.  
+    This parameter is only available when the `type` is set to `tcp` or `http`.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the scheme type of the probe.
+    + **HTTP**
+    + **HTTPS**
 
-        This parameter is only available when the `type` is set to `http`.
-        """
-elif False:
-    ComponentV3LivenessProbeArgsDict: TypeAlias = Mapping[str, Any]
+    This parameter is only available when the `type` is set to `http`.
+    """
 
 @pulumi.input_type
 class ComponentV3LivenessProbeArgs:
@@ -4477,37 +4337,34 @@ class ComponentV3LivenessProbeArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class ComponentV3LogArgsDict(TypedDict):
-        host_extend_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the extension path of the host.
-        + **None**: the extended path is not used.
-        + **PodUID**: extend the host path based on the pod ID.
-        + **PodName**: extend the host path based on the pod name.
-        + **PodUID/ContainerName**: extend the host path based on the pod ID and container name.
-        + **PodName/ContainerName**: extend the host path based on the pod name and container name.
+class ComponentV3LogArgsDict(TypedDict):
+    host_extend_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the extension path of the host.
+    + **None**: the extended path is not used.
+    + **PodUID**: extend the host path based on the pod ID.
+    + **PodName**: extend the host path based on the pod name.
+    + **PodUID/ContainerName**: extend the host path based on the pod ID and container name.
+    + **PodName/ContainerName**: extend the host path based on the pod name and container name.
 
-        <a name="servicestage_v3_component_custom_metric"></a>
-        The `custom_metric` block supports:
-        """
-        host_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the mounted host path, e.g. **/tmp**.
-        """
-        log_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the log path of the container, e.g. **/tmp**.
-        """
-        rotate: pulumi.Input[_builtins.str]
-        """
-        Specifies the interval for dumping logs.
-        + **Hourly**
-        + **Daily**
-        + **Weekly**
-        """
-elif False:
-    ComponentV3LogArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_custom_metric"></a>
+    The `custom_metric` block supports:
+    """
+    host_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the mounted host path, e.g. **/tmp**.
+    """
+    log_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the log path of the container, e.g. **/tmp**.
+    """
+    rotate: pulumi.Input[_builtins.str]
+    """
+    Specifies the interval for dumping logs.
+    + **Hourly**
+    + **Daily**
+    + **Weekly**
+    """
 
 @pulumi.input_type
 class ComponentV3LogArgs:
@@ -4598,15 +4455,12 @@ class ComponentV3LogArgs:
         pulumi.set(self, "rotate", value)
 
 
-if not MYPY:
-    class ComponentV3MesherArgsDict(TypedDict):
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the port of the probe.  
-        This parameter is only available when the `type` is set to `tcp` or `http`.
-        """
-elif False:
-    ComponentV3MesherArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentV3MesherArgsDict(TypedDict):
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the port of the probe.  
+    This parameter is only available when the `type` is set to `tcp` or `http`.
+    """
 
 @pulumi.input_type
 class ComponentV3MesherArgs:
@@ -4632,49 +4486,46 @@ class ComponentV3MesherArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ComponentV3PostStartArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the probe.
-        + **http**
-        + **tcp**
-        + **command**
-        """
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command list of the probe.  
-        This parameter is only available when the `type` is set to `command`.
+class ComponentV3PostStartArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the probe.
+    + **http**
+    + **tcp**
+    + **command**
+    """
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command list of the probe.  
+    This parameter is only available when the `type` is set to `command`.
 
-        <a name="servicestage_v3_component_external_accesses"></a>
-        The `external_accesses` block supports:
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the host of the probe.  
-        Defaults to pod ID, also custom IP address can be specified.
-        This parameter is only available when the `type` is set to `http`.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the path of the probe.  
-        This parameter is only available when the `type` is set to `http`.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port of the probe.  
-        This parameter is only available when the `type` is set to `tcp` or `http`.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the scheme type of the probe.
-        + **HTTP**
-        + **HTTPS**
+    <a name="servicestage_v3_component_external_accesses"></a>
+    The `external_accesses` block supports:
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the host of the probe.  
+    Defaults to pod ID, also custom IP address can be specified.
+    This parameter is only available when the `type` is set to `http`.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path of the probe.  
+    This parameter is only available when the `type` is set to `http`.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port of the probe.  
+    This parameter is only available when the `type` is set to `tcp` or `http`.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the scheme type of the probe.
+    + **HTTP**
+    + **HTTPS**
 
-        This parameter is only available when the `type` is set to `http`.
-        """
-elif False:
-    ComponentV3PostStartArgsDict: TypeAlias = Mapping[str, Any]
+    This parameter is only available when the `type` is set to `http`.
+    """
 
 @pulumi.input_type
 class ComponentV3PostStartArgs:
@@ -4808,49 +4659,46 @@ class ComponentV3PostStartArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class ComponentV3PreStopArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the probe.
-        + **http**
-        + **tcp**
-        + **command**
-        """
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command list of the probe.  
-        This parameter is only available when the `type` is set to `command`.
+class ComponentV3PreStopArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the probe.
+    + **http**
+    + **tcp**
+    + **command**
+    """
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command list of the probe.  
+    This parameter is only available when the `type` is set to `command`.
 
-        <a name="servicestage_v3_component_external_accesses"></a>
-        The `external_accesses` block supports:
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the host of the probe.  
-        Defaults to pod ID, also custom IP address can be specified.
-        This parameter is only available when the `type` is set to `http`.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the path of the probe.  
-        This parameter is only available when the `type` is set to `http`.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port of the probe.  
-        This parameter is only available when the `type` is set to `tcp` or `http`.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the scheme type of the probe.
-        + **HTTP**
-        + **HTTPS**
+    <a name="servicestage_v3_component_external_accesses"></a>
+    The `external_accesses` block supports:
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the host of the probe.  
+    Defaults to pod ID, also custom IP address can be specified.
+    This parameter is only available when the `type` is set to `http`.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path of the probe.  
+    This parameter is only available when the `type` is set to `http`.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port of the probe.  
+    This parameter is only available when the `type` is set to `tcp` or `http`.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the scheme type of the probe.
+    + **HTTP**
+    + **HTTPS**
 
-        This parameter is only available when the `type` is set to `http`.
-        """
-elif False:
-    ComponentV3PreStopArgsDict: TypeAlias = Mapping[str, Any]
+    This parameter is only available when the `type` is set to `http`.
+    """
 
 @pulumi.input_type
 class ComponentV3PreStopArgs:
@@ -4984,57 +4832,54 @@ class ComponentV3PreStopArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class ComponentV3ReadinessProbeArgsDict(TypedDict):
-        delay: pulumi.Input[_builtins.int]
-        """
-        Specifies the delay time of the probe.
-        """
-        timeout: pulumi.Input[_builtins.int]
-        """
-        Specifies the timeout of the probe.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the probe.
-        + **http**
-        + **tcp**
-        + **command**
-        """
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command list of the probe.  
-        This parameter is only available when the `type` is set to `command`.
+class ComponentV3ReadinessProbeArgsDict(TypedDict):
+    delay: pulumi.Input[_builtins.int]
+    """
+    Specifies the delay time of the probe.
+    """
+    timeout: pulumi.Input[_builtins.int]
+    """
+    Specifies the timeout of the probe.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the probe.
+    + **http**
+    + **tcp**
+    + **command**
+    """
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command list of the probe.  
+    This parameter is only available when the `type` is set to `command`.
 
-        <a name="servicestage_v3_component_external_accesses"></a>
-        The `external_accesses` block supports:
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the host of the probe.  
-        Defaults to pod ID, also custom IP address can be specified.
-        This parameter is only available when the `type` is set to `http`.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the path of the probe.  
-        This parameter is only available when the `type` is set to `http`.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port of the probe.  
-        This parameter is only available when the `type` is set to `tcp` or `http`.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the scheme type of the probe.
-        + **HTTP**
-        + **HTTPS**
+    <a name="servicestage_v3_component_external_accesses"></a>
+    The `external_accesses` block supports:
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the host of the probe.  
+    Defaults to pod ID, also custom IP address can be specified.
+    This parameter is only available when the `type` is set to `http`.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path of the probe.  
+    This parameter is only available when the `type` is set to `http`.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port of the probe.  
+    This parameter is only available when the `type` is set to `tcp` or `http`.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the scheme type of the probe.
+    + **HTTP**
+    + **HTTPS**
 
-        This parameter is only available when the `type` is set to `http`.
-        """
-elif False:
-    ComponentV3ReadinessProbeArgsDict: TypeAlias = Mapping[str, Any]
+    This parameter is only available when the `type` is set to `http`.
+    """
 
 @pulumi.input_type
 class ComponentV3ReadinessProbeArgs:
@@ -5198,27 +5043,24 @@ class ComponentV3ReadinessProbeArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class ComponentV3ReferResourceArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource ID.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the probe.
-        + **http**
-        + **tcp**
-        + **command**
-        """
-        parameters: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the information corresponding to the specific types of data storage,
-        in JSON format.
-        For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table16441247172510).
-        """
-elif False:
-    ComponentV3ReferResourceArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentV3ReferResourceArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource ID.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the probe.
+    + **http**
+    + **tcp**
+    + **command**
+    """
+    parameters: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the information corresponding to the specific types of data storage,
+    in JSON format.
+    For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table16441247172510).
+    """
 
 @pulumi.input_type
 class ComponentV3ReferResourceArgs:
@@ -5283,35 +5125,32 @@ class ComponentV3ReferResourceArgs:
         pulumi.set(self, "parameters", value)
 
 
-if not MYPY:
-    class ComponentV3RuntimeStackArgsDict(TypedDict):
-        deploy_mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the deploy mode of the stack.  
-        Changing this will create a new resource.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the disk where the data is stored.  
-        Only lowercase letters, digits, and hyphens (-) are allowed and must start and end with a lowercase letter or digit.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the probe.
-        + **http**
-        + **tcp**
-        + **command**
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the stack version.  
-        Changing this will create a new resource.
+class ComponentV3RuntimeStackArgsDict(TypedDict):
+    deploy_mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the deploy mode of the stack.  
+    Changing this will create a new resource.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the disk where the data is stored.  
+    Only lowercase letters, digits, and hyphens (-) are allowed and must start and end with a lowercase letter or digit.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the probe.
+    + **http**
+    + **tcp**
+    + **command**
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the stack version.  
+    Changing this will create a new resource.
 
-        <a name="servicestage_v3_component_refer_resources"></a>
-        The `refer_resources` block supports:
-        """
-elif False:
-    ComponentV3RuntimeStackArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_refer_resources"></a>
+    The `refer_resources` block supports:
+    """
 
 @pulumi.input_type
 class ComponentV3RuntimeStackArgs:
@@ -5399,36 +5238,33 @@ class ComponentV3RuntimeStackArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ComponentV3StorageArgsDict(TypedDict):
-        mounts: pulumi.Input[Sequence[pulumi.Input['ComponentV3StorageMountArgsDict']]]
-        """
-        Specifies the configuration of the disk mounts.  
-        The mounts structure is documented below.
+class ComponentV3StorageArgsDict(TypedDict):
+    mounts: pulumi.Input[Sequence[pulumi.Input['ComponentV3StorageMountArgsDict']]]
+    """
+    Specifies the configuration of the disk mounts.  
+    The mounts structure is documented below.
 
-        <a name="servicestage_v3_component_storage_mounts"></a>
-        The `mounts` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the disk where the data is stored.  
-        Only lowercase letters, digits, and hyphens (-) are allowed and must start and end with a lowercase letter or digit.
-        """
-        parameters: pulumi.Input[_builtins.str]
-        """
-        Specifies the information corresponding to the specific types of data storage,
-        in JSON format.
-        For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table16441247172510).
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the probe.
-        + **http**
-        + **tcp**
-        + **command**
-        """
-elif False:
-    ComponentV3StorageArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_storage_mounts"></a>
+    The `mounts` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the disk where the data is stored.  
+    Only lowercase letters, digits, and hyphens (-) are allowed and must start and end with a lowercase letter or digit.
+    """
+    parameters: pulumi.Input[_builtins.str]
+    """
+    Specifies the information corresponding to the specific types of data storage,
+    in JSON format.
+    For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table16441247172510).
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the probe.
+    + **http**
+    + **tcp**
+    + **command**
+    """
 
 @pulumi.input_type
 class ComponentV3StorageArgs:
@@ -5517,26 +5353,23 @@ class ComponentV3StorageArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ComponentV3StorageMountArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the path of the probe.  
-        This parameter is only available when the `type` is set to `http`.
-        """
-        read_only: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the disk mount is read-only.
+class ComponentV3StorageMountArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the path of the probe.  
+    This parameter is only available when the `type` is set to `http`.
+    """
+    read_only: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the disk mount is read-only.
 
-        <a name="servicestage_v3_component_deploy_strategy"></a>
-        The `deploy_strategy` block supports:
-        """
-        sub_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the sub mount path.
-        """
-elif False:
-    ComponentV3StorageMountArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="servicestage_v3_component_deploy_strategy"></a>
+    The `deploy_strategy` block supports:
+    """
+    sub_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the sub mount path.
+    """
 
 @pulumi.input_type
 class ComponentV3StorageMountArgs:
@@ -5598,26 +5431,23 @@ class ComponentV3StorageMountArgs:
         pulumi.set(self, "sub_path", value)
 
 
-if not MYPY:
-    class ConfigurationV3ComponentArgsDict(TypedDict):
-        application_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the application.
-        """
-        component_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the component.
-        """
-        component_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the component.
-        """
-        environment_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the environment.
-        """
-elif False:
-    ConfigurationV3ComponentArgsDict: TypeAlias = Mapping[str, Any]
+class ConfigurationV3ComponentArgsDict(TypedDict):
+    application_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the application.
+    """
+    component_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the component.
+    """
+    component_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the component.
+    """
+    environment_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the environment.
+    """
 
 @pulumi.input_type
 class ConfigurationV3ComponentArgs:
@@ -5690,18 +5520,15 @@ class ConfigurationV3ComponentArgs:
         pulumi.set(self, "environment_id", value)
 
 
-if not MYPY:
-    class EnvironmentAssociateV3ResourceArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the resource to be associated.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the resource to be associated.
-        """
-elif False:
-    EnvironmentAssociateV3ResourceArgsDict: TypeAlias = Mapping[str, Any]
+class EnvironmentAssociateV3ResourceArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the resource to be associated.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the resource to be associated.
+    """
 
 @pulumi.input_type
 class EnvironmentAssociateV3ResourceArgs:
@@ -5740,23 +5567,20 @@ class EnvironmentAssociateV3ResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class EnvironmentBasicResourceArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource ID. For most resources, this parameter needs to fill in their **id**,
-        but for CCI namespace, this parameter needs to fill in **name**.
+class EnvironmentBasicResourceArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource ID. For most resources, this parameter needs to fill in their **id**,
+    but for CCI namespace, this parameter needs to fill in **name**.
 
-        > All resources must under the same VPC as the environment.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource type.
-        + The type of basic resource supports **cce**, **cci**, **ecs** and **as**.
-        + The type of optional resource supports **elb**, **eip**, **rds**, **dcs** and **cse**.
-        """
-elif False:
-    EnvironmentBasicResourceArgsDict: TypeAlias = Mapping[str, Any]
+    > All resources must under the same VPC as the environment.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource type.
+    + The type of basic resource supports **cce**, **cci**, **ecs** and **as**.
+    + The type of optional resource supports **elb**, **eip**, **rds**, **dcs** and **cse**.
+    """
 
 @pulumi.input_type
 class EnvironmentBasicResourceArgs:
@@ -5805,23 +5629,20 @@ class EnvironmentBasicResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class EnvironmentOptionalResourceArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource ID. For most resources, this parameter needs to fill in their **id**,
-        but for CCI namespace, this parameter needs to fill in **name**.
+class EnvironmentOptionalResourceArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource ID. For most resources, this parameter needs to fill in their **id**,
+    but for CCI namespace, this parameter needs to fill in **name**.
 
-        > All resources must under the same VPC as the environment.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource type.
-        + The type of basic resource supports **cce**, **cci**, **ecs** and **as**.
-        + The type of optional resource supports **elb**, **eip**, **rds**, **dcs** and **cse**.
-        """
-elif False:
-    EnvironmentOptionalResourceArgsDict: TypeAlias = Mapping[str, Any]
+    > All resources must under the same VPC as the environment.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource type.
+    + The type of basic resource supports **cce**, **cci**, **ecs** and **as**.
+    + The type of optional resource supports **elb**, **eip**, **rds**, **dcs** and **cse**.
+    """
 
 @pulumi.input_type
 class EnvironmentOptionalResourceArgs:

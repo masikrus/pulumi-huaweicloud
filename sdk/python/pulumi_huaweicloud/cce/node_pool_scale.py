@@ -32,6 +32,7 @@ class NodePoolScaleArgs:
                  scalable_checking: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NodePoolScale resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[_builtins.int] desired_node_count: Specifies the number of desired nodes.
         :param pulumi.Input[_builtins.str] nodepool_id: Specifies the node pool ID.
@@ -230,6 +231,7 @@ class _NodePoolScaleState:
                  scale_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering NodePoolScale resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the nodes.
                Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
@@ -457,6 +459,7 @@ class NodePoolScale(pulumi.CustomResource):
 
         > Deleting node pool scale is not supported, it will only be removed from the state.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are **true** and **false**.
@@ -509,6 +512,7 @@ class NodePoolScale(pulumi.CustomResource):
         ```
 
         > Deleting node pool scale is not supported, it will only be removed from the state.
+
 
         :param str resource_name: The name of the resource.
         :param NodePoolScaleArgs args: The arguments to use to populate this resource's properties.

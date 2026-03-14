@@ -32,6 +32,7 @@ class AclRuleArgs:
                  source_port: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AclRule resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action in the network ACL rule. Currently, the value can be *allow* or
                *deny*.
         :param pulumi.Input[_builtins.str] protocol: Specifies the protocol supported by the network ACL rule. Valid values are: *tcp*,
@@ -230,6 +231,7 @@ class _AclRuleState:
                  source_port: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AclRule resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action in the network ACL rule. Currently, the value can be *allow* or
                *deny*.
         :param pulumi.Input[_builtins.str] description: Specifies the description for the network ACL rule.
@@ -457,11 +459,10 @@ class AclRule(pulumi.CustomResource):
 
         network ACL rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:NetworkAcl/aclRule:AclRule rule_1 89a84b28-4cc2-4859-9885-c67e802a46a3
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -516,11 +517,10 @@ class AclRule(pulumi.CustomResource):
 
         network ACL rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:NetworkAcl/aclRule:AclRule rule_1 89a84b28-4cc2-4859-9885-c67e802a46a3
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclRuleArgs args: The arguments to use to populate this resource's properties.

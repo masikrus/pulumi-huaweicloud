@@ -26,6 +26,7 @@ class SwitchHoneypotPortPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SwitchHoneypotPortPolicy resource.
+
         :param pulumi.Input[_builtins.str] host_id: Specifies the host ID.
                Multiple host ID is supported, separated by commas (,).
         :param pulumi.Input[_builtins.str] policy_id: Specifies the dynamic port honeypot policy ID.
@@ -124,6 +125,7 @@ class _SwitchHoneypotPortPolicyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SwitchHoneypotPortPolicy resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
                This parameter is valid only when the enterprise project is enabled.
                The default value is **0**, indicating the default enterprise project.
@@ -214,7 +216,7 @@ class _SwitchHoneypotPortPolicyState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:hss/switchHoneypotPortPolicy:SwitchHoneypotPortPolicy")
+@pulumi.type_token("huaweicloud:Hss/switchHoneypotPortPolicy:SwitchHoneypotPortPolicy")
 class SwitchHoneypotPortPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -245,6 +247,7 @@ class SwitchHoneypotPortPolicy(pulumi.CustomResource):
             policy_id=policy_id,
             host_id=host_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -287,6 +290,7 @@ class SwitchHoneypotPortPolicy(pulumi.CustomResource):
             host_id=host_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param SwitchHoneypotPortPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -326,7 +330,7 @@ class SwitchHoneypotPortPolicy(pulumi.CustomResource):
             __props__.__dict__["policy_id"] = policy_id
             __props__.__dict__["region"] = region
         super(SwitchHoneypotPortPolicy, __self__).__init__(
-            'huaweicloud:hss/switchHoneypotPortPolicy:SwitchHoneypotPortPolicy',
+            'huaweicloud:Hss/switchHoneypotPortPolicy:SwitchHoneypotPortPolicy',
             resource_name,
             __props__,
             opts)

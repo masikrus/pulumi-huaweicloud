@@ -30,6 +30,7 @@ class InspectorWebsiteArgs:
                  verify_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InspectorWebsite resource.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the authentication type. Changing this parameter will create a
                new resource. Valid values are:
                + **free**: Verification Free. Before using this authentication method, please confirm the following instructions.
@@ -219,6 +220,7 @@ class _InspectorWebsiteState:
                  website_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InspectorWebsite resources.
+
         :param pulumi.Input[_builtins.str] auth_status: The auth status of website. Valid values are:
                + **unauth**: Unauthorized.
                + **auth**: Authorized.
@@ -491,7 +493,7 @@ class _InspectorWebsiteState:
         pulumi.set(self, "website_name", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/inspectorWebsite:InspectorWebsite")
+@pulumi.type_token("huaweicloud:Codearts/inspectorWebsite:InspectorWebsite")
 class InspectorWebsite(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -541,45 +543,16 @@ class InspectorWebsite(pulumi.CustomResource):
 
         The CodeArts inspector website can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/inspectorWebsite:InspectorWebsite test <id>
+        $ pulumi import huaweicloud:Codearts/inspectorWebsite:InspectorWebsite test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `auth_type`, `login_password`, `login_cookie`,
-
         `http_headers`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_inspector_website" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              auth_type,
-            
-              login_password,
-            
-              login_cookie,
-            
-              http_headers,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -650,45 +623,16 @@ class InspectorWebsite(pulumi.CustomResource):
 
         The CodeArts inspector website can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/inspectorWebsite:InspectorWebsite test <id>
+        $ pulumi import huaweicloud:Codearts/inspectorWebsite:InspectorWebsite test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `auth_type`, `login_password`, `login_cookie`,
-
         `http_headers`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_inspector_website" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              auth_type,
-            
-              login_password,
-            
-              login_cookie,
-            
-              http_headers,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InspectorWebsiteArgs args: The arguments to use to populate this resource's properties.
@@ -747,7 +691,7 @@ class InspectorWebsite(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["loginCookie", "loginPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(InspectorWebsite, __self__).__init__(
-            'huaweicloud:codearts/inspectorWebsite:InspectorWebsite',
+            'huaweicloud:Codearts/inspectorWebsite:InspectorWebsite',
             resource_name,
             __props__,
             opts)

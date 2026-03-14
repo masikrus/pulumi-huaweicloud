@@ -16,24 +16,37 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AgencyAgency',
+    'BatchExportPrivateKeyKeypair',
+    'BatchImportKeypairFailedKeypair',
+    'BatchImportKeypairKeypair',
+    'BatchImportKeypairKeypairKeyProtection',
+    'BatchImportKeypairKeypairKeyProtectionEncryption',
+    'BatchImportKeypairSucceededKeypair',
     'KeypairAssociateServer',
     'KeypairAssociateServerAuth',
     'KeypairDisassociateServer',
     'KeypairDisassociateServerAuth',
+    'GetAliasesAliasResult',
     'GetCustomKeysByTagsMatchResult',
     'GetCustomKeysByTagsResourceResult',
     'GetCustomKeysByTagsResourceResourceDetailResult',
     'GetCustomKeysByTagsResourceTagResult',
     'GetCustomKeysByTagsTagResult',
+    'GetDedicatedKeystoresKeystoreResult',
     'GetEventsEventResult',
     'GetEventsEventNotificationResult',
     'GetFailedTasksTaskResult',
     'GetGrantsGrantResult',
+    'GetKeyTagsTagResult',
     'GetKeypairsKeypairResult',
     'GetKeysKeyResult',
+    'GetNotificationRecordsRecordResult',
     'GetQuotasQuotaResult',
     'GetQuotasQuotaResourceResult',
+    'GetRetirableGrantsGrantResult',
     'GetRunningTasksTaskResult',
+    'GetSecretTagsTagResult',
     'GetSecretVersionsVersionResult',
     'GetSecretsByTagsMatchResult',
     'GetSecretsByTagsResourceResult',
@@ -44,6 +57,581 @@ __all__ = [
     'GetSecretsSecretResult',
     'GetTasksTaskResult',
 ]
+
+@pulumi.output_type
+class AgencyAgency(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "agencyId":
+            suggest = "agency_id"
+        elif key == "agencyName":
+            suggest = "agency_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AgencyAgency. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AgencyAgency.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AgencyAgency.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 agency_id: Optional[_builtins.str] = None,
+                 agency_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str agency_id: The agency ID.
+        :param _builtins.str agency_name: The agency name.
+        """
+        if agency_id is not None:
+            pulumi.set(__self__, "agency_id", agency_id)
+        if agency_name is not None:
+            pulumi.set(__self__, "agency_name", agency_name)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyId")
+    def agency_id(self) -> Optional[_builtins.str]:
+        """
+        The agency ID.
+        """
+        return pulumi.get(self, "agency_id")
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> Optional[_builtins.str]:
+        """
+        The agency name.
+        """
+        return pulumi.get(self, "agency_name")
+
+
+@pulumi.output_type
+class BatchExportPrivateKeyKeypair(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "frozenState":
+            suggest = "frozen_state"
+        elif key == "isKeyProtection":
+            suggest = "is_key_protection"
+        elif key == "publicKey":
+            suggest = "public_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchExportPrivateKeyKeypair. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchExportPrivateKeyKeypair.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchExportPrivateKeyKeypair.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fingerprint: Optional[_builtins.str] = None,
+                 frozen_state: Optional[_builtins.str] = None,
+                 is_key_protection: Optional[_builtins.bool] = None,
+                 name: Optional[_builtins.str] = None,
+                 public_key: Optional[_builtins.str] = None,
+                 scope: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str fingerprint: Specifies the fingerprint of the keypair.
+        :param _builtins.str frozen_state: Specifies the frozen state of the keypair. Valid values are:
+               + **0**: normal, not frozen
+               + **1**: frozen due to common causes
+               + **2**: frozen by the public security bureau
+               + **3**: frozen due to common causes and by the public security bureau
+               + **4**: frozen due to violations
+               + **5**: frozen due to common causes and violations
+               + **6**: frozen by the public security bureau and due to violations
+               + **7**: frozen by the public security bureau and due to common causes and violations
+               + **8**: frozen due to lack of real-name authentication
+               + **9**: frozen due to common causes and lack of real-name authentication
+               + **10**: frozen by the public security bureau and due to lack of real-name authentication
+        :param _builtins.bool is_key_protection: Specifies whether the key is protected.
+        :param _builtins.str name: Specifies the SSH keypair name.
+        :param _builtins.str public_key: Specifies the imported OpenSSH-formatted public key.
+        :param _builtins.str scope: Specifies the scope of the keypair. Valid values are **domain** and **user**.
+        :param _builtins.str type: Specifies the SSH keypair type. Valid values are **ssh** and **x509**.
+        """
+        if fingerprint is not None:
+            pulumi.set(__self__, "fingerprint", fingerprint)
+        if frozen_state is not None:
+            pulumi.set(__self__, "frozen_state", frozen_state)
+        if is_key_protection is not None:
+            pulumi.set(__self__, "is_key_protection", is_key_protection)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def fingerprint(self) -> Optional[_builtins.str]:
+        """
+        Specifies the fingerprint of the keypair.
+        """
+        return pulumi.get(self, "fingerprint")
+
+    @_builtins.property
+    @pulumi.getter(name="frozenState")
+    def frozen_state(self) -> Optional[_builtins.str]:
+        """
+        Specifies the frozen state of the keypair. Valid values are:
+        + **0**: normal, not frozen
+        + **1**: frozen due to common causes
+        + **2**: frozen by the public security bureau
+        + **3**: frozen due to common causes and by the public security bureau
+        + **4**: frozen due to violations
+        + **5**: frozen due to common causes and violations
+        + **6**: frozen by the public security bureau and due to violations
+        + **7**: frozen by the public security bureau and due to common causes and violations
+        + **8**: frozen due to lack of real-name authentication
+        + **9**: frozen due to common causes and lack of real-name authentication
+        + **10**: frozen by the public security bureau and due to lack of real-name authentication
+        """
+        return pulumi.get(self, "frozen_state")
+
+    @_builtins.property
+    @pulumi.getter(name="isKeyProtection")
+    def is_key_protection(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the key is protected.
+        """
+        return pulumi.get(self, "is_key_protection")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the SSH keypair name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the imported OpenSSH-formatted public key.
+        """
+        return pulumi.get(self, "public_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> Optional[_builtins.str]:
+        """
+        Specifies the scope of the keypair. Valid values are **domain** and **user**.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the SSH keypair type. Valid values are **ssh** and **x509**.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class BatchImportKeypairFailedKeypair(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "failedReason":
+            suggest = "failed_reason"
+        elif key == "keypairName":
+            suggest = "keypair_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchImportKeypairFailedKeypair. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchImportKeypairFailedKeypair.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchImportKeypairFailedKeypair.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 failed_reason: Optional[_builtins.str] = None,
+                 keypair_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str failed_reason: The failed reason.
+        :param _builtins.str keypair_name: The SSH keypair name.
+        """
+        if failed_reason is not None:
+            pulumi.set(__self__, "failed_reason", failed_reason)
+        if keypair_name is not None:
+            pulumi.set(__self__, "keypair_name", keypair_name)
+
+    @_builtins.property
+    @pulumi.getter(name="failedReason")
+    def failed_reason(self) -> Optional[_builtins.str]:
+        """
+        The failed reason.
+        """
+        return pulumi.get(self, "failed_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="keypairName")
+    def keypair_name(self) -> Optional[_builtins.str]:
+        """
+        The SSH keypair name.
+        """
+        return pulumi.get(self, "keypair_name")
+
+
+@pulumi.output_type
+class BatchImportKeypairKeypair(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keyProtection":
+            suggest = "key_protection"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "userId":
+            suggest = "user_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchImportKeypairKeypair. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchImportKeypairKeypair.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchImportKeypairKeypair.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 key_protection: Optional['outputs.BatchImportKeypairKeypairKeyProtection'] = None,
+                 public_key: Optional[_builtins.str] = None,
+                 scope: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None,
+                 user_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Specifies the SSH keypair name.
+        :param 'BatchImportKeypairKeypairKeyProtectionArgs' key_protection: Specifies the key protection configuration.
+               This parameter can be configured with at most one element.
+               The key_protection structure is documented below.
+               
+               <a name="Struct_key_protection"></a>
+               The `key_protection` block supports:
+        :param _builtins.str public_key: Specifies the imported OpenSSH-formatted public key.
+        :param _builtins.str scope: Specifies the scope of the keypair. Valid values are **domain** and **user**.
+        :param _builtins.str type: Specifies the encryption type. Valid values are **kms** and **default**.
+               + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+               + **kms**: KMS encryption mode.
+        :param _builtins.str user_id: Specifies the user ID of the keypair.
+        """
+        pulumi.set(__self__, "name", name)
+        if key_protection is not None:
+            pulumi.set(__self__, "key_protection", key_protection)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the SSH keypair name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="keyProtection")
+    def key_protection(self) -> Optional['outputs.BatchImportKeypairKeypairKeyProtection']:
+        """
+        Specifies the key protection configuration.
+        This parameter can be configured with at most one element.
+        The key_protection structure is documented below.
+
+        <a name="Struct_key_protection"></a>
+        The `key_protection` block supports:
+        """
+        return pulumi.get(self, "key_protection")
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the imported OpenSSH-formatted public key.
+        """
+        return pulumi.get(self, "public_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> Optional[_builtins.str]:
+        """
+        Specifies the scope of the keypair. Valid values are **domain** and **user**.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the encryption type. Valid values are **kms** and **default**.
+        + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+        + **kms**: KMS encryption mode.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the user ID of the keypair.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class BatchImportKeypairKeypairKeyProtection(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateKey":
+            suggest = "private_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchImportKeypairKeypairKeyProtection. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchImportKeypairKeypairKeyProtection.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchImportKeypairKeypairKeyProtection.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 encryption: 'outputs.BatchImportKeypairKeypairKeyProtectionEncryption',
+                 private_key: Optional[_builtins.str] = None):
+        """
+        :param 'BatchImportKeypairKeypairKeyProtectionEncryptionArgs' encryption: Specifies the encryption configuration.
+               The encryption structure is documented below.
+               
+               <a name="Struct_encryption"></a>
+               The `encryption` block supports:
+        :param _builtins.str private_key: Specifies the private key of the keypair.
+        """
+        pulumi.set(__self__, "encryption", encryption)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+
+    @_builtins.property
+    @pulumi.getter
+    def encryption(self) -> 'outputs.BatchImportKeypairKeypairKeyProtectionEncryption':
+        """
+        Specifies the encryption configuration.
+        The encryption structure is documented below.
+
+        <a name="Struct_encryption"></a>
+        The `encryption` block supports:
+        """
+        return pulumi.get(self, "encryption")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the private key of the keypair.
+        """
+        return pulumi.get(self, "private_key")
+
+
+@pulumi.output_type
+class BatchImportKeypairKeypairKeyProtectionEncryption(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "kmsKeyId":
+            suggest = "kms_key_id"
+        elif key == "kmsKeyName":
+            suggest = "kms_key_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchImportKeypairKeypairKeyProtectionEncryption. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchImportKeypairKeypairKeyProtectionEncryption.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchImportKeypairKeypairKeyProtectionEncryption.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 kms_key_id: Optional[_builtins.str] = None,
+                 kms_key_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: Specifies the encryption type. Valid values are **kms** and **default**.
+               + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+               + **kms**: KMS encryption mode.
+        :param _builtins.str kms_key_id: Specifies the KMS key ID.
+               
+               > If `type` is set to **kms**, you must enter the KMS key name or ID.
+        :param _builtins.str kms_key_name: Specifies the KMS key name.
+        """
+        pulumi.set(__self__, "type", type)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if kms_key_name is not None:
+            pulumi.set(__self__, "kms_key_name", kms_key_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the encryption type. Valid values are **kms** and **default**.
+        + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+        + **kms**: KMS encryption mode.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the KMS key ID.
+
+        > If `type` is set to **kms**, you must enter the KMS key name or ID.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyName")
+    def kms_key_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the KMS key name.
+        """
+        return pulumi.get(self, "kms_key_name")
+
+
+@pulumi.output_type
+class BatchImportKeypairSucceededKeypair(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateKey":
+            suggest = "private_key"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "userId":
+            suggest = "user_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchImportKeypairSucceededKeypair. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchImportKeypairSucceededKeypair.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchImportKeypairSucceededKeypair.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fingerprint: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 private_key: Optional[_builtins.str] = None,
+                 public_key: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None,
+                 user_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str fingerprint: The fingerprint of the keypair.
+        :param _builtins.str name: Specifies the SSH keypair name.
+        :param _builtins.str private_key: Specifies the private key of the keypair.
+        :param _builtins.str public_key: Specifies the imported OpenSSH-formatted public key.
+        :param _builtins.str type: Specifies the encryption type. Valid values are **kms** and **default**.
+               + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+               + **kms**: KMS encryption mode.
+        :param _builtins.str user_id: Specifies the user ID of the keypair.
+        """
+        if fingerprint is not None:
+            pulumi.set(__self__, "fingerprint", fingerprint)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def fingerprint(self) -> Optional[_builtins.str]:
+        """
+        The fingerprint of the keypair.
+        """
+        return pulumi.get(self, "fingerprint")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the SSH keypair name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the private key of the keypair.
+        """
+        return pulumi.get(self, "private_key")
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the imported OpenSSH-formatted public key.
+        """
+        return pulumi.get(self, "public_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the encryption type. Valid values are **kms** and **default**.
+        + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+        + **kms**: KMS encryption mode.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the user ID of the keypair.
+        """
+        return pulumi.get(self, "user_id")
+
 
 @pulumi.output_type
 class KeypairAssociateServer(dict):
@@ -270,6 +858,79 @@ class KeypairDisassociateServerAuth(dict):
         The valid values are **password** and **keypair**.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAliasesAliasResult(dict):
+    def __init__(__self__, *,
+                 alias: _builtins.str,
+                 alias_urn: _builtins.str,
+                 create_time: _builtins.str,
+                 domain_id: _builtins.str,
+                 key_id: _builtins.str,
+                 update_time: _builtins.str):
+        """
+        :param _builtins.str alias: The alias of the key
+        :param _builtins.str alias_urn: The alias resource locator.
+        :param _builtins.str create_time: The creation time of the alias.
+        :param _builtins.str domain_id: The ID of the account to which the alias belongs.
+        :param _builtins.str key_id: The key ID
+        :param _builtins.str update_time: The update time of the alias.
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "alias_urn", alias_urn)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def alias(self) -> _builtins.str:
+        """
+        The alias of the key
+        """
+        return pulumi.get(self, "alias")
+
+    @_builtins.property
+    @pulumi.getter(name="aliasUrn")
+    def alias_urn(self) -> _builtins.str:
+        """
+        The alias resource locator.
+        """
+        return pulumi.get(self, "alias_urn")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the alias.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The ID of the account to which the alias belongs.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> _builtins.str:
+        """
+        The key ID
+        """
+        return pulumi.get(self, "key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time of the alias.
+        """
+        return pulumi.get(self, "update_time")
 
 
 @pulumi.output_type
@@ -679,6 +1340,90 @@ class GetCustomKeysByTagsTagResult(dict):
 
 
 @pulumi.output_type
+class GetDedicatedKeystoresKeystoreResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 create_time: _builtins.str,
+                 domain_id: _builtins.str,
+                 hsm_cluster_id: _builtins.str,
+                 keystore_alias: _builtins.str,
+                 keystore_id: _builtins.str,
+                 keystore_type: _builtins.str):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str create_time: The creation time of the keystore.
+        :param _builtins.str domain_id: The user domain ID.
+        :param _builtins.str hsm_cluster_id: The DHSM cluster ID.
+        :param _builtins.str keystore_alias: The keystore alias.
+        :param _builtins.str keystore_id: The keystore ID.
+        :param _builtins.str keystore_type: The keystore type.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "hsm_cluster_id", hsm_cluster_id)
+        pulumi.set(__self__, "keystore_alias", keystore_alias)
+        pulumi.set(__self__, "keystore_id", keystore_id)
+        pulumi.set(__self__, "keystore_type", keystore_type)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the keystore.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The user domain ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hsmClusterId")
+    def hsm_cluster_id(self) -> _builtins.str:
+        """
+        The DHSM cluster ID.
+        """
+        return pulumi.get(self, "hsm_cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="keystoreAlias")
+    def keystore_alias(self) -> _builtins.str:
+        """
+        The keystore alias.
+        """
+        return pulumi.get(self, "keystore_alias")
+
+    @_builtins.property
+    @pulumi.getter(name="keystoreId")
+    def keystore_id(self) -> _builtins.str:
+        """
+        The keystore ID.
+        """
+        return pulumi.get(self, "keystore_id")
+
+    @_builtins.property
+    @pulumi.getter(name="keystoreType")
+    def keystore_type(self) -> _builtins.str:
+        """
+        The keystore type.
+        """
+        return pulumi.get(self, "keystore_type")
+
+
+@pulumi.output_type
 class GetEventsEventResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -1007,25 +1752,71 @@ class GetGrantsGrantResult(dict):
 
 
 @pulumi.output_type
+class GetKeyTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The tag key.
+        :param Sequence[_builtins.str] values: The list of tag values.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The list of tag values.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetKeypairsKeypairResult(dict):
     def __init__(__self__, *,
                  fingerprint: _builtins.str,
+                 frozen_state: _builtins.str,
                  is_managed: _builtins.bool,
                  name: _builtins.str,
                  public_key: _builtins.str,
-                 scope: _builtins.str):
+                 scope: _builtins.str,
+                 type: _builtins.str):
         """
         :param _builtins.str fingerprint: Specifies the fingerprint of the keypair.
+        :param _builtins.str frozen_state: Indicates the frozen state of the keypair. Valid values are:
+               + **0**: Normal state
+               + **1**: General freeze
+               + **2**: Police freeze
+               + **3**: General freeze and police freeze
+               + **4**: Violation freeze
+               + **5**: General freeze and violation freeze
+               + **6**: Police freeze and violation freeze
+               + **7**: General freeze, police freeze and violation freeze
+               + **8**: Unverified identity freeze
+               + **9**: General freeze and unverified identity freeze
+               + **10**: Police freeze and unverified identity freeze
         :param _builtins.bool is_managed: Indicates whether the private key is managed by HuaweiCloud.
         :param _builtins.str name: Specifies the name of the keypair.
         :param _builtins.str public_key: Specifies the imported OpenSSH-formatted public key.
         :param _builtins.str scope: Indicates the scope of keypair. The value can be **account**or **user**.
+        :param _builtins.str type: Indicates the type of the keypair. The value can be **ssh** or **x509**.
         """
         pulumi.set(__self__, "fingerprint", fingerprint)
+        pulumi.set(__self__, "frozen_state", frozen_state)
         pulumi.set(__self__, "is_managed", is_managed)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "public_key", public_key)
         pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "type", type)
 
     @_builtins.property
     @pulumi.getter
@@ -1034,6 +1825,25 @@ class GetKeypairsKeypairResult(dict):
         Specifies the fingerprint of the keypair.
         """
         return pulumi.get(self, "fingerprint")
+
+    @_builtins.property
+    @pulumi.getter(name="frozenState")
+    def frozen_state(self) -> _builtins.str:
+        """
+        Indicates the frozen state of the keypair. Valid values are:
+        + **0**: Normal state
+        + **1**: General freeze
+        + **2**: Police freeze
+        + **3**: General freeze and police freeze
+        + **4**: Violation freeze
+        + **5**: General freeze and violation freeze
+        + **6**: Police freeze and violation freeze
+        + **7**: General freeze, police freeze and violation freeze
+        + **8**: Unverified identity freeze
+        + **9**: General freeze and unverified identity freeze
+        + **10**: Police freeze and unverified identity freeze
+        """
+        return pulumi.get(self, "frozen_state")
 
     @_builtins.property
     @pulumi.getter(name="isManaged")
@@ -1066,6 +1876,14 @@ class GetKeypairsKeypairResult(dict):
         Indicates the scope of keypair. The value can be **account**or **user**.
         """
         return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the type of the keypair. The value can be **ssh** or **x509**.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -1297,6 +2115,140 @@ class GetKeysKeyResult(dict):
 
 
 @pulumi.output_type
+class GetNotificationRecordsRecordResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.int,
+                 event_name: _builtins.str,
+                 notification_content: _builtins.str,
+                 notification_status: _builtins.str,
+                 notification_target_id: _builtins.str,
+                 notification_target_name: _builtins.str,
+                 secret_name: _builtins.str,
+                 secret_type: _builtins.str,
+                 trigger_event_type: _builtins.str):
+        """
+        :param _builtins.int create_time: The creation time of the event notification record.
+        :param _builtins.str event_name: The event name.
+        :param _builtins.str notification_content: The event notification content.
+        :param _builtins.str notification_status: The event notification status.
+               The valid values are as follows:
+               + **SUCCESS**
+               + **FAIL**
+               + **INVALID**
+        :param _builtins.str notification_target_id: The ID of the object to which the event notification is sent.
+        :param _builtins.str notification_target_name: The name of the object to which the event notification is sent.
+        :param _builtins.str secret_name: The secret name.
+        :param _builtins.str secret_type: The secret type.
+               The valid values are as follows:
+               + **COMMON**
+               + **RDS-FG**
+               + **GaussDB-FG**
+        :param _builtins.str trigger_event_type: The event type.
+               The valid values are as follows:
+               + **SECRET_VERSION_CREATED**
+               + **SECRET_VERSION_EXPIRED**
+               + **SECRET_ROTATED**
+               + **SECRET_DELETED**
+               + **SECRET_ROTATED_FAILED**
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "event_name", event_name)
+        pulumi.set(__self__, "notification_content", notification_content)
+        pulumi.set(__self__, "notification_status", notification_status)
+        pulumi.set(__self__, "notification_target_id", notification_target_id)
+        pulumi.set(__self__, "notification_target_name", notification_target_name)
+        pulumi.set(__self__, "secret_name", secret_name)
+        pulumi.set(__self__, "secret_type", secret_type)
+        pulumi.set(__self__, "trigger_event_type", trigger_event_type)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time of the event notification record.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="eventName")
+    def event_name(self) -> _builtins.str:
+        """
+        The event name.
+        """
+        return pulumi.get(self, "event_name")
+
+    @_builtins.property
+    @pulumi.getter(name="notificationContent")
+    def notification_content(self) -> _builtins.str:
+        """
+        The event notification content.
+        """
+        return pulumi.get(self, "notification_content")
+
+    @_builtins.property
+    @pulumi.getter(name="notificationStatus")
+    def notification_status(self) -> _builtins.str:
+        """
+        The event notification status.
+        The valid values are as follows:
+        + **SUCCESS**
+        + **FAIL**
+        + **INVALID**
+        """
+        return pulumi.get(self, "notification_status")
+
+    @_builtins.property
+    @pulumi.getter(name="notificationTargetId")
+    def notification_target_id(self) -> _builtins.str:
+        """
+        The ID of the object to which the event notification is sent.
+        """
+        return pulumi.get(self, "notification_target_id")
+
+    @_builtins.property
+    @pulumi.getter(name="notificationTargetName")
+    def notification_target_name(self) -> _builtins.str:
+        """
+        The name of the object to which the event notification is sent.
+        """
+        return pulumi.get(self, "notification_target_name")
+
+    @_builtins.property
+    @pulumi.getter(name="secretName")
+    def secret_name(self) -> _builtins.str:
+        """
+        The secret name.
+        """
+        return pulumi.get(self, "secret_name")
+
+    @_builtins.property
+    @pulumi.getter(name="secretType")
+    def secret_type(self) -> _builtins.str:
+        """
+        The secret type.
+        The valid values are as follows:
+        + **COMMON**
+        + **RDS-FG**
+        + **GaussDB-FG**
+        """
+        return pulumi.get(self, "secret_type")
+
+    @_builtins.property
+    @pulumi.getter(name="triggerEventType")
+    def trigger_event_type(self) -> _builtins.str:
+        """
+        The event type.
+        The valid values are as follows:
+        + **SECRET_VERSION_CREATED**
+        + **SECRET_VERSION_EXPIRED**
+        + **SECRET_ROTATED**
+        + **SECRET_DELETED**
+        + **SECRET_ROTATED_FAILED**
+        """
+        return pulumi.get(self, "trigger_event_type")
+
+
+@pulumi.output_type
 class GetQuotasQuotaResult(dict):
     def __init__(__self__, *,
                  resources: Sequence['outputs.GetQuotasQuotaResourceResult']):
@@ -1358,6 +2310,132 @@ class GetQuotasQuotaResourceResult(dict):
         The number of quotas used.
         """
         return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetRetirableGrantsGrantResult(dict):
+    def __init__(__self__, *,
+                 creation_date: _builtins.str,
+                 grant_id: _builtins.str,
+                 grantee_principal: _builtins.str,
+                 grantee_principal_type: _builtins.str,
+                 issuing_principal: _builtins.str,
+                 key_id: _builtins.str,
+                 name: _builtins.str,
+                 operations: Sequence[_builtins.str],
+                 retiring_principal: _builtins.str):
+        """
+        :param _builtins.str creation_date: The creation time.
+        :param _builtins.str grant_id: The grant ID.
+        :param _builtins.str grantee_principal: The ID of the authorized user or account.
+        :param _builtins.str grantee_principal_type: The authorization type.
+               The value can be **user** or **domain**.
+        :param _builtins.str issuing_principal: The ID of the user who created the grant.
+        :param _builtins.str key_id: The key ID.
+        :param _builtins.str name: The grant name.
+        :param Sequence[_builtins.str] operations: The list of granted operations.
+               The valid values are as follows:
+               + **create-datakey**
+               + **create-datakey-without-plaintext**
+               + **encrypt-datakey**
+               + **decrypt-datakey**
+               + **describe-key**
+               + **retire-grant**
+               + **encrypt-data**
+               + **decrypt-data**
+        :param _builtins.str retiring_principal: The ID of the user who retirable the grant.
+        """
+        pulumi.set(__self__, "creation_date", creation_date)
+        pulumi.set(__self__, "grant_id", grant_id)
+        pulumi.set(__self__, "grantee_principal", grantee_principal)
+        pulumi.set(__self__, "grantee_principal_type", grantee_principal_type)
+        pulumi.set(__self__, "issuing_principal", issuing_principal)
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operations", operations)
+        pulumi.set(__self__, "retiring_principal", retiring_principal)
+
+    @_builtins.property
+    @pulumi.getter(name="creationDate")
+    def creation_date(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "creation_date")
+
+    @_builtins.property
+    @pulumi.getter(name="grantId")
+    def grant_id(self) -> _builtins.str:
+        """
+        The grant ID.
+        """
+        return pulumi.get(self, "grant_id")
+
+    @_builtins.property
+    @pulumi.getter(name="granteePrincipal")
+    def grantee_principal(self) -> _builtins.str:
+        """
+        The ID of the authorized user or account.
+        """
+        return pulumi.get(self, "grantee_principal")
+
+    @_builtins.property
+    @pulumi.getter(name="granteePrincipalType")
+    def grantee_principal_type(self) -> _builtins.str:
+        """
+        The authorization type.
+        The value can be **user** or **domain**.
+        """
+        return pulumi.get(self, "grantee_principal_type")
+
+    @_builtins.property
+    @pulumi.getter(name="issuingPrincipal")
+    def issuing_principal(self) -> _builtins.str:
+        """
+        The ID of the user who created the grant.
+        """
+        return pulumi.get(self, "issuing_principal")
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> _builtins.str:
+        """
+        The key ID.
+        """
+        return pulumi.get(self, "key_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The grant name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def operations(self) -> Sequence[_builtins.str]:
+        """
+        The list of granted operations.
+        The valid values are as follows:
+        + **create-datakey**
+        + **create-datakey-without-plaintext**
+        + **encrypt-datakey**
+        + **decrypt-datakey**
+        + **describe-key**
+        + **retire-grant**
+        + **encrypt-data**
+        + **decrypt-data**
+        """
+        return pulumi.get(self, "operations")
+
+    @_builtins.property
+    @pulumi.getter(name="retiringPrincipal")
+    def retiring_principal(self) -> _builtins.str:
+        """
+        The ID of the user who retirable the grant.
+        """
+        return pulumi.get(self, "retiring_principal")
 
 
 @pulumi.output_type
@@ -1433,6 +2511,35 @@ class GetRunningTasksTaskResult(dict):
         The start time of the task, in RFC3339 format.
         """
         return pulumi.get(self, "task_time")
+
+
+@pulumi.output_type
+class GetSecretTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The tag key.
+        :param Sequence[_builtins.str] values: The list of tag values.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The list of tag values.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type

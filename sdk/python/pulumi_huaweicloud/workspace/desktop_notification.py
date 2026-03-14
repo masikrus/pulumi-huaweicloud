@@ -25,6 +25,7 @@ class DesktopNotificationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DesktopNotification resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] desktop_ids: Specifies the list of desktop IDs.
         :param pulumi.Input[_builtins.str] notifications: Specifies the message want to dispatch.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the desktop is located.  
@@ -96,6 +97,7 @@ class _DesktopNotificationState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DesktopNotification resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] desktop_ids: Specifies the list of desktop IDs.
         :param pulumi.Input[_builtins.str] notifications: Specifies the message want to dispatch.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the desktop is located.  
@@ -210,6 +212,7 @@ class DesktopNotification(pulumi.CustomResource):
             notifications="terraform test")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] desktop_ids: Specifies the list of desktop IDs.
@@ -242,6 +245,7 @@ class DesktopNotification(pulumi.CustomResource):
             desktop_ids=desktop_ids,
             notifications="terraform test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DesktopNotificationArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class ApplicationRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApplicationRule resource.
+
         :param pulumi.Input['ApplicationRuleDetailArgs'] detail: Specifies the detail of the application rule.  
                The detail structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the application rule.
@@ -114,6 +115,7 @@ class _ApplicationRuleState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ApplicationRule resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the application rule.
                
                <a name="workspace_application_rule_detail"></a>
@@ -265,11 +267,10 @@ class ApplicationRule(pulumi.CustomResource):
 
         Application rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/applicationRule:ApplicationRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -353,11 +354,10 @@ class ApplicationRule(pulumi.CustomResource):
 
         Application rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/applicationRule:ApplicationRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationRuleArgs args: The arguments to use to populate this resource's properties.

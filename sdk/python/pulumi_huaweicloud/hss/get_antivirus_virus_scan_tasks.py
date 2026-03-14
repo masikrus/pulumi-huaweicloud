@@ -229,7 +229,7 @@ def get_antivirus_virus_scan_tasks(begin_time: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_antivirus_virus_scan_tasks()
+    test = huaweicloud.Hss.get_antivirus_virus_scan_tasks()
     ```
 
 
@@ -284,7 +284,7 @@ def get_antivirus_virus_scan_tasks(begin_time: Optional[_builtins.str] = None,
     __args__['taskStatus'] = task_status
     __args__['whetherPaidTask'] = whether_paid_task
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAntivirusVirusScanTasks:getAntivirusVirusScanTasks', __args__, opts=opts, typ=GetAntivirusVirusScanTasksResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAntivirusVirusScanTasks:getAntivirusVirusScanTasks', __args__, opts=opts, typ=GetAntivirusVirusScanTasksResult).value
 
     return AwaitableGetAntivirusVirusScanTasksResult(
         begin_time=pulumi.get(__ret__, 'begin_time'),
@@ -324,7 +324,7 @@ def get_antivirus_virus_scan_tasks_output(begin_time: Optional[pulumi.Input[Opti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_antivirus_virus_scan_tasks()
+    test = huaweicloud.Hss.get_antivirus_virus_scan_tasks()
     ```
 
 
@@ -379,7 +379,7 @@ def get_antivirus_virus_scan_tasks_output(begin_time: Optional[pulumi.Input[Opti
     __args__['taskStatus'] = task_status
     __args__['whetherPaidTask'] = whether_paid_task
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAntivirusVirusScanTasks:getAntivirusVirusScanTasks', __args__, opts=opts, typ=GetAntivirusVirusScanTasksResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAntivirusVirusScanTasks:getAntivirusVirusScanTasks', __args__, opts=opts, typ=GetAntivirusVirusScanTasksResult)
     return __ret__.apply(lambda __response__: GetAntivirusVirusScanTasksResult(
         begin_time=pulumi.get(__response__, 'begin_time'),
         data_lists=pulumi.get(__response__, 'data_lists'),

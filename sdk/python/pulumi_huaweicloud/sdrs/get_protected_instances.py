@@ -161,7 +161,7 @@ def get_protected_instances(availability_zone: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protected_instances()
+    test = huaweicloud.Sdrs.get_protected_instances()
     ```
 
 
@@ -172,17 +172,20 @@ def get_protected_instances(availability_zone: Optional[_builtins.str] = None,
            format: **[protected_instance_id1,protected_instance_id2,...,protected_instance_idx]**. Convert it using URL encoding.
            + All the protected instances with valid `protected_instance_id` in `protected_instance_ids` are returned.
            + The protected instances of a maximum of `30` `protected_instance_id` values can be queried.
-           + If parameter `server_group_id` or `server_group_ids` is specified in the request, `protected_instance_ids` will be ignored.
+           + If parameter `server_group_id` or `server_group_ids` is specified in the request, `protected_instance_ids` will be
+           ignored.
     :param _builtins.str query_type: Specifies the query type. Valid values are **status_abnormal** and **general**.
     :param _builtins.str region: Specifies the region in which to query the resource.
            If omitted, the provider-level region will be used.
-    :param _builtins.str server_group_id: Specifies the ID of the protection group, in which all protected instances are queried.
+    :param _builtins.str server_group_id: Specifies the ID of the protection group, in which all protected instances are
+           queried.
            The value of this parameter can query from datasource `sdrs_get_protection_groups`.
     :param _builtins.str server_group_ids: Specifies the protection group ID list. The value is in the following format:
            **[server_group_id1,server_group_id2,...,server_group_idx]**. Convert it using URL encoding.
            + All the protected instances with valid `server_group_id` in `server_group_ids` are returned.
            + The protected instances of a maximum of `30` `server_group_id` values can be queried.
-           + If parameters `server_group_id` and `server_group_ids` are both specified in the request, `server_group_id` will be ignored.
+           + If parameters `server_group_id` and `server_group_ids` are both specified in the request, `server_group_id` will be
+           ignored.
     :param _builtins.str status: Specifies the status.
            For details, see [Protected Instance Status](https://support.huaweicloud.com/intl/en-us/api-sdrs/en-us_topic_0126152931.html).
     """
@@ -196,7 +199,7 @@ def get_protected_instances(availability_zone: Optional[_builtins.str] = None,
     __args__['serverGroupIds'] = server_group_ids
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:sdrs/getProtectedInstances:getProtectedInstances', __args__, opts=opts, typ=GetProtectedInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Sdrs/getProtectedInstances:getProtectedInstances', __args__, opts=opts, typ=GetProtectedInstancesResult).value
 
     return AwaitableGetProtectedInstancesResult(
         availability_zone=pulumi.get(__ret__, 'availability_zone'),
@@ -227,7 +230,7 @@ def get_protected_instances_output(availability_zone: Optional[pulumi.Input[Opti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protected_instances()
+    test = huaweicloud.Sdrs.get_protected_instances()
     ```
 
 
@@ -238,17 +241,20 @@ def get_protected_instances_output(availability_zone: Optional[pulumi.Input[Opti
            format: **[protected_instance_id1,protected_instance_id2,...,protected_instance_idx]**. Convert it using URL encoding.
            + All the protected instances with valid `protected_instance_id` in `protected_instance_ids` are returned.
            + The protected instances of a maximum of `30` `protected_instance_id` values can be queried.
-           + If parameter `server_group_id` or `server_group_ids` is specified in the request, `protected_instance_ids` will be ignored.
+           + If parameter `server_group_id` or `server_group_ids` is specified in the request, `protected_instance_ids` will be
+           ignored.
     :param _builtins.str query_type: Specifies the query type. Valid values are **status_abnormal** and **general**.
     :param _builtins.str region: Specifies the region in which to query the resource.
            If omitted, the provider-level region will be used.
-    :param _builtins.str server_group_id: Specifies the ID of the protection group, in which all protected instances are queried.
+    :param _builtins.str server_group_id: Specifies the ID of the protection group, in which all protected instances are
+           queried.
            The value of this parameter can query from datasource `sdrs_get_protection_groups`.
     :param _builtins.str server_group_ids: Specifies the protection group ID list. The value is in the following format:
            **[server_group_id1,server_group_id2,...,server_group_idx]**. Convert it using URL encoding.
            + All the protected instances with valid `server_group_id` in `server_group_ids` are returned.
            + The protected instances of a maximum of `30` `server_group_id` values can be queried.
-           + If parameters `server_group_id` and `server_group_ids` are both specified in the request, `server_group_id` will be ignored.
+           + If parameters `server_group_id` and `server_group_ids` are both specified in the request, `server_group_id` will be
+           ignored.
     :param _builtins.str status: Specifies the status.
            For details, see [Protected Instance Status](https://support.huaweicloud.com/intl/en-us/api-sdrs/en-us_topic_0126152931.html).
     """
@@ -262,7 +268,7 @@ def get_protected_instances_output(availability_zone: Optional[pulumi.Input[Opti
     __args__['serverGroupIds'] = server_group_ids
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:sdrs/getProtectedInstances:getProtectedInstances', __args__, opts=opts, typ=GetProtectedInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Sdrs/getProtectedInstances:getProtectedInstances', __args__, opts=opts, typ=GetProtectedInstancesResult)
     return __ret__.apply(lambda __response__: GetProtectedInstancesResult(
         availability_zone=pulumi.get(__response__, 'availability_zone'),
         id=pulumi.get(__response__, 'id'),

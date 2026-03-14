@@ -26,6 +26,7 @@ class NetworkAclArgs:
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclNetworkArgs']]]] = None):
         """
         The set of arguments for constructing a NetworkAcl resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the iec network ACL. This parameter
                can contain a maximum of 255 characters and cannot contain angle brackets (< or >).
         :param pulumi.Input[_builtins.str] name: Specifies the iec network ACL name. This parameter can contain a maximum of 64 characters,
@@ -91,6 +92,7 @@ class _NetworkAclState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NetworkAcl resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the iec network ACL. This parameter
                can contain a maximum of 255 characters and cannot contain angle brackets (< or >).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inbound_rules: A list of the IDs of ingress rules associated with the iec network ACL.
@@ -225,11 +227,10 @@ class NetworkAcl(pulumi.CustomResource):
 
         Network ACL can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/networkAcl:NetworkAcl acl_test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -271,11 +272,10 @@ class NetworkAcl(pulumi.CustomResource):
 
         Network ACL can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/networkAcl:NetworkAcl acl_test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NetworkAclArgs args: The arguments to use to populate this resource's properties.

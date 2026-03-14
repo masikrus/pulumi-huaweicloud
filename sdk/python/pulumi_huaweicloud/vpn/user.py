@@ -28,6 +28,7 @@ class UserArgs:
                  user_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] password: Specifies the user password.
         :param pulumi.Input[_builtins.str] vpn_server_id: Specifies the VPN server ID.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the user.
@@ -149,6 +150,7 @@ class _UserState:
                  vpn_server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the user.
         :param pulumi.Input[_builtins.str] name: Specifies the user name.
@@ -302,7 +304,7 @@ class _UserState:
         pulumi.set(self, "vpn_server_id", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/user:User")
+@pulumi.type_token("huaweicloud:Vpn/user:User")
 class User(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -339,37 +341,15 @@ class User(pulumi.CustomResource):
 
         The user can be imported using `vpn_server_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/user:User test <vpn_server_id>/<id>
+        $ pulumi import huaweicloud:Vpn/user:User test <vpn_server_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute is `password`. It is generally recommended running
-
         `pulumi preview` after importing the resource. You can then decide if changes should be applied to the user, or the
-
         resource definition should be updated to align with the user. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_user" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -411,37 +391,15 @@ class User(pulumi.CustomResource):
 
         The user can be imported using `vpn_server_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/user:User test <vpn_server_id>/<id>
+        $ pulumi import huaweicloud:Vpn/user:User test <vpn_server_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute is `password`. It is generally recommended running
-
         `pulumi preview` after importing the resource. You can then decide if changes should be applied to the user, or the
-
         resource definition should be updated to align with the user. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_user" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.
@@ -491,7 +449,7 @@ class User(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(User, __self__).__init__(
-            'huaweicloud:vpn/user:User',
+            'huaweicloud:Vpn/user:User',
             resource_name,
             __props__,
             opts)

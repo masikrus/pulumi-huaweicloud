@@ -267,7 +267,7 @@ class _ServiceState:
         pulumi.set(self, "value_specs", value)
 
 
-@pulumi.type_token("huaweicloud:vpnaas/service:Service")
+@pulumi.type_token("huaweicloud:Vpnaas/service:Service")
 class Service(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -284,6 +284,7 @@ class Service(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Service resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -295,6 +296,7 @@ class Service(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Service resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -341,7 +343,7 @@ class Service(pulumi.CustomResource):
             __props__.__dict__["external_v6_ip"] = None
             __props__.__dict__["status"] = None
         super(Service, __self__).__init__(
-            'huaweicloud:vpnaas/service:Service',
+            'huaweicloud:Vpnaas/service:Service',
             resource_name,
             __props__,
             opts)

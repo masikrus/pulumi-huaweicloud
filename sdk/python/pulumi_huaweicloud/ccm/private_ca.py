@@ -39,6 +39,7 @@ class PrivateCaArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PrivateCa resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['PrivateCaDistinguishedNameArgs']]] distinguished_names: Specifies the distinguished name of private CA.
                Changing this parameter will create a new resource.
                The distinguished_name structure is documented below.
@@ -376,6 +377,7 @@ class _PrivateCaState:
                  validities: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateCaValidityArgs']]]] = None):
         """
         Input properties used for looking up and filtering PrivateCa resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation action of the CCM private CA.
                Valid values are **enable** and **disable**.
                
@@ -812,7 +814,7 @@ class _PrivateCaState:
         pulumi.set(self, "validities", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/privateCa:PrivateCa")
+@pulumi.type_token("huaweicloud:Ccm/privateCa:PrivateCa")
 class PrivateCa(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -906,39 +908,16 @@ class PrivateCa(pulumi.CustomResource):
 
         Private CA can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ccm/privateCa:PrivateCa test <id>
+        $ pulumi import huaweicloud:Ccm/privateCa:PrivateCa test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `validity`, `key_usages`, `pending_days`,
-
         `action`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a private CA. You can then decide if changes should
-
         be applied to it, also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ccm_private_ca" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              validity, key_usages, pending_days, action, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1072,39 +1051,16 @@ class PrivateCa(pulumi.CustomResource):
 
         Private CA can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ccm/privateCa:PrivateCa test <id>
+        $ pulumi import huaweicloud:Ccm/privateCa:PrivateCa test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `validity`, `key_usages`, `pending_days`,
-
         `action`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a private CA. You can then decide if changes should
-
         be applied to it, also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ccm_private_ca" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              validity, key_usages, pending_days, action, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PrivateCaArgs args: The arguments to use to populate this resource's properties.
@@ -1182,7 +1138,7 @@ class PrivateCa(pulumi.CustomResource):
             __props__.__dict__["serial_number"] = None
             __props__.__dict__["status"] = None
         super(PrivateCa, __self__).__init__(
-            'huaweicloud:ccm/privateCa:PrivateCa',
+            'huaweicloud:Ccm/privateCa:PrivateCa',
             resource_name,
             __props__,
             opts)

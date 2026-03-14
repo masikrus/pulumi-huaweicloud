@@ -29,6 +29,7 @@ class LogstashConfigurationArgs:
                  sensitive_words: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a LogstashConfiguration resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS logstash cluster.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] conf_content: Specifies the configuration file content of the CSS logstash cluster.
@@ -162,6 +163,7 @@ class _LogstashConfigurationState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstashConfiguration resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS logstash cluster.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] conf_content: Specifies the configuration file content of the CSS logstash cluster.
@@ -354,41 +356,17 @@ class LogstashConfiguration(pulumi.CustomResource):
 
         The CSS logstash configuration can be imported using `cluster_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logstashConfiguration:LogstashConfiguration test <cluster_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `sensitive_words`.
-
         It is generally recommended running `pulumi preview` after importing a CSS logstash configuration.
-
         You can then decide if changes should be applied to the CSS logstash configuration, or the resource definition should
-
         be updated to align with the CSS logstash configuration. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_css_logstash_configuration" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              sensitive_words,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -446,41 +424,17 @@ class LogstashConfiguration(pulumi.CustomResource):
 
         The CSS logstash configuration can be imported using `cluster_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logstashConfiguration:LogstashConfiguration test <cluster_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `sensitive_words`.
-
         It is generally recommended running `pulumi preview` after importing a CSS logstash configuration.
-
         You can then decide if changes should be applied to the CSS logstash configuration, or the resource definition should
-
         be updated to align with the CSS logstash configuration. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_css_logstash_configuration" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              sensitive_words,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param LogstashConfigurationArgs args: The arguments to use to populate this resource's properties.

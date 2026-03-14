@@ -168,7 +168,7 @@ def get_auto_launchs(enterprise_project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_auto_launchs()
+    test = huaweicloud.Hss.get_auto_launchs()
     ```
 
 
@@ -204,7 +204,7 @@ def get_auto_launchs(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAutoLaunchs:getAutoLaunchs', __args__, opts=opts, typ=GetAutoLaunchsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAutoLaunchs:getAutoLaunchs', __args__, opts=opts, typ=GetAutoLaunchsResult).value
 
     return AwaitableGetAutoLaunchsResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -235,7 +235,7 @@ def get_auto_launchs_output(enterprise_project_id: Optional[pulumi.Input[Optiona
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_auto_launchs()
+    test = huaweicloud.Hss.get_auto_launchs()
     ```
 
 
@@ -271,7 +271,7 @@ def get_auto_launchs_output(enterprise_project_id: Optional[pulumi.Input[Optiona
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAutoLaunchs:getAutoLaunchs', __args__, opts=opts, typ=GetAutoLaunchsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAutoLaunchs:getAutoLaunchs', __args__, opts=opts, typ=GetAutoLaunchsResult)
     return __ret__.apply(lambda __response__: GetAutoLaunchsResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

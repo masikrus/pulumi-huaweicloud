@@ -233,7 +233,7 @@ def get_private_certificate_export(certificate_id: Optional[_builtins.str] = Non
 
     config = pulumi.Config()
     certificate_id = config.require_object("certificateId")
-    test = huaweicloud.ccm.get_private_certificate_export(region="cn-north-4",
+    test = huaweicloud.Ccm.get_private_certificate_export(region="cn-north-4",
         type="OTHER",
         certificate_id=certificate_id)
     ```
@@ -266,7 +266,7 @@ def get_private_certificate_export(certificate_id: Optional[_builtins.str] = Non
     __args__['smStandard'] = sm_standard
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ccm/getPrivateCertificateExport:getPrivateCertificateExport', __args__, opts=opts, typ=GetPrivateCertificateExportResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ccm/getPrivateCertificateExport:getPrivateCertificateExport', __args__, opts=opts, typ=GetPrivateCertificateExportResult).value
 
     return AwaitableGetPrivateCertificateExportResult(
         certificate=pulumi.get(__ret__, 'certificate'),
@@ -302,7 +302,7 @@ def get_private_certificate_export_output(certificate_id: Optional[pulumi.Input[
 
     config = pulumi.Config()
     certificate_id = config.require_object("certificateId")
-    test = huaweicloud.ccm.get_private_certificate_export(region="cn-north-4",
+    test = huaweicloud.Ccm.get_private_certificate_export(region="cn-north-4",
         type="OTHER",
         certificate_id=certificate_id)
     ```
@@ -335,7 +335,7 @@ def get_private_certificate_export_output(certificate_id: Optional[pulumi.Input[
     __args__['smStandard'] = sm_standard
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ccm/getPrivateCertificateExport:getPrivateCertificateExport', __args__, opts=opts, typ=GetPrivateCertificateExportResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ccm/getPrivateCertificateExport:getPrivateCertificateExport', __args__, opts=opts, typ=GetPrivateCertificateExportResult)
     return __ret__.apply(lambda __response__: GetPrivateCertificateExportResult(
         certificate=pulumi.get(__response__, 'certificate'),
         certificate_chain=pulumi.get(__response__, 'certificate_chain'),

@@ -26,6 +26,7 @@ class ScheduledDeleteSecretTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ScheduledDeleteSecretTask resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action name. The valid values are as follows:  
                + **create**: Create a scheduled delete task.
                + **cancel**: Cancel a scheduled delete task.
@@ -120,6 +121,7 @@ class _ScheduledDeleteSecretTaskState:
                  secret_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ScheduledDeleteSecretTask resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action name. The valid values are as follows:  
                + **create**: Create a scheduled delete task.
                + **cancel**: Cancel a scheduled delete task.
@@ -252,6 +254,7 @@ class ScheduledDeleteSecretTask(pulumi.CustomResource):
             action="cancel")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action name. The valid values are as follows:  
@@ -304,6 +307,7 @@ class ScheduledDeleteSecretTask(pulumi.CustomResource):
             secret_name=secret_name,
             action="cancel")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ScheduledDeleteSecretTaskArgs args: The arguments to use to populate this resource's properties.

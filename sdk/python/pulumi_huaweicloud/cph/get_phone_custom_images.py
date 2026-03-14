@@ -164,7 +164,7 @@ def get_phone_custom_images(create_since: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_phone_custom_images()
+    test = huaweicloud.Cph.get_phone_custom_images()
     ```
 
 
@@ -189,7 +189,7 @@ def get_phone_custom_images(create_since: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cph/getPhoneCustomImages:getPhoneCustomImages', __args__, opts=opts, typ=GetPhoneCustomImagesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cph/getPhoneCustomImages:getPhoneCustomImages', __args__, opts=opts, typ=GetPhoneCustomImagesResult).value
 
     return AwaitableGetPhoneCustomImagesResult(
         create_since=pulumi.get(__ret__, 'create_since'),
@@ -220,7 +220,7 @@ def get_phone_custom_images_output(create_since: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_phone_custom_images()
+    test = huaweicloud.Cph.get_phone_custom_images()
     ```
 
 
@@ -245,7 +245,7 @@ def get_phone_custom_images_output(create_since: Optional[pulumi.Input[Optional[
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cph/getPhoneCustomImages:getPhoneCustomImages', __args__, opts=opts, typ=GetPhoneCustomImagesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cph/getPhoneCustomImages:getPhoneCustomImages', __args__, opts=opts, typ=GetPhoneCustomImagesResult)
     return __ret__.apply(lambda __response__: GetPhoneCustomImagesResult(
         create_since=pulumi.get(__response__, 'create_since'),
         create_until=pulumi.get(__response__, 'create_until'),

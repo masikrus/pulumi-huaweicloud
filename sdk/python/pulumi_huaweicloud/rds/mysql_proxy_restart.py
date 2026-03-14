@@ -25,6 +25,7 @@ class MysqlProxyRestartArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlProxyRestart resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS MySQL instance.
         :param pulumi.Input[_builtins.str] proxy_id: Specifies the ID of the RDS MySQL proxy.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -93,6 +94,7 @@ class _MysqlProxyRestartState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlProxyRestart resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS MySQL instance.
         :param pulumi.Input[_builtins.str] proxy_id: Specifies the ID of the RDS MySQL proxy.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -182,6 +184,7 @@ class MysqlProxyRestart(pulumi.CustomResource):
             proxy_id=proxy_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS MySQL instance.
@@ -211,6 +214,7 @@ class MysqlProxyRestart(pulumi.CustomResource):
             instance_id=instance_id,
             proxy_id=proxy_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlProxyRestartArgs args: The arguments to use to populate this resource's properties.

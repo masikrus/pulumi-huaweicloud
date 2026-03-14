@@ -32,6 +32,7 @@ class WorkloadPlanStageInitArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WorkloadPlanStage resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the cluster to which the workload plan belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] end_time: Specifies the end time of the workload plan.
@@ -217,6 +218,7 @@ class _WorkloadPlanStageState:
                  start_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WorkloadPlanStage resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the cluster to which the workload plan belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] day: Specifies the execution days of the workload plan. The valid value ranges
@@ -460,11 +462,10 @@ class WorkloadPlanStage(pulumi.CustomResource):
 
         The workload plan stage can be imported using `cluster_id`, `plan_id` and `name`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadPlanStage:WorkloadPlanStage test <cluster_id>/<plan_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -554,11 +555,10 @@ class WorkloadPlanStage(pulumi.CustomResource):
 
         The workload plan stage can be imported using `cluster_id`, `plan_id` and `name`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadPlanStage:WorkloadPlanStage test <cluster_id>/<plan_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WorkloadPlanStageInitArgs args: The arguments to use to populate this resource's properties.

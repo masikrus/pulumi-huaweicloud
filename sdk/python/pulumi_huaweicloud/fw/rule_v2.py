@@ -34,6 +34,7 @@ class RuleV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RuleV2 resource.
+
         :param pulumi.Input[_builtins.str] action: Action to be taken ( must be "allow" or "deny") when the firewall rule matches. Changing
                this updates the `action` of an existing firewall rule.
         :param pulumi.Input[_builtins.str] protocol: The protocol type on which the firewall rule operates. Valid values are: `tcp`, `udp`
@@ -280,6 +281,7 @@ class _RuleV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering RuleV2 resources.
+
         :param pulumi.Input[_builtins.str] action: Action to be taken ( must be "allow" or "deny") when the firewall rule matches. Changing
                this updates the `action` of an existing firewall rule.
         :param pulumi.Input[_builtins.str] description: A description for the firewall rule. Changing this updates the `description` of an
@@ -510,7 +512,7 @@ class _RuleV2State:
         pulumi.set(self, "value_specs", value)
 
 
-@pulumi.type_token("huaweicloud:fw/ruleV2:RuleV2")
+@pulumi.type_token("huaweicloud:Fw/ruleV2:RuleV2")
 class RuleV2(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -554,11 +556,10 @@ class RuleV2(pulumi.CustomResource):
 
         Firewall Rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:fw/ruleV2:RuleV2 rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327
+        $ pulumi import huaweicloud:Fw/ruleV2:RuleV2 rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -622,11 +623,10 @@ class RuleV2(pulumi.CustomResource):
 
         Firewall Rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:fw/ruleV2:RuleV2 rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327
+        $ pulumi import huaweicloud:Fw/ruleV2:RuleV2 rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleV2Args args: The arguments to use to populate this resource's properties.
@@ -683,7 +683,7 @@ class RuleV2(pulumi.CustomResource):
             __props__.__dict__["tenant_id"] = tenant_id
             __props__.__dict__["value_specs"] = value_specs
         super(RuleV2, __self__).__init__(
-            'huaweicloud:fw/ruleV2:RuleV2',
+            'huaweicloud:Fw/ruleV2:RuleV2',
             resource_name,
             __props__,
             opts)

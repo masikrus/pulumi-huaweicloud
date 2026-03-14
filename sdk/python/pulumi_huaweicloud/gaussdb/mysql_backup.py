@@ -27,6 +27,7 @@ class MysqlBackupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlBackup resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the backup.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the backup. It must start with a letter and consist of
@@ -107,6 +108,7 @@ class _MysqlBackupState:
                  take_up_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering MysqlBackup resources.
+
         :param pulumi.Input[_builtins.str] begin_time: Indicates the backup start time in the **yyyy-mm-ddThh:mm:ssZ** format.
         :param pulumi.Input[Sequence[pulumi.Input['MysqlBackupDatastoreArgs']]] datastores: Indicates the database information.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the backup.
@@ -281,11 +283,10 @@ class MysqlBackup(pulumi.CustomResource):
 
         The GaussDB Mysql backup can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlBackup:MysqlBackup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -323,11 +324,10 @@ class MysqlBackup(pulumi.CustomResource):
 
         The GaussDB Mysql backup can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlBackup:MysqlBackup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlBackupArgs args: The arguments to use to populate this resource's properties.

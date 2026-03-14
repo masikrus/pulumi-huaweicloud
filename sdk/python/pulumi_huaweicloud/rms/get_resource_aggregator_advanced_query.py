@@ -98,6 +98,8 @@ def get_resource_aggregator_advanced_query(aggregator_id: Optional[_builtins.str
     """
     Use this data source to do an advanced query in the RMS resource aggregator.
 
+    ## Example Usage
+
 
     :param _builtins.str aggregator_id: Specifies the aggregator ID.
     :param _builtins.str expression: Specifies the expression of the query.
@@ -108,7 +110,7 @@ def get_resource_aggregator_advanced_query(aggregator_id: Optional[_builtins.str
     __args__['aggregatorId'] = aggregator_id
     __args__['expression'] = expression
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceAggregatorAdvancedQuery:getResourceAggregatorAdvancedQuery', __args__, opts=opts, typ=GetResourceAggregatorAdvancedQueryResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceAggregatorAdvancedQuery:getResourceAggregatorAdvancedQuery', __args__, opts=opts, typ=GetResourceAggregatorAdvancedQueryResult).value
 
     return AwaitableGetResourceAggregatorAdvancedQueryResult(
         aggregator_id=pulumi.get(__ret__, 'aggregator_id'),
@@ -122,6 +124,8 @@ def get_resource_aggregator_advanced_query_output(aggregator_id: Optional[pulumi
     """
     Use this data source to do an advanced query in the RMS resource aggregator.
 
+    ## Example Usage
+
 
     :param _builtins.str aggregator_id: Specifies the aggregator ID.
     :param _builtins.str expression: Specifies the expression of the query.
@@ -132,7 +136,7 @@ def get_resource_aggregator_advanced_query_output(aggregator_id: Optional[pulumi
     __args__['aggregatorId'] = aggregator_id
     __args__['expression'] = expression
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceAggregatorAdvancedQuery:getResourceAggregatorAdvancedQuery', __args__, opts=opts, typ=GetResourceAggregatorAdvancedQueryResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceAggregatorAdvancedQuery:getResourceAggregatorAdvancedQuery', __args__, opts=opts, typ=GetResourceAggregatorAdvancedQueryResult)
     return __ret__.apply(lambda __response__: GetResourceAggregatorAdvancedQueryResult(
         aggregator_id=pulumi.get(__response__, 'aggregator_id'),
         expression=pulumi.get(__response__, 'expression'),

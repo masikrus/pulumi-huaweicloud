@@ -30,6 +30,7 @@ class AlarmConfigArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlarmConfig resource.
+
         :param pulumi.Input[_builtins.int] alarm_time_period: Specifies the alarm period.
                The valid values are as follows:
                + **0**: 8:00 to 22:00;
@@ -207,6 +208,7 @@ class _AlarmConfigState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlarmConfig resources.
+
         :param pulumi.Input[_builtins.int] alarm_time_period: Specifies the alarm period.
                The valid values are as follows:
                + **0**: 8:00 to 22:00;
@@ -452,11 +454,10 @@ class AlarmConfig(pulumi.CustomResource):
 
         The alarm configuration can be imported using `fw_instance_id`, `alarm_type`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/alarmConfig:AlarmConfig test <fw_instance_id>/<alarm_type>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -523,11 +524,10 @@ class AlarmConfig(pulumi.CustomResource):
 
         The alarm configuration can be imported using `fw_instance_id`, `alarm_type`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/alarmConfig:AlarmConfig test <fw_instance_id>/<alarm_type>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlarmConfigArgs args: The arguments to use to populate this resource's properties.

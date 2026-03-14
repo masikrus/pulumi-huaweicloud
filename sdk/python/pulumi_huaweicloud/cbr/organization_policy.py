@@ -33,6 +33,7 @@ class OrganizationPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OrganizationPolicy resource.
+
         :param pulumi.Input[_builtins.str] operation_type: Specifies the organization policy type.  
                The valid values are as follows:
                + **backup**
@@ -215,6 +216,7 @@ class _OrganizationPolicyState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OrganizationPolicy resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the organization policy description.
         :param pulumi.Input[_builtins.str] domain_id: The ID of the account to which the organization policy belongs.
         :param pulumi.Input[_builtins.str] domain_name: The account to which the organization policy belongs.
@@ -486,17 +488,14 @@ class OrganizationPolicy(pulumi.CustomResource):
 
         The CBR organization policy can be imported using the `id` or `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/organizationPolicy:OrganizationPolicy test <id>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/organizationPolicy:OrganizationPolicy test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -566,17 +565,14 @@ class OrganizationPolicy(pulumi.CustomResource):
 
         The CBR organization policy can be imported using the `id` or `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/organizationPolicy:OrganizationPolicy test <id>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/organizationPolicy:OrganizationPolicy test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrganizationPolicyArgs args: The arguments to use to populate this resource's properties.

@@ -28,6 +28,7 @@ class CertificateArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Certificate resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the certificate content.
         :param pulumi.Input[_builtins.str] private_key: Specifies the private key of the certificate.
                
@@ -178,6 +179,7 @@ class _CertificateState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the certificate content.
         :param pulumi.Input[_builtins.str] effected_at: The effective time of the certificate, in RFC3339 format (YYYY-MM-DDThh:mm:ssZ).
         :param pulumi.Input[_builtins.str] expires_at: The expiration time of the certificate, in RFC3339 format (YYYY-MM-DDThh:mm:ssZ).
@@ -467,39 +469,16 @@ class Certificate(pulumi.CustomResource):
 
         Certificates can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/certificate:Certificate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `content`, `private_key` and `trusted_root_ca`.
-
         It is generally recommended running `pulumi preview` after importing a certificate.
-
         You can then decide if changes should be applied to the certificate, or the resource definition should be updated to
-
         align with the certificate. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_apig_certificate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              content, private_key, trusted_root_ca,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -610,39 +589,16 @@ class Certificate(pulumi.CustomResource):
 
         Certificates can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/certificate:Certificate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `content`, `private_key` and `trusted_root_ca`.
-
         It is generally recommended running `pulumi preview` after importing a certificate.
-
         You can then decide if changes should be applied to the certificate, or the resource definition should be updated to
-
         align with the certificate. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_apig_certificate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              content, private_key, trusted_root_ca,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CertificateArgs args: The arguments to use to populate this resource's properties.

@@ -139,7 +139,7 @@ def get_hosted_connects(hosted_connect_ids: Optional[Sequence[_builtins.str]] = 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_hosted_connects()
+    test = huaweicloud.Dc.get_hosted_connects()
     ```
 
 
@@ -159,7 +159,7 @@ def get_hosted_connects(hosted_connect_ids: Optional[Sequence[_builtins.str]] = 
     __args__['sortDirs'] = sort_dirs
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getHostedConnects:getHostedConnects', __args__, opts=opts, typ=GetHostedConnectsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getHostedConnects:getHostedConnects', __args__, opts=opts, typ=GetHostedConnectsResult).value
 
     return AwaitableGetHostedConnectsResult(
         hosted_connect_ids=pulumi.get(__ret__, 'hosted_connect_ids'),
@@ -186,7 +186,7 @@ def get_hosted_connects_output(hosted_connect_ids: Optional[pulumi.Input[Optiona
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_hosted_connects()
+    test = huaweicloud.Dc.get_hosted_connects()
     ```
 
 
@@ -206,7 +206,7 @@ def get_hosted_connects_output(hosted_connect_ids: Optional[pulumi.Input[Optiona
     __args__['sortDirs'] = sort_dirs
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getHostedConnects:getHostedConnects', __args__, opts=opts, typ=GetHostedConnectsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getHostedConnects:getHostedConnects', __args__, opts=opts, typ=GetHostedConnectsResult)
     return __ret__.apply(lambda __response__: GetHostedConnectsResult(
         hosted_connect_ids=pulumi.get(__response__, 'hosted_connect_ids'),
         hosted_connects=pulumi.get(__response__, 'hosted_connects'),

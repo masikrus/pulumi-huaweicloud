@@ -13,11 +13,367 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
+    'GetAssociatedResourcesAssociatedResourceResult',
+    'GetAssociatedResourcesErrorResult',
+    'GetConfigsSupportItemAttributeResult',
+    'GetMigrateRecordRecordResult',
     'GetProjectQuotasQuotaResult',
     'GetProjectsEnterpriseProjectResult',
+    'GetServicesServiceResult',
+    'GetServicesServiceResourceTypeResult',
 ]
+
+@pulumi.output_type
+class GetAssociatedResourcesAssociatedResourceResult(dict):
+    def __init__(__self__, *,
+                 eip: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 resource_type: _builtins.str):
+        """
+        :param _builtins.str eip: The EIP information.
+        :param _builtins.str id: The resource ID.
+        :param _builtins.str name: The resource name.
+        :param _builtins.str resource_type: Specifies the resource type.
+        """
+        pulumi.set(__self__, "eip", eip)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def eip(self) -> _builtins.str:
+        """
+        The EIP information.
+        """
+        return pulumi.get(self, "eip")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The resource ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The resource name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Specifies the resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
+class GetAssociatedResourcesErrorResult(dict):
+    def __init__(__self__, *,
+                 error_code: _builtins.str,
+                 error_msg: _builtins.str,
+                 project_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_type: _builtins.str):
+        """
+        :param _builtins.str error_code: Indicates the error code.
+        :param _builtins.str error_msg: Indicates the error message.
+        :param _builtins.str project_id: Indicates the project ID.
+        :param _builtins.str resource_id: Specifies the resource id.
+        :param _builtins.str resource_type: Specifies the resource type.
+        """
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "error_msg", error_msg)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> _builtins.str:
+        """
+        Indicates the error code.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMsg")
+    def error_msg(self) -> _builtins.str:
+        """
+        Indicates the error message.
+        """
+        return pulumi.get(self, "error_msg")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Specifies the resource id.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Specifies the resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
+class GetConfigsSupportItemAttributeResult(dict):
+    def __init__(__self__, *,
+                 delete_ep_support_attribute: _builtins.bool):
+        """
+        :param _builtins.bool delete_ep_support_attribute: Whether enterprise projects can be deleted.
+        """
+        pulumi.set(__self__, "delete_ep_support_attribute", delete_ep_support_attribute)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteEpSupportAttribute")
+    def delete_ep_support_attribute(self) -> _builtins.bool:
+        """
+        Whether enterprise projects can be deleted.
+        """
+        return pulumi.get(self, "delete_ep_support_attribute")
+
+
+@pulumi.output_type
+class GetMigrateRecordRecordResult(dict):
+    def __init__(__self__, *,
+                 associated: _builtins.bool,
+                 code: _builtins.str,
+                 event_time: _builtins.float,
+                 exist_failed: _builtins.bool,
+                 initiate_ep_id: _builtins.str,
+                 initiate_ep_name: _builtins.str,
+                 message: _builtins.str,
+                 operate_type: _builtins.str,
+                 origin_ep_id: _builtins.str,
+                 origin_ep_name: _builtins.str,
+                 project_id: _builtins.str,
+                 project_name: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 resource_type: _builtins.str,
+                 target_ep_id: _builtins.str,
+                 target_ep_name: _builtins.str,
+                 user_name: _builtins.str):
+        """
+        :param _builtins.bool associated: Whether associated resources are moved.
+        :param _builtins.str code: The response code.
+        :param _builtins.float event_time: The event time.
+        :param _builtins.bool exist_failed: Whether there are failed tasks.
+        :param _builtins.str initiate_ep_id: The ID of the enterprise project that initiates a resource move.
+        :param _builtins.str initiate_ep_name: The name of the enterprise project that initiates a resource move.
+        :param _builtins.str message: The response information.
+        :param _builtins.str operate_type: The move type.
+        :param _builtins.str origin_ep_id: The ID of the source enterprise project.
+        :param _builtins.str origin_ep_name: The name of the source enterprise project.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str project_name: The project name.
+        :param _builtins.str region_id: The region ID.
+        :param _builtins.str resource_id: Specifies the resource ID.
+               If omitted, the migration record of all resources will be queried.
+        :param _builtins.str resource_name: The resource name.
+        :param _builtins.str resource_type: The resource type.
+        :param _builtins.str target_ep_id: The ID of the destination enterprise project.
+        :param _builtins.str target_ep_name: The name of the destination enterprise project.
+        :param _builtins.str user_name: The user name.
+        """
+        pulumi.set(__self__, "associated", associated)
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "event_time", event_time)
+        pulumi.set(__self__, "exist_failed", exist_failed)
+        pulumi.set(__self__, "initiate_ep_id", initiate_ep_id)
+        pulumi.set(__self__, "initiate_ep_name", initiate_ep_name)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "operate_type", operate_type)
+        pulumi.set(__self__, "origin_ep_id", origin_ep_id)
+        pulumi.set(__self__, "origin_ep_name", origin_ep_name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "target_ep_id", target_ep_id)
+        pulumi.set(__self__, "target_ep_name", target_ep_name)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def associated(self) -> _builtins.bool:
+        """
+        Whether associated resources are moved.
+        """
+        return pulumi.get(self, "associated")
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.str:
+        """
+        The response code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter(name="eventTime")
+    def event_time(self) -> _builtins.float:
+        """
+        The event time.
+        """
+        return pulumi.get(self, "event_time")
+
+    @_builtins.property
+    @pulumi.getter(name="existFailed")
+    def exist_failed(self) -> _builtins.bool:
+        """
+        Whether there are failed tasks.
+        """
+        return pulumi.get(self, "exist_failed")
+
+    @_builtins.property
+    @pulumi.getter(name="initiateEpId")
+    def initiate_ep_id(self) -> _builtins.str:
+        """
+        The ID of the enterprise project that initiates a resource move.
+        """
+        return pulumi.get(self, "initiate_ep_id")
+
+    @_builtins.property
+    @pulumi.getter(name="initiateEpName")
+    def initiate_ep_name(self) -> _builtins.str:
+        """
+        The name of the enterprise project that initiates a resource move.
+        """
+        return pulumi.get(self, "initiate_ep_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> _builtins.str:
+        """
+        The response information.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter(name="operateType")
+    def operate_type(self) -> _builtins.str:
+        """
+        The move type.
+        """
+        return pulumi.get(self, "operate_type")
+
+    @_builtins.property
+    @pulumi.getter(name="originEpId")
+    def origin_ep_id(self) -> _builtins.str:
+        """
+        The ID of the source enterprise project.
+        """
+        return pulumi.get(self, "origin_ep_id")
+
+    @_builtins.property
+    @pulumi.getter(name="originEpName")
+    def origin_ep_name(self) -> _builtins.str:
+        """
+        The name of the source enterprise project.
+        """
+        return pulumi.get(self, "origin_ep_name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> _builtins.str:
+        """
+        The project name.
+        """
+        return pulumi.get(self, "project_name")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Specifies the resource ID.
+        If omitted, the migration record of all resources will be queried.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="targetEpId")
+    def target_ep_id(self) -> _builtins.str:
+        """
+        The ID of the destination enterprise project.
+        """
+        return pulumi.get(self, "target_ep_id")
+
+    @_builtins.property
+    @pulumi.getter(name="targetEpName")
+    def target_ep_name(self) -> _builtins.str:
+        """
+        The name of the destination enterprise project.
+        """
+        return pulumi.get(self, "target_ep_name")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> _builtins.str:
+        """
+        The user name.
+        """
+        return pulumi.get(self, "user_name")
+
 
 @pulumi.output_type
 class GetProjectQuotasQuotaResult(dict):
@@ -149,5 +505,102 @@ class GetProjectsEnterpriseProjectResult(dict):
         The time (UTC) when the enterprise project was modified. Example: 2023-11-16T02:21:36Z
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetServicesServiceResult(dict):
+    def __init__(__self__, *,
+                 resource_types: Sequence['outputs.GetServicesServiceResourceTypeResult'],
+                 service: _builtins.str,
+                 service_i18n_display_name: _builtins.str):
+        """
+        :param Sequence['GetServicesServiceResourceTypeArgs'] resource_types: Indicates the resource type list.
+               The resource_types structure is documented below.
+        :param _builtins.str service: Specifies the cloud service name.
+        :param _builtins.str service_i18n_display_name: Indicates the display name of the cloud service. You can set the language by setting the
+               locale parameter.
+        """
+        pulumi.set(__self__, "resource_types", resource_types)
+        pulumi.set(__self__, "service", service)
+        pulumi.set(__self__, "service_i18n_display_name", service_i18n_display_name)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceTypes")
+    def resource_types(self) -> Sequence['outputs.GetServicesServiceResourceTypeResult']:
+        """
+        Indicates the resource type list.
+        The resource_types structure is documented below.
+        """
+        return pulumi.get(self, "resource_types")
+
+    @_builtins.property
+    @pulumi.getter
+    def service(self) -> _builtins.str:
+        """
+        Specifies the cloud service name.
+        """
+        return pulumi.get(self, "service")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceI18nDisplayName")
+    def service_i18n_display_name(self) -> _builtins.str:
+        """
+        Indicates the display name of the cloud service. You can set the language by setting the
+        locale parameter.
+        """
+        return pulumi.get(self, "service_i18n_display_name")
+
+
+@pulumi.output_type
+class GetServicesServiceResourceTypeResult(dict):
+    def __init__(__self__, *,
+                 global_: _builtins.bool,
+                 regions: Sequence[_builtins.str],
+                 resource_type: _builtins.str,
+                 resource_type_i18n_display_name: _builtins.str):
+        """
+        :param _builtins.bool global_: Whether the resource is a global resource.
+        :param Sequence[_builtins.str] regions: Indicates regions supported.
+        :param _builtins.str resource_type: Indicates the name of the resource type.
+        :param _builtins.str resource_type_i18n_display_name: Indicates the display name of the resource type. You can set the language by
+               setting the locale parameter.
+        """
+        pulumi.set(__self__, "global_", global_)
+        pulumi.set(__self__, "regions", regions)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "resource_type_i18n_display_name", resource_type_i18n_display_name)
+
+    @_builtins.property
+    @pulumi.getter(name="global")
+    def global_(self) -> _builtins.bool:
+        """
+        Whether the resource is a global resource.
+        """
+        return pulumi.get(self, "global_")
+
+    @_builtins.property
+    @pulumi.getter
+    def regions(self) -> Sequence[_builtins.str]:
+        """
+        Indicates regions supported.
+        """
+        return pulumi.get(self, "regions")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Indicates the name of the resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceTypeI18nDisplayName")
+    def resource_type_i18n_display_name(self) -> _builtins.str:
+        """
+        Indicates the display name of the resource type. You can set the language by
+        setting the locale parameter.
+        """
+        return pulumi.get(self, "resource_type_i18n_display_name")
 
 

@@ -144,7 +144,7 @@ def get_event_login_white_lists(enterprise_project_id: Optional[_builtins.str] =
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_login_white_lists()
+    test = huaweicloud.Hss.get_event_login_white_lists()
     ```
 
 
@@ -167,7 +167,7 @@ def get_event_login_white_lists(enterprise_project_id: Optional[_builtins.str] =
     __args__['privateIp'] = private_ip
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getEventLoginWhiteLists:getEventLoginWhiteLists', __args__, opts=opts, typ=GetEventLoginWhiteListsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getEventLoginWhiteLists:getEventLoginWhiteLists', __args__, opts=opts, typ=GetEventLoginWhiteListsResult).value
 
     return AwaitableGetEventLoginWhiteListsResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -193,7 +193,7 @@ def get_event_login_white_lists_output(enterprise_project_id: Optional[pulumi.In
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_login_white_lists()
+    test = huaweicloud.Hss.get_event_login_white_lists()
     ```
 
 
@@ -216,7 +216,7 @@ def get_event_login_white_lists_output(enterprise_project_id: Optional[pulumi.In
     __args__['privateIp'] = private_ip
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getEventLoginWhiteLists:getEventLoginWhiteLists', __args__, opts=opts, typ=GetEventLoginWhiteListsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getEventLoginWhiteLists:getEventLoginWhiteLists', __args__, opts=opts, typ=GetEventLoginWhiteListsResult)
     return __ret__.apply(lambda __response__: GetEventLoginWhiteListsResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

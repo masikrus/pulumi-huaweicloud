@@ -15,11 +15,84 @@ else:
 from .. import _utilities
 
 __all__ = [
-    'AssumeRole',
+    'AssumeRoleWithOidc',
+    'AssumeRoles',
 ]
 
 @pulumi.output_type
-class AssumeRole(dict):
+class AssumeRoleWithOidc(dict):
+    def __init__(__self__, *,
+                 agency_name: _builtins.str,
+                 domain_id: _builtins.str,
+                 idp_id: _builtins.str,
+                 duration: Optional[_builtins.int] = None,
+                 id_token: Optional[_builtins.str] = None,
+                 id_token_file: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str agency_name: The name of agency for assume role.
+        :param _builtins.str domain_id: The id of domain for v5 assume role.
+        :param _builtins.str idp_id: The ID of the external IdP.
+        :param _builtins.int duration: The duration for v5 assume role.
+        :param _builtins.str id_token_file: The file path of Id token that is issued by the external IdP.
+        """
+        pulumi.set(__self__, "agency_name", agency_name)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "idp_id", idp_id)
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if id_token is not None:
+            pulumi.set(__self__, "id_token", id_token)
+        if id_token_file is not None:
+            pulumi.set(__self__, "id_token_file", id_token_file)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> _builtins.str:
+        """
+        The name of agency for assume role.
+        """
+        return pulumi.get(self, "agency_name")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The id of domain for v5 assume role.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="idpId")
+    def idp_id(self) -> _builtins.str:
+        """
+        The ID of the external IdP.
+        """
+        return pulumi.get(self, "idp_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> Optional[_builtins.int]:
+        """
+        The duration for v5 assume role.
+        """
+        return pulumi.get(self, "duration")
+
+    @_builtins.property
+    @pulumi.getter(name="idToken")
+    def id_token(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id_token")
+
+    @_builtins.property
+    @pulumi.getter(name="idTokenFile")
+    def id_token_file(self) -> Optional[_builtins.str]:
+        """
+        The file path of Id token that is issued by the external IdP.
+        """
+        return pulumi.get(self, "id_token_file")
+
+
+@pulumi.output_type
+class AssumeRoles(dict):
     def __init__(__self__, *,
                  agency_name: _builtins.str,
                  domain_id: Optional[_builtins.str] = None,

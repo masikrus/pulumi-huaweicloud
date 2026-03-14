@@ -42,6 +42,7 @@ class MediaAssetArgs:
                  workflow_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MediaAsset resource.
+
         :param pulumi.Input[_builtins.str] media_type: Specifies the media type. Valid values are: **MP4**, **TS**, **MOV**,
                **MXF**, **MPG**, **FLV**, **WMV**, **AVI**, **M4V**, **F4V**, **MPEG**, **3GP**, **ASF**, **MKV**, **HLS**,
                **M3U8**, **MP3**, **OGG**, **WAV**, **WMA**, **APE**, **FLAC**, **AAC**, **AC3**, **MMF**, **AMR**, **M4A**,
@@ -52,8 +53,8 @@ class MediaAssetArgs:
         :param pulumi.Input[_builtins.bool] auto_encrypt: Specifies whether to automatically encrypt the media. If set to **true**,
                `template_group_name` must be specified, and the output format of transcoding is **HLS**. Defaults to: **false**.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.bool] auto_preload: Specifies whether to automatically warm up the media to CDN. Defaults to: **false**.
-               Changing this creates a new resource.
+        :param pulumi.Input[_builtins.bool] auto_preload: Specifies whether to automatically warm up the media to CDN. Defaults to
+               **false**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] category_id: Specifies the category ID of the media asset. Defaults to `-1`, which means the media
                asset will be categorized into the 'Other' category of system presets.
         :param pulumi.Input[_builtins.str] description: Specifies the media asset description, which contains a maximum of `1,024`
@@ -74,14 +75,16 @@ class MediaAssetArgs:
         :param pulumi.Input[_builtins.bool] publish: Specifies whether to publish the media. Defaults to: **false**.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] review_template_id: Specifies the review template ID. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] review_template_id: Specifies the review template ID. Changing this creates a new
+               resource.
         :param pulumi.Input[_builtins.int] storage_mode: Specifies the storage mode. The value can be:
                + **0**: copy the media file to VOD bucket.
                + **1**: save the media file in user bucket.
                
                Defaults to `0`. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] template_group_name: Specifies the transcoding template group name. If not empty,
-               the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new resource.
+               the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new
+               resource.
         :param pulumi.Input['MediaAssetThumbnailArgs'] thumbnail: Specifies the review thumbnail configurations.
                The object structure is documented below. Changing this creates a new resource.
                
@@ -166,8 +169,8 @@ class MediaAssetArgs:
     @pulumi.getter(name="autoPreload")
     def auto_preload(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to automatically warm up the media to CDN. Defaults to: **false**.
-        Changing this creates a new resource.
+        Specifies whether to automatically warm up the media to CDN. Defaults to
+        **false**. Changing this creates a new resource.
         """
         return pulumi.get(self, "auto_preload")
 
@@ -309,7 +312,8 @@ class MediaAssetArgs:
     @pulumi.getter(name="reviewTemplateId")
     def review_template_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the review template ID. Changing this creates a new resource.
+        Specifies the review template ID. Changing this creates a new
+        resource.
         """
         return pulumi.get(self, "review_template_id")
 
@@ -338,7 +342,8 @@ class MediaAssetArgs:
     def template_group_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the transcoding template group name. If not empty,
-        the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new resource.
+        the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new
+        resource.
         """
         return pulumi.get(self, "template_group_name")
 
@@ -416,11 +421,12 @@ class _MediaAssetState:
                  workflow_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MediaAsset resources.
+
         :param pulumi.Input[_builtins.bool] auto_encrypt: Specifies whether to automatically encrypt the media. If set to **true**,
                `template_group_name` must be specified, and the output format of transcoding is **HLS**. Defaults to: **false**.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.bool] auto_preload: Specifies whether to automatically warm up the media to CDN. Defaults to: **false**.
-               Changing this creates a new resource.
+        :param pulumi.Input[_builtins.bool] auto_preload: Specifies whether to automatically warm up the media to CDN. Defaults to
+               **false**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] category_id: Specifies the category ID of the media asset. Defaults to `-1`, which means the media
                asset will be categorized into the 'Other' category of system presets.
         :param pulumi.Input[_builtins.str] category_name: The category name of the media asset.
@@ -451,14 +457,16 @@ class _MediaAssetState:
         :param pulumi.Input[_builtins.bool] publish: Specifies whether to publish the media. Defaults to: **false**.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] review_template_id: Specifies the review template ID. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] review_template_id: Specifies the review template ID. Changing this creates a new
+               resource.
         :param pulumi.Input[_builtins.int] storage_mode: Specifies the storage mode. The value can be:
                + **0**: copy the media file to VOD bucket.
                + **1**: save the media file in user bucket.
                
                Defaults to `0`. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] template_group_name: Specifies the transcoding template group name. If not empty,
-               the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new resource.
+               the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new
+               resource.
         :param pulumi.Input['MediaAssetThumbnailArgs'] thumbnail: Specifies the review thumbnail configurations.
                The object structure is documented below. Changing this creates a new resource.
                
@@ -532,8 +540,8 @@ class _MediaAssetState:
     @pulumi.getter(name="autoPreload")
     def auto_preload(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to automatically warm up the media to CDN. Defaults to: **false**.
-        Changing this creates a new resource.
+        Specifies whether to automatically warm up the media to CDN. Defaults to
+        **false**. Changing this creates a new resource.
         """
         return pulumi.get(self, "auto_preload")
 
@@ -729,7 +737,8 @@ class _MediaAssetState:
     @pulumi.getter(name="reviewTemplateId")
     def review_template_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the review template ID. Changing this creates a new resource.
+        Specifies the review template ID. Changing this creates a new
+        resource.
         """
         return pulumi.get(self, "review_template_id")
 
@@ -758,7 +767,8 @@ class _MediaAssetState:
     def template_group_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the transcoding template group name. If not empty,
-        the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new resource.
+        the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new
+        resource.
         """
         return pulumi.get(self, "template_group_name")
 
@@ -886,53 +896,26 @@ class MediaAsset(pulumi.CustomResource):
 
         The media asset can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vod/mediaAsset:MediaAsset test 8754976729b8a2ba745d01036edded2b
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `url`, `input_bucket`,
-
         `input_path`, `output_bucket`, `output_path`, `storage_mode`, `template_group_name`, `workflow_name`, `publish`,
-
         `auto_encrypt`, `auto_preload`, `review_template_id`, `thumbnail`.
-
         It is generally recommended running `pulumi preview` after importing a media asset.
-
         You can then decide if changes should be applied to the media asset, or the resource
-
         definition should be updated to align with the media asset. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vod_media_asset" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              url, input_bucket, input_path, output_bucket, output_path, storage_mode, template_group_name,
-            
-              workflow_name, publish, auto_encrypt, auto_preload, review_template_id, thumbnail,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] auto_encrypt: Specifies whether to automatically encrypt the media. If set to **true**,
                `template_group_name` must be specified, and the output format of transcoding is **HLS**. Defaults to: **false**.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.bool] auto_preload: Specifies whether to automatically warm up the media to CDN. Defaults to: **false**.
-               Changing this creates a new resource.
+        :param pulumi.Input[_builtins.bool] auto_preload: Specifies whether to automatically warm up the media to CDN. Defaults to
+               **false**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] category_id: Specifies the category ID of the media asset. Defaults to `-1`, which means the media
                asset will be categorized into the 'Other' category of system presets.
         :param pulumi.Input[_builtins.str] description: Specifies the media asset description, which contains a maximum of `1,024`
@@ -960,14 +943,16 @@ class MediaAsset(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] publish: Specifies whether to publish the media. Defaults to: **false**.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] review_template_id: Specifies the review template ID. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] review_template_id: Specifies the review template ID. Changing this creates a new
+               resource.
         :param pulumi.Input[_builtins.int] storage_mode: Specifies the storage mode. The value can be:
                + **0**: copy the media file to VOD bucket.
                + **1**: save the media file in user bucket.
                
                Defaults to `0`. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] template_group_name: Specifies the transcoding template group name. If not empty,
-               the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new resource.
+               the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new
+               resource.
         :param pulumi.Input[Union['MediaAssetThumbnailArgs', 'MediaAssetThumbnailArgsDict']] thumbnail: Specifies the review thumbnail configurations.
                The object structure is documented below. Changing this creates a new resource.
                
@@ -1035,45 +1020,18 @@ class MediaAsset(pulumi.CustomResource):
 
         The media asset can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vod/mediaAsset:MediaAsset test 8754976729b8a2ba745d01036edded2b
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `url`, `input_bucket`,
-
         `input_path`, `output_bucket`, `output_path`, `storage_mode`, `template_group_name`, `workflow_name`, `publish`,
-
         `auto_encrypt`, `auto_preload`, `review_template_id`, `thumbnail`.
-
         It is generally recommended running `pulumi preview` after importing a media asset.
-
         You can then decide if changes should be applied to the media asset, or the resource
-
         definition should be updated to align with the media asset. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vod_media_asset" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              url, input_bucket, input_path, output_bucket, output_path, storage_mode, template_group_name,
-            
-              workflow_name, publish, auto_encrypt, auto_preload, review_template_id, thumbnail,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param MediaAssetArgs args: The arguments to use to populate this resource's properties.
@@ -1184,8 +1142,8 @@ class MediaAsset(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] auto_encrypt: Specifies whether to automatically encrypt the media. If set to **true**,
                `template_group_name` must be specified, and the output format of transcoding is **HLS**. Defaults to: **false**.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.bool] auto_preload: Specifies whether to automatically warm up the media to CDN. Defaults to: **false**.
-               Changing this creates a new resource.
+        :param pulumi.Input[_builtins.bool] auto_preload: Specifies whether to automatically warm up the media to CDN. Defaults to
+               **false**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] category_id: Specifies the category ID of the media asset. Defaults to `-1`, which means the media
                asset will be categorized into the 'Other' category of system presets.
         :param pulumi.Input[_builtins.str] category_name: The category name of the media asset.
@@ -1216,14 +1174,16 @@ class MediaAsset(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] publish: Specifies whether to publish the media. Defaults to: **false**.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] review_template_id: Specifies the review template ID. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] review_template_id: Specifies the review template ID. Changing this creates a new
+               resource.
         :param pulumi.Input[_builtins.int] storage_mode: Specifies the storage mode. The value can be:
                + **0**: copy the media file to VOD bucket.
                + **1**: save the media file in user bucket.
                
                Defaults to `0`. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] template_group_name: Specifies the transcoding template group name. If not empty,
-               the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new resource.
+               the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new
+               resource.
         :param pulumi.Input[Union['MediaAssetThumbnailArgs', 'MediaAssetThumbnailArgsDict']] thumbnail: Specifies the review thumbnail configurations.
                The object structure is documented below. Changing this creates a new resource.
                
@@ -1276,8 +1236,8 @@ class MediaAsset(pulumi.CustomResource):
     @pulumi.getter(name="autoPreload")
     def auto_preload(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Specifies whether to automatically warm up the media to CDN. Defaults to: **false**.
-        Changing this creates a new resource.
+        Specifies whether to automatically warm up the media to CDN. Defaults to
+        **false**. Changing this creates a new resource.
         """
         return pulumi.get(self, "auto_preload")
 
@@ -1413,7 +1373,8 @@ class MediaAsset(pulumi.CustomResource):
     @pulumi.getter(name="reviewTemplateId")
     def review_template_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the review template ID. Changing this creates a new resource.
+        Specifies the review template ID. Changing this creates a new
+        resource.
         """
         return pulumi.get(self, "review_template_id")
 
@@ -1434,7 +1395,8 @@ class MediaAsset(pulumi.CustomResource):
     def template_group_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Specifies the transcoding template group name. If not empty,
-        the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new resource.
+        the uploaded media will be transcoded with the specified transcoding template group. Changing this creates a new
+        resource.
         """
         return pulumi.get(self, "template_group_name")
 

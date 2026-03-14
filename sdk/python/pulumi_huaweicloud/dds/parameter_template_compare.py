@@ -26,6 +26,7 @@ class ParameterTemplateCompareArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ParameterTemplateCompare resource.
+
         :param pulumi.Input[_builtins.str] source_configuration_id: Specifies the ID of the source parameter template to be
                compared. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] target_configuration_id: Specifies the ID of the destination parameter template to be
@@ -87,6 +88,7 @@ class _ParameterTemplateCompareState:
                  target_configuration_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ParameterTemplateCompare resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ParameterTemplateCompareDifferenceArgs']]] differences: Indicates the differences between parameters.
                The differences structure is documented below.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -185,6 +187,7 @@ class ParameterTemplateCompare(pulumi.CustomResource):
             target_configuration_id=target_configuration_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -216,6 +219,7 @@ class ParameterTemplateCompare(pulumi.CustomResource):
             source_configuration_id=source_configuration_id,
             target_configuration_id=target_configuration_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ParameterTemplateCompareArgs args: The arguments to use to populate this resource's properties.

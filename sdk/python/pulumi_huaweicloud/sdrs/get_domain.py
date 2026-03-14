@@ -91,7 +91,7 @@ def get_domain(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_domain()
+    test = huaweicloud.Sdrs.get_domain()
     ```
 
 
@@ -103,7 +103,7 @@ def get_domain(name: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:sdrs/getDomain:getDomain', __args__, opts=opts, typ=GetDomainResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Sdrs/getDomain:getDomain', __args__, opts=opts, typ=GetDomainResult).value
 
     return AwaitableGetDomainResult(
         description=pulumi.get(__ret__, 'description'),
@@ -122,7 +122,7 @@ def get_domain_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = No
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_domain()
+    test = huaweicloud.Sdrs.get_domain()
     ```
 
 
@@ -134,7 +134,7 @@ def get_domain_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = No
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:sdrs/getDomain:getDomain', __args__, opts=opts, typ=GetDomainResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Sdrs/getDomain:getDomain', __args__, opts=opts, typ=GetDomainResult)
     return __ret__.apply(lambda __response__: GetDomainResult(
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),

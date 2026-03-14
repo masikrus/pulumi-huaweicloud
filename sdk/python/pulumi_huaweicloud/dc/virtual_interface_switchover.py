@@ -26,6 +26,7 @@ class VirtualInterfaceSwitchoverArgs:
                  resource_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VirtualInterfaceSwitchover resource.
+
         :param pulumi.Input[_builtins.str] operation: Specifies whether to perform a switchover test.
                Value options: **shutdown** and **undo_shutdown**.
         :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource on which the switchover test is to
@@ -119,6 +120,7 @@ class _VirtualInterfaceSwitchoverState:
                  start_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VirtualInterfaceSwitchover resources.
+
         :param pulumi.Input[_builtins.str] end_time: Indicates the end time of the switchover test.
         :param pulumi.Input[_builtins.str] operate_status: Indicates the status of the switchover test.
         :param pulumi.Input[_builtins.str] operation: Specifies whether to perform a switchover test.
@@ -246,7 +248,7 @@ class _VirtualInterfaceSwitchoverState:
         pulumi.set(self, "start_time", value)
 
 
-@pulumi.type_token("huaweicloud:dc/virtualInterfaceSwitchover:VirtualInterfaceSwitchover")
+@pulumi.type_token("huaweicloud:Dc/virtualInterfaceSwitchover:VirtualInterfaceSwitchover")
 class VirtualInterfaceSwitchover(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -273,6 +275,7 @@ class VirtualInterfaceSwitchover(pulumi.CustomResource):
             resource_id=resource_id,
             operation="shutdown")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -306,6 +309,7 @@ class VirtualInterfaceSwitchover(pulumi.CustomResource):
             resource_id=resource_id,
             operation="shutdown")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VirtualInterfaceSwitchoverArgs args: The arguments to use to populate this resource's properties.
@@ -349,7 +353,7 @@ class VirtualInterfaceSwitchover(pulumi.CustomResource):
             __props__.__dict__["operate_status"] = None
             __props__.__dict__["start_time"] = None
         super(VirtualInterfaceSwitchover, __self__).__init__(
-            'huaweicloud:dc/virtualInterfaceSwitchover:VirtualInterfaceSwitchover',
+            'huaweicloud:Dc/virtualInterfaceSwitchover:VirtualInterfaceSwitchover',
             resource_name,
             __props__,
             opts)

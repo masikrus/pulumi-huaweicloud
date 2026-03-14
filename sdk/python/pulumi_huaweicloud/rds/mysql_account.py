@@ -28,6 +28,7 @@ class MysqlAccountArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlAccount resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the rds instance id.
         :param pulumi.Input[_builtins.str] password: Specifies the password of the db account. The parameter must be 8 to 32 characters
                long and contain only letters(case-sensitive), digits, and special characters(~!@#$%^*-_=+?,()&). The value must be
@@ -164,6 +165,7 @@ class _MysqlAccountState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlAccount resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies remarks of the database account. The parameter must be 1 to 512
                characters long and is supported only for MySQL 8.0.25 and later versions.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hosts: Specifies the IP addresses that are allowed to access your DB instance.
@@ -326,39 +328,16 @@ class MysqlAccount(pulumi.CustomResource):
 
         RDS account can be imported using the `instance_id` and `name` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/mysqlAccount:MysqlAccount account_1 <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`. It is generally recommended
-
         running `pulumi preview` after importing the RDS Mysql account. You can then decide if changes should be applied to
-
         the RDS Mysql account, or the resource definition should be updated to align with the RDS Mysql account. Also you
-
         can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_mysql_account" "account_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -408,39 +387,16 @@ class MysqlAccount(pulumi.CustomResource):
 
         RDS account can be imported using the `instance_id` and `name` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/mysqlAccount:MysqlAccount account_1 <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`. It is generally recommended
-
         running `pulumi preview` after importing the RDS Mysql account. You can then decide if changes should be applied to
-
         the RDS Mysql account, or the resource definition should be updated to align with the RDS Mysql account. Also you
-
         can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_mysql_account" "account_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param MysqlAccountArgs args: The arguments to use to populate this resource's properties.

@@ -6,19 +6,26 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .agency import *
 from .get_domain_overviews import *
 from .get_domain_resource_reports import *
 from .get_feature_gates import *
+from .get_image_auto_sync_jobs import *
 from .get_image_retention_histories import *
 from .get_image_retention_policies import *
 from .get_image_tags import *
+from .get_image_tags_v3 import *
 from .get_image_triggers import *
 from .get_organizations import *
 from .get_quotas import *
 from .get_repositories import *
+from .get_repositories_v3 import *
 from .get_shared_accounts import *
 from .get_shared_repositories import *
+from .get_shared_repositories_v3 import *
+from .get_sync_regions import *
 from .image_auto_sync import *
+from .image_manual_sync import *
 from .image_permissions import *
 from .image_retention_policy import *
 from .image_trigger import *
@@ -26,5 +33,7 @@ from .organization import *
 from .organization_permissions import *
 from .repository import *
 from .repository_sharing import *
+from .repository_tag import *
+from .temporary_login_command import *
 from ._inputs import *
 from . import outputs

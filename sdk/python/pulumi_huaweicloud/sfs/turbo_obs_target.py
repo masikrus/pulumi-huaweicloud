@@ -28,6 +28,7 @@ class TurboObsTargetArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TurboObsTarget resource.
+
         :param pulumi.Input[_builtins.str] file_system_path: Specifies the linkage directory name of the OBS target.
                Changing this creates a new resource.
                
@@ -137,6 +138,7 @@ class _TurboObsTargetState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TurboObsTarget resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the OBS target.
         :param pulumi.Input[_builtins.bool] delete_data_in_file_system: Specifies whether to delete the associated directory and
                its data files in the  SFS Turbo file system when the OBS target is deleted. The default value is **false**.
@@ -317,43 +319,17 @@ class TurboObsTarget(pulumi.CustomResource):
 
         The SFS Turbo OBS target can be imported using the related `share_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turboObsTarget:TurboObsTarget test <share_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to payment attributes missing from
-
         the API response.
-
         The missing attributes include: `delete_data_in_file_system`, `obs.0.attributes.0.file_mode`,
-
         `obs.0.attributes.0.dir_mode`, `obs.0.attributes.0.uid`, `obs.0.attributes.0.gid`.
-
         It is generally recommended running `pulumi preview` after importing an resource.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sfs_turbo_obs_target" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_data_in_file_system, obs.0.attributes.0.file_mode, obs.0.attributes.0.dir_mode,
-            
-              obs.0.attributes.0.uid, obs.0.attributes.0.gid,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -412,43 +388,17 @@ class TurboObsTarget(pulumi.CustomResource):
 
         The SFS Turbo OBS target can be imported using the related `share_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turboObsTarget:TurboObsTarget test <share_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to payment attributes missing from
-
         the API response.
-
         The missing attributes include: `delete_data_in_file_system`, `obs.0.attributes.0.file_mode`,
-
         `obs.0.attributes.0.dir_mode`, `obs.0.attributes.0.uid`, `obs.0.attributes.0.gid`.
-
         It is generally recommended running `pulumi preview` after importing an resource.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sfs_turbo_obs_target" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_data_in_file_system, obs.0.attributes.0.file_mode, obs.0.attributes.0.dir_mode,
-            
-              obs.0.attributes.0.uid, obs.0.attributes.0.gid,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param TurboObsTargetArgs args: The arguments to use to populate this resource's properties.

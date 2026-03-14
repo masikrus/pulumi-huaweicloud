@@ -73,6 +73,7 @@ class NodeV3Args:
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodeV3TaintArgs']]]] = None):
         """
         The set of arguments for constructing a NodeV3 resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: schema: Internal
         :param pulumi.Input[_builtins.str] ecs_performance_type: schema: Deprecated
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extend_param: schema: Deprecated
@@ -737,6 +738,7 @@ class _NodeV3State:
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodeV3TaintArgs']]]] = None):
         """
         Input properties used for looking up and filtering NodeV3 resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: schema: Internal
         :param pulumi.Input[_builtins.str] ecs_performance_type: schema: Deprecated
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extend_param: schema: Deprecated
@@ -1449,6 +1451,7 @@ class NodeV3(pulumi.CustomResource):
                  __props__=None):
         """
         Create a NodeV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: schema: Internal
@@ -1469,6 +1472,7 @@ class NodeV3(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a NodeV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param NodeV3Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

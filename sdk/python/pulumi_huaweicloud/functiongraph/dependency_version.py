@@ -26,7 +26,13 @@ class DependencyVersionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DependencyVersion resource.
-        :param pulumi.Input[_builtins.str] link: The OBS bucket path where the dependency package is located.
+
+        :param pulumi.Input[_builtins.str] link: Specifies the OBS bucket path where the dependency package is located.  
+               The OBS object URL must be in ZIP format, such as
+               `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+               Changing this will create a new resource.
+               
+               > A link can only be used to create at most one dependency package.
         :param pulumi.Input[_builtins.str] runtime: Specifies the runtime of the custom dependency version.
                The valid values are as follows:
                + **Java8**
@@ -73,7 +79,12 @@ class DependencyVersionArgs:
     @pulumi.getter
     def link(self) -> pulumi.Input[_builtins.str]:
         """
-        The OBS bucket path where the dependency package is located.
+        Specifies the OBS bucket path where the dependency package is located.  
+        The OBS object URL must be in ZIP format, such as
+        `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+        Changing this will create a new resource.
+
+        > A link can only be used to create at most one dependency package.
         """
         return pulumi.get(self, "link")
 
@@ -174,12 +185,18 @@ class _DependencyVersionState:
                  version_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DependencyVersion resources.
+
         :param pulumi.Input[_builtins.str] dependency_id: The ID of the dependency package corresponding to the version.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the custom dependency version.  
                The description can contain a maximum of `512` characters.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] etag: The unique ID of the dependency.
-        :param pulumi.Input[_builtins.str] link: The OBS bucket path where the dependency package is located.
+        :param pulumi.Input[_builtins.str] link: Specifies the OBS bucket path where the dependency package is located.  
+               The OBS object URL must be in ZIP format, such as
+               `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+               Changing this will create a new resource.
+               
+               > A link can only be used to create at most one dependency package.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the custom dependency package to which the version
                belongs.
                The name can contain a maximum of `96` characters and must start with a letter and end with a letter or digit.
@@ -279,7 +296,12 @@ class _DependencyVersionState:
     @pulumi.getter
     def link(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The OBS bucket path where the dependency package is located.
+        Specifies the OBS bucket path where the dependency package is located.  
+        The OBS object URL must be in ZIP format, such as
+        `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+        Changing this will create a new resource.
+
+        > A link can only be used to create at most one dependency package.
         """
         return pulumi.get(self, "link")
 
@@ -437,54 +459,34 @@ class DependencyVersion(pulumi.CustomResource):
 
         Dependency version can be imported using the resource `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/dependencyVersion:DependencyVersion test <id>
         ```
 
         Or using related dependency package `name` and the `version` number, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/dependencyVersion:DependencyVersion test <name>/<version>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `link`.
-
         It is generally recommended running `pulumi preview` after importing a dependency package.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the dependency package. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_fgs_dependency_version" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              link,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the custom dependency version.  
                The description can contain a maximum of `512` characters.
                Changing this will create a new resource.
-        :param pulumi.Input[_builtins.str] link: The OBS bucket path where the dependency package is located.
+        :param pulumi.Input[_builtins.str] link: Specifies the OBS bucket path where the dependency package is located.  
+               The OBS object URL must be in ZIP format, such as
+               `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+               Changing this will create a new resource.
+               
+               > A link can only be used to create at most one dependency package.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the custom dependency package to which the version
                belongs.
                The name can contain a maximum of `96` characters and must start with a letter and end with a letter or digit.
@@ -548,47 +550,22 @@ class DependencyVersion(pulumi.CustomResource):
 
         Dependency version can be imported using the resource `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/dependencyVersion:DependencyVersion test <id>
         ```
 
         Or using related dependency package `name` and the `version` number, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/dependencyVersion:DependencyVersion test <name>/<version>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `link`.
-
         It is generally recommended running `pulumi preview` after importing a dependency package.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the dependency package. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_fgs_dependency_version" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              link,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DependencyVersionArgs args: The arguments to use to populate this resource's properties.
@@ -667,7 +644,12 @@ class DependencyVersion(pulumi.CustomResource):
                The description can contain a maximum of `512` characters.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] etag: The unique ID of the dependency.
-        :param pulumi.Input[_builtins.str] link: The OBS bucket path where the dependency package is located.
+        :param pulumi.Input[_builtins.str] link: Specifies the OBS bucket path where the dependency package is located.  
+               The OBS object URL must be in ZIP format, such as
+               `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+               Changing this will create a new resource.
+               
+               > A link can only be used to create at most one dependency package.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the custom dependency package to which the version
                belongs.
                The name can contain a maximum of `96` characters and must start with a letter and end with a letter or digit.
@@ -749,7 +731,12 @@ class DependencyVersion(pulumi.CustomResource):
     @pulumi.getter
     def link(self) -> pulumi.Output[_builtins.str]:
         """
-        The OBS bucket path where the dependency package is located.
+        Specifies the OBS bucket path where the dependency package is located.  
+        The OBS object URL must be in ZIP format, such as
+        `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+        Changing this will create a new resource.
+
+        > A link can only be used to create at most one dependency package.
         """
         return pulumi.get(self, "link")
 

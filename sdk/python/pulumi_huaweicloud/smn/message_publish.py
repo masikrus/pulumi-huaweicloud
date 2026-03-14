@@ -33,6 +33,7 @@ class MessagePublishArgs:
                  time_to_live: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MessagePublish resource.
+
         :param pulumi.Input[_builtins.str] topic_urn: Specifies the resource identifier of a topic.
         :param pulumi.Input[_builtins.str] message: Specifies the message content.
         :param pulumi.Input[Sequence[pulumi.Input['MessagePublishMessageAttributeArgs']]] message_attributes: Specifies the message filter policies of a subscriber.
@@ -220,6 +221,7 @@ class _MessagePublishState:
                  topic_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MessagePublish resources.
+
         :param pulumi.Input[_builtins.str] message: Specifies the message content.
         :param pulumi.Input[Sequence[pulumi.Input['MessagePublishMessageAttributeArgs']]] message_attributes: Specifies the message filter policies of a subscriber.
                The message_attributes structure is documented below.
@@ -513,6 +515,7 @@ class MessagePublish(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] message: Specifies the message content.
@@ -645,6 +648,7 @@ class MessagePublish(pulumi.CustomResource):
                 },
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MessagePublishArgs args: The arguments to use to populate this resource's properties.

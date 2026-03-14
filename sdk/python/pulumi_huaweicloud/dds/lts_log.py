@@ -26,6 +26,7 @@ class LtsLogArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LtsLog resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DDS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] log_type: Specifies the type of the LTS log. The value can be **audit_log**.
@@ -116,6 +117,7 @@ class _LtsLogState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LtsLog resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DDS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] log_type: Specifies the type of the LTS log. The value can be **audit_log**.
@@ -236,11 +238,10 @@ class LtsLog(pulumi.CustomResource):
 
         The DDS LTS log config can be imported using DDS instance ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/ltsLog:LtsLog test <instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -283,11 +284,10 @@ class LtsLog(pulumi.CustomResource):
 
         The DDS LTS log config can be imported using DDS instance ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/ltsLog:LtsLog test <instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LtsLogArgs args: The arguments to use to populate this resource's properties.

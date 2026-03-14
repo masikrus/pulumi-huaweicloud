@@ -27,6 +27,7 @@ class EnvironmentVariableArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvironmentVariable resource.
+
         :param pulumi.Input[_builtins.str] env_id: Specifies the ID of the environment to which the environment variable belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the group to which the environment variable belongs.
@@ -147,6 +148,7 @@ class _EnvironmentVariableState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EnvironmentVariable resources.
+
         :param pulumi.Input[_builtins.str] env_id: Specifies the ID of the environment to which the environment variable belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the group to which the environment variable belongs.
@@ -302,11 +304,10 @@ class EnvironmentVariable(pulumi.CustomResource):
 
         The resource can be imported using `instance_id`, `group_id` and `name`, separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/environmentVariable:EnvironmentVariable test <instance_id>/<group_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -362,11 +363,10 @@ class EnvironmentVariable(pulumi.CustomResource):
 
         The resource can be imported using `instance_id`, `group_id` and `name`, separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/environmentVariable:EnvironmentVariable test <instance_id>/<group_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EnvironmentVariableArgs args: The arguments to use to populate this resource's properties.

@@ -109,7 +109,7 @@ class GetWorkflowInstancesResult:
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         """
-        The playbook name.
+        The playbook Chinese name.
         """
         return pulumi.get(self, "name")
 
@@ -214,7 +214,7 @@ def get_workflow_instances(dataclass_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_workflow_instances(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_workflow_instances(workspace_id=workspace_id)
     ```
 
 
@@ -267,7 +267,7 @@ def get_workflow_instances(dataclass_id: Optional[_builtins.str] = None,
     __args__['workflowId'] = workflow_id
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getWorkflowInstances:getWorkflowInstances', __args__, opts=opts, typ=GetWorkflowInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getWorkflowInstances:getWorkflowInstances', __args__, opts=opts, typ=GetWorkflowInstancesResult).value
 
     return AwaitableGetWorkflowInstancesResult(
         dataclass_id=pulumi.get(__ret__, 'dataclass_id'),
@@ -311,7 +311,7 @@ def get_workflow_instances_output(dataclass_id: Optional[pulumi.Input[Optional[_
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_workflow_instances(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_workflow_instances(workspace_id=workspace_id)
     ```
 
 
@@ -364,7 +364,7 @@ def get_workflow_instances_output(dataclass_id: Optional[pulumi.Input[Optional[_
     __args__['workflowId'] = workflow_id
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getWorkflowInstances:getWorkflowInstances', __args__, opts=opts, typ=GetWorkflowInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getWorkflowInstances:getWorkflowInstances', __args__, opts=opts, typ=GetWorkflowInstancesResult)
     return __ret__.apply(lambda __response__: GetWorkflowInstancesResult(
         dataclass_id=pulumi.get(__response__, 'dataclass_id'),
         defence_id=pulumi.get(__response__, 'defence_id'),

@@ -25,6 +25,7 @@ class AccessLogArgs:
                  resource_type: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a AccessLog resource.
+
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the ID of the log group to which the access log belongs.
         :param pulumi.Input[_builtins.str] log_stream_id: Specifies the ID of the log stream to which the access log belongs.
         :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource to which the access log belongs.
@@ -102,6 +103,7 @@ class _AccessLogState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccessLog resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the access log, in RFC3339 format.
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the ID of the log group to which the access log belongs.
         :param pulumi.Input[_builtins.str] log_stream_id: Specifies the ID of the log stream to which the access log belongs.
@@ -226,7 +228,7 @@ class _AccessLogState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:ga/accessLog:AccessLog")
+@pulumi.type_token("huaweicloud:Ga/accessLog:AccessLog")
 class AccessLog(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -264,11 +266,10 @@ class AccessLog(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/accessLog:AccessLog test <id>
+        $ pulumi import huaweicloud:Ga/accessLog:AccessLog test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -313,11 +314,10 @@ class AccessLog(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/accessLog:AccessLog test <id>
+        $ pulumi import huaweicloud:Ga/accessLog:AccessLog test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccessLogArgs args: The arguments to use to populate this resource's properties.
@@ -363,7 +363,7 @@ class AccessLog(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(AccessLog, __self__).__init__(
-            'huaweicloud:ga/accessLog:AccessLog',
+            'huaweicloud:Ga/accessLog:AccessLog',
             resource_name,
             __props__,
             opts)

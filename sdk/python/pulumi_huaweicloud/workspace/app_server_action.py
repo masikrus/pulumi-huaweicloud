@@ -27,6 +27,7 @@ class AppServerActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppServerAction resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the JSON string content for the operation (action)
                request.
         :param pulumi.Input[_builtins.str] server_id: Specifies the ID of the server to be operated.
@@ -138,6 +139,7 @@ class _AppServerActionState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppServerAction resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the JSON string content for the operation (action)
                request.
         :param pulumi.Input[_builtins.int] max_retries: Specifies the maximum number of retries for the operation (action) when
@@ -299,6 +301,7 @@ class AppServerAction(pulumi.CustomResource):
             }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] content: Specifies the JSON string content for the operation (action)
@@ -364,6 +367,7 @@ class AppServerAction(pulumi.CustomResource):
                 "update_access_agent": False,
             }))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppServerActionArgs args: The arguments to use to populate this resource's properties.

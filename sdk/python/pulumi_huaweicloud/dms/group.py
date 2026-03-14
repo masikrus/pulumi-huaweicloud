@@ -24,6 +24,7 @@ class GroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[_builtins.str] queue_id: Indicates the ID of a specified queue.
         :param pulumi.Input[_builtins.str] name: Indicates the unique name of a group. A string of 1 to 64 characters that
                contain a-z, A-Z, 0-9, hyphens (-), and underscores (_). The name cannot be modified once specified.
@@ -88,6 +89,7 @@ class _GroupState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[_builtins.int] available_deadletters: Indicates the accumulated number of dead letter messages that have not been consumed.
         :param pulumi.Input[_builtins.int] available_messages: Indicates the accumulated number of messages that can be consumed.
         :param pulumi.Input[_builtins.int] consumed_messages: Indicates the total number of messages that are successfully consumed.
@@ -251,6 +253,7 @@ class Group(pulumi.CustomResource):
             queue_id=queue1.id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Indicates the unique name of a group. A string of 1 to 64 characters that
@@ -288,6 +291,7 @@ class Group(pulumi.CustomResource):
             name="group_1",
             queue_id=queue1.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.

@@ -29,6 +29,7 @@ class DashboardArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Dashboard resource.
+
         :param pulumi.Input[_builtins.str] dashboard_title: Specifies the dashboard title.
         :param pulumi.Input[_builtins.str] dashboard_type: Specifies the dashboard type. It's customized by user.
         :param pulumi.Input[_builtins.str] folder_title: Specifies the folder title.
@@ -166,6 +167,7 @@ class _DashboardState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Dashboard resources.
+
         :param pulumi.Input[_builtins.str] charts: Specifies the dashboard charts. It's in json format.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] dashboard_tags: Specifies the dashboard tags. It's an array of map.
         :param pulumi.Input[_builtins.str] dashboard_title: Specifies the dashboard title.
@@ -315,11 +317,10 @@ class Dashboard(pulumi.CustomResource):
 
         The AOM dashboard resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/dashboard:Dashboard test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -347,11 +348,10 @@ class Dashboard(pulumi.CustomResource):
 
         The AOM dashboard resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/dashboard:Dashboard test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DashboardArgs args: The arguments to use to populate this resource's properties.

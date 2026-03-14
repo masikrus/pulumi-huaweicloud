@@ -84,7 +84,7 @@ def get_tags(resource_type: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
-    test = huaweicloud.ga.get_tags(resource_type=resource_type)
+    test = huaweicloud.Ga.get_tags(resource_type=resource_type)
     ```
 
 
@@ -96,7 +96,7 @@ def get_tags(resource_type: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['resourceType'] = resource_type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ga/getTags:getTags', __args__, opts=opts, typ=GetTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ga/getTags:getTags', __args__, opts=opts, typ=GetTagsResult).value
 
     return AwaitableGetTagsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -115,7 +115,7 @@ def get_tags_output(resource_type: Optional[pulumi.Input[_builtins.str]] = None,
 
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
-    test = huaweicloud.ga.get_tags(resource_type=resource_type)
+    test = huaweicloud.Ga.get_tags(resource_type=resource_type)
     ```
 
 
@@ -127,7 +127,7 @@ def get_tags_output(resource_type: Optional[pulumi.Input[_builtins.str]] = None,
     __args__ = dict()
     __args__['resourceType'] = resource_type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ga/getTags:getTags', __args__, opts=opts, typ=GetTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ga/getTags:getTags', __args__, opts=opts, typ=GetTagsResult)
     return __ret__.apply(lambda __response__: GetTagsResult(
         id=pulumi.get(__response__, 'id'),
         resource_type=pulumi.get(__response__, 'resource_type'),

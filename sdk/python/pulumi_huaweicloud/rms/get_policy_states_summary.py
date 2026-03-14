@@ -83,7 +83,7 @@ def get_policy_states_summary(tags: Optional[Sequence[_builtins.str]] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_policy_states_summary()
+    test = huaweicloud.Rms.get_policy_states_summary()
     ```
 
 
@@ -92,7 +92,7 @@ def get_policy_states_summary(tags: Optional[Sequence[_builtins.str]] = None,
     __args__ = dict()
     __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getPolicyStatesSummary:getPolicyStatesSummary', __args__, opts=opts, typ=GetPolicyStatesSummaryResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getPolicyStatesSummary:getPolicyStatesSummary', __args__, opts=opts, typ=GetPolicyStatesSummaryResult).value
 
     return AwaitableGetPolicyStatesSummaryResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_policy_states_summary_output(tags: Optional[pulumi.Input[Optional[Sequen
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_policy_states_summary()
+    test = huaweicloud.Rms.get_policy_states_summary()
     ```
 
 
@@ -118,7 +118,7 @@ def get_policy_states_summary_output(tags: Optional[pulumi.Input[Optional[Sequen
     __args__ = dict()
     __args__['tags'] = tags
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getPolicyStatesSummary:getPolicyStatesSummary', __args__, opts=opts, typ=GetPolicyStatesSummaryResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getPolicyStatesSummary:getPolicyStatesSummary', __args__, opts=opts, typ=GetPolicyStatesSummaryResult)
     return __ret__.apply(lambda __response__: GetPolicyStatesSummaryResult(
         id=pulumi.get(__response__, 'id'),
         results=pulumi.get(__response__, 'results'),

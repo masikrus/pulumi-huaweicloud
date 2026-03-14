@@ -131,7 +131,7 @@ def get_deploy_hosts(as_proxy: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     group_id = config.require_object("groupId")
-    test = huaweicloud.codearts.get_deploy_hosts(group_id=group_id)
+    test = huaweicloud.Codearts.get_deploy_hosts(group_id=group_id)
     ```
 
 
@@ -150,7 +150,7 @@ def get_deploy_hosts(as_proxy: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getDeployHosts:getDeployHosts', __args__, opts=opts, typ=GetDeployHostsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getDeployHosts:getDeployHosts', __args__, opts=opts, typ=GetDeployHostsResult).value
 
     return AwaitableGetDeployHostsResult(
         as_proxy=pulumi.get(__ret__, 'as_proxy'),
@@ -177,7 +177,7 @@ def get_deploy_hosts_output(as_proxy: Optional[pulumi.Input[Optional[_builtins.s
 
     config = pulumi.Config()
     group_id = config.require_object("groupId")
-    test = huaweicloud.codearts.get_deploy_hosts(group_id=group_id)
+    test = huaweicloud.Codearts.get_deploy_hosts(group_id=group_id)
     ```
 
 
@@ -196,7 +196,7 @@ def get_deploy_hosts_output(as_proxy: Optional[pulumi.Input[Optional[_builtins.s
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getDeployHosts:getDeployHosts', __args__, opts=opts, typ=GetDeployHostsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getDeployHosts:getDeployHosts', __args__, opts=opts, typ=GetDeployHostsResult)
     return __ret__.apply(lambda __response__: GetDeployHostsResult(
         as_proxy=pulumi.get(__response__, 'as_proxy'),
         environment_id=pulumi.get(__response__, 'environment_id'),

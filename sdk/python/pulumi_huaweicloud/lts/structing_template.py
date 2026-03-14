@@ -32,6 +32,7 @@ class StructingTemplateArgs:
                  template_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StructingTemplate resource.
+
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the log group ID.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] log_stream_id: Specifies the log stream ID.
@@ -289,6 +290,7 @@ class _StructingTemplateState:
                  template_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StructingTemplate resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['StructingTemplateDemoFieldArgs']]] demo_fields: Specifies the example fields. Use to set quick analysis configurations for fields.
                Only need to enter the fields whose status is different from that of `is_analysis` in the template.
                The demo_fields structure is documented below.
@@ -610,49 +612,17 @@ class StructingTemplate(pulumi.CustomResource):
 
         The LTS structuring configuration can be imported using `log_group_id` and `log_stream_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/structingTemplate:StructingTemplate test <log_group_id>/<log_stream_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template_type`, `template_id`,
-
         `demo_fields`, `tag_fields`, `quick_analysis`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_structing_template" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_type,
-            
-              template_id,
-            
-              demo_fields,
-            
-              tag_fields,
-            
-              quick_analysis,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -770,49 +740,17 @@ class StructingTemplate(pulumi.CustomResource):
 
         The LTS structuring configuration can be imported using `log_group_id` and `log_stream_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/structingTemplate:StructingTemplate test <log_group_id>/<log_stream_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template_type`, `template_id`,
-
         `demo_fields`, `tag_fields`, `quick_analysis`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_structing_template" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_type,
-            
-              template_id,
-            
-              demo_fields,
-            
-              tag_fields,
-            
-              quick_analysis,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param StructingTemplateArgs args: The arguments to use to populate this resource's properties.

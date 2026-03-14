@@ -165,7 +165,7 @@ def get_instances(flavor_id: Optional[_builtins.str] = None,
     vpc_id = config.require_object("vpcId")
     subnet_id = config.require_object("subnetId")
     security_group_id = config.require_object("securityGroupId")
-    test = huaweicloud.cbh.get_instances(name="test_name",
+    test = huaweicloud.Cbh.get_instances(name="test_name",
         vpc_id=vpc_id,
         subnet_id=subnet_id,
         security_group_id=security_group_id)
@@ -190,7 +190,7 @@ def get_instances(flavor_id: Optional[_builtins.str] = None,
     __args__['version'] = version
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cbh/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cbh/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
 
     return AwaitableGetInstancesResult(
         flavor_id=pulumi.get(__ret__, 'flavor_id'),
@@ -223,7 +223,7 @@ def get_instances_output(flavor_id: Optional[pulumi.Input[Optional[_builtins.str
     vpc_id = config.require_object("vpcId")
     subnet_id = config.require_object("subnetId")
     security_group_id = config.require_object("securityGroupId")
-    test = huaweicloud.cbh.get_instances(name="test_name",
+    test = huaweicloud.Cbh.get_instances(name="test_name",
         vpc_id=vpc_id,
         subnet_id=subnet_id,
         security_group_id=security_group_id)
@@ -248,7 +248,7 @@ def get_instances_output(flavor_id: Optional[pulumi.Input[Optional[_builtins.str
     __args__['version'] = version
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cbh/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cbh/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
     return __ret__.apply(lambda __response__: GetInstancesResult(
         flavor_id=pulumi.get(__response__, 'flavor_id'),
         id=pulumi.get(__response__, 'id'),

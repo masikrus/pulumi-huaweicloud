@@ -95,7 +95,7 @@ def get_installation_scripts(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_installation_scripts(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_installation_scripts(workspace_id=workspace_id)
     ```
 
 
@@ -107,7 +107,7 @@ def get_installation_scripts(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getInstallationScripts:getInstallationScripts', __args__, opts=opts, typ=GetInstallationScriptsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getInstallationScripts:getInstallationScripts', __args__, opts=opts, typ=GetInstallationScriptsResult).value
 
     return AwaitableGetInstallationScriptsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -128,7 +128,7 @@ def get_installation_scripts_output(region: Optional[pulumi.Input[Optional[_buil
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_installation_scripts(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_installation_scripts(workspace_id=workspace_id)
     ```
 
 
@@ -140,7 +140,7 @@ def get_installation_scripts_output(region: Optional[pulumi.Input[Optional[_buil
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getInstallationScripts:getInstallationScripts', __args__, opts=opts, typ=GetInstallationScriptsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getInstallationScripts:getInstallationScripts', __args__, opts=opts, typ=GetInstallationScriptsResult)
     return __ret__.apply(lambda __response__: GetInstallationScriptsResult(
         id=pulumi.get(__response__, 'id'),
         records=pulumi.get(__response__, 'records'),

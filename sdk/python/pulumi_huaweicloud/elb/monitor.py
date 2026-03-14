@@ -31,10 +31,10 @@ class MonitorArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  url_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Monitor resource.
+
         :param pulumi.Input[_builtins.int] delay: Specifies the maximum time between health checks in the unit of second. The value ranges
                from **1** to **50**.
         :param pulumi.Input[_builtins.int] max_retries: Specifies the maximum number of consecutive health checks after which the backend
@@ -88,11 +88,6 @@ class MonitorArgs:
             pulumi.set(__self__, "port", port)
         if region is not None:
             pulumi.set(__self__, "region", region)
-        if tenant_id is not None:
-            warnings.warn("""tenant_id is deprecated""", DeprecationWarning)
-            pulumi.log.warn("""tenant_id is deprecated: tenant_id is deprecated""")
-        if tenant_id is not None:
-            pulumi.set(__self__, "tenant_id", tenant_id)
         if url_path is not None:
             pulumi.set(__self__, "url_path", url_path)
 
@@ -256,16 +251,6 @@ class MonitorArgs:
         pulumi.set(self, "region", value)
 
     @_builtins.property
-    @pulumi.getter(name="tenantId")
-    @_utilities.deprecated("""tenant_id is deprecated""")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "tenant_id")
-
-    @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "tenant_id", value)
-
-    @_builtins.property
     @pulumi.getter(name="urlPath")
     def url_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -292,12 +277,12 @@ class _MonitorState:
                  pool_id: Optional[pulumi.Input[_builtins.str]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Monitor resources.
+
         :param pulumi.Input[_builtins.int] delay: Specifies the maximum time between health checks in the unit of second. The value ranges
                from **1** to **50**.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name of HTTP requests during the health check. It takes effect
@@ -352,11 +337,6 @@ class _MonitorState:
             pulumi.set(__self__, "port", port)
         if region is not None:
             pulumi.set(__self__, "region", region)
-        if tenant_id is not None:
-            warnings.warn("""tenant_id is deprecated""", DeprecationWarning)
-            pulumi.log.warn("""tenant_id is deprecated: tenant_id is deprecated""")
-        if tenant_id is not None:
-            pulumi.set(__self__, "tenant_id", tenant_id)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if type is not None:
@@ -497,16 +477,6 @@ class _MonitorState:
         pulumi.set(self, "region", value)
 
     @_builtins.property
-    @pulumi.getter(name="tenantId")
-    @_utilities.deprecated("""tenant_id is deprecated""")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "tenant_id")
-
-    @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "tenant_id", value)
-
-    @_builtins.property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -563,7 +533,6 @@ class Monitor(pulumi.CustomResource):
                  pool_id: Optional[pulumi.Input[_builtins.str]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url_path: Optional[pulumi.Input[_builtins.str]] = None,
@@ -621,11 +590,10 @@ class Monitor(pulumi.CustomResource):
 
         ELB monitor can be imported using the monitor ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/monitor:Monitor monitor_1 5c20fdad-7288-11eb-b817-0255ac10158b
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -719,11 +687,10 @@ class Monitor(pulumi.CustomResource):
 
         ELB monitor can be imported using the monitor ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/monitor:Monitor monitor_1 5c20fdad-7288-11eb-b817-0255ac10158b
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MonitorArgs args: The arguments to use to populate this resource's properties.
@@ -750,7 +717,6 @@ class Monitor(pulumi.CustomResource):
                  pool_id: Optional[pulumi.Input[_builtins.str]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url_path: Optional[pulumi.Input[_builtins.str]] = None,
@@ -779,7 +745,6 @@ class Monitor(pulumi.CustomResource):
             __props__.__dict__["pool_id"] = pool_id
             __props__.__dict__["port"] = port
             __props__.__dict__["region"] = region
-            __props__.__dict__["tenant_id"] = tenant_id
             if timeout is None and not opts.urn:
                 raise TypeError("Missing required property 'timeout'")
             __props__.__dict__["timeout"] = timeout
@@ -807,7 +772,6 @@ class Monitor(pulumi.CustomResource):
             pool_id: Optional[pulumi.Input[_builtins.str]] = None,
             port: Optional[pulumi.Input[_builtins.int]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
-            tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
             timeout: Optional[pulumi.Input[_builtins.int]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
             url_path: Optional[pulumi.Input[_builtins.str]] = None) -> 'Monitor':
@@ -863,7 +827,6 @@ class Monitor(pulumi.CustomResource):
         __props__.__dict__["pool_id"] = pool_id
         __props__.__dict__["port"] = port
         __props__.__dict__["region"] = region
-        __props__.__dict__["tenant_id"] = tenant_id
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["type"] = type
         __props__.__dict__["url_path"] = url_path
@@ -960,12 +923,6 @@ class Monitor(pulumi.CustomResource):
         provider-level region will be used. Changing this creates a new monitor.
         """
         return pulumi.get(self, "region")
-
-    @_builtins.property
-    @pulumi.getter(name="tenantId")
-    @_utilities.deprecated("""tenant_id is deprecated""")
-    def tenant_id(self) -> pulumi.Output[_builtins.str]:
-        return pulumi.get(self, "tenant_id")
 
     @_builtins.property
     @pulumi.getter

@@ -118,7 +118,7 @@ def get_documents(creator: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_documents()
+    test = huaweicloud.Coc.get_documents()
     ```
 
 
@@ -134,7 +134,7 @@ def get_documents(creator: Optional[_builtins.str] = None,
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['nameLike'] = name_like
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getDocuments:getDocuments', __args__, opts=opts, typ=GetDocumentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getDocuments:getDocuments', __args__, opts=opts, typ=GetDocumentsResult).value
 
     return AwaitableGetDocumentsResult(
         creator=pulumi.get(__ret__, 'creator'),
@@ -157,7 +157,7 @@ def get_documents_output(creator: Optional[pulumi.Input[Optional[_builtins.str]]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_documents()
+    test = huaweicloud.Coc.get_documents()
     ```
 
 
@@ -173,7 +173,7 @@ def get_documents_output(creator: Optional[pulumi.Input[Optional[_builtins.str]]
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['nameLike'] = name_like
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getDocuments:getDocuments', __args__, opts=opts, typ=GetDocumentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getDocuments:getDocuments', __args__, opts=opts, typ=GetDocumentsResult)
     return __ret__.apply(lambda __response__: GetDocumentsResult(
         creator=pulumi.get(__response__, 'creator'),
         datas=pulumi.get(__response__, 'datas'),

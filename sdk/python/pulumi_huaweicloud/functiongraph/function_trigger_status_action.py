@@ -28,6 +28,7 @@ class FunctionTriggerStatusActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FunctionTriggerStatusAction resource.
+
         :param pulumi.Input[_builtins.str] event_data: The event data of the trigger.
         :param pulumi.Input[_builtins.str] function_urn: The URN of the function.
         :param pulumi.Input[_builtins.str] trigger_id: The trigger ID.
@@ -139,6 +140,7 @@ class _FunctionTriggerStatusActionState:
                  trigger_type_code: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionTriggerStatusAction resources.
+
         :param pulumi.Input[_builtins.str] event_data: The event data of the trigger.
         :param pulumi.Input[_builtins.str] function_urn: The URN of the function.
         :param pulumi.Input[_builtins.str] region: The region where the function trigger is located.
@@ -259,6 +261,7 @@ class FunctionTriggerStatusAction(pulumi.CustomResource):
                  __props__=None):
         """
         Create a FunctionTriggerStatusAction resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] event_data: The event data of the trigger.
@@ -276,6 +279,7 @@ class FunctionTriggerStatusAction(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a FunctionTriggerStatusAction resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param FunctionTriggerStatusActionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

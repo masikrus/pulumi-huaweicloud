@@ -19,7 +19,7 @@ __all__ = ['CertificateArgs', 'Certificate']
 @pulumi.input_type
 class CertificateArgs:
     def __init__(__self__, *,
-                 certificate: pulumi.Input[_builtins.str],
+                 certificate_value: pulumi.Input[_builtins.str],
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  domain: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -32,7 +32,8 @@ class CertificateArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Certificate resource.
-        :param pulumi.Input[_builtins.str] certificate: The public encrypted key of the Certificate, PEM format.
+
+        :param pulumi.Input[_builtins.str] certificate_value: The public encrypted key of the Certificate, PEM format.
         :param pulumi.Input[_builtins.str] description: Human-readable description for the Certificate.
         :param pulumi.Input[_builtins.str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
                parameter is valid only when `type` is set to **server**.
@@ -55,7 +56,7 @@ class CertificateArgs:
                + **server**: indicates the server certificate.
                + **client**: indicates the CA certificate.
         """
-        pulumi.set(__self__, "certificate", certificate)
+        pulumi.set(__self__, "certificate_value", certificate_value)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
@@ -78,16 +79,16 @@ class CertificateArgs:
             pulumi.set(__self__, "type", type)
 
     @_builtins.property
-    @pulumi.getter
-    def certificate(self) -> pulumi.Input[_builtins.str]:
+    @pulumi.getter(name="CertificateValue")
+    def certificate_value(self) -> pulumi.Input[_builtins.str]:
         """
         The public encrypted key of the Certificate, PEM format.
         """
-        return pulumi.get(self, "certificate")
+        return pulumi.get(self, "certificate_value")
 
-    @certificate.setter
-    def certificate(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "certificate", value)
+    @certificate_value.setter
+    def certificate_value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "certificate_value", value)
 
     @_builtins.property
     @pulumi.getter
@@ -224,7 +225,7 @@ class CertificateArgs:
 @pulumi.input_type
 class _CertificateState:
     def __init__(__self__, *,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_value: Optional[pulumi.Input[_builtins.str]] = None,
                  create_time: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  domain: Optional[pulumi.Input[_builtins.str]] = None,
@@ -240,7 +241,8 @@ class _CertificateState:
                  update_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
-        :param pulumi.Input[_builtins.str] certificate: The public encrypted key of the Certificate, PEM format.
+
+        :param pulumi.Input[_builtins.str] certificate_value: The public encrypted key of the Certificate, PEM format.
         :param pulumi.Input[_builtins.str] create_time: Indicates the creation time.
         :param pulumi.Input[_builtins.str] description: Human-readable description for the Certificate.
         :param pulumi.Input[_builtins.str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
@@ -266,8 +268,8 @@ class _CertificateState:
                + **client**: indicates the CA certificate.
         :param pulumi.Input[_builtins.str] update_time: Indicates the update time.
         """
-        if certificate is not None:
-            pulumi.set(__self__, "certificate", certificate)
+        if certificate_value is not None:
+            pulumi.set(__self__, "certificate_value", certificate_value)
         if create_time is not None:
             pulumi.set(__self__, "create_time", create_time)
         if description is not None:
@@ -296,16 +298,16 @@ class _CertificateState:
             pulumi.set(__self__, "update_time", update_time)
 
     @_builtins.property
-    @pulumi.getter
-    def certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    @pulumi.getter(name="CertificateValue")
+    def certificate_value(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The public encrypted key of the Certificate, PEM format.
         """
-        return pulumi.get(self, "certificate")
+        return pulumi.get(self, "certificate_value")
 
-    @certificate.setter
-    def certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "certificate", value)
+    @certificate_value.setter
+    def certificate_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "certificate_value", value)
 
     @_builtins.property
     @pulumi.getter(name="createTime")
@@ -481,7 +483,7 @@ class Certificate(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_value: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  domain: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -534,7 +536,7 @@ class Certificate(pulumi.CustomResource):
         nEqm7HWkNxHhf8A6En/IjleuddS1sf9e/x+TJN1Xhnt9W6pe7Fk1
         -----END RSA PRIVATE KEY-----
         \"\"\",
-            certificate=\"\"\"-----BEGIN CERTIFICATE-----
+            certificate_value=\"\"\"-----BEGIN CERTIFICATE-----
         MIIDpTCCAo2gAwIBAgIJAKdmmOBYnFvoMA0GCSqGSIb3DQEBCwUAMGkxCzAJBgNV
         BAYTAnh4MQswCQYDVQQIDAJ4eDELMAkGA1UEBwwCeHgxCzAJBgNVBAoMAnh4MQsw
         CQYDVQQLDAJ4eDELMAkGA1UEAwwCeHgxGTAXBgkqhkiG9w0BCQEWCnh4QDE2My5j
@@ -563,43 +565,20 @@ class Certificate(pulumi.CustomResource):
 
         ELB certificate can be imported using the `id` e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/certificate:Certificate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enterprise_project_id`.
-
         It is generally recommended running `pulumi preview` after importing a certificate.
-
         You can then decide if changes should be applied to the certificate, or the resource
-
         definition should be updated to align with the certificate. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lb_certificate" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id, private_key,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] certificate: The public encrypted key of the Certificate, PEM format.
+        :param pulumi.Input[_builtins.str] certificate_value: The public encrypted key of the Certificate, PEM format.
         :param pulumi.Input[_builtins.str] description: Human-readable description for the Certificate.
         :param pulumi.Input[_builtins.str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
                parameter is valid only when `type` is set to **server**.
@@ -669,7 +648,7 @@ class Certificate(pulumi.CustomResource):
         nEqm7HWkNxHhf8A6En/IjleuddS1sf9e/x+TJN1Xhnt9W6pe7Fk1
         -----END RSA PRIVATE KEY-----
         \"\"\",
-            certificate=\"\"\"-----BEGIN CERTIFICATE-----
+            certificate_value=\"\"\"-----BEGIN CERTIFICATE-----
         MIIDpTCCAo2gAwIBAgIJAKdmmOBYnFvoMA0GCSqGSIb3DQEBCwUAMGkxCzAJBgNV
         BAYTAnh4MQswCQYDVQQIDAJ4eDELMAkGA1UEBwwCeHgxCzAJBgNVBAoMAnh4MQsw
         CQYDVQQLDAJ4eDELMAkGA1UEAwwCeHgxGTAXBgkqhkiG9w0BCQEWCnh4QDE2My5j
@@ -698,39 +677,16 @@ class Certificate(pulumi.CustomResource):
 
         ELB certificate can be imported using the `id` e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/certificate:Certificate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enterprise_project_id`.
-
         It is generally recommended running `pulumi preview` after importing a certificate.
-
         You can then decide if changes should be applied to the certificate, or the resource
-
         definition should be updated to align with the certificate. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lb_certificate" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id, private_key,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CertificateArgs args: The arguments to use to populate this resource's properties.
@@ -747,7 +703,7 @@ class Certificate(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_value: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  domain: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -767,9 +723,9 @@ class Certificate(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CertificateArgs.__new__(CertificateArgs)
 
-            if certificate is None and not opts.urn:
-                raise TypeError("Missing required property 'certificate'")
-            __props__.__dict__["certificate"] = None if certificate is None else pulumi.Output.secret(certificate)
+            if certificate_value is None and not opts.urn:
+                raise TypeError("Missing required property 'certificate_value'")
+            __props__.__dict__["certificate_value"] = None if certificate_value is None else pulumi.Output.secret(certificate_value)
             __props__.__dict__["description"] = description
             __props__.__dict__["domain"] = domain
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
@@ -783,7 +739,7 @@ class Certificate(pulumi.CustomResource):
             __props__.__dict__["create_time"] = None
             __props__.__dict__["expire_time"] = None
             __props__.__dict__["update_time"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["certificate", "privateKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["CertificateValue", "privateKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Certificate, __self__).__init__(
             'huaweicloud:Elb/certificate:Certificate',
@@ -795,7 +751,7 @@ class Certificate(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            certificate: Optional[pulumi.Input[_builtins.str]] = None,
+            certificate_value: Optional[pulumi.Input[_builtins.str]] = None,
             create_time: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             domain: Optional[pulumi.Input[_builtins.str]] = None,
@@ -816,7 +772,7 @@ class Certificate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] certificate: The public encrypted key of the Certificate, PEM format.
+        :param pulumi.Input[_builtins.str] certificate_value: The public encrypted key of the Certificate, PEM format.
         :param pulumi.Input[_builtins.str] create_time: Indicates the creation time.
         :param pulumi.Input[_builtins.str] description: Human-readable description for the Certificate.
         :param pulumi.Input[_builtins.str] domain: The domain of the Certificate. The value contains a maximum of 100 characters. This
@@ -846,7 +802,7 @@ class Certificate(pulumi.CustomResource):
 
         __props__ = _CertificateState.__new__(_CertificateState)
 
-        __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["certificate_value"] = certificate_value
         __props__.__dict__["create_time"] = create_time
         __props__.__dict__["description"] = description
         __props__.__dict__["domain"] = domain
@@ -863,12 +819,12 @@ class Certificate(pulumi.CustomResource):
         return Certificate(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter
-    def certificate(self) -> pulumi.Output[_builtins.str]:
+    @pulumi.getter(name="CertificateValue")
+    def certificate_value(self) -> pulumi.Output[_builtins.str]:
         """
         The public encrypted key of the Certificate, PEM format.
         """
-        return pulumi.get(self, "certificate")
+        return pulumi.get(self, "certificate_value")
 
     @_builtins.property
     @pulumi.getter(name="createTime")

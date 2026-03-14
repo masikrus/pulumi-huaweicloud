@@ -29,6 +29,7 @@ class UserArgs:
                  password_mode: pulumi.Input[_builtins.str],
                  user_name: pulumi.Input[_builtins.str],
                  addresses: Optional[pulumi.Input['UserAddressesArgs']] = None,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  enterprise: Optional[pulumi.Input['UserEnterpriseArgs']] = None,
                  phone_number: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -36,6 +37,7 @@ class UserArgs:
                  user_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] display_name: Specifies the display name of the user.
         :param pulumi.Input[_builtins.str] email: Specifies the email of the user.
         :param pulumi.Input[_builtins.str] family_name: Specifies the family name of the user.
@@ -53,11 +55,14 @@ class UserArgs:
                Changing this parameter will create a new resource.
         :param pulumi.Input['UserAddressesArgs'] addresses: Specifies the addresses information of the user.
                The addresses structure is documented below.
-        :param pulumi.Input['UserEnterpriseArgs'] enterprise: Specifies the enterprise information of the user.
-               The enterprise structure is documented below.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled. Value options:
+               + **true**
+               + **false**
                
                <a name="addresses_struct"></a>
                The `addresses` block supports:
+        :param pulumi.Input['UserEnterpriseArgs'] enterprise: Specifies the enterprise information of the user.
+               The enterprise structure is documented below.
         :param pulumi.Input[_builtins.str] phone_number: Specifies the phone number of the user.
         :param pulumi.Input[_builtins.str] region: Specifies the region of the user.
         :param pulumi.Input[_builtins.str] title: Specifies the title of the user.
@@ -72,6 +77,8 @@ class UserArgs:
         pulumi.set(__self__, "user_name", user_name)
         if addresses is not None:
             pulumi.set(__self__, "addresses", addresses)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
         if enterprise is not None:
             pulumi.set(__self__, "enterprise", enterprise)
         if phone_number is not None:
@@ -190,13 +197,27 @@ class UserArgs:
 
     @_builtins.property
     @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the user is enabled. Value options:
+        + **true**
+        + **false**
+
+        <a name="addresses_struct"></a>
+        The `addresses` block supports:
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
     def enterprise(self) -> Optional[pulumi.Input['UserEnterpriseArgs']]:
         """
         Specifies the enterprise information of the user.
         The enterprise structure is documented below.
-
-        <a name="addresses_struct"></a>
-        The `addresses` block supports:
         """
         return pulumi.get(self, "enterprise")
 
@@ -277,6 +298,7 @@ class _UserState:
                  user_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input['UserAddressesArgs'] addresses: Specifies the addresses information of the user.
                The addresses structure is documented below.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the user.
@@ -284,12 +306,14 @@ class _UserState:
         :param pulumi.Input[_builtins.str] display_name: Specifies the display name of the user.
         :param pulumi.Input[_builtins.str] email: Specifies the email of the user.
         :param pulumi.Input[_builtins.bool] email_verified: Whether the email is verified.
-        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled.
-        :param pulumi.Input['UserEnterpriseArgs'] enterprise: Specifies the enterprise information of the user.
-               The enterprise structure is documented below.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled. Value options:
+               + **true**
+               + **false**
                
                <a name="addresses_struct"></a>
                The `addresses` block supports:
+        :param pulumi.Input['UserEnterpriseArgs'] enterprise: Specifies the enterprise information of the user.
+               The enterprise structure is documented below.
         :param pulumi.Input[_builtins.str] family_name: Specifies the family name of the user.
         :param pulumi.Input[_builtins.str] given_name: Specifies the given name of the user.
         :param pulumi.Input[_builtins.str] identity_store_id: Specifies the ID of the identity store.
@@ -426,7 +450,12 @@ class _UserState:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether the user is enabled.
+        Whether the user is enabled. Value options:
+        + **true**
+        + **false**
+
+        <a name="addresses_struct"></a>
+        The `addresses` block supports:
         """
         return pulumi.get(self, "enabled")
 
@@ -440,9 +469,6 @@ class _UserState:
         """
         Specifies the enterprise information of the user.
         The enterprise structure is documented below.
-
-        <a name="addresses_struct"></a>
-        The `addresses` block supports:
         """
         return pulumi.get(self, "enterprise")
 
@@ -591,7 +617,7 @@ class _UserState:
         pulumi.set(self, "user_type", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/user:User")
+@pulumi.type_token("huaweicloud:Identitycenter/user:User")
 class User(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -600,6 +626,7 @@ class User(pulumi.CustomResource):
                  addresses: Optional[pulumi.Input[Union['UserAddressesArgs', 'UserAddressesArgsDict']]] = None,
                  display_name: Optional[pulumi.Input[_builtins.str]] = None,
                  email: Optional[pulumi.Input[_builtins.str]] = None,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  enterprise: Optional[pulumi.Input[Union['UserEnterpriseArgs', 'UserEnterpriseArgsDict']]] = None,
                  family_name: Optional[pulumi.Input[_builtins.str]] = None,
                  given_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -636,39 +663,16 @@ class User(pulumi.CustomResource):
 
         The IdentityCenter user can be imported using the `identity_store_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/user:User test <identity_store_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/user:User test <identity_store_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password_mode`. It is generally
-
         recommended running `pulumi preview` after importing an IdentityCenter user. You can then decide if changes should be
-
         applied to the IdentityCenter user, or the resource definition should be updated to align with the instance. Also, you
-
         can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_identitycenter_user" "user" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password_mode,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -676,11 +680,14 @@ class User(pulumi.CustomResource):
                The addresses structure is documented below.
         :param pulumi.Input[_builtins.str] display_name: Specifies the display name of the user.
         :param pulumi.Input[_builtins.str] email: Specifies the email of the user.
-        :param pulumi.Input[Union['UserEnterpriseArgs', 'UserEnterpriseArgsDict']] enterprise: Specifies the enterprise information of the user.
-               The enterprise structure is documented below.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled. Value options:
+               + **true**
+               + **false**
                
                <a name="addresses_struct"></a>
                The `addresses` block supports:
+        :param pulumi.Input[Union['UserEnterpriseArgs', 'UserEnterpriseArgsDict']] enterprise: Specifies the enterprise information of the user.
+               The enterprise structure is documented below.
         :param pulumi.Input[_builtins.str] family_name: Specifies the family name of the user.
         :param pulumi.Input[_builtins.str] given_name: Specifies the given name of the user.
         :param pulumi.Input[_builtins.str] identity_store_id: Specifies the ID of the identity store.
@@ -730,39 +737,16 @@ class User(pulumi.CustomResource):
 
         The IdentityCenter user can be imported using the `identity_store_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/user:User test <identity_store_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/user:User test <identity_store_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password_mode`. It is generally
-
         recommended running `pulumi preview` after importing an IdentityCenter user. You can then decide if changes should be
-
         applied to the IdentityCenter user, or the resource definition should be updated to align with the instance. Also, you
-
         can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_identitycenter_user" "user" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password_mode,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.
@@ -782,6 +766,7 @@ class User(pulumi.CustomResource):
                  addresses: Optional[pulumi.Input[Union['UserAddressesArgs', 'UserAddressesArgsDict']]] = None,
                  display_name: Optional[pulumi.Input[_builtins.str]] = None,
                  email: Optional[pulumi.Input[_builtins.str]] = None,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  enterprise: Optional[pulumi.Input[Union['UserEnterpriseArgs', 'UserEnterpriseArgsDict']]] = None,
                  family_name: Optional[pulumi.Input[_builtins.str]] = None,
                  given_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -808,6 +793,7 @@ class User(pulumi.CustomResource):
             if email is None and not opts.urn:
                 raise TypeError("Missing required property 'email'")
             __props__.__dict__["email"] = email
+            __props__.__dict__["enabled"] = enabled
             __props__.__dict__["enterprise"] = enterprise
             if family_name is None and not opts.urn:
                 raise TypeError("Missing required property 'family_name'")
@@ -831,11 +817,10 @@ class User(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["created_by"] = None
             __props__.__dict__["email_verified"] = None
-            __props__.__dict__["enabled"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["updated_by"] = None
         super(User, __self__).__init__(
-            'huaweicloud:identitycenter/user:User',
+            'huaweicloud:Identitycenter/user:User',
             resource_name,
             __props__,
             opts)
@@ -877,12 +862,14 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] display_name: Specifies the display name of the user.
         :param pulumi.Input[_builtins.str] email: Specifies the email of the user.
         :param pulumi.Input[_builtins.bool] email_verified: Whether the email is verified.
-        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled.
-        :param pulumi.Input[Union['UserEnterpriseArgs', 'UserEnterpriseArgsDict']] enterprise: Specifies the enterprise information of the user.
-               The enterprise structure is documented below.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled. Value options:
+               + **true**
+               + **false**
                
                <a name="addresses_struct"></a>
                The `addresses` block supports:
+        :param pulumi.Input[Union['UserEnterpriseArgs', 'UserEnterpriseArgsDict']] enterprise: Specifies the enterprise information of the user.
+               The enterprise structure is documented below.
         :param pulumi.Input[_builtins.str] family_name: Specifies the family name of the user.
         :param pulumi.Input[_builtins.str] given_name: Specifies the given name of the user.
         :param pulumi.Input[_builtins.str] identity_store_id: Specifies the ID of the identity store.
@@ -981,7 +968,12 @@ class User(pulumi.CustomResource):
     @pulumi.getter
     def enabled(self) -> pulumi.Output[_builtins.bool]:
         """
-        Whether the user is enabled.
+        Whether the user is enabled. Value options:
+        + **true**
+        + **false**
+
+        <a name="addresses_struct"></a>
+        The `addresses` block supports:
         """
         return pulumi.get(self, "enabled")
 
@@ -991,9 +983,6 @@ class User(pulumi.CustomResource):
         """
         Specifies the enterprise information of the user.
         The enterprise structure is documented below.
-
-        <a name="addresses_struct"></a>
-        The `addresses` block supports:
         """
         return pulumi.get(self, "enterprise")
 

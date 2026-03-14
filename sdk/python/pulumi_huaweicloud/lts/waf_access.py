@@ -26,6 +26,7 @@ class WafAccessArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WafAccess resource.
+
         :param pulumi.Input[_builtins.str] lts_group_id: Specifies the log group ID.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.  
                This parameter is only valid for enterprise users. If not specified, the default enterprise project will be used.
@@ -127,6 +128,7 @@ class _WafAccessState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WafAccess resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.  
                This parameter is only valid for enterprise users. If not specified, the default enterprise project will be used.
                The default enterprise project ID is **0**.
@@ -258,19 +260,16 @@ class WafAccess(pulumi.CustomResource):
 
         For enterprise users, The resource can be imported using the `enterprise_project_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/wafAccess:WafAccess test <enterprise_project_id>
         ```
 
         For non-enterprise users, The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/wafAccess:WafAccess test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -320,19 +319,16 @@ class WafAccess(pulumi.CustomResource):
 
         For enterprise users, The resource can be imported using the `enterprise_project_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/wafAccess:WafAccess test <enterprise_project_id>
         ```
 
         For non-enterprise users, The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/wafAccess:WafAccess test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WafAccessArgs args: The arguments to use to populate this resource's properties.

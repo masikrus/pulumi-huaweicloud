@@ -40,6 +40,7 @@ class ResourcePoolArgs:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ResourcePool resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ResourcePoolResourceArgs']]] resources: Specifies the list of resource specifications in the resource pool.  
                Including resource flavors and the number of resources of the corresponding flavors.
                The resources structure is documented below.
@@ -409,6 +410,7 @@ class _ResourcePoolState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ResourcePool resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
                
                > 1. `charging_mode`, `period_unit`, `period`, `auto_renew` are mandatory when `vpc_id` is specified.
@@ -1012,41 +1014,17 @@ class ResourcePool(pulumi.CustomResource):
 
         The ModelArts resource pool can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/resourcePool:ResourcePool test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`, `period`, `auto_renew`,
-
         `user_login`, `metadata`. It is generally recommended running `pulumi preview` after importing a ModelArts
-
         resource pool
-
         You can then decide if changes should be applied to the ModelArts resource pool, or the resource definition should be
-
         updated to align with the ModelArts resource pool. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_resource_pool" "resource_pool" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew, user_login, metadata
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1292,41 +1270,17 @@ class ResourcePool(pulumi.CustomResource):
 
         The ModelArts resource pool can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/resourcePool:ResourcePool test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`, `period`, `auto_renew`,
-
         `user_login`, `metadata`. It is generally recommended running `pulumi preview` after importing a ModelArts
-
         resource pool
-
         You can then decide if changes should be applied to the ModelArts resource pool, or the resource definition should be
-
         updated to align with the ModelArts resource pool. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_resource_pool" "resource_pool" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew, user_login, metadata
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ResourcePoolArgs args: The arguments to use to populate this resource's properties.

@@ -24,6 +24,7 @@ class VolumeTransferArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VolumeTransfer resource.
+
         :param pulumi.Input[_builtins.str] volume_id: Specifies the volume ID to be transferred.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the volume transfer record.
@@ -87,6 +88,7 @@ class _VolumeTransferState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VolumeTransfer resources.
+
         :param pulumi.Input[_builtins.str] auth_key: The identity authentication key for volume transfer.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the volume transfer record, in RFC3339 format.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the volume transfer record.
@@ -208,6 +210,7 @@ class VolumeTransfer(pulumi.CustomResource):
             name=name)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the volume transfer record.
@@ -249,6 +252,7 @@ class VolumeTransfer(pulumi.CustomResource):
             volume_id=volume_id,
             name=name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VolumeTransferArgs args: The arguments to use to populate this resource's properties.

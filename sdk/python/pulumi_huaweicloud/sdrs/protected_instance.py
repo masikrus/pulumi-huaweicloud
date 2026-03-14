@@ -32,6 +32,7 @@ class ProtectedInstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ProtectedInstance resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the protection group where a protected instance is
                added.
                
@@ -271,6 +272,7 @@ class _ProtectedInstanceState:
                  target_server: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProtectedInstance resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DSS storage pool ID.
                This parameter needs to be specified if the disaster recovery site disk uses distributed storage.
                
@@ -510,7 +512,7 @@ class _ProtectedInstanceState:
         pulumi.set(self, "target_server", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/protectedInstance:ProtectedInstance")
+@pulumi.type_token("huaweicloud:Sdrs/protectedInstance:ProtectedInstance")
 class ProtectedInstance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -557,49 +559,17 @@ class ProtectedInstance(pulumi.CustomResource):
 
         The SDRS protected instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/protectedInstance:ProtectedInstance test <id>
+        $ pulumi import huaweicloud:Sdrs/protectedInstance:ProtectedInstance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `cluster_id`, `primary_subnet_id`, `primary_ip_address`, `delete_target_server` and `delete_target_eip`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sdrs_protected_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              cluster_id,
-            
-              primary_subnet_id,
-            
-              primary_ip_address,
-            
-              delete_target_server,
-            
-              delete_target_eip,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -678,49 +648,17 @@ class ProtectedInstance(pulumi.CustomResource):
 
         The SDRS protected instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/protectedInstance:ProtectedInstance test <id>
+        $ pulumi import huaweicloud:Sdrs/protectedInstance:ProtectedInstance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `cluster_id`, `primary_subnet_id`, `primary_ip_address`, `delete_target_server` and `delete_target_eip`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sdrs_protected_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              cluster_id,
-            
-              primary_subnet_id,
-            
-              primary_ip_address,
-            
-              delete_target_server,
-            
-              delete_target_eip,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ProtectedInstanceArgs args: The arguments to use to populate this resource's properties.
@@ -774,7 +712,7 @@ class ProtectedInstance(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["target_server"] = None
         super(ProtectedInstance, __self__).__init__(
-            'huaweicloud:sdrs/protectedInstance:ProtectedInstance',
+            'huaweicloud:Sdrs/protectedInstance:ProtectedInstance',
             resource_name,
             __props__,
             opts)

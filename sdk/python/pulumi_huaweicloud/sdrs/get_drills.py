@@ -134,7 +134,7 @@ def get_drills(drill_vpc_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_drills()
+    test = huaweicloud.Sdrs.get_drills()
     ```
 
 
@@ -154,7 +154,7 @@ def get_drills(drill_vpc_id: Optional[_builtins.str] = None,
     __args__['serverGroupId'] = server_group_id
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:sdrs/getDrills:getDrills', __args__, opts=opts, typ=GetDrillsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Sdrs/getDrills:getDrills', __args__, opts=opts, typ=GetDrillsResult).value
 
     return AwaitableGetDrillsResult(
         disaster_recovery_drills=pulumi.get(__ret__, 'disaster_recovery_drills'),
@@ -179,7 +179,7 @@ def get_drills_output(drill_vpc_id: Optional[pulumi.Input[Optional[_builtins.str
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_drills()
+    test = huaweicloud.Sdrs.get_drills()
     ```
 
 
@@ -199,7 +199,7 @@ def get_drills_output(drill_vpc_id: Optional[pulumi.Input[Optional[_builtins.str
     __args__['serverGroupId'] = server_group_id
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:sdrs/getDrills:getDrills', __args__, opts=opts, typ=GetDrillsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Sdrs/getDrills:getDrills', __args__, opts=opts, typ=GetDrillsResult)
     return __ret__.apply(lambda __response__: GetDrillsResult(
         disaster_recovery_drills=pulumi.get(__response__, 'disaster_recovery_drills'),
         drill_vpc_id=pulumi.get(__response__, 'drill_vpc_id'),

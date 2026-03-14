@@ -40,9 +40,11 @@ __all__ = [
     'GetResourcesByTagsTagResult',
     'GetResourcesByTagsTagsAnyResult',
     'GetTagsTagResult',
+    'GetVifPeerDetectionsVifPeerDetectionResult',
     'GetVirtualGatewaysVirtualGatewayResult',
     'GetVirtualInterfaceSwitchoverRecordsSwitchoverTestRecordResult',
     'GetVirtualInterfacesVirtualInterfaceResult',
+    'GetVirtualInterfacesVirtualInterfaceExtendAttributeResult',
     'GetVirtualInterfacesVirtualInterfaceVifPeerResult',
 ]
 
@@ -264,6 +266,10 @@ class VirtualInterfaceExtendAttribute(dict):
             suggest = "ha_mode"
         elif key == "haType":
             suggest = "ha_type"
+        elif key == "ipv6LocalDisclaim":
+            suggest = "ipv6_local_disclaim"
+        elif key == "ipv6RemoteDisclaim":
+            suggest = "ipv6_remote_disclaim"
         elif key == "localDisclaim":
             suggest = "local_disclaim"
         elif key == "minRxInterval":
@@ -288,18 +294,36 @@ class VirtualInterfaceExtendAttribute(dict):
                  detect_multiplier: Optional[_builtins.int] = None,
                  ha_mode: Optional[_builtins.str] = None,
                  ha_type: Optional[_builtins.str] = None,
+                 ipv6_local_disclaim: Optional[_builtins.int] = None,
+                 ipv6_remote_disclaim: Optional[_builtins.int] = None,
                  local_disclaim: Optional[_builtins.int] = None,
                  min_rx_interval: Optional[_builtins.int] = None,
                  min_tx_interval: Optional[_builtins.int] = None,
                  remote_disclaim: Optional[_builtins.int] = None):
         """
         :param _builtins.int detect_multiplier: The number of detection retries.
+               The valid value is range from `3` to `20`. The default value is `3`.
         :param _builtins.str ha_mode: The availability detection mode.
-        :param _builtins.str ha_type: The availability detection type of the virtual interface.
+               
+               Valid values are:
+               + **auto_single**: auto single bfd detection.
+               + **auto_multi**: auto multi bfd detection.
+               + **static_single**: static single bfd detection.
+               + **static_multi**: static multi bfd detection.
+               + **enhance_nqa**: enhance nqa detection.
+        :param _builtins.str ha_type: The availability detection type of the virtual interface. The value can be **bfd** or **nqa**
+        :param _builtins.int ipv6_local_disclaim: The local identifier of the static IPv6 BFD session.
+               The valid value is range from `1` to `16384`.
+        :param _builtins.int ipv6_remote_disclaim: The remote identifier of the static IPv6 BFD session.
+               The valid value is range from `1` to `16384`.
         :param _builtins.int local_disclaim: The local identifier of the static BFD session.
+               The valid value is range from `1` to `16384`.
         :param _builtins.int min_rx_interval: The interval for receiving detection packets.
+               The valid value is range from `200` to `5000`. The default value is `1000`.
         :param _builtins.int min_tx_interval: The interval for sending detection packets.
+               The valid value is range from `200` to `5000`. The default value is `1000`.
         :param _builtins.int remote_disclaim: The remote identifier of the static BFD session.
+               The valid value is range from `1` to `16384`.
         """
         if detect_multiplier is not None:
             pulumi.set(__self__, "detect_multiplier", detect_multiplier)
@@ -307,6 +331,10 @@ class VirtualInterfaceExtendAttribute(dict):
             pulumi.set(__self__, "ha_mode", ha_mode)
         if ha_type is not None:
             pulumi.set(__self__, "ha_type", ha_type)
+        if ipv6_local_disclaim is not None:
+            pulumi.set(__self__, "ipv6_local_disclaim", ipv6_local_disclaim)
+        if ipv6_remote_disclaim is not None:
+            pulumi.set(__self__, "ipv6_remote_disclaim", ipv6_remote_disclaim)
         if local_disclaim is not None:
             pulumi.set(__self__, "local_disclaim", local_disclaim)
         if min_rx_interval is not None:
@@ -321,6 +349,7 @@ class VirtualInterfaceExtendAttribute(dict):
     def detect_multiplier(self) -> Optional[_builtins.int]:
         """
         The number of detection retries.
+        The valid value is range from `3` to `20`. The default value is `3`.
         """
         return pulumi.get(self, "detect_multiplier")
 
@@ -329,6 +358,13 @@ class VirtualInterfaceExtendAttribute(dict):
     def ha_mode(self) -> Optional[_builtins.str]:
         """
         The availability detection mode.
+
+        Valid values are:
+        + **auto_single**: auto single bfd detection.
+        + **auto_multi**: auto multi bfd detection.
+        + **static_single**: static single bfd detection.
+        + **static_multi**: static multi bfd detection.
+        + **enhance_nqa**: enhance nqa detection.
         """
         return pulumi.get(self, "ha_mode")
 
@@ -336,15 +372,34 @@ class VirtualInterfaceExtendAttribute(dict):
     @pulumi.getter(name="haType")
     def ha_type(self) -> Optional[_builtins.str]:
         """
-        The availability detection type of the virtual interface.
+        The availability detection type of the virtual interface. The value can be **bfd** or **nqa**
         """
         return pulumi.get(self, "ha_type")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6LocalDisclaim")
+    def ipv6_local_disclaim(self) -> Optional[_builtins.int]:
+        """
+        The local identifier of the static IPv6 BFD session.
+        The valid value is range from `1` to `16384`.
+        """
+        return pulumi.get(self, "ipv6_local_disclaim")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6RemoteDisclaim")
+    def ipv6_remote_disclaim(self) -> Optional[_builtins.int]:
+        """
+        The remote identifier of the static IPv6 BFD session.
+        The valid value is range from `1` to `16384`.
+        """
+        return pulumi.get(self, "ipv6_remote_disclaim")
 
     @_builtins.property
     @pulumi.getter(name="localDisclaim")
     def local_disclaim(self) -> Optional[_builtins.int]:
         """
         The local identifier of the static BFD session.
+        The valid value is range from `1` to `16384`.
         """
         return pulumi.get(self, "local_disclaim")
 
@@ -353,6 +408,7 @@ class VirtualInterfaceExtendAttribute(dict):
     def min_rx_interval(self) -> Optional[_builtins.int]:
         """
         The interval for receiving detection packets.
+        The valid value is range from `200` to `5000`. The default value is `1000`.
         """
         return pulumi.get(self, "min_rx_interval")
 
@@ -361,6 +417,7 @@ class VirtualInterfaceExtendAttribute(dict):
     def min_tx_interval(self) -> Optional[_builtins.int]:
         """
         The interval for sending detection packets.
+        The valid value is range from `200` to `5000`. The default value is `1000`.
         """
         return pulumi.get(self, "min_tx_interval")
 
@@ -369,6 +426,7 @@ class VirtualInterfaceExtendAttribute(dict):
     def remote_disclaim(self) -> Optional[_builtins.int]:
         """
         The remote identifier of the static BFD session.
+        The valid value is range from `1` to `16384`.
         """
         return pulumi.get(self, "remote_disclaim")
 
@@ -2478,6 +2536,101 @@ class GetTagsTagResult(dict):
 
 
 @pulumi.output_type
+class GetVifPeerDetectionsVifPeerDetectionResult(dict):
+    def __init__(__self__, *,
+                 domain_id: _builtins.str,
+                 end_time: _builtins.str,
+                 id: _builtins.str,
+                 loss_ratio: _builtins.int,
+                 project_id: _builtins.str,
+                 start_time: _builtins.str,
+                 status: _builtins.str,
+                 vif_peer_id: _builtins.str):
+        """
+        :param _builtins.str domain_id: Indicates the domain ID.
+        :param _builtins.str end_time: Indicates the end time of the virtual interface peer detection.
+        :param _builtins.str id: The virtual interface peer detection ID.
+        :param _builtins.int loss_ratio: Indicates the loss ratio.
+        :param _builtins.str project_id: Indicates the project ID.
+        :param _builtins.str start_time: Indicates the start time of the virtual interface peer detection.
+        :param _builtins.str status: Indicates the status of the virtual interface peer detection.
+        :param _builtins.str vif_peer_id: Specifies the ID of the virtual interface peer.
+        """
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "loss_ratio", loss_ratio)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "vif_peer_id", vif_peer_id)
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the domain ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.str:
+        """
+        Indicates the end time of the virtual interface peer detection.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The virtual interface peer detection ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lossRatio")
+    def loss_ratio(self) -> _builtins.int:
+        """
+        Indicates the loss ratio.
+        """
+        return pulumi.get(self, "loss_ratio")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        Indicates the start time of the virtual interface peer detection.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the status of the virtual interface peer detection.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="vifPeerId")
+    def vif_peer_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the virtual interface peer.
+        """
+        return pulumi.get(self, "vif_peer_id")
+
+
+@pulumi.output_type
 class GetVirtualGatewaysVirtualGatewayResult(dict):
     def __init__(__self__, *,
                  asn: _builtins.int,
@@ -2693,6 +2846,7 @@ class GetVirtualInterfacesVirtualInterfaceResult(dict):
                  enable_bfd: _builtins.bool,
                  enable_nqa: _builtins.bool,
                  enterprise_project_id: _builtins.str,
+                 extend_attributes: Sequence['outputs.GetVirtualInterfacesVirtualInterfaceExtendAttributeResult'],
                  id: _builtins.str,
                  lag_id: _builtins.str,
                  local_gateway_v4_ip: _builtins.str,
@@ -2713,14 +2867,17 @@ class GetVirtualInterfacesVirtualInterfaceResult(dict):
         :param _builtins.int asn: The (ASN) number for the local BGP.
         :param _builtins.int bandwidth: The bandwidth of the virtual interface.
         :param _builtins.str bgp_md5: The MD5 password of the BGP peer.
-        :param _builtins.str created_at: The create time of the virtual interface.
+        :param _builtins.str created_at: The creation time of the virtual interface.
         :param _builtins.str description: The description of the virtual interface peer.
         :param _builtins.str device_id: The ID of the device that the virtual interface peer belongs to.
-        :param _builtins.str direct_connect_id: Specifies the ID of the direct connection associated with the virtual interface.
+        :param _builtins.str direct_connect_id: Specifies the ID of the direct connection associated with the virtual
+               interface.
         :param _builtins.bool enable_bfd: Whether to enable BFD.
         :param _builtins.bool enable_nqa: Whether to enable NQA.
-        :param _builtins.str enterprise_project_id: Indicates the ID of the enterprise project
+        :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project
                that the virtual interface belongs to.
+        :param Sequence['GetVirtualInterfacesVirtualInterfaceExtendAttributeArgs'] extend_attributes: The extended parameter information.
+               The extend_attribute structure is documented below.
         :param _builtins.str id: The VIF peer resource ID.
         :param _builtins.str lag_id: The link aggregation group ID associated with vif of the virtual interface.
         :param _builtins.str local_gateway_v4_ip: The cloud side gateway IPv4 interface address of the virtual interface.
@@ -2749,6 +2906,7 @@ class GetVirtualInterfacesVirtualInterfaceResult(dict):
         pulumi.set(__self__, "enable_bfd", enable_bfd)
         pulumi.set(__self__, "enable_nqa", enable_nqa)
         pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "extend_attributes", extend_attributes)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "lag_id", lag_id)
         pulumi.set(__self__, "local_gateway_v4_ip", local_gateway_v4_ip)
@@ -2801,7 +2959,7 @@ class GetVirtualInterfacesVirtualInterfaceResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
         """
-        The create time of the virtual interface.
+        The creation time of the virtual interface.
         """
         return pulumi.get(self, "created_at")
 
@@ -2825,7 +2983,8 @@ class GetVirtualInterfacesVirtualInterfaceResult(dict):
     @pulumi.getter(name="directConnectId")
     def direct_connect_id(self) -> _builtins.str:
         """
-        Specifies the ID of the direct connection associated with the virtual interface.
+        Specifies the ID of the direct connection associated with the virtual
+        interface.
         """
         return pulumi.get(self, "direct_connect_id")
 
@@ -2849,10 +3008,19 @@ class GetVirtualInterfacesVirtualInterfaceResult(dict):
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> _builtins.str:
         """
-        Indicates the ID of the enterprise project
+        Specifies the ID of the enterprise project
         that the virtual interface belongs to.
         """
         return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="extendAttributes")
+    def extend_attributes(self) -> Sequence['outputs.GetVirtualInterfacesVirtualInterfaceExtendAttributeResult']:
+        """
+        The extended parameter information.
+        The extend_attribute structure is documented below.
+        """
+        return pulumi.get(self, "extend_attributes")
 
     @_builtins.property
     @pulumi.getter
@@ -2974,6 +3142,112 @@ class GetVirtualInterfacesVirtualInterfaceResult(dict):
         The VLAN connected to the user gateway of the virtual interface.
         """
         return pulumi.get(self, "vlan")
+
+
+@pulumi.output_type
+class GetVirtualInterfacesVirtualInterfaceExtendAttributeResult(dict):
+    def __init__(__self__, *,
+                 detect_multiplier: _builtins.int,
+                 ha_mode: _builtins.str,
+                 ha_type: _builtins.str,
+                 ipv6_local_disclaim: _builtins.int,
+                 ipv6_remote_disclaim: _builtins.int,
+                 local_disclaim: _builtins.int,
+                 min_rx_interval: _builtins.int,
+                 min_tx_interval: _builtins.int,
+                 remote_disclaim: _builtins.int):
+        """
+        :param _builtins.int detect_multiplier: The number of detection retries.
+        :param _builtins.str ha_mode: The availability detection mode.
+        :param _builtins.str ha_type: The availability detection type of the virtual interface.
+        :param _builtins.int ipv6_local_disclaim: The local identifier of the static IPv6 BFD session.
+        :param _builtins.int ipv6_remote_disclaim: The remote identifier of the static IPv6 BFD session.
+        :param _builtins.int local_disclaim: The local identifier of the static BFD session.
+        :param _builtins.int min_rx_interval: The interval for receiving detection packets.
+        :param _builtins.int min_tx_interval: The interval for sending detection packets.
+        :param _builtins.int remote_disclaim: The remote identifier of the static BFD session.
+        """
+        pulumi.set(__self__, "detect_multiplier", detect_multiplier)
+        pulumi.set(__self__, "ha_mode", ha_mode)
+        pulumi.set(__self__, "ha_type", ha_type)
+        pulumi.set(__self__, "ipv6_local_disclaim", ipv6_local_disclaim)
+        pulumi.set(__self__, "ipv6_remote_disclaim", ipv6_remote_disclaim)
+        pulumi.set(__self__, "local_disclaim", local_disclaim)
+        pulumi.set(__self__, "min_rx_interval", min_rx_interval)
+        pulumi.set(__self__, "min_tx_interval", min_tx_interval)
+        pulumi.set(__self__, "remote_disclaim", remote_disclaim)
+
+    @_builtins.property
+    @pulumi.getter(name="detectMultiplier")
+    def detect_multiplier(self) -> _builtins.int:
+        """
+        The number of detection retries.
+        """
+        return pulumi.get(self, "detect_multiplier")
+
+    @_builtins.property
+    @pulumi.getter(name="haMode")
+    def ha_mode(self) -> _builtins.str:
+        """
+        The availability detection mode.
+        """
+        return pulumi.get(self, "ha_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="haType")
+    def ha_type(self) -> _builtins.str:
+        """
+        The availability detection type of the virtual interface.
+        """
+        return pulumi.get(self, "ha_type")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6LocalDisclaim")
+    def ipv6_local_disclaim(self) -> _builtins.int:
+        """
+        The local identifier of the static IPv6 BFD session.
+        """
+        return pulumi.get(self, "ipv6_local_disclaim")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6RemoteDisclaim")
+    def ipv6_remote_disclaim(self) -> _builtins.int:
+        """
+        The remote identifier of the static IPv6 BFD session.
+        """
+        return pulumi.get(self, "ipv6_remote_disclaim")
+
+    @_builtins.property
+    @pulumi.getter(name="localDisclaim")
+    def local_disclaim(self) -> _builtins.int:
+        """
+        The local identifier of the static BFD session.
+        """
+        return pulumi.get(self, "local_disclaim")
+
+    @_builtins.property
+    @pulumi.getter(name="minRxInterval")
+    def min_rx_interval(self) -> _builtins.int:
+        """
+        The interval for receiving detection packets.
+        """
+        return pulumi.get(self, "min_rx_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="minTxInterval")
+    def min_tx_interval(self) -> _builtins.int:
+        """
+        The interval for sending detection packets.
+        """
+        return pulumi.get(self, "min_tx_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteDisclaim")
+    def remote_disclaim(self) -> _builtins.int:
+        """
+        The remote identifier of the static BFD session.
+        """
+        return pulumi.get(self, "remote_disclaim")
 
 
 @pulumi.output_type

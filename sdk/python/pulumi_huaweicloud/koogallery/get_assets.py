@@ -124,7 +124,7 @@ def get_assets(asset_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     asset_id = config.require_object("assetId")
-    flavor = huaweicloud.koogallery.get_assets(asset_id=asset_id,
+    flavor = huaweicloud.Koogallery.get_assets(asset_id=asset_id,
         deployed_type="software_package",
         asset_version="V1.0")
     ```
@@ -141,7 +141,7 @@ def get_assets(asset_id: Optional[_builtins.str] = None,
     __args__['deployedType'] = deployed_type
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:koogallery/getAssets:getAssets', __args__, opts=opts, typ=GetAssetsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Koogallery/getAssets:getAssets', __args__, opts=opts, typ=GetAssetsResult).value
 
     return AwaitableGetAssetsResult(
         asset_id=pulumi.get(__ret__, 'asset_id'),
@@ -166,7 +166,7 @@ def get_assets_output(asset_id: Optional[pulumi.Input[_builtins.str]] = None,
 
     config = pulumi.Config()
     asset_id = config.require_object("assetId")
-    flavor = huaweicloud.koogallery.get_assets(asset_id=asset_id,
+    flavor = huaweicloud.Koogallery.get_assets(asset_id=asset_id,
         deployed_type="software_package",
         asset_version="V1.0")
     ```
@@ -183,7 +183,7 @@ def get_assets_output(asset_id: Optional[pulumi.Input[_builtins.str]] = None,
     __args__['deployedType'] = deployed_type
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:koogallery/getAssets:getAssets', __args__, opts=opts, typ=GetAssetsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Koogallery/getAssets:getAssets', __args__, opts=opts, typ=GetAssetsResult)
     return __ret__.apply(lambda __response__: GetAssetsResult(
         asset_id=pulumi.get(__response__, 'asset_id'),
         asset_version=pulumi.get(__response__, 'asset_version'),

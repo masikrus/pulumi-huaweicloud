@@ -28,6 +28,7 @@ class RouteArgs:
                  route_table_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Route resource.
+
         :param pulumi.Input[_builtins.str] destination: Specifies the destination address in the CIDR notation format,
                for example, 192.168.200.0/24. The destination of each route must be unique and cannot overlap with any
                subnet in the VPC. Changing this creates a new resource.
@@ -35,7 +36,7 @@ class RouteArgs:
                + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
                + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
                + If the route type is **vip**, the value is a virtual IP address.
-               + If the route type is **nat**, the value is a VPN gateway ID.
+               + If the route type is **nat**, the value is a NAT gateway ID.
                + If the route type is **peering**, the value is a VPC peering connection ID.
                + If the route type is **vpn**, the value is a VPN gateway ID.
                + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -86,7 +87,7 @@ class RouteArgs:
         + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
         + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
         + If the route type is **vip**, the value is a virtual IP address.
-        + If the route type is **nat**, the value is a VPN gateway ID.
+        + If the route type is **nat**, the value is a NAT gateway ID.
         + If the route type is **peering**, the value is a VPC peering connection ID.
         + If the route type is **vpn**, the value is a VPN gateway ID.
         + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -179,6 +180,7 @@ class _RouteState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Route resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the route.
                The value is a string of no more than `255` characters and cannot contain angle brackets (< or >).
         :param pulumi.Input[_builtins.str] destination: Specifies the destination address in the CIDR notation format,
@@ -188,7 +190,7 @@ class _RouteState:
                + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
                + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
                + If the route type is **vip**, the value is a virtual IP address.
-               + If the route type is **nat**, the value is a VPN gateway ID.
+               + If the route type is **nat**, the value is a NAT gateway ID.
                + If the route type is **peering**, the value is a VPC peering connection ID.
                + If the route type is **vpn**, the value is a VPN gateway ID.
                + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -257,7 +259,7 @@ class _RouteState:
         + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
         + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
         + If the route type is **vip**, the value is a virtual IP address.
-        + If the route type is **nat**, the value is a VPN gateway ID.
+        + If the route type is **nat**, the value is a NAT gateway ID.
         + If the route type is **peering**, the value is a VPC peering connection ID.
         + If the route type is **vpn**, the value is a VPN gateway ID.
         + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -394,11 +396,10 @@ class Route(pulumi.CustomResource):
 
         VPC routes can be imported using the route table ID and their `destination` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/route:Route test <route_table_id>/<destination>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -411,7 +412,7 @@ class Route(pulumi.CustomResource):
                + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
                + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
                + If the route type is **vip**, the value is a virtual IP address.
-               + If the route type is **nat**, the value is a VPN gateway ID.
+               + If the route type is **nat**, the value is a NAT gateway ID.
                + If the route type is **peering**, the value is a VPC peering connection ID.
                + If the route type is **vpn**, the value is a VPN gateway ID.
                + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -477,11 +478,10 @@ class Route(pulumi.CustomResource):
 
         VPC routes can be imported using the route table ID and their `destination` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/route:Route test <route_table_id>/<destination>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RouteArgs args: The arguments to use to populate this resource's properties.
@@ -564,7 +564,7 @@ class Route(pulumi.CustomResource):
                + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
                + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
                + If the route type is **vip**, the value is a virtual IP address.
-               + If the route type is **nat**, the value is a VPN gateway ID.
+               + If the route type is **nat**, the value is a NAT gateway ID.
                + If the route type is **peering**, the value is a VPC peering connection ID.
                + If the route type is **vpn**, the value is a VPN gateway ID.
                + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -622,7 +622,7 @@ class Route(pulumi.CustomResource):
         + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
         + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
         + If the route type is **vip**, the value is a virtual IP address.
-        + If the route type is **nat**, the value is a VPN gateway ID.
+        + If the route type is **nat**, the value is a NAT gateway ID.
         + If the route type is **peering**, the value is a VPC peering connection ID.
         + If the route type is **vpn**, the value is a VPN gateway ID.
         + If the route type is **dc**, the value is a Direct Connect gateway ID.

@@ -30,6 +30,7 @@ class FirewallGroupV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a FirewallGroupV2 resource.
+
         :param pulumi.Input[_builtins.bool] admin_state_up: Administrative up/down status for the firewall group
                (must be "true" or "false" if provided - defaults to "true"). Changing this updates the `admin_state_up` of an
                existing firewall group.
@@ -200,6 +201,7 @@ class _FirewallGroupV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering FirewallGroupV2 resources.
+
         :param pulumi.Input[_builtins.bool] admin_state_up: Administrative up/down status for the firewall group
                (must be "true" or "false" if provided - defaults to "true"). Changing this updates the `admin_state_up` of an
                existing firewall group.
@@ -356,7 +358,7 @@ class _FirewallGroupV2State:
         pulumi.set(self, "value_specs", value)
 
 
-@pulumi.type_token("huaweicloud:fw/firewallGroupV2:FirewallGroupV2")
+@pulumi.type_token("huaweicloud:Fw/firewallGroupV2:FirewallGroupV2")
 class FirewallGroupV2(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -412,11 +414,10 @@ class FirewallGroupV2(pulumi.CustomResource):
 
         Firewall Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:fw/firewallGroupV2:FirewallGroupV2 firewall_group_1 c9e39fb2-ce20-46c8-a964-25f3898c7a97
+        $ pulumi import huaweicloud:Fw/firewallGroupV2:FirewallGroupV2 firewall_group_1 c9e39fb2-ce20-46c8-a964-25f3898c7a97
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -484,11 +485,10 @@ class FirewallGroupV2(pulumi.CustomResource):
 
         Firewall Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:fw/firewallGroupV2:FirewallGroupV2 firewall_group_1 c9e39fb2-ce20-46c8-a964-25f3898c7a97
+        $ pulumi import huaweicloud:Fw/firewallGroupV2:FirewallGroupV2 firewall_group_1 c9e39fb2-ce20-46c8-a964-25f3898c7a97
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FirewallGroupV2Args args: The arguments to use to populate this resource's properties.
@@ -533,7 +533,7 @@ class FirewallGroupV2(pulumi.CustomResource):
             __props__.__dict__["tenant_id"] = tenant_id
             __props__.__dict__["value_specs"] = value_specs
         super(FirewallGroupV2, __self__).__init__(
-            'huaweicloud:fw/firewallGroupV2:FirewallGroupV2',
+            'huaweicloud:Fw/firewallGroupV2:FirewallGroupV2',
             resource_name,
             __props__,
             opts)

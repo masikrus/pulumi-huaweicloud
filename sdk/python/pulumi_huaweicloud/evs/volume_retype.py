@@ -28,6 +28,7 @@ class VolumeRetypeArgs:
                  throughput: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VolumeRetype resource.
+
         :param pulumi.Input[_builtins.str] new_type: Specifies the cloud disk type which change to. Possible values are:
                + **SAS**: High I/O type.
                + **SSD**: Ultra-high I/O type.
@@ -182,6 +183,7 @@ class _VolumeRetypeState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VolumeRetype resources.
+
         :param pulumi.Input[_builtins.str] iops: Specifies the new maximum IOPS of the disk. This parameter is supported
                only for general purpose SSD V2 and extreme SSD V2 disks.
         :param pulumi.Input[_builtins.str] is_auto_pay: Specifies whether to pay immediately. This parameter is valid only
@@ -348,6 +350,21 @@ class VolumeRetype(pulumi.CustomResource):
         >    will affect other resource with `volume_type` parameter, such as `Evs.Volume`. You can handle the changes
         >    in the affected resource by `lifecycle.ignore_changes`.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        volume_id = config.require_object("volumeId")
+        snapshot_id = config.require_object("snapshotId")
+        test = huaweicloud.evs.VolumeRetype("test",
+            volume_id=volume_id,
+            snapshot_id=snapshot_id)
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] iops: Specifies the new maximum IOPS of the disk. This parameter is supported
@@ -390,6 +407,21 @@ class VolumeRetype(pulumi.CustomResource):
         >    but will only remove the resource information from the tfstate file.<br>2. The `new_type` parameters of this resource
         >    will affect other resource with `volume_type` parameter, such as `Evs.Volume`. You can handle the changes
         >    in the affected resource by `lifecycle.ignore_changes`.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        volume_id = config.require_object("volumeId")
+        snapshot_id = config.require_object("snapshotId")
+        test = huaweicloud.evs.VolumeRetype("test",
+            volume_id=volume_id,
+            snapshot_id=snapshot_id)
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param VolumeRetypeArgs args: The arguments to use to populate this resource's properties.

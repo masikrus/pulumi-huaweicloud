@@ -25,6 +25,7 @@ class GroupMembershipArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupMembership resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the group.
                
                Changing this parameter will create a new resource.
@@ -108,6 +109,7 @@ class _GroupMembershipState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupMembership resources.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the group.
                
                Changing this parameter will create a new resource.
@@ -185,7 +187,7 @@ class _GroupMembershipState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/groupMembership:GroupMembership")
+@pulumi.type_token("huaweicloud:Identitycenter/groupMembership:GroupMembership")
 class GroupMembership(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -208,7 +210,7 @@ class GroupMembership(pulumi.CustomResource):
         config = pulumi.Config()
         group_id = config.require_object("groupId")
         member_id = config.require_object("memberId")
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.GroupMembership("test",
             identity_store_id=system.identity_store_id,
             group_id=group_id,
@@ -219,11 +221,10 @@ class GroupMembership(pulumi.CustomResource):
 
         The Identity Center group membership can be imported using the `identity_store_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/groupMembership:GroupMembership test <identity_store_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/groupMembership:GroupMembership test <identity_store_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -257,7 +258,7 @@ class GroupMembership(pulumi.CustomResource):
         config = pulumi.Config()
         group_id = config.require_object("groupId")
         member_id = config.require_object("memberId")
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.GroupMembership("test",
             identity_store_id=system.identity_store_id,
             group_id=group_id,
@@ -268,11 +269,10 @@ class GroupMembership(pulumi.CustomResource):
 
         The Identity Center group membership can be imported using the `identity_store_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/groupMembership:GroupMembership test <identity_store_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/groupMembership:GroupMembership test <identity_store_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupMembershipArgs args: The arguments to use to populate this resource's properties.
@@ -313,7 +313,7 @@ class GroupMembership(pulumi.CustomResource):
             __props__.__dict__["member_id"] = member_id
             __props__.__dict__["region"] = region
         super(GroupMembership, __self__).__init__(
-            'huaweicloud:identitycenter/groupMembership:GroupMembership',
+            'huaweicloud:Identitycenter/groupMembership:GroupMembership',
             resource_name,
             __props__,
             opts)

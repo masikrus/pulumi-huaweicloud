@@ -15,6 +15,8 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'AlertAlertTypeValueArgs',
+    'AlertAlertTypeValueArgsDict',
     'AlertConvertIncidentIncidentTypeArgs',
     'AlertConvertIncidentIncidentTypeArgsDict',
     'AlertDataSourceArgs',
@@ -25,16 +27,102 @@ __all__ = [
     'AlertRuleSimulationTriggerArgsDict',
     'AlertRuleTriggerArgs',
     'AlertRuleTriggerArgsDict',
-    'AlertTypeArgs',
-    'AlertTypeArgsDict',
+    'AssetDataObjectArgs',
+    'AssetDataObjectArgsDict',
+    'AssetDataObjectDepartmentArgs',
+    'AssetDataObjectDepartmentArgsDict',
+    'AssetDataObjectEnvironmentArgs',
+    'AssetDataObjectEnvironmentArgsDict',
+    'AssetDataObjectGovernanceUserArgs',
+    'AssetDataObjectGovernanceUserArgsDict',
+    'AssetDataObjectPropertiesArgs',
+    'AssetDataObjectPropertiesArgsDict',
+    'AssetDataObjectPropertiesHwcDomainArgs',
+    'AssetDataObjectPropertiesHwcDomainArgsDict',
+    'AssetDataObjectPropertiesHwcDomainContactArgs',
+    'AssetDataObjectPropertiesHwcDomainContactArgsDict',
+    'AssetDataObjectPropertiesHwcEcsArgs',
+    'AssetDataObjectPropertiesHwcEcsArgsDict',
+    'AssetDataObjectPropertiesHwcEcsAddressArgs',
+    'AssetDataObjectPropertiesHwcEcsAddressArgsDict',
+    'AssetDataObjectPropertiesHwcEcsFlavorArgs',
+    'AssetDataObjectPropertiesHwcEcsFlavorArgsDict',
+    'AssetDataObjectPropertiesHwcEcsHypervisorArgs',
+    'AssetDataObjectPropertiesHwcEcsHypervisorArgsDict',
+    'AssetDataObjectPropertiesHwcEcsMetadataArgs',
+    'AssetDataObjectPropertiesHwcEcsMetadataArgsDict',
+    'AssetDataObjectPropertiesHwcEcsSchedulerHintsArgs',
+    'AssetDataObjectPropertiesHwcEcsSchedulerHintsArgsDict',
+    'AssetDataObjectPropertiesHwcEcsSecurityGroupArgs',
+    'AssetDataObjectPropertiesHwcEcsSecurityGroupArgsDict',
+    'AssetDataObjectPropertiesHwcEcsVolumesAttachedArgs',
+    'AssetDataObjectPropertiesHwcEcsVolumesAttachedArgsDict',
+    'AssetDataObjectPropertiesHwcEipArgs',
+    'AssetDataObjectPropertiesHwcEipArgsDict',
+    'AssetDataObjectPropertiesHwcEipBandwidthArgs',
+    'AssetDataObjectPropertiesHwcEipBandwidthArgsDict',
+    'AssetDataObjectPropertiesHwcEipVnicArgs',
+    'AssetDataObjectPropertiesHwcEipVnicArgsDict',
+    'AssetDataObjectPropertiesHwcRdsArgs',
+    'AssetDataObjectPropertiesHwcRdsArgsDict',
+    'AssetDataObjectPropertiesHwcRdsBackupStrategyArgs',
+    'AssetDataObjectPropertiesHwcRdsBackupStrategyArgsDict',
+    'AssetDataObjectPropertiesHwcRdsDatastoreArgs',
+    'AssetDataObjectPropertiesHwcRdsDatastoreArgsDict',
+    'AssetDataObjectPropertiesHwcRdsHaArgs',
+    'AssetDataObjectPropertiesHwcRdsHaArgsDict',
+    'AssetDataObjectPropertiesHwcRdsNodeArgs',
+    'AssetDataObjectPropertiesHwcRdsNodeArgsDict',
+    'AssetDataObjectPropertiesHwcRdsRelatedInstanceArgs',
+    'AssetDataObjectPropertiesHwcRdsRelatedInstanceArgsDict',
+    'AssetDataObjectPropertiesHwcRdsTagArgs',
+    'AssetDataObjectPropertiesHwcRdsTagArgsDict',
+    'AssetDataObjectPropertiesHwcRdsVolumeArgs',
+    'AssetDataObjectPropertiesHwcRdsVolumeArgsDict',
+    'AssetDataObjectPropertiesHwcSubnetArgs',
+    'AssetDataObjectPropertiesHwcSubnetArgsDict',
+    'AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgs',
+    'AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgsDict',
+    'AssetDataObjectPropertiesHwcVpcArgs',
+    'AssetDataObjectPropertiesHwcVpcArgsDict',
+    'AssetDataObjectPropertiesHwcVpcCloudResourceArgs',
+    'AssetDataObjectPropertiesHwcVpcCloudResourceArgsDict',
+    'AssetDataObjectPropertiesHwcVpcTagArgs',
+    'AssetDataObjectPropertiesHwcVpcTagArgsDict',
+    'AssetDataObjectPropertiesOcaIpArgs',
+    'AssetDataObjectPropertiesOcaIpArgsDict',
+    'AssetDataObjectPropertiesOcaIpDataCenterArgs',
+    'AssetDataObjectPropertiesOcaIpDataCenterArgsDict',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesArgs',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesArgsDict',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgs',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgsDict',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgs',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgsDict',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgs',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgsDict',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgs',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgsDict',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgs',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgsDict',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgs',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgsDict',
+    'AssetDataObjectPropertiesOcaIpNetworkArgs',
+    'AssetDataObjectPropertiesOcaIpNetworkArgsDict',
+    'AssetDataObjectPropertiesWebsiteArgs',
+    'AssetDataObjectPropertiesWebsiteArgsDict',
+    'AssetDataObjectPropertiesWebsiteExtendPropertitesArgs',
+    'AssetDataObjectPropertiesWebsiteExtendPropertitesArgsDict',
+    'CloudLogResourceResourceArgs',
+    'CloudLogResourceResourceArgsDict',
     'IncidentDataSourceArgs',
     'IncidentDataSourceArgsDict',
-    'IncidentTypeArgs',
-    'IncidentTypeArgsDict',
+    'IncidentIncidentTypeValueArgs',
+    'IncidentIncidentTypeValueArgsDict',
     'IndicatorDataSourceArgs',
     'IndicatorDataSourceArgsDict',
-    'IndicatorTypeArgs',
-    'IndicatorTypeArgsDict',
+    'IndicatorIndicatorTypeValueArgs',
+    'IndicatorIndicatorTypeValueArgsDict',
     'PlaybookRuleConditionArgs',
     'PlaybookRuleConditionArgsDict',
     'PostPaidOrderProductListArgs',
@@ -45,6 +133,10 @@ __all__ = [
     'GetAlertsConditionArgsDict',
     'GetAlertsConditionConditionArgs',
     'GetAlertsConditionConditionArgsDict',
+    'GetBaselineCheckitemsConditionArgs',
+    'GetBaselineCheckitemsConditionArgsDict',
+    'GetBaselineCheckitemsConditionConditionArgs',
+    'GetBaselineCheckitemsConditionConditionArgsDict',
     'GetIncidentsConditionArgs',
     'GetIncidentsConditionArgsDict',
     'GetIncidentsConditionConditionArgs',
@@ -53,28 +145,83 @@ __all__ = [
     'GetIndicatorsConditionArgsDict',
     'GetIndicatorsConditionConditionArgs',
     'GetIndicatorsConditionConditionArgsDict',
+    'GetVulnerabilitiesConditionArgs',
+    'GetVulnerabilitiesConditionArgsDict',
+    'GetVulnerabilitiesConditionConditionArgs',
+    'GetVulnerabilitiesConditionConditionArgsDict',
 ]
 
-MYPY = False
+class AlertAlertTypeValueArgsDict(TypedDict):
+    alert_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the alert type.
 
-if not MYPY:
-    class AlertConvertIncidentIncidentTypeArgsDict(TypedDict):
-        category: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parent incident type.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the incident type ID.
-        """
-        incident_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the child incident type.
+    <a name="Alert_DataSource"></a>
+    The `data_source` block supports:
+    """
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the category.
+    """
 
-        > Exactly one of `id`, `category` or  `incident_type` must be set.
+@pulumi.input_type
+class AlertAlertTypeValueArgs:
+    def __init__(__self__, *,
+                 alert_type: pulumi.Input[_builtins.str],
+                 category: pulumi.Input[_builtins.str]):
         """
-elif False:
-    AlertConvertIncidentIncidentTypeArgsDict: TypeAlias = Mapping[str, Any]
+        :param pulumi.Input[_builtins.str] alert_type: Specifies the alert type.
+               
+               <a name="Alert_DataSource"></a>
+               The `data_source` block supports:
+        :param pulumi.Input[_builtins.str] category: Specifies the category.
+        """
+        pulumi.set(__self__, "alert_type", alert_type)
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter(name="alertType")
+    def alert_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the alert type.
+
+        <a name="Alert_DataSource"></a>
+        The `data_source` block supports:
+        """
+        return pulumi.get(self, "alert_type")
+
+    @alert_type.setter
+    def alert_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "alert_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the category.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "category", value)
+
+
+class AlertConvertIncidentIncidentTypeArgsDict(TypedDict):
+    category: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parent incident type.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the incident type ID.
+    """
+    incident_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the child incident type.
+
+    > Exactly one of `id`, `category` or  `incident_type` must be set.
+    """
 
 @pulumi.input_type
 class AlertConvertIncidentIncidentTypeArgs:
@@ -135,28 +282,25 @@ class AlertConvertIncidentIncidentTypeArgs:
         pulumi.set(self, "incident_type", value)
 
 
-if not MYPY:
-    class AlertDataSourceArgsDict(TypedDict):
-        product_feature: pulumi.Input[_builtins.str]
-        """
-        Specifies the product feature.
+class AlertDataSourceArgsDict(TypedDict):
+    product_feature: pulumi.Input[_builtins.str]
+    """
+    Specifies the product feature.
 
-        Changing this parameter will create a new resource.
-        """
-        product_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the product name.
+    Changing this parameter will create a new resource.
+    """
+    product_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the product name.
 
-        Changing this parameter will create a new resource.
-        """
-        source_type: pulumi.Input[_builtins.int]
-        """
-        Specifies the source type.
+    Changing this parameter will create a new resource.
+    """
+    source_type: pulumi.Input[_builtins.int]
+    """
+    Specifies the source type.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    AlertDataSourceArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class AlertDataSourceArgs:
@@ -222,45 +366,42 @@ class AlertDataSourceArgs:
         pulumi.set(self, "source_type", value)
 
 
-if not MYPY:
-    class AlertRuleQueryPlanArgsDict(TypedDict):
-        query_interval: pulumi.Input[_builtins.int]
-        """
-        Specifies the query interval.
-        + When `query_interval_unit` is **MINUTE**: the value range is `5` to `59`;
-        + When `query_interval_unit` is **HOUR**: the value range is `1` to `23`;
-        + When `query_interval_unit` is **DAY**: the value range is `1` to `14`;
-        """
-        query_interval_unit: pulumi.Input[_builtins.str]
-        """
-        Specifies the query interval unit.
-        The value can be: **MINUTE**, **HOUR** and **DAY**.
-        """
-        time_window: pulumi.Input[_builtins.int]
-        """
-        Specifies the time window.
-        + When `time_window_unit` is **MINUTE**: the value range is `5` to `59`;
-        + When `time_window_unit` is **HOUR**: the value range is `1` to `23`;
-        + When `time_window_unit` is **DAY**: the value range is `1` to `14`;
-        """
-        time_window_unit: pulumi.Input[_builtins.str]
-        """
-        Specifies the time window unit.
-        The value can be: **MINUTE**, **HOUR** and **DAY**.
-        """
-        execution_delay: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the execution delay in minutes.
-        """
-        overtime_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the overtime interval in minutes.
+class AlertRuleQueryPlanArgsDict(TypedDict):
+    query_interval: pulumi.Input[_builtins.int]
+    """
+    Specifies the query interval.
+    + When `query_interval_unit` is **MINUTE**: the value range is `5` to `59`;
+    + When `query_interval_unit` is **HOUR**: the value range is `1` to `23`;
+    + When `query_interval_unit` is **DAY**: the value range is `1` to `14`;
+    """
+    query_interval_unit: pulumi.Input[_builtins.str]
+    """
+    Specifies the query interval unit.
+    The value can be: **MINUTE**, **HOUR** and **DAY**.
+    """
+    time_window: pulumi.Input[_builtins.int]
+    """
+    Specifies the time window.
+    + When `time_window_unit` is **MINUTE**: the value range is `5` to `59`;
+    + When `time_window_unit` is **HOUR**: the value range is `1` to `23`;
+    + When `time_window_unit` is **DAY**: the value range is `1` to `14`;
+    """
+    time_window_unit: pulumi.Input[_builtins.str]
+    """
+    Specifies the time window unit.
+    The value can be: **MINUTE**, **HOUR** and **DAY**.
+    """
+    execution_delay: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the execution delay in minutes.
+    """
+    overtime_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the overtime interval in minutes.
 
-        <a name="triggers"></a>
-        The `triggers` block supports:
-        """
-elif False:
-    AlertRuleQueryPlanArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="triggers"></a>
+    The `triggers` block supports:
+    """
 
 @pulumi.input_type
 class AlertRuleQueryPlanArgs:
@@ -383,33 +524,30 @@ class AlertRuleQueryPlanArgs:
         pulumi.set(self, "overtime_interval", value)
 
 
-if not MYPY:
-    class AlertRuleSimulationTriggerArgsDict(TypedDict):
-        accumulated_times: pulumi.Input[_builtins.int]
-        """
-        Specifies the accumulated times.
-        """
-        expression: pulumi.Input[_builtins.str]
-        """
-        Specifies the expression.
-        """
-        mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the trigger mode.
-        The value can be: **COUNT**.
-        """
-        operator: pulumi.Input[_builtins.str]
-        """
-        Specifies the operator.
-        The value can be: **EQ**(equal), **NE**(not equal), **GT**(greater than) and **LT**(less than).
-        """
-        severity: pulumi.Input[_builtins.str]
-        """
-        Specifies the severity of the trigger.
-        The value can be: **TIPS**, **LOW**, **MEDIUM**, **HIGH** and **FATAL**.
-        """
-elif False:
-    AlertRuleSimulationTriggerArgsDict: TypeAlias = Mapping[str, Any]
+class AlertRuleSimulationTriggerArgsDict(TypedDict):
+    accumulated_times: pulumi.Input[_builtins.int]
+    """
+    Specifies the accumulated times.
+    """
+    expression: pulumi.Input[_builtins.str]
+    """
+    Specifies the expression.
+    """
+    mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the trigger mode.
+    The value can be: **COUNT**.
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    Specifies the operator.
+    The value can be: **EQ**(equal), **NE**(not equal), **GT**(greater than) and **LT**(less than).
+    """
+    severity: pulumi.Input[_builtins.str]
+    """
+    Specifies the severity of the trigger.
+    The value can be: **TIPS**, **LOW**, **MEDIUM**, **HIGH** and **FATAL**.
+    """
 
 @pulumi.input_type
 class AlertRuleSimulationTriggerArgs:
@@ -499,33 +637,30 @@ class AlertRuleSimulationTriggerArgs:
         pulumi.set(self, "severity", value)
 
 
-if not MYPY:
-    class AlertRuleTriggerArgsDict(TypedDict):
-        accumulated_times: pulumi.Input[_builtins.int]
-        """
-        Specifies the accumulated times.
-        """
-        expression: pulumi.Input[_builtins.str]
-        """
-        Specifies the expression.
-        """
-        mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the trigger mode.
-        The value can be: **COUNT**.
-        """
-        operator: pulumi.Input[_builtins.str]
-        """
-        Specifies the operator.
-        The value can be: **EQ**(equal), **NE**(not equal), **GT**(greater than) and **LT**(less than).
-        """
-        severity: pulumi.Input[_builtins.str]
-        """
-        Specifies the severity of the trigger.
-        The value can be: **TIPS**, **LOW**, **MEDIUM**, **HIGH** and **FATAL**.
-        """
-elif False:
-    AlertRuleTriggerArgsDict: TypeAlias = Mapping[str, Any]
+class AlertRuleTriggerArgsDict(TypedDict):
+    accumulated_times: pulumi.Input[_builtins.int]
+    """
+    Specifies the accumulated times.
+    """
+    expression: pulumi.Input[_builtins.str]
+    """
+    Specifies the expression.
+    """
+    mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the trigger mode.
+    The value can be: **COUNT**.
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    Specifies the operator.
+    The value can be: **EQ**(equal), **NE**(not equal), **GT**(greater than) and **LT**(less than).
+    """
+    severity: pulumi.Input[_builtins.str]
+    """
+    Specifies the severity of the trigger.
+    The value can be: **TIPS**, **LOW**, **MEDIUM**, **HIGH** and **FATAL**.
+    """
 
 @pulumi.input_type
 class AlertRuleTriggerArgs:
@@ -615,87 +750,7175 @@ class AlertRuleTriggerArgs:
         pulumi.set(self, "severity", value)
 
 
-if not MYPY:
-    class AlertTypeArgsDict(TypedDict):
-        alert_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the alert type.
+class AssetDataObjectArgsDict(TypedDict):
+    checksum: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the checksum of the asset.
+    """
+    created: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the creation time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    department: NotRequired[pulumi.Input['AssetDataObjectDepartmentArgsDict']]
+    """
+    Specifies the department of the asset.
+    The department structure is documented below.
+    """
+    environment: NotRequired[pulumi.Input['AssetDataObjectEnvironmentArgsDict']]
+    """
+    Specifies the environment of the asset.
+    The environment structure is documented below.
+    """
+    governance_user: NotRequired[pulumi.Input['AssetDataObjectGovernanceUserArgsDict']]
+    """
+    Specifies the governance user of the asset.
+    The governance_user structure is documented below.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
 
-        <a name="Alert_DataSource"></a>
-        The `data_source` block supports:
-        """
-        category: pulumi.Input[_builtins.str]
-        """
-        Specifies the category.
-        """
-elif False:
-    AlertTypeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    level: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the level of the asset. Valid values are:
+    + **0**: Testing.
+    + **1**: Normal.
+    + **2**: Important.
+
+    <a name="environment_struct"></a>
+    The `environment` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    properties: NotRequired[pulumi.Input['AssetDataObjectPropertiesArgsDict']]
+    """
+    Specifies the properties of the asset.
+    The properties structure is documented below.
+    """
+    provider: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the provider of the asset.
+    """
+    provisioning_state: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the provisioning state of the asset.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user type of the asset.
+    """
 
 @pulumi.input_type
-class AlertTypeArgs:
+class AssetDataObjectArgs:
     def __init__(__self__, *,
-                 alert_type: pulumi.Input[_builtins.str],
-                 category: pulumi.Input[_builtins.str]):
+                 checksum: Optional[pulumi.Input[_builtins.str]] = None,
+                 created: Optional[pulumi.Input[_builtins.str]] = None,
+                 department: Optional[pulumi.Input['AssetDataObjectDepartmentArgs']] = None,
+                 environment: Optional[pulumi.Input['AssetDataObjectEnvironmentArgs']] = None,
+                 governance_user: Optional[pulumi.Input['AssetDataObjectGovernanceUserArgs']] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 level: Optional[pulumi.Input[_builtins.int]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 properties: Optional[pulumi.Input['AssetDataObjectPropertiesArgs']] = None,
+                 provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 provisioning_state: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] alert_type: Specifies the alert type.
+        :param pulumi.Input[_builtins.str] checksum: Specifies the checksum of the asset.
+        :param pulumi.Input[_builtins.str] created: Specifies the creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input['AssetDataObjectDepartmentArgs'] department: Specifies the department of the asset.
+               The department structure is documented below.
+        :param pulumi.Input['AssetDataObjectEnvironmentArgs'] environment: Specifies the environment of the asset.
+               The environment structure is documented below.
+        :param pulumi.Input['AssetDataObjectGovernanceUserArgs'] governance_user: Specifies the governance user of the asset.
+               The governance_user structure is documented below.
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
                
-               <a name="Alert_DataSource"></a>
-               The `data_source` block supports:
-        :param pulumi.Input[_builtins.str] category: Specifies the category.
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.int] level: Specifies the level of the asset. Valid values are:
+               + **0**: Testing.
+               + **1**: Normal.
+               + **2**: Important.
+               
+               <a name="environment_struct"></a>
+               The `environment` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input['AssetDataObjectPropertiesArgs'] properties: Specifies the properties of the asset.
+               The properties structure is documented below.
+        :param pulumi.Input[_builtins.str] provider: Specifies the provider of the asset.
+        :param pulumi.Input[_builtins.str] provisioning_state: Specifies the provisioning state of the asset.
+        :param pulumi.Input[_builtins.str] type: Specifies the governance user type of the asset.
         """
-        pulumi.set(__self__, "alert_type", alert_type)
-        pulumi.set(__self__, "category", category)
-
-    @_builtins.property
-    @pulumi.getter(name="alertType")
-    def alert_type(self) -> pulumi.Input[_builtins.str]:
-        """
-        Specifies the alert type.
-
-        <a name="Alert_DataSource"></a>
-        The `data_source` block supports:
-        """
-        return pulumi.get(self, "alert_type")
-
-    @alert_type.setter
-    def alert_type(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "alert_type", value)
+        if checksum is not None:
+            pulumi.set(__self__, "checksum", checksum)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if department is not None:
+            pulumi.set(__self__, "department", department)
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if governance_user is not None:
+            pulumi.set(__self__, "governance_user", governance_user)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if level is not None:
+            pulumi.set(__self__, "level", level)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if properties is not None:
+            pulumi.set(__self__, "properties", properties)
+        if provider is not None:
+            pulumi.set(__self__, "provider", provider)
+        if provisioning_state is not None:
+            pulumi.set(__self__, "provisioning_state", provisioning_state)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @_builtins.property
     @pulumi.getter
-    def category(self) -> pulumi.Input[_builtins.str]:
+    def checksum(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the category.
+        Specifies the checksum of the asset.
         """
-        return pulumi.get(self, "category")
+        return pulumi.get(self, "checksum")
 
-    @category.setter
-    def category(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "category", value)
+    @checksum.setter
+    def checksum(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "checksum", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created")
+
+    @created.setter
+    def created(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def department(self) -> Optional[pulumi.Input['AssetDataObjectDepartmentArgs']]:
+        """
+        Specifies the department of the asset.
+        The department structure is documented below.
+        """
+        return pulumi.get(self, "department")
+
+    @department.setter
+    def department(self, value: Optional[pulumi.Input['AssetDataObjectDepartmentArgs']]):
+        pulumi.set(self, "department", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def environment(self) -> Optional[pulumi.Input['AssetDataObjectEnvironmentArgs']]:
+        """
+        Specifies the environment of the asset.
+        The environment structure is documented below.
+        """
+        return pulumi.get(self, "environment")
+
+    @environment.setter
+    def environment(self, value: Optional[pulumi.Input['AssetDataObjectEnvironmentArgs']]):
+        pulumi.set(self, "environment", value)
+
+    @_builtins.property
+    @pulumi.getter(name="governanceUser")
+    def governance_user(self) -> Optional[pulumi.Input['AssetDataObjectGovernanceUserArgs']]:
+        """
+        Specifies the governance user of the asset.
+        The governance_user structure is documented below.
+        """
+        return pulumi.get(self, "governance_user")
+
+    @governance_user.setter
+    def governance_user(self, value: Optional[pulumi.Input['AssetDataObjectGovernanceUserArgs']]):
+        pulumi.set(self, "governance_user", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the level of the asset. Valid values are:
+        + **0**: Testing.
+        + **1**: Normal.
+        + **2**: Important.
+
+        <a name="environment_struct"></a>
+        The `environment` block supports:
+        """
+        return pulumi.get(self, "level")
+
+    @level.setter
+    def level(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "level", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesArgs']]:
+        """
+        Specifies the properties of the asset.
+        The properties structure is documented below.
+        """
+        return pulumi.get(self, "properties")
+
+    @properties.setter
+    def properties(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesArgs']]):
+        pulumi.set(self, "properties", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the provider of the asset.
+        """
+        return pulumi.get(self, "provider")
+
+    @provider.setter
+    def provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "provider", value)
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningState")
+    def provisioning_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the provisioning state of the asset.
+        """
+        return pulumi.get(self, "provisioning_state")
+
+    @provisioning_state.setter
+    def provisioning_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "provisioning_state", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class IncidentDataSourceArgsDict(TypedDict):
-        product_feature: pulumi.Input[_builtins.str]
-        """
-        Specifies the product feature.
+class AssetDataObjectDepartmentArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
 
-        Changing this parameter will create a new resource.
-        """
-        product_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the product name.
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
 
-        Changing this parameter will create a new resource.
+@pulumi.input_type
+class AssetDataObjectDepartmentArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        source_type: pulumi.Input[_builtins.int]
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
         """
-        Specifies the source type.
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
-        Changing this parameter will create a new resource.
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-elif False:
-    IncidentDataSourceArgsDict: TypeAlias = Mapping[str, Any]
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class AssetDataObjectEnvironmentArgsDict(TypedDict):
+    domain_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain ID.
+    """
+    ep_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID.
+    """
+    ep_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project name.
+    """
+    idc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IDC ID.
+
+    <a name="properties_struct"></a>
+    The `properties` block supports:
+    """
+    idc_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IDC name.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID.
+    """
+    region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region ID.
+    """
+    vendor_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the vendor name.
+    """
+    vendor_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the environment vendor type.
+    """
+
+@pulumi.input_type
+class AssetDataObjectEnvironmentArgs:
+    def __init__(__self__, *,
+                 domain_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ep_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ep_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 idc_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 idc_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 vendor_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 vendor_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] domain_id: Specifies the domain ID.
+        :param pulumi.Input[_builtins.str] ep_id: Specifies the enterprise project ID.
+        :param pulumi.Input[_builtins.str] ep_name: Specifies the enterprise project name.
+        :param pulumi.Input[_builtins.str] idc_id: Specifies the IDC ID.
+               
+               <a name="properties_struct"></a>
+               The `properties` block supports:
+        :param pulumi.Input[_builtins.str] idc_name: Specifies the IDC name.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
+        :param pulumi.Input[_builtins.str] region_id: Specifies the region ID.
+        :param pulumi.Input[_builtins.str] vendor_name: Specifies the vendor name.
+        :param pulumi.Input[_builtins.str] vendor_type: Specifies the environment vendor type.
+        """
+        if domain_id is not None:
+            pulumi.set(__self__, "domain_id", domain_id)
+        if ep_id is not None:
+            pulumi.set(__self__, "ep_id", ep_id)
+        if ep_name is not None:
+            pulumi.set(__self__, "ep_name", ep_name)
+        if idc_id is not None:
+            pulumi.set(__self__, "idc_id", idc_id)
+        if idc_name is not None:
+            pulumi.set(__self__, "idc_name", idc_name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if vendor_name is not None:
+            pulumi.set(__self__, "vendor_name", vendor_name)
+        if vendor_type is not None:
+            pulumi.set(__self__, "vendor_type", vendor_type)
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @domain_id.setter
+    def domain_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "domain_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="epId")
+    def ep_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "ep_id")
+
+    @ep_id.setter
+    def ep_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ep_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="epName")
+    def ep_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project name.
+        """
+        return pulumi.get(self, "ep_name")
+
+    @ep_name.setter
+    def ep_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ep_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="idcId")
+    def idc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IDC ID.
+
+        <a name="properties_struct"></a>
+        The `properties` block supports:
+        """
+        return pulumi.get(self, "idc_id")
+
+    @idc_id.setter
+    def idc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "idc_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="idcName")
+    def idc_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IDC name.
+        """
+        return pulumi.get(self, "idc_name")
+
+    @idc_name.setter
+    def idc_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "idc_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vendorName")
+    def vendor_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the vendor name.
+        """
+        return pulumi.get(self, "vendor_name")
+
+    @vendor_name.setter
+    def vendor_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vendor_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vendorType")
+    def vendor_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the environment vendor type.
+        """
+        return pulumi.get(self, "vendor_type")
+
+    @vendor_type.setter
+    def vendor_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vendor_type", value)
+
+
+class AssetDataObjectGovernanceUserArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user type of the asset.
+    """
+
+@pulumi.input_type
+class AssetDataObjectGovernanceUserArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input[_builtins.str] type: Specifies the governance user type of the asset.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class AssetDataObjectPropertiesArgsDict(TypedDict):
+    hwc_domain: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcDomainArgsDict']]
+    """
+    Specifies the details of the domain.
+    The hwc_domain structure is documented below.
+    """
+    hwc_ecs: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcEcsArgsDict']]
+    """
+    Specifies the details of the ECS.
+    The hwc_ecs structure is documented below.
+    """
+    hwc_eip: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcEipArgsDict']]
+    """
+    Specifies the details of the EIP.
+    The hwc_eip structure is documented below.
+    """
+    hwc_rds: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcRdsArgsDict']]
+    """
+    Specifies the details of the RDS.
+    The hwc_rds structure is documented below.
+    """
+    hwc_subnet: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcSubnetArgsDict']]
+    """
+    Specifies the details of the subnet.
+    The hwc_subnet structure is documented below.
+    """
+    hwc_vpc: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcVpcArgsDict']]
+    """
+    Specifies the details of the VPC.
+    The hwc_vpc structure is documented below.
+    """
+    oca_ip: NotRequired[pulumi.Input['AssetDataObjectPropertiesOcaIpArgsDict']]
+    """
+    Specifies the details of the cloud asset IP.
+    The oca_ip structure is documented below.
+
+    <a name="hwc_ecs_struct"></a>
+    The `hwc_ecs` block supports:
+    """
+    website: NotRequired[pulumi.Input['AssetDataObjectPropertiesWebsiteArgsDict']]
+    """
+    Specifies the details of the website.
+    The website structure is documented below.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesArgs:
+    def __init__(__self__, *,
+                 hwc_domain: Optional[pulumi.Input['AssetDataObjectPropertiesHwcDomainArgs']] = None,
+                 hwc_ecs: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsArgs']] = None,
+                 hwc_eip: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEipArgs']] = None,
+                 hwc_rds: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsArgs']] = None,
+                 hwc_subnet: Optional[pulumi.Input['AssetDataObjectPropertiesHwcSubnetArgs']] = None,
+                 hwc_vpc: Optional[pulumi.Input['AssetDataObjectPropertiesHwcVpcArgs']] = None,
+                 oca_ip: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpArgs']] = None,
+                 website: Optional[pulumi.Input['AssetDataObjectPropertiesWebsiteArgs']] = None):
+        """
+        :param pulumi.Input['AssetDataObjectPropertiesHwcDomainArgs'] hwc_domain: Specifies the details of the domain.
+               The hwc_domain structure is documented below.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcEcsArgs'] hwc_ecs: Specifies the details of the ECS.
+               The hwc_ecs structure is documented below.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcEipArgs'] hwc_eip: Specifies the details of the EIP.
+               The hwc_eip structure is documented below.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcRdsArgs'] hwc_rds: Specifies the details of the RDS.
+               The hwc_rds structure is documented below.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcSubnetArgs'] hwc_subnet: Specifies the details of the subnet.
+               The hwc_subnet structure is documented below.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcVpcArgs'] hwc_vpc: Specifies the details of the VPC.
+               The hwc_vpc structure is documented below.
+        :param pulumi.Input['AssetDataObjectPropertiesOcaIpArgs'] oca_ip: Specifies the details of the cloud asset IP.
+               The oca_ip structure is documented below.
+               
+               <a name="hwc_ecs_struct"></a>
+               The `hwc_ecs` block supports:
+        :param pulumi.Input['AssetDataObjectPropertiesWebsiteArgs'] website: Specifies the details of the website.
+               The website structure is documented below.
+        """
+        if hwc_domain is not None:
+            pulumi.set(__self__, "hwc_domain", hwc_domain)
+        if hwc_ecs is not None:
+            pulumi.set(__self__, "hwc_ecs", hwc_ecs)
+        if hwc_eip is not None:
+            pulumi.set(__self__, "hwc_eip", hwc_eip)
+        if hwc_rds is not None:
+            pulumi.set(__self__, "hwc_rds", hwc_rds)
+        if hwc_subnet is not None:
+            pulumi.set(__self__, "hwc_subnet", hwc_subnet)
+        if hwc_vpc is not None:
+            pulumi.set(__self__, "hwc_vpc", hwc_vpc)
+        if oca_ip is not None:
+            pulumi.set(__self__, "oca_ip", oca_ip)
+        if website is not None:
+            pulumi.set(__self__, "website", website)
+
+    @_builtins.property
+    @pulumi.getter(name="hwcDomain")
+    def hwc_domain(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcDomainArgs']]:
+        """
+        Specifies the details of the domain.
+        The hwc_domain structure is documented below.
+        """
+        return pulumi.get(self, "hwc_domain")
+
+    @hwc_domain.setter
+    def hwc_domain(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcDomainArgs']]):
+        pulumi.set(self, "hwc_domain", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hwcEcs")
+    def hwc_ecs(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsArgs']]:
+        """
+        Specifies the details of the ECS.
+        The hwc_ecs structure is documented below.
+        """
+        return pulumi.get(self, "hwc_ecs")
+
+    @hwc_ecs.setter
+    def hwc_ecs(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsArgs']]):
+        pulumi.set(self, "hwc_ecs", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hwcEip")
+    def hwc_eip(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcEipArgs']]:
+        """
+        Specifies the details of the EIP.
+        The hwc_eip structure is documented below.
+        """
+        return pulumi.get(self, "hwc_eip")
+
+    @hwc_eip.setter
+    def hwc_eip(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEipArgs']]):
+        pulumi.set(self, "hwc_eip", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hwcRds")
+    def hwc_rds(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsArgs']]:
+        """
+        Specifies the details of the RDS.
+        The hwc_rds structure is documented below.
+        """
+        return pulumi.get(self, "hwc_rds")
+
+    @hwc_rds.setter
+    def hwc_rds(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsArgs']]):
+        pulumi.set(self, "hwc_rds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hwcSubnet")
+    def hwc_subnet(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcSubnetArgs']]:
+        """
+        Specifies the details of the subnet.
+        The hwc_subnet structure is documented below.
+        """
+        return pulumi.get(self, "hwc_subnet")
+
+    @hwc_subnet.setter
+    def hwc_subnet(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcSubnetArgs']]):
+        pulumi.set(self, "hwc_subnet", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hwcVpc")
+    def hwc_vpc(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcVpcArgs']]:
+        """
+        Specifies the details of the VPC.
+        The hwc_vpc structure is documented below.
+        """
+        return pulumi.get(self, "hwc_vpc")
+
+    @hwc_vpc.setter
+    def hwc_vpc(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcVpcArgs']]):
+        pulumi.set(self, "hwc_vpc", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ocaIp")
+    def oca_ip(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpArgs']]:
+        """
+        Specifies the details of the cloud asset IP.
+        The oca_ip structure is documented below.
+
+        <a name="hwc_ecs_struct"></a>
+        The `hwc_ecs` block supports:
+        """
+        return pulumi.get(self, "oca_ip")
+
+    @oca_ip.setter
+    def oca_ip(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpArgs']]):
+        pulumi.set(self, "oca_ip", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def website(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesWebsiteArgs']]:
+        """
+        Specifies the details of the website.
+        The website structure is documented below.
+        """
+        return pulumi.get(self, "website")
+
+    @website.setter
+    def website(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesWebsiteArgs']]):
+        pulumi.set(self, "website", value)
+
+
+class AssetDataObjectPropertiesHwcDomainArgsDict(TypedDict):
+    audit_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain real-name authentication status. Valid values are:
+    + **NONAUDIT**：Unauthenticated.
+    + **SUCCEED**：Authenticated.
+    + **FAILED**：Authentication failed.
+    + **AUDITING**：Authentication in progress.
+    """
+    audit_unpass_reason: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the reason for domain real-name authentication failure.
+    """
+    contacts: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcDomainContactArgsDict']]]]
+    """
+    Specifies the contact information.
+    The contact structure is documented below.
+    """
+    credential_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the credential ID.
+    """
+    credential_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of credential.
+    """
+    domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain name.
+    """
+    expire_date: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain expiration date. eg：**2023-01-10**.
+    """
+    name_servers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the website server list.
+    """
+    privacy_protection: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether privacy protection is enabled.
+    """
+    reg_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the registration type. Valid values are:
+    + **PERSONAL**：Personal.
+    + **COMPANY**：Company.
+    """
+    registrar: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the registrar of the domain.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain status.
+    """
+    transfer_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain transfer status.
+
+    <a name="hwc_domain_contact_struct"></a>
+    The `contact` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcDomainArgs:
+    def __init__(__self__, *,
+                 audit_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 audit_unpass_reason: Optional[pulumi.Input[_builtins.str]] = None,
+                 contacts: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcDomainContactArgs']]]] = None,
+                 credential_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 domain_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 expire_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 name_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 privacy_protection: Optional[pulumi.Input[_builtins.str]] = None,
+                 reg_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 registrar: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
+                 transfer_status: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] audit_status: Specifies the domain real-name authentication status. Valid values are:
+               + **NONAUDIT**：Unauthenticated.
+               + **SUCCEED**：Authenticated.
+               + **FAILED**：Authentication failed.
+               + **AUDITING**：Authentication in progress.
+        :param pulumi.Input[_builtins.str] audit_unpass_reason: Specifies the reason for domain real-name authentication failure.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcDomainContactArgs']]] contacts: Specifies the contact information.
+               The contact structure is documented below.
+        :param pulumi.Input[_builtins.str] credential_id: Specifies the credential ID.
+        :param pulumi.Input[_builtins.str] credential_type: Specifies the type of credential.
+        :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name.
+        :param pulumi.Input[_builtins.str] expire_date: Specifies the domain expiration date. eg：**2023-01-10**.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] name_servers: Specifies the website server list.
+        :param pulumi.Input[_builtins.str] privacy_protection: Specifies whether privacy protection is enabled.
+        :param pulumi.Input[_builtins.str] reg_type: Specifies the registration type. Valid values are:
+               + **PERSONAL**：Personal.
+               + **COMPANY**：Company.
+        :param pulumi.Input[_builtins.str] registrar: Specifies the registrar of the domain.
+        :param pulumi.Input[_builtins.str] status: Specifies the domain status.
+        :param pulumi.Input[_builtins.str] transfer_status: Specifies the domain transfer status.
+               
+               <a name="hwc_domain_contact_struct"></a>
+               The `contact` block supports:
+        """
+        if audit_status is not None:
+            pulumi.set(__self__, "audit_status", audit_status)
+        if audit_unpass_reason is not None:
+            pulumi.set(__self__, "audit_unpass_reason", audit_unpass_reason)
+        if contacts is not None:
+            pulumi.set(__self__, "contacts", contacts)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
+        if domain_name is not None:
+            pulumi.set(__self__, "domain_name", domain_name)
+        if expire_date is not None:
+            pulumi.set(__self__, "expire_date", expire_date)
+        if name_servers is not None:
+            pulumi.set(__self__, "name_servers", name_servers)
+        if privacy_protection is not None:
+            pulumi.set(__self__, "privacy_protection", privacy_protection)
+        if reg_type is not None:
+            pulumi.set(__self__, "reg_type", reg_type)
+        if registrar is not None:
+            pulumi.set(__self__, "registrar", registrar)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if transfer_status is not None:
+            pulumi.set(__self__, "transfer_status", transfer_status)
+
+    @_builtins.property
+    @pulumi.getter(name="auditStatus")
+    def audit_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain real-name authentication status. Valid values are:
+        + **NONAUDIT**：Unauthenticated.
+        + **SUCCEED**：Authenticated.
+        + **FAILED**：Authentication failed.
+        + **AUDITING**：Authentication in progress.
+        """
+        return pulumi.get(self, "audit_status")
+
+    @audit_status.setter
+    def audit_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "audit_status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="auditUnpassReason")
+    def audit_unpass_reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the reason for domain real-name authentication failure.
+        """
+        return pulumi.get(self, "audit_unpass_reason")
+
+    @audit_unpass_reason.setter
+    def audit_unpass_reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "audit_unpass_reason", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def contacts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcDomainContactArgs']]]]:
+        """
+        Specifies the contact information.
+        The contact structure is documented below.
+        """
+        return pulumi.get(self, "contacts")
+
+    @contacts.setter
+    def contacts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcDomainContactArgs']]]]):
+        pulumi.set(self, "contacts", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the credential ID.
+        """
+        return pulumi.get(self, "credential_id")
+
+    @credential_id.setter
+    def credential_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credential_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the type of credential.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credential_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain name.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @domain_name.setter
+    def domain_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "domain_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expireDate")
+    def expire_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain expiration date. eg：**2023-01-10**.
+        """
+        return pulumi.get(self, "expire_date")
+
+    @expire_date.setter
+    def expire_date(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "expire_date", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the website server list.
+        """
+        return pulumi.get(self, "name_servers")
+
+    @name_servers.setter
+    def name_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "name_servers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privacyProtection")
+    def privacy_protection(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether privacy protection is enabled.
+        """
+        return pulumi.get(self, "privacy_protection")
+
+    @privacy_protection.setter
+    def privacy_protection(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "privacy_protection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regType")
+    def reg_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the registration type. Valid values are:
+        + **PERSONAL**：Personal.
+        + **COMPANY**：Company.
+        """
+        return pulumi.get(self, "reg_type")
+
+    @reg_type.setter
+    def reg_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "reg_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def registrar(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the registrar of the domain.
+        """
+        return pulumi.get(self, "registrar")
+
+    @registrar.setter
+    def registrar(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "registrar", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="transferStatus")
+    def transfer_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain transfer status.
+
+        <a name="hwc_domain_contact_struct"></a>
+        The `contact` block supports:
+        """
+        return pulumi.get(self, "transfer_status")
+
+    @transfer_status.setter
+    def transfer_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "transfer_status", value)
+
+
+class AssetDataObjectPropertiesHwcDomainContactArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the address of the contact.
+    """
+    city: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the city of the contact.
+    """
+    contact_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the contact name.
+    """
+    email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the email address of the domain contact.
+    """
+    phone_num: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the contact phone number.
+    """
+    province: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the province of the contact.
+    """
+    register: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the registrant information.
+    """
+    zip_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the zip code of the contact.
+
+    <a name="website_struct"></a>
+    The `website` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcDomainContactArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[_builtins.str]] = None,
+                 city: Optional[pulumi.Input[_builtins.str]] = None,
+                 contact_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 email: Optional[pulumi.Input[_builtins.str]] = None,
+                 phone_num: Optional[pulumi.Input[_builtins.str]] = None,
+                 province: Optional[pulumi.Input[_builtins.str]] = None,
+                 register: Optional[pulumi.Input[_builtins.str]] = None,
+                 zip_code: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] address: Specifies the address of the contact.
+        :param pulumi.Input[_builtins.str] city: Specifies the city of the contact.
+        :param pulumi.Input[_builtins.str] contact_name: Specifies the contact name.
+        :param pulumi.Input[_builtins.str] email: Specifies the email address of the domain contact.
+        :param pulumi.Input[_builtins.str] phone_num: Specifies the contact phone number.
+        :param pulumi.Input[_builtins.str] province: Specifies the province of the contact.
+        :param pulumi.Input[_builtins.str] register: Specifies the registrant information.
+        :param pulumi.Input[_builtins.str] zip_code: Specifies the zip code of the contact.
+               
+               <a name="website_struct"></a>
+               The `website` block supports:
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if city is not None:
+            pulumi.set(__self__, "city", city)
+        if contact_name is not None:
+            pulumi.set(__self__, "contact_name", contact_name)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if phone_num is not None:
+            pulumi.set(__self__, "phone_num", phone_num)
+        if province is not None:
+            pulumi.set(__self__, "province", province)
+        if register is not None:
+            pulumi.set(__self__, "register", register)
+        if zip_code is not None:
+            pulumi.set(__self__, "zip_code", zip_code)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the address of the contact.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the city of the contact.
+        """
+        return pulumi.get(self, "city")
+
+    @city.setter
+    def city(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "city", value)
+
+    @_builtins.property
+    @pulumi.getter(name="contactName")
+    def contact_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the contact name.
+        """
+        return pulumi.get(self, "contact_name")
+
+    @contact_name.setter
+    def contact_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "contact_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the email address of the domain contact.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="phoneNum")
+    def phone_num(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the contact phone number.
+        """
+        return pulumi.get(self, "phone_num")
+
+    @phone_num.setter
+    def phone_num(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "phone_num", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def province(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the province of the contact.
+        """
+        return pulumi.get(self, "province")
+
+    @province.setter
+    def province(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "province", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def register(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the registrant information.
+        """
+        return pulumi.get(self, "register")
+
+    @register.setter
+    def register(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "register", value)
+
+    @_builtins.property
+    @pulumi.getter(name="zipCode")
+    def zip_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the zip code of the contact.
+
+        <a name="website_struct"></a>
+        The `website` block supports:
+        """
+        return pulumi.get(self, "zip_code")
+
+    @zip_code.setter
+    def zip_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "zip_code", value)
+
+
+class AssetDataObjectPropertiesHwcEcsArgsDict(TypedDict):
+    addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsAddressArgsDict']]]]
+    """
+    Specifies the IP addresses of the ECS.
+    The addresses structure is documented below.
+    """
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the AZ where the node resides.
+
+    <a name="hwc_rds_related_instance_struct"></a>
+    The `related_instance` block supports:
+    """
+    created: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the creation time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule description.
+    """
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID to which the RDS belongs.
+    """
+    flavor: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcEcsFlavorArgsDict']]
+    """
+    Specifies the flavor of the ECS.
+    The flavor structure is documented below.
+    """
+    host_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the host ID of the ECS.
+    """
+    host_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the host name of the ECS.
+    """
+    host_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the host status of the ECS. Valid values are:
+    + **UP**: The host is normal.
+    + **UNKNOWN**: The host status is unknown.
+    + **DOWN**: The host is down.
+    + **MAINTENANCE**: The host is under maintenance.
+    """
+    hypervisor: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcEcsHypervisorArgsDict']]
+    """
+    Specifies the virtualization information of the ECS.
+    The hypervisor structure is documented below.
+
+    <a name="hwc_ecs_volumes_attached_struct"></a>
+    The `volumes_attached` block supports:
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    key_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key name of the ECS.
+    """
+    locked: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the ECS is locked. Valid values are:
+    + **true**: The ECS is locked.
+    + **false**: The ECS is not locked.
+    """
+    metadata: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcEcsMetadataArgsDict']]
+    """
+    Specifies the metadata of the ECS.
+    The metadata structure is documented below.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID.
+    """
+    protected_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the WAF status. Valid values are:
+    + **OPEN**：Enabled.
+    + **CLOSE**：Disabled.
+    """
+    scheduler_hints: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcEcsSchedulerHintsArgsDict']]
+    """
+    Specifies the scheduler hints of the ECS.
+    The scheduler_hints structure is documented below.
+    """
+    security_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsSecurityGroupArgsDict']]]]
+    """
+    Specifies the security groups of the ECS.
+    The security_groups structure is documented below.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain status.
+    """
+    updated: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the update time of the RDS.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user ID of the ECS.
+    """
+    volumes_attacheds: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsVolumesAttachedArgsDict']]]]
+    """
+    Specifies the volumes attached to the ECS.
+    The volumes_attached structure is documented below.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEcsArgs:
+    def __init__(__self__, *,
+                 addresses: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsAddressArgs']]]] = None,
+                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 created: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 flavor: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsFlavorArgs']] = None,
+                 host_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 host_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 host_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 hypervisor: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsHypervisorArgs']] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 locked: Optional[pulumi.Input[_builtins.bool]] = None,
+                 metadata: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsMetadataArgs']] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 protected_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 scheduler_hints: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsSchedulerHintsArgs']] = None,
+                 security_groups: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsSecurityGroupArgs']]]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
+                 updated: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 volumes_attacheds: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsVolumesAttachedArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsAddressArgs']]] addresses: Specifies the IP addresses of the ECS.
+               The addresses structure is documented below.
+        :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ where the node resides.
+               
+               <a name="hwc_rds_related_instance_struct"></a>
+               The `related_instance` block supports:
+        :param pulumi.Input[_builtins.str] created: Specifies the creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input[_builtins.str] description: Specifies the security group rule description.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcEcsFlavorArgs'] flavor: Specifies the flavor of the ECS.
+               The flavor structure is documented below.
+        :param pulumi.Input[_builtins.str] host_id: Specifies the host ID of the ECS.
+        :param pulumi.Input[_builtins.str] host_name: Specifies the host name of the ECS.
+        :param pulumi.Input[_builtins.str] host_status: Specifies the host status of the ECS. Valid values are:
+               + **UP**: The host is normal.
+               + **UNKNOWN**: The host status is unknown.
+               + **DOWN**: The host is down.
+               + **MAINTENANCE**: The host is under maintenance.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcEcsHypervisorArgs'] hypervisor: Specifies the virtualization information of the ECS.
+               The hypervisor structure is documented below.
+               
+               <a name="hwc_ecs_volumes_attached_struct"></a>
+               The `volumes_attached` block supports:
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] key_name: Specifies the key name of the ECS.
+        :param pulumi.Input[_builtins.bool] locked: Specifies whether the ECS is locked. Valid values are:
+               + **true**: The ECS is locked.
+               + **false**: The ECS is not locked.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcEcsMetadataArgs'] metadata: Specifies the metadata of the ECS.
+               The metadata structure is documented below.
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
+        :param pulumi.Input[_builtins.str] protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcEcsSchedulerHintsArgs'] scheduler_hints: Specifies the scheduler hints of the ECS.
+               The scheduler_hints structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsSecurityGroupArgs']]] security_groups: Specifies the security groups of the ECS.
+               The security_groups structure is documented below.
+        :param pulumi.Input[_builtins.str] status: Specifies the domain status.
+        :param pulumi.Input[_builtins.str] updated: Specifies the update time of the RDS.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID of the ECS.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsVolumesAttachedArgs']]] volumes_attacheds: Specifies the volumes attached to the ECS.
+               The volumes_attached structure is documented below.
+        """
+        if addresses is not None:
+            pulumi.set(__self__, "addresses", addresses)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if flavor is not None:
+            pulumi.set(__self__, "flavor", flavor)
+        if host_id is not None:
+            pulumi.set(__self__, "host_id", host_id)
+        if host_name is not None:
+            pulumi.set(__self__, "host_name", host_name)
+        if host_status is not None:
+            pulumi.set(__self__, "host_status", host_status)
+        if hypervisor is not None:
+            pulumi.set(__self__, "hypervisor", hypervisor)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if locked is not None:
+            pulumi.set(__self__, "locked", locked)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if scheduler_hints is not None:
+            pulumi.set(__self__, "scheduler_hints", scheduler_hints)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if updated is not None:
+            pulumi.set(__self__, "updated", updated)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+        if volumes_attacheds is not None:
+            pulumi.set(__self__, "volumes_attacheds", volumes_attacheds)
+
+    @_builtins.property
+    @pulumi.getter
+    def addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsAddressArgs']]]]:
+        """
+        Specifies the IP addresses of the ECS.
+        The addresses structure is documented below.
+        """
+        return pulumi.get(self, "addresses")
+
+    @addresses.setter
+    def addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsAddressArgs']]]]):
+        pulumi.set(self, "addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the AZ where the node resides.
+
+        <a name="hwc_rds_related_instance_struct"></a>
+        The `related_instance` block supports:
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @availability_zone.setter
+    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "availability_zone", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created")
+
+    @created.setter
+    def created(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def flavor(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsFlavorArgs']]:
+        """
+        Specifies the flavor of the ECS.
+        The flavor structure is documented below.
+        """
+        return pulumi.get(self, "flavor")
+
+    @flavor.setter
+    def flavor(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsFlavorArgs']]):
+        pulumi.set(self, "flavor", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the host ID of the ECS.
+        """
+        return pulumi.get(self, "host_id")
+
+    @host_id.setter
+    def host_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "host_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the host name of the ECS.
+        """
+        return pulumi.get(self, "host_name")
+
+    @host_name.setter
+    def host_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "host_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hostStatus")
+    def host_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the host status of the ECS. Valid values are:
+        + **UP**: The host is normal.
+        + **UNKNOWN**: The host status is unknown.
+        + **DOWN**: The host is down.
+        + **MAINTENANCE**: The host is under maintenance.
+        """
+        return pulumi.get(self, "host_status")
+
+    @host_status.setter
+    def host_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "host_status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def hypervisor(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsHypervisorArgs']]:
+        """
+        Specifies the virtualization information of the ECS.
+        The hypervisor structure is documented below.
+
+        <a name="hwc_ecs_volumes_attached_struct"></a>
+        The `volumes_attached` block supports:
+        """
+        return pulumi.get(self, "hypervisor")
+
+    @hypervisor.setter
+    def hypervisor(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsHypervisorArgs']]):
+        pulumi.set(self, "hypervisor", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the key name of the ECS.
+        """
+        return pulumi.get(self, "key_name")
+
+    @key_name.setter
+    def key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def locked(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the ECS is locked. Valid values are:
+        + **true**: The ECS is locked.
+        + **false**: The ECS is not locked.
+        """
+        return pulumi.get(self, "locked")
+
+    @locked.setter
+    def locked(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "locked", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsMetadataArgs']]:
+        """
+        Specifies the metadata of the ECS.
+        The metadata structure is documented below.
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsMetadataArgs']]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @protected_status.setter
+    def protected_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protected_status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="schedulerHints")
+    def scheduler_hints(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsSchedulerHintsArgs']]:
+        """
+        Specifies the scheduler hints of the ECS.
+        The scheduler_hints structure is documented below.
+        """
+        return pulumi.get(self, "scheduler_hints")
+
+    @scheduler_hints.setter
+    def scheduler_hints(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEcsSchedulerHintsArgs']]):
+        pulumi.set(self, "scheduler_hints", value)
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsSecurityGroupArgs']]]]:
+        """
+        Specifies the security groups of the ECS.
+        The security_groups structure is documented below.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsSecurityGroupArgs']]]]):
+        pulumi.set(self, "security_groups", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the update time of the RDS.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated")
+
+    @updated.setter
+    def updated(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "updated", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the user ID of the ECS.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="volumesAttacheds")
+    def volumes_attacheds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsVolumesAttachedArgs']]]]:
+        """
+        Specifies the volumes attached to the ECS.
+        The volumes_attached structure is documented below.
+        """
+        return pulumi.get(self, "volumes_attacheds")
+
+    @volumes_attacheds.setter
+    def volumes_attacheds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcEcsVolumesAttachedArgs']]]]):
+        pulumi.set(self, "volumes_attacheds", value)
+
+
+class AssetDataObjectPropertiesHwcEcsAddressArgsDict(TypedDict):
+    addr: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP address.
+    """
+    mac_addr: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the MAC address.
+    """
+    port_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the port ID of the public IP.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user type of the asset.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service version.
+    """
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VPC ID.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEcsAddressArgs:
+    def __init__(__self__, *,
+                 addr: Optional[pulumi.Input[_builtins.str]] = None,
+                 mac_addr: Optional[pulumi.Input[_builtins.str]] = None,
+                 port_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None,
+                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] addr: Specifies the IP address.
+        :param pulumi.Input[_builtins.str] mac_addr: Specifies the MAC address.
+        :param pulumi.Input[_builtins.str] port_id: Specifies the port ID of the public IP.
+        :param pulumi.Input[_builtins.str] type: Specifies the governance user type of the asset.
+        :param pulumi.Input[_builtins.str] version: Specifies the service version.
+        :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID.
+        """
+        if addr is not None:
+            pulumi.set(__self__, "addr", addr)
+        if mac_addr is not None:
+            pulumi.set(__self__, "mac_addr", mac_addr)
+        if port_id is not None:
+            pulumi.set(__self__, "port_id", port_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def addr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IP address.
+        """
+        return pulumi.get(self, "addr")
+
+    @addr.setter
+    def addr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "addr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="macAddr")
+    def mac_addr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the MAC address.
+        """
+        return pulumi.get(self, "mac_addr")
+
+    @mac_addr.setter
+    def mac_addr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mac_addr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="portId")
+    def port_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the port ID of the public IP.
+        """
+        return pulumi.get(self, "port_id")
+
+    @port_id.setter
+    def port_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "port_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the VPC ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vpc_id", value)
+
+
+class AssetDataObjectPropertiesHwcEcsFlavorArgsDict(TypedDict):
+    disk: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the disk size of the flavor.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    ram: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the memory size in MB.
+
+    <a name="hwc_ecs_security_groups_struct"></a>
+    The `security_groups` block supports:
+    """
+    vcpus: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of vCPUs.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEcsFlavorArgs:
+    def __init__(__self__, *,
+                 disk: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 ram: Optional[pulumi.Input[_builtins.str]] = None,
+                 vcpus: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] disk: Specifies the disk size of the flavor.
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input[_builtins.str] ram: Specifies the memory size in MB.
+               
+               <a name="hwc_ecs_security_groups_struct"></a>
+               The `security_groups` block supports:
+        :param pulumi.Input[_builtins.str] vcpus: Specifies the number of vCPUs.
+        """
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if ram is not None:
+            pulumi.set(__self__, "ram", ram)
+        if vcpus is not None:
+            pulumi.set(__self__, "vcpus", vcpus)
+
+    @_builtins.property
+    @pulumi.getter
+    def disk(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the disk size of the flavor.
+        """
+        return pulumi.get(self, "disk")
+
+    @disk.setter
+    def disk(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "disk", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the memory size in MB.
+
+        <a name="hwc_ecs_security_groups_struct"></a>
+        The `security_groups` block supports:
+        """
+        return pulumi.get(self, "ram")
+
+    @ram.setter
+    def ram(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ram", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vcpus(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the number of vCPUs.
+        """
+        return pulumi.get(self, "vcpus")
+
+    @vcpus.setter
+    def vcpus(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vcpus", value)
+
+
+class AssetDataObjectPropertiesHwcEcsHypervisorArgsDict(TypedDict):
+    csd_hypervisor: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Reserved attribute.
+    """
+    hypervisor_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the virtualization type.
+
+    <a name="hwc_ecs_addresses_struct"></a>
+    The `addresses` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEcsHypervisorArgs:
+    def __init__(__self__, *,
+                 csd_hypervisor: Optional[pulumi.Input[_builtins.str]] = None,
+                 hypervisor_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] csd_hypervisor: Specifies the Reserved attribute.
+        :param pulumi.Input[_builtins.str] hypervisor_type: Specifies the virtualization type.
+               
+               <a name="hwc_ecs_addresses_struct"></a>
+               The `addresses` block supports:
+        """
+        if csd_hypervisor is not None:
+            pulumi.set(__self__, "csd_hypervisor", csd_hypervisor)
+        if hypervisor_type is not None:
+            pulumi.set(__self__, "hypervisor_type", hypervisor_type)
+
+    @_builtins.property
+    @pulumi.getter(name="csdHypervisor")
+    def csd_hypervisor(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the Reserved attribute.
+        """
+        return pulumi.get(self, "csd_hypervisor")
+
+    @csd_hypervisor.setter
+    def csd_hypervisor(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "csd_hypervisor", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hypervisorType")
+    def hypervisor_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the virtualization type.
+
+        <a name="hwc_ecs_addresses_struct"></a>
+        The `addresses` block supports:
+        """
+        return pulumi.get(self, "hypervisor_type")
+
+    @hypervisor_type.setter
+    def hypervisor_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "hypervisor_type", value)
+
+
+class AssetDataObjectPropertiesHwcEcsMetadataArgsDict(TypedDict):
+    agency_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the agency name of the ECS.
+
+    <a name="hwc_ecs_scheduler_hints_struct"></a>
+    The `scheduler_hints` block supports:
+    """
+    image_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the image.
+    """
+    image_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image name of the ECS.
+    """
+    image_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image type of the ECS. Valid values are:
+    + **gold**: The gold image.
+    + **private**: The private image.
+    + **shared**: The shared image.
+    """
+    os_bit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OS bit of the ECS. Valid values are:
+    + **32**: The 32-bit OS.
+    + **64**: The 64-bit OS.
+    """
+    os_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OS type of the ECS. Valid values are:
+    + **Windows**: The Windows OS.
+    + **Linux**: The Linux OS.
+    """
+    resource_spec_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource spec code of the ECS.
+    """
+    resource_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the cloud resources.
+    """
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VPC ID.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEcsMetadataArgs:
+    def __init__(__self__, *,
+                 agency_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 image_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 image_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 os_bit: Optional[pulumi.Input[_builtins.str]] = None,
+                 os_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_spec_code: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name of the ECS.
+               
+               <a name="hwc_ecs_scheduler_hints_struct"></a>
+               The `scheduler_hints` block supports:
+        :param pulumi.Input[_builtins.str] image_id: Specifies the ID of the image.
+        :param pulumi.Input[_builtins.str] image_name: Specifies the image name of the ECS.
+        :param pulumi.Input[_builtins.str] image_type: Specifies the image type of the ECS. Valid values are:
+               + **gold**: The gold image.
+               + **private**: The private image.
+               + **shared**: The shared image.
+        :param pulumi.Input[_builtins.str] os_bit: Specifies the OS bit of the ECS. Valid values are:
+               + **32**: The 32-bit OS.
+               + **64**: The 64-bit OS.
+        :param pulumi.Input[_builtins.str] os_type: Specifies the OS type of the ECS. Valid values are:
+               + **Windows**: The Windows OS.
+               + **Linux**: The Linux OS.
+        :param pulumi.Input[_builtins.str] resource_spec_code: Specifies the resource spec code of the ECS.
+        :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the cloud resources.
+        :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID.
+        """
+        if agency_name is not None:
+            pulumi.set(__self__, "agency_name", agency_name)
+        if image_id is not None:
+            pulumi.set(__self__, "image_id", image_id)
+        if image_name is not None:
+            pulumi.set(__self__, "image_name", image_name)
+        if image_type is not None:
+            pulumi.set(__self__, "image_type", image_type)
+        if os_bit is not None:
+            pulumi.set(__self__, "os_bit", os_bit)
+        if os_type is not None:
+            pulumi.set(__self__, "os_type", os_type)
+        if resource_spec_code is not None:
+            pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        if resource_type is not None:
+            pulumi.set(__self__, "resource_type", resource_type)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the agency name of the ECS.
+
+        <a name="hwc_ecs_scheduler_hints_struct"></a>
+        The `scheduler_hints` block supports:
+        """
+        return pulumi.get(self, "agency_name")
+
+    @agency_name.setter
+    def agency_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "agency_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the image.
+        """
+        return pulumi.get(self, "image_id")
+
+    @image_id.setter
+    def image_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "image_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the image name of the ECS.
+        """
+        return pulumi.get(self, "image_name")
+
+    @image_name.setter
+    def image_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "image_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the image type of the ECS. Valid values are:
+        + **gold**: The gold image.
+        + **private**: The private image.
+        + **shared**: The shared image.
+        """
+        return pulumi.get(self, "image_type")
+
+    @image_type.setter
+    def image_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "image_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="osBit")
+    def os_bit(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the OS bit of the ECS. Valid values are:
+        + **32**: The 32-bit OS.
+        + **64**: The 64-bit OS.
+        """
+        return pulumi.get(self, "os_bit")
+
+    @os_bit.setter
+    def os_bit(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "os_bit", value)
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the OS type of the ECS. Valid values are:
+        + **Windows**: The Windows OS.
+        + **Linux**: The Linux OS.
+        """
+        return pulumi.get(self, "os_type")
+
+    @os_type.setter
+    def os_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "os_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource spec code of the ECS.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @resource_spec_code.setter
+    def resource_spec_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_spec_code", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the type of the cloud resources.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @resource_type.setter
+    def resource_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the VPC ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vpc_id", value)
+
+
+class AssetDataObjectPropertiesHwcEcsSchedulerHintsArgsDict(TypedDict):
+    dedicated_host_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the dedicated host ID. This field is valid only when the ECS is
+    a dedicated host.
+
+    <a name="hwc_ecs_hypervisor_struct"></a>
+    The `hypervisor` block supports:
+    """
+    groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the cloud server group ID.
+    """
+    tenancies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the tenancy of the ECS. Valid values are:
+    + **dedicated**: The dedicated ECS.
+    + **shared**: The shared ECS.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEcsSchedulerHintsArgs:
+    def __init__(__self__, *,
+                 dedicated_host_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tenancies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dedicated_host_ids: Specifies the dedicated host ID. This field is valid only when the ECS is
+               a dedicated host.
+               
+               <a name="hwc_ecs_hypervisor_struct"></a>
+               The `hypervisor` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] groups: Specifies the cloud server group ID.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tenancies: Specifies the tenancy of the ECS. Valid values are:
+               + **dedicated**: The dedicated ECS.
+               + **shared**: The shared ECS.
+        """
+        if dedicated_host_ids is not None:
+            pulumi.set(__self__, "dedicated_host_ids", dedicated_host_ids)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if tenancies is not None:
+            pulumi.set(__self__, "tenancies", tenancies)
+
+    @_builtins.property
+    @pulumi.getter(name="dedicatedHostIds")
+    def dedicated_host_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the dedicated host ID. This field is valid only when the ECS is
+        a dedicated host.
+
+        <a name="hwc_ecs_hypervisor_struct"></a>
+        The `hypervisor` block supports:
+        """
+        return pulumi.get(self, "dedicated_host_ids")
+
+    @dedicated_host_ids.setter
+    def dedicated_host_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "dedicated_host_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the cloud server group ID.
+        """
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "groups", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tenancies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the tenancy of the ECS. Valid values are:
+        + **dedicated**: The dedicated ECS.
+        + **shared**: The shared ECS.
+        """
+        return pulumi.get(self, "tenancies")
+
+    @tenancies.setter
+    def tenancies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tenancies", value)
+
+
+class AssetDataObjectPropertiesHwcEcsSecurityGroupArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEcsSecurityGroupArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class AssetDataObjectPropertiesHwcEcsVolumesAttachedArgsDict(TypedDict):
+    boot_index: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the boot order of the disk. Valid values:
+    + **0**: The disk is system disk.
+    + **1**: The disk is data disk.
+    """
+    delete_on_termination: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to delete the disk when deleting the ECS.
+    """
+    device: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the device information.
+    The device structure is documented below.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEcsVolumesAttachedArgs:
+    def __init__(__self__, *,
+                 boot_index: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
+                 device: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] boot_index: Specifies the boot order of the disk. Valid values:
+               + **0**: The disk is system disk.
+               + **1**: The disk is data disk.
+        :param pulumi.Input[_builtins.str] delete_on_termination: Specifies whether to delete the disk when deleting the ECS.
+        :param pulumi.Input[_builtins.str] device: Specifies the device information.
+               The device structure is documented below.
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        """
+        if boot_index is not None:
+            pulumi.set(__self__, "boot_index", boot_index)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if device is not None:
+            pulumi.set(__self__, "device", device)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="bootIndex")
+    def boot_index(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the boot order of the disk. Valid values:
+        + **0**: The disk is system disk.
+        + **1**: The disk is data disk.
+        """
+        return pulumi.get(self, "boot_index")
+
+    @boot_index.setter
+    def boot_index(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "boot_index", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether to delete the disk when deleting the ECS.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the device information.
+        The device structure is documented below.
+        """
+        return pulumi.get(self, "device")
+
+    @device.setter
+    def device(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "device", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+
+class AssetDataObjectPropertiesHwcEipArgsDict(TypedDict):
+    alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alias of the RDS.
+    """
+    allow_share_bandwidth_types: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of shared bandwidth types that the public IP can join.
+    If it is an empty list, it means that the public IP cannot join any shared bandwidth. Constraint: The public IP can
+    only join the shared bandwidth with the same bandwidth type.
+    """
+    associate_instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance ID of the public IP.
+    """
+    associate_instance_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance type of the public IP.
+    Valid values are **PORT**, **NATGW**, **ELB**, **ELBV1**, **VPN**, and **null**.
+    """
+    bandwidth: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcEipBandwidthArgsDict']]
+    """
+    Specifies the bandwidth information of the EIP.
+    The bandwidth structure is documented below.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule creation time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule description.
+    """
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID to which the RDS belongs.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the IP version information. Valid values are `4` and `6`.
+    """
+    lock_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the freeze status of the public IP. Valid values are **police** and **locked**.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID.
+    """
+    protected_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the WAF status. Valid values are:
+    + **OPEN**：Enabled.
+    + **CLOSE**：Disabled.
+    """
+    public_border_group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the center site asset or edge site asset. Value range: center,
+    edge site name.
+
+    <a name="hwc_eip_vnic_struct"></a>
+    The `vnic` block supports:
+    """
+    public_ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the public IP address of the EIP.
+    """
+    public_ipv6_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the public IPv6 address of the EIP.
+    """
+    publicip_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the public IP pool ID of the EIP.
+    """
+    publicip_pool_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the public IP pool name of the EIP.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain status.
+    """
+    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the tags.
+    The tag structure is documented below.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user type of the asset.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule update time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    vnic: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcEipVnicArgsDict']]
+    """
+    Specifies the VNIC information of the EIP.
+    The vnic structure is documented below.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEipArgs:
+    def __init__(__self__, *,
+                 alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_share_bandwidth_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 associate_instance_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 associate_instance_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 bandwidth: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEipBandwidthArgs']] = None,
+                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 lock_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 protected_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 public_border_group: Optional[pulumi.Input[_builtins.str]] = None,
+                 public_ip_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 public_ipv6_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 publicip_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 publicip_pool_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 vnic: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEipVnicArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] alias: Specifies the alias of the RDS.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allow_share_bandwidth_types: Specifies the list of shared bandwidth types that the public IP can join.
+               If it is an empty list, it means that the public IP cannot join any shared bandwidth. Constraint: The public IP can
+               only join the shared bandwidth with the same bandwidth type.
+        :param pulumi.Input[_builtins.str] associate_instance_id: Specifies the instance ID of the public IP.
+        :param pulumi.Input[_builtins.str] associate_instance_type: Specifies the instance type of the public IP.
+               Valid values are **PORT**, **NATGW**, **ELB**, **ELBV1**, **VPN**, and **null**.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcEipBandwidthArgs'] bandwidth: Specifies the bandwidth information of the EIP.
+               The bandwidth structure is documented below.
+        :param pulumi.Input[_builtins.str] created_at: Specifies the security group rule creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input[_builtins.str] description: Specifies the security group rule description.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.int] ip_version: Specifies the IP version information. Valid values are `4` and `6`.
+        :param pulumi.Input[_builtins.str] lock_status: Specifies the freeze status of the public IP. Valid values are **police** and **locked**.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
+        :param pulumi.Input[_builtins.str] protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param pulumi.Input[_builtins.str] public_border_group: Specifies the center site asset or edge site asset. Value range: center,
+               edge site name.
+               
+               <a name="hwc_eip_vnic_struct"></a>
+               The `vnic` block supports:
+        :param pulumi.Input[_builtins.str] public_ip_address: Specifies the public IP address of the EIP.
+        :param pulumi.Input[_builtins.str] public_ipv6_address: Specifies the public IPv6 address of the EIP.
+        :param pulumi.Input[_builtins.str] publicip_pool_id: Specifies the public IP pool ID of the EIP.
+        :param pulumi.Input[_builtins.str] publicip_pool_name: Specifies the public IP pool name of the EIP.
+        :param pulumi.Input[_builtins.str] status: Specifies the domain status.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Specifies the tags.
+               The tag structure is documented below.
+        :param pulumi.Input[_builtins.str] type: Specifies the governance user type of the asset.
+        :param pulumi.Input[_builtins.str] updated_at: Specifies the security group rule update time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcEipVnicArgs'] vnic: Specifies the VNIC information of the EIP.
+               The vnic structure is documented below.
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if allow_share_bandwidth_types is not None:
+            pulumi.set(__self__, "allow_share_bandwidth_types", allow_share_bandwidth_types)
+        if associate_instance_id is not None:
+            pulumi.set(__self__, "associate_instance_id", associate_instance_id)
+        if associate_instance_type is not None:
+            pulumi.set(__self__, "associate_instance_type", associate_instance_type)
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ip_version is not None:
+            pulumi.set(__self__, "ip_version", ip_version)
+        if lock_status is not None:
+            pulumi.set(__self__, "lock_status", lock_status)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if public_border_group is not None:
+            pulumi.set(__self__, "public_border_group", public_border_group)
+        if public_ip_address is not None:
+            pulumi.set(__self__, "public_ip_address", public_ip_address)
+        if public_ipv6_address is not None:
+            pulumi.set(__self__, "public_ipv6_address", public_ipv6_address)
+        if publicip_pool_id is not None:
+            pulumi.set(__self__, "publicip_pool_id", publicip_pool_id)
+        if publicip_pool_name is not None:
+            pulumi.set(__self__, "publicip_pool_name", publicip_pool_name)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if vnic is not None:
+            pulumi.set(__self__, "vnic", vnic)
+
+    @_builtins.property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the alias of the RDS.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowShareBandwidthTypes")
+    def allow_share_bandwidth_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the list of shared bandwidth types that the public IP can join.
+        If it is an empty list, it means that the public IP cannot join any shared bandwidth. Constraint: The public IP can
+        only join the shared bandwidth with the same bandwidth type.
+        """
+        return pulumi.get(self, "allow_share_bandwidth_types")
+
+    @allow_share_bandwidth_types.setter
+    def allow_share_bandwidth_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allow_share_bandwidth_types", value)
+
+    @_builtins.property
+    @pulumi.getter(name="associateInstanceId")
+    def associate_instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance ID of the public IP.
+        """
+        return pulumi.get(self, "associate_instance_id")
+
+    @associate_instance_id.setter
+    def associate_instance_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "associate_instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="associateInstanceType")
+    def associate_instance_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance type of the public IP.
+        Valid values are **PORT**, **NATGW**, **ELB**, **ELBV1**, **VPN**, and **null**.
+        """
+        return pulumi.get(self, "associate_instance_type")
+
+    @associate_instance_type.setter
+    def associate_instance_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "associate_instance_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def bandwidth(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcEipBandwidthArgs']]:
+        """
+        Specifies the bandwidth information of the EIP.
+        The bandwidth structure is documented below.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @bandwidth.setter
+    def bandwidth(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEipBandwidthArgs']]):
+        pulumi.set(self, "bandwidth", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the IP version information. Valid values are `4` and `6`.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @ip_version.setter
+    def ip_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ip_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lockStatus")
+    def lock_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the freeze status of the public IP. Valid values are **police** and **locked**.
+        """
+        return pulumi.get(self, "lock_status")
+
+    @lock_status.setter
+    def lock_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "lock_status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @protected_status.setter
+    def protected_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protected_status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the center site asset or edge site asset. Value range: center,
+        edge site name.
+
+        <a name="hwc_eip_vnic_struct"></a>
+        The `vnic` block supports:
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @public_border_group.setter
+    def public_border_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "public_border_group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicIpAddress")
+    def public_ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the public IP address of the EIP.
+        """
+        return pulumi.get(self, "public_ip_address")
+
+    @public_ip_address.setter
+    def public_ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "public_ip_address", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicIpv6Address")
+    def public_ipv6_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the public IPv6 address of the EIP.
+        """
+        return pulumi.get(self, "public_ipv6_address")
+
+    @public_ipv6_address.setter
+    def public_ipv6_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "public_ipv6_address", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicipPoolId")
+    def publicip_pool_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the public IP pool ID of the EIP.
+        """
+        return pulumi.get(self, "publicip_pool_id")
+
+    @publicip_pool_id.setter
+    def publicip_pool_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "publicip_pool_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicipPoolName")
+    def publicip_pool_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the public IP pool name of the EIP.
+        """
+        return pulumi.get(self, "publicip_pool_name")
+
+    @publicip_pool_name.setter
+    def publicip_pool_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "publicip_pool_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the tags.
+        The tag structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule update time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "updated_at", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vnic(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcEipVnicArgs']]:
+        """
+        Specifies the VNIC information of the EIP.
+        The vnic structure is documented below.
+        """
+        return pulumi.get(self, "vnic")
+
+    @vnic.setter
+    def vnic(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcEipVnicArgs']]):
+        pulumi.set(self, "vnic", value)
+
+
+class AssetDataObjectPropertiesHwcEipBandwidthArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    share_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the bandwidth type. Valid values are **PER** and **WHOLE**.
+
+    <a name="hwc_vpc_struct"></a>
+    The `hwc_vpc` block supports:
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the volume size in GB.
+
+    <a name="hwc_rds_backup_strategy_struct"></a>
+    The `backup_strategy` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEipBandwidthArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 share_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 size: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input[_builtins.str] share_type: Specifies the bandwidth type. Valid values are **PER** and **WHOLE**.
+               
+               <a name="hwc_vpc_struct"></a>
+               The `hwc_vpc` block supports:
+        :param pulumi.Input[_builtins.int] size: Specifies the volume size in GB.
+               
+               <a name="hwc_rds_backup_strategy_struct"></a>
+               The `backup_strategy` block supports:
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if share_type is not None:
+            pulumi.set(__self__, "share_type", share_type)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="shareType")
+    def share_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the bandwidth type. Valid values are **PER** and **WHOLE**.
+
+        <a name="hwc_vpc_struct"></a>
+        The `hwc_vpc` block supports:
+        """
+        return pulumi.get(self, "share_type")
+
+    @share_type.setter
+    def share_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "share_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the volume size in GB.
+
+        <a name="hwc_rds_backup_strategy_struct"></a>
+        The `backup_strategy` block supports:
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+
+class AssetDataObjectPropertiesHwcEipVnicArgsDict(TypedDict):
+    device_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the device ID of the public IP.
+    """
+    device_owner: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the device owner of the public IP. Valid values are **network:dhcp**,
+    **network:VIP_PORT**, **network:router_interface_distributed**, and **network:router_centralized_snat**.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance ID of the public IP.
+    """
+    instance_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance type of the public IP.
+
+    <a name="hwc_eip_bandwidth_struct"></a>
+    The `bandwidth` block supports:
+    """
+    mac: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the MAC address of the public IP.
+    """
+    port_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the port ID of the public IP.
+    """
+    port_profile: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the port profile information of the public IP.
+    """
+    private_ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the private IP address of the public IP.
+    """
+    vni: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VXLAN ID of the public IP.
+    """
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VPC ID.
+    """
+    vtep: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VTEP IP of the public IP.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcEipVnicArgs:
+    def __init__(__self__, *,
+                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 device_owner: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 mac: Optional[pulumi.Input[_builtins.str]] = None,
+                 port_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 port_profile: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_ip_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 vni: Optional[pulumi.Input[_builtins.str]] = None,
+                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 vtep: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] device_id: Specifies the device ID of the public IP.
+        :param pulumi.Input[_builtins.str] device_owner: Specifies the device owner of the public IP. Valid values are **network:dhcp**,
+               **network:VIP_PORT**, **network:router_interface_distributed**, and **network:router_centralized_snat**.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID of the public IP.
+        :param pulumi.Input[_builtins.str] instance_type: Specifies the instance type of the public IP.
+               
+               <a name="hwc_eip_bandwidth_struct"></a>
+               The `bandwidth` block supports:
+        :param pulumi.Input[_builtins.str] mac: Specifies the MAC address of the public IP.
+        :param pulumi.Input[_builtins.str] port_id: Specifies the port ID of the public IP.
+        :param pulumi.Input[_builtins.str] port_profile: Specifies the port profile information of the public IP.
+        :param pulumi.Input[_builtins.str] private_ip_address: Specifies the private IP address of the public IP.
+        :param pulumi.Input[_builtins.str] vni: Specifies the VXLAN ID of the public IP.
+        :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID.
+        :param pulumi.Input[_builtins.str] vtep: Specifies the VTEP IP of the public IP.
+        """
+        if device_id is not None:
+            pulumi.set(__self__, "device_id", device_id)
+        if device_owner is not None:
+            pulumi.set(__self__, "device_owner", device_owner)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if instance_type is not None:
+            pulumi.set(__self__, "instance_type", instance_type)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if port_id is not None:
+            pulumi.set(__self__, "port_id", port_id)
+        if port_profile is not None:
+            pulumi.set(__self__, "port_profile", port_profile)
+        if private_ip_address is not None:
+            pulumi.set(__self__, "private_ip_address", private_ip_address)
+        if vni is not None:
+            pulumi.set(__self__, "vni", vni)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+        if vtep is not None:
+            pulumi.set(__self__, "vtep", vtep)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the device ID of the public IP.
+        """
+        return pulumi.get(self, "device_id")
+
+    @device_id.setter
+    def device_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "device_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceOwner")
+    def device_owner(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the device owner of the public IP. Valid values are **network:dhcp**,
+        **network:VIP_PORT**, **network:router_interface_distributed**, and **network:router_centralized_snat**.
+        """
+        return pulumi.get(self, "device_owner")
+
+    @device_owner.setter
+    def device_owner(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "device_owner", value)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance ID of the public IP.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the instance type of the public IP.
+
+        <a name="hwc_eip_bandwidth_struct"></a>
+        The `bandwidth` block supports:
+        """
+        return pulumi.get(self, "instance_type")
+
+    @instance_type.setter
+    def instance_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "instance_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mac(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the MAC address of the public IP.
+        """
+        return pulumi.get(self, "mac")
+
+    @mac.setter
+    def mac(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mac", value)
+
+    @_builtins.property
+    @pulumi.getter(name="portId")
+    def port_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the port ID of the public IP.
+        """
+        return pulumi.get(self, "port_id")
+
+    @port_id.setter
+    def port_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "port_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="portProfile")
+    def port_profile(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the port profile information of the public IP.
+        """
+        return pulumi.get(self, "port_profile")
+
+    @port_profile.setter
+    def port_profile(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "port_profile", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateIpAddress")
+    def private_ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the private IP address of the public IP.
+        """
+        return pulumi.get(self, "private_ip_address")
+
+    @private_ip_address.setter
+    def private_ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_ip_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vni(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the VXLAN ID of the public IP.
+        """
+        return pulumi.get(self, "vni")
+
+    @vni.setter
+    def vni(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vni", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the VPC ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vpc_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vtep(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the VTEP IP of the public IP.
+        """
+        return pulumi.get(self, "vtep")
+
+    @vtep.setter
+    def vtep(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vtep", value)
+
+
+class AssetDataObjectPropertiesHwcRdsArgsDict(TypedDict):
+    alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alias of the RDS.
+    """
+    associated_with_ddm: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the instance is associated with DDM.
+    """
+    backup_strategy: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcRdsBackupStrategyArgsDict']]
+    """
+    Specifies the backup policy.
+    The backup_strategy structure is documented below.
+    """
+    backup_used_space: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the backup space usage of the RDS. Only supports RDS for SQL Server
+    engine.
+
+    <a name="hwc_rds_ha_struct"></a>
+    The `ha` block supports:
+    """
+    cpu: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CPU size of the RDS.
+    """
+    created: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the creation time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    datastore: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcRdsDatastoreArgsDict']]
+    """
+    Specifies the database information.
+    The datastore structure is documented below.
+    """
+    db_user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default username of the RDS.
+    """
+    disk_encryption_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the disk encryption ID.
+    """
+    enable_ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the SSL flag of the instance.
+    Valid values are **true** and **false**.
+    """
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID to which the RDS belongs.
+    """
+    expiration_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the expiration time of the RDS.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    flavor_ref: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the flavor of the RDS.
+    """
+    ha: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcRdsHaArgsDict']]
+    """
+    Specifies the HA configuration.
+    The ha structure is documented below.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    maintenance_window: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the maintenance window of the RDS.
+    """
+    max_iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum IOPS of the disk.
+    """
+    mem: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the memory size of the RDS.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    nodes: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsNodeArgsDict']]]]
+    """
+    Specifies the main and standby instance information.
+    The nodes structure is documented below.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the service port.
+    """
+    private_dns_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the private DNS names of the RDS.
+    """
+    private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the private IP addresses of the RDS.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID.
+    """
+    protected_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the WAF status. Valid values are:
+    + **OPEN**：Enabled.
+    + **CLOSE**：Disabled.
+    """
+    public_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of public IP addresses of the instance.
+    """
+    read_only_by_user: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the user set read-only status of the RDS. Only supports RDS for
+    MySQL engine.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region where the RDS is located.
+    """
+    related_instances: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsRelatedInstanceArgsDict']]]]
+    """
+    Specifies the list of associated database instances.
+    The related_instance structure is documented below.
+    """
+    security_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group ID.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain status.
+    """
+    storage_used_space: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the disk space usage, unit is GB.
+    """
+    subnet_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subnet ID of the RDS.
+    """
+    switch_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database switch strategy respectively.
+    """
+    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsTagArgsDict']]]]
+    """
+    Specifies the tags.
+    The tag structure is documented below.
+    """
+    time_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time zone of the RDS.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user type of the asset.
+    """
+    updated: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the update time of the RDS.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    volume: NotRequired[pulumi.Input['AssetDataObjectPropertiesHwcRdsVolumeArgsDict']]
+    """
+    Specifies the volume information.
+    The volume structure is documented below.
+    """
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VPC ID.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcRdsArgs:
+    def __init__(__self__, *,
+                 alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 associated_with_ddm: Optional[pulumi.Input[_builtins.bool]] = None,
+                 backup_strategy: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsBackupStrategyArgs']] = None,
+                 backup_used_space: Optional[pulumi.Input[_builtins.float]] = None,
+                 cpu: Optional[pulumi.Input[_builtins.str]] = None,
+                 created: Optional[pulumi.Input[_builtins.str]] = None,
+                 datastore: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsDatastoreArgs']] = None,
+                 db_user_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 disk_encryption_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_ssl: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 expiration_time: Optional[pulumi.Input[_builtins.str]] = None,
+                 flavor_ref: Optional[pulumi.Input[_builtins.str]] = None,
+                 ha: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsHaArgs']] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 maintenance_window: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_iops: Optional[pulumi.Input[_builtins.int]] = None,
+                 mem: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 nodes: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsNodeArgs']]]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None,
+                 private_dns_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 protected_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 read_only_by_user: Optional[pulumi.Input[_builtins.bool]] = None,
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 related_instances: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsRelatedInstanceArgs']]]] = None,
+                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
+                 storage_used_space: Optional[pulumi.Input[_builtins.float]] = None,
+                 subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 switch_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsTagArgs']]]] = None,
+                 time_zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 updated: Optional[pulumi.Input[_builtins.str]] = None,
+                 volume: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsVolumeArgs']] = None,
+                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] alias: Specifies the alias of the RDS.
+        :param pulumi.Input[_builtins.bool] associated_with_ddm: Specifies whether the instance is associated with DDM.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcRdsBackupStrategyArgs'] backup_strategy: Specifies the backup policy.
+               The backup_strategy structure is documented below.
+        :param pulumi.Input[_builtins.float] backup_used_space: Specifies the backup space usage of the RDS. Only supports RDS for SQL Server
+               engine.
+               
+               <a name="hwc_rds_ha_struct"></a>
+               The `ha` block supports:
+        :param pulumi.Input[_builtins.str] cpu: Specifies the CPU size of the RDS.
+        :param pulumi.Input[_builtins.str] created: Specifies the creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcRdsDatastoreArgs'] datastore: Specifies the database information.
+               The datastore structure is documented below.
+        :param pulumi.Input[_builtins.str] db_user_name: Specifies the default username of the RDS.
+        :param pulumi.Input[_builtins.str] disk_encryption_id: Specifies the disk encryption ID.
+        :param pulumi.Input[_builtins.bool] enable_ssl: Specifies the SSL flag of the instance.
+               Valid values are **true** and **false**.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param pulumi.Input[_builtins.str] expiration_time: Specifies the expiration time of the RDS.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input[_builtins.str] flavor_ref: Specifies the flavor of the RDS.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcRdsHaArgs'] ha: Specifies the HA configuration.
+               The ha structure is documented below.
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] maintenance_window: Specifies the maintenance window of the RDS.
+        :param pulumi.Input[_builtins.int] max_iops: Specifies the maximum IOPS of the disk.
+        :param pulumi.Input[_builtins.str] mem: Specifies the memory size of the RDS.
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsNodeArgs']]] nodes: Specifies the main and standby instance information.
+               The nodes structure is documented below.
+        :param pulumi.Input[_builtins.int] port: Specifies the service port.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] private_dns_names: Specifies the private DNS names of the RDS.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] private_ips: Specifies the private IP addresses of the RDS.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
+        :param pulumi.Input[_builtins.str] protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] public_ips: Specifies the list of public IP addresses of the instance.
+        :param pulumi.Input[_builtins.bool] read_only_by_user: Specifies the user set read-only status of the RDS. Only supports RDS for
+               MySQL engine.
+        :param pulumi.Input[_builtins.str] region: Specifies the region where the RDS is located.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsRelatedInstanceArgs']]] related_instances: Specifies the list of associated database instances.
+               The related_instance structure is documented below.
+        :param pulumi.Input[_builtins.str] security_group_id: Specifies the security group ID.
+        :param pulumi.Input[_builtins.str] status: Specifies the domain status.
+        :param pulumi.Input[_builtins.float] storage_used_space: Specifies the disk space usage, unit is GB.
+        :param pulumi.Input[_builtins.str] subnet_id: Specifies the subnet ID of the RDS.
+        :param pulumi.Input[_builtins.str] switch_strategy: Specifies the database switch strategy respectively.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsTagArgs']]] tags: Specifies the tags.
+               The tag structure is documented below.
+        :param pulumi.Input[_builtins.str] time_zone: Specifies the time zone of the RDS.
+        :param pulumi.Input[_builtins.str] type: Specifies the governance user type of the asset.
+        :param pulumi.Input[_builtins.str] updated: Specifies the update time of the RDS.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input['AssetDataObjectPropertiesHwcRdsVolumeArgs'] volume: Specifies the volume information.
+               The volume structure is documented below.
+        :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID.
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if associated_with_ddm is not None:
+            pulumi.set(__self__, "associated_with_ddm", associated_with_ddm)
+        if backup_strategy is not None:
+            pulumi.set(__self__, "backup_strategy", backup_strategy)
+        if backup_used_space is not None:
+            pulumi.set(__self__, "backup_used_space", backup_used_space)
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if datastore is not None:
+            pulumi.set(__self__, "datastore", datastore)
+        if db_user_name is not None:
+            pulumi.set(__self__, "db_user_name", db_user_name)
+        if disk_encryption_id is not None:
+            pulumi.set(__self__, "disk_encryption_id", disk_encryption_id)
+        if enable_ssl is not None:
+            pulumi.set(__self__, "enable_ssl", enable_ssl)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if expiration_time is not None:
+            pulumi.set(__self__, "expiration_time", expiration_time)
+        if flavor_ref is not None:
+            pulumi.set(__self__, "flavor_ref", flavor_ref)
+        if ha is not None:
+            pulumi.set(__self__, "ha", ha)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if maintenance_window is not None:
+            pulumi.set(__self__, "maintenance_window", maintenance_window)
+        if max_iops is not None:
+            pulumi.set(__self__, "max_iops", max_iops)
+        if mem is not None:
+            pulumi.set(__self__, "mem", mem)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if nodes is not None:
+            pulumi.set(__self__, "nodes", nodes)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if private_dns_names is not None:
+            pulumi.set(__self__, "private_dns_names", private_dns_names)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if public_ips is not None:
+            pulumi.set(__self__, "public_ips", public_ips)
+        if read_only_by_user is not None:
+            pulumi.set(__self__, "read_only_by_user", read_only_by_user)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if related_instances is not None:
+            pulumi.set(__self__, "related_instances", related_instances)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if storage_used_space is not None:
+            pulumi.set(__self__, "storage_used_space", storage_used_space)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if switch_strategy is not None:
+            pulumi.set(__self__, "switch_strategy", switch_strategy)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if time_zone is not None:
+            pulumi.set(__self__, "time_zone", time_zone)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated is not None:
+            pulumi.set(__self__, "updated", updated)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the alias of the RDS.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="associatedWithDdm")
+    def associated_with_ddm(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the instance is associated with DDM.
+        """
+        return pulumi.get(self, "associated_with_ddm")
+
+    @associated_with_ddm.setter
+    def associated_with_ddm(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "associated_with_ddm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="backupStrategy")
+    def backup_strategy(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsBackupStrategyArgs']]:
+        """
+        Specifies the backup policy.
+        The backup_strategy structure is documented below.
+        """
+        return pulumi.get(self, "backup_strategy")
+
+    @backup_strategy.setter
+    def backup_strategy(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsBackupStrategyArgs']]):
+        pulumi.set(self, "backup_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="backupUsedSpace")
+    def backup_used_space(self) -> Optional[pulumi.Input[_builtins.float]]:
+        """
+        Specifies the backup space usage of the RDS. Only supports RDS for SQL Server
+        engine.
+
+        <a name="hwc_rds_ha_struct"></a>
+        The `ha` block supports:
+        """
+        return pulumi.get(self, "backup_used_space")
+
+    @backup_used_space.setter
+    def backup_used_space(self, value: Optional[pulumi.Input[_builtins.float]]):
+        pulumi.set(self, "backup_used_space", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the CPU size of the RDS.
+        """
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cpu", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created")
+
+    @created.setter
+    def created(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def datastore(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsDatastoreArgs']]:
+        """
+        Specifies the database information.
+        The datastore structure is documented below.
+        """
+        return pulumi.get(self, "datastore")
+
+    @datastore.setter
+    def datastore(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsDatastoreArgs']]):
+        pulumi.set(self, "datastore", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dbUserName")
+    def db_user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the default username of the RDS.
+        """
+        return pulumi.get(self, "db_user_name")
+
+    @db_user_name.setter
+    def db_user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "db_user_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptionId")
+    def disk_encryption_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the disk encryption ID.
+        """
+        return pulumi.get(self, "disk_encryption_id")
+
+    @disk_encryption_id.setter
+    def disk_encryption_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "disk_encryption_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableSsl")
+    def enable_ssl(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies the SSL flag of the instance.
+        Valid values are **true** and **false**.
+        """
+        return pulumi.get(self, "enable_ssl")
+
+    @enable_ssl.setter
+    def enable_ssl(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_ssl", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expirationTime")
+    def expiration_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the expiration time of the RDS.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "expiration_time")
+
+    @expiration_time.setter
+    def expiration_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "expiration_time", value)
+
+    @_builtins.property
+    @pulumi.getter(name="flavorRef")
+    def flavor_ref(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the flavor of the RDS.
+        """
+        return pulumi.get(self, "flavor_ref")
+
+    @flavor_ref.setter
+    def flavor_ref(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "flavor_ref", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ha(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsHaArgs']]:
+        """
+        Specifies the HA configuration.
+        The ha structure is documented below.
+        """
+        return pulumi.get(self, "ha")
+
+    @ha.setter
+    def ha(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsHaArgs']]):
+        pulumi.set(self, "ha", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the maintenance window of the RDS.
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @maintenance_window.setter
+    def maintenance_window(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "maintenance_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxIops")
+    def max_iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the maximum IOPS of the disk.
+        """
+        return pulumi.get(self, "max_iops")
+
+    @max_iops.setter
+    def max_iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_iops", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mem(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the memory size of the RDS.
+        """
+        return pulumi.get(self, "mem")
+
+    @mem.setter
+    def mem(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mem", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsNodeArgs']]]]:
+        """
+        Specifies the main and standby instance information.
+        The nodes structure is documented below.
+        """
+        return pulumi.get(self, "nodes")
+
+    @nodes.setter
+    def nodes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsNodeArgs']]]]):
+        pulumi.set(self, "nodes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the service port.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateDnsNames")
+    def private_dns_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the private DNS names of the RDS.
+        """
+        return pulumi.get(self, "private_dns_names")
+
+    @private_dns_names.setter
+    def private_dns_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "private_dns_names", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the private IP addresses of the RDS.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "private_ips", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @protected_status.setter
+    def protected_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protected_status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicIps")
+    def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the list of public IP addresses of the instance.
+        """
+        return pulumi.get(self, "public_ips")
+
+    @public_ips.setter
+    def public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "public_ips", value)
+
+    @_builtins.property
+    @pulumi.getter(name="readOnlyByUser")
+    def read_only_by_user(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies the user set read-only status of the RDS. Only supports RDS for
+        MySQL engine.
+        """
+        return pulumi.get(self, "read_only_by_user")
+
+    @read_only_by_user.setter
+    def read_only_by_user(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "read_only_by_user", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the region where the RDS is located.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="relatedInstances")
+    def related_instances(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsRelatedInstanceArgs']]]]:
+        """
+        Specifies the list of associated database instances.
+        The related_instance structure is documented below.
+        """
+        return pulumi.get(self, "related_instances")
+
+    @related_instances.setter
+    def related_instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsRelatedInstanceArgs']]]]):
+        pulumi.set(self, "related_instances", value)
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group ID.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @security_group_id.setter
+    def security_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "security_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="storageUsedSpace")
+    def storage_used_space(self) -> Optional[pulumi.Input[_builtins.float]]:
+        """
+        Specifies the disk space usage, unit is GB.
+        """
+        return pulumi.get(self, "storage_used_space")
+
+    @storage_used_space.setter
+    def storage_used_space(self, value: Optional[pulumi.Input[_builtins.float]]):
+        pulumi.set(self, "storage_used_space", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the subnet ID of the RDS.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subnet_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="switchStrategy")
+    def switch_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the database switch strategy respectively.
+        """
+        return pulumi.get(self, "switch_strategy")
+
+    @switch_strategy.setter
+    def switch_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "switch_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsTagArgs']]]]:
+        """
+        Specifies the tags.
+        The tag structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcRdsTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the time zone of the RDS.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @time_zone.setter
+    def time_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "time_zone", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the update time of the RDS.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated")
+
+    @updated.setter
+    def updated(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "updated", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def volume(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsVolumeArgs']]:
+        """
+        Specifies the volume information.
+        The volume structure is documented below.
+        """
+        return pulumi.get(self, "volume")
+
+    @volume.setter
+    def volume(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesHwcRdsVolumeArgs']]):
+        pulumi.set(self, "volume", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the VPC ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vpc_id", value)
+
+
+class AssetDataObjectPropertiesHwcRdsBackupStrategyArgsDict(TypedDict):
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days that the generated backup files can be saved.
+    Valid values are `0` to `732`. When the value is `0`, it means that the automatic backup policy is not set or the
+    automatic backup policy is disabled. If you need to extend the retention period, contact the customer service for
+    application. The maximum retention period for automatic backup is `2,562` days.
+
+    <a name="hwc_rds_node_struct"></a>
+    The `node` block supports:
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backup time period. Automatic backup will be triggered in this period.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcRdsBackupStrategyArgs:
+    def __init__(__self__, *,
+                 keep_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 start_time: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] keep_days: Specifies the number of days that the generated backup files can be saved.
+               Valid values are `0` to `732`. When the value is `0`, it means that the automatic backup policy is not set or the
+               automatic backup policy is disabled. If you need to extend the retention period, contact the customer service for
+               application. The maximum retention period for automatic backup is `2,562` days.
+               
+               <a name="hwc_rds_node_struct"></a>
+               The `node` block supports:
+        :param pulumi.Input[_builtins.str] start_time: Specifies the backup time period. Automatic backup will be triggered in this period.
+        """
+        if keep_days is not None:
+            pulumi.set(__self__, "keep_days", keep_days)
+        if start_time is not None:
+            pulumi.set(__self__, "start_time", start_time)
+
+    @_builtins.property
+    @pulumi.getter(name="keepDays")
+    def keep_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of days that the generated backup files can be saved.
+        Valid values are `0` to `732`. When the value is `0`, it means that the automatic backup policy is not set or the
+        automatic backup policy is disabled. If you need to extend the retention period, contact the customer service for
+        application. The maximum retention period for automatic backup is `2,562` days.
+
+        <a name="hwc_rds_node_struct"></a>
+        The `node` block supports:
+        """
+        return pulumi.get(self, "keep_days")
+
+    @keep_days.setter
+    def keep_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "keep_days", value)
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the backup time period. Automatic backup will be triggered in this period.
+        """
+        return pulumi.get(self, "start_time")
+
+    @start_time.setter
+    def start_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "start_time", value)
+
+
+class AssetDataObjectPropertiesHwcRdsDatastoreArgsDict(TypedDict):
+    complete_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the complete version number of the database.
+    Only returns when the database engine is **PostgreSQL**.
+
+    <a name="hwc_rds_volume_struct"></a>
+    The `volume` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user type of the asset.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service version.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcRdsDatastoreArgs:
+    def __init__(__self__, *,
+                 complete_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] complete_version: Specifies the complete version number of the database.
+               Only returns when the database engine is **PostgreSQL**.
+               
+               <a name="hwc_rds_volume_struct"></a>
+               The `volume` block supports:
+        :param pulumi.Input[_builtins.str] type: Specifies the governance user type of the asset.
+        :param pulumi.Input[_builtins.str] version: Specifies the service version.
+        """
+        if complete_version is not None:
+            pulumi.set(__self__, "complete_version", complete_version)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="completeVersion")
+    def complete_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the complete version number of the database.
+        Only returns when the database engine is **PostgreSQL**.
+
+        <a name="hwc_rds_volume_struct"></a>
+        The `volume` block supports:
+        """
+        return pulumi.get(self, "complete_version")
+
+    @complete_version.setter
+    def complete_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "complete_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+class AssetDataObjectPropertiesHwcRdsHaArgsDict(TypedDict):
+    replication_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the replication mode.
+    Valid values are **async** and **semisync** for RDS for MySQL.
+    Valid values are **async** and **sync** for RDS for PostgreSQL.
+    Valid values are **sync** for RDS for Microsoft SQL Server.
+
+    <a name="hwc_rds_datastore_struct"></a>
+    The `datastore` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcRdsHaArgs:
+    def __init__(__self__, *,
+                 replication_mode: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] replication_mode: Specifies the replication mode.
+               Valid values are **async** and **semisync** for RDS for MySQL.
+               Valid values are **async** and **sync** for RDS for PostgreSQL.
+               Valid values are **sync** for RDS for Microsoft SQL Server.
+               
+               <a name="hwc_rds_datastore_struct"></a>
+               The `datastore` block supports:
+        """
+        if replication_mode is not None:
+            pulumi.set(__self__, "replication_mode", replication_mode)
+
+    @_builtins.property
+    @pulumi.getter(name="replicationMode")
+    def replication_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the replication mode.
+        Valid values are **async** and **semisync** for RDS for MySQL.
+        Valid values are **async** and **sync** for RDS for PostgreSQL.
+        Valid values are **sync** for RDS for Microsoft SQL Server.
+
+        <a name="hwc_rds_datastore_struct"></a>
+        The `datastore` block supports:
+        """
+        return pulumi.get(self, "replication_mode")
+
+    @replication_mode.setter
+    def replication_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "replication_mode", value)
+
+
+class AssetDataObjectPropertiesHwcRdsNodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the AZ where the node resides.
+
+    <a name="hwc_rds_related_instance_struct"></a>
+    The `related_instance` block supports:
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the node role. Valid values are **master**, **slave**, and **readreplica**.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain status.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcRdsNodeArgs:
+    def __init__(__self__, *,
+                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 role: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ where the node resides.
+               
+               <a name="hwc_rds_related_instance_struct"></a>
+               The `related_instance` block supports:
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input[_builtins.str] role: Specifies the node role. Valid values are **master**, **slave**, and **readreplica**.
+        :param pulumi.Input[_builtins.str] status: Specifies the domain status.
+        """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the AZ where the node resides.
+
+        <a name="hwc_rds_related_instance_struct"></a>
+        The `related_instance` block supports:
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @availability_zone.setter
+    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "availability_zone", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the node role. Valid values are **master**, **slave**, and **readreplica**.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "role", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+
+class AssetDataObjectPropertiesHwcRdsRelatedInstanceArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user type of the asset.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcRdsRelatedInstanceArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] type: Specifies the governance user type of the asset.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class AssetDataObjectPropertiesHwcRdsTagArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tag key. The maximum length is `128` unicode characters.
+    Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+    cannot be a space, trim half-width spaces before and after the validation and usage.
+    """
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+    If values is an empty list, it means any_value (query any value).
+
+    <a name="hwc_domain_struct"></a>
+    The `hwc_domain` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcRdsTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[_builtins.str]] = None,
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] key: Specifies the tag key. The maximum length is `128` unicode characters.
+               Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+               cannot be a space, trim half-width spaces before and after the validation and usage.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+               If values is an empty list, it means any_value (query any value).
+               
+               <a name="hwc_domain_struct"></a>
+               The `hwc_domain` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the tag key. The maximum length is `128` unicode characters.
+        Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+        cannot be a space, trim half-width spaces before and after the validation and usage.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+        If values is an empty list, it means any_value (query any value).
+
+        <a name="hwc_domain_struct"></a>
+        The `hwc_domain` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "values", value)
+
+
+class AssetDataObjectPropertiesHwcRdsVolumeArgsDict(TypedDict):
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the volume size in GB.
+
+    <a name="hwc_rds_backup_strategy_struct"></a>
+    The `backup_strategy` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user type of the asset.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcRdsVolumeArgs:
+    def __init__(__self__, *,
+                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] size: Specifies the volume size in GB.
+               
+               <a name="hwc_rds_backup_strategy_struct"></a>
+               The `backup_strategy` block supports:
+        :param pulumi.Input[_builtins.str] type: Specifies the governance user type of the asset.
+        """
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the volume size in GB.
+
+        <a name="hwc_rds_backup_strategy_struct"></a>
+        The `backup_strategy` block supports:
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class AssetDataObjectPropertiesHwcSubnetArgsDict(TypedDict):
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule creation time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule description.
+    """
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID to which the RDS belongs.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID.
+    """
+    security_group_rules: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgsDict']]]]
+    """
+    Specifies the security group rules.
+    The security_group_rules structure is documented below.
+
+    <a name="hwc_security_group_rules_struct"></a>
+    The `security_group_rules` block supports:
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule update time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcSubnetArgs:
+    def __init__(__self__, *,
+                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 security_group_rules: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgs']]]] = None,
+                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] created_at: Specifies the security group rule creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input[_builtins.str] description: Specifies the security group rule description.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgs']]] security_group_rules: Specifies the security group rules.
+               The security_group_rules structure is documented below.
+               
+               <a name="hwc_security_group_rules_struct"></a>
+               The `security_group_rules` block supports:
+        :param pulumi.Input[_builtins.str] updated_at: Specifies the security group rule update time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if security_group_rules is not None:
+            pulumi.set(__self__, "security_group_rules", security_group_rules)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupRules")
+    def security_group_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgs']]]]:
+        """
+        Specifies the security group rules.
+        The security_group_rules structure is documented below.
+
+        <a name="hwc_security_group_rules_struct"></a>
+        The `security_group_rules` block supports:
+        """
+        return pulumi.get(self, "security_group_rules")
+
+    @security_group_rules.setter
+    def security_group_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgs']]]]):
+        pulumi.set(self, "security_group_rules", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule update time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "updated_at", value)
+
+
+class AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgsDict(TypedDict):
+    action: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule action. Valid values are **allow** and **deny**.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule creation time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule description.
+    """
+    direction: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the direction of the security group rule.
+    Valid values are **ingress** and **egress**.
+    """
+    ethertype: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP address protocol type.
+    Valid values are **IPv4** and **IPv6**.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    multiport: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the port range.
+    Support single port (`80`), continuous ports (`1-30`), and non-continuous ports (`22, 3389, 80`).
+    """
+    priority: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the priority of the security group rule.
+    Valid values are `1` to `100`, `1` represents the highest priority.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service protocol.
+    """
+    remote_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the remote address group ID.
+    Valid values are the address group ID of the tenant.
+    It is mutually exclusive with `remote_group_id` and `remote_ip_prefix`.
+
+    <a name="hwc_rds_struct"></a>
+    The `hwc_rds` block supports:
+    """
+    remote_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the remote security group ID.
+    Valid values are the security group ID of the tenant.
+    It is mutually exclusive with `remote_ip_prefix` and `remote_address_group_id`.
+    """
+    remote_ip_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the remote IP address.
+    When `direction` is **egress**, it is the IP address of the virtual machine.
+    When `direction` is **ingress**, it is the IP address of the virtual machine.
+    It is mutually exclusive with `remote_group_id` and `remote_address_group_id`.
+    """
+    security_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group ID.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule update time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgs:
+    def __init__(__self__, *,
+                 action: Optional[pulumi.Input[_builtins.str]] = None,
+                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 direction: Optional[pulumi.Input[_builtins.str]] = None,
+                 ethertype: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 multiport: Optional[pulumi.Input[_builtins.str]] = None,
+                 priority: Optional[pulumi.Input[_builtins.int]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_address_group_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_group_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_ip_prefix: Optional[pulumi.Input[_builtins.str]] = None,
+                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] action: Specifies the security group rule action. Valid values are **allow** and **deny**.
+        :param pulumi.Input[_builtins.str] created_at: Specifies the security group rule creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input[_builtins.str] description: Specifies the security group rule description.
+        :param pulumi.Input[_builtins.str] direction: Specifies the direction of the security group rule.
+               Valid values are **ingress** and **egress**.
+        :param pulumi.Input[_builtins.str] ethertype: Specifies the IP address protocol type.
+               Valid values are **IPv4** and **IPv6**.
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] multiport: Specifies the port range.
+               Support single port (`80`), continuous ports (`1-30`), and non-continuous ports (`22, 3389, 80`).
+        :param pulumi.Input[_builtins.int] priority: Specifies the priority of the security group rule.
+               Valid values are `1` to `100`, `1` represents the highest priority.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
+        :param pulumi.Input[_builtins.str] protocol: Specifies the service protocol.
+        :param pulumi.Input[_builtins.str] remote_address_group_id: Specifies the remote address group ID.
+               Valid values are the address group ID of the tenant.
+               It is mutually exclusive with `remote_group_id` and `remote_ip_prefix`.
+               
+               <a name="hwc_rds_struct"></a>
+               The `hwc_rds` block supports:
+        :param pulumi.Input[_builtins.str] remote_group_id: Specifies the remote security group ID.
+               Valid values are the security group ID of the tenant.
+               It is mutually exclusive with `remote_ip_prefix` and `remote_address_group_id`.
+        :param pulumi.Input[_builtins.str] remote_ip_prefix: Specifies the remote IP address.
+               When `direction` is **egress**, it is the IP address of the virtual machine.
+               When `direction` is **ingress**, it is the IP address of the virtual machine.
+               It is mutually exclusive with `remote_group_id` and `remote_address_group_id`.
+        :param pulumi.Input[_builtins.str] security_group_id: Specifies the security group ID.
+        :param pulumi.Input[_builtins.str] updated_at: Specifies the security group rule update time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+        if ethertype is not None:
+            pulumi.set(__self__, "ethertype", ethertype)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if multiport is not None:
+            pulumi.set(__self__, "multiport", multiport)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if remote_address_group_id is not None:
+            pulumi.set(__self__, "remote_address_group_id", remote_address_group_id)
+        if remote_group_id is not None:
+            pulumi.set(__self__, "remote_group_id", remote_group_id)
+        if remote_ip_prefix is not None:
+            pulumi.set(__self__, "remote_ip_prefix", remote_ip_prefix)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule action. Valid values are **allow** and **deny**.
+        """
+        return pulumi.get(self, "action")
+
+    @action.setter
+    def action(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "action", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def direction(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the direction of the security group rule.
+        Valid values are **ingress** and **egress**.
+        """
+        return pulumi.get(self, "direction")
+
+    @direction.setter
+    def direction(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "direction", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ethertype(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IP address protocol type.
+        Valid values are **IPv4** and **IPv6**.
+        """
+        return pulumi.get(self, "ethertype")
+
+    @ethertype.setter
+    def ethertype(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ethertype", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def multiport(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the port range.
+        Support single port (`80`), continuous ports (`1-30`), and non-continuous ports (`22, 3389, 80`).
+        """
+        return pulumi.get(self, "multiport")
+
+    @multiport.setter
+    def multiport(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "multiport", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the priority of the security group rule.
+        Valid values are `1` to `100`, `1` represents the highest priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "priority", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the service protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteAddressGroupId")
+    def remote_address_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the remote address group ID.
+        Valid values are the address group ID of the tenant.
+        It is mutually exclusive with `remote_group_id` and `remote_ip_prefix`.
+
+        <a name="hwc_rds_struct"></a>
+        The `hwc_rds` block supports:
+        """
+        return pulumi.get(self, "remote_address_group_id")
+
+    @remote_address_group_id.setter
+    def remote_address_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remote_address_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteGroupId")
+    def remote_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the remote security group ID.
+        Valid values are the security group ID of the tenant.
+        It is mutually exclusive with `remote_ip_prefix` and `remote_address_group_id`.
+        """
+        return pulumi.get(self, "remote_group_id")
+
+    @remote_group_id.setter
+    def remote_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remote_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteIpPrefix")
+    def remote_ip_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the remote IP address.
+        When `direction` is **egress**, it is the IP address of the virtual machine.
+        When `direction` is **ingress**, it is the IP address of the virtual machine.
+        It is mutually exclusive with `remote_group_id` and `remote_address_group_id`.
+        """
+        return pulumi.get(self, "remote_ip_prefix")
+
+    @remote_ip_prefix.setter
+    def remote_ip_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remote_ip_prefix", value)
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group ID.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @security_group_id.setter
+    def security_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "security_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule update time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "updated_at", value)
+
+
+class AssetDataObjectPropertiesHwcVpcArgsDict(TypedDict):
+    cidr: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cidr of the VPC. Values ranges are: **10.0.0.0/8~10.255.255.240/28**,
+    **172.16.0.0/12 ~ 172.31.255.240/28**, and **192.168.0.0/16 ~ 192.168.255.240/28**.
+    Constraint: Must be an ipv4 cidr format, for example: **192.168.0.0/16**.
+    """
+    cloud_resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcCloudResourceArgsDict']]]]
+    """
+    Specifies the cloud resources of the VPC.
+    The cloud_resources structure is documented below.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule creation time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule description.
+    """
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID to which the RDS belongs.
+    """
+    extend_cidrs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the extend cidrs of the VPC. Currently only supports IPv4 cidr.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department ID of the asset.
+
+    <a name="governance_user_struct"></a>
+    The `governance_user` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID.
+    """
+    protected_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the WAF status. Valid values are:
+    + **OPEN**：Enabled.
+    + **CLOSE**：Disabled.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain status.
+    """
+    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcTagArgsDict']]]]
+    """
+    Specifies the tags.
+    The tag structure is documented below.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security group rule update time.
+    Format: **yyyy-MM-ddTHH:mm:ssZ**.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcVpcArgs:
+    def __init__(__self__, *,
+                 cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 cloud_resources: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcCloudResourceArgs']]]] = None,
+                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 extend_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 protected_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcTagArgs']]]] = None,
+                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] cidr: Specifies the cidr of the VPC. Values ranges are: **10.0.0.0/8~10.255.255.240/28**,
+               **172.16.0.0/12 ~ 172.31.255.240/28**, and **192.168.0.0/16 ~ 192.168.255.240/28**.
+               Constraint: Must be an ipv4 cidr format, for example: **192.168.0.0/16**.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcCloudResourceArgs']]] cloud_resources: Specifies the cloud resources of the VPC.
+               The cloud_resources structure is documented below.
+        :param pulumi.Input[_builtins.str] created_at: Specifies the security group rule creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param pulumi.Input[_builtins.str] description: Specifies the security group rule description.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] extend_cidrs: Specifies the extend cidrs of the VPC. Currently only supports IPv4 cidr.
+        :param pulumi.Input[_builtins.str] id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
+        :param pulumi.Input[_builtins.str] protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param pulumi.Input[_builtins.str] status: Specifies the domain status.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcTagArgs']]] tags: Specifies the tags.
+               The tag structure is documented below.
+        :param pulumi.Input[_builtins.str] updated_at: Specifies the security group rule update time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+        if cloud_resources is not None:
+            pulumi.set(__self__, "cloud_resources", cloud_resources)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if extend_cidrs is not None:
+            pulumi.set(__self__, "extend_cidrs", extend_cidrs)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the cidr of the VPC. Values ranges are: **10.0.0.0/8~10.255.255.240/28**,
+        **172.16.0.0/12 ~ 172.31.255.240/28**, and **192.168.0.0/16 ~ 192.168.255.240/28**.
+        Constraint: Must be an ipv4 cidr format, for example: **192.168.0.0/16**.
+        """
+        return pulumi.get(self, "cidr")
+
+    @cidr.setter
+    def cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cidr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudResources")
+    def cloud_resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcCloudResourceArgs']]]]:
+        """
+        Specifies the cloud resources of the VPC.
+        The cloud_resources structure is documented below.
+        """
+        return pulumi.get(self, "cloud_resources")
+
+    @cloud_resources.setter
+    def cloud_resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcCloudResourceArgs']]]]):
+        pulumi.set(self, "cloud_resources", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="extendCidrs")
+    def extend_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the extend cidrs of the VPC. Currently only supports IPv4 cidr.
+        """
+        return pulumi.get(self, "extend_cidrs")
+
+    @extend_cidrs.setter
+    def extend_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "extend_cidrs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @protected_status.setter
+    def protected_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protected_status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcTagArgs']]]]:
+        """
+        Specifies the tags.
+        The tag structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesHwcVpcTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security group rule update time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "updated_at", value)
+
+
+class AssetDataObjectPropertiesHwcVpcCloudResourceArgsDict(TypedDict):
+    resource_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the asset count of the cloud resources.
+
+    <a name="hwc_vpc_tag_struct"></a>
+    The `tag` block supports:
+    """
+    resource_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the cloud resources.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcVpcCloudResourceArgs:
+    def __init__(__self__, *,
+                 resource_count: Optional[pulumi.Input[_builtins.int]] = None,
+                 resource_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] resource_count: Specifies the asset count of the cloud resources.
+               
+               <a name="hwc_vpc_tag_struct"></a>
+               The `tag` block supports:
+        :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the cloud resources.
+        """
+        if resource_count is not None:
+            pulumi.set(__self__, "resource_count", resource_count)
+        if resource_type is not None:
+            pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceCount")
+    def resource_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the asset count of the cloud resources.
+
+        <a name="hwc_vpc_tag_struct"></a>
+        The `tag` block supports:
+        """
+        return pulumi.get(self, "resource_count")
+
+    @resource_count.setter
+    def resource_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "resource_count", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the type of the cloud resources.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @resource_type.setter
+    def resource_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_type", value)
+
+
+class AssetDataObjectPropertiesHwcVpcTagArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tag key. The maximum length is `128` unicode characters.
+    Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+    cannot be a space, trim half-width spaces before and after the validation and usage.
+    """
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+    If values is an empty list, it means any_value (query any value).
+
+    <a name="hwc_domain_struct"></a>
+    The `hwc_domain` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesHwcVpcTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[_builtins.str]] = None,
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] key: Specifies the tag key. The maximum length is `128` unicode characters.
+               Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+               cannot be a space, trim half-width spaces before and after the validation and usage.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+               If values is an empty list, it means any_value (query any value).
+               
+               <a name="hwc_domain_struct"></a>
+               The `hwc_domain` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the tag key. The maximum length is `128` unicode characters.
+        Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+        cannot be a space, trim half-width spaces before and after the validation and usage.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+        If values is an empty list, it means any_value (query any value).
+
+        <a name="hwc_domain_struct"></a>
+        The `hwc_domain` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "values", value)
+
+
+class AssetDataObjectPropertiesOcaIpArgsDict(TypedDict):
+    data_center: NotRequired[pulumi.Input['AssetDataObjectPropertiesOcaIpDataCenterArgsDict']]
+    """
+    Specifies the data center.
+    The data_center structure is documented below.
+    """
+    extend_propertites: NotRequired[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesArgsDict']]
+    """
+    Specifies the other third-party attributes.
+    The extend_propertites structure is documented below.
+
+    <a name="oca_ip_network_struct"></a>
+    The `network` block supports:
+    """
+    important: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the importance level, `0`: not important, `1`: important.
+    """
+    mac_addr: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the MAC address.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    network: NotRequired[pulumi.Input['AssetDataObjectPropertiesOcaIpNetworkArgsDict']]
+    """
+    Specifies the network information.
+    The network structure is documented below.
+    """
+    relative_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the relative value, such as ipv6 if the asset is ipv4.
+    """
+    remark: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the asset remark.
+    """
+    server_rack: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the server rack.
+    """
+    server_room: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the server room.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the asset value.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service version.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpArgs:
+    def __init__(__self__, *,
+                 data_center: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpDataCenterArgs']] = None,
+                 extend_propertites: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesArgs']] = None,
+                 important: Optional[pulumi.Input[_builtins.int]] = None,
+                 mac_addr: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 network: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpNetworkArgs']] = None,
+                 relative_value: Optional[pulumi.Input[_builtins.str]] = None,
+                 remark: Optional[pulumi.Input[_builtins.str]] = None,
+                 server_rack: Optional[pulumi.Input[_builtins.str]] = None,
+                 server_room: Optional[pulumi.Input[_builtins.str]] = None,
+                 value: Optional[pulumi.Input[_builtins.str]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input['AssetDataObjectPropertiesOcaIpDataCenterArgs'] data_center: Specifies the data center.
+               The data_center structure is documented below.
+        :param pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesArgs'] extend_propertites: Specifies the other third-party attributes.
+               The extend_propertites structure is documented below.
+               
+               <a name="oca_ip_network_struct"></a>
+               The `network` block supports:
+        :param pulumi.Input[_builtins.int] important: Specifies the importance level, `0`: not important, `1`: important.
+        :param pulumi.Input[_builtins.str] mac_addr: Specifies the MAC address.
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input['AssetDataObjectPropertiesOcaIpNetworkArgs'] network: Specifies the network information.
+               The network structure is documented below.
+        :param pulumi.Input[_builtins.str] relative_value: Specifies the relative value, such as ipv6 if the asset is ipv4.
+        :param pulumi.Input[_builtins.str] remark: Specifies the asset remark.
+        :param pulumi.Input[_builtins.str] server_rack: Specifies the server rack.
+        :param pulumi.Input[_builtins.str] server_room: Specifies the server room.
+        :param pulumi.Input[_builtins.str] value: Specifies the asset value.
+        :param pulumi.Input[_builtins.str] version: Specifies the service version.
+        """
+        if data_center is not None:
+            pulumi.set(__self__, "data_center", data_center)
+        if extend_propertites is not None:
+            pulumi.set(__self__, "extend_propertites", extend_propertites)
+        if important is not None:
+            pulumi.set(__self__, "important", important)
+        if mac_addr is not None:
+            pulumi.set(__self__, "mac_addr", mac_addr)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if network is not None:
+            pulumi.set(__self__, "network", network)
+        if relative_value is not None:
+            pulumi.set(__self__, "relative_value", relative_value)
+        if remark is not None:
+            pulumi.set(__self__, "remark", remark)
+        if server_rack is not None:
+            pulumi.set(__self__, "server_rack", server_rack)
+        if server_room is not None:
+            pulumi.set(__self__, "server_room", server_room)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="dataCenter")
+    def data_center(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpDataCenterArgs']]:
+        """
+        Specifies the data center.
+        The data_center structure is documented below.
+        """
+        return pulumi.get(self, "data_center")
+
+    @data_center.setter
+    def data_center(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpDataCenterArgs']]):
+        pulumi.set(self, "data_center", value)
+
+    @_builtins.property
+    @pulumi.getter(name="extendPropertites")
+    def extend_propertites(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesArgs']]:
+        """
+        Specifies the other third-party attributes.
+        The extend_propertites structure is documented below.
+
+        <a name="oca_ip_network_struct"></a>
+        The `network` block supports:
+        """
+        return pulumi.get(self, "extend_propertites")
+
+    @extend_propertites.setter
+    def extend_propertites(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesArgs']]):
+        pulumi.set(self, "extend_propertites", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def important(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the importance level, `0`: not important, `1`: important.
+        """
+        return pulumi.get(self, "important")
+
+    @important.setter
+    def important(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "important", value)
+
+    @_builtins.property
+    @pulumi.getter(name="macAddr")
+    def mac_addr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the MAC address.
+        """
+        return pulumi.get(self, "mac_addr")
+
+    @mac_addr.setter
+    def mac_addr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mac_addr", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def network(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpNetworkArgs']]:
+        """
+        Specifies the network information.
+        The network structure is documented below.
+        """
+        return pulumi.get(self, "network")
+
+    @network.setter
+    def network(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpNetworkArgs']]):
+        pulumi.set(self, "network", value)
+
+    @_builtins.property
+    @pulumi.getter(name="relativeValue")
+    def relative_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the relative value, such as ipv6 if the asset is ipv4.
+        """
+        return pulumi.get(self, "relative_value")
+
+    @relative_value.setter
+    def relative_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "relative_value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def remark(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the asset remark.
+        """
+        return pulumi.get(self, "remark")
+
+    @remark.setter
+    def remark(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remark", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serverRack")
+    def server_rack(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the server rack.
+        """
+        return pulumi.get(self, "server_rack")
+
+    @server_rack.setter
+    def server_rack(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "server_rack", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serverRoom")
+    def server_room(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the server room.
+        """
+        return pulumi.get(self, "server_room")
+
+    @server_room.setter
+    def server_room(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "server_room", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the asset value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+class AssetDataObjectPropertiesOcaIpDataCenterArgsDict(TypedDict):
+    city_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the city code.
+    """
+    country_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the country code.
+    """
+    latitude: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the latitude.
+    """
+    longitude: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the longitude.
+
+    <a name="oca_ip_extend_propertites_struct"></a>
+    The `extend_propertites` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpDataCenterArgs:
+    def __init__(__self__, *,
+                 city_code: Optional[pulumi.Input[_builtins.str]] = None,
+                 country_code: Optional[pulumi.Input[_builtins.str]] = None,
+                 latitude: Optional[pulumi.Input[_builtins.float]] = None,
+                 longitude: Optional[pulumi.Input[_builtins.float]] = None):
+        """
+        :param pulumi.Input[_builtins.str] city_code: Specifies the city code.
+        :param pulumi.Input[_builtins.str] country_code: Specifies the country code.
+        :param pulumi.Input[_builtins.float] latitude: Specifies the latitude.
+        :param pulumi.Input[_builtins.float] longitude: Specifies the longitude.
+               
+               <a name="oca_ip_extend_propertites_struct"></a>
+               The `extend_propertites` block supports:
+        """
+        if city_code is not None:
+            pulumi.set(__self__, "city_code", city_code)
+        if country_code is not None:
+            pulumi.set(__self__, "country_code", country_code)
+        if latitude is not None:
+            pulumi.set(__self__, "latitude", latitude)
+        if longitude is not None:
+            pulumi.set(__self__, "longitude", longitude)
+
+    @_builtins.property
+    @pulumi.getter(name="cityCode")
+    def city_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the city code.
+        """
+        return pulumi.get(self, "city_code")
+
+    @city_code.setter
+    def city_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "city_code", value)
+
+    @_builtins.property
+    @pulumi.getter(name="countryCode")
+    def country_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the country code.
+        """
+        return pulumi.get(self, "country_code")
+
+    @country_code.setter
+    def country_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "country_code", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def latitude(self) -> Optional[pulumi.Input[_builtins.float]]:
+        """
+        Specifies the latitude.
+        """
+        return pulumi.get(self, "latitude")
+
+    @latitude.setter
+    def latitude(self, value: Optional[pulumi.Input[_builtins.float]]):
+        pulumi.set(self, "latitude", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def longitude(self) -> Optional[pulumi.Input[_builtins.float]]:
+        """
+        Specifies the longitude.
+
+        <a name="oca_ip_extend_propertites_struct"></a>
+        The `extend_propertites` block supports:
+        """
+        return pulumi.get(self, "longitude")
+
+    @longitude.setter
+    def longitude(self, value: Optional[pulumi.Input[_builtins.float]]):
+        pulumi.set(self, "longitude", value)
+
+
+class AssetDataObjectPropertiesOcaIpExtendPropertitesArgsDict(TypedDict):
+    device: NotRequired[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgsDict']]
+    """
+    Specifies the device information.
+    The device structure is documented below.
+    """
+    services: NotRequired[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgsDict']]]]
+    """
+    Specifies the application information.
+    The service structure is documented below.
+
+    <a name="oca_ip_device_struct"></a>
+    The `device` block supports:
+    """
+    system: NotRequired[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgsDict']]
+    """
+    Specifies the system information.
+    The system structure is documented below.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesArgs:
+    def __init__(__self__, *,
+                 device: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgs']] = None,
+                 services: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgs']]]] = None,
+                 system: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgs']] = None):
+        """
+        :param pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgs'] device: Specifies the device information.
+               The device structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgs']]] services: Specifies the application information.
+               The service structure is documented below.
+               
+               <a name="oca_ip_device_struct"></a>
+               The `device` block supports:
+        :param pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgs'] system: Specifies the system information.
+               The system structure is documented below.
+        """
+        if device is not None:
+            pulumi.set(__self__, "device", device)
+        if services is not None:
+            pulumi.set(__self__, "services", services)
+        if system is not None:
+            pulumi.set(__self__, "system", system)
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgs']]:
+        """
+        Specifies the device information.
+        The device structure is documented below.
+        """
+        return pulumi.get(self, "device")
+
+    @device.setter
+    def device(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgs']]):
+        pulumi.set(self, "device", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgs']]]]:
+        """
+        Specifies the application information.
+        The service structure is documented below.
+
+        <a name="oca_ip_device_struct"></a>
+        The `device` block supports:
+        """
+        return pulumi.get(self, "services")
+
+    @services.setter
+    def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgs']]]]):
+        pulumi.set(self, "services", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def system(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgs']]:
+        """
+        Specifies the system information.
+        The system structure is documented below.
+        """
+        return pulumi.get(self, "system")
+
+    @system.setter
+    def system(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgs']]):
+        pulumi.set(self, "system", value)
+
+
+class AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgsDict(TypedDict):
+    model: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the device model.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user type of the asset.
+    """
+    vendor: NotRequired[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgsDict']]
+    """
+    Specifies the vendor information.
+    The vendor structure is documented below.
+
+    <a name="oca_ip_service_vendor_struct"></a>
+    The `service.vendor` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgs:
+    def __init__(__self__, *,
+                 model: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 vendor: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] model: Specifies the device model.
+        :param pulumi.Input[_builtins.str] type: Specifies the governance user type of the asset.
+        :param pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgs'] vendor: Specifies the vendor information.
+               The vendor structure is documented below.
+               
+               <a name="oca_ip_service_vendor_struct"></a>
+               The `service.vendor` block supports:
+        """
+        if model is not None:
+            pulumi.set(__self__, "model", model)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if vendor is not None:
+            pulumi.set(__self__, "vendor", vendor)
+
+    @_builtins.property
+    @pulumi.getter
+    def model(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the device model.
+        """
+        return pulumi.get(self, "model")
+
+    @model.setter
+    def model(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "model", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgs']]:
+        """
+        Specifies the vendor information.
+        The vendor structure is documented below.
+
+        <a name="oca_ip_service_vendor_struct"></a>
+        The `service.vendor` block supports:
+        """
+        return pulumi.get(self, "vendor")
+
+    @vendor.setter
+    def vendor(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgs']]):
+        pulumi.set(self, "vendor", value)
+
+
+class AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgsDict(TypedDict):
+    is_xc: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the supplier is domestic or not.
+
+    <a name="department_struct"></a>
+    The `department` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgs:
+    def __init__(__self__, *,
+                 is_xc: Optional[pulumi.Input[_builtins.bool]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] is_xc: Specifies whether the supplier is domestic or not.
+               
+               <a name="department_struct"></a>
+               The `department` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        """
+        if is_xc is not None:
+            pulumi.set(__self__, "is_xc", is_xc)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="isXc")
+    def is_xc(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the supplier is domestic or not.
+
+        <a name="department_struct"></a>
+        The `department` block supports:
+        """
+        return pulumi.get(self, "is_xc")
+
+    @is_xc.setter
+    def is_xc(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_xc", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the service port.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service protocol.
+    """
+    vendor: NotRequired[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgsDict']]
+    """
+    Specifies the vendor information.
+    The vendor structure is documented below.
+
+    <a name="oca_ip_service_vendor_struct"></a>
+    The `service.vendor` block supports:
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service version.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 vendor: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgs']] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input[_builtins.int] port: Specifies the service port.
+        :param pulumi.Input[_builtins.str] protocol: Specifies the service protocol.
+        :param pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgs'] vendor: Specifies the vendor information.
+               The vendor structure is documented below.
+               
+               <a name="oca_ip_service_vendor_struct"></a>
+               The `service.vendor` block supports:
+        :param pulumi.Input[_builtins.str] version: Specifies the service version.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if vendor is not None:
+            pulumi.set(__self__, "vendor", vendor)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the service port.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the service protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgs']]:
+        """
+        Specifies the vendor information.
+        The vendor structure is documented below.
+
+        <a name="oca_ip_service_vendor_struct"></a>
+        The `service.vendor` block supports:
+        """
+        return pulumi.get(self, "vendor")
+
+    @vendor.setter
+    def vendor(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgs']]):
+        pulumi.set(self, "vendor", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+class AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgsDict(TypedDict):
+    is_xc: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the supplier is domestic or not.
+
+    <a name="department_struct"></a>
+    The `department` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgs:
+    def __init__(__self__, *,
+                 is_xc: Optional[pulumi.Input[_builtins.bool]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] is_xc: Specifies whether the supplier is domestic or not.
+               
+               <a name="department_struct"></a>
+               The `department` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        """
+        if is_xc is not None:
+            pulumi.set(__self__, "is_xc", is_xc)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="isXc")
+    def is_xc(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the supplier is domestic or not.
+
+        <a name="department_struct"></a>
+        The `department` block supports:
+        """
+        return pulumi.get(self, "is_xc")
+
+    @is_xc.setter
+    def is_xc(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_xc", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgsDict(TypedDict):
+    family: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the system.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+    vendor: NotRequired[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgsDict']]
+    """
+    Specifies the vendor information.
+    The vendor structure is documented below.
+
+    <a name="oca_ip_service_vendor_struct"></a>
+    The `service.vendor` block supports:
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service version.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgs:
+    def __init__(__self__, *,
+                 family: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 vendor: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgs']] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] family: Specifies the type of the system.
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        :param pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgs'] vendor: Specifies the vendor information.
+               The vendor structure is documented below.
+               
+               <a name="oca_ip_service_vendor_struct"></a>
+               The `service.vendor` block supports:
+        :param pulumi.Input[_builtins.str] version: Specifies the service version.
+        """
+        if family is not None:
+            pulumi.set(__self__, "family", family)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if vendor is not None:
+            pulumi.set(__self__, "vendor", vendor)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def family(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the type of the system.
+        """
+        return pulumi.get(self, "family")
+
+    @family.setter
+    def family(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "family", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgs']]:
+        """
+        Specifies the vendor information.
+        The vendor structure is documented below.
+
+        <a name="oca_ip_service_vendor_struct"></a>
+        The `service.vendor` block supports:
+        """
+        return pulumi.get(self, "vendor")
+
+    @vendor.setter
+    def vendor(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgs']]):
+        pulumi.set(self, "vendor", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+class AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgsDict(TypedDict):
+    is_xc: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the supplier is domestic or not.
+
+    <a name="department_struct"></a>
+    The `department` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the governance user name of the asset.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgs:
+    def __init__(__self__, *,
+                 is_xc: Optional[pulumi.Input[_builtins.bool]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] is_xc: Specifies whether the supplier is domestic or not.
+               
+               <a name="department_struct"></a>
+               The `department` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the governance user name of the asset.
+        """
+        if is_xc is not None:
+            pulumi.set(__self__, "is_xc", is_xc)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="isXc")
+    def is_xc(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the supplier is domestic or not.
+
+        <a name="department_struct"></a>
+        The `department` block supports:
+        """
+        return pulumi.get(self, "is_xc")
+
+    @is_xc.setter
+    def is_xc(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_xc", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class AssetDataObjectPropertiesOcaIpNetworkArgsDict(TypedDict):
+    is_public: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the IP is public or private. Valid values are:
+    + **true**：Public.
+    + **false**：Private.
+    """
+    partition: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network partition. Valid values are:
+    + **OM**：OM.
+    + **PSZ**：PSZ.
+    + **DMZ**：DMZ.
+    """
+    plane: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network plane (offline has its own code).
+    """
+    vxlan_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the virtual network ID.
+
+    <a name="oca_ip_data_center_struct"></a>
+    The `data_center` block supports:
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesOcaIpNetworkArgs:
+    def __init__(__self__, *,
+                 is_public: Optional[pulumi.Input[_builtins.bool]] = None,
+                 partition: Optional[pulumi.Input[_builtins.str]] = None,
+                 plane: Optional[pulumi.Input[_builtins.str]] = None,
+                 vxlan_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] is_public: Specifies whether the IP is public or private. Valid values are:
+               + **true**：Public.
+               + **false**：Private.
+        :param pulumi.Input[_builtins.str] partition: Specifies the network partition. Valid values are:
+               + **OM**：OM.
+               + **PSZ**：PSZ.
+               + **DMZ**：DMZ.
+        :param pulumi.Input[_builtins.str] plane: Specifies the network plane (offline has its own code).
+        :param pulumi.Input[_builtins.str] vxlan_id: Specifies the virtual network ID.
+               
+               <a name="oca_ip_data_center_struct"></a>
+               The `data_center` block supports:
+        """
+        if is_public is not None:
+            pulumi.set(__self__, "is_public", is_public)
+        if partition is not None:
+            pulumi.set(__self__, "partition", partition)
+        if plane is not None:
+            pulumi.set(__self__, "plane", plane)
+        if vxlan_id is not None:
+            pulumi.set(__self__, "vxlan_id", vxlan_id)
+
+    @_builtins.property
+    @pulumi.getter(name="isPublic")
+    def is_public(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the IP is public or private. Valid values are:
+        + **true**：Public.
+        + **false**：Private.
+        """
+        return pulumi.get(self, "is_public")
+
+    @is_public.setter
+    def is_public(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_public", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def partition(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the network partition. Valid values are:
+        + **OM**：OM.
+        + **PSZ**：PSZ.
+        + **DMZ**：DMZ.
+        """
+        return pulumi.get(self, "partition")
+
+    @partition.setter
+    def partition(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "partition", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def plane(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the network plane (offline has its own code).
+        """
+        return pulumi.get(self, "plane")
+
+    @plane.setter
+    def plane(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plane", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vxlanId")
+    def vxlan_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the virtual network ID.
+
+        <a name="oca_ip_data_center_struct"></a>
+        The `data_center` block supports:
+        """
+        return pulumi.get(self, "vxlan_id")
+
+    @vxlan_id.setter
+    def vxlan_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vxlan_id", value)
+
+
+class AssetDataObjectPropertiesWebsiteArgsDict(TypedDict):
+    extend_propertites: NotRequired[pulumi.Input['AssetDataObjectPropertiesWebsiteExtendPropertitesArgsDict']]
+    """
+    Specifies the other third-party attributes.
+    The extend_propertites structure is documented below.
+
+    <a name="oca_ip_network_struct"></a>
+    The `network` block supports:
+    """
+    is_public: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the IP is public or private. Valid values are:
+    + **true**：Public.
+    + **false**：Private.
+    """
+    main_domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the main domain of the website.
+    """
+    name_servers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the website server list.
+    """
+    protected_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the WAF status. Valid values are:
+    + **OPEN**：Enabled.
+    + **CLOSE**：Disabled.
+    """
+    remark: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the asset remark.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the asset value.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesWebsiteArgs:
+    def __init__(__self__, *,
+                 extend_propertites: Optional[pulumi.Input['AssetDataObjectPropertiesWebsiteExtendPropertitesArgs']] = None,
+                 is_public: Optional[pulumi.Input[_builtins.bool]] = None,
+                 main_domain: Optional[pulumi.Input[_builtins.str]] = None,
+                 name_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 protected_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 remark: Optional[pulumi.Input[_builtins.str]] = None,
+                 value: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input['AssetDataObjectPropertiesWebsiteExtendPropertitesArgs'] extend_propertites: Specifies the other third-party attributes.
+               The extend_propertites structure is documented below.
+               
+               <a name="oca_ip_network_struct"></a>
+               The `network` block supports:
+        :param pulumi.Input[_builtins.bool] is_public: Specifies whether the IP is public or private. Valid values are:
+               + **true**：Public.
+               + **false**：Private.
+        :param pulumi.Input[_builtins.str] main_domain: Specifies the main domain of the website.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] name_servers: Specifies the website server list.
+        :param pulumi.Input[_builtins.str] protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param pulumi.Input[_builtins.str] remark: Specifies the asset remark.
+        :param pulumi.Input[_builtins.str] value: Specifies the asset value.
+        """
+        if extend_propertites is not None:
+            pulumi.set(__self__, "extend_propertites", extend_propertites)
+        if is_public is not None:
+            pulumi.set(__self__, "is_public", is_public)
+        if main_domain is not None:
+            pulumi.set(__self__, "main_domain", main_domain)
+        if name_servers is not None:
+            pulumi.set(__self__, "name_servers", name_servers)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if remark is not None:
+            pulumi.set(__self__, "remark", remark)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="extendPropertites")
+    def extend_propertites(self) -> Optional[pulumi.Input['AssetDataObjectPropertiesWebsiteExtendPropertitesArgs']]:
+        """
+        Specifies the other third-party attributes.
+        The extend_propertites structure is documented below.
+
+        <a name="oca_ip_network_struct"></a>
+        The `network` block supports:
+        """
+        return pulumi.get(self, "extend_propertites")
+
+    @extend_propertites.setter
+    def extend_propertites(self, value: Optional[pulumi.Input['AssetDataObjectPropertiesWebsiteExtendPropertitesArgs']]):
+        pulumi.set(self, "extend_propertites", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isPublic")
+    def is_public(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the IP is public or private. Valid values are:
+        + **true**：Public.
+        + **false**：Private.
+        """
+        return pulumi.get(self, "is_public")
+
+    @is_public.setter
+    def is_public(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_public", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mainDomain")
+    def main_domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the main domain of the website.
+        """
+        return pulumi.get(self, "main_domain")
+
+    @main_domain.setter
+    def main_domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "main_domain", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the website server list.
+        """
+        return pulumi.get(self, "name_servers")
+
+    @name_servers.setter
+    def name_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "name_servers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @protected_status.setter
+    def protected_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protected_status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def remark(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the asset remark.
+        """
+        return pulumi.get(self, "remark")
+
+    @remark.setter
+    def remark(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remark", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the asset value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+
+class AssetDataObjectPropertiesWebsiteExtendPropertitesArgsDict(TypedDict):
+    mac_addr: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the MAC address.
+    """
+
+@pulumi.input_type
+class AssetDataObjectPropertiesWebsiteExtendPropertitesArgs:
+    def __init__(__self__, *,
+                 mac_addr: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] mac_addr: Specifies the MAC address.
+        """
+        if mac_addr is not None:
+            pulumi.set(__self__, "mac_addr", mac_addr)
+
+    @_builtins.property
+    @pulumi.getter(name="macAddr")
+    def mac_addr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the MAC address.
+        """
+        return pulumi.get(self, "mac_addr")
+
+    @mac_addr.setter
+    def mac_addr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mac_addr", value)
+
+
+class CloudLogResourceResourceArgsDict(TypedDict):
+    enable: pulumi.Input[_builtins.str]
+    """
+    Specifies Whether enabled.
+    The valid values are as follows:
+    + **active**
+    + **inactive**
+    """
+    region_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the region ID.
+    """
+
+@pulumi.input_type
+class CloudLogResourceResourceArgs:
+    def __init__(__self__, *,
+                 enable: pulumi.Input[_builtins.str],
+                 region_id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] enable: Specifies Whether enabled.
+               The valid values are as follows:
+               + **active**
+               + **inactive**
+        :param pulumi.Input[_builtins.str] region_id: Specifies the region ID.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "region_id", region_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies Whether enabled.
+        The valid values are as follows:
+        + **active**
+        + **inactive**
+        """
+        return pulumi.get(self, "enable")
+
+    @enable.setter
+    def enable(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "enable", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "region_id", value)
+
+
+class IncidentDataSourceArgsDict(TypedDict):
+    product_feature: pulumi.Input[_builtins.str]
+    """
+    Specifies the product feature.
+
+    Changing this parameter will create a new resource.
+    """
+    product_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the product name.
+
+    Changing this parameter will create a new resource.
+    """
+    source_type: pulumi.Input[_builtins.int]
+    """
+    Specifies the source type.
+
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class IncidentDataSourceArgs:
@@ -761,28 +7984,25 @@ class IncidentDataSourceArgs:
         pulumi.set(self, "source_type", value)
 
 
-if not MYPY:
-    class IncidentTypeArgsDict(TypedDict):
-        category: pulumi.Input[_builtins.str]
-        """
-        Specifies the category.
+class IncidentIncidentTypeValueArgsDict(TypedDict):
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the category.
 
-        Changing this parameter will create a new resource.
-        """
-        incident_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the incident type.
+    Changing this parameter will create a new resource.
+    """
+    incident_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the incident type.
 
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
 
-        <a name="IncidentDataSource"></a>
-        The `IncidentDataSource` block supports:
-        """
-elif False:
-    IncidentTypeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IncidentDataSource"></a>
+    The `IncidentDataSource` block supports:
+    """
 
 @pulumi.input_type
-class IncidentTypeArgs:
+class IncidentIncidentTypeValueArgs:
     def __init__(__self__, *,
                  category: pulumi.Input[_builtins.str],
                  incident_type: pulumi.Input[_builtins.str]):
@@ -832,25 +8052,22 @@ class IncidentTypeArgs:
         pulumi.set(self, "incident_type", value)
 
 
-if not MYPY:
-    class IndicatorDataSourceArgsDict(TypedDict):
-        product_feature: pulumi.Input[_builtins.str]
-        """
-        Specifies the product feature.
-        Changing this parameter will create a new resource.
-        """
-        product_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the product name.
-        Changing this parameter will create a new resource.
-        """
-        source_type: pulumi.Input[_builtins.int]
-        """
-        Specifies the data source type.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    IndicatorDataSourceArgsDict: TypeAlias = Mapping[str, Any]
+class IndicatorDataSourceArgsDict(TypedDict):
+    product_feature: pulumi.Input[_builtins.str]
+    """
+    Specifies the product feature.
+    Changing this parameter will create a new resource.
+    """
+    product_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the product name.
+    Changing this parameter will create a new resource.
+    """
+    source_type: pulumi.Input[_builtins.int]
+    """
+    Specifies the data source type.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class IndicatorDataSourceArgs:
@@ -910,28 +8127,25 @@ class IndicatorDataSourceArgs:
         pulumi.set(self, "source_type", value)
 
 
-if not MYPY:
-    class IndicatorTypeArgsDict(TypedDict):
-        category: pulumi.Input[_builtins.str]
-        """
-        Specifies the category.
-        """
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the indicator type ID.
+class IndicatorIndicatorTypeValueArgsDict(TypedDict):
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the category.
+    """
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the indicator type ID.
 
-        <a name="Indicator_DataSource"></a>
-        The `data_source` block supports:
-        """
-        indicator_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the indicator type.
-        """
-elif False:
-    IndicatorTypeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Indicator_DataSource"></a>
+    The `data_source` block supports:
+    """
+    indicator_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the indicator type.
+    """
 
 @pulumi.input_type
-class IndicatorTypeArgs:
+class IndicatorIndicatorTypeValueArgs:
     def __init__(__self__, *,
                  category: pulumi.Input[_builtins.str],
                  id: pulumi.Input[_builtins.str],
@@ -988,22 +8202,19 @@ class IndicatorTypeArgs:
         pulumi.set(self, "indicator_type", value)
 
 
-if not MYPY:
-    class PlaybookRuleConditionArgsDict(TypedDict):
-        datas: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the condition data.
-        """
-        detail: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the condition detail.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the condition name.
-        """
-elif False:
-    PlaybookRuleConditionArgsDict: TypeAlias = Mapping[str, Any]
+class PlaybookRuleConditionArgsDict(TypedDict):
+    datas: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the condition data.
+    """
+    detail: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the condition detail.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the condition name.
+    """
 
 @pulumi.input_type
 class PlaybookRuleConditionArgs:
@@ -1060,61 +8271,58 @@ class PlaybookRuleConditionArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class PostPaidOrderProductListArgsDict(TypedDict):
-        cloud_service_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the cloud service type.
-        The fixed value is **hws.service.type.sa**.
-        """
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the identifier, which must be unique.
-        """
-        product_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the offering ID,
-        which is obtained from the CBC price inquiry.
-        """
-        resource_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of quotas.
-        """
-        resource_spec_code: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource specifications of the purchased
-        product. For example, the resource specification for the basic edition in SecMaster is **secmaster.basic**.
-        """
-        resource_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource type of the purchased product.
-        For example, the resource type for typical scenarios in SecMaster is **hws.resource.type.secmaster.typical**.
-        """
-        usage_factor: pulumi.Input[_builtins.str]
-        """
-        Specifies the usage factor.
-        """
-        usage_measure_id: pulumi.Input[_builtins.int]
-        """
-        Specifies the usage measurement unit.
-        For example, the resources are billed by hour, the usage value is **1**, and the usage measurement unit is hour.
-        The options are:
+class PostPaidOrderProductListArgsDict(TypedDict):
+    cloud_service_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the cloud service type.
+    The fixed value is **hws.service.type.sa**.
+    """
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the identifier, which must be unique.
+    """
+    product_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the offering ID,
+    which is obtained from the CBC price inquiry.
+    """
+    resource_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of quotas.
+    """
+    resource_spec_code: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource specifications of the purchased
+    product. For example, the resource specification for the basic edition in SecMaster is **secmaster.basic**.
+    """
+    resource_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource type of the purchased product.
+    For example, the resource type for typical scenarios in SecMaster is **hws.resource.type.secmaster.typical**.
+    """
+    usage_factor: pulumi.Input[_builtins.str]
+    """
+    Specifies the usage factor.
+    """
+    usage_measure_id: pulumi.Input[_builtins.int]
+    """
+    Specifies the usage measurement unit.
+    For example, the resources are billed by hour, the usage value is **1**, and the usage measurement unit is hour.
+    The options are:
 
-        + **4**: Hours;
-        + **10**: GB, The bandwidth usage is measured by traffic (GB);
-        + **11**: MB, The bandwidth usage is measured by traffic (MB);
-        """
-        usage_value: pulumi.Input[_builtins.int]
-        """
-        Specifies the usage value.
-        """
-        resource_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the resource ID,
-        which is transferred only when the quota is added.
-        """
-elif False:
-    PostPaidOrderProductListArgsDict: TypeAlias = Mapping[str, Any]
+    + **4**: Hours;
+    + **10**: GB, The bandwidth usage is measured by traffic (GB);
+    + **11**: MB, The bandwidth usage is measured by traffic (MB);
+    """
+    usage_value: pulumi.Input[_builtins.int]
+    """
+    Specifies the usage value.
+    """
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource ID,
+    which is transferred only when the quota is added.
+    """
 
 @pulumi.input_type
 class PostPaidOrderProductListArgs:
@@ -1296,22 +8504,19 @@ class PostPaidOrderProductListArgs:
         pulumi.set(self, "resource_id", value)
 
 
-if not MYPY:
-    class WorkspaceWorkspaceAgencyListArgsDict(TypedDict):
-        agency_version: NotRequired[pulumi.Input[_builtins.str]]
-        domain_id: NotRequired[pulumi.Input[_builtins.str]]
-        domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        iam_agency_id: NotRequired[pulumi.Input[_builtins.str]]
-        iam_agency_name: NotRequired[pulumi.Input[_builtins.str]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        region_id: NotRequired[pulumi.Input[_builtins.str]]
-        resource_spec_codes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        selected: NotRequired[pulumi.Input[_builtins.bool]]
-        workspace_attribution: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    WorkspaceWorkspaceAgencyListArgsDict: TypeAlias = Mapping[str, Any]
+class WorkspaceWorkspaceAgencyListArgsDict(TypedDict):
+    agency_version: NotRequired[pulumi.Input[_builtins.str]]
+    domain_id: NotRequired[pulumi.Input[_builtins.str]]
+    domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    iam_agency_id: NotRequired[pulumi.Input[_builtins.str]]
+    iam_agency_name: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    region_id: NotRequired[pulumi.Input[_builtins.str]]
+    resource_spec_codes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    selected: NotRequired[pulumi.Input[_builtins.bool]]
+    workspace_attribution: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class WorkspaceWorkspaceAgencyListArgs:
@@ -1462,22 +8667,19 @@ class WorkspaceWorkspaceAgencyListArgs:
         pulumi.set(self, "workspace_attribution", value)
 
 
-if not MYPY:
-    class GetAlertsConditionArgsDict(TypedDict):
-        conditions: NotRequired[Sequence['GetAlertsConditionConditionArgsDict']]
-        """
-        Specifies the condition expression list.
-        The conditions structure is documented below.
-        """
-        logics: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the expression logic.
+class GetAlertsConditionArgsDict(TypedDict):
+    conditions: NotRequired[Sequence['GetAlertsConditionConditionArgsDict']]
+    """
+    Specifies the condition expression list.
+    The conditions structure is documented below.
+    """
+    logics: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the expression logic.
 
-        <a name="condition_conditions"></a>
-        The `conditions` block supports:
-        """
-elif False:
-    GetAlertsConditionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="condition_conditions"></a>
+    The `conditions` block supports:
+    """
 
 @pulumi.input_type
 class GetAlertsConditionArgs:
@@ -1526,24 +8728,21 @@ class GetAlertsConditionArgs:
         pulumi.set(self, "logics", value)
 
 
-if not MYPY:
-    class GetAlertsConditionConditionArgsDict(TypedDict):
-        datas: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the expression content.
-        + About `status` expression, e.g. **["handle_status", "!=", "Closed"]**.
-        + About `name` expression, e.g. **["title", "contains", "test"]**.
-        + About `level` expression, e.g. **["severity", "in", "Tips,Low"]**.
-        + About `created_at` expression, e.g. **["create_time", ">=", "2024-08-15T19:18:38Z+0800"]**.
-        + About `type.alert_type` expression, e.g. **["alert_type.alert_type", "=", "xxx"]**.
-        + About `first_occurrence_time` expression, e.g. **["first_observed_time", "<=", "2024-08-23T20:09:26Z+0800"]**.
-        """
-        name: NotRequired[_builtins.str]
-        """
-        Specifies the expression name.
-        """
-elif False:
-    GetAlertsConditionConditionArgsDict: TypeAlias = Mapping[str, Any]
+class GetAlertsConditionConditionArgsDict(TypedDict):
+    datas: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the expression content.
+    + About `status` expression, e.g. **["handle_status", "!=", "Closed"]**.
+    + About `name` expression, e.g. **["title", "contains", "test"]**.
+    + About `level` expression, e.g. **["severity", "in", "Tips,Low"]**.
+    + About `created_at` expression, e.g. **["create_time", ">=", "2024-08-15T19:18:38Z+0800"]**.
+    + About `type.alert_type` expression, e.g. **["alert_type.alert_type", "=", "xxx"]**.
+    + About `first_occurrence_time` expression, e.g. **["first_observed_time", "<=", "2024-08-23T20:09:26Z+0800"]**.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the expression name.
+    """
 
 @pulumi.input_type
 class GetAlertsConditionConditionArgs:
@@ -1596,22 +8795,132 @@ class GetAlertsConditionConditionArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class GetIncidentsConditionArgsDict(TypedDict):
-        conditions: NotRequired[Sequence['GetIncidentsConditionConditionArgsDict']]
+class GetBaselineCheckitemsConditionArgsDict(TypedDict):
+    conditions: NotRequired[Sequence['GetBaselineCheckitemsConditionConditionArgsDict']]
+    """
+    Specifies the list of expressions.
+
+    The conditions structure is documented below.
+    """
+    logics: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of expression names.
+
+    <a name="conditions_struct"></a>
+    The `conditions` block supports:
+    """
+
+@pulumi.input_type
+class GetBaselineCheckitemsConditionArgs:
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['GetBaselineCheckitemsConditionConditionArgs']] = None,
+                 logics: Optional[Sequence[_builtins.str]] = None):
         """
-        Specifies the condition expression list.
+        :param Sequence['GetBaselineCheckitemsConditionConditionArgs'] conditions: Specifies the list of expressions.
+               
+               The conditions structure is documented below.
+        :param Sequence[_builtins.str] logics: Specifies the list of expression names.
+               
+               <a name="conditions_struct"></a>
+               The `conditions` block supports:
+        """
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if logics is not None:
+            pulumi.set(__self__, "logics", logics)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['GetBaselineCheckitemsConditionConditionArgs']]:
+        """
+        Specifies the list of expressions.
+
         The conditions structure is documented below.
         """
-        logics: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the expression logic.
+        return pulumi.get(self, "conditions")
 
-        <a name="condition_conditions"></a>
+    @conditions.setter
+    def conditions(self, value: Optional[Sequence['GetBaselineCheckitemsConditionConditionArgs']]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def logics(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of expression names.
+
+        <a name="conditions_struct"></a>
         The `conditions` block supports:
         """
-elif False:
-    GetIncidentsConditionArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "logics")
+
+    @logics.setter
+    def logics(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "logics", value)
+
+
+class GetBaselineCheckitemsConditionConditionArgsDict(TypedDict):
+    datas: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of expression contents.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the expression name.
+    """
+
+@pulumi.input_type
+class GetBaselineCheckitemsConditionConditionArgs:
+    def __init__(__self__, *,
+                 datas: Optional[Sequence[_builtins.str]] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] datas: Specifies the list of expression contents.
+        :param _builtins.str name: Specifies the expression name.
+        """
+        if datas is not None:
+            pulumi.set(__self__, "datas", datas)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def datas(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of expression contents.
+        """
+        return pulumi.get(self, "datas")
+
+    @datas.setter
+    def datas(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "datas", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the expression name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+
+class GetIncidentsConditionArgsDict(TypedDict):
+    conditions: NotRequired[Sequence['GetIncidentsConditionConditionArgsDict']]
+    """
+    Specifies the condition expression list.
+    The conditions structure is documented below.
+    """
+    logics: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the expression logic.
+
+    <a name="condition_conditions"></a>
+    The `conditions` block supports:
+    """
 
 @pulumi.input_type
 class GetIncidentsConditionArgs:
@@ -1660,24 +8969,21 @@ class GetIncidentsConditionArgs:
         pulumi.set(self, "logics", value)
 
 
-if not MYPY:
-    class GetIncidentsConditionConditionArgsDict(TypedDict):
-        datas: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the expression content.
-        + About `status` expression, e.g. **["handle_status", "!=", "Closed"]**.
-        + About `name` expression, e.g. **["title", "contains", "test"]**.
-        + About `level` expression, e.g. **["severity", "in", "Tips,Low"]**.
-        + About `created_at` expression, e.g. **["create_time", ">=", "2024-08-15T19:18:38Z+0800"]**.
-        + About `incident_type.incident_type` expression, e.g. **["incident_type.incident_type", "=", "xxx"]**.
-        + About `first_occurrence_time` expression, e.g. **["first_observed_time", "<=", "2024-08-23T20:09:26Z+0800"]**.
-        """
-        name: NotRequired[_builtins.str]
-        """
-        Specifies the expression name.
-        """
-elif False:
-    GetIncidentsConditionConditionArgsDict: TypeAlias = Mapping[str, Any]
+class GetIncidentsConditionConditionArgsDict(TypedDict):
+    datas: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the expression content.
+    + About `status` expression, e.g. **["handle_status", "!=", "Closed"]**.
+    + About `name` expression, e.g. **["title", "contains", "test"]**.
+    + About `level` expression, e.g. **["severity", "in", "Tips,Low"]**.
+    + About `created_at` expression, e.g. **["create_time", ">=", "2024-08-15T19:18:38Z+0800"]**.
+    + About `incident_type.incident_type` expression, e.g. **["incident_type.incident_type", "=", "xxx"]**.
+    + About `first_occurrence_time` expression, e.g. **["first_observed_time", "<=", "2024-08-23T20:09:26Z+0800"]**.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the expression name.
+    """
 
 @pulumi.input_type
 class GetIncidentsConditionConditionArgs:
@@ -1730,23 +9036,20 @@ class GetIncidentsConditionConditionArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class GetIndicatorsConditionArgsDict(TypedDict):
-        conditions: NotRequired[Sequence['GetIndicatorsConditionConditionArgsDict']]
-        """
-        Specifies the condition expression list.
-        The conditions structure is documented below.
-        """
-        logics: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the expression logic.
-        For example, **["conditions.name1", "and", "conditions.name2"]**.
+class GetIndicatorsConditionArgsDict(TypedDict):
+    conditions: NotRequired[Sequence['GetIndicatorsConditionConditionArgsDict']]
+    """
+    Specifies the condition expression list.
+    The conditions structure is documented below.
+    """
+    logics: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the expression logic.
+    For example, **["conditions.name1", "and", "conditions.name2"]**.
 
-        <a name="condition_conditions"></a>
-        The `conditions` block supports:
-        """
-elif False:
-    GetIndicatorsConditionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="condition_conditions"></a>
+    The `conditions` block supports:
+    """
 
 @pulumi.input_type
 class GetIndicatorsConditionArgs:
@@ -1797,24 +9100,21 @@ class GetIndicatorsConditionArgs:
         pulumi.set(self, "logics", value)
 
 
-if not MYPY:
-    class GetIndicatorsConditionConditionArgsDict(TypedDict):
-        datas: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the expression content.
-        + About `threat_degree` expression, e.g. **["verdict", "=", "Gray"]**.
-        + About `created_at` expression, e.g. **["create_time", ">=", "2024-08-15T19:18:38Z+0800"]**.
-        + About `updated_at` expression, e.g. **["update_time", ">=", "2024-08-15T19:18:38Z+0800"]**.
-        + About `type.indicator_type` expression, e.g. **["indicator_type.indicator_type", "=", "IPv6"]**.
-        + About `first_occurrence_time` expression, e.g. **["first_report_time", ">=", "2024-08-20T14:52:06Z+0800"]**.
-        + About `last_occurrence_time` expression, e.g. **["last_report_time", ">=", "2024-08-20T14:52:06Z+0800"]**.
-        """
-        name: NotRequired[_builtins.str]
-        """
-        Specifies the expression name.
-        """
-elif False:
-    GetIndicatorsConditionConditionArgsDict: TypeAlias = Mapping[str, Any]
+class GetIndicatorsConditionConditionArgsDict(TypedDict):
+    datas: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the expression content.
+    + About `threat_degree` expression, e.g. **["verdict", "=", "Gray"]**.
+    + About `created_at` expression, e.g. **["create_time", ">=", "2024-08-15T19:18:38Z+0800"]**.
+    + About `updated_at` expression, e.g. **["update_time", ">=", "2024-08-15T19:18:38Z+0800"]**.
+    + About `type.indicator_type` expression, e.g. **["indicator_type.indicator_type", "=", "IPv6"]**.
+    + About `first_occurrence_time` expression, e.g. **["first_report_time", ">=", "2024-08-20T14:52:06Z+0800"]**.
+    + About `last_occurrence_time` expression, e.g. **["last_report_time", ">=", "2024-08-20T14:52:06Z+0800"]**.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the expression name.
+    """
 
 @pulumi.input_type
 class GetIndicatorsConditionConditionArgs:
@@ -1859,6 +9159,116 @@ class GetIndicatorsConditionConditionArgs:
     def name(self) -> Optional[_builtins.str]:
         """
         Specifies the expression name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+
+class GetVulnerabilitiesConditionArgsDict(TypedDict):
+    conditions: NotRequired[Sequence['GetVulnerabilitiesConditionConditionArgsDict']]
+    """
+    Specifies the query conditions.
+    The conditions structure is documented below.
+    """
+    logics: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the logic conditions.
+
+    <a name="conditions_struct"></a>
+    The `conditions` block supports:
+    """
+
+@pulumi.input_type
+class GetVulnerabilitiesConditionArgs:
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['GetVulnerabilitiesConditionConditionArgs']] = None,
+                 logics: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence['GetVulnerabilitiesConditionConditionArgs'] conditions: Specifies the query conditions.
+               The conditions structure is documented below.
+        :param Sequence[_builtins.str] logics: Specifies the logic conditions.
+               
+               <a name="conditions_struct"></a>
+               The `conditions` block supports:
+        """
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if logics is not None:
+            pulumi.set(__self__, "logics", logics)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['GetVulnerabilitiesConditionConditionArgs']]:
+        """
+        Specifies the query conditions.
+        The conditions structure is documented below.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: Optional[Sequence['GetVulnerabilitiesConditionConditionArgs']]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def logics(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the logic conditions.
+
+        <a name="conditions_struct"></a>
+        The `conditions` block supports:
+        """
+        return pulumi.get(self, "logics")
+
+    @logics.setter
+    def logics(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "logics", value)
+
+
+class GetVulnerabilitiesConditionConditionArgsDict(TypedDict):
+    datas: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the field value list for the condition.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    Specifies the field name for the condition.
+    """
+
+@pulumi.input_type
+class GetVulnerabilitiesConditionConditionArgs:
+    def __init__(__self__, *,
+                 datas: Optional[Sequence[_builtins.str]] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] datas: Specifies the field value list for the condition.
+        :param _builtins.str name: Specifies the field name for the condition.
+        """
+        if datas is not None:
+            pulumi.set(__self__, "datas", datas)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def datas(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the field value list for the condition.
+        """
+        return pulumi.get(self, "datas")
+
+    @datas.setter
+    def datas(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "datas", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field name for the condition.
         """
         return pulumi.get(self, "name")
 

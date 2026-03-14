@@ -33,6 +33,7 @@ class StudioInstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a StudioInstance resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ name. Changing this creates a new instance.
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the DataArts Studio instance.
                If `period_unit` is set to **month**, the value ranges from `1` to `9`.
@@ -258,6 +259,7 @@ class _StudioInstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StudioInstance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
                Valid values are `true` and `false`, defaults to `false`. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ name. Changing this creates a new instance.
@@ -590,34 +592,12 @@ class StudioInstance(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `tags`, `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_studio_instance" "instance" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags, period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -696,34 +676,12 @@ class StudioInstance(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `tags`, `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_studio_instance" "instance" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags, period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param StudioInstanceArgs args: The arguments to use to populate this resource's properties.

@@ -108,7 +108,7 @@ def get_inspector_websites(auth_status: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_inspector_websites()
+    test = huaweicloud.Codearts.get_inspector_websites()
     ```
 
 
@@ -125,7 +125,7 @@ def get_inspector_websites(auth_status: Optional[_builtins.str] = None,
     __args__['authStatus'] = auth_status
     __args__['domainId'] = domain_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getInspectorWebsites:getInspectorWebsites', __args__, opts=opts, typ=GetInspectorWebsitesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getInspectorWebsites:getInspectorWebsites', __args__, opts=opts, typ=GetInspectorWebsitesResult).value
 
     return AwaitableGetInspectorWebsitesResult(
         auth_status=pulumi.get(__ret__, 'auth_status'),
@@ -145,7 +145,7 @@ def get_inspector_websites_output(auth_status: Optional[pulumi.Input[Optional[_b
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_inspector_websites()
+    test = huaweicloud.Codearts.get_inspector_websites()
     ```
 
 
@@ -162,7 +162,7 @@ def get_inspector_websites_output(auth_status: Optional[pulumi.Input[Optional[_b
     __args__['authStatus'] = auth_status
     __args__['domainId'] = domain_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getInspectorWebsites:getInspectorWebsites', __args__, opts=opts, typ=GetInspectorWebsitesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getInspectorWebsites:getInspectorWebsites', __args__, opts=opts, typ=GetInspectorWebsitesResult)
     return __ret__.apply(lambda __response__: GetInspectorWebsitesResult(
         auth_status=pulumi.get(__response__, 'auth_status'),
         domain_id=pulumi.get(__response__, 'domain_id'),

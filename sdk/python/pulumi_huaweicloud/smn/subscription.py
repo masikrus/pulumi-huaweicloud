@@ -29,6 +29,7 @@ class SubscriptionArgs:
                  remark: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Subscription resource.
+
         :param pulumi.Input[_builtins.str] endpoint: Message endpoint. Changing this parameter will create a new resource.
                + **For an HTTP subscription**, the endpoint starts with `http://`.
                + **For an HTTPS subscription**, the endpoint starts with `https://`.
@@ -41,8 +42,8 @@ class SubscriptionArgs:
                the format is \\[+\\]\\[country code\\]\\[phone number\\], e.g. +86185xxxx0000.
                + **For a dingding subscription**, the endpoint is an IP address of a DingTalk group chatbot.
                + **For a wechat subscription**, the endpoint is an IP address of a WeChat group chatbot.
-               + **For a feishu subscription**, the endpoint is a an IP address of a Lark group chatbot.
-               + **For a welink subscription**, the endpoint is a a WeLink group account.
+               + **For a feishu subscription**, the endpoint is an IP address of a Lark group chatbot.
+               + **For a welink subscription**, the endpoint is a WeLink group account.
         :param pulumi.Input[_builtins.str] protocol: Specifies the protocol of the message endpoint. Currently, **email**,
                **sms**, **http**, **https**, **functionstage**, **functiongraph**, **callnotify**, **wechat**, **dingding**,
                **feishu** and **welink** are supported. Changing this parameter will create a new resource.
@@ -57,7 +58,7 @@ class SubscriptionArgs:
         :param pulumi.Input[_builtins.str] region: The region in which to create the SMN subscription resource. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] remark: Remark information. The remarks must be a UTF-8-coded character string
-               containing 128 bytes. Changing this parameter will create a new resource.
+               containing 128 bytes.
         """
         pulumi.set(__self__, "endpoint", endpoint)
         pulumi.set(__self__, "protocol", protocol)
@@ -85,8 +86,8 @@ class SubscriptionArgs:
         the format is \\[+\\]\\[country code\\]\\[phone number\\], e.g. +86185xxxx0000.
         + **For a dingding subscription**, the endpoint is an IP address of a DingTalk group chatbot.
         + **For a wechat subscription**, the endpoint is an IP address of a WeChat group chatbot.
-        + **For a feishu subscription**, the endpoint is a an IP address of a Lark group chatbot.
-        + **For a welink subscription**, the endpoint is a a WeLink group account.
+        + **For a feishu subscription**, the endpoint is an IP address of a Lark group chatbot.
+        + **For a welink subscription**, the endpoint is a WeLink group account.
         """
         return pulumi.get(self, "endpoint")
 
@@ -156,7 +157,7 @@ class SubscriptionArgs:
     def remark(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Remark information. The remarks must be a UTF-8-coded character string
-        containing 128 bytes. Changing this parameter will create a new resource.
+        containing 128 bytes.
         """
         return pulumi.get(self, "remark")
 
@@ -180,6 +181,7 @@ class _SubscriptionState:
                  topic_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Subscription resources.
+
         :param pulumi.Input[_builtins.str] endpoint: Message endpoint. Changing this parameter will create a new resource.
                + **For an HTTP subscription**, the endpoint starts with `http://`.
                + **For an HTTPS subscription**, the endpoint starts with `https://`.
@@ -192,8 +194,8 @@ class _SubscriptionState:
                the format is \\[+\\]\\[country code\\]\\[phone number\\], e.g. +86185xxxx0000.
                + **For a dingding subscription**, the endpoint is an IP address of a DingTalk group chatbot.
                + **For a wechat subscription**, the endpoint is an IP address of a WeChat group chatbot.
-               + **For a feishu subscription**, the endpoint is a an IP address of a Lark group chatbot.
-               + **For a welink subscription**, the endpoint is a a WeLink group account.
+               + **For a feishu subscription**, the endpoint is an IP address of a Lark group chatbot.
+               + **For a welink subscription**, the endpoint is a WeLink group account.
         :param pulumi.Input['SubscriptionExtensionArgs'] extension: Specifies the extension configurations.
                The extension structure is documented below.
                Changing this parameter will create a new resource.
@@ -209,7 +211,7 @@ class _SubscriptionState:
         :param pulumi.Input[_builtins.str] region: The region in which to create the SMN subscription resource. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] remark: Remark information. The remarks must be a UTF-8-coded character string
-               containing 128 bytes. Changing this parameter will create a new resource.
+               containing 128 bytes.
         :param pulumi.Input[_builtins.int] status: Subscription status.
                + **0**: indicates that the subscription is not confirmed.
                + **1**: indicates that the subscription is confirmed.
@@ -255,8 +257,8 @@ class _SubscriptionState:
         the format is \\[+\\]\\[country code\\]\\[phone number\\], e.g. +86185xxxx0000.
         + **For a dingding subscription**, the endpoint is an IP address of a DingTalk group chatbot.
         + **For a wechat subscription**, the endpoint is an IP address of a WeChat group chatbot.
-        + **For a feishu subscription**, the endpoint is a an IP address of a Lark group chatbot.
-        + **For a welink subscription**, the endpoint is a a WeLink group account.
+        + **For a feishu subscription**, the endpoint is an IP address of a Lark group chatbot.
+        + **For a welink subscription**, the endpoint is a WeLink group account.
         """
         return pulumi.get(self, "endpoint")
 
@@ -338,7 +340,7 @@ class _SubscriptionState:
     def remark(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Remark information. The remarks must be a UTF-8-coded character string
-        containing 128 bytes. Changing this parameter will create a new resource.
+        containing 128 bytes.
         """
         return pulumi.get(self, "remark")
 
@@ -438,11 +440,10 @@ class Subscription(pulumi.CustomResource):
 
         SMN subscription can be imported using the `id` (subscription urn), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/subscription:Subscription subscription_1 urn:smn:cn-north-4:0970dd7a1300f5672ff2c003c60ae115:topic_1:a2aa5a1f66df494184f4e108398de1a6
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -458,8 +459,8 @@ class Subscription(pulumi.CustomResource):
                the format is \\[+\\]\\[country code\\]\\[phone number\\], e.g. +86185xxxx0000.
                + **For a dingding subscription**, the endpoint is an IP address of a DingTalk group chatbot.
                + **For a wechat subscription**, the endpoint is an IP address of a WeChat group chatbot.
-               + **For a feishu subscription**, the endpoint is a an IP address of a Lark group chatbot.
-               + **For a welink subscription**, the endpoint is a a WeLink group account.
+               + **For a feishu subscription**, the endpoint is an IP address of a Lark group chatbot.
+               + **For a welink subscription**, the endpoint is a WeLink group account.
         :param pulumi.Input[Union['SubscriptionExtensionArgs', 'SubscriptionExtensionArgsDict']] extension: Specifies the extension configurations.
                The extension structure is documented below.
                Changing this parameter will create a new resource.
@@ -472,7 +473,7 @@ class Subscription(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: The region in which to create the SMN subscription resource. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] remark: Remark information. The remarks must be a UTF-8-coded character string
-               containing 128 bytes. Changing this parameter will create a new resource.
+               containing 128 bytes.
         :param pulumi.Input[_builtins.str] topic_urn: Specifies the resource identifier of a topic, which is unique.
                Changing this parameter will create a new resource.
         """
@@ -520,11 +521,10 @@ class Subscription(pulumi.CustomResource):
 
         SMN subscription can be imported using the `id` (subscription urn), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/subscription:Subscription subscription_1 urn:smn:cn-north-4:0970dd7a1300f5672ff2c003c60ae115:topic_1:a2aa5a1f66df494184f4e108398de1a6
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SubscriptionArgs args: The arguments to use to populate this resource's properties.
@@ -611,8 +611,8 @@ class Subscription(pulumi.CustomResource):
                the format is \\[+\\]\\[country code\\]\\[phone number\\], e.g. +86185xxxx0000.
                + **For a dingding subscription**, the endpoint is an IP address of a DingTalk group chatbot.
                + **For a wechat subscription**, the endpoint is an IP address of a WeChat group chatbot.
-               + **For a feishu subscription**, the endpoint is a an IP address of a Lark group chatbot.
-               + **For a welink subscription**, the endpoint is a a WeLink group account.
+               + **For a feishu subscription**, the endpoint is an IP address of a Lark group chatbot.
+               + **For a welink subscription**, the endpoint is a WeLink group account.
         :param pulumi.Input[Union['SubscriptionExtensionArgs', 'SubscriptionExtensionArgsDict']] extension: Specifies the extension configurations.
                The extension structure is documented below.
                Changing this parameter will create a new resource.
@@ -628,7 +628,7 @@ class Subscription(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: The region in which to create the SMN subscription resource. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] remark: Remark information. The remarks must be a UTF-8-coded character string
-               containing 128 bytes. Changing this parameter will create a new resource.
+               containing 128 bytes.
         :param pulumi.Input[_builtins.int] status: Subscription status.
                + **0**: indicates that the subscription is not confirmed.
                + **1**: indicates that the subscription is confirmed.
@@ -669,8 +669,8 @@ class Subscription(pulumi.CustomResource):
         the format is \\[+\\]\\[country code\\]\\[phone number\\], e.g. +86185xxxx0000.
         + **For a dingding subscription**, the endpoint is an IP address of a DingTalk group chatbot.
         + **For a wechat subscription**, the endpoint is an IP address of a WeChat group chatbot.
-        + **For a feishu subscription**, the endpoint is a an IP address of a Lark group chatbot.
-        + **For a welink subscription**, the endpoint is a a WeLink group account.
+        + **For a feishu subscription**, the endpoint is an IP address of a Lark group chatbot.
+        + **For a welink subscription**, the endpoint is a WeLink group account.
         """
         return pulumi.get(self, "endpoint")
 
@@ -728,7 +728,7 @@ class Subscription(pulumi.CustomResource):
     def remark(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Remark information. The remarks must be a UTF-8-coded character string
-        containing 128 bytes. Changing this parameter will create a new resource.
+        containing 128 bytes.
         """
         return pulumi.get(self, "remark")
 

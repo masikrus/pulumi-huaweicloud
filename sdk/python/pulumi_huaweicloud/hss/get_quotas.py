@@ -183,7 +183,7 @@ def get_quotas(category: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     quota_id = config.require_object("quotaId")
-    test = huaweicloud.hss.get_quotas(quota_id=quota_id)
+    test = huaweicloud.Hss.get_quotas(quota_id=quota_id)
     ```
 
 
@@ -227,7 +227,7 @@ def get_quotas(category: Optional[_builtins.str] = None,
     __args__['usedStatus'] = used_status
     __args__['version'] = version
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult).value
 
     return AwaitableGetQuotasResult(
         category=pulumi.get(__ret__, 'category'),
@@ -262,7 +262,7 @@ def get_quotas_output(category: Optional[pulumi.Input[Optional[_builtins.str]]] 
 
     config = pulumi.Config()
     quota_id = config.require_object("quotaId")
-    test = huaweicloud.hss.get_quotas(quota_id=quota_id)
+    test = huaweicloud.Hss.get_quotas(quota_id=quota_id)
     ```
 
 
@@ -306,7 +306,7 @@ def get_quotas_output(category: Optional[pulumi.Input[Optional[_builtins.str]]] 
     __args__['usedStatus'] = used_status
     __args__['version'] = version
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult)
     return __ret__.apply(lambda __response__: GetQuotasResult(
         category=pulumi.get(__response__, 'category'),
         charging_mode=pulumi.get(__response__, 'charging_mode'),

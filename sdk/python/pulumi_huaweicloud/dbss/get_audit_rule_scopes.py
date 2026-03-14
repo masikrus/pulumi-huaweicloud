@@ -94,7 +94,7 @@ def get_audit_rule_scopes(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_audit_rule_scopes(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_audit_rule_scopes(instance_id=instance_id)
     ```
 
 
@@ -106,7 +106,7 @@ def get_audit_rule_scopes(instance_id: Optional[_builtins.str] = None,
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dbss/getAuditRuleScopes:getAuditRuleScopes', __args__, opts=opts, typ=GetAuditRuleScopesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dbss/getAuditRuleScopes:getAuditRuleScopes', __args__, opts=opts, typ=GetAuditRuleScopesResult).value
 
     return AwaitableGetAuditRuleScopesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -127,7 +127,7 @@ def get_audit_rule_scopes_output(instance_id: Optional[pulumi.Input[_builtins.st
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_audit_rule_scopes(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_audit_rule_scopes(instance_id=instance_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_audit_rule_scopes_output(instance_id: Optional[pulumi.Input[_builtins.st
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dbss/getAuditRuleScopes:getAuditRuleScopes', __args__, opts=opts, typ=GetAuditRuleScopesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dbss/getAuditRuleScopes:getAuditRuleScopes', __args__, opts=opts, typ=GetAuditRuleScopesResult)
     return __ret__.apply(lambda __response__: GetAuditRuleScopesResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

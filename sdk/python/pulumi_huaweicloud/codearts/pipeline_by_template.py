@@ -44,6 +44,7 @@ class PipelineByTemplateArgs:
                  variables: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineByTemplateVariableArgs']]]] = None):
         """
         The set of arguments for constructing a PipelineByTemplate resource.
+
         :param pulumi.Input[_builtins.bool] is_publish: Specifies whether it is a change-triggered pipeline.
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
         :param pulumi.Input[Sequence[pulumi.Input['PipelineByTemplateSourceArgs']]] sources: Specifies the pipeline source information.
@@ -413,6 +414,7 @@ class _PipelineByTemplateState:
                  webhook_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelineByTemplate resources.
+
         :param pulumi.Input[_builtins.bool] banned: Specifies whether the pipeline is banned.
         :param pulumi.Input[_builtins.str] component_id: Specifies the microservice ID.
         :param pulumi.Input['PipelineByTemplateConcurrencyControlArgs'] concurrency_control: Specifies the pipeline concurrency control information.
@@ -916,7 +918,7 @@ class _PipelineByTemplateState:
         pulumi.set(self, "webhook_url", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineByTemplate:PipelineByTemplate")
+@pulumi.type_token("huaweicloud:Codearts/pipelineByTemplate:PipelineByTemplate")
 class PipelineByTemplate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -985,43 +987,19 @@ class PipelineByTemplate(pulumi.CustomResource):
 
         The pipeline created by template can be imported using `project_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineByTemplate:PipelineByTemplate test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineByTemplate:PipelineByTemplate test <project_id>/<id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `template_id`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the pipeline created by template, or the resource definition should
-
         be updated to align with the pipeline created by template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_pipeline_by_template" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1104,43 +1082,19 @@ class PipelineByTemplate(pulumi.CustomResource):
 
         The pipeline created by template can be imported using `project_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineByTemplate:PipelineByTemplate test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineByTemplate:PipelineByTemplate test <project_id>/<id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `template_id`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the pipeline created by template, or the resource definition should
-
         be updated to align with the pipeline created by template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_pipeline_by_template" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PipelineByTemplateArgs args: The arguments to use to populate this resource's properties.
@@ -1228,7 +1182,7 @@ class PipelineByTemplate(pulumi.CustomResource):
             __props__.__dict__["webhook_iam_authentication"] = None
             __props__.__dict__["webhook_url"] = None
         super(PipelineByTemplate, __self__).__init__(
-            'huaweicloud:codearts/pipelineByTemplate:PipelineByTemplate',
+            'huaweicloud:Codearts/pipelineByTemplate:PipelineByTemplate',
             resource_name,
             __props__,
             opts)

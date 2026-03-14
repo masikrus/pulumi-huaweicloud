@@ -24,6 +24,7 @@ from .get_policy_assignment_summary import *
 from .get_policy_assignments import *
 from .get_policy_definitions import *
 from .get_policy_states import *
+from .get_policy_states_statistics import *
 from .get_policy_states_summary import *
 from .get_regions import *
 from .get_remediation_execution_statuses import *
@@ -52,10 +53,12 @@ from .organizational_assignment_package import *
 from .organizational_policy_assignment import *
 from .policy_assignment import *
 from .policy_assignment_evaluate import *
+from .policy_assignment_evaluate_result_update import *
 from .remediation_configuration import *
 from .remediation_exception import *
 from .remediation_execution import *
 from .resource_aggregation_authorization import *
+from .resource_aggregation_pending_request_delete import *
 from .resource_aggregator import *
 from .resource_recorder import *
 from ._inputs import *

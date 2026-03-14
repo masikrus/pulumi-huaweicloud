@@ -30,6 +30,7 @@ class DomainNameGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DomainNameGroup resource.
+
         :param pulumi.Input[_builtins.str] fw_instance_id: Specifies the firewall instance ID.
                
                Changing this parameter will create a new resource.
@@ -178,6 +179,7 @@ class _DomainNameGroupState:
                  type: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering DomainNameGroup resources.
+
         :param pulumi.Input[_builtins.int] config_status: The config status of the domain name group.
         :param pulumi.Input[_builtins.str] description: Specifies the description.
         :param pulumi.Input[Sequence[pulumi.Input['DomainNameGroupDomainNameArgs']]] domain_names: Specifies the list of domain names.
@@ -402,11 +404,10 @@ class DomainNameGroup(pulumi.CustomResource):
 
         The domainnamegroup can be imported using the `fw_instance_id`, `object_id` and `id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/domainNameGroup:DomainNameGroup test <fw_instance_id>/<object_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -467,11 +468,10 @@ class DomainNameGroup(pulumi.CustomResource):
 
         The domainnamegroup can be imported using the `fw_instance_id`, `object_id` and `id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/domainNameGroup:DomainNameGroup test <fw_instance_id>/<object_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainNameGroupArgs args: The arguments to use to populate this resource's properties.

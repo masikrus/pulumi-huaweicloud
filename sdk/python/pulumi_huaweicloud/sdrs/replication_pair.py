@@ -27,6 +27,7 @@ class ReplicationPairArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ReplicationPair resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of a protection group.
                
                Changing this parameter will create a new resource.
@@ -155,6 +156,7 @@ class _ReplicationPairState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ReplicationPair resources.
+
         :param pulumi.Input[_builtins.bool] delete_target_volume: Specifies whether to delete the disaster recovery site disk.
                The default value is **false**.
         :param pulumi.Input[_builtins.str] description: Specifies the description of a replication pair. The value can contain
@@ -344,7 +346,7 @@ class _ReplicationPairState:
         pulumi.set(self, "volume_id", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/replicationPair:ReplicationPair")
+@pulumi.type_token("huaweicloud:Sdrs/replicationPair:ReplicationPair")
 class ReplicationPair(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -381,39 +383,16 @@ class ReplicationPair(pulumi.CustomResource):
 
         The SDRS replication pair can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/replicationPair:ReplicationPair test <id>
+        $ pulumi import huaweicloud:Sdrs/replicationPair:ReplicationPair test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `delete_target_volume`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sdrs_replication_pair" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_target_volume,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -465,39 +444,16 @@ class ReplicationPair(pulumi.CustomResource):
 
         The SDRS replication pair can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/replicationPair:ReplicationPair test <id>
+        $ pulumi import huaweicloud:Sdrs/replicationPair:ReplicationPair test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `delete_target_volume`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sdrs_replication_pair" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_target_volume,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ReplicationPairArgs args: The arguments to use to populate this resource's properties.
@@ -544,7 +500,7 @@ class ReplicationPair(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["target_volume_id"] = None
         super(ReplicationPair, __self__).__init__(
-            'huaweicloud:sdrs/replicationPair:ReplicationPair',
+            'huaweicloud:Sdrs/replicationPair:ReplicationPair',
             resource_name,
             __props__,
             opts)

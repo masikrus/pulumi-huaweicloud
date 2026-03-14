@@ -59,6 +59,8 @@ __all__ = [
     'InstanceNodeNumUpdateVolumeArgsDict',
     'InstanceParametersModifyParameterArgs',
     'InstanceParametersModifyParameterArgsDict',
+    'InstancePolicyArgs',
+    'InstancePolicyArgsDict',
     'InstanceV3BackupStrategyArgs',
     'InstanceV3BackupStrategyArgsDict',
     'InstanceV3ConfigurationArgs',
@@ -73,28 +75,29 @@ __all__ = [
     'InstanceV3GroupNodeArgsDict',
     'InstanceV3NodeArgs',
     'InstanceV3NodeArgsDict',
+    'InstanceV3PolicyArgs',
+    'InstanceV3PolicyArgsDict',
     'ParameterTemplateCompareDifferenceArgs',
     'ParameterTemplateCompareDifferenceArgsDict',
     'ParameterTemplateCopyParameterArgs',
     'ParameterTemplateCopyParameterArgsDict',
     'ParameterTemplateParameterArgs',
     'ParameterTemplateParameterArgsDict',
+    'GetInstancesByTagsMatchArgs',
+    'GetInstancesByTagsMatchArgsDict',
+    'GetInstancesByTagsTagArgs',
+    'GetInstancesByTagsTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BackupDatastoreArgsDict(TypedDict):
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the DB engine.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the database version. The value can be **4.2**, **4.0**, or **3.4**.
-        """
-elif False:
-    BackupDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class BackupDatastoreArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the DB engine.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the database version. The value can be **4.2**, **4.0**, or **3.4**.
+    """
 
 @pulumi.input_type
 class BackupDatastoreArgs:
@@ -135,30 +138,27 @@ class BackupDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class CollectionRestoreRestoreCollectionArgsDict(TypedDict):
-        database: pulumi.Input[_builtins.str]
-        """
-        Specifies the database name.
-        Changing this creates a new resource.
-        """
-        collections: NotRequired[pulumi.Input[Sequence[pulumi.Input['CollectionRestoreRestoreCollectionCollectionArgsDict']]]]
-        """
-        Specifies the collection informations.
-        Changing this creates a new resource.
-        The collections structure is documented below.
-        """
-        restore_database_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the database restoration time point.
-        It is mandatory for database level restoration. The value is a UNIX timestamp, in milliseconds. The time zone is UTC.
-        Changing this creates a new resource.
+class CollectionRestoreRestoreCollectionArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    Specifies the database name.
+    Changing this creates a new resource.
+    """
+    collections: NotRequired[pulumi.Input[Sequence[pulumi.Input['CollectionRestoreRestoreCollectionCollectionArgsDict']]]]
+    """
+    Specifies the collection informations.
+    Changing this creates a new resource.
+    The collections structure is documented below.
+    """
+    restore_database_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database restoration time point.
+    It is mandatory for database level restoration. The value is a UNIX timestamp, in milliseconds. The time zone is UTC.
+    Changing this creates a new resource.
 
-        <a name="block--restore_collections--collections"></a>
-        The `collections` block supports:
-        """
-elif False:
-    CollectionRestoreRestoreCollectionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--restore_collections--collections"></a>
+    The `collections` block supports:
+    """
 
 @pulumi.input_type
 class CollectionRestoreRestoreCollectionArgs:
@@ -230,26 +230,23 @@ class CollectionRestoreRestoreCollectionArgs:
         pulumi.set(self, "restore_database_time", value)
 
 
-if not MYPY:
-    class CollectionRestoreRestoreCollectionCollectionArgsDict(TypedDict):
-        old_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the collection name before the restoration.
-        Changing this creates a new resource.
-        """
-        restore_collection_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the collection restoration time point.
-        The value is a UNIX timestamp, in milliseconds. The time zone is UTC.
-        Changing this creates a new resource.
-        """
-        new_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the collection name after the restoration.
-        Changing this creates a new resource.
-        """
-elif False:
-    CollectionRestoreRestoreCollectionCollectionArgsDict: TypeAlias = Mapping[str, Any]
+class CollectionRestoreRestoreCollectionCollectionArgsDict(TypedDict):
+    old_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the collection name before the restoration.
+    Changing this creates a new resource.
+    """
+    restore_collection_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the collection restoration time point.
+    The value is a UNIX timestamp, in milliseconds. The time zone is UTC.
+    Changing this creates a new resource.
+    """
+    new_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the collection name after the restoration.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class CollectionRestoreRestoreCollectionCollectionArgs:
@@ -312,19 +309,16 @@ class CollectionRestoreRestoreCollectionCollectionArgs:
         pulumi.set(self, "new_name", value)
 
 
-if not MYPY:
-    class DatabaseRoleInheritedPrivilegeArgsDict(TypedDict):
-        actions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The operation permission list.
-        """
-        resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['DatabaseRoleInheritedPrivilegeResourceArgsDict']]]]
-        """
-        The details of the resource to which the privilege belongs.
-        The resources structure is documented below.
-        """
-elif False:
-    DatabaseRoleInheritedPrivilegeArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseRoleInheritedPrivilegeArgsDict(TypedDict):
+    actions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The operation permission list.
+    """
+    resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['DatabaseRoleInheritedPrivilegeResourceArgsDict']]]]
+    """
+    The details of the resource to which the privilege belongs.
+    The resources structure is documented below.
+    """
 
 @pulumi.input_type
 class DatabaseRoleInheritedPrivilegeArgs:
@@ -367,19 +361,16 @@ class DatabaseRoleInheritedPrivilegeArgs:
         pulumi.set(self, "resources", value)
 
 
-if not MYPY:
-    class DatabaseRoleInheritedPrivilegeResourceArgsDict(TypedDict):
-        collection: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The database collection type.
-        """
-        db_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the database name to which this owned role belongs.
-        Changing this parameter will create a new role.
-        """
-elif False:
-    DatabaseRoleInheritedPrivilegeResourceArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseRoleInheritedPrivilegeResourceArgsDict(TypedDict):
+    collection: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The database collection type.
+    """
+    db_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database name to which this owned role belongs.
+    Changing this parameter will create a new role.
+    """
 
 @pulumi.input_type
 class DatabaseRoleInheritedPrivilegeResourceArgs:
@@ -422,19 +413,16 @@ class DatabaseRoleInheritedPrivilegeResourceArgs:
         pulumi.set(self, "db_name", value)
 
 
-if not MYPY:
-    class DatabaseRolePrivilegeArgsDict(TypedDict):
-        actions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The operation permission list.
-        """
-        resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['DatabaseRolePrivilegeResourceArgsDict']]]]
-        """
-        The details of the resource to which the privilege belongs.
-        The resources structure is documented below.
-        """
-elif False:
-    DatabaseRolePrivilegeArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseRolePrivilegeArgsDict(TypedDict):
+    actions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The operation permission list.
+    """
+    resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['DatabaseRolePrivilegeResourceArgsDict']]]]
+    """
+    The details of the resource to which the privilege belongs.
+    The resources structure is documented below.
+    """
 
 @pulumi.input_type
 class DatabaseRolePrivilegeArgs:
@@ -477,19 +465,16 @@ class DatabaseRolePrivilegeArgs:
         pulumi.set(self, "resources", value)
 
 
-if not MYPY:
-    class DatabaseRolePrivilegeResourceArgsDict(TypedDict):
-        collection: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The database collection type.
-        """
-        db_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the database name to which this owned role belongs.
-        Changing this parameter will create a new role.
-        """
-elif False:
-    DatabaseRolePrivilegeResourceArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseRolePrivilegeResourceArgsDict(TypedDict):
+    collection: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The database collection type.
+    """
+    db_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database name to which this owned role belongs.
+    Changing this parameter will create a new role.
+    """
 
 @pulumi.input_type
 class DatabaseRolePrivilegeResourceArgs:
@@ -532,21 +517,18 @@ class DatabaseRolePrivilegeResourceArgs:
         pulumi.set(self, "db_name", value)
 
 
-if not MYPY:
-    class DatabaseRoleRoleArgsDict(TypedDict):
-        db_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the database name to which this owned role belongs.
-        Changing this parameter will create a new role.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of role owned by the current role.
-        The name can contain `1` to `64` characters, only letters, digits, underscores (_), hyphens (-) and dots (.) are
-        allowed. Changing this parameter will create a new role.
-        """
-elif False:
-    DatabaseRoleRoleArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseRoleRoleArgsDict(TypedDict):
+    db_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the database name to which this owned role belongs.
+    Changing this parameter will create a new role.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of role owned by the current role.
+    The name can contain `1` to `64` characters, only letters, digits, underscores (_), hyphens (-) and dots (.) are
+    allowed. Changing this parameter will create a new role.
+    """
 
 @pulumi.input_type
 class DatabaseRoleRoleArgs:
@@ -591,19 +573,16 @@ class DatabaseRoleRoleArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class DatabaseUserInheritedPrivilegeArgsDict(TypedDict):
-        actions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The operation permission list.
-        """
-        resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['DatabaseUserInheritedPrivilegeResourceArgsDict']]]]
-        """
-        The details of the resource to which the privilege belongs.
-        The resources structure is documented below.
-        """
-elif False:
-    DatabaseUserInheritedPrivilegeArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseUserInheritedPrivilegeArgsDict(TypedDict):
+    actions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The operation permission list.
+    """
+    resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['DatabaseUserInheritedPrivilegeResourceArgsDict']]]]
+    """
+    The details of the resource to which the privilege belongs.
+    The resources structure is documented below.
+    """
 
 @pulumi.input_type
 class DatabaseUserInheritedPrivilegeArgs:
@@ -646,19 +625,16 @@ class DatabaseUserInheritedPrivilegeArgs:
         pulumi.set(self, "resources", value)
 
 
-if not MYPY:
-    class DatabaseUserInheritedPrivilegeResourceArgsDict(TypedDict):
-        collection: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The database collection type.
-        """
-        db_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the database name to which this owned role belongs.
-        Changing this parameter will create a new user.
-        """
-elif False:
-    DatabaseUserInheritedPrivilegeResourceArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseUserInheritedPrivilegeResourceArgsDict(TypedDict):
+    collection: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The database collection type.
+    """
+    db_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database name to which this owned role belongs.
+    Changing this parameter will create a new user.
+    """
 
 @pulumi.input_type
 class DatabaseUserInheritedPrivilegeResourceArgs:
@@ -701,19 +677,16 @@ class DatabaseUserInheritedPrivilegeResourceArgs:
         pulumi.set(self, "db_name", value)
 
 
-if not MYPY:
-    class DatabaseUserPrivilegeArgsDict(TypedDict):
-        actions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The operation permission list.
-        """
-        resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['DatabaseUserPrivilegeResourceArgsDict']]]]
-        """
-        The details of the resource to which the privilege belongs.
-        The resources structure is documented below.
-        """
-elif False:
-    DatabaseUserPrivilegeArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseUserPrivilegeArgsDict(TypedDict):
+    actions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The operation permission list.
+    """
+    resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['DatabaseUserPrivilegeResourceArgsDict']]]]
+    """
+    The details of the resource to which the privilege belongs.
+    The resources structure is documented below.
+    """
 
 @pulumi.input_type
 class DatabaseUserPrivilegeArgs:
@@ -756,19 +729,16 @@ class DatabaseUserPrivilegeArgs:
         pulumi.set(self, "resources", value)
 
 
-if not MYPY:
-    class DatabaseUserPrivilegeResourceArgsDict(TypedDict):
-        collection: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The database collection type.
-        """
-        db_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the database name to which this owned role belongs.
-        Changing this parameter will create a new user.
-        """
-elif False:
-    DatabaseUserPrivilegeResourceArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseUserPrivilegeResourceArgsDict(TypedDict):
+    collection: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The database collection type.
+    """
+    db_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database name to which this owned role belongs.
+    Changing this parameter will create a new user.
+    """
 
 @pulumi.input_type
 class DatabaseUserPrivilegeResourceArgs:
@@ -811,21 +781,18 @@ class DatabaseUserPrivilegeResourceArgs:
         pulumi.set(self, "db_name", value)
 
 
-if not MYPY:
-    class DatabaseUserRoleArgsDict(TypedDict):
-        db_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the database name to which this owned role belongs.
-        Changing this parameter will create a new user.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of role owned by the current user.
-        The name can contain `1` to `64` characters, only letters, digits, underscores (_), hyphens (-) and dots (.) are
-        allowed. Changing this parameter will create a new user.
-        """
-elif False:
-    DatabaseUserRoleArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseUserRoleArgsDict(TypedDict):
+    db_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the database name to which this owned role belongs.
+    Changing this parameter will create a new user.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of role owned by the current user.
+    The name can contain `1` to `64` characters, only letters, digits, underscores (_), hyphens (-) and dots (.) are
+    allowed. Changing this parameter will create a new user.
+    """
 
 @pulumi.input_type
 class DatabaseUserRoleArgs:
@@ -870,33 +837,33 @@ class DatabaseUserRoleArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class InstanceBackupStrategyArgsDict(TypedDict):
-        keep_days: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of days to retain the generated backup files. The value range is
-        from 0 to 732. If this parameter is set to 0, the automated backup policy is disabled.
-        """
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the backup time window. Automated backups will be triggered during
-        the backup time window. The value cannot be empty. It must be a valid value in the "hh:mm-HH:MM" format.
-        The current time is in the UTC format.
-        + The HH value must be 1 greater than the hh value.
-        + The values from mm and MM must be the same and must be set to **00**.
-        """
-        period: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backup cycle. Data will be automatically backed up on the
-        selected days every week.
-        + If you set the `keep_days` to 0, this parameter is no need to set.
-        + If you set the `keep_days` within 6 days, set the parameter value to **1,2,3,4,5,6,7**, data is automatically
-        backed up on each day every week.
-        + If you set the `keep_days` between 7 and 732 days, set the parameter value to at least one day of every week.
-        For example: **1**, **3,5**.
-        """
-elif False:
-    InstanceBackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceBackupStrategyArgsDict(TypedDict):
+    keep_days: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of days to retain the generated backup files. The value range is
+    from 0 to 732. If this parameter is set to 0, the automated backup policy is disabled.
+    """
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the backup time window. Automated backups will be triggered during
+    the backup time window. The value cannot be empty. It must be a valid value in the "hh:mm-HH:MM" format.
+    The current time is in the UTC format.
+    + The HH value must be 1 greater than the hh value.
+    + The values from mm and MM must be the same and must be set to **00**.
+    """
+    period: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backup cycle. Data will be automatically backed up on the
+    selected days every week.
+    + If you set the `keep_days` to 0, this parameter is no need to set.
+    + If you set the `keep_days` within 6 days, set the parameter value to **1,2,3,4,5,6,7**, data is automatically
+    backed up on each day every week.
+    + If you set the `keep_days` between 7 and 732 days, set the parameter value to at least one day of every week.
+    For example: **1**, **3,5**.
+
+    <a name="auto_scaling_policy"></a>
+    The `policy` block supports:
+    """
 
 @pulumi.input_type
 class InstanceBackupStrategyArgs:
@@ -919,6 +886,9 @@ class InstanceBackupStrategyArgs:
                backed up on each day every week.
                + If you set the `keep_days` between 7 and 732 days, set the parameter value to at least one day of every week.
                For example: **1**, **3,5**.
+               
+               <a name="auto_scaling_policy"></a>
+               The `policy` block supports:
         """
         pulumi.set(__self__, "keep_days", keep_days)
         pulumi.set(__self__, "start_time", start_time)
@@ -965,6 +935,9 @@ class InstanceBackupStrategyArgs:
         backed up on each day every week.
         + If you set the `keep_days` between 7 and 732 days, set the parameter value to at least one day of every week.
         For example: **1**, **3,5**.
+
+        <a name="auto_scaling_policy"></a>
+        The `policy` block supports:
         """
         return pulumi.get(self, "period")
 
@@ -973,23 +946,20 @@ class InstanceBackupStrategyArgs:
         pulumi.set(self, "period", value)
 
 
-if not MYPY:
-    class InstanceConfigurationArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the template.
+class InstanceConfigurationArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the template.
 
-        > Atfer updating the `configuration.id`, please check whether the instance needs to be restarted.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the node type. Valid value:
-        + For a Community Edition cluster instance, the value can be **mongos**, **shard** or **config**.
-        + For a Community Edition replica set instance, the value is **replica**.
-        Changing this creates a new instance.
-        """
-elif False:
-    InstanceConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+    > Atfer updating the `configuration.id`, please check whether the instance needs to be restarted.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the node type. Valid value:
+    + For a Community Edition cluster instance, the value can be **mongos**, **shard** or **config**.
+    + For a Community Edition replica set instance, the value is **replica**.
+    Changing this creates a new instance.
+    """
 
 @pulumi.input_type
 class InstanceConfigurationArgs:
@@ -1038,25 +1008,22 @@ class InstanceConfigurationArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class InstanceDatastoreArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the DB engine. **DDS-Community** is supported.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the DB instance version. For the Community Edition, the valid
-        values are `4.0`, `4.2`, `4.4` or `5.0`.
-        """
-        storage_engine: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the storage engine of the DB instance.
-        If `version` is set to `4.0`, the value is **wiredTiger**.
-        If `version` is set to `4.2`, `4.4` or `5.0`, the value is **rocksDB**.
-        """
-elif False:
-    InstanceDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceDatastoreArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the DB engine. **DDS-Community** is supported.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the DB instance version. For the Community Edition, the valid
+    values are `4.0`, `4.2`, `4.4` or `5.0`.
+    """
+    storage_engine: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the storage engine of the DB instance.
+    If `version` is set to `4.0`, the value is **wiredTiger**.
+    If `version` is set to `4.2`, `4.4` or `5.0`, the value is **rocksDB**.
+    """
 
 @pulumi.input_type
 class InstanceDatastoreArgs:
@@ -1117,53 +1084,64 @@ class InstanceDatastoreArgs:
         pulumi.set(self, "storage_engine", value)
 
 
-if not MYPY:
-    class InstanceFlavorArgsDict(TypedDict):
-        num: pulumi.Input[_builtins.int]
-        """
-        Specifies the node quantity. Valid value:
-        + If the value of type is **mongos**, num indicates the number of mongos nodes in the cluster instance. Value ranges
-        from `2` to `16`.
-        + If the value of type is **shard**, num indicates the number of shard groups in the cluster instance. Value ranges
-        from `2` to `16`.
-        + If the value of type is **config**, num indicates the number of config groups in the cluster instance. Value can
-        only be `1`.
-        + If the value of type is **replica**, num indicates the number of replica nodes in the replica set instance. Value
-        can be `3`, `5`, or `7`.
+class InstanceFlavorArgsDict(TypedDict):
+    num: pulumi.Input[_builtins.int]
+    """
+    Specifies the node quantity. Valid value:
+    + If the value of type is **mongos**, num indicates the number of mongos nodes in the cluster instance. Value ranges
+    from `2` to `16`.
+    + If the value of type is **shard**, num indicates the number of shard groups in the cluster instance. Value ranges
+    from `2` to `16`.
+    + If the value of type is **config**, num indicates the number of config groups in the cluster instance. Value can
+    only be `1`.
+    + If the value of type is **replica**, num indicates the number of replica nodes in the replica set instance. Value
+    can be `3`, `5`, or `7`.
 
-        This parameter can be updated when the value of `type` is **mongos**, **shard** or **replica**.
-        """
-        spec_code: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource specification code. In a cluster instance, multiple
-        specifications need to be specified. All specifications must be of the same series, that is, general-purpose (s6),
-        enhanced (c3), or enhanced II (c6). For example:
-        + dds.mongodb.s6.large.4.mongos and dds.mongodb.s6.large.4.config have the same specifications.
-        + dds.mongodb.s6.large.4.mongos and dds.mongodb.c3.large.4.config are not of the same specifications.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the node type. Valid value:
-        + For a cluster instance, the value can be **mongos**, **shard**, or **config**.
-        + For a replica set instance, the value is **replica**.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the disk size. The value must be a multiple of `10`. The unit is GB. This parameter
-        is mandatory for nodes except mongos and invalid for mongos.For a cluster instance, the storage space of a shard node
-        can be `10` to `2,000` GB, and the config storage space is `20` GB. For a replica set instance, the value ranges
-        from `10` to `3000` GB. This parameter can be updated when the value of `type` is shard or replica.
-        """
-        storage: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the disk type. Valid value:
-        + **ULTRAHIGH**: SSD storage.
-        + **EXTREMEHIGH**: Extreme SSD storage.
+    This parameter can be updated when the value of `type` is **mongos**, **shard** or **replica**.
+    """
+    spec_code: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource specification code. In a cluster instance, multiple
+    specifications need to be specified. All specifications must be of the same series, that is, general-purpose (s6),
+    enhanced (c3), or enhanced II (c6). For example:
+    + dds.mongodb.s6.large.4.mongos and dds.mongodb.s6.large.4.config have the same specifications.
+    + dds.mongodb.s6.large.4.mongos and dds.mongodb.c3.large.4.config are not of the same specifications.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the node type. Valid value:
+    + For a cluster instance, the value can be **mongos**, **shard**, or **config**.
+    + For a replica set instance, the value is **replica**.
+    """
+    node_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the ID list of instance nodes to be deleted.  
 
-        This parameter is valid for the shard and config nodes of a cluster instance and for replica set instances.
-        """
-elif False:
-    InstanceFlavorArgsDict: TypeAlias = Mapping[str, Any]
+    > 1. This parameter is available only when you delete a replica set instance nodes or a cluster instance
+    mongos nodes.
+    <br/>2. When you delete a replica set instance nodes, this parameter can be empty, but it is required when
+    you delete a cluster instance mongos nodes.
+    <br/>3. For a 7-node replica set instance, `2` or `4` standby nodes can be deleted.
+    <br/>4. For a 5-node replica set instance, `2` standby nodes can be deleted.
+    <br/>5. The standby node of a 3-node replica set instance cannot be deleted.
+    <br/>6. At least keep `2` mongos nodes of a cluster instance.
+    <br/>7. Nodes cannot be deleted from instances that have abnormal nodes.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the disk size. The value must be a multiple of `10`. The unit is GB. This parameter
+    is mandatory for nodes except mongos and invalid for mongos.For a cluster instance, the storage space of a shard node
+    can be `10` to `2,000` GB, and the config storage space is `20` GB. For a replica set instance, the value ranges
+    from `10` to `3000` GB. This parameter can be updated when the value of `type` is shard or replica.
+    """
+    storage: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the disk type. Valid value:
+    + **ULTRAHIGH**: SSD storage.
+    + **EXTREMEHIGH**: Extreme SSD storage.
+
+    This parameter is valid for the shard and config nodes of a cluster instance and for replica set instances.
+    """
 
 @pulumi.input_type
 class InstanceFlavorArgs:
@@ -1171,6 +1149,7 @@ class InstanceFlavorArgs:
                  num: pulumi.Input[_builtins.int],
                  spec_code: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
+                 node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  storage: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -1193,6 +1172,17 @@ class InstanceFlavorArgs:
         :param pulumi.Input[_builtins.str] type: Specifies the node type. Valid value:
                + For a cluster instance, the value can be **mongos**, **shard**, or **config**.
                + For a replica set instance, the value is **replica**.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_lists: Specifies the ID list of instance nodes to be deleted.  
+               
+               > 1. This parameter is available only when you delete a replica set instance nodes or a cluster instance
+               mongos nodes.
+               <br/>2. When you delete a replica set instance nodes, this parameter can be empty, but it is required when
+               you delete a cluster instance mongos nodes.
+               <br/>3. For a 7-node replica set instance, `2` or `4` standby nodes can be deleted.
+               <br/>4. For a 5-node replica set instance, `2` standby nodes can be deleted.
+               <br/>5. The standby node of a 3-node replica set instance cannot be deleted.
+               <br/>6. At least keep `2` mongos nodes of a cluster instance.
+               <br/>7. Nodes cannot be deleted from instances that have abnormal nodes.
         :param pulumi.Input[_builtins.int] size: Specifies the disk size. The value must be a multiple of `10`. The unit is GB. This parameter
                is mandatory for nodes except mongos and invalid for mongos.For a cluster instance, the storage space of a shard node
                can be `10` to `2,000` GB, and the config storage space is `20` GB. For a replica set instance, the value ranges
@@ -1206,6 +1196,8 @@ class InstanceFlavorArgs:
         pulumi.set(__self__, "num", num)
         pulumi.set(__self__, "spec_code", spec_code)
         pulumi.set(__self__, "type", type)
+        if node_lists is not None:
+            pulumi.set(__self__, "node_lists", node_lists)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if storage is not None:
@@ -1264,6 +1256,28 @@ class InstanceFlavorArgs:
         pulumi.set(self, "type", value)
 
     @_builtins.property
+    @pulumi.getter(name="nodeLists")
+    def node_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the ID list of instance nodes to be deleted.  
+
+        > 1. This parameter is available only when you delete a replica set instance nodes or a cluster instance
+        mongos nodes.
+        <br/>2. When you delete a replica set instance nodes, this parameter can be empty, but it is required when
+        you delete a cluster instance mongos nodes.
+        <br/>3. For a 7-node replica set instance, `2` or `4` standby nodes can be deleted.
+        <br/>4. For a 5-node replica set instance, `2` standby nodes can be deleted.
+        <br/>5. The standby node of a 3-node replica set instance cannot be deleted.
+        <br/>6. At least keep `2` mongos nodes of a cluster instance.
+        <br/>7. Nodes cannot be deleted from instances that have abnormal nodes.
+        """
+        return pulumi.get(self, "node_lists")
+
+    @node_lists.setter
+    def node_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "node_lists", value)
+
+    @_builtins.property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -1295,40 +1309,37 @@ class InstanceFlavorArgs:
         pulumi.set(self, "storage", value)
 
 
-if not MYPY:
-    class InstanceGroupArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DB instance name. The DB instance name of the same type is unique in the
-        same tenant.
-        """
-        nodes: NotRequired[pulumi.Input[Sequence[pulumi.Input['InstanceGroupNodeArgsDict']]]]
-        """
-        Indicates the nodes info.
-        The nodes structure is documented below.
-        """
-        size: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the disk size.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node type.
-        """
-        used: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the disk usage.
-        """
-elif False:
-    InstanceGroupArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceGroupArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DB instance name. The DB instance name of the same type is unique in the
+    same tenant.
+    """
+    nodes: NotRequired[pulumi.Input[Sequence[pulumi.Input['InstanceGroupNodeArgsDict']]]]
+    """
+    Indicates the nodes info.
+    The nodes structure is documented below.
+    """
+    size: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the disk size.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node type.
+    """
+    used: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the disk usage.
+    """
 
 @pulumi.input_type
 class InstanceGroupArgs:
@@ -1453,53 +1464,61 @@ class InstanceGroupArgs:
         pulumi.set(self, "used", value)
 
 
-if not MYPY:
-    class InstanceGroupNodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DB instance name. The DB instance name of the same type is unique in the
-        same tenant.
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of a node. This parameter is valid only for mongos nodes, replica set
-        instances, and single node instances.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of
-        cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node role.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node type.
-        """
-elif False:
-    InstanceGroupNodeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceGroupNodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the availability zone names separated by commas.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DB instance name. The DB instance name of the same type is unique in the
+    same tenant.
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of a node. This parameter is valid only for mongos nodes, replica set
+    instances, and single node instances.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of
+    cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node role.
+    """
+    spec_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node spec code.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node type.
+    """
 
 @pulumi.input_type
 class InstanceGroupNodeArgs:
     def __init__(__self__, *,
+                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  public_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
+                 spec_code: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
+        :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone names separated by commas.
         :param pulumi.Input[_builtins.str] id: Indicates the node ID.
         :param pulumi.Input[_builtins.str] name: Specifies the DB instance name. The DB instance name of the same type is unique in the
                same tenant.
@@ -1508,9 +1527,12 @@ class InstanceGroupNodeArgs:
         :param pulumi.Input[_builtins.str] public_ip: Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of
                cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances.
         :param pulumi.Input[_builtins.str] role: Indicates the node role.
+        :param pulumi.Input[_builtins.str] spec_code: Indicates the node spec code.
         :param pulumi.Input[_builtins.str] status: Indicates the node status.
         :param pulumi.Input[_builtins.str] type: Indicates the node type.
         """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if name is not None:
@@ -1521,10 +1543,24 @@ class InstanceGroupNodeArgs:
             pulumi.set(__self__, "public_ip", public_ip)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if spec_code is not None:
+            pulumi.set(__self__, "spec_code", spec_code)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the availability zone names separated by commas.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @availability_zone.setter
+    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1590,6 +1626,18 @@ class InstanceGroupNodeArgs:
         pulumi.set(self, "role", value)
 
     @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @spec_code.setter
+    def spec_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "spec_code", value)
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1614,53 +1662,61 @@ class InstanceGroupNodeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class InstanceNodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DB instance name. The DB instance name of the same type is unique in the
-        same tenant.
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of a node. This parameter is valid only for mongos nodes, replica set
-        instances, and single node instances.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of
-        cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node role.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node type.
-        """
-elif False:
-    InstanceNodeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceNodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the availability zone names separated by commas.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DB instance name. The DB instance name of the same type is unique in the
+    same tenant.
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of a node. This parameter is valid only for mongos nodes, replica set
+    instances, and single node instances.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of
+    cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node role.
+    """
+    spec_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node spec code.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node type.
+    """
 
 @pulumi.input_type
 class InstanceNodeArgs:
     def __init__(__self__, *,
+                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  public_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
+                 spec_code: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
+        :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone names separated by commas.
         :param pulumi.Input[_builtins.str] id: Indicates the node ID.
         :param pulumi.Input[_builtins.str] name: Specifies the DB instance name. The DB instance name of the same type is unique in the
                same tenant.
@@ -1669,9 +1725,12 @@ class InstanceNodeArgs:
         :param pulumi.Input[_builtins.str] public_ip: Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of
                cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances.
         :param pulumi.Input[_builtins.str] role: Indicates the node role.
+        :param pulumi.Input[_builtins.str] spec_code: Indicates the node spec code.
         :param pulumi.Input[_builtins.str] status: Indicates the node status.
         :param pulumi.Input[_builtins.str] type: Indicates the node type.
         """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if name is not None:
@@ -1682,10 +1741,24 @@ class InstanceNodeArgs:
             pulumi.set(__self__, "public_ip", public_ip)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if spec_code is not None:
+            pulumi.set(__self__, "spec_code", spec_code)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the availability zone names separated by commas.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @availability_zone.setter
+    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1751,6 +1824,18 @@ class InstanceNodeArgs:
         pulumi.set(self, "role", value)
 
     @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @spec_code.setter
+    def spec_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "spec_code", value)
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1775,16 +1860,13 @@ class InstanceNodeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class InstanceNodeNumUpdateVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.str]
-        """
-        Specifies the disk capacity of all new shards. Value range:
-        + 10 GB to 5,000 GB when the shard node has fewer than 8 vCPUs.
-        + 10 GB to 10,000 GB when the shard node has 8 or more vCPUs.
-        """
-elif False:
-    InstanceNodeNumUpdateVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceNodeNumUpdateVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.str]
+    """
+    Specifies the disk capacity of all new shards. Value range:
+    + 10 GB to 5,000 GB when the shard node has fewer than 8 vCPUs.
+    + 10 GB to 10,000 GB when the shard node has 8 or more vCPUs.
+    """
 
 @pulumi.input_type
 class InstanceNodeNumUpdateVolumeArgs:
@@ -1812,18 +1894,15 @@ class InstanceNodeNumUpdateVolumeArgs:
         pulumi.set(self, "size", value)
 
 
-if not MYPY:
-    class InstanceParametersModifyParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name. Some of them needs a restart of instance to take effect.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter value.
-        """
-elif False:
-    InstanceParametersModifyParameterArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceParametersModifyParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name. Some of them needs a restart of instance to take effect.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value.
+    """
 
 @pulumi.input_type
 class InstanceParametersModifyParameterArgs:
@@ -1862,13 +1941,98 @@ class InstanceParametersModifyParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class InstanceV3BackupStrategyArgsDict(TypedDict):
-        keep_days: pulumi.Input[_builtins.int]
-        start_time: pulumi.Input[_builtins.str]
-        period: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV3BackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePolicyArgsDict(TypedDict):
+    step: pulumi.Input[_builtins.int]
+    """
+    Specifies the autoscaling increment (s%).
+    The value only can be **10**, **15**, or **20**.
+    After autoscaling is triggered, your storage will automatically scale up by s% (in increments of 10 GB) of
+    your allocated storage.
+    If your account balance is insufficient, autoscaling will fail.
+    """
+    threshold: pulumi.Input[_builtins.int]
+    """
+    Specifies the threshold to trigger autoscaling.
+    The value only can be **80**, **85**, or **90**.
+    If the used storage exceeds this threshold, autoscaling is triggered.
+    This parameter of a cluster instance applies to each shard in the instance.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the disk size.
+    """
+
+@pulumi.input_type
+class InstancePolicyArgs:
+    def __init__(__self__, *,
+                 step: pulumi.Input[_builtins.int],
+                 threshold: pulumi.Input[_builtins.int],
+                 size: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] step: Specifies the autoscaling increment (s%).
+               The value only can be **10**, **15**, or **20**.
+               After autoscaling is triggered, your storage will automatically scale up by s% (in increments of 10 GB) of
+               your allocated storage.
+               If your account balance is insufficient, autoscaling will fail.
+        :param pulumi.Input[_builtins.int] threshold: Specifies the threshold to trigger autoscaling.
+               The value only can be **80**, **85**, or **90**.
+               If the used storage exceeds this threshold, autoscaling is triggered.
+               This parameter of a cluster instance applies to each shard in the instance.
+        :param pulumi.Input[_builtins.int] size: Indicates the disk size.
+        """
+        pulumi.set(__self__, "step", step)
+        pulumi.set(__self__, "threshold", threshold)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def step(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the autoscaling increment (s%).
+        The value only can be **10**, **15**, or **20**.
+        After autoscaling is triggered, your storage will automatically scale up by s% (in increments of 10 GB) of
+        your allocated storage.
+        If your account balance is insufficient, autoscaling will fail.
+        """
+        return pulumi.get(self, "step")
+
+    @step.setter
+    def step(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "step", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the threshold to trigger autoscaling.
+        The value only can be **80**, **85**, or **90**.
+        If the used storage exceeds this threshold, autoscaling is triggered.
+        This parameter of a cluster instance applies to each shard in the instance.
+        """
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "threshold", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Indicates the disk size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+
+class InstanceV3BackupStrategyArgsDict(TypedDict):
+    keep_days: pulumi.Input[_builtins.int]
+    start_time: pulumi.Input[_builtins.str]
+    period: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV3BackupStrategyArgs:
@@ -1909,12 +2073,9 @@ class InstanceV3BackupStrategyArgs:
         pulumi.set(self, "period", value)
 
 
-if not MYPY:
-    class InstanceV3ConfigurationArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        type: pulumi.Input[_builtins.str]
-elif False:
-    InstanceV3ConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3ConfigurationArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class InstanceV3ConfigurationArgs:
@@ -1943,13 +2104,10 @@ class InstanceV3ConfigurationArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class InstanceV3DatastoreArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        version: pulumi.Input[_builtins.str]
-        storage_engine: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV3DatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3DatastoreArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    version: pulumi.Input[_builtins.str]
+    storage_engine: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV3DatastoreArgs:
@@ -1990,15 +2148,13 @@ class InstanceV3DatastoreArgs:
         pulumi.set(self, "storage_engine", value)
 
 
-if not MYPY:
-    class InstanceV3FlavorArgsDict(TypedDict):
-        num: pulumi.Input[_builtins.int]
-        spec_code: pulumi.Input[_builtins.str]
-        type: pulumi.Input[_builtins.str]
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        storage: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV3FlavorArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3FlavorArgsDict(TypedDict):
+    num: pulumi.Input[_builtins.int]
+    spec_code: pulumi.Input[_builtins.str]
+    type: pulumi.Input[_builtins.str]
+    node_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    storage: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV3FlavorArgs:
@@ -2006,11 +2162,14 @@ class InstanceV3FlavorArgs:
                  num: pulumi.Input[_builtins.int],
                  spec_code: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
+                 node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  storage: Optional[pulumi.Input[_builtins.str]] = None):
         pulumi.set(__self__, "num", num)
         pulumi.set(__self__, "spec_code", spec_code)
         pulumi.set(__self__, "type", type)
+        if node_lists is not None:
+            pulumi.set(__self__, "node_lists", node_lists)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if storage is not None:
@@ -2044,6 +2203,15 @@ class InstanceV3FlavorArgs:
         pulumi.set(self, "type", value)
 
     @_builtins.property
+    @pulumi.getter(name="nodeLists")
+    def node_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "node_lists")
+
+    @node_lists.setter
+    def node_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "node_lists", value)
+
+    @_builtins.property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[_builtins.int]]:
         return pulumi.get(self, "size")
@@ -2062,17 +2230,14 @@ class InstanceV3FlavorArgs:
         pulumi.set(self, "storage", value)
 
 
-if not MYPY:
-    class InstanceV3GroupArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        nodes: NotRequired[pulumi.Input[Sequence[pulumi.Input['InstanceV3GroupNodeArgsDict']]]]
-        size: NotRequired[pulumi.Input[_builtins.str]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        used: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV3GroupArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3GroupArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    nodes: NotRequired[pulumi.Input[Sequence[pulumi.Input['InstanceV3GroupNodeArgsDict']]]]
+    size: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    used: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV3GroupArgs:
@@ -2163,58 +2328,69 @@ class InstanceV3GroupArgs:
         pulumi.set(self, "used", value)
 
 
-if not MYPY:
-    class InstanceV3GroupNodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node name.
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of a node.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the EIP that has been bound on a node.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node role.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node type.
-        """
-elif False:
-    InstanceV3GroupNodeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3GroupNodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the availability zone.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node name.
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of a node.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the EIP that has been bound on a node.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node role.
+    """
+    spec_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node spec code.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Deprecated
+    """
 
 @pulumi.input_type
 class InstanceV3GroupNodeArgs:
     def __init__(__self__, *,
+                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  public_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
+                 spec_code: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
+        :param pulumi.Input[_builtins.str] availability_zone: Indicates the availability zone.
         :param pulumi.Input[_builtins.str] id: Indicates the node ID.
         :param pulumi.Input[_builtins.str] name: Indicates the node name.
         :param pulumi.Input[_builtins.str] private_ip: Indicates the private IP address of a node.
         :param pulumi.Input[_builtins.str] public_ip: Indicates the EIP that has been bound on a node.
         :param pulumi.Input[_builtins.str] role: Indicates the node role.
+        :param pulumi.Input[_builtins.str] spec_code: Indicates the node spec code.
         :param pulumi.Input[_builtins.str] status: Indicates the node status.
-        :param pulumi.Input[_builtins.str] type: Indicates the node type.
+        :param pulumi.Input[_builtins.str] type: schema: Deprecated
         """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if name is not None:
@@ -2225,10 +2401,24 @@ class InstanceV3GroupNodeArgs:
             pulumi.set(__self__, "public_ip", public_ip)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if spec_code is not None:
+            pulumi.set(__self__, "spec_code", spec_code)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the availability zone.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @availability_zone.setter
+    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter
@@ -2291,6 +2481,18 @@ class InstanceV3GroupNodeArgs:
         pulumi.set(self, "role", value)
 
     @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @spec_code.setter
+    def spec_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "spec_code", value)
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -2306,7 +2508,7 @@ class InstanceV3GroupNodeArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates the node type.
+        schema: Deprecated
         """
         return pulumi.get(self, "type")
 
@@ -2315,58 +2517,69 @@ class InstanceV3GroupNodeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class InstanceV3NodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node name.
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of a node.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the EIP that has been bound on a node.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node role.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node type.
-        """
-elif False:
-    InstanceV3NodeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3NodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the availability zone.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node name.
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of a node.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the EIP that has been bound on a node.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node role.
+    """
+    spec_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node spec code.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Deprecated
+    """
 
 @pulumi.input_type
 class InstanceV3NodeArgs:
     def __init__(__self__, *,
+                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  private_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  public_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
+                 spec_code: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
+        :param pulumi.Input[_builtins.str] availability_zone: Indicates the availability zone.
         :param pulumi.Input[_builtins.str] id: Indicates the node ID.
         :param pulumi.Input[_builtins.str] name: Indicates the node name.
         :param pulumi.Input[_builtins.str] private_ip: Indicates the private IP address of a node.
         :param pulumi.Input[_builtins.str] public_ip: Indicates the EIP that has been bound on a node.
         :param pulumi.Input[_builtins.str] role: Indicates the node role.
+        :param pulumi.Input[_builtins.str] spec_code: Indicates the node spec code.
         :param pulumi.Input[_builtins.str] status: Indicates the node status.
-        :param pulumi.Input[_builtins.str] type: Indicates the node type.
+        :param pulumi.Input[_builtins.str] type: schema: Deprecated
         """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if name is not None:
@@ -2377,10 +2590,24 @@ class InstanceV3NodeArgs:
             pulumi.set(__self__, "public_ip", public_ip)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if spec_code is not None:
+            pulumi.set(__self__, "spec_code", spec_code)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the availability zone.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @availability_zone.setter
+    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter
@@ -2443,6 +2670,18 @@ class InstanceV3NodeArgs:
         pulumi.set(self, "role", value)
 
     @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @spec_code.setter
+    def spec_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "spec_code", value)
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -2458,7 +2697,7 @@ class InstanceV3NodeArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates the node type.
+        schema: Deprecated
         """
         return pulumi.get(self, "type")
 
@@ -2467,22 +2706,63 @@ class InstanceV3NodeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ParameterTemplateCompareDifferenceArgsDict(TypedDict):
-        parameter_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter name.
-        """
-        source_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value in the source parameter template.
-        """
-        target_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value in the destination parameter template.
-        """
-elif False:
-    ParameterTemplateCompareDifferenceArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3PolicyArgsDict(TypedDict):
+    step: pulumi.Input[_builtins.int]
+    threshold: pulumi.Input[_builtins.int]
+    size: NotRequired[pulumi.Input[_builtins.int]]
+
+@pulumi.input_type
+class InstanceV3PolicyArgs:
+    def __init__(__self__, *,
+                 step: pulumi.Input[_builtins.int],
+                 threshold: pulumi.Input[_builtins.int],
+                 size: Optional[pulumi.Input[_builtins.int]] = None):
+        pulumi.set(__self__, "step", step)
+        pulumi.set(__self__, "threshold", threshold)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def step(self) -> pulumi.Input[_builtins.int]:
+        return pulumi.get(self, "step")
+
+    @step.setter
+    def step(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "step", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> pulumi.Input[_builtins.int]:
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "threshold", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+
+class ParameterTemplateCompareDifferenceArgsDict(TypedDict):
+    parameter_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter name.
+    """
+    source_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value in the source parameter template.
+    """
+    target_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value in the destination parameter template.
+    """
 
 @pulumi.input_type
 class ParameterTemplateCompareDifferenceArgs:
@@ -2539,48 +2819,45 @@ class ParameterTemplateCompareDifferenceArgs:
         pulumi.set(self, "target_value", value)
 
 
-if not MYPY:
-    class ParameterTemplateCopyParameterArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of replicated parameter template.
-        The value is left blank by default. The description must consist of a maximum of **256** characters and cannot contain
-        the carriage return character or the following special characters: >!<"&'=
-        Changing this creates a new resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of replicated parameter template.
-        The parameter template name can contain **1** to **64** characters. It can contain only letters, digits, hyphens (-),
-        underscores (_), and periods (.).
-        Changing this creates a new resource.
-        """
-        readonly: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the parameter is read-only.
-        + If the value is **true**, the parameter is read-only.
-        + If the value is **false**, the parameter is not read-only.
-        """
-        restart_required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the instance needs to be restarted.
-        + If the value is **true**, restart is required.
-        + If the value is **false**, restart is not required.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter type. The value can be integer, string, boolean, float, or list.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value.
-        """
-        value_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the value range.
-        """
-elif False:
-    ParameterTemplateCopyParameterArgsDict: TypeAlias = Mapping[str, Any]
+class ParameterTemplateCopyParameterArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of replicated parameter template.
+    The value is left blank by default. The description must consist of a maximum of **256** characters and cannot contain
+    the carriage return character or the following special characters: >!<"&'=
+    Changing this creates a new resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of replicated parameter template.
+    The parameter template name can contain **1** to **64** characters. It can contain only letters, digits, hyphens (-),
+    underscores (_), and periods (.).
+    Changing this creates a new resource.
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the parameter is read-only.
+    + If the value is **true**, the parameter is read-only.
+    + If the value is **false**, the parameter is not read-only.
+    """
+    restart_required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the instance needs to be restarted.
+    + If the value is **true**, restart is required.
+    + If the value is **false**, restart is not required.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter type. The value can be integer, string, boolean, float, or list.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value.
+    """
+    value_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the value range.
+    """
 
 @pulumi.input_type
 class ParameterTemplateCopyParameterArgs:
@@ -2721,46 +2998,43 @@ class ParameterTemplateCopyParameterArgs:
         pulumi.set(self, "value_range", value)
 
 
-if not MYPY:
-    class ParameterTemplateParameterArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter template description.
-        The description must consist of a maximum of 256 characters and cannot contain the carriage
-        return character or the following special characters: >!<"&'=.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter template name.
-        The value must be 1 to 64 characters, which can contain only letters, digits, hyphens (-),
-        underscores (_), and periods (.).
-        """
-        readonly: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the parameter is read-only.
-        + If the value is **true**, the parameter is read-only.
-        + If the value is **false**, the parameter is not read-only.
-        """
-        restart_required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the instance needs to be restarted.
-        + If the value is **true**, restart is required.
-        + If the value is **false**, restart is not required.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter type. The value can be integer, string, boolean, float, or list.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value.
-        """
-        value_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the value range.
-        """
-elif False:
-    ParameterTemplateParameterArgsDict: TypeAlias = Mapping[str, Any]
+class ParameterTemplateParameterArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter template description.
+    The description must consist of a maximum of 256 characters and cannot contain the carriage
+    return character or the following special characters: >!<"&'=.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter template name.
+    The value must be 1 to 64 characters, which can contain only letters, digits, hyphens (-),
+    underscores (_), and periods (.).
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the parameter is read-only.
+    + If the value is **true**, the parameter is read-only.
+    + If the value is **false**, the parameter is not read-only.
+    """
+    restart_required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the instance needs to be restarted.
+    + If the value is **true**, restart is required.
+    + If the value is **false**, restart is not required.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter type. The value can be integer, string, boolean, float, or list.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value.
+    """
+    value_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the value range.
+    """
 
 @pulumi.input_type
 class ParameterTemplateParameterArgs:
@@ -2895,5 +3169,114 @@ class ParameterTemplateParameterArgs:
     @value_range.setter
     def value_range(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "value_range", value)
+
+
+class GetInstancesByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the matching field.
+
+    <a name="query_tags"></a>
+    The `tags` block supports:
+    """
+
+@pulumi.input_type
+class GetInstancesByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param _builtins.str value: Specifies the value of the matching field.
+               
+               <a name="query_tags"></a>
+               The `tags` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the matching field.
+
+        <a name="query_tags"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetInstancesByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values of the tag.
+    The `values` can be empty.
+    If the values are an empty list, it indicates that any value is queried. The relationship between values is OR.
+    """
+
+@pulumi.input_type
+class GetInstancesByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the list of values of the tag.
+               The `values` can be empty.
+               If the values are an empty list, it indicates that any value is queried. The relationship between values is OR.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values of the tag.
+        The `values` can be empty.
+        If the values are an empty list, it indicates that any value is queried. The relationship between values is OR.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
 
 

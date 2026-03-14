@@ -26,6 +26,7 @@ class DataserviceApiActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataserviceApiAction resource.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the exclusive API ID, which in published status.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the exclusive cluster ID to which the published API belongs and
@@ -132,6 +133,7 @@ class _DataserviceApiActionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataserviceApiAction resources.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the exclusive API ID, which in published status.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the exclusive cluster ID to which the published API belongs and
@@ -275,6 +277,7 @@ class DataserviceApiAction(pulumi.CustomResource):
             type="UNPUBLISH")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_id: Specifies the exclusive API ID, which in published status.  
@@ -330,6 +333,7 @@ class DataserviceApiAction(pulumi.CustomResource):
             instance_id=exclusive_cluster_id,
             type="UNPUBLISH")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataserviceApiActionArgs args: The arguments to use to populate this resource's properties.

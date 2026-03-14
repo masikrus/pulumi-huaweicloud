@@ -107,7 +107,7 @@ def get_databases(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_databases(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_databases(instance_id=instance_id)
     ```
 
 
@@ -122,7 +122,7 @@ def get_databases(instance_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dbss/getDatabases:getDatabases', __args__, opts=opts, typ=GetDatabasesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dbss/getDatabases:getDatabases', __args__, opts=opts, typ=GetDatabasesResult).value
 
     return AwaitableGetDatabasesResult(
         databases=pulumi.get(__ret__, 'databases'),
@@ -145,7 +145,7 @@ def get_databases_output(instance_id: Optional[pulumi.Input[_builtins.str]] = No
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_databases(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_databases(instance_id=instance_id)
     ```
 
 
@@ -160,7 +160,7 @@ def get_databases_output(instance_id: Optional[pulumi.Input[_builtins.str]] = No
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dbss/getDatabases:getDatabases', __args__, opts=opts, typ=GetDatabasesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dbss/getDatabases:getDatabases', __args__, opts=opts, typ=GetDatabasesResult)
     return __ret__.apply(lambda __response__: GetDatabasesResult(
         databases=pulumi.get(__response__, 'databases'),
         id=pulumi.get(__response__, 'id'),

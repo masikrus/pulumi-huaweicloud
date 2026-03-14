@@ -210,7 +210,7 @@ def get_vulnerabilities(asset_value: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_vulnerabilities()
+    test = huaweicloud.Hss.get_vulnerabilities()
     ```
 
 
@@ -275,7 +275,7 @@ def get_vulnerabilities(asset_value: Optional[_builtins.str] = None,
     __args__['vulId'] = vul_id
     __args__['vulName'] = vul_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getVulnerabilities:getVulnerabilities', __args__, opts=opts, typ=GetVulnerabilitiesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getVulnerabilities:getVulnerabilities', __args__, opts=opts, typ=GetVulnerabilitiesResult).value
 
     return AwaitableGetVulnerabilitiesResult(
         asset_value=pulumi.get(__ret__, 'asset_value'),
@@ -314,7 +314,7 @@ def get_vulnerabilities_output(asset_value: Optional[pulumi.Input[Optional[_buil
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_vulnerabilities()
+    test = huaweicloud.Hss.get_vulnerabilities()
     ```
 
 
@@ -379,7 +379,7 @@ def get_vulnerabilities_output(asset_value: Optional[pulumi.Input[Optional[_buil
     __args__['vulId'] = vul_id
     __args__['vulName'] = vul_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getVulnerabilities:getVulnerabilities', __args__, opts=opts, typ=GetVulnerabilitiesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getVulnerabilities:getVulnerabilities', __args__, opts=opts, typ=GetVulnerabilitiesResult)
     return __ret__.apply(lambda __response__: GetVulnerabilitiesResult(
         asset_value=pulumi.get(__response__, 'asset_value'),
         cve_id=pulumi.get(__response__, 'cve_id'),

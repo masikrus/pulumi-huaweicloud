@@ -26,6 +26,7 @@ class BackupShareArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackupShare resource.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID.  
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['BackupShareMemberArgs']]] members: Specifies the list of shared members configuration.
@@ -92,6 +93,7 @@ class _BackupShareState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackupShare resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID.  
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['BackupShareMemberArgs']]] members: Specifies the list of shared members configuration.
@@ -180,7 +182,7 @@ class BackupShare(pulumi.CustomResource):
         test = huaweicloud.cbr.BackupShare("test",
             members=[{
                 "dest_project_id": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in shared_project_ids]],
+            } for entry in [{"key": k, "value": v} for k, v in shared_project_ids.items()]],
             backup_id=backup_id)
         ```
 
@@ -188,11 +190,10 @@ class BackupShare(pulumi.CustomResource):
 
         Share resources can be imported by their `id` or `backup_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/backupShare:BackupShare test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -230,7 +231,7 @@ class BackupShare(pulumi.CustomResource):
         test = huaweicloud.cbr.BackupShare("test",
             members=[{
                 "dest_project_id": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in shared_project_ids]],
+            } for entry in [{"key": k, "value": v} for k, v in shared_project_ids.items()]],
             backup_id=backup_id)
         ```
 
@@ -238,11 +239,10 @@ class BackupShare(pulumi.CustomResource):
 
         Share resources can be imported by their `id` or `backup_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/backupShare:BackupShare test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackupShareArgs args: The arguments to use to populate this resource's properties.

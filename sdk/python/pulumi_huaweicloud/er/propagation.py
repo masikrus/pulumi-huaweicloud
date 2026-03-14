@@ -25,6 +25,7 @@ class PropagationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Propagation resource.
+
         :param pulumi.Input[_builtins.str] attachment_id: Specifies the ID of the attachment corresponding to the propagation.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the ER instance to which the route table and the
@@ -110,6 +111,7 @@ class _PropagationState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Propagation resources.
+
         :param pulumi.Input[_builtins.str] attachment_id: Specifies the ID of the attachment corresponding to the propagation.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] attachment_type: The type of the attachment corresponding to the propagation.
@@ -278,14 +280,12 @@ class Propagation(pulumi.CustomResource):
         ## Import
 
         Propagations can be imported using their `id` and the related `instance_id` and `route_table_id`, separated by
-
         slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Er/propagation:Propagation test <instance_id>/<route_table_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -328,14 +328,12 @@ class Propagation(pulumi.CustomResource):
         ## Import
 
         Propagations can be imported using their `id` and the related `instance_id` and `route_table_id`, separated by
-
         slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Er/propagation:Propagation test <instance_id>/<route_table_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PropagationArgs args: The arguments to use to populate this resource's properties.

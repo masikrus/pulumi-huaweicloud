@@ -25,18 +25,22 @@ class NodePoolNodesAddArgs:
                  node_lists: pulumi.Input[Sequence[pulumi.Input['NodePoolNodesAddNodeListArgs']]],
                  nodepool_id: pulumi.Input[_builtins.str],
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 remove_nodes_on_delete: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a NodePoolNodesAdd resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolNodesAddNodeListArgs']]] node_lists: Specifies the list of nodes to add into the pool.
                The node_list structure is documented below.
-               
-               <a name="node_list"></a>
-               The `node_list` block supports:
         :param pulumi.Input[_builtins.str] nodepool_id: Specifies the node pool ID.
         :param pulumi.Input[_builtins.str] region: The region in which to create the CCE pool nodes add resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.bool] remove_nodes_on_delete: Whether to remove nodes when delete this resource.
+               If set to **false**, it will only be removed from the state. Defaults to **false**.
+               
+               <a name="node_list"></a>
+               The `node_list` block supports:
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "node_lists", node_lists)
@@ -45,6 +49,8 @@ class NodePoolNodesAddArgs:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if remove_nodes_on_delete is not None:
+            pulumi.set(__self__, "remove_nodes_on_delete", remove_nodes_on_delete)
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
@@ -64,9 +70,6 @@ class NodePoolNodesAddArgs:
         """
         Specifies the list of nodes to add into the pool.
         The node_list structure is documented below.
-
-        <a name="node_list"></a>
-        The `node_list` block supports:
         """
         return pulumi.get(self, "node_lists")
 
@@ -108,6 +111,22 @@ class NodePoolNodesAddArgs:
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
 
+    @_builtins.property
+    @pulumi.getter(name="removeNodesOnDelete")
+    def remove_nodes_on_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to remove nodes when delete this resource.
+        If set to **false**, it will only be removed from the state. Defaults to **false**.
+
+        <a name="node_list"></a>
+        The `node_list` block supports:
+        """
+        return pulumi.get(self, "remove_nodes_on_delete")
+
+    @remove_nodes_on_delete.setter
+    def remove_nodes_on_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "remove_nodes_on_delete", value)
+
 
 @pulumi.input_type
 class _NodePoolNodesAddState:
@@ -116,18 +135,22 @@ class _NodePoolNodesAddState:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodesAddNodeListArgs']]]] = None,
                  nodepool_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 remove_nodes_on_delete: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering NodePoolNodesAdd resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolNodesAddNodeListArgs']]] node_lists: Specifies the list of nodes to add into the pool.
                The node_list structure is documented below.
-               
-               <a name="node_list"></a>
-               The `node_list` block supports:
         :param pulumi.Input[_builtins.str] nodepool_id: Specifies the node pool ID.
         :param pulumi.Input[_builtins.str] region: The region in which to create the CCE pool nodes add resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.bool] remove_nodes_on_delete: Whether to remove nodes when delete this resource.
+               If set to **false**, it will only be removed from the state. Defaults to **false**.
+               
+               <a name="node_list"></a>
+               The `node_list` block supports:
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -139,6 +162,8 @@ class _NodePoolNodesAddState:
             pulumi.set(__self__, "nodepool_id", nodepool_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if remove_nodes_on_delete is not None:
+            pulumi.set(__self__, "remove_nodes_on_delete", remove_nodes_on_delete)
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
@@ -167,9 +192,6 @@ class _NodePoolNodesAddState:
         """
         Specifies the list of nodes to add into the pool.
         The node_list structure is documented below.
-
-        <a name="node_list"></a>
-        The `node_list` block supports:
         """
         return pulumi.get(self, "node_lists")
 
@@ -202,6 +224,22 @@ class _NodePoolNodesAddState:
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
 
+    @_builtins.property
+    @pulumi.getter(name="removeNodesOnDelete")
+    def remove_nodes_on_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to remove nodes when delete this resource.
+        If set to **false**, it will only be removed from the state. Defaults to **false**.
+
+        <a name="node_list"></a>
+        The `node_list` block supports:
+        """
+        return pulumi.get(self, "remove_nodes_on_delete")
+
+    @remove_nodes_on_delete.setter
+    def remove_nodes_on_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "remove_nodes_on_delete", value)
+
 
 @pulumi.type_token("huaweicloud:Cce/nodePoolNodesAdd:NodePoolNodesAdd")
 class NodePoolNodesAdd(pulumi.CustomResource):
@@ -214,6 +252,7 @@ class NodePoolNodesAdd(pulumi.CustomResource):
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolNodesAddNodeListArgs', 'NodePoolNodesAddNodeListArgsDict']]]]] = None,
                  nodepool_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 remove_nodes_on_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
         Use this resource to add nodes into a node pool within HuaweiCloud.
@@ -244,21 +283,23 @@ class NodePoolNodesAdd(pulumi.CustomResource):
             ])
         ```
 
-          > Deleting nodes add resource is not supported, it will only be removed from the state.\\
-            When the ECS instance is added into the node pool, the `image_id`, `security_group_ids` and `tags`
+          > When the ECS instance is added into the node pool, the `image_id`, `security_group_ids` and `tags`
             will be changed. You can ignore these changes as below.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolNodesAddNodeListArgs', 'NodePoolNodesAddNodeListArgsDict']]]] node_lists: Specifies the list of nodes to add into the pool.
                The node_list structure is documented below.
-               
-               <a name="node_list"></a>
-               The `node_list` block supports:
         :param pulumi.Input[_builtins.str] nodepool_id: Specifies the node pool ID.
         :param pulumi.Input[_builtins.str] region: The region in which to create the CCE pool nodes add resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.bool] remove_nodes_on_delete: Whether to remove nodes when delete this resource.
+               If set to **false**, it will only be removed from the state. Defaults to **false**.
+               
+               <a name="node_list"></a>
+               The `node_list` block supports:
         """
         ...
     @overload
@@ -295,9 +336,9 @@ class NodePoolNodesAdd(pulumi.CustomResource):
             ])
         ```
 
-          > Deleting nodes add resource is not supported, it will only be removed from the state.\\
-            When the ECS instance is added into the node pool, the `image_id`, `security_group_ids` and `tags`
+          > When the ECS instance is added into the node pool, the `image_id`, `security_group_ids` and `tags`
             will be changed. You can ignore these changes as below.
+
 
         :param str resource_name: The name of the resource.
         :param NodePoolNodesAddArgs args: The arguments to use to populate this resource's properties.
@@ -319,6 +360,7 @@ class NodePoolNodesAdd(pulumi.CustomResource):
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolNodesAddNodeListArgs', 'NodePoolNodesAddNodeListArgsDict']]]]] = None,
                  nodepool_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 remove_nodes_on_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -339,6 +381,7 @@ class NodePoolNodesAdd(pulumi.CustomResource):
                 raise TypeError("Missing required property 'nodepool_id'")
             __props__.__dict__["nodepool_id"] = nodepool_id
             __props__.__dict__["region"] = region
+            __props__.__dict__["remove_nodes_on_delete"] = remove_nodes_on_delete
         super(NodePoolNodesAdd, __self__).__init__(
             'huaweicloud:Cce/nodePoolNodesAdd:NodePoolNodesAdd',
             resource_name,
@@ -353,7 +396,8 @@ class NodePoolNodesAdd(pulumi.CustomResource):
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolNodesAddNodeListArgs', 'NodePoolNodesAddNodeListArgsDict']]]]] = None,
             nodepool_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None) -> 'NodePoolNodesAdd':
+            region: Optional[pulumi.Input[_builtins.str]] = None,
+            remove_nodes_on_delete: Optional[pulumi.Input[_builtins.bool]] = None) -> 'NodePoolNodesAdd':
         """
         Get an existing NodePoolNodesAdd resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -364,12 +408,14 @@ class NodePoolNodesAdd(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolNodesAddNodeListArgs', 'NodePoolNodesAddNodeListArgsDict']]]] node_lists: Specifies the list of nodes to add into the pool.
                The node_list structure is documented below.
-               
-               <a name="node_list"></a>
-               The `node_list` block supports:
         :param pulumi.Input[_builtins.str] nodepool_id: Specifies the node pool ID.
         :param pulumi.Input[_builtins.str] region: The region in which to create the CCE pool nodes add resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.bool] remove_nodes_on_delete: Whether to remove nodes when delete this resource.
+               If set to **false**, it will only be removed from the state. Defaults to **false**.
+               
+               <a name="node_list"></a>
+               The `node_list` block supports:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -380,6 +426,7 @@ class NodePoolNodesAdd(pulumi.CustomResource):
         __props__.__dict__["node_lists"] = node_lists
         __props__.__dict__["nodepool_id"] = nodepool_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["remove_nodes_on_delete"] = remove_nodes_on_delete
         return NodePoolNodesAdd(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -401,9 +448,6 @@ class NodePoolNodesAdd(pulumi.CustomResource):
         """
         Specifies the list of nodes to add into the pool.
         The node_list structure is documented below.
-
-        <a name="node_list"></a>
-        The `node_list` block supports:
         """
         return pulumi.get(self, "node_lists")
 
@@ -423,4 +467,16 @@ class NodePoolNodesAdd(pulumi.CustomResource):
         If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="removeNodesOnDelete")
+    def remove_nodes_on_delete(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Whether to remove nodes when delete this resource.
+        If set to **false**, it will only be removed from the state. Defaults to **false**.
+
+        <a name="node_list"></a>
+        The `node_list` block supports:
+        """
+        return pulumi.get(self, "remove_nodes_on_delete")
 

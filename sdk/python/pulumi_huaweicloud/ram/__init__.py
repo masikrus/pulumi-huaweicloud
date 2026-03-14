@@ -6,15 +6,25 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_distinct_shared_principals import *
+from .get_distinct_shared_resources import *
+from .get_permission_versions import *
+from .get_quotas import *
+from .get_resource_instances_count import *
+from .get_resource_instances_filter import *
+from .get_resource_permission import *
 from .get_resource_permissions import *
 from .get_resource_share_associated_permissions import *
 from .get_resource_share_associations import *
 from .get_resource_share_invitations import *
 from .get_resource_shares import *
+from .get_resource_types import *
 from .get_shared_principals import *
 from .get_shared_resources import *
+from .get_tags import *
 from .organization import *
 from .resource_share import *
 from .resource_share_accepter import *
+from .resource_share_permission import *
 from ._inputs import *
 from . import outputs

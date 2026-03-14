@@ -26,6 +26,7 @@ class AppPersonalFoldersArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppPersonalFolders resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['AppPersonalFoldersAssignmentArgs']]] assignments: Specifies the assignment configuration of personal folders.  
                The assignments structure is documented below.
                
@@ -92,6 +93,7 @@ class _AppPersonalFoldersState:
                  storage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppPersonalFolders resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['AppPersonalFoldersAssignmentArgs']]] assignments: Specifies the assignment configuration of personal folders.  
                The assignments structure is documented below.
                
@@ -182,7 +184,7 @@ class AppPersonalFolders(pulumi.CustomResource):
                 "policy_statement_id": workspace_app_storage_policy_id,
                 "attach": entry["value"],
                 "attach_type": "USER",
-            } for entry in [{"key": k, "value": v} for k, v in workspace_user_names]],
+            } for entry in [{"key": k, "value": v} for k, v in workspace_user_names.items()]],
             storage_id=workspace_app_nas_storage_id)
         ```
 
@@ -190,21 +192,17 @@ class AppPersonalFolders(pulumi.CustomResource):
 
         Personal folders can be imported using resource `id`, also ID of NAS storage to which personal folders belong, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appPersonalFolders:AppPersonalFolders test <id>
         ```
 
-        If the NAS storage ID is unknow, the NAS storage name can be used as an alternative to ID.
-
-        The NAS storage name can be obtained through the console or data source (`huaweicloud_workspace_app_nas_storages`).
-
-        bash
+        If the NAS storage ID is unknow, the NAS storage name can be used as an alternative to ID.\\
+        The NAS storage name can be obtained through the console or data source (`workspace_get_app_nas_storages`).
 
         ```sh
         $ pulumi import huaweicloud:Workspace/appPersonalFolders:AppPersonalFolders test <storage_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -244,7 +242,7 @@ class AppPersonalFolders(pulumi.CustomResource):
                 "policy_statement_id": workspace_app_storage_policy_id,
                 "attach": entry["value"],
                 "attach_type": "USER",
-            } for entry in [{"key": k, "value": v} for k, v in workspace_user_names]],
+            } for entry in [{"key": k, "value": v} for k, v in workspace_user_names.items()]],
             storage_id=workspace_app_nas_storage_id)
         ```
 
@@ -252,21 +250,17 @@ class AppPersonalFolders(pulumi.CustomResource):
 
         Personal folders can be imported using resource `id`, also ID of NAS storage to which personal folders belong, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appPersonalFolders:AppPersonalFolders test <id>
         ```
 
-        If the NAS storage ID is unknow, the NAS storage name can be used as an alternative to ID.
-
-        The NAS storage name can be obtained through the console or data source (`huaweicloud_workspace_app_nas_storages`).
-
-        bash
+        If the NAS storage ID is unknow, the NAS storage name can be used as an alternative to ID.\\
+        The NAS storage name can be obtained through the console or data source (`workspace_get_app_nas_storages`).
 
         ```sh
         $ pulumi import huaweicloud:Workspace/appPersonalFolders:AppPersonalFolders test <storage_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppPersonalFoldersArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class AuditLogPolicyArgs:
                  reserve_auditlogs: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuditLogPolicy resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DDS instance.
                
                Changing this parameter will create a new resource.
@@ -171,6 +172,7 @@ class _AuditLogPolicyState:
                  reserve_auditlogs: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuditLogPolicy resources.
+
         :param pulumi.Input[_builtins.str] audit_scope: Specifies the audit scope.
                If this parameter is left blank or set to **all**, all audit log policies are enabled.
                You can enter the database or collection name. Use commas (,) to separate multiple databases
@@ -340,11 +342,10 @@ class AuditLogPolicy(pulumi.CustomResource):
 
         The DDS audit log policy can be imported using the instance ID, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/auditLogPolicy:AuditLogPolicy test <instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -403,11 +404,10 @@ class AuditLogPolicy(pulumi.CustomResource):
 
         The DDS audit log policy can be imported using the instance ID, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/auditLogPolicy:AuditLogPolicy test <instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuditLogPolicyArgs args: The arguments to use to populate this resource's properties.

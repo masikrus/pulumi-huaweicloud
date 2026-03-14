@@ -35,6 +35,7 @@ class RulePreciseProtectionArgs:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RulePreciseProtection resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['RulePreciseProtectionConditionArgs']]] conditions: Specifies the match condition list.
                The conditions structure is documented below.
         :param pulumi.Input[_builtins.str] policy_id: Specifies the policy ID of WAF precise protection rule.
@@ -280,6 +281,7 @@ class _RulePreciseProtectionState:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RulePreciseProtection resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the protective action of WAF precise protection rule.
                Valid values are **block**, **pass**, **log**. The default value is **block**.
         :param pulumi.Input[Sequence[pulumi.Input['RulePreciseProtectionConditionArgs']]] conditions: Specifies the match condition list.
@@ -583,19 +585,16 @@ class RulePreciseProtection(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/rulePreciseProtection:RulePreciseProtection test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/rulePreciseProtection:RulePreciseProtection test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -695,19 +694,16 @@ class RulePreciseProtection(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/rulePreciseProtection:RulePreciseProtection test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/rulePreciseProtection:RulePreciseProtection test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RulePreciseProtectionArgs args: The arguments to use to populate this resource's properties.

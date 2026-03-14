@@ -22,16 +22,24 @@ class CertificateArgs:
                  crt: pulumi.Input[_builtins.str],
                  environment_id: pulumi.Input[_builtins.str],
                  key: pulumi.Input[_builtins.str],
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Certificate resource.
+
         :param pulumi.Input[_builtins.str] crt: Specifies the content of the certificate.  
                Base64 format corresponding to PEM encoding.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] key: Specifies the private key of the certificate.  
                Base64 format corresponding to PEM encoding.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               certificate belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the certificate.
                Changing this creates a new resource.
                The maximum length of the name is `64` characters, only lowercase letters, digits, hyphens (-) and dots (.) are
@@ -44,6 +52,8 @@ class CertificateArgs:
         pulumi.set(__self__, "crt", crt)
         pulumi.set(__self__, "environment_id", environment_id)
         pulumi.set(__self__, "key", key)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region is not None:
@@ -89,6 +99,23 @@ class CertificateArgs:
         pulumi.set(self, "key", value)
 
     @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        certificate belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -124,15 +151,23 @@ class _CertificateState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  crt: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  key: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the certificate, in RFC3339 format.
         :param pulumi.Input[_builtins.str] crt: Specifies the content of the certificate.  
                Base64 format corresponding to PEM encoding.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               certificate belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] key: Specifies the private key of the certificate.  
@@ -150,6 +185,8 @@ class _CertificateState:
             pulumi.set(__self__, "created_at", created_at)
         if crt is not None:
             pulumi.set(__self__, "crt", crt)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if key is not None:
@@ -183,6 +220,23 @@ class _CertificateState:
     @crt.setter
     def crt(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "crt", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        certificate belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -241,13 +295,14 @@ class _CertificateState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:cae/certificate:Certificate")
+@pulumi.type_token("huaweicloud:Cae/certificate:Certificate")
 class Certificate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  crt: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  key: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -278,16 +333,28 @@ class Certificate(pulumi.CustomResource):
 
         The certificate resource can be imported using `environment_id` and `name`, separated by a slash (/), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/certificate:Certificate test <environment_id>/<name>
+        ```
+
+        For the certificate with a non-default enterprise project ID, its enterprise project ID need to be specified
+        additionanlly when importing. All fields are separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/certificate:Certificate test <environment_id>/<name>
+        $ pulumi import huaweicloud:Cae/certificate:Certificate test <environment_id>/<name>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] crt: Specifies the content of the certificate.  
                Base64 format corresponding to PEM encoding.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               certificate belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] key: Specifies the private key of the certificate.  
@@ -332,11 +399,17 @@ class Certificate(pulumi.CustomResource):
 
         The certificate resource can be imported using `environment_id` and `name`, separated by a slash (/), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/certificate:Certificate test <environment_id>/<name>
+        ```
+
+        For the certificate with a non-default enterprise project ID, its enterprise project ID need to be specified
+        additionanlly when importing. All fields are separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/certificate:Certificate test <environment_id>/<name>
+        $ pulumi import huaweicloud:Cae/certificate:Certificate test <environment_id>/<name>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CertificateArgs args: The arguments to use to populate this resource's properties.
@@ -354,6 +427,7 @@ class Certificate(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  crt: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  key: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -370,6 +444,7 @@ class Certificate(pulumi.CustomResource):
             if crt is None and not opts.urn:
                 raise TypeError("Missing required property 'crt'")
             __props__.__dict__["crt"] = None if crt is None else pulumi.Output.secret(crt)
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if environment_id is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_id'")
             __props__.__dict__["environment_id"] = environment_id
@@ -382,7 +457,7 @@ class Certificate(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["crt", "key"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Certificate, __self__).__init__(
-            'huaweicloud:cae/certificate:Certificate',
+            'huaweicloud:Cae/certificate:Certificate',
             resource_name,
             __props__,
             opts)
@@ -393,6 +468,7 @@ class Certificate(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             crt: Optional[pulumi.Input[_builtins.str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             environment_id: Optional[pulumi.Input[_builtins.str]] = None,
             key: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -407,6 +483,12 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: The creation time of the certificate, in RFC3339 format.
         :param pulumi.Input[_builtins.str] crt: Specifies the content of the certificate.  
                Base64 format corresponding to PEM encoding.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               certificate belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] key: Specifies the private key of the certificate.  
@@ -426,6 +508,7 @@ class Certificate(pulumi.CustomResource):
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["crt"] = crt
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["key"] = key
         __props__.__dict__["name"] = name
@@ -448,6 +531,19 @@ class Certificate(pulumi.CustomResource):
         Base64 format corresponding to PEM encoding.
         """
         return pulumi.get(self, "crt")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        certificate belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")

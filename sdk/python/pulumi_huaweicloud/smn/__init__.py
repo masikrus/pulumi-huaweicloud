@@ -6,20 +6,26 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_authorized_cloud_services import *
 from .get_logtanks import *
 from .get_message_templates import *
+from .get_protocols import *
+from .get_resources_by_tags import *
 from .get_subscriptions import *
+from .get_tags import *
 from .get_topic_subscriptions import *
 from .get_topics import *
 from .logtank import *
 from .message_detection import *
 from .message_publish import *
 from .message_template import *
+from .notify_policy import *
 from .subscription import *
 from .subscription_filter_policy import *
 from .subscription_v2 import *
 from .topic import *
 from .topic_attributes import *
+from .topic_subscriber import *
 from .topic_v2 import *
 from ._inputs import *
 from . import outputs

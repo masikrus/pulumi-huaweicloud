@@ -48,6 +48,7 @@ class InstanceArgs:
                  tc3_need: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] cce_cluster_id: Specifies the ID of the CCE cluster to attach to the BCS instance. The
                BCS service needs to exclusively occupy the CCE cluster. Please make sure that the CCE cluster is not occupied before
                deploying the BCS service. Changing this will create a new instance.
@@ -535,6 +536,7 @@ class _InstanceState:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] agent_portal_addresses: The agent addresses and port numbers on the user data plane of the BCS service.
                * `peer_orgs/pvc_name` - The name of the PersistentVolumeClaim (PVC) used by the peer.
                * `peer_orgs/status` - The peer status. The value contains `IsCreating`, `IsUpgrading`, `Adding/IsScaling`,
@@ -1170,43 +1172,18 @@ class Instance(pulumi.CustomResource):
 
         The BCS instance can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Bcs/instance:Instance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `delete_storage`, `eip_enable`, `enterprise_project_id`, `fabric_version`,
-
         `orderer_node_num`, `org_disk_size`, `password` and `volume_type`.
-
         It is generally recommended running `pulumi preview` after importing a instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_bcs_instance" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_storage, eip_enable, enterprise_project_id, fabric_version, orderer_node_num, org_disk_size, password, volume_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1289,43 +1266,18 @@ class Instance(pulumi.CustomResource):
 
         The BCS instance can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Bcs/instance:Instance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `delete_storage`, `eip_enable`, `enterprise_project_id`, `fabric_version`,
-
         `orderer_node_num`, `org_disk_size`, `password` and `volume_type`.
-
         It is generally recommended running `pulumi preview` after importing a instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_bcs_instance" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_storage, eip_enable, enterprise_project_id, fabric_version, orderer_node_num, org_disk_size, password, volume_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.

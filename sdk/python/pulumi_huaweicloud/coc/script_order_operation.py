@@ -26,6 +26,7 @@ class ScriptOrderOperationArgs:
                  instance_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ScriptOrderOperation resource.
+
         :param pulumi.Input[_builtins.str] execute_uuid: Specifies the script order ID.
         :param pulumi.Input[_builtins.str] operation_type: Specifies the operation type.
                Values can be as follows:
@@ -120,6 +121,7 @@ class _ScriptOrderOperationState:
                  operation_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ScriptOrderOperation resources.
+
         :param pulumi.Input[_builtins.int] batch_index: Specifies the batch index.
         :param pulumi.Input[_builtins.str] execute_uuid: Specifies the script order ID.
         :param pulumi.Input[_builtins.int] instance_id: Specifies the instance ID.
@@ -206,7 +208,7 @@ class _ScriptOrderOperationState:
         pulumi.set(self, "operation_type", value)
 
 
-@pulumi.type_token("huaweicloud:coc/scriptOrderOperation:ScriptOrderOperation")
+@pulumi.type_token("huaweicloud:Coc/scriptOrderOperation:ScriptOrderOperation")
 class ScriptOrderOperation(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -236,6 +238,7 @@ class ScriptOrderOperation(pulumi.CustomResource):
             execute_uuid=execute_uuid,
             operation_type=operation_type)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -274,6 +277,7 @@ class ScriptOrderOperation(pulumi.CustomResource):
             execute_uuid=execute_uuid,
             operation_type=operation_type)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ScriptOrderOperationArgs args: The arguments to use to populate this resource's properties.
@@ -314,7 +318,7 @@ class ScriptOrderOperation(pulumi.CustomResource):
                 raise TypeError("Missing required property 'operation_type'")
             __props__.__dict__["operation_type"] = operation_type
         super(ScriptOrderOperation, __self__).__init__(
-            'huaweicloud:coc/scriptOrderOperation:ScriptOrderOperation',
+            'huaweicloud:Coc/scriptOrderOperation:ScriptOrderOperation',
             resource_name,
             __props__,
             opts)

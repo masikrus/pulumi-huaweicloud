@@ -106,7 +106,7 @@ def get_pipeline_modify_histories(pipeline_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
     pipeline_id = config.require_object("pipelineId")
-    test = huaweicloud.codearts.get_pipeline_modify_histories(project_id=codearts_project_id,
+    test = huaweicloud.Codearts.get_pipeline_modify_histories(project_id=codearts_project_id,
         pipeline_id=pipeline_id)
     ```
 
@@ -121,7 +121,7 @@ def get_pipeline_modify_histories(pipeline_id: Optional[_builtins.str] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineModifyHistories:getPipelineModifyHistories', __args__, opts=opts, typ=GetPipelineModifyHistoriesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineModifyHistories:getPipelineModifyHistories', __args__, opts=opts, typ=GetPipelineModifyHistoriesResult).value
 
     return AwaitableGetPipelineModifyHistoriesResult(
         histories=pulumi.get(__ret__, 'histories'),
@@ -145,7 +145,7 @@ def get_pipeline_modify_histories_output(pipeline_id: Optional[pulumi.Input[_bui
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
     pipeline_id = config.require_object("pipelineId")
-    test = huaweicloud.codearts.get_pipeline_modify_histories(project_id=codearts_project_id,
+    test = huaweicloud.Codearts.get_pipeline_modify_histories(project_id=codearts_project_id,
         pipeline_id=pipeline_id)
     ```
 
@@ -160,7 +160,7 @@ def get_pipeline_modify_histories_output(pipeline_id: Optional[pulumi.Input[_bui
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineModifyHistories:getPipelineModifyHistories', __args__, opts=opts, typ=GetPipelineModifyHistoriesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineModifyHistories:getPipelineModifyHistories', __args__, opts=opts, typ=GetPipelineModifyHistoriesResult)
     return __ret__.apply(lambda __response__: GetPipelineModifyHistoriesResult(
         histories=pulumi.get(__response__, 'histories'),
         id=pulumi.get(__response__, 'id'),

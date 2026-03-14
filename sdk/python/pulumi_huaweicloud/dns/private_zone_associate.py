@@ -26,6 +26,7 @@ class PrivateZoneAssociateArgs:
                  router_region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateZoneAssociate resource.
+
         :param pulumi.Input[_builtins.str] router_id: The ID of the associated VPC.
         :param pulumi.Input[_builtins.str] zone_id: The ID of the zone to which the record set belongs.
                Changing this creates a new resource.
@@ -115,6 +116,7 @@ class _PrivateZoneAssociateState:
                  zone_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateZoneAssociate resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -243,11 +245,10 @@ class PrivateZoneAssociate(pulumi.CustomResource):
 
         The associated relationship of private zone and VPC can be imported using `zone_id` and `router_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/privateZoneAssociate:PrivateZoneAssociate test <zone_id>/<router_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -286,11 +287,10 @@ class PrivateZoneAssociate(pulumi.CustomResource):
 
         The associated relationship of private zone and VPC can be imported using `zone_id` and `router_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/privateZoneAssociate:PrivateZoneAssociate test <zone_id>/<router_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrivateZoneAssociateArgs args: The arguments to use to populate this resource's properties.

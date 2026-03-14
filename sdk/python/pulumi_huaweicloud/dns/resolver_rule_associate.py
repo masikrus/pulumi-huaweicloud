@@ -24,6 +24,7 @@ class ResolverRuleAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ResolverRuleAssociate resource.
+
         :param pulumi.Input[_builtins.str] resolver_rule_id: Specifies the DNS resolver rule ID.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID to associate.  
@@ -85,6 +86,7 @@ class _ResolverRuleAssociateState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ResolverRuleAssociate resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the DNS resolver rule associate.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] resolver_rule_id: Specifies the DNS resolver rule ID.  
@@ -185,11 +187,10 @@ class ResolverRuleAssociate(pulumi.CustomResource):
 
         The DNS resolver rule associate resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/resolverRuleAssociate:ResolverRuleAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -227,11 +228,10 @@ class ResolverRuleAssociate(pulumi.CustomResource):
 
         The DNS resolver rule associate resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/resolverRuleAssociate:ResolverRuleAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResolverRuleAssociateArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class PgSchemaArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgSchema resource.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name. The value contains 1 to 63 characters,
                including letters, digits, and underscores (_). It cannot start with pg or a digit, and must be different from RDS for
                PostgreSQL template library names. RDS for PostgreSQL template libraries include **postgres**, **template0**, and
@@ -126,6 +127,7 @@ class _PgSchemaState:
                  schema_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PgSchema resources.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name. The value contains 1 to 63 characters,
                including letters, digits, and underscores (_). It cannot start with pg or a digit, and must be different from RDS for
                PostgreSQL template library names. RDS for PostgreSQL template libraries include **postgres**, **template0**, and
@@ -256,11 +258,10 @@ class PgSchema(pulumi.CustomResource):
 
         The RDS postgresql schema can be imported using the `instance_id`,  `db_name` and `schema_name` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgSchema:PgSchema test <instance_id>/<db_name>/<schema_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -308,11 +309,10 @@ class PgSchema(pulumi.CustomResource):
 
         The RDS postgresql schema can be imported using the `instance_id`,  `db_name` and `schema_name` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgSchema:PgSchema test <instance_id>/<db_name>/<schema_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PgSchemaArgs args: The arguments to use to populate this resource's properties.

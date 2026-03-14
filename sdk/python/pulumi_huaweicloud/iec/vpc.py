@@ -25,6 +25,7 @@ class VpcArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Vpc resource.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the IP address range for the VPC. The subnet IP address in the VPC must be
                within the IP address range of the VPC. The following CIDR blocks are supported:
                *10.0.0.0/8-16*, *172.16.0.0/12-16*, *192.168.0.0/16*.
@@ -107,6 +108,7 @@ class _VpcState:
                  subnet_num: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Vpc resources.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the IP address range for the VPC. The subnet IP address in the VPC must be
                within the IP address range of the VPC. The following CIDR blocks are supported:
                *10.0.0.0/8-16*, *172.16.0.0/12-16*, *192.168.0.0/16*.
@@ -231,11 +233,10 @@ class Vpc(pulumi.CustomResource):
 
         VPCs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/vpc:Vpc myvpc 7117d38e-4c8f-4624-a505-bd96b97d024c
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -280,11 +281,10 @@ class Vpc(pulumi.CustomResource):
 
         VPCs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/vpc:Vpc myvpc 7117d38e-4c8f-4624-a505-bd96b97d024c
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcArgs args: The arguments to use to populate this resource's properties.

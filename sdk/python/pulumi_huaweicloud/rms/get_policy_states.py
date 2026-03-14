@@ -124,7 +124,7 @@ def get_policy_states(compliance_state: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_policy_states()
+    test = huaweicloud.Rms.get_policy_states()
     ```
 
 
@@ -140,7 +140,7 @@ def get_policy_states(compliance_state: Optional[_builtins.str] = None,
     __args__['resourceId'] = resource_id
     __args__['resourceName'] = resource_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getPolicyStates:getPolicyStates', __args__, opts=opts, typ=GetPolicyStatesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getPolicyStates:getPolicyStates', __args__, opts=opts, typ=GetPolicyStatesResult).value
 
     return AwaitableGetPolicyStatesResult(
         compliance_state=pulumi.get(__ret__, 'compliance_state'),
@@ -163,7 +163,7 @@ def get_policy_states_output(compliance_state: Optional[pulumi.Input[Optional[_b
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_policy_states()
+    test = huaweicloud.Rms.get_policy_states()
     ```
 
 
@@ -179,7 +179,7 @@ def get_policy_states_output(compliance_state: Optional[pulumi.Input[Optional[_b
     __args__['resourceId'] = resource_id
     __args__['resourceName'] = resource_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getPolicyStates:getPolicyStates', __args__, opts=opts, typ=GetPolicyStatesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getPolicyStates:getPolicyStates', __args__, opts=opts, typ=GetPolicyStatesResult)
     return __ret__.apply(lambda __response__: GetPolicyStatesResult(
         compliance_state=pulumi.get(__response__, 'compliance_state'),
         id=pulumi.get(__response__, 'id'),

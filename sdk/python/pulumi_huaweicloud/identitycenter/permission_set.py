@@ -27,6 +27,7 @@ class PermissionSetArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PermissionSet resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] session_duration: Specifies the length of time that the user sessions are valid in the
@@ -129,6 +130,7 @@ class PermissionSetArgs:
 @pulumi.input_type
 class _PermissionSetState:
     def __init__(__self__, *,
+                 permission_set_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -136,10 +138,11 @@ class _PermissionSetState:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  relay_state: Optional[pulumi.Input[_builtins.str]] = None,
                  session_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering PermissionSet resources.
+
+        :param pulumi.Input[_builtins.str] permission_set_urn: The Uniform Resource Name of the permission set.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] account_ids: The array of one or more account IDs bound to the permission set.
         :param pulumi.Input[_builtins.str] created_at: The date the permission set was created in RFC3339 format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the permission set.
@@ -152,8 +155,9 @@ class _PermissionSetState:
         :param pulumi.Input[_builtins.str] session_duration: Specifies the length of time that the user sessions are valid in the
                ISO-8601 standard, e.g. **PT4H**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: (Optional, Map) Specifies the key/value pairs to associate with the permission set.
-        :param pulumi.Input[_builtins.str] urn: The Uniform Resource Name of the permission set.
         """
+        if permission_set_urn is not None:
+            pulumi.set(__self__, "permission_set_urn", permission_set_urn)
         if account_ids is not None:
             pulumi.set(__self__, "account_ids", account_ids)
         if created_at is not None:
@@ -170,8 +174,18 @@ class _PermissionSetState:
             pulumi.set(__self__, "session_duration", session_duration)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="PermissionSetUrn")
+    def permission_set_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Uniform Resource Name of the permission set.
+        """
+        return pulumi.get(self, "permission_set_urn")
+
+    @permission_set_urn.setter
+    def permission_set_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "permission_set_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="accountIds")
@@ -273,20 +287,8 @@ class _PermissionSetState:
     def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The Uniform Resource Name of the permission set.
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:identitycenter/permissionSet:PermissionSet")
+@pulumi.type_token("huaweicloud:Identitycenter/permissionSet:PermissionSet")
 class PermissionSet(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -308,7 +310,7 @@ class PermissionSet(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         demo = huaweicloud.identitycenter.PermissionSet("demo",
             instance_id=system.id,
             name="demo",
@@ -319,11 +321,10 @@ class PermissionSet(pulumi.CustomResource):
 
         The Identity Center permission set can be imported using the `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/permissionSet:PermissionSet demo <instance_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/permissionSet:PermissionSet demo <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -353,7 +354,7 @@ class PermissionSet(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         demo = huaweicloud.identitycenter.PermissionSet("demo",
             instance_id=system.id,
             name="demo",
@@ -364,11 +365,10 @@ class PermissionSet(pulumi.CustomResource):
 
         The Identity Center permission set can be imported using the `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/permissionSet:PermissionSet demo <instance_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/permissionSet:PermissionSet demo <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PermissionSetArgs args: The arguments to use to populate this resource's properties.
@@ -410,11 +410,11 @@ class PermissionSet(pulumi.CustomResource):
                 raise TypeError("Missing required property 'session_duration'")
             __props__.__dict__["session_duration"] = session_duration
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["permission_set_urn"] = None
             __props__.__dict__["account_ids"] = None
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["urn"] = None
         super(PermissionSet, __self__).__init__(
-            'huaweicloud:identitycenter/permissionSet:PermissionSet',
+            'huaweicloud:Identitycenter/permissionSet:PermissionSet',
             resource_name,
             __props__,
             opts)
@@ -423,6 +423,7 @@ class PermissionSet(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            permission_set_urn: Optional[pulumi.Input[_builtins.str]] = None,
             account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -430,8 +431,7 @@ class PermissionSet(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             relay_state: Optional[pulumi.Input[_builtins.str]] = None,
             session_duration: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'PermissionSet':
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> 'PermissionSet':
         """
         Get an existing PermissionSet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -439,6 +439,7 @@ class PermissionSet(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] permission_set_urn: The Uniform Resource Name of the permission set.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] account_ids: The array of one or more account IDs bound to the permission set.
         :param pulumi.Input[_builtins.str] created_at: The date the permission set was created in RFC3339 format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the permission set.
@@ -451,12 +452,12 @@ class PermissionSet(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] session_duration: Specifies the length of time that the user sessions are valid in the
                ISO-8601 standard, e.g. **PT4H**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: (Optional, Map) Specifies the key/value pairs to associate with the permission set.
-        :param pulumi.Input[_builtins.str] urn: The Uniform Resource Name of the permission set.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _PermissionSetState.__new__(_PermissionSetState)
 
+        __props__.__dict__["permission_set_urn"] = permission_set_urn
         __props__.__dict__["account_ids"] = account_ids
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
@@ -465,8 +466,15 @@ class PermissionSet(pulumi.CustomResource):
         __props__.__dict__["relay_state"] = relay_state
         __props__.__dict__["session_duration"] = session_duration
         __props__.__dict__["tags"] = tags
-        __props__.__dict__["urn"] = urn
         return PermissionSet(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="PermissionSetUrn")
+    def permission_set_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Uniform Resource Name of the permission set.
+        """
+        return pulumi.get(self, "permission_set_urn")
 
     @_builtins.property
     @pulumi.getter(name="accountIds")
@@ -535,12 +543,4 @@ class PermissionSet(pulumi.CustomResource):
         (Optional, Map) Specifies the key/value pairs to associate with the permission set.
         """
         return pulumi.get(self, "tags")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        The Uniform Resource Name of the permission set.
-        """
-        return pulumi.get(self, "urn")
 

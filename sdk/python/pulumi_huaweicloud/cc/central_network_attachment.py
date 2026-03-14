@@ -32,6 +32,7 @@ class CentralNetworkAttachmentArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CentralNetworkAttachment resource.
+
         :param pulumi.Input[_builtins.str] central_network_id: The central network ID.
                
                Changing this parameter will create a new resource.
@@ -244,6 +245,7 @@ class _CentralNetworkAttachmentState:
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CentralNetworkAttachment resources.
+
         :param pulumi.Input[_builtins.str] central_network_id: The central network ID.
                
                Changing this parameter will create a new resource.
@@ -535,11 +537,10 @@ class CentralNetworkAttachment(pulumi.CustomResource):
 
         The central network attachment can be imported using `central_network_id`, `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/centralNetworkAttachment:CentralNetworkAttachment test <central_network_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -614,11 +615,10 @@ class CentralNetworkAttachment(pulumi.CustomResource):
 
         The central network attachment can be imported using `central_network_id`, `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/centralNetworkAttachment:CentralNetworkAttachment test <central_network_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CentralNetworkAttachmentArgs args: The arguments to use to populate this resource's properties.

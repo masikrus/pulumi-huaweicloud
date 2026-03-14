@@ -21,6 +21,7 @@ __all__ = ['IndicatorArgs', 'Indicator']
 @pulumi.input_type
 class IndicatorArgs:
     def __init__(__self__, *,
+                 indicator_type_value: pulumi.Input['IndicatorIndicatorTypeValueArgs'],
                  confidence: pulumi.Input[_builtins.int],
                  data_source: pulumi.Input['IndicatorDataSourceArgs'],
                  first_occurrence_time: pulumi.Input[_builtins.str],
@@ -28,7 +29,6 @@ class IndicatorArgs:
                  last_occurrence_time: pulumi.Input[_builtins.str],
                  status: pulumi.Input[_builtins.str],
                  threat_degree: pulumi.Input[_builtins.str],
-                 type: pulumi.Input['IndicatorTypeArgs'],
                  value: pulumi.Input[_builtins.str],
                  workspace_id: pulumi.Input[_builtins.str],
                  invalid: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -37,6 +37,9 @@ class IndicatorArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Indicator resource.
+
+        :param pulumi.Input['IndicatorIndicatorTypeValueArgs'] indicator_type_value: Specifies the indicator type.
+               The type structure is documented below.
         :param pulumi.Input[_builtins.int] confidence: Specifies the confidence of the indicator.
                The value ranges from `80` to `100`.
         :param pulumi.Input['IndicatorDataSourceArgs'] data_source: Specifies the data source of the indicator.
@@ -57,8 +60,6 @@ class IndicatorArgs:
                The value can be: **Open**, **Closed** and **Revoked**.
         :param pulumi.Input[_builtins.str] threat_degree: Specifies the threat degree.
                The value can be: **Black**, **White** and **Gray**.
-        :param pulumi.Input['IndicatorTypeArgs'] type: Specifies the indicator type.
-               The type structure is documented below.
         :param pulumi.Input[_builtins.str] value: Specifies the value of the indicator.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the indicator belongs.
                
@@ -72,6 +73,7 @@ class IndicatorArgs:
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
+        pulumi.set(__self__, "indicator_type_value", indicator_type_value)
         pulumi.set(__self__, "confidence", confidence)
         pulumi.set(__self__, "data_source", data_source)
         pulumi.set(__self__, "first_occurrence_time", first_occurrence_time)
@@ -79,7 +81,6 @@ class IndicatorArgs:
         pulumi.set(__self__, "last_occurrence_time", last_occurrence_time)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "threat_degree", threat_degree)
-        pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
         pulumi.set(__self__, "workspace_id", workspace_id)
         if invalid is not None:
@@ -90,6 +91,19 @@ class IndicatorArgs:
             pulumi.set(__self__, "name", name)
         if region is not None:
             pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="IndicatorTypeValue")
+    def indicator_type_value(self) -> pulumi.Input['IndicatorIndicatorTypeValueArgs']:
+        """
+        Specifies the indicator type.
+        The type structure is documented below.
+        """
+        return pulumi.get(self, "indicator_type_value")
+
+    @indicator_type_value.setter
+    def indicator_type_value(self, value: pulumi.Input['IndicatorIndicatorTypeValueArgs']):
+        pulumi.set(self, "indicator_type_value", value)
 
     @_builtins.property
     @pulumi.getter
@@ -190,19 +204,6 @@ class IndicatorArgs:
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> pulumi.Input['IndicatorTypeArgs']:
-        """
-        Specifies the indicator type.
-        The type structure is documented below.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input['IndicatorTypeArgs']):
-        pulumi.set(self, "type", value)
-
-    @_builtins.property
-    @pulumi.getter
     def value(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the value of the indicator.
@@ -283,6 +284,7 @@ class IndicatorArgs:
 @pulumi.input_type
 class _IndicatorState:
     def __init__(__self__, *,
+                 indicator_type_value: Optional[pulumi.Input['IndicatorIndicatorTypeValueArgs']] = None,
                  confidence: Optional[pulumi.Input[_builtins.int]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  data_source: Optional[pulumi.Input['IndicatorDataSourceArgs']] = None,
@@ -295,12 +297,14 @@ class _IndicatorState:
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  threat_degree: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input['IndicatorTypeArgs']] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  value: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Indicator resources.
+
+        :param pulumi.Input['IndicatorIndicatorTypeValueArgs'] indicator_type_value: Specifies the indicator type.
+               The type structure is documented below.
         :param pulumi.Input[_builtins.int] confidence: Specifies the confidence of the indicator.
                The value ranges from `80` to `100`.
         :param pulumi.Input[_builtins.str] created_at: The created time.
@@ -330,14 +334,14 @@ class _IndicatorState:
                The value can be: **Open**, **Closed** and **Revoked**.
         :param pulumi.Input[_builtins.str] threat_degree: Specifies the threat degree.
                The value can be: **Black**, **White** and **Gray**.
-        :param pulumi.Input['IndicatorTypeArgs'] type: Specifies the indicator type.
-               The type structure is documented below.
         :param pulumi.Input[_builtins.str] updated_at: The updated time.
         :param pulumi.Input[_builtins.str] value: Specifies the value of the indicator.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the indicator belongs.
                
                Changing this parameter will create a new resource.
         """
+        if indicator_type_value is not None:
+            pulumi.set(__self__, "indicator_type_value", indicator_type_value)
         if confidence is not None:
             pulumi.set(__self__, "confidence", confidence)
         if created_at is not None:
@@ -362,14 +366,25 @@ class _IndicatorState:
             pulumi.set(__self__, "status", status)
         if threat_degree is not None:
             pulumi.set(__self__, "threat_degree", threat_degree)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if value is not None:
             pulumi.set(__self__, "value", value)
         if workspace_id is not None:
             pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="IndicatorTypeValue")
+    def indicator_type_value(self) -> Optional[pulumi.Input['IndicatorIndicatorTypeValueArgs']]:
+        """
+        Specifies the indicator type.
+        The type structure is documented below.
+        """
+        return pulumi.get(self, "indicator_type_value")
+
+    @indicator_type_value.setter
+    def indicator_type_value(self, value: Optional[pulumi.Input['IndicatorIndicatorTypeValueArgs']]):
+        pulumi.set(self, "indicator_type_value", value)
 
     @_builtins.property
     @pulumi.getter
@@ -533,19 +548,6 @@ class _IndicatorState:
         pulumi.set(self, "threat_degree", value)
 
     @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input['IndicatorTypeArgs']]:
-        """
-        Specifies the indicator type.
-        The type structure is documented below.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input['IndicatorTypeArgs']]):
-        pulumi.set(self, "type", value)
-
-    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -584,12 +586,13 @@ class _IndicatorState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/indicator:Indicator")
+@pulumi.type_token("huaweicloud:Secmaster/indicator:Indicator")
 class Indicator(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 indicator_type_value: Optional[pulumi.Input[Union['IndicatorIndicatorTypeValueArgs', 'IndicatorIndicatorTypeValueArgsDict']]] = None,
                  confidence: Optional[pulumi.Input[_builtins.int]] = None,
                  data_source: Optional[pulumi.Input[Union['IndicatorDataSourceArgs', 'IndicatorDataSourceArgsDict']]] = None,
                  first_occurrence_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -601,7 +604,6 @@ class Indicator(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  threat_degree: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[Union['IndicatorTypeArgs', 'IndicatorTypeArgsDict']]] = None,
                  value: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -620,7 +622,7 @@ class Indicator(pulumi.CustomResource):
         test = huaweicloud.secmaster.Indicator("test",
             workspace_id=workspace_id,
             name="demo",
-            type={
+            indicator_type_value={
                 "category": "Domain",
                 "indicator_type": "Domain",
                 "id": type_id,
@@ -643,14 +645,15 @@ class Indicator(pulumi.CustomResource):
 
         The indicator can be imported using the workspace ID and the indicator ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/indicator:Indicator test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/indicator:Indicator test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['IndicatorIndicatorTypeValueArgs', 'IndicatorIndicatorTypeValueArgsDict']] indicator_type_value: Specifies the indicator type.
+               The type structure is documented below.
         :param pulumi.Input[_builtins.int] confidence: Specifies the confidence of the indicator.
                The value ranges from `80` to `100`.
         :param pulumi.Input[Union['IndicatorDataSourceArgs', 'IndicatorDataSourceArgsDict']] data_source: Specifies the data source of the indicator.
@@ -679,8 +682,6 @@ class Indicator(pulumi.CustomResource):
                The value can be: **Open**, **Closed** and **Revoked**.
         :param pulumi.Input[_builtins.str] threat_degree: Specifies the threat degree.
                The value can be: **Black**, **White** and **Gray**.
-        :param pulumi.Input[Union['IndicatorTypeArgs', 'IndicatorTypeArgsDict']] type: Specifies the indicator type.
-               The type structure is documented below.
         :param pulumi.Input[_builtins.str] value: Specifies the value of the indicator.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the indicator belongs.
                
@@ -707,7 +708,7 @@ class Indicator(pulumi.CustomResource):
         test = huaweicloud.secmaster.Indicator("test",
             workspace_id=workspace_id,
             name="demo",
-            type={
+            indicator_type_value={
                 "category": "Domain",
                 "indicator_type": "Domain",
                 "id": type_id,
@@ -730,11 +731,10 @@ class Indicator(pulumi.CustomResource):
 
         The indicator can be imported using the workspace ID and the indicator ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/indicator:Indicator test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/indicator:Indicator test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IndicatorArgs args: The arguments to use to populate this resource's properties.
@@ -751,6 +751,7 @@ class Indicator(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 indicator_type_value: Optional[pulumi.Input[Union['IndicatorIndicatorTypeValueArgs', 'IndicatorIndicatorTypeValueArgsDict']]] = None,
                  confidence: Optional[pulumi.Input[_builtins.int]] = None,
                  data_source: Optional[pulumi.Input[Union['IndicatorDataSourceArgs', 'IndicatorDataSourceArgsDict']]] = None,
                  first_occurrence_time: Optional[pulumi.Input[_builtins.str]] = None,
@@ -762,7 +763,6 @@ class Indicator(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  threat_degree: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[Union['IndicatorTypeArgs', 'IndicatorTypeArgsDict']]] = None,
                  value: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -774,6 +774,9 @@ class Indicator(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IndicatorArgs.__new__(IndicatorArgs)
 
+            if indicator_type_value is None and not opts.urn:
+                raise TypeError("Missing required property 'indicator_type_value'")
+            __props__.__dict__["indicator_type_value"] = indicator_type_value
             if confidence is None and not opts.urn:
                 raise TypeError("Missing required property 'confidence'")
             __props__.__dict__["confidence"] = confidence
@@ -799,9 +802,6 @@ class Indicator(pulumi.CustomResource):
             if threat_degree is None and not opts.urn:
                 raise TypeError("Missing required property 'threat_degree'")
             __props__.__dict__["threat_degree"] = threat_degree
-            if type is None and not opts.urn:
-                raise TypeError("Missing required property 'type'")
-            __props__.__dict__["type"] = type
             if value is None and not opts.urn:
                 raise TypeError("Missing required property 'value'")
             __props__.__dict__["value"] = value
@@ -811,7 +811,7 @@ class Indicator(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(Indicator, __self__).__init__(
-            'huaweicloud:secmaster/indicator:Indicator',
+            'huaweicloud:Secmaster/indicator:Indicator',
             resource_name,
             __props__,
             opts)
@@ -820,6 +820,7 @@ class Indicator(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            indicator_type_value: Optional[pulumi.Input[Union['IndicatorIndicatorTypeValueArgs', 'IndicatorIndicatorTypeValueArgsDict']]] = None,
             confidence: Optional[pulumi.Input[_builtins.int]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             data_source: Optional[pulumi.Input[Union['IndicatorDataSourceArgs', 'IndicatorDataSourceArgsDict']]] = None,
@@ -832,7 +833,6 @@ class Indicator(pulumi.CustomResource):
             region: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
             threat_degree: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[Union['IndicatorTypeArgs', 'IndicatorTypeArgsDict']]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
             value: Optional[pulumi.Input[_builtins.str]] = None,
             workspace_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Indicator':
@@ -843,6 +843,8 @@ class Indicator(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['IndicatorIndicatorTypeValueArgs', 'IndicatorIndicatorTypeValueArgsDict']] indicator_type_value: Specifies the indicator type.
+               The type structure is documented below.
         :param pulumi.Input[_builtins.int] confidence: Specifies the confidence of the indicator.
                The value ranges from `80` to `100`.
         :param pulumi.Input[_builtins.str] created_at: The created time.
@@ -872,8 +874,6 @@ class Indicator(pulumi.CustomResource):
                The value can be: **Open**, **Closed** and **Revoked**.
         :param pulumi.Input[_builtins.str] threat_degree: Specifies the threat degree.
                The value can be: **Black**, **White** and **Gray**.
-        :param pulumi.Input[Union['IndicatorTypeArgs', 'IndicatorTypeArgsDict']] type: Specifies the indicator type.
-               The type structure is documented below.
         :param pulumi.Input[_builtins.str] updated_at: The updated time.
         :param pulumi.Input[_builtins.str] value: Specifies the value of the indicator.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the indicator belongs.
@@ -884,6 +884,7 @@ class Indicator(pulumi.CustomResource):
 
         __props__ = _IndicatorState.__new__(_IndicatorState)
 
+        __props__.__dict__["indicator_type_value"] = indicator_type_value
         __props__.__dict__["confidence"] = confidence
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["data_source"] = data_source
@@ -896,11 +897,19 @@ class Indicator(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["status"] = status
         __props__.__dict__["threat_degree"] = threat_degree
-        __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["value"] = value
         __props__.__dict__["workspace_id"] = workspace_id
         return Indicator(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="IndicatorTypeValue")
+    def indicator_type_value(self) -> pulumi.Output['outputs.IndicatorIndicatorTypeValue']:
+        """
+        Specifies the indicator type.
+        The type structure is documented below.
+        """
+        return pulumi.get(self, "indicator_type_value")
 
     @_builtins.property
     @pulumi.getter
@@ -1014,15 +1023,6 @@ class Indicator(pulumi.CustomResource):
         The value can be: **Black**, **White** and **Gray**.
         """
         return pulumi.get(self, "threat_degree")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> pulumi.Output['outputs.IndicatorType']:
-        """
-        Specifies the indicator type.
-        The type structure is documented below.
-        """
-        return pulumi.get(self, "type")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

@@ -94,7 +94,7 @@ def get_connection_logs(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     vpn_connection_id = config.require_object("vpnConnectionId")
-    test = huaweicloud.vpn.get_connection_logs(vpn_connection_id=vpn_connection_id)
+    test = huaweicloud.Vpn.get_connection_logs(vpn_connection_id=vpn_connection_id)
     ```
 
 
@@ -106,7 +106,7 @@ def get_connection_logs(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['vpnConnectionId'] = vpn_connection_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getConnectionLogs:getConnectionLogs', __args__, opts=opts, typ=GetConnectionLogsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getConnectionLogs:getConnectionLogs', __args__, opts=opts, typ=GetConnectionLogsResult).value
 
     return AwaitableGetConnectionLogsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -127,7 +127,7 @@ def get_connection_logs_output(region: Optional[pulumi.Input[Optional[_builtins.
 
     config = pulumi.Config()
     vpn_connection_id = config.require_object("vpnConnectionId")
-    test = huaweicloud.vpn.get_connection_logs(vpn_connection_id=vpn_connection_id)
+    test = huaweicloud.Vpn.get_connection_logs(vpn_connection_id=vpn_connection_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_connection_logs_output(region: Optional[pulumi.Input[Optional[_builtins.
     __args__['region'] = region
     __args__['vpnConnectionId'] = vpn_connection_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getConnectionLogs:getConnectionLogs', __args__, opts=opts, typ=GetConnectionLogsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getConnectionLogs:getConnectionLogs', __args__, opts=opts, typ=GetConnectionLogsResult)
     return __ret__.apply(lambda __response__: GetConnectionLogsResult(
         id=pulumi.get(__response__, 'id'),
         logs=pulumi.get(__response__, 'logs'),

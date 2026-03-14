@@ -25,6 +25,7 @@ class SecurityDataSecrecyLevelArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityDataSecrecyLevel resource.
+
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the data secrecy level belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the data secrecy level.
@@ -111,6 +112,7 @@ class _SecurityDataSecrecyLevelState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityDataSecrecyLevel resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the data secrecy level.
         :param pulumi.Input[_builtins.str] created_by: The creator of the data secrecy level.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the data secrecy level.
@@ -291,11 +293,10 @@ class SecurityDataSecrecyLevel(pulumi.CustomResource):
 
         The resource can be imported using `workspace_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/securityDataSecrecyLevel:SecurityDataSecrecyLevel test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -336,11 +337,10 @@ class SecurityDataSecrecyLevel(pulumi.CustomResource):
 
         The resource can be imported using `workspace_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/securityDataSecrecyLevel:SecurityDataSecrecyLevel test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecurityDataSecrecyLevelArgs args: The arguments to use to populate this resource's properties.

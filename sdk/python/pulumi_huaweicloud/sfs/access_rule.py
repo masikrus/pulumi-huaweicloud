@@ -26,6 +26,7 @@ class AccessRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccessRule resource.
+
         :param pulumi.Input[_builtins.str] access_to: Specifies the value that defines the access rule. The value contains 1 to
                255 characters. Changing this will create a new access rule. The value varies according to the scenario:
                + Set the VPC ID in VPC authorization scenarios.
@@ -139,6 +140,7 @@ class _AccessRuleState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccessRule resources.
+
         :param pulumi.Input[_builtins.str] access_level: Specifies the access level of the shared file system. Possible values
                are *ro* (read-only)
                and *rw* (read-write). The default value is *rw* (read/write). Changing this will create a new access rule.
@@ -295,15 +297,39 @@ class AccessRule(pulumi.CustomResource):
             access_to=vpc_id)
         ```
 
+        ### Usage in IP address authorization scenario
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        share_name = config.require_object("shareName")
+        vpc_id = config.require_object("vpcId")
+        share_file = huaweicloud.sfs.FileSystem("share-file",
+            name=share_name,
+            size=100,
+            share_proto="NFS")
+        rule1 = huaweicloud.sfs.AccessRule("rule_1",
+            sfs_id=share_file.id,
+            access_to=std.index.join(separator="#",
+                input=[
+                    vpc_id,
+                    "192.168.10.0/24",
+                    "0",
+                    "no_all_squash,no_root_squash",
+                ])["result"])
+        ```
+
         ## Import
 
         SFS access rule can be imported by specifying the SFS ID and access rule ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Sfs/accessRule:AccessRule huaweicloud_sfs_access_rule <sfs_id>/<rule_id>
+        $ terraform import huaweicloud_sfs_access_rule <sfs_id>/<rule_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -357,15 +383,39 @@ class AccessRule(pulumi.CustomResource):
             access_to=vpc_id)
         ```
 
+        ### Usage in IP address authorization scenario
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        share_name = config.require_object("shareName")
+        vpc_id = config.require_object("vpcId")
+        share_file = huaweicloud.sfs.FileSystem("share-file",
+            name=share_name,
+            size=100,
+            share_proto="NFS")
+        rule1 = huaweicloud.sfs.AccessRule("rule_1",
+            sfs_id=share_file.id,
+            access_to=std.index.join(separator="#",
+                input=[
+                    vpc_id,
+                    "192.168.10.0/24",
+                    "0",
+                    "no_all_squash,no_root_squash",
+                ])["result"])
+        ```
+
         ## Import
 
         SFS access rule can be imported by specifying the SFS ID and access rule ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Sfs/accessRule:AccessRule huaweicloud_sfs_access_rule <sfs_id>/<rule_id>
+        $ terraform import huaweicloud_sfs_access_rule <sfs_id>/<rule_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccessRuleArgs args: The arguments to use to populate this resource's properties.

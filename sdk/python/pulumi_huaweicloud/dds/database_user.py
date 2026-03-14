@@ -29,6 +29,7 @@ class DatabaseUserArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatabaseUser resource.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name to which this owned role belongs.
                Changing this parameter will create a new user.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DDS instance ID to which the user belongs.
@@ -151,6 +152,7 @@ class _DatabaseUserState:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]] = None):
         """
         Input properties used for looking up and filtering DatabaseUser resources.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name to which this owned role belongs.
                Changing this parameter will create a new user.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserInheritedPrivilegeArgs']]] inherited_privileges: The list of database privileges owned by the current user, includes all privileges
@@ -341,37 +343,15 @@ class DatabaseUser(pulumi.CustomResource):
 
         DDS database user can be imported using the `instance_id`, `db_name` and `name` separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/databaseUser:DatabaseUser test <instance_id>/<db_name>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from
-
         the API response. The missing attributes include: `password`. It is generally recommended running `pulumi preview` after
-
         importing a DDS database user. You can then decide if changes should be applied to the DDS database user, or the resource
-
         definition should be updated to align with the DDS database user. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dds_database_user" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -428,37 +408,15 @@ class DatabaseUser(pulumi.CustomResource):
 
         DDS database user can be imported using the `instance_id`, `db_name` and `name` separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/databaseUser:DatabaseUser test <instance_id>/<db_name>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from
-
         the API response. The missing attributes include: `password`. It is generally recommended running `pulumi preview` after
-
         importing a DDS database user. You can then decide if changes should be applied to the DDS database user, or the resource
-
         definition should be updated to align with the DDS database user. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dds_database_user" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DatabaseUserArgs args: The arguments to use to populate this resource's properties.

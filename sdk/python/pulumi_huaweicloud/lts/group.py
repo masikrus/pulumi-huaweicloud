@@ -26,6 +26,7 @@ class GroupArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[_builtins.str] group_name: Specifies the log group name. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] ttl_in_days: Specifies the log expiration time(days).  
                The value is range from `1` to `365`.
@@ -123,6 +124,7 @@ class _GroupState:
                  ttl_in_days: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the log group.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the log group belongs.
                Changing this parameter will create a new resource.
@@ -256,11 +258,10 @@ class Group(pulumi.CustomResource):
 
         The log group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/group:Group test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -299,11 +300,10 @@ class Group(pulumi.CustomResource):
 
         The log group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/group:Group test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.

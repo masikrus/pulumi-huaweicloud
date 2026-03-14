@@ -24,6 +24,7 @@ class ProjectArgs:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Project resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the project.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the project. it must start with an existing *region* and be less
                than or equal to 64 characters. Example: cn-north-1_project1.
@@ -86,6 +87,7 @@ class _ProjectState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Project resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the project.
         :param pulumi.Input[_builtins.bool] enabled: Whether the IAM project is enabled.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the project. it must start with an existing *region* and be less
@@ -200,11 +202,10 @@ class Project(pulumi.CustomResource):
 
         IAM projects can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iam/project:Project project_1 89c60255-9bd6-460c-822a-e2b959ede9d2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -242,11 +243,10 @@ class Project(pulumi.CustomResource):
 
         IAM projects can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iam/project:Project project_1 89c60255-9bd6-460c-822a-e2b959ede9d2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectArgs args: The arguments to use to populate this resource's properties.

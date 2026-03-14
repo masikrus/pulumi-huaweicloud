@@ -29,9 +29,11 @@ class DomainArgs:
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  service_area: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Domain resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['DomainSourceArgs']]] sources: Specifies an array of one or more objects specifying origin server settings.
                A maximum of `50` origin site configurations can be configured.
                The sources structure is documented below.
@@ -56,10 +58,14 @@ class DomainArgs:
                + **global**: Indicates that the service scope is global.
                
                > The service area cannot be changed between Chinese mainland and outside Chinese mainland.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the domain.
+        :param pulumi.Input[_builtins.str] status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
                
                <a name="sources_cdn_domain"></a>
                The `sources` block supports:
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the domain.
         """
         pulumi.set(__self__, "sources", sources)
         pulumi.set(__self__, "type", type)
@@ -75,6 +81,8 @@ class DomainArgs:
             pulumi.set(__self__, "name", name)
         if service_area is not None:
             pulumi.set(__self__, "service_area", service_area)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -190,12 +198,27 @@ class DomainArgs:
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the key/value pairs to associate with the domain.
+        Specifies the status of the domain.
+        The valid values are as follows:
+        + **online**
+        + **offline**
 
         <a name="sources_cdn_domain"></a>
         The `sources` block supports:
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the key/value pairs to associate with the domain.
         """
         return pulumi.get(self, "tags")
 
@@ -217,18 +240,19 @@ class _DomainState:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  service_area: Optional[pulumi.Input[_builtins.str]] = None,
                  sources: Optional[pulumi.Input[Sequence[pulumi.Input['DomainSourceArgs']]]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Domain resources.
+
         :param pulumi.Input['DomainCacheSettingsArgs'] cache_settings: Specifies the cache configuration. The cache_settings structure
                is documented below.
         :param pulumi.Input[_builtins.str] cname: The CNAME of the acceleration domain name.
         :param pulumi.Input['DomainConfigsArgs'] configs: Specifies the domain configuration items. The configs structure is
                documented below.
-        :param pulumi.Input[_builtins.str] domain_name: schema: Internal
-        :param pulumi.Input[_builtins.str] domain_status: The status of the acceleration domain name. The available values are
-               **online**, **offline**, **configuring**, **configure_failed**, **checking**, **check_failed** and **deleting**.
+        :param pulumi.Input[_builtins.str] domain_name: The name of the domain.
+        :param pulumi.Input[_builtins.str] domain_status: The status of the domain.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
         :param pulumi.Input[_builtins.str] name: Specifies the HTTP response header. Valid values are **Content-Disposition**, **Content-Language**,
                **Access-Control-Allow-Origin**, **Access-Control-Allow-Methods**, **Access-Control-Max-Age**, **Access-Control-Expose-Headers**,
@@ -244,10 +268,14 @@ class _DomainState:
         :param pulumi.Input[Sequence[pulumi.Input['DomainSourceArgs']]] sources: Specifies an array of one or more objects specifying origin server settings.
                A maximum of `50` origin site configurations can be configured.
                The sources structure is documented below.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the domain.
+        :param pulumi.Input[_builtins.str] status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
                
                <a name="sources_cdn_domain"></a>
                The `sources` block supports:
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the domain.
         :param pulumi.Input[_builtins.str] type: Specifies the blacklist and whitelist rule type. Valid values are:
                + **black**: Blacklist. Users in regions specified in the blacklist cannot access resources and status code `403` is
                returned.
@@ -274,6 +302,8 @@ class _DomainState:
             pulumi.set(__self__, "service_area", service_area)
         if sources is not None:
             pulumi.set(__self__, "sources", sources)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
@@ -321,7 +351,7 @@ class _DomainState:
     @pulumi.getter(name="domainName")
     def domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Internal
+        The name of the domain.
         """
         return pulumi.get(self, "domain_name")
 
@@ -333,8 +363,7 @@ class _DomainState:
     @pulumi.getter(name="domainStatus")
     def domain_status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The status of the acceleration domain name. The available values are
-        **online**, **offline**, **configuring**, **configure_failed**, **checking**, **check_failed** and **deleting**.
+        The status of the domain.
         """
         return pulumi.get(self, "domain_status")
 
@@ -412,12 +441,27 @@ class _DomainState:
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the key/value pairs to associate with the domain.
+        Specifies the status of the domain.
+        The valid values are as follows:
+        + **online**
+        + **offline**
 
         <a name="sources_cdn_domain"></a>
         The `sources` block supports:
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the key/value pairs to associate with the domain.
         """
         return pulumi.get(self, "tags")
 
@@ -455,11 +499,14 @@ class Domain(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  service_area: Optional[pulumi.Input[_builtins.str]] = None,
                  sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainSourceArgs', 'DomainSourceArgsDict']]]]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a CDN domain resource within HuaweiCloud.
+
+        > Before updating the domain configuration, please make sure that the status value is **online**.
 
         ## Example Usage
 
@@ -516,6 +563,162 @@ class Domain(pulumi.CustomResource):
             })
         ```
 
+        ### Create a CDN domain with configs
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        domain_name = config.require_object("domainName")
+        origin_server = config.require_object("originServer")
+        ip_or_domain = config.require_object("ipOrDomain")
+        ca_certificate_body = config.require_object("caCertificateBody")
+        test = huaweicloud.cdn.Domain("test",
+            name=domain_name,
+            type="web",
+            service_area="mainland_china",
+            sources=[{
+                "origin": origin_server,
+                "origin_type": "ipaddr",
+                "active": 1,
+            }],
+            configs={
+                "origin_protocol": "http",
+                "ipv6_enable": True,
+                "range_based_retrieval_enabled": True,
+                "description": "test description",
+                "https_settings": {
+                    "certificate_name": "terraform-test",
+                    "certificate_body": std.index.file(input="your_directory/chain.cer")["result"],
+                    "http2_enabled": True,
+                    "https_enabled": True,
+                    "private_key": std.index.file(input="your_directory/server_private.key")["result"],
+                    "ocsp_stapling_status": "on",
+                },
+                "retrieval_request_headers": [{
+                    "name": "test-name",
+                    "value": "test-val",
+                    "action": "set",
+                }],
+                "http_response_headers": [{
+                    "name": "test-name",
+                    "value": "test-val",
+                    "action": "set",
+                }],
+                "url_signing": {
+                    "enabled": True,
+                    "type": "type_a",
+                    "sign_method": "md5",
+                    "match_type": "all",
+                    "sign_arg": "Psd_123",
+                    "key": "A27jtfSTy13q7A0UnTA9vpxYXEb",
+                    "backup_key": "S36klgTFa60q3V8DmSK2hwfBOYp",
+                    "time_format": "dec",
+                    "expire_time": 30,
+                    "inherit_config": {
+                        "enabled": True,
+                        "inherit_type": "m3u8",
+                        "inherit_time_type": "sys_time",
+                    },
+                },
+                "flexible_origins": [{
+                    "match_type": "all",
+                    "priority": 1,
+                    "back_sources": {
+                        "http_port": 80,
+                        "https_port": 443,
+                        "ip_or_domain": ip_or_domain,
+                        "sources_type": "ipaddr",
+                    },
+                }],
+                "request_limit_rules": [{
+                    "limit_rate_after": 50,
+                    "limit_rate_value": 1048576,
+                    "match_type": "catalog",
+                    "match_value": "/test/ff",
+                    "priority": 4,
+                    "type": "size",
+                }],
+                "error_code_caches": [{
+                    "code": 403,
+                    "ttl": 70,
+                }],
+                "origin_request_url_rewrites": [{
+                    "match_type": "file_path",
+                    "priority": 10,
+                    "source_url": "/tt/abc.txt",
+                    "target_url": "/new/$1/$2.html",
+                }],
+                "user_agent_filter": {
+                    "type": "black",
+                    "include_empty": "false",
+                    "ua_lists": ["t1*"],
+                },
+                "sni": {
+                    "enabled": True,
+                    "server_name": "backup.all.cn.com",
+                },
+                "request_url_rewrites": [{
+                    "execution_mode": "break",
+                    "redirect_url": "/test/index.html",
+                    "condition": {
+                        "match_type": "catalog",
+                        "match_value": "/test/folder/1",
+                        "priority": 10,
+                    },
+                }],
+                "browser_cache_rules": [{
+                    "cache_type": "ttl",
+                    "ttl": 30,
+                    "ttl_unit": "m",
+                    "condition": {
+                        "match_type": "file_extension",
+                        "match_value": ".jpg,.zip,.gz",
+                        "priority": 2,
+                    },
+                }],
+                "client_cert": {
+                    "enabled": True,
+                    "hosts": "demo1.com.cn|demo2.com.cn|demo3.com.cn",
+                    "trusted_cert": ca_certificate_body,
+                },
+                "remote_auth": {
+                    "enabled": True,
+                    "remote_auth_rules": {
+                        "auth_failed_status": "503",
+                        "auth_server": "https://testdomain-update.com",
+                        "auth_success_status": "302",
+                        "file_type_setting": "all",
+                        "request_method": "POST",
+                        "reserve_args_setting": "reserve_all_args",
+                        "reserve_headers_setting": "reserve_all_headers",
+                        "response_status": "206",
+                        "timeout": 3000,
+                        "timeout_action": "forbid",
+                        "add_custom_args_rules": [{
+                            "key": "http_user_agent",
+                            "type": "nginx_preset_var",
+                            "value": "$server_protocol",
+                        }],
+                    },
+                },
+                "compress": {
+                    "enabled": False,
+                },
+                "force_redirect": {
+                    "enabled": True,
+                    "type": "http",
+                },
+                "referer": {
+                    "type": "white",
+                    "value": "*.common.com,192.187.2.43,www.test.top:4990",
+                    "include_empty": False,
+                },
+            })
+        ```
+
         ### Create a CDN domain with SCM certificate HTTPS configs
 
         ```python
@@ -552,45 +755,18 @@ class Domain(pulumi.CustomResource):
 
         The CDN domain resource can be imported using the domain `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cdn/domain:Domain test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enterprise_project_id`,
-
         `configs.0.url_signing.0.key`, `configs.0.url_signing.0.backup_key`, `configs.0.https_settings.0.certificate_body`,
-
         `configs.0.https_settings.0.private_key`, `cache_settings`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cdn_domain" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id, configs.0.url_signing.0.key, configs.0.url_signing.0.backup_key,
-            
-              configs.0.https_settings.0.certificate_body, configs.0.https_settings.0.private_key, cache_settings,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -613,10 +789,14 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['DomainSourceArgs', 'DomainSourceArgsDict']]]] sources: Specifies an array of one or more objects specifying origin server settings.
                A maximum of `50` origin site configurations can be configured.
                The sources structure is documented below.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the domain.
+        :param pulumi.Input[_builtins.str] status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
                
                <a name="sources_cdn_domain"></a>
                The `sources` block supports:
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the domain.
         :param pulumi.Input[_builtins.str] type: Specifies the blacklist and whitelist rule type. Valid values are:
                + **black**: Blacklist. Users in regions specified in the blacklist cannot access resources and status code `403` is
                returned.
@@ -631,6 +811,8 @@ class Domain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a CDN domain resource within HuaweiCloud.
+
+        > Before updating the domain configuration, please make sure that the status value is **online**.
 
         ## Example Usage
 
@@ -687,6 +869,162 @@ class Domain(pulumi.CustomResource):
             })
         ```
 
+        ### Create a CDN domain with configs
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        domain_name = config.require_object("domainName")
+        origin_server = config.require_object("originServer")
+        ip_or_domain = config.require_object("ipOrDomain")
+        ca_certificate_body = config.require_object("caCertificateBody")
+        test = huaweicloud.cdn.Domain("test",
+            name=domain_name,
+            type="web",
+            service_area="mainland_china",
+            sources=[{
+                "origin": origin_server,
+                "origin_type": "ipaddr",
+                "active": 1,
+            }],
+            configs={
+                "origin_protocol": "http",
+                "ipv6_enable": True,
+                "range_based_retrieval_enabled": True,
+                "description": "test description",
+                "https_settings": {
+                    "certificate_name": "terraform-test",
+                    "certificate_body": std.index.file(input="your_directory/chain.cer")["result"],
+                    "http2_enabled": True,
+                    "https_enabled": True,
+                    "private_key": std.index.file(input="your_directory/server_private.key")["result"],
+                    "ocsp_stapling_status": "on",
+                },
+                "retrieval_request_headers": [{
+                    "name": "test-name",
+                    "value": "test-val",
+                    "action": "set",
+                }],
+                "http_response_headers": [{
+                    "name": "test-name",
+                    "value": "test-val",
+                    "action": "set",
+                }],
+                "url_signing": {
+                    "enabled": True,
+                    "type": "type_a",
+                    "sign_method": "md5",
+                    "match_type": "all",
+                    "sign_arg": "Psd_123",
+                    "key": "A27jtfSTy13q7A0UnTA9vpxYXEb",
+                    "backup_key": "S36klgTFa60q3V8DmSK2hwfBOYp",
+                    "time_format": "dec",
+                    "expire_time": 30,
+                    "inherit_config": {
+                        "enabled": True,
+                        "inherit_type": "m3u8",
+                        "inherit_time_type": "sys_time",
+                    },
+                },
+                "flexible_origins": [{
+                    "match_type": "all",
+                    "priority": 1,
+                    "back_sources": {
+                        "http_port": 80,
+                        "https_port": 443,
+                        "ip_or_domain": ip_or_domain,
+                        "sources_type": "ipaddr",
+                    },
+                }],
+                "request_limit_rules": [{
+                    "limit_rate_after": 50,
+                    "limit_rate_value": 1048576,
+                    "match_type": "catalog",
+                    "match_value": "/test/ff",
+                    "priority": 4,
+                    "type": "size",
+                }],
+                "error_code_caches": [{
+                    "code": 403,
+                    "ttl": 70,
+                }],
+                "origin_request_url_rewrites": [{
+                    "match_type": "file_path",
+                    "priority": 10,
+                    "source_url": "/tt/abc.txt",
+                    "target_url": "/new/$1/$2.html",
+                }],
+                "user_agent_filter": {
+                    "type": "black",
+                    "include_empty": "false",
+                    "ua_lists": ["t1*"],
+                },
+                "sni": {
+                    "enabled": True,
+                    "server_name": "backup.all.cn.com",
+                },
+                "request_url_rewrites": [{
+                    "execution_mode": "break",
+                    "redirect_url": "/test/index.html",
+                    "condition": {
+                        "match_type": "catalog",
+                        "match_value": "/test/folder/1",
+                        "priority": 10,
+                    },
+                }],
+                "browser_cache_rules": [{
+                    "cache_type": "ttl",
+                    "ttl": 30,
+                    "ttl_unit": "m",
+                    "condition": {
+                        "match_type": "file_extension",
+                        "match_value": ".jpg,.zip,.gz",
+                        "priority": 2,
+                    },
+                }],
+                "client_cert": {
+                    "enabled": True,
+                    "hosts": "demo1.com.cn|demo2.com.cn|demo3.com.cn",
+                    "trusted_cert": ca_certificate_body,
+                },
+                "remote_auth": {
+                    "enabled": True,
+                    "remote_auth_rules": {
+                        "auth_failed_status": "503",
+                        "auth_server": "https://testdomain-update.com",
+                        "auth_success_status": "302",
+                        "file_type_setting": "all",
+                        "request_method": "POST",
+                        "reserve_args_setting": "reserve_all_args",
+                        "reserve_headers_setting": "reserve_all_headers",
+                        "response_status": "206",
+                        "timeout": 3000,
+                        "timeout_action": "forbid",
+                        "add_custom_args_rules": [{
+                            "key": "http_user_agent",
+                            "type": "nginx_preset_var",
+                            "value": "$server_protocol",
+                        }],
+                    },
+                },
+                "compress": {
+                    "enabled": False,
+                },
+                "force_redirect": {
+                    "enabled": True,
+                    "type": "http",
+                },
+                "referer": {
+                    "type": "white",
+                    "value": "*.common.com,192.187.2.43,www.test.top:4990",
+                    "include_empty": False,
+                },
+            })
+        ```
+
         ### Create a CDN domain with SCM certificate HTTPS configs
 
         ```python
@@ -723,45 +1061,18 @@ class Domain(pulumi.CustomResource):
 
         The CDN domain resource can be imported using the domain `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cdn/domain:Domain test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enterprise_project_id`,
-
         `configs.0.url_signing.0.key`, `configs.0.url_signing.0.backup_key`, `configs.0.https_settings.0.certificate_body`,
-
         `configs.0.https_settings.0.private_key`, `cache_settings`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cdn_domain" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id, configs.0.url_signing.0.key, configs.0.url_signing.0.backup_key,
-            
-              configs.0.https_settings.0.certificate_body, configs.0.https_settings.0.private_key, cache_settings,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DomainArgs args: The arguments to use to populate this resource's properties.
@@ -785,6 +1096,7 @@ class Domain(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  service_area: Optional[pulumi.Input[_builtins.str]] = None,
                  sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainSourceArgs', 'DomainSourceArgsDict']]]]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -805,6 +1117,7 @@ class Domain(pulumi.CustomResource):
             if sources is None and not opts.urn:
                 raise TypeError("Missing required property 'sources'")
             __props__.__dict__["sources"] = sources
+            __props__.__dict__["status"] = status
             __props__.__dict__["tags"] = tags
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -832,6 +1145,7 @@ class Domain(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             service_area: Optional[pulumi.Input[_builtins.str]] = None,
             sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainSourceArgs', 'DomainSourceArgsDict']]]]] = None,
+            status: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Domain':
         """
@@ -846,9 +1160,8 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cname: The CNAME of the acceleration domain name.
         :param pulumi.Input[Union['DomainConfigsArgs', 'DomainConfigsArgsDict']] configs: Specifies the domain configuration items. The configs structure is
                documented below.
-        :param pulumi.Input[_builtins.str] domain_name: schema: Internal
-        :param pulumi.Input[_builtins.str] domain_status: The status of the acceleration domain name. The available values are
-               **online**, **offline**, **configuring**, **configure_failed**, **checking**, **check_failed** and **deleting**.
+        :param pulumi.Input[_builtins.str] domain_name: The name of the domain.
+        :param pulumi.Input[_builtins.str] domain_status: The status of the domain.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
         :param pulumi.Input[_builtins.str] name: Specifies the HTTP response header. Valid values are **Content-Disposition**, **Content-Language**,
                **Access-Control-Allow-Origin**, **Access-Control-Allow-Methods**, **Access-Control-Max-Age**, **Access-Control-Expose-Headers**,
@@ -864,10 +1177,14 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['DomainSourceArgs', 'DomainSourceArgsDict']]]] sources: Specifies an array of one or more objects specifying origin server settings.
                A maximum of `50` origin site configurations can be configured.
                The sources structure is documented below.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the domain.
+        :param pulumi.Input[_builtins.str] status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
                
                <a name="sources_cdn_domain"></a>
                The `sources` block supports:
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the domain.
         :param pulumi.Input[_builtins.str] type: Specifies the blacklist and whitelist rule type. Valid values are:
                + **black**: Blacklist. Users in regions specified in the blacklist cannot access resources and status code `403` is
                returned.
@@ -888,6 +1205,7 @@ class Domain(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["service_area"] = service_area
         __props__.__dict__["sources"] = sources
+        __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
         return Domain(resource_name, opts=opts, __props__=__props__)
@@ -922,7 +1240,7 @@ class Domain(pulumi.CustomResource):
     @pulumi.getter(name="domainName")
     def domain_name(self) -> pulumi.Output[_builtins.str]:
         """
-        schema: Internal
+        The name of the domain.
         """
         return pulumi.get(self, "domain_name")
 
@@ -930,8 +1248,7 @@ class Domain(pulumi.CustomResource):
     @pulumi.getter(name="domainStatus")
     def domain_status(self) -> pulumi.Output[_builtins.str]:
         """
-        The status of the acceleration domain name. The available values are
-        **online**, **offline**, **configuring**, **configure_failed**, **checking**, **check_failed** and **deleting**.
+        The status of the domain.
         """
         return pulumi.get(self, "domain_status")
 
@@ -985,12 +1302,23 @@ class Domain(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+    def status(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the key/value pairs to associate with the domain.
+        Specifies the status of the domain.
+        The valid values are as follows:
+        + **online**
+        + **offline**
 
         <a name="sources_cdn_domain"></a>
         The `sources` block supports:
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+        """
+        Specifies the key/value pairs to associate with the domain.
         """
         return pulumi.get(self, "tags")
 

@@ -21,15 +21,25 @@ class PolicyArgs:
     def __init__(__self__, *,
                  policy_document: pulumi.Input[_builtins.str],
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  version_to_delete: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Policy resource.
+
+        :param pulumi.Input[_builtins.str] policy_document: The policy document of the identity policy, in JSON format.
+        :param pulumi.Input[_builtins.str] description: The description of the identity policy.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] name: The name of the identity policy.
+        :param pulumi.Input[_builtins.str] path: The resource path of the identity policy.
+        :param pulumi.Input[_builtins.str] version_to_delete: The ID of the policy version to be deleted.
         """
         pulumi.set(__self__, "policy_document", policy_document)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if path is not None:
@@ -40,6 +50,9 @@ class PolicyArgs:
     @_builtins.property
     @pulumi.getter(name="policyDocument")
     def policy_document(self) -> pulumi.Input[_builtins.str]:
+        """
+        The policy document of the identity policy, in JSON format.
+        """
         return pulumi.get(self, "policy_document")
 
     @policy_document.setter
@@ -49,6 +62,9 @@ class PolicyArgs:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the identity policy.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -56,8 +72,23 @@ class PolicyArgs:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the identity policy.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -67,6 +98,9 @@ class PolicyArgs:
     @_builtins.property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The resource path of the identity policy.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -76,6 +110,9 @@ class PolicyArgs:
     @_builtins.property
     @pulumi.getter(name="versionToDelete")
     def version_to_delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the policy version to be deleted.
+        """
         return pulumi.get(self, "version_to_delete")
 
     @version_to_delete.setter
@@ -86,21 +123,39 @@ class PolicyArgs:
 @pulumi.input_type
 class _PolicyState:
     def __init__(__self__, *,
+                 policy_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  attachment_count: Optional[pulumi.Input[_builtins.int]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  default_version_id: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  policy_document: Optional[pulumi.Input[_builtins.str]] = None,
                  policy_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None,
                  version_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  version_to_delete: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
+
+        :param pulumi.Input[_builtins.str] policy_urn: The URN of the identity policy.
+        :param pulumi.Input[_builtins.int] attachment_count: The attachment count of the identity policy.
+        :param pulumi.Input[_builtins.str] created_at: The creation time of the identity policy.
+        :param pulumi.Input[_builtins.str] default_version_id: The default version ID of the identity policy.
+        :param pulumi.Input[_builtins.str] description: The description of the identity policy.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] name: The name of the identity policy.
+        :param pulumi.Input[_builtins.str] path: The resource path of the identity policy.
+        :param pulumi.Input[_builtins.str] policy_document: The policy document of the identity policy, in JSON format.
+        :param pulumi.Input[_builtins.str] type: The type of the identity policy.
+        :param pulumi.Input[_builtins.str] updated_at: The latest update time of the identity policy.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] version_ids: The version ID list of the identity policy.
+        :param pulumi.Input[_builtins.str] version_to_delete: The ID of the policy version to be deleted.
         """
+        if policy_urn is not None:
+            pulumi.set(__self__, "policy_urn", policy_urn)
         if attachment_count is not None:
             pulumi.set(__self__, "attachment_count", attachment_count)
         if created_at is not None:
@@ -109,6 +164,8 @@ class _PolicyState:
             pulumi.set(__self__, "default_version_id", default_version_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if path is not None:
@@ -116,19 +173,37 @@ class _PolicyState:
         if policy_document is not None:
             pulumi.set(__self__, "policy_document", policy_document)
         if policy_type is not None:
+            warnings.warn("""Use attribute 'type' instead.""", DeprecationWarning)
+            pulumi.log.warn("""policy_type is deprecated: Use attribute 'type' instead.""")
+        if policy_type is not None:
             pulumi.set(__self__, "policy_type", policy_type)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
         if version_ids is not None:
             pulumi.set(__self__, "version_ids", version_ids)
         if version_to_delete is not None:
             pulumi.set(__self__, "version_to_delete", version_to_delete)
 
     @_builtins.property
+    @pulumi.getter(name="PolicyUrn")
+    def policy_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The URN of the identity policy.
+        """
+        return pulumi.get(self, "policy_urn")
+
+    @policy_urn.setter
+    def policy_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "policy_urn", value)
+
+    @_builtins.property
     @pulumi.getter(name="attachmentCount")
     def attachment_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The attachment count of the identity policy.
+        """
         return pulumi.get(self, "attachment_count")
 
     @attachment_count.setter
@@ -138,6 +213,9 @@ class _PolicyState:
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The creation time of the identity policy.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -147,6 +225,9 @@ class _PolicyState:
     @_builtins.property
     @pulumi.getter(name="defaultVersionId")
     def default_version_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The default version ID of the identity policy.
+        """
         return pulumi.get(self, "default_version_id")
 
     @default_version_id.setter
@@ -156,6 +237,9 @@ class _PolicyState:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the identity policy.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -163,8 +247,23 @@ class _PolicyState:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the identity policy.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -174,6 +273,9 @@ class _PolicyState:
     @_builtins.property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The resource path of the identity policy.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -183,6 +285,9 @@ class _PolicyState:
     @_builtins.property
     @pulumi.getter(name="policyDocument")
     def policy_document(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The policy document of the identity policy, in JSON format.
+        """
         return pulumi.get(self, "policy_document")
 
     @policy_document.setter
@@ -191,6 +296,7 @@ class _PolicyState:
 
     @_builtins.property
     @pulumi.getter(name="policyType")
+    @_utilities.deprecated("""Use attribute 'type' instead.""")
     def policy_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "policy_type")
 
@@ -199,8 +305,23 @@ class _PolicyState:
         pulumi.set(self, "policy_type", value)
 
     @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The type of the identity policy.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The latest update time of the identity policy.
+        """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
@@ -208,17 +329,11 @@ class _PolicyState:
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "urn")
-
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-    @_builtins.property
     @pulumi.getter(name="versionIds")
     def version_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The version ID list of the identity policy.
+        """
         return pulumi.get(self, "version_ids")
 
     @version_ids.setter
@@ -228,6 +343,9 @@ class _PolicyState:
     @_builtins.property
     @pulumi.getter(name="versionToDelete")
     def version_to_delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the policy version to be deleted.
+        """
         return pulumi.get(self, "version_to_delete")
 
     @version_to_delete.setter
@@ -242,6 +360,7 @@ class Policy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  policy_document: Optional[pulumi.Input[_builtins.str]] = None,
@@ -249,8 +368,15 @@ class Policy(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Policy resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] description: The description of the identity policy.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] name: The name of the identity policy.
+        :param pulumi.Input[_builtins.str] path: The resource path of the identity policy.
+        :param pulumi.Input[_builtins.str] policy_document: The policy document of the identity policy, in JSON format.
+        :param pulumi.Input[_builtins.str] version_to_delete: The ID of the policy version to be deleted.
         """
         ...
     @overload
@@ -260,6 +386,7 @@ class Policy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Policy resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param PolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -276,6 +403,7 @@ class Policy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  policy_document: Optional[pulumi.Input[_builtins.str]] = None,
@@ -290,18 +418,20 @@ class Policy(pulumi.CustomResource):
             __props__ = PolicyArgs.__new__(PolicyArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["name"] = name
             __props__.__dict__["path"] = path
             if policy_document is None and not opts.urn:
                 raise TypeError("Missing required property 'policy_document'")
             __props__.__dict__["policy_document"] = policy_document
             __props__.__dict__["version_to_delete"] = version_to_delete
+            __props__.__dict__["policy_urn"] = None
             __props__.__dict__["attachment_count"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["default_version_id"] = None
             __props__.__dict__["policy_type"] = None
+            __props__.__dict__["type"] = None
             __props__.__dict__["updated_at"] = None
-            __props__.__dict__["urn"] = None
             __props__.__dict__["version_ids"] = None
         super(Policy, __self__).__init__(
             'huaweicloud:Iam/policy:Policy',
@@ -313,16 +443,18 @@ class Policy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            policy_urn: Optional[pulumi.Input[_builtins.str]] = None,
             attachment_count: Optional[pulumi.Input[_builtins.int]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             default_version_id: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
             policy_document: Optional[pulumi.Input[_builtins.str]] = None,
             policy_type: Optional[pulumi.Input[_builtins.str]] = None,
+            type: Optional[pulumi.Input[_builtins.str]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None,
             version_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             version_to_delete: Optional[pulumi.Input[_builtins.str]] = None) -> 'Policy':
         """
@@ -332,82 +464,147 @@ class Policy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] policy_urn: The URN of the identity policy.
+        :param pulumi.Input[_builtins.int] attachment_count: The attachment count of the identity policy.
+        :param pulumi.Input[_builtins.str] created_at: The creation time of the identity policy.
+        :param pulumi.Input[_builtins.str] default_version_id: The default version ID of the identity policy.
+        :param pulumi.Input[_builtins.str] description: The description of the identity policy.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] name: The name of the identity policy.
+        :param pulumi.Input[_builtins.str] path: The resource path of the identity policy.
+        :param pulumi.Input[_builtins.str] policy_document: The policy document of the identity policy, in JSON format.
+        :param pulumi.Input[_builtins.str] type: The type of the identity policy.
+        :param pulumi.Input[_builtins.str] updated_at: The latest update time of the identity policy.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] version_ids: The version ID list of the identity policy.
+        :param pulumi.Input[_builtins.str] version_to_delete: The ID of the policy version to be deleted.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _PolicyState.__new__(_PolicyState)
 
+        __props__.__dict__["policy_urn"] = policy_urn
         __props__.__dict__["attachment_count"] = attachment_count
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["default_version_id"] = default_version_id
         __props__.__dict__["description"] = description
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["name"] = name
         __props__.__dict__["path"] = path
         __props__.__dict__["policy_document"] = policy_document
         __props__.__dict__["policy_type"] = policy_type
+        __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
-        __props__.__dict__["urn"] = urn
         __props__.__dict__["version_ids"] = version_ids
         __props__.__dict__["version_to_delete"] = version_to_delete
         return Policy(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
+    @pulumi.getter(name="PolicyUrn")
+    def policy_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The URN of the identity policy.
+        """
+        return pulumi.get(self, "policy_urn")
+
+    @_builtins.property
     @pulumi.getter(name="attachmentCount")
     def attachment_count(self) -> pulumi.Output[_builtins.int]:
+        """
+        The attachment count of the identity policy.
+        """
         return pulumi.get(self, "attachment_count")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:
+        """
+        The creation time of the identity policy.
+        """
         return pulumi.get(self, "created_at")
 
     @_builtins.property
     @pulumi.getter(name="defaultVersionId")
     def default_version_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The default version ID of the identity policy.
+        """
         return pulumi.get(self, "default_version_id")
 
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The description of the identity policy.
+        """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the identity policy.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter
     def path(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The resource path of the identity policy.
+        """
         return pulumi.get(self, "path")
 
     @_builtins.property
     @pulumi.getter(name="policyDocument")
     def policy_document(self) -> pulumi.Output[_builtins.str]:
+        """
+        The policy document of the identity policy, in JSON format.
+        """
         return pulumi.get(self, "policy_document")
 
     @_builtins.property
     @pulumi.getter(name="policyType")
+    @_utilities.deprecated("""Use attribute 'type' instead.""")
     def policy_type(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "policy_type")
 
     @_builtins.property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> pulumi.Output[_builtins.str]:
-        return pulumi.get(self, "updated_at")
+    @pulumi.getter
+    def type(self) -> pulumi.Output[_builtins.str]:
+        """
+        The type of the identity policy.
+        """
+        return pulumi.get(self, "type")
 
     @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        return pulumi.get(self, "urn")
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[_builtins.str]:
+        """
+        The latest update time of the identity policy.
+        """
+        return pulumi.get(self, "updated_at")
 
     @_builtins.property
     @pulumi.getter(name="versionIds")
     def version_ids(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        The version ID list of the identity policy.
+        """
         return pulumi.get(self, "version_ids")
 
     @_builtins.property
     @pulumi.getter(name="versionToDelete")
     def version_to_delete(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ID of the policy version to be deleted.
+        """
         return pulumi.get(self, "version_to_delete")
 

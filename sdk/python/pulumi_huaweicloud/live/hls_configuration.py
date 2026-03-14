@@ -26,6 +26,7 @@ class HlsConfigurationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a HlsConfiguration resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['HlsConfigurationApplicationArgs']]] applications: Specifies app configuration of the ingest domain.
                
                The application structure is documented below.
@@ -96,6 +97,7 @@ class _HlsConfigurationState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HlsConfiguration resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['HlsConfigurationApplicationArgs']]] applications: Specifies app configuration of the ingest domain.
                
                The application structure is documented below.
@@ -198,11 +200,10 @@ class HlsConfiguration(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/hlsConfiguration:HlsConfiguration test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -252,11 +253,10 @@ class HlsConfiguration(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/hlsConfiguration:HlsConfiguration test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param HlsConfigurationArgs args: The arguments to use to populate this resource's properties.

@@ -37,30 +37,43 @@ __all__ = [
     'PrivateCertificateSubjectAlternativeNameArgsDict',
     'PrivateCertificateValidityArgs',
     'PrivateCertificateValidityArgsDict',
+    'GetCertificatesByTagsMatchArgs',
+    'GetCertificatesByTagsMatchArgsDict',
+    'GetCertificatesByTagsNotTagArgs',
+    'GetCertificatesByTagsNotTagArgsDict',
+    'GetCertificatesByTagsNotTagsAnyArgs',
+    'GetCertificatesByTagsNotTagsAnyArgsDict',
+    'GetCertificatesByTagsTagArgs',
+    'GetCertificatesByTagsTagArgsDict',
+    'GetCertificatesByTagsTagsAnyArgs',
+    'GetCertificatesByTagsTagsAnyArgsDict',
+    'GetPrivateCasByTagsMatchArgs',
+    'GetPrivateCasByTagsMatchArgsDict',
+    'GetPrivateCasByTagsTagArgs',
+    'GetPrivateCasByTagsTagArgsDict',
+    'GetPrivateCertificatesByTagsMatchArgs',
+    'GetPrivateCertificatesByTagsMatchArgsDict',
+    'GetPrivateCertificatesByTagsTagArgs',
+    'GetPrivateCertificatesByTagsTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class CertificateAuthentificationArgsDict(TypedDict):
-        domain: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The domain name corresponding to the check value.
-        """
-        record_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the domain name check value.
-        """
-        record_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the domain name check value.
-        """
-        record_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The domain name check value.
-        """
-elif False:
-    CertificateAuthentificationArgsDict: TypeAlias = Mapping[str, Any]
+class CertificateAuthentificationArgsDict(TypedDict):
+    domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The domain name corresponding to the check value.
+    """
+    record_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the domain name check value.
+    """
+    record_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the domain name check value.
+    """
+    record_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The domain name check value.
+    """
 
 @pulumi.input_type
 class CertificateAuthentificationArgs:
@@ -133,39 +146,36 @@ class CertificateAuthentificationArgs:
         pulumi.set(self, "record_value", value)
 
 
-if not MYPY:
-    class CertificateDeployResourceArgsDict(TypedDict):
-        domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the domain name to be deployed. This field is required only
-        when `service_name` is set to **CDN**. The domain name must match the certificate.
+class CertificateDeployResourceArgsDict(TypedDict):
+    domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain name to be deployed. This field is required only
+    when `service_name` is set to **CDN**. The domain name must match the certificate.
 
-        Changing this parameter will create a new resource.
-        """
-        enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the enterprise project ID to which the resources
-        to be deployed. This field is required only when `service_name` is set to **WAF**.
-        If omitted, default enterprise project will be used.
+    Changing this parameter will create a new resource.
+    """
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID to which the resources
+    to be deployed. This field is required only when `service_name` is set to **WAF**.
+    If omitted, default enterprise project will be used.
 
-        Changing this parameter will create a new resource.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the certificate ID. This field is required only when `service_name` is
-        set to **WAF** or **ELB**.
+    Changing this parameter will create a new resource.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the certificate ID. This field is required only when `service_name` is
+    set to **WAF** or **ELB**.
 
-        Changing this parameter will create a new resource.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the resource type. This field is required only when `service_name` is
-        set to **WAF**. Valid values are **premium** (exclusive mode) and **cloud** (cloud mode).
+    Changing this parameter will create a new resource.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource type. This field is required only when `service_name` is
+    set to **WAF**. Valid values are **premium** (exclusive mode) and **cloud** (cloud mode).
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    CertificateDeployResourceArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class CertificateDeployResourceArgs:
@@ -264,26 +274,23 @@ class CertificateDeployResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class CertificateImportAuthentificationArgsDict(TypedDict):
-        domain: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The domain name mapping to the verification value
-        """
-        record_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of a domain ownership verification value.
-        """
-        record_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the domain name verification value.
-        """
-        record_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The domain verification value.
-        """
-elif False:
-    CertificateImportAuthentificationArgsDict: TypeAlias = Mapping[str, Any]
+class CertificateImportAuthentificationArgsDict(TypedDict):
+    domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The domain name mapping to the verification value
+    """
+    record_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of a domain ownership verification value.
+    """
+    record_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the domain name verification value.
+    """
+    record_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The domain verification value.
+    """
 
 @pulumi.input_type
 class CertificateImportAuthentificationArgs:
@@ -356,21 +363,18 @@ class CertificateImportAuthentificationArgs:
         pulumi.set(self, "record_value", value)
 
 
-if not MYPY:
-    class CertificateImportTargetArgsDict(TypedDict):
-        service: pulumi.Input[_builtins.str]
-        """
-        Specifies the service to which the certificate is pushed. The options include `CDN`,`WAF`
-        and `ELB`.
-        """
-        projects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the projects where the service you want to push a certificate to.
-        The same certificate can be pushed repeatedly to the same WAF or ELB service in the same `project`, but the CDN service
-        can only be pushed once. This parameter is required when pushing certificate to `WAF` or `ELB` service.
-        """
-elif False:
-    CertificateImportTargetArgsDict: TypeAlias = Mapping[str, Any]
+class CertificateImportTargetArgsDict(TypedDict):
+    service: pulumi.Input[_builtins.str]
+    """
+    Specifies the service to which the certificate is pushed. The options include `CDN`,`WAF`
+    and `ELB`.
+    """
+    projects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the projects where the service you want to push a certificate to.
+    The same certificate can be pushed repeatedly to the same WAF or ELB service in the same `project`, but the CDN service
+    can only be pushed once. This parameter is required when pushing certificate to `WAF` or `ELB` service.
+    """
 
 @pulumi.input_type
 class CertificateImportTargetArgs:
@@ -416,22 +420,19 @@ class CertificateImportTargetArgs:
         pulumi.set(self, "projects", value)
 
 
-if not MYPY:
-    class CertificatePushTargetArgsDict(TypedDict):
-        project_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the region where the target service for certificate push is located.
-        """
-        cert_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the target certificate ID.
-        """
-        cert_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the target certificate name.
-        """
-elif False:
-    CertificatePushTargetArgsDict: TypeAlias = Mapping[str, Any]
+class CertificatePushTargetArgsDict(TypedDict):
+    project_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the region where the target service for certificate push is located.
+    """
+    cert_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the target certificate ID.
+    """
+    cert_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the target certificate name.
+    """
 
 @pulumi.input_type
 class CertificatePushTargetArgs:
@@ -487,33 +488,30 @@ class CertificatePushTargetArgs:
         pulumi.set(self, "cert_name", value)
 
 
-if not MYPY:
-    class PrivateCaCrlConfigurationArgsDict(TypedDict):
-        crl_dis_point: NotRequired[pulumi.Input[_builtins.str]]
-        crl_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Computed
-        """
-        enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the CRL publishing function. Defaults to **false**.
-        """
-        obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the OBS bucket name. This field is required only when the CRL publishing
-        function is enabled.
-        """
-        valid_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the CRL update interval, in days. It's limited from `7` to `30`.
-        This field is required only when the CRL publishing function is enabled.
+class PrivateCaCrlConfigurationArgsDict(TypedDict):
+    crl_dis_point: NotRequired[pulumi.Input[_builtins.str]]
+    crl_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Computed
+    """
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the CRL publishing function. Defaults to **false**.
+    """
+    obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OBS bucket name. This field is required only when the CRL publishing
+    function is enabled.
+    """
+    valid_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the CRL update interval, in days. It's limited from `7` to `30`.
+    This field is required only when the CRL publishing function is enabled.
 
-        > Due to API limitations, the fields `obs_bucket_name` and `valid_days` must be changed together with `enable`.
-        For example, if you want to update `obs_bucket_name` or `valid_days` when the CRL function is enabled, you need to
-        disable the CRL function first, then enable it and configure new `obs_bucket_name` or `valid_days` values.
-        """
-elif False:
-    PrivateCaCrlConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+    > Due to API limitations, the fields `obs_bucket_name` and `valid_days` must be changed together with `enable`.
+    For example, if you want to update `obs_bucket_name` or `valid_days` when the CRL function is enabled, you need to
+    disable the CRL function first, then enable it and configure new `obs_bucket_name` or `valid_days` values.
+    """
 
 @pulumi.input_type
 class PrivateCaCrlConfigurationArgs:
@@ -610,48 +608,45 @@ class PrivateCaCrlConfigurationArgs:
         pulumi.set(self, "valid_days", value)
 
 
-if not MYPY:
-    class PrivateCaDistinguishedNameArgsDict(TypedDict):
-        common_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the common name of private CA. The valid length is limited
-        between `1` to `64`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.), comma (,),
-        space ( ) and asterisks (*) are allowed. Changing this parameter will create a new resource.
-        """
-        country: pulumi.Input[_builtins.str]
-        """
-        Specifies the country of private CA. The valid length is limited in `2`,
-        Only English letters are allowed. Changing this parameter will create a new resource.
-        """
-        locality: pulumi.Input[_builtins.str]
-        """
-        Specifies the locality of private CA. The valid length is limited between
-        `1` to `128`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.), comma (,) and
-        space ( ) are allowed. Changing this parameter will create a new resource.
-        """
-        organization: pulumi.Input[_builtins.str]
-        """
-        Specifies the organization of private CA. The valid length is limited
-        between `1` to `64`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.), comma (,) and
-        space ( ) are allowed. Changing this parameter will create a new resource.
-        """
-        organizational_unit: pulumi.Input[_builtins.str]
-        """
-        Specifies the organizational unit of private CA. The valid length
-        is limited between `1` to `64`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.),
-        comma (,) and space ( ) are allowed. Changing this parameter will create a new resource.
+class PrivateCaDistinguishedNameArgsDict(TypedDict):
+    common_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the common name of private CA. The valid length is limited
+    between `1` to `64`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.), comma (,),
+    space ( ) and asterisks (*) are allowed. Changing this parameter will create a new resource.
+    """
+    country: pulumi.Input[_builtins.str]
+    """
+    Specifies the country of private CA. The valid length is limited in `2`,
+    Only English letters are allowed. Changing this parameter will create a new resource.
+    """
+    locality: pulumi.Input[_builtins.str]
+    """
+    Specifies the locality of private CA. The valid length is limited between
+    `1` to `128`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.), comma (,) and
+    space ( ) are allowed. Changing this parameter will create a new resource.
+    """
+    organization: pulumi.Input[_builtins.str]
+    """
+    Specifies the organization of private CA. The valid length is limited
+    between `1` to `64`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.), comma (,) and
+    space ( ) are allowed. Changing this parameter will create a new resource.
+    """
+    organizational_unit: pulumi.Input[_builtins.str]
+    """
+    Specifies the organizational unit of private CA. The valid length
+    is limited between `1` to `64`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.),
+    comma (,) and space ( ) are allowed. Changing this parameter will create a new resource.
 
-        <a name="block-validity"></a>
-        The `validity` block supports:
-        """
-        state: pulumi.Input[_builtins.str]
-        """
-        Specifies the state of private CA. The valid length is limited between
-        `1` to `128`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.), comma (,) and
-        space ( ) are allowed. Changing this parameter will create a new resource.
-        """
-elif False:
-    PrivateCaDistinguishedNameArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block-validity"></a>
+    The `validity` block supports:
+    """
+    state: pulumi.Input[_builtins.str]
+    """
+    Specifies the state of private CA. The valid length is limited between
+    `1` to `128`, Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.), comma (,) and
+    space ( ) are allowed. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class PrivateCaDistinguishedNameArgs:
@@ -778,32 +773,29 @@ class PrivateCaDistinguishedNameArgs:
         pulumi.set(self, "state", value)
 
 
-if not MYPY:
-    class PrivateCaValidityArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of validity value. Changing this parameter will create a new
-        resource. Options are: **YEAR**, **MONTH(31 days)**, **DAY**, **HOUR**. If the charging mode is **prePaid**, only
-        support **YEAR** and **MONTH(31 days)**.
-        """
-        value: pulumi.Input[_builtins.int]
-        """
-        Specifies the value of validity. Root CA certificate is no longer than 30 years
-        and subordinate CA is no longer than 20 years. Changing this parameter will create a new resource. When creating a
-        subordinate CA, the validity must less than the root CA.
-        """
-        started_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the start time of validity. The value is a timestamp in milliseconds.
-        For example, `1722840237000` indicates `2024-08-05 14:43:57`. The value of `started_at` cannot be earlier than `5` minutes
-        from the current time.
-        Changing this parameter will create a new resource.
+class PrivateCaValidityArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of validity value. Changing this parameter will create a new
+    resource. Options are: **YEAR**, **MONTH(31 days)**, **DAY**, **HOUR**. If the charging mode is **prePaid**, only
+    support **YEAR** and **MONTH(31 days)**.
+    """
+    value: pulumi.Input[_builtins.int]
+    """
+    Specifies the value of validity. Root CA certificate is no longer than 30 years
+    and subordinate CA is no longer than 20 years. Changing this parameter will create a new resource. When creating a
+    subordinate CA, the validity must less than the root CA.
+    """
+    started_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the start time of validity. The value is a timestamp in milliseconds.
+    For example, `1722840237000` indicates `2024-08-05 14:43:57`. The value of `started_at` cannot be earlier than `5` minutes
+    from the current time.
+    Changing this parameter will create a new resource.
 
-        <a name="block-crl_configuration"></a>
-        The `crl_configuration` block supports:
-        """
-elif False:
-    PrivateCaValidityArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block-crl_configuration"></a>
+    The `crl_configuration` block supports:
+    """
 
 @pulumi.input_type
 class PrivateCaValidityArgs:
@@ -878,52 +870,49 @@ class PrivateCaValidityArgs:
         pulumi.set(self, "started_at", value)
 
 
-if not MYPY:
-    class PrivateCertificateDistinguishedNameArgsDict(TypedDict):
-        common_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the common name of private certificate. The valid length
-        is limited between `1` to `64`, Only Chinese and English letters, digits, hyphens (-), underscores (_),
-        dots (.), comma (,), space ( ) and asterisks (*) are allowed. Changing this parameter will create a new resource.
-        """
-        country: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the country code of private certificate. The valid length is
-        limited in `2`. Only English letters are allowed. The value corresponding to the parent CA is inherited by default.
-        Changing this parameter will create a new resource.
-        """
-        locality: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the locality of private certificate. The valid length
-        is limited between `1` to `128`, Only Chinese and English letters, digits, hyphens (-), underscores (_),
-        dots (.), comma (,) and space ( ) are allowed. The value corresponding to the parent CA is inherited by default.
-        Changing this parameter will create a new resource.
-        """
-        organization: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the organization of private certificate. The valid length
-        is limited between `1` to `64`. Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.),
-        comma (,) and space ( ) are allowed. The value corresponding to the parent CA is inherited by default.
-        Changing this parameter will create a new resource.
-        """
-        organizational_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the organizational unit of private certificate.
-        The valid length is limited between `1` to `64`. Only Chinese and English letters, digits, hyphens (-),
-        underscores (_), dots (.), comma (,) and space ( ) are allowed. The value corresponding to the parent CA is inherited
-        by default. Changing this parameter will create a new resource.
+class PrivateCertificateDistinguishedNameArgsDict(TypedDict):
+    common_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the common name of private certificate. The valid length
+    is limited between `1` to `64`, Only Chinese and English letters, digits, hyphens (-), underscores (_),
+    dots (.), comma (,), space ( ) and asterisks (*) are allowed. Changing this parameter will create a new resource.
+    """
+    country: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the country code of private certificate. The valid length is
+    limited in `2`. Only English letters are allowed. The value corresponding to the parent CA is inherited by default.
+    Changing this parameter will create a new resource.
+    """
+    locality: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the locality of private certificate. The valid length
+    is limited between `1` to `128`, Only Chinese and English letters, digits, hyphens (-), underscores (_),
+    dots (.), comma (,) and space ( ) are allowed. The value corresponding to the parent CA is inherited by default.
+    Changing this parameter will create a new resource.
+    """
+    organization: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the organization of private certificate. The valid length
+    is limited between `1` to `64`. Only Chinese and English letters, digits, hyphens (-), underscores (_), dots (.),
+    comma (,) and space ( ) are allowed. The value corresponding to the parent CA is inherited by default.
+    Changing this parameter will create a new resource.
+    """
+    organizational_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the organizational unit of private certificate.
+    The valid length is limited between `1` to `64`. Only Chinese and English letters, digits, hyphens (-),
+    underscores (_), dots (.), comma (,) and space ( ) are allowed. The value corresponding to the parent CA is inherited
+    by default. Changing this parameter will create a new resource.
 
-        <a name="block-validity"></a>
-        The `validity` block supports:
-        """
-        state: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the state or city name of private certificate. The valid length is
-        limited between `1` to `128`. Only Chinese and English letters, digits, hyphens (-), underscores (_),
-        dots (.), comma (,) and space ( ) are allowed. Changing this parameter will create a new resource.
-        """
-elif False:
-    PrivateCertificateDistinguishedNameArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block-validity"></a>
+    The `validity` block supports:
+    """
+    state: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the state or city name of private certificate. The valid length is
+    limited between `1` to `128`. Only Chinese and English letters, digits, hyphens (-), underscores (_),
+    dots (.), comma (,) and space ( ) are allowed. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class PrivateCertificateDistinguishedNameArgs:
@@ -1063,24 +1052,21 @@ class PrivateCertificateDistinguishedNameArgs:
         pulumi.set(self, "state", value)
 
 
-if not MYPY:
-    class PrivateCertificateSubjectAlternativeNameArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the alternative name. Currently,
-        only **DNS**, **IP**, **EMAIL**, and **URI** are allowed. Changing this parameter will create a new resource.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the corresponding alternative name type.
-        Changing this parameter will create a new resource.
-        + When `type` is **DNS**, the value length ranges from `0` to `253` characters.
-        + When `type` is **IP**, the value length ranges from `0` to `39` characters. Support IPv4 and IPv6.
-        + When `type` is **EMAIL**, the value length ranges from `0` to `256` characters.
-        + When `type` is **URI**, the value length ranges from `0` to `253` characters.
-        """
-elif False:
-    PrivateCertificateSubjectAlternativeNameArgsDict: TypeAlias = Mapping[str, Any]
+class PrivateCertificateSubjectAlternativeNameArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the alternative name. Currently,
+    only **DNS**, **IP**, **EMAIL**, and **URI** are allowed. Changing this parameter will create a new resource.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the corresponding alternative name type.
+    Changing this parameter will create a new resource.
+    + When `type` is **DNS**, the value length ranges from `0` to `253` characters.
+    + When `type` is **IP**, the value length ranges from `0` to `39` characters. Support IPv4 and IPv6.
+    + When `type` is **EMAIL**, the value length ranges from `0` to `256` characters.
+    + When `type` is **URI**, the value length ranges from `0` to `253` characters.
+    """
 
 @pulumi.input_type
 class PrivateCertificateSubjectAlternativeNameArgs:
@@ -1131,34 +1117,31 @@ class PrivateCertificateSubjectAlternativeNameArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PrivateCertificateValidityArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the alternative name. Currently,
-        only **DNS**, **IP**, **EMAIL**, and **URI** are allowed. Changing this parameter will create a new resource.
-        """
-        value: pulumi.Input[_builtins.int]
-        """
-        Specifies the value of the corresponding alternative name type.
-        Changing this parameter will create a new resource.
-        + When `type` is **DNS**, the value length ranges from `0` to `253` characters.
-        + When `type` is **IP**, the value length ranges from `0` to `39` characters. Support IPv4 and IPv6.
-        + When `type` is **EMAIL**, the value length ranges from `0` to `256` characters.
-        + When `type` is **URI**, the value length ranges from `0` to `253` characters.
-        """
-        start_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the private certificate validity start from.
-        The value is a timestamp in milliseconds. For example, `1645146939688` indicates `2022-02-18 09:15:39`.
-        The value of `start_at` cannot be earlier than the result of the value of current time minus `5` minutes.
-        Changing this creates a new private certificate resource.
+class PrivateCertificateValidityArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the alternative name. Currently,
+    only **DNS**, **IP**, **EMAIL**, and **URI** are allowed. Changing this parameter will create a new resource.
+    """
+    value: pulumi.Input[_builtins.int]
+    """
+    Specifies the value of the corresponding alternative name type.
+    Changing this parameter will create a new resource.
+    + When `type` is **DNS**, the value length ranges from `0` to `253` characters.
+    + When `type` is **IP**, the value length ranges from `0` to `39` characters. Support IPv4 and IPv6.
+    + When `type` is **EMAIL**, the value length ranges from `0` to `256` characters.
+    + When `type` is **URI**, the value length ranges from `0` to `253` characters.
+    """
+    start_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the private certificate validity start from.
+    The value is a timestamp in milliseconds. For example, `1645146939688` indicates `2022-02-18 09:15:39`.
+    The value of `start_at` cannot be earlier than the result of the value of current time minus `5` minutes.
+    Changing this creates a new private certificate resource.
 
-        <a name="block-subject_alternative_names"></a>
-        The `subject_alternative_names` block supports:
-        """
-elif False:
-    PrivateCertificateValidityArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block-subject_alternative_names"></a>
+    The `subject_alternative_names` block supports:
+    """
 
 @pulumi.input_type
 class PrivateCertificateValidityArgs:
@@ -1235,5 +1218,500 @@ class PrivateCertificateValidityArgs:
     @start_at.setter
     def start_at(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "start_at", value)
+
+
+class GetCertificatesByTagsMatchArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched.
+    """
+    value: NotRequired[_builtins.str]
+    """
+    Specifies the match value.
+    """
+
+@pulumi.input_type
+class GetCertificatesByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param _builtins.str value: Specifies the match value.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the match value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class GetCertificatesByTagsNotTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the value array.
+
+    <a name="matches_Match"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetCertificatesByTagsNotTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
+
+
+class GetCertificatesByTagsNotTagsAnyArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the value array.
+
+    <a name="matches_Match"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetCertificatesByTagsNotTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
+
+
+class GetCertificatesByTagsTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the value array.
+
+    <a name="matches_Match"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetCertificatesByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
+
+
+class GetCertificatesByTagsTagsAnyArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the value array.
+
+    <a name="matches_Match"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetCertificatesByTagsTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateCasByTagsMatchArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched.
+    """
+    value: NotRequired[_builtins.str]
+    """
+    Specifies the match value.
+    """
+
+@pulumi.input_type
+class GetPrivateCasByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param _builtins.str value: Specifies the match value.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the match value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class GetPrivateCasByTagsTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the value array.
+
+    <a name="matches_Match"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateCasByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateCertificatesByTagsMatchArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched.
+    """
+    value: NotRequired[_builtins.str]
+    """
+    Specifies the match value.
+    """
+
+@pulumi.input_type
+class GetPrivateCertificatesByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param _builtins.str value: Specifies the match value.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the match value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class GetPrivateCertificatesByTagsTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the value array.
+
+    <a name="matches_Match"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateCertificatesByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
 
 

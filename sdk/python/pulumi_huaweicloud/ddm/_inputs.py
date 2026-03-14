@@ -29,20 +29,15 @@ __all__ = [
     'SchemaShardArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AccountSchemaArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the DDM account.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the associated schema.
-        """
-elif False:
-    AccountSchemaArgsDict: TypeAlias = Mapping[str, Any]
+class AccountSchemaArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the DDM account.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the associated schema.
+    """
 
 @pulumi.input_type
 class AccountSchemaArgs:
@@ -83,22 +78,19 @@ class AccountSchemaArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class InstanceNodeArgsDict(TypedDict):
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the IP address of the DDM instance node.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the port of the DDM instance node.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the status of the DDM instance node.
-        """
-elif False:
-    InstanceNodeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceNodeArgsDict(TypedDict):
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the IP address of the DDM instance node.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the port of the DDM instance node.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the status of the DDM instance node.
+    """
 
 @pulumi.input_type
 class InstanceNodeArgs:
@@ -155,18 +147,15 @@ class InstanceNodeArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class InstanceParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name. Some of them needs the instance to be restarted to take effect.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter value.
-        """
-elif False:
-    InstanceParameterArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name. Some of them needs the instance to be restarted to take effect.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value.
+    """
 
 @pulumi.input_type
 class InstanceParameterArgs:
@@ -205,18 +194,15 @@ class InstanceParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class InstanceReadStrategyReadWeightArgsDict(TypedDict):
-        db_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the DB instance associated with the DDM schema.
-        """
-        weight: pulumi.Input[_builtins.int]
-        """
-        Specifies read weight of the DB instance associated with the DDM schema.
-        """
-elif False:
-    InstanceReadStrategyReadWeightArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceReadStrategyReadWeightArgsDict(TypedDict):
+    db_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the DB instance associated with the DDM schema.
+    """
+    weight: pulumi.Input[_builtins.int]
+    """
+    Specifies read weight of the DB instance associated with the DDM schema.
+    """
 
 @pulumi.input_type
 class InstanceReadStrategyReadWeightArgs:
@@ -255,34 +241,31 @@ class InstanceReadStrategyReadWeightArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class SchemaDataNodeArgsDict(TypedDict):
-        admin_password: pulumi.Input[_builtins.str]
-        """
-        Specifies the password for logging in to the associated RDS instance.
-        """
-        admin_user: pulumi.Input[_builtins.str]
-        """
-        Specifies the username for logging in to the associated RDS instance.
-        """
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the RDS instance associated with the schema.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the DDM schema.
-        An instance name starts with a letter, consists of `2` to `48` characters, and can contain only lowercase letters,
-        digits, and underscores (_). Cannot contain keywords information_schema, mysql, performance_schema, or sys.
+class SchemaDataNodeArgsDict(TypedDict):
+    admin_password: pulumi.Input[_builtins.str]
+    """
+    Specifies the password for logging in to the associated RDS instance.
+    """
+    admin_user: pulumi.Input[_builtins.str]
+    """
+    Specifies the username for logging in to the associated RDS instance.
+    """
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the RDS instance associated with the schema.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the DDM schema.
+    An instance name starts with a letter, consists of `2` to `48` characters, and can contain only lowercase letters,
+    digits, and underscores (_). Cannot contain keywords information_schema, mysql, performance_schema, or sys.
 
-        Changing this parameter will create a new resource.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the status of the associated RDS instance.
-        """
-elif False:
-    SchemaDataNodeArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the status of the associated RDS instance.
+    """
 
 @pulumi.input_type
 class SchemaDataNodeArgs:
@@ -376,30 +359,27 @@ class SchemaDataNodeArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class SchemaShardArgsDict(TypedDict):
-        db_slot: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the number of shards.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the RDS instance associated with the schema.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the DDM schema.
-        An instance name starts with a letter, consists of `2` to `48` characters, and can contain only lowercase letters,
-        digits, and underscores (_). Cannot contain keywords information_schema, mysql, performance_schema, or sys.
+class SchemaShardArgsDict(TypedDict):
+    db_slot: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the number of shards.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the RDS instance associated with the schema.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the DDM schema.
+    An instance name starts with a letter, consists of `2` to `48` characters, and can contain only lowercase letters,
+    digits, and underscores (_). Cannot contain keywords information_schema, mysql, performance_schema, or sys.
 
-        Changing this parameter will create a new resource.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the status of the associated RDS instance.
-        """
-elif False:
-    SchemaShardArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the status of the associated RDS instance.
+    """
 
 @pulumi.input_type
 class SchemaShardArgs:

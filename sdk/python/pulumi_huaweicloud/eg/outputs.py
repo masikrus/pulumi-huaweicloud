@@ -16,6 +16,7 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'ConnectionFlavor',
     'ConnectionKafkaDetail',
     'EventBatchActionEvent',
     'EventStreamOption',
@@ -26,12 +27,23 @@ __all__ = [
     'EventStreamSource',
     'EventSubscriptionSource',
     'EventSubscriptionTarget',
+    'EventSubscriptionTargetApigwDetail',
+    'EventSubscriptionTargetApigwDetailInvocationHttpParameters',
+    'EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameter',
+    'EventSubscriptionTargetDeadLetterQueue',
+    'EventSubscriptionTargetEgDetail',
+    'EventSubscriptionTargetKafkaDetail',
+    'EventSubscriptionTargetKafkaDetailKeyTransform',
+    'EventSubscriptionTargetKeyTransform',
+    'EventSubscriptionTargetSmnDetail',
+    'EventSubscriptionTargetSmnDetailKeyTransform',
     'GetConnectionsConnectionResult',
     'GetConnectionsConnectionErrorInfoResult',
     'GetConnectionsConnectionFlavorResult',
     'GetConnectionsConnectionKafkaDetailResult',
     'GetCustomEventChannelsChannelResult',
     'GetCustomEventSourcesSourceResult',
+    'GetCustomEventSourcesSourceErrorInfoResult',
     'GetEventChannelsChannelResult',
     'GetEventSourcesSourceResult',
     'GetEventSourcesSourceEventTypeResult',
@@ -42,10 +54,97 @@ __all__ = [
     'GetEventStreamsEventStreamRuleConfigTransformResult',
     'GetEventStreamsEventStreamSinkResult',
     'GetEventStreamsEventStreamSourceResult',
+    'GetEventSubscriptionsSubscriptionResult',
+    'GetEventSubscriptionsSubscriptionSourceResult',
+    'GetEventSubscriptionsSubscriptionTargetResult',
+    'GetEventSubscriptionsSubscriptionUsedResult',
     'GetEventTargetCatalogsCatalogResult',
     'GetEventTargetCatalogsCatalogParameterResult',
     'GetQuotasQuotaResult',
+    'GetTracedEventsEventResult',
 ]
+
+@pulumi.output_type
+class ConnectionFlavor(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bandwidthType":
+            suggest = "bandwidth_type"
+        elif key == "concurrencyType":
+            suggest = "concurrency_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConnectionFlavor. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConnectionFlavor.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConnectionFlavor.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bandwidth_type: Optional[_builtins.str] = None,
+                 concurrency: Optional[_builtins.int] = None,
+                 concurrency_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str bandwidth_type: The bandwidth type of the kafka instance.
+        :param _builtins.int concurrency: The concurrency number of the kafka instance.
+        :param _builtins.str concurrency_type: The concurrency type of the kafka instance.
+        :param _builtins.str name: Specifies the name of the connection.
+               The value can contain no more than 128 characters, including letters, digits, underscores (_), hyphens (-),
+               and periods (.), and must start with a character or letter.
+               
+               Changing this parameter will create a new resource.
+        """
+        if bandwidth_type is not None:
+            pulumi.set(__self__, "bandwidth_type", bandwidth_type)
+        if concurrency is not None:
+            pulumi.set(__self__, "concurrency", concurrency)
+        if concurrency_type is not None:
+            pulumi.set(__self__, "concurrency_type", concurrency_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="bandwidthType")
+    def bandwidth_type(self) -> Optional[_builtins.str]:
+        """
+        The bandwidth type of the kafka instance.
+        """
+        return pulumi.get(self, "bandwidth_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def concurrency(self) -> Optional[_builtins.int]:
+        """
+        The concurrency number of the kafka instance.
+        """
+        return pulumi.get(self, "concurrency")
+
+    @_builtins.property
+    @pulumi.getter(name="concurrencyType")
+    def concurrency_type(self) -> Optional[_builtins.str]:
+        """
+        The concurrency type of the kafka instance.
+        """
+        return pulumi.get(self, "concurrency_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the connection.
+        The value can contain no more than 128 characters, including letters, digits, underscores (_), hyphens (-),
+        and periods (.), and must start with a character or letter.
+
+        Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "name")
+
 
 @pulumi.output_type
 class ConnectionKafkaDetail(dict):
@@ -56,6 +155,8 @@ class ConnectionKafkaDetail(dict):
             suggest = "connect_address"
         elif key == "instanceId":
             suggest = "instance_id"
+        elif key == "securityProtocol":
+            suggest = "security_protocol"
         elif key == "userName":
             suggest = "user_name"
 
@@ -75,6 +176,7 @@ class ConnectionKafkaDetail(dict):
                  instance_id: _builtins.str,
                  acks: Optional[_builtins.str] = None,
                  password: Optional[_builtins.str] = None,
+                 security_protocol: Optional[_builtins.str] = None,
                  user_name: Optional[_builtins.str] = None):
         """
         :param _builtins.str connect_address: Specifies the IP address of the kafka instance.
@@ -104,6 +206,9 @@ class ConnectionKafkaDetail(dict):
         :param _builtins.str password: Specifies the password of the kafka instance.
                
                Changing this parameter will create a new resource.
+        :param _builtins.str security_protocol: Specifies the security protocol of the kafka instance.
+               
+               Changing this parameter will create a new resource.
         :param _builtins.str user_name: Specifies the user name of the kafka instance.
                
                Changing this parameter will create a new resource.
@@ -114,6 +219,8 @@ class ConnectionKafkaDetail(dict):
             pulumi.set(__self__, "acks", acks)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if security_protocol is not None:
+            pulumi.set(__self__, "security_protocol", security_protocol)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
 
@@ -171,6 +278,16 @@ class ConnectionKafkaDetail(dict):
         Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security protocol of the kafka instance.
+
+        Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "security_protocol")
 
     @_builtins.property
     @pulumi.getter(name="userName")
@@ -1057,6 +1174,620 @@ class EventSubscriptionTarget(dict):
 
 
 @pulumi.output_type
+class EventSubscriptionTargetApigwDetail(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "invocationHttpParameters":
+            suggest = "invocation_http_parameters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventSubscriptionTargetApigwDetail. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventSubscriptionTargetApigwDetail.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventSubscriptionTargetApigwDetail.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 url: _builtins.str,
+                 invocation_http_parameters: Optional['outputs.EventSubscriptionTargetApigwDetailInvocationHttpParameters'] = None):
+        """
+        :param _builtins.str url: Specifies the URL of the APIGW endpoint.
+        :param 'EventSubscriptionTargetApigwDetailInvocationHttpParametersArgs' invocation_http_parameters: Specifies the HTTP parameters for the APIGW invocation.  
+               The invocation_http_parameters structure is documented below.
+               
+               <a name="eg_target_apigw_parameters"></a>
+               The `invocation_http_parameters` block supports:
+        """
+        pulumi.set(__self__, "url", url)
+        if invocation_http_parameters is not None:
+            pulumi.set(__self__, "invocation_http_parameters", invocation_http_parameters)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        Specifies the URL of the APIGW endpoint.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter(name="invocationHttpParameters")
+    def invocation_http_parameters(self) -> Optional['outputs.EventSubscriptionTargetApigwDetailInvocationHttpParameters']:
+        """
+        Specifies the HTTP parameters for the APIGW invocation.  
+        The invocation_http_parameters structure is documented below.
+
+        <a name="eg_target_apigw_parameters"></a>
+        The `invocation_http_parameters` block supports:
+        """
+        return pulumi.get(self, "invocation_http_parameters")
+
+
+@pulumi.output_type
+class EventSubscriptionTargetApigwDetailInvocationHttpParameters(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "headerParameters":
+            suggest = "header_parameters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventSubscriptionTargetApigwDetailInvocationHttpParameters. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventSubscriptionTargetApigwDetailInvocationHttpParameters.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventSubscriptionTargetApigwDetailInvocationHttpParameters.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 header_parameters: Optional[Sequence['outputs.EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameter']] = None):
+        """
+        :param Sequence['EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgs'] header_parameters: Specifies the header parameters for the HTTP request.  
+               The header_parameters structure is documented below.
+               
+               <a name="eg_target_apigw_header_parameter"></a>
+               The `header_parameters` block supports:
+        """
+        if header_parameters is not None:
+            pulumi.set(__self__, "header_parameters", header_parameters)
+
+    @_builtins.property
+    @pulumi.getter(name="headerParameters")
+    def header_parameters(self) -> Optional[Sequence['outputs.EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameter']]:
+        """
+        Specifies the header parameters for the HTTP request.  
+        The header_parameters structure is documented below.
+
+        <a name="eg_target_apigw_header_parameter"></a>
+        The `header_parameters` block supports:
+        """
+        return pulumi.get(self, "header_parameters")
+
+
+@pulumi.output_type
+class EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isValueSecret":
+            suggest = "is_value_secret"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 is_value_secret: Optional[_builtins.bool] = None,
+                 key: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool is_value_secret: Specifies whether the header parameter value is secret.
+               
+               <a name="eg_target_dead_letter_queue"></a>
+               The `dead_letter_queue` block supports:
+        :param _builtins.str key: Specifies the key of the header parameter.
+        :param _builtins.str value: Specifies the value of the header parameter.
+        """
+        if is_value_secret is not None:
+            pulumi.set(__self__, "is_value_secret", is_value_secret)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isValueSecret")
+    def is_value_secret(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the header parameter value is secret.
+
+        <a name="eg_target_dead_letter_queue"></a>
+        The `dead_letter_queue` block supports:
+        """
+        return pulumi.get(self, "is_value_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the key of the header parameter.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the value of the header parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class EventSubscriptionTargetDeadLetterQueue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionId":
+            suggest = "connection_id"
+        elif key == "instanceId":
+            suggest = "instance_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventSubscriptionTargetDeadLetterQueue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventSubscriptionTargetDeadLetterQueue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventSubscriptionTargetDeadLetterQueue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connection_id: _builtins.str,
+                 instance_id: _builtins.str,
+                 topic: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str connection_id: Specifies the connection ID of the dead letter queue.
+        :param _builtins.str instance_id: Specifies the instance ID of the dead letter queue.
+        :param _builtins.str topic: Specifies The topic name of the dead letter queue.
+        :param _builtins.str type: Specifies the type of dead letter queue.
+        """
+        pulumi.set(__self__, "connection_id", connection_id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "topic", topic)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> _builtins.str:
+        """
+        Specifies the connection ID of the dead letter queue.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Specifies the instance ID of the dead letter queue.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def topic(self) -> _builtins.str:
+        """
+        Specifies The topic name of the dead letter queue.
+        """
+        return pulumi.get(self, "topic")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the type of dead letter queue.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class EventSubscriptionTargetEgDetail(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "agencyName":
+            suggest = "agency_name"
+        elif key == "targetChannelId":
+            suggest = "target_channel_id"
+        elif key == "targetProjectId":
+            suggest = "target_project_id"
+        elif key == "targetRegion":
+            suggest = "target_region"
+        elif key == "crossAccount":
+            suggest = "cross_account"
+        elif key == "crossRegion":
+            suggest = "cross_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventSubscriptionTargetEgDetail. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventSubscriptionTargetEgDetail.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventSubscriptionTargetEgDetail.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 agency_name: _builtins.str,
+                 target_channel_id: _builtins.str,
+                 target_project_id: _builtins.str,
+                 target_region: _builtins.str,
+                 cross_account: Optional[_builtins.bool] = None,
+                 cross_region: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str agency_name: Specifies the agency name for cross-account access.
+        :param _builtins.str target_channel_id: Specifies the target channel ID of the EG channel.
+        :param _builtins.str target_project_id: Specifies the target project ID of the EG channel.
+        :param _builtins.str target_region: Specifies the target region of the EG channel.
+        :param _builtins.bool cross_account: Specifies whether this is a cross-account EG channel target.
+               
+               <a name="eg_target_apigw_detail"></a>
+               The `apigw_detail` block supports:
+        :param _builtins.bool cross_region: Specifies whether this is a cross-region EG channel target.
+        """
+        pulumi.set(__self__, "agency_name", agency_name)
+        pulumi.set(__self__, "target_channel_id", target_channel_id)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+        pulumi.set(__self__, "target_region", target_region)
+        if cross_account is not None:
+            pulumi.set(__self__, "cross_account", cross_account)
+        if cross_region is not None:
+            pulumi.set(__self__, "cross_region", cross_region)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> _builtins.str:
+        """
+        Specifies the agency name for cross-account access.
+        """
+        return pulumi.get(self, "agency_name")
+
+    @_builtins.property
+    @pulumi.getter(name="targetChannelId")
+    def target_channel_id(self) -> _builtins.str:
+        """
+        Specifies the target channel ID of the EG channel.
+        """
+        return pulumi.get(self, "target_channel_id")
+
+    @_builtins.property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> _builtins.str:
+        """
+        Specifies the target project ID of the EG channel.
+        """
+        return pulumi.get(self, "target_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="targetRegion")
+    def target_region(self) -> _builtins.str:
+        """
+        Specifies the target region of the EG channel.
+        """
+        return pulumi.get(self, "target_region")
+
+    @_builtins.property
+    @pulumi.getter(name="crossAccount")
+    def cross_account(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether this is a cross-account EG channel target.
+
+        <a name="eg_target_apigw_detail"></a>
+        The `apigw_detail` block supports:
+        """
+        return pulumi.get(self, "cross_account")
+
+    @_builtins.property
+    @pulumi.getter(name="crossRegion")
+    def cross_region(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether this is a cross-region EG channel target.
+        """
+        return pulumi.get(self, "cross_region")
+
+
+@pulumi.output_type
+class EventSubscriptionTargetKafkaDetail(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keyTransform":
+            suggest = "key_transform"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventSubscriptionTargetKafkaDetail. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventSubscriptionTargetKafkaDetail.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventSubscriptionTargetKafkaDetail.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 topic: _builtins.str,
+                 key_transform: Optional['outputs.EventSubscriptionTargetKafkaDetailKeyTransform'] = None):
+        """
+        :param _builtins.str topic: Specifies The topic name of the dead letter queue.
+        :param 'EventSubscriptionTargetKafkaDetailKeyTransformArgs' key_transform: Specifies the subject transform configuration of the Kafka
+               messages.
+               The key_transform structure is documented below.
+               
+               <a name="eg_target_eg_detail"></a>
+               The `eg_detail` block supports:
+        """
+        pulumi.set(__self__, "topic", topic)
+        if key_transform is not None:
+            pulumi.set(__self__, "key_transform", key_transform)
+
+    @_builtins.property
+    @pulumi.getter
+    def topic(self) -> _builtins.str:
+        """
+        Specifies The topic name of the dead letter queue.
+        """
+        return pulumi.get(self, "topic")
+
+    @_builtins.property
+    @pulumi.getter(name="keyTransform")
+    def key_transform(self) -> Optional['outputs.EventSubscriptionTargetKafkaDetailKeyTransform']:
+        """
+        Specifies the subject transform configuration of the Kafka
+        messages.
+        The key_transform structure is documented below.
+
+        <a name="eg_target_eg_detail"></a>
+        The `eg_detail` block supports:
+        """
+        return pulumi.get(self, "key_transform")
+
+
+@pulumi.output_type
+class EventSubscriptionTargetKafkaDetailKeyTransform(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 template: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: Specifies the type of dead letter queue.
+        :param _builtins.str template: Specifies the template definition for VARIABLE type transform rules.
+               
+               <a name="eg_target_kafka_detail"></a>
+               The `kafka_detail` block supports:
+        :param _builtins.str value: Specifies the value of the header parameter.
+        """
+        pulumi.set(__self__, "type", type)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the type of dead letter queue.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def template(self) -> Optional[_builtins.str]:
+        """
+        Specifies the template definition for VARIABLE type transform rules.
+
+        <a name="eg_target_kafka_detail"></a>
+        The `kafka_detail` block supports:
+        """
+        return pulumi.get(self, "template")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the value of the header parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class EventSubscriptionTargetKeyTransform(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 template: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: Specifies the type of dead letter queue.
+        :param _builtins.str template: Specifies the template definition for VARIABLE type transform rules.
+               
+               <a name="eg_target_kafka_detail"></a>
+               The `kafka_detail` block supports:
+        :param _builtins.str value: Specifies the value of the header parameter.
+        """
+        pulumi.set(__self__, "type", type)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the type of dead letter queue.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def template(self) -> Optional[_builtins.str]:
+        """
+        Specifies the template definition for VARIABLE type transform rules.
+
+        <a name="eg_target_kafka_detail"></a>
+        The `kafka_detail` block supports:
+        """
+        return pulumi.get(self, "template")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the value of the header parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class EventSubscriptionTargetSmnDetail(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "agencyName":
+            suggest = "agency_name"
+        elif key == "keyTransform":
+            suggest = "key_transform"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventSubscriptionTargetSmnDetail. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventSubscriptionTargetSmnDetail.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventSubscriptionTargetSmnDetail.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 agency_name: _builtins.str,
+                 urn: _builtins.str,
+                 key_transform: Optional['outputs.EventSubscriptionTargetSmnDetailKeyTransform'] = None):
+        """
+        :param _builtins.str agency_name: Specifies the agency name for cross-account access.
+        :param _builtins.str urn: Specifies the URN of the SMN topic.
+        :param 'EventSubscriptionTargetSmnDetailKeyTransformArgs' key_transform: Specifies the subject transform configuration of the Kafka
+               messages.
+               The key_transform structure is documented below.
+               
+               <a name="eg_target_eg_detail"></a>
+               The `eg_detail` block supports:
+        """
+        pulumi.set(__self__, "agency_name", agency_name)
+        pulumi.set(__self__, "urn", urn)
+        if key_transform is not None:
+            pulumi.set(__self__, "key_transform", key_transform)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> _builtins.str:
+        """
+        Specifies the agency name for cross-account access.
+        """
+        return pulumi.get(self, "agency_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def urn(self) -> _builtins.str:
+        """
+        Specifies the URN of the SMN topic.
+        """
+        return pulumi.get(self, "urn")
+
+    @_builtins.property
+    @pulumi.getter(name="keyTransform")
+    def key_transform(self) -> Optional['outputs.EventSubscriptionTargetSmnDetailKeyTransform']:
+        """
+        Specifies the subject transform configuration of the Kafka
+        messages.
+        The key_transform structure is documented below.
+
+        <a name="eg_target_eg_detail"></a>
+        The `eg_detail` block supports:
+        """
+        return pulumi.get(self, "key_transform")
+
+
+@pulumi.output_type
+class EventSubscriptionTargetSmnDetailKeyTransform(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 template: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: Specifies the type of dead letter queue.
+        :param _builtins.str template: Specifies the template definition for VARIABLE type transform rules.
+               
+               <a name="eg_target_kafka_detail"></a>
+               The `kafka_detail` block supports:
+        :param _builtins.str value: Specifies the value of the header parameter.
+        """
+        pulumi.set(__self__, "type", type)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the type of dead letter queue.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def template(self) -> Optional[_builtins.str]:
+        """
+        Specifies the template definition for VARIABLE type transform rules.
+
+        <a name="eg_target_kafka_detail"></a>
+        The `kafka_detail` block supports:
+        """
+        return pulumi.get(self, "template")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the value of the header parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetConnectionsConnectionResult(dict):
     def __init__(__self__, *,
                  agency: _builtins.str,
@@ -1311,13 +2042,15 @@ class GetConnectionsConnectionFlavorResult(dict):
 class GetConnectionsConnectionKafkaDetailResult(dict):
     def __init__(__self__, *,
                  acks: _builtins.str,
+                 address: _builtins.str,
                  connect_address: _builtins.str,
                  enable_sasl_ssl: _builtins.bool,
                  instance_id: _builtins.str,
                  security_protocol: _builtins.str,
                  user_name: _builtins.str):
         """
-        :param _builtins.str acks: The number of confirmation signals the producer‌ needs to receive to consider the message sent successfully.
+        :param _builtins.str acks: The number of confirmation signals the producer needs to receive to consider the message sent successfully.
+        :param _builtins.str address: The connection address of Kafka instance.
         :param _builtins.str connect_address: The connection address of the Kafka instance.
         :param _builtins.bool enable_sasl_ssl: Whether SASL_SSL is enabled for the Kafka instance.
         :param _builtins.str instance_id: The ID of the Kafka instance.
@@ -1325,6 +2058,7 @@ class GetConnectionsConnectionKafkaDetailResult(dict):
         :param _builtins.str user_name: The username of the Kafka instance.
         """
         pulumi.set(__self__, "acks", acks)
+        pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "connect_address", connect_address)
         pulumi.set(__self__, "enable_sasl_ssl", enable_sasl_ssl)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -1335,9 +2069,17 @@ class GetConnectionsConnectionKafkaDetailResult(dict):
     @pulumi.getter
     def acks(self) -> _builtins.str:
         """
-        The number of confirmation signals the producer‌ needs to receive to consider the message sent successfully.
+        The number of confirmation signals the producer needs to receive to consider the message sent successfully.
         """
         return pulumi.get(self, "acks")
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> _builtins.str:
+        """
+        The connection address of Kafka instance.
+        """
+        return pulumi.get(self, "address")
 
     @_builtins.property
     @pulumi.getter(name="connectAddress")
@@ -1484,6 +2226,7 @@ class GetCustomEventSourcesSourceResult(dict):
                  channel_name: _builtins.str,
                  created_at: _builtins.str,
                  description: _builtins.str,
+                 error_infos: Sequence['outputs.GetCustomEventSourcesSourceErrorInfoResult'],
                  id: _builtins.str,
                  name: _builtins.str,
                  status: _builtins.str,
@@ -1495,6 +2238,8 @@ class GetCustomEventSourcesSourceResult(dict):
         :param _builtins.str channel_name: The name of the custom event channel to which the custom event source belong.
         :param _builtins.str created_at: The creation time of the custom event source.
         :param _builtins.str description: The description of the custom event source.
+        :param Sequence['GetCustomEventSourcesSourceErrorInfoArgs'] error_infos: The error information of the custom event source.  
+               The error_info structure is documented below.
         :param _builtins.str id: The ID of the custom event source.
         :param _builtins.str name: Specifies the event source name used to query specified custom event source.
         :param _builtins.str status: The status of the custom event source.
@@ -1508,6 +2253,7 @@ class GetCustomEventSourcesSourceResult(dict):
         pulumi.set(__self__, "channel_name", channel_name)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "error_infos", error_infos)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "status", status)
@@ -1546,6 +2292,15 @@ class GetCustomEventSourcesSourceResult(dict):
         The description of the custom event source.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="errorInfos")
+    def error_infos(self) -> Sequence['outputs.GetCustomEventSourcesSourceErrorInfoResult']:
+        """
+        The error information of the custom event source.  
+        The error_info structure is documented below.
+        """
+        return pulumi.get(self, "error_infos")
 
     @_builtins.property
     @pulumi.getter
@@ -1589,6 +2344,46 @@ class GetCustomEventSourcesSourceResult(dict):
         The update time of the custom event source.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetCustomEventSourcesSourceErrorInfoResult(dict):
+    def __init__(__self__, *,
+                 error_code: _builtins.str,
+                 error_detail: _builtins.str,
+                 error_msg: _builtins.str):
+        """
+        :param _builtins.str error_code: The error code of current source.
+        :param _builtins.str error_detail: The error detail of current source.
+        :param _builtins.str error_msg: The error message of current source.
+        """
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "error_detail", error_detail)
+        pulumi.set(__self__, "error_msg", error_msg)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> _builtins.str:
+        """
+        The error code of current source.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter(name="errorDetail")
+    def error_detail(self) -> _builtins.str:
+        """
+        The error detail of current source.
+        """
+        return pulumi.get(self, "error_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMsg")
+    def error_msg(self) -> _builtins.str:
+        """
+        The error message of current source.
+        """
+        return pulumi.get(self, "error_msg")
 
 
 @pulumi.output_type
@@ -2270,6 +3065,462 @@ class GetEventStreamsEventStreamSourceResult(dict):
 
 
 @pulumi.output_type
+class GetEventSubscriptionsSubscriptionResult(dict):
+    def __init__(__self__, *,
+                 channel_id: _builtins.str,
+                 channel_name: _builtins.str,
+                 created_time: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 sources: Sequence['outputs.GetEventSubscriptionsSubscriptionSourceResult'],
+                 status: _builtins.str,
+                 targets: Sequence['outputs.GetEventSubscriptionsSubscriptionTargetResult'],
+                 type: _builtins.str,
+                 updated_time: _builtins.str,
+                 useds: Sequence['outputs.GetEventSubscriptionsSubscriptionUsedResult']):
+        """
+        :param _builtins.str channel_id: Specifies the ID of the event channel to filter subscriptions.
+        :param _builtins.str channel_name: The name of the event channel.
+        :param _builtins.str created_time: The creation time of the subscription target, in RFC3339 format.
+        :param _builtins.str description: The description of the associated resource.
+        :param _builtins.str id: The ID of the subscription target.
+        :param _builtins.str name: Specifies the exact name of the subscription to be queried.
+        :param Sequence['GetEventSubscriptionsSubscriptionSourceArgs'] sources: The list of subscription sources.  
+               The sources structure is documented below.
+        :param _builtins.str status: The status of the subscription.
+               + **CREATED**
+               + **ENABLED**
+               + **DISABLED**
+               + **FROZEN**
+               + **ERROR**
+        :param Sequence['GetEventSubscriptionsSubscriptionTargetArgs'] targets: The list of subscription targets.  
+               The targets structure is documented below.
+        :param _builtins.str type: The type of the subscription.
+               + **EVENT**
+               + **SCHEDULED**
+        :param _builtins.str updated_time: The update time of the subscription target, in RFC3339 format.
+        :param Sequence['GetEventSubscriptionsSubscriptionUsedArgs'] useds: The associated resources of the subscription.  
+               The used structure is documented below.
+        """
+        pulumi.set(__self__, "channel_id", channel_id)
+        pulumi.set(__self__, "channel_name", channel_name)
+        pulumi.set(__self__, "created_time", created_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "sources", sources)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "targets", targets)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_time", updated_time)
+        pulumi.set(__self__, "useds", useds)
+
+    @_builtins.property
+    @pulumi.getter(name="channelId")
+    def channel_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the event channel to filter subscriptions.
+        """
+        return pulumi.get(self, "channel_id")
+
+    @_builtins.property
+    @pulumi.getter(name="channelName")
+    def channel_name(self) -> _builtins.str:
+        """
+        The name of the event channel.
+        """
+        return pulumi.get(self, "channel_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createdTime")
+    def created_time(self) -> _builtins.str:
+        """
+        The creation time of the subscription target, in RFC3339 format.
+        """
+        return pulumi.get(self, "created_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the associated resource.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the subscription target.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the exact name of the subscription to be queried.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def sources(self) -> Sequence['outputs.GetEventSubscriptionsSubscriptionSourceResult']:
+        """
+        The list of subscription sources.  
+        The sources structure is documented below.
+        """
+        return pulumi.get(self, "sources")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the subscription.
+        + **CREATED**
+        + **ENABLED**
+        + **DISABLED**
+        + **FROZEN**
+        + **ERROR**
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def targets(self) -> Sequence['outputs.GetEventSubscriptionsSubscriptionTargetResult']:
+        """
+        The list of subscription targets.  
+        The targets structure is documented below.
+        """
+        return pulumi.get(self, "targets")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the subscription.
+        + **EVENT**
+        + **SCHEDULED**
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedTime")
+    def updated_time(self) -> _builtins.str:
+        """
+        The update time of the subscription target, in RFC3339 format.
+        """
+        return pulumi.get(self, "updated_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def useds(self) -> Sequence['outputs.GetEventSubscriptionsSubscriptionUsedResult']:
+        """
+        The associated resources of the subscription.  
+        The used structure is documented below.
+        """
+        return pulumi.get(self, "useds")
+
+
+@pulumi.output_type
+class GetEventSubscriptionsSubscriptionSourceResult(dict):
+    def __init__(__self__, *,
+                 created_time: _builtins.str,
+                 detail: _builtins.str,
+                 filter: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 provider_type: _builtins.str,
+                 updated_time: _builtins.str):
+        """
+        :param _builtins.str created_time: The creation time of the subscription target, in RFC3339 format.
+        :param _builtins.str detail: The parameter list of the subscription target, in JSON format.
+        :param _builtins.str filter: The matching filter rules of the subscription source, in JSON format.
+        :param _builtins.str id: The ID of the subscription target.
+        :param _builtins.str name: Specifies the exact name of the subscription to be queried.
+        :param _builtins.str provider_type: The provider type of the subscription target.
+               + **OFFICIAL**
+               + **CUSTOM**
+               + **PARTNER**
+        :param _builtins.str updated_time: The update time of the subscription target, in RFC3339 format.
+        """
+        pulumi.set(__self__, "created_time", created_time)
+        pulumi.set(__self__, "detail", detail)
+        pulumi.set(__self__, "filter", filter)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "provider_type", provider_type)
+        pulumi.set(__self__, "updated_time", updated_time)
+
+    @_builtins.property
+    @pulumi.getter(name="createdTime")
+    def created_time(self) -> _builtins.str:
+        """
+        The creation time of the subscription target, in RFC3339 format.
+        """
+        return pulumi.get(self, "created_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def detail(self) -> _builtins.str:
+        """
+        The parameter list of the subscription target, in JSON format.
+        """
+        return pulumi.get(self, "detail")
+
+    @_builtins.property
+    @pulumi.getter
+    def filter(self) -> _builtins.str:
+        """
+        The matching filter rules of the subscription source, in JSON format.
+        """
+        return pulumi.get(self, "filter")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the subscription target.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the exact name of the subscription to be queried.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="providerType")
+    def provider_type(self) -> _builtins.str:
+        """
+        The provider type of the subscription target.
+        + **OFFICIAL**
+        + **CUSTOM**
+        + **PARTNER**
+        """
+        return pulumi.get(self, "provider_type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedTime")
+    def updated_time(self) -> _builtins.str:
+        """
+        The update time of the subscription target, in RFC3339 format.
+        """
+        return pulumi.get(self, "updated_time")
+
+
+@pulumi.output_type
+class GetEventSubscriptionsSubscriptionTargetResult(dict):
+    def __init__(__self__, *,
+                 apigw_detail: _builtins.str,
+                 connection_id: _builtins.str,
+                 created_time: _builtins.str,
+                 dead_letter_queue: _builtins.str,
+                 detail: _builtins.str,
+                 eg_detail: _builtins.str,
+                 id: _builtins.str,
+                 kafka_detail: _builtins.str,
+                 name: _builtins.str,
+                 provider_type: _builtins.str,
+                 retry_times: _builtins.int,
+                 smn_detail: _builtins.str,
+                 transform: _builtins.str,
+                 updated_time: _builtins.str):
+        """
+        :param _builtins.str apigw_detail: The APIGW target parameter list of the subscription, in JSON format.
+        :param _builtins.str connection_id: Specifies the ID of the target connection to filter subscriptions.
+        :param _builtins.str created_time: The creation time of the subscription target, in RFC3339 format.
+        :param _builtins.str dead_letter_queue: The dead letter queue parameters of the subscription, in JSON format.
+        :param _builtins.str detail: The parameter list of the subscription target, in JSON format.
+        :param _builtins.str eg_detail: The EG channel target parameter list of the subscription, in JSON format.
+        :param _builtins.str id: The ID of the subscription target.
+        :param _builtins.str kafka_detail: The Kafka target parameter list of the subscription, in JSON format.
+        :param _builtins.str name: Specifies the exact name of the subscription to be queried.
+        :param _builtins.str provider_type: The provider type of the subscription target.
+               + **OFFICIAL**
+               + **CUSTOM**
+               + **PARTNER**
+        :param _builtins.int retry_times: The number of retry times.
+        :param _builtins.str smn_detail: The SMN target parameter list of the subscription, in JSON format.
+        :param _builtins.str transform: The transform rules of the subscription target, in JSON format.
+        :param _builtins.str updated_time: The update time of the subscription target, in RFC3339 format.
+        """
+        pulumi.set(__self__, "apigw_detail", apigw_detail)
+        pulumi.set(__self__, "connection_id", connection_id)
+        pulumi.set(__self__, "created_time", created_time)
+        pulumi.set(__self__, "dead_letter_queue", dead_letter_queue)
+        pulumi.set(__self__, "detail", detail)
+        pulumi.set(__self__, "eg_detail", eg_detail)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "kafka_detail", kafka_detail)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "provider_type", provider_type)
+        pulumi.set(__self__, "retry_times", retry_times)
+        pulumi.set(__self__, "smn_detail", smn_detail)
+        pulumi.set(__self__, "transform", transform)
+        pulumi.set(__self__, "updated_time", updated_time)
+
+    @_builtins.property
+    @pulumi.getter(name="apigwDetail")
+    def apigw_detail(self) -> _builtins.str:
+        """
+        The APIGW target parameter list of the subscription, in JSON format.
+        """
+        return pulumi.get(self, "apigw_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the target connection to filter subscriptions.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createdTime")
+    def created_time(self) -> _builtins.str:
+        """
+        The creation time of the subscription target, in RFC3339 format.
+        """
+        return pulumi.get(self, "created_time")
+
+    @_builtins.property
+    @pulumi.getter(name="deadLetterQueue")
+    def dead_letter_queue(self) -> _builtins.str:
+        """
+        The dead letter queue parameters of the subscription, in JSON format.
+        """
+        return pulumi.get(self, "dead_letter_queue")
+
+    @_builtins.property
+    @pulumi.getter
+    def detail(self) -> _builtins.str:
+        """
+        The parameter list of the subscription target, in JSON format.
+        """
+        return pulumi.get(self, "detail")
+
+    @_builtins.property
+    @pulumi.getter(name="egDetail")
+    def eg_detail(self) -> _builtins.str:
+        """
+        The EG channel target parameter list of the subscription, in JSON format.
+        """
+        return pulumi.get(self, "eg_detail")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the subscription target.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="kafkaDetail")
+    def kafka_detail(self) -> _builtins.str:
+        """
+        The Kafka target parameter list of the subscription, in JSON format.
+        """
+        return pulumi.get(self, "kafka_detail")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the exact name of the subscription to be queried.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="providerType")
+    def provider_type(self) -> _builtins.str:
+        """
+        The provider type of the subscription target.
+        + **OFFICIAL**
+        + **CUSTOM**
+        + **PARTNER**
+        """
+        return pulumi.get(self, "provider_type")
+
+    @_builtins.property
+    @pulumi.getter(name="retryTimes")
+    def retry_times(self) -> _builtins.int:
+        """
+        The number of retry times.
+        """
+        return pulumi.get(self, "retry_times")
+
+    @_builtins.property
+    @pulumi.getter(name="smnDetail")
+    def smn_detail(self) -> _builtins.str:
+        """
+        The SMN target parameter list of the subscription, in JSON format.
+        """
+        return pulumi.get(self, "smn_detail")
+
+    @_builtins.property
+    @pulumi.getter
+    def transform(self) -> _builtins.str:
+        """
+        The transform rules of the subscription target, in JSON format.
+        """
+        return pulumi.get(self, "transform")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedTime")
+    def updated_time(self) -> _builtins.str:
+        """
+        The update time of the subscription target, in RFC3339 format.
+        """
+        return pulumi.get(self, "updated_time")
+
+
+@pulumi.output_type
+class GetEventSubscriptionsSubscriptionUsedResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 owner: _builtins.str,
+                 resource_id: _builtins.str):
+        """
+        :param _builtins.str description: The description of the associated resource.
+        :param _builtins.str owner: The management tenant account to which the associated resource belongs.
+        :param _builtins.str resource_id: The ID of the associated resource.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "resource_id", resource_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the associated resource.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def owner(self) -> _builtins.str:
+        """
+        The management tenant account to which the associated resource belongs.
+        """
+        return pulumi.get(self, "owner")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The ID of the associated resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+
+@pulumi.output_type
 class GetEventTargetCatalogsCatalogResult(dict):
     def __init__(__self__, *,
                  created_time: _builtins.str,
@@ -2498,5 +3749,67 @@ class GetQuotasQuotaResult(dict):
         The quota used by the current tenant.
         """
         return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetTracedEventsEventResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 received_time: _builtins.str,
+                 source_name: _builtins.str,
+                 subscription_name: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the event.
+        :param _builtins.str received_time: The time when the event to be received, in UTC format.
+        :param _builtins.str source_name: Specifies the name of the event source.
+        :param _builtins.str subscription_name: Specifies the name of the event subscription.
+        :param _builtins.str type: The type of the event.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "received_time", received_time)
+        pulumi.set(__self__, "source_name", source_name)
+        pulumi.set(__self__, "subscription_name", subscription_name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the event.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="receivedTime")
+    def received_time(self) -> _builtins.str:
+        """
+        The time when the event to be received, in UTC format.
+        """
+        return pulumi.get(self, "received_time")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceName")
+    def source_name(self) -> _builtins.str:
+        """
+        Specifies the name of the event source.
+        """
+        return pulumi.get(self, "source_name")
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionName")
+    def subscription_name(self) -> _builtins.str:
+        """
+        Specifies the name of the event subscription.
+        """
+        return pulumi.get(self, "subscription_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the event.
+        """
+        return pulumi.get(self, "type")
 
 

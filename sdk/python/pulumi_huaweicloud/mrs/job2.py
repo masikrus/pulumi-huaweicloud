@@ -33,6 +33,7 @@ class Job2Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Job2 resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Cluster ID
         :param pulumi.Input[_builtins.str] jar_path: Path of the .jar package or .sql file for program execution The parameter
                must meet the following requirements: Contains a maximum of `1,023` characters, excluding special characters such as
@@ -282,6 +283,7 @@ class _Job2State:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Job2 resources.
+
         :param pulumi.Input[_builtins.str] arguments: Key parameter for program execution. The parameter is specified by the function of
                the user's program. MRS is only responsible for loading the parameter. The parameter contains a maximum of 2047
                characters, excluding special characters such as ;|&>'<$, and can be empty.
@@ -572,6 +574,7 @@ class Job2(pulumi.CustomResource):
             arguments="wordcount")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] arguments: Key parameter for program execution. The parameter is specified by the function of
@@ -639,6 +642,7 @@ class Job2(pulumi.CustomResource):
             job_log="s3a://wordcount/log/",
             arguments="wordcount")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param Job2Args args: The arguments to use to populate this resource's properties.

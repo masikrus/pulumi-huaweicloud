@@ -160,6 +160,16 @@ def get_volumes_v3(availability_zone: Optional[_builtins.str] = None,
     """
     Use this data source to get the detailed information list of the EVS v3 disks within HuaweiCloud.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+    import pulumi_std as std
+
+    test = huaweicloud.Evs.get_volumes_v3(metadata=std.index.urlencode(input="{\\"hw:passthrough\\": \\"false\\"}")["result"])
+    ```
+
 
     :param _builtins.str availability_zone: Specifies the availability zone for the disks.
     :param _builtins.str metadata: Specifies the disk metadata.
@@ -228,6 +238,16 @@ def get_volumes_v3_output(availability_zone: Optional[pulumi.Input[Optional[_bui
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVolumesV3Result]:
     """
     Use this data source to get the detailed information list of the EVS v3 disks within HuaweiCloud.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+    import pulumi_std as std
+
+    test = huaweicloud.Evs.get_volumes_v3(metadata=std.index.urlencode(input="{\\"hw:passthrough\\": \\"false\\"}")["result"])
+    ```
 
 
     :param _builtins.str availability_zone: Specifies the availability zone for the disks.

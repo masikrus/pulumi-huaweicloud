@@ -25,6 +25,7 @@ class RocketmqNodeBatchRestartArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RocketmqNodeBatchRestart resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RocketMQ instance to which nodes belong.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nodes: Specifies the list of node IDs to be restarted.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to restart the nodes of a RocketMQ instance.  
@@ -93,6 +94,7 @@ class _RocketmqNodeBatchRestartState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RocketmqNodeBatchRestart resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RocketMQ instance to which nodes belong.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nodes: Specifies the list of node IDs to be restarted.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to restart the nodes of a RocketMQ instance.  
@@ -188,6 +190,7 @@ class RocketmqNodeBatchRestart(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RocketMQ instance to which nodes belong.
@@ -223,6 +226,7 @@ class RocketmqNodeBatchRestart(pulumi.CustomResource):
                 test.nodes[1].id,
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RocketmqNodeBatchRestartArgs args: The arguments to use to populate this resource's properties.

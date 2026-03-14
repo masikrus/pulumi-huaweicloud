@@ -29,6 +29,7 @@ class InstanceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the billing mode.
                Valid value is **prePaid** (the yearly/monthly billing mode).
                
@@ -221,6 +222,7 @@ class _InstanceState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
                Defaults to **false**.
                
@@ -404,7 +406,7 @@ class _InstanceState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:dsc/instance:Instance")
+@pulumi.type_token("huaweicloud:Dsc/instance:Instance")
 class Instance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -442,11 +444,10 @@ class Instance(pulumi.CustomResource):
 
         The DSC instance resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dsc/instance:Instance test <id>
+        $ pulumi import huaweicloud:Dsc/instance:Instance test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -518,11 +519,10 @@ class Instance(pulumi.CustomResource):
 
         The DSC instance resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dsc/instance:Instance test <id>
+        $ pulumi import huaweicloud:Dsc/instance:Instance test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -573,7 +573,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["period_unit"] = period_unit
             __props__.__dict__["region"] = region
         super(Instance, __self__).__init__(
-            'huaweicloud:dsc/instance:Instance',
+            'huaweicloud:Dsc/instance:Instance',
             resource_name,
             __props__,
             opts)

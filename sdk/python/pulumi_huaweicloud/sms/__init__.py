@@ -19,6 +19,7 @@ from .get_tasks import *
 from .migration_project import *
 from .migration_project_default import *
 from .server_template import *
+from .source_server import *
 from .source_server_command_result_report import *
 from .task import *
 from .task_consistency_result_report import *

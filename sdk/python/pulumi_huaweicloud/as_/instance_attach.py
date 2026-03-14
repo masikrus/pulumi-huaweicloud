@@ -27,6 +27,7 @@ class InstanceAttachArgs:
                  standby: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a InstanceAttach resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ECS instance ID.
                Changing this creates a new resource.
                
@@ -160,6 +161,7 @@ class _InstanceAttachState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceAttach resources.
+
         :param pulumi.Input[_builtins.bool] append_instance: Specifies whether to add a new instance when the instance enter standby mode.
                This parameter takes effect only when `standby` is set to true.
         :param pulumi.Input[_builtins.str] health_status: The instance health status. The value can be `INITIALIZING`, `NORMAL` or `ERROR`.
@@ -382,28 +384,12 @@ class InstanceAttach(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to `append_instance` is missing from
-
         the API response.
 
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_as_instance_attach" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [append_instance]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -477,28 +463,12 @@ class InstanceAttach(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to `append_instance` is missing from
-
         the API response.
 
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_as_instance_attach" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [append_instance]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InstanceAttachArgs args: The arguments to use to populate this resource's properties.

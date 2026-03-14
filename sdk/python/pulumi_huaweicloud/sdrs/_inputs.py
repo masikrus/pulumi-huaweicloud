@@ -29,16 +29,11 @@ __all__ = [
     'GetProtectedInstancesByTagsTagsAnyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ProtectedInstanceAddNicSecurityGroupArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the security group.
-        """
-elif False:
-    ProtectedInstanceAddNicSecurityGroupArgsDict: TypeAlias = Mapping[str, Any]
+class ProtectedInstanceAddNicSecurityGroupArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the security group.
+    """
 
 @pulumi.input_type
 class ProtectedInstanceAddNicSecurityGroupArgs:
@@ -62,19 +57,16 @@ class ProtectedInstanceAddNicSecurityGroupArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class GetProtectedInstancesByTagsMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the search field key. Currently, only **resource_name** for key is supported.
-        Other key values will be available later.
-        """
-        value: _builtins.str
-        """
-        Specifies the search value. Each value can contain a maximum of `255` unicode characters.
-        """
-elif False:
-    GetProtectedInstancesByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetProtectedInstancesByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the search field key. Currently, only **resource_name** for key is supported.
+    Other key values will be available later.
+    """
+    value: _builtins.str
+    """
+    Specifies the search value. Each value can contain a maximum of `255` unicode characters.
+    """
 
 @pulumi.input_type
 class GetProtectedInstancesByTagsMatchArgs:
@@ -115,26 +107,23 @@ class GetProtectedInstancesByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetProtectedInstancesByTagsNotTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the search field key. Currently, only **resource_name** for key is supported.
-        Other key values will be available later.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the tag values. Each value contains a maximum of `255` Unicode characters.
-        Before using values, delete SBC spaces before and after the value. The asterisk (*) is reserved for the system.
-        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
-        The value cannot contain only asterisks (*). If the values are null, it indicates any_value (querying any value).
-        The resources containing one or more values listed in values will be found and displayed.
+class GetProtectedInstancesByTagsNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the search field key. Currently, only **resource_name** for key is supported.
+    Other key values will be available later.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values. Each value contains a maximum of `255` Unicode characters.
+    Before using values, delete SBC spaces before and after the value. The asterisk (*) is reserved for the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks (*). If the values are null, it indicates any_value (querying any value).
+    The resources containing one or more values listed in values will be found and displayed.
 
-        <a name="matches_params_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetProtectedInstancesByTagsNotTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_params_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetProtectedInstancesByTagsNotTagArgs:
@@ -189,26 +178,23 @@ class GetProtectedInstancesByTagsNotTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetProtectedInstancesByTagsNotTagsAnyArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the search field key. Currently, only **resource_name** for key is supported.
-        Other key values will be available later.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the tag values. Each value contains a maximum of `255` Unicode characters.
-        Before using values, delete SBC spaces before and after the value. The asterisk (*) is reserved for the system.
-        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
-        The value cannot contain only asterisks (*). If the values are null, it indicates any_value (querying any value).
-        The resources containing one or more values listed in values will be found and displayed.
+class GetProtectedInstancesByTagsNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the search field key. Currently, only **resource_name** for key is supported.
+    Other key values will be available later.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values. Each value contains a maximum of `255` Unicode characters.
+    Before using values, delete SBC spaces before and after the value. The asterisk (*) is reserved for the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks (*). If the values are null, it indicates any_value (querying any value).
+    The resources containing one or more values listed in values will be found and displayed.
 
-        <a name="matches_params_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetProtectedInstancesByTagsNotTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_params_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetProtectedInstancesByTagsNotTagsAnyArgs:
@@ -263,26 +249,23 @@ class GetProtectedInstancesByTagsNotTagsAnyArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetProtectedInstancesByTagsTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the search field key. Currently, only **resource_name** for key is supported.
-        Other key values will be available later.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the tag values. Each value contains a maximum of `255` Unicode characters.
-        Before using values, delete SBC spaces before and after the value. The asterisk (*) is reserved for the system.
-        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
-        The value cannot contain only asterisks (*). If the values are null, it indicates any_value (querying any value).
-        The resources containing one or more values listed in values will be found and displayed.
+class GetProtectedInstancesByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the search field key. Currently, only **resource_name** for key is supported.
+    Other key values will be available later.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values. Each value contains a maximum of `255` Unicode characters.
+    Before using values, delete SBC spaces before and after the value. The asterisk (*) is reserved for the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks (*). If the values are null, it indicates any_value (querying any value).
+    The resources containing one or more values listed in values will be found and displayed.
 
-        <a name="matches_params_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetProtectedInstancesByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_params_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetProtectedInstancesByTagsTagArgs:
@@ -337,26 +320,23 @@ class GetProtectedInstancesByTagsTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetProtectedInstancesByTagsTagsAnyArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the search field key. Currently, only **resource_name** for key is supported.
-        Other key values will be available later.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the tag values. Each value contains a maximum of `255` Unicode characters.
-        Before using values, delete SBC spaces before and after the value. The asterisk (*) is reserved for the system.
-        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
-        The value cannot contain only asterisks (*). If the values are null, it indicates any_value (querying any value).
-        The resources containing one or more values listed in values will be found and displayed.
+class GetProtectedInstancesByTagsTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the search field key. Currently, only **resource_name** for key is supported.
+    Other key values will be available later.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values. Each value contains a maximum of `255` Unicode characters.
+    Before using values, delete SBC spaces before and after the value. The asterisk (*) is reserved for the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks (*). If the values are null, it indicates any_value (querying any value).
+    The resources containing one or more values listed in values will be found and displayed.
 
-        <a name="matches_params_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetProtectedInstancesByTagsTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_params_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetProtectedInstancesByTagsTagsAnyArgs:

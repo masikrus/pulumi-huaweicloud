@@ -26,6 +26,7 @@ class InstanceFeatureArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceFeature resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specified the ID of the dedicated instance to which the feature belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] config: Specified the detailed configuration of the feature.
@@ -121,6 +122,7 @@ class _InstanceFeatureState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceFeature resources.
+
         :param pulumi.Input[_builtins.str] config: Specified the detailed configuration of the feature.
         :param pulumi.Input[_builtins.bool] enabled: Specified whether to enable the feature. Default value is `false`.
         :param pulumi.Input[_builtins.str] instance_id: Specified the ID of the dedicated instance to which the feature belongs.
@@ -247,11 +249,10 @@ class InstanceFeature(pulumi.CustomResource):
 
         The resource can be imported using `instance_id` and `name`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/instanceFeature:InstanceFeature test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -299,11 +300,10 @@ class InstanceFeature(pulumi.CustomResource):
 
         The resource can be imported using `instance_id` and `name`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/instanceFeature:InstanceFeature test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceFeatureArgs args: The arguments to use to populate this resource's properties.

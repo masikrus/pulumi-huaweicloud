@@ -29,6 +29,7 @@ class ParametergroupArgs:
                  values: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Parametergroup resource.
+
         :param pulumi.Input['ParametergroupDatastoreArgs'] datastore: Specifies the database object.
                The datastore structure is documented below.
                
@@ -145,8 +146,9 @@ class _ParametergroupState:
                  values: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Parametergroup resources.
-        :param pulumi.Input[Sequence[pulumi.Input['ParametergroupConfigurationParameterArgs']]] configuration_parameters: Indicates the parameter configuration defined by users based on the default parameters groups.
-               The configuration_parameters structure is documented below.
+
+        :param pulumi.Input[Sequence[pulumi.Input['ParametergroupConfigurationParameterArgs']]] configuration_parameters: Indicates the parameter configuration defined by users based on the default parameters
+               groups. The configuration_parameters structure is documented below.
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time, in UTC format.
         :param pulumi.Input['ParametergroupDatastoreArgs'] datastore: Specifies the database object.
                The datastore structure is documented below.
@@ -185,8 +187,8 @@ class _ParametergroupState:
     @pulumi.getter(name="configurationParameters")
     def configuration_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ParametergroupConfigurationParameterArgs']]]]:
         """
-        Indicates the parameter configuration defined by users based on the default parameters groups.
-        The configuration_parameters structure is documented below.
+        Indicates the parameter configuration defined by users based on the default parameters
+        groups. The configuration_parameters structure is documented below.
         """
         return pulumi.get(self, "configuration_parameters")
 
@@ -334,39 +336,16 @@ class Parametergroup(pulumi.CustomResource):
 
         The RDS parameter group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/parametergroup:Parametergroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `values`. It is generally recommended
-
         running `pulumi preview` after importing the RDS parameter group. You can then decide if changes should be applied to
-
         the RDS parameter group, or the resource definition should be updated to align with the RDS parameter group. Also you
-
         can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_parametergroup" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              values
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -415,39 +394,16 @@ class Parametergroup(pulumi.CustomResource):
 
         The RDS parameter group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/parametergroup:Parametergroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `values`. It is generally recommended
-
         running `pulumi preview` after importing the RDS parameter group. You can then decide if changes should be applied to
-
         the RDS parameter group, or the resource definition should be updated to align with the RDS parameter group. Also you
-
         can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_parametergroup" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              values
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ParametergroupArgs args: The arguments to use to populate this resource's properties.
@@ -516,8 +472,8 @@ class Parametergroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ParametergroupConfigurationParameterArgs', 'ParametergroupConfigurationParameterArgsDict']]]] configuration_parameters: Indicates the parameter configuration defined by users based on the default parameters groups.
-               The configuration_parameters structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ParametergroupConfigurationParameterArgs', 'ParametergroupConfigurationParameterArgsDict']]]] configuration_parameters: Indicates the parameter configuration defined by users based on the default parameters
+               groups. The configuration_parameters structure is documented below.
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time, in UTC format.
         :param pulumi.Input[Union['ParametergroupDatastoreArgs', 'ParametergroupDatastoreArgsDict']] datastore: Specifies the database object.
                The datastore structure is documented below.
@@ -552,8 +508,8 @@ class Parametergroup(pulumi.CustomResource):
     @pulumi.getter(name="configurationParameters")
     def configuration_parameters(self) -> pulumi.Output[Sequence['outputs.ParametergroupConfigurationParameter']]:
         """
-        Indicates the parameter configuration defined by users based on the default parameters groups.
-        The configuration_parameters structure is documented below.
+        Indicates the parameter configuration defined by users based on the default parameters
+        groups. The configuration_parameters structure is documented below.
         """
         return pulumi.get(self, "configuration_parameters")
 

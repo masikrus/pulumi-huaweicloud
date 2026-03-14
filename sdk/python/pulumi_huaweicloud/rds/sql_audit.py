@@ -27,6 +27,7 @@ class SqlAuditArgs:
                  reserve_auditlogs: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SqlAudit resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
         :param pulumi.Input[_builtins.int] keep_days: Specifies the number of days for storing audit logs. Value ranges from `1` to `732`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_types: Specifies the list of audit types. Value options: **CREATE_USER**, **DROP_USER**,
@@ -135,6 +136,7 @@ class _SqlAuditState:
                  reserve_auditlogs: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SqlAudit resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_types: Specifies the list of audit types. Value options: **CREATE_USER**, **DROP_USER**,
                **RENAME_USER**, **GRANT**, **REVOKE**, **CREATE**, **ALTER**, **DROP**, **RENAME**, **TRUNCATE**, **INSERT**,
                **DELETE**, **UPDATE**, **REPLACE**, **SELECT**, **BEGIN/COMMIT/ROLLBACK**, **PREPARED_STATEMENT**.
@@ -269,11 +271,10 @@ class SqlAudit(pulumi.CustomResource):
 
         The RDS SQL audit can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/sqlAudit:SqlAudit test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -316,11 +317,10 @@ class SqlAudit(pulumi.CustomResource):
 
         The RDS SQL audit can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/sqlAudit:SqlAudit test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SqlAuditArgs args: The arguments to use to populate this resource's properties.

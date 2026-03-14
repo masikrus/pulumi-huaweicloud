@@ -33,25 +33,20 @@ __all__ = [
     'BackupVolumeBackupArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BackupPolicyResourceArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the object to be backed up.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies backup object name.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Entity object type of the backup object. If the type is VMs, the value is
-        **OS::Nova::Server**.
-        """
-elif False:
-    BackupPolicyResourceArgsDict: TypeAlias = Mapping[str, Any]
+class BackupPolicyResourceArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the object to be backed up.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies backup object name.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Entity object type of the backup object. If the type is VMs, the value is
+    **OS::Nova::Server**.
+    """
 
 @pulumi.input_type
 class BackupPolicyResourceArgs:
@@ -107,61 +102,58 @@ class BackupPolicyResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class BackupPolicyScheduledOperationArgsDict(TypedDict):
-        operation_type: pulumi.Input[_builtins.str]
-        """
-        Specifies Operation type, which can be backup.
-        """
-        trigger_pattern: pulumi.Input[_builtins.str]
-        """
-        Specifies Scheduling policy of the scheduler.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies Scheduling period description.The value consists of 0 to 255
-        characters and must not contain a greater-than sign (>) or less-than sign (<).
-        """
-        enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the scheduling period is enabled. Default value is **true**
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies Scheduling period ID.
-        """
-        max_backups: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies maximum number of backups that can be automatically created for a backup
-        object.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies Scheduling period name.The value consists of 1 to 255 characters and can
-        contain only letters, digits, underscores (_), and hyphens (-).
-        """
-        permanent: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether backups are permanently retained.
-        """
-        retention_duration_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies duration of retaining a backup, in days.
-        """
-        trigger_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies Scheduler ID.
-        """
-        trigger_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies Scheduler name.
-        """
-        trigger_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies Scheduler type.
-        """
-elif False:
-    BackupPolicyScheduledOperationArgsDict: TypeAlias = Mapping[str, Any]
+class BackupPolicyScheduledOperationArgsDict(TypedDict):
+    operation_type: pulumi.Input[_builtins.str]
+    """
+    Specifies Operation type, which can be backup.
+    """
+    trigger_pattern: pulumi.Input[_builtins.str]
+    """
+    Specifies Scheduling policy of the scheduler.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies Scheduling period description.The value consists of 0 to 255
+    characters and must not contain a greater-than sign (>) or less-than sign (<).
+    """
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the scheduling period is enabled. Default value is **true**
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies Scheduling period ID.
+    """
+    max_backups: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies maximum number of backups that can be automatically created for a backup
+    object.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies Scheduling period name.The value consists of 1 to 255 characters and can
+    contain only letters, digits, underscores (_), and hyphens (-).
+    """
+    permanent: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether backups are permanently retained.
+    """
+    retention_duration_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies duration of retaining a backup, in days.
+    """
+    trigger_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies Scheduler ID.
+    """
+    trigger_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies Scheduler name.
+    """
+    trigger_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies Scheduler type.
+    """
 
 @pulumi.input_type
 class BackupPolicyScheduledOperationArgs:
@@ -366,13 +358,10 @@ class BackupPolicyScheduledOperationArgs:
         pulumi.set(self, "trigger_type", value)
 
 
-if not MYPY:
-    class BackupPolicyV1ResourceArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-        type: pulumi.Input[_builtins.str]
-elif False:
-    BackupPolicyV1ResourceArgsDict: TypeAlias = Mapping[str, Any]
+class BackupPolicyV1ResourceArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
+    type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class BackupPolicyV1ResourceArgs:
@@ -412,22 +401,19 @@ class BackupPolicyV1ResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class BackupPolicyV1ScheduledOperationArgsDict(TypedDict):
-        operation_type: pulumi.Input[_builtins.str]
-        trigger_pattern: pulumi.Input[_builtins.str]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        max_backups: NotRequired[pulumi.Input[_builtins.int]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        permanent: NotRequired[pulumi.Input[_builtins.bool]]
-        retention_duration_days: NotRequired[pulumi.Input[_builtins.int]]
-        trigger_id: NotRequired[pulumi.Input[_builtins.str]]
-        trigger_name: NotRequired[pulumi.Input[_builtins.str]]
-        trigger_type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    BackupPolicyV1ScheduledOperationArgsDict: TypeAlias = Mapping[str, Any]
+class BackupPolicyV1ScheduledOperationArgsDict(TypedDict):
+    operation_type: pulumi.Input[_builtins.str]
+    trigger_pattern: pulumi.Input[_builtins.str]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    max_backups: NotRequired[pulumi.Input[_builtins.int]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    permanent: NotRequired[pulumi.Input[_builtins.bool]]
+    retention_duration_days: NotRequired[pulumi.Input[_builtins.int]]
+    trigger_id: NotRequired[pulumi.Input[_builtins.str]]
+    trigger_name: NotRequired[pulumi.Input[_builtins.str]]
+    trigger_type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class BackupPolicyV1ScheduledOperationArgs:
@@ -576,18 +562,15 @@ class BackupPolicyV1ScheduledOperationArgs:
         pulumi.set(self, "trigger_type", value)
 
 
-if not MYPY:
-    class BackupV1VmMetadataArgsDict(TypedDict):
-        cloud_service_type: NotRequired[pulumi.Input[_builtins.str]]
-        disk: NotRequired[pulumi.Input[_builtins.int]]
-        eip: NotRequired[pulumi.Input[_builtins.str]]
-        image_type: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        ram: NotRequired[pulumi.Input[_builtins.int]]
-        vcpus: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    BackupV1VmMetadataArgsDict: TypeAlias = Mapping[str, Any]
+class BackupV1VmMetadataArgsDict(TypedDict):
+    cloud_service_type: NotRequired[pulumi.Input[_builtins.str]]
+    disk: NotRequired[pulumi.Input[_builtins.int]]
+    eip: NotRequired[pulumi.Input[_builtins.str]]
+    image_type: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    ram: NotRequired[pulumi.Input[_builtins.int]]
+    vcpus: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class BackupV1VmMetadataArgs:
@@ -690,23 +673,20 @@ class BackupV1VmMetadataArgs:
         pulumi.set(self, "vcpus", value)
 
 
-if not MYPY:
-    class BackupV1VolumeBackupArgsDict(TypedDict):
-        average_speed: NotRequired[pulumi.Input[_builtins.int]]
-        bootable: NotRequired[pulumi.Input[_builtins.bool]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        image_type: NotRequired[pulumi.Input[_builtins.str]]
-        incremental: NotRequired[pulumi.Input[_builtins.bool]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
-        source_volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        source_volume_name: NotRequired[pulumi.Input[_builtins.str]]
-        source_volume_size: NotRequired[pulumi.Input[_builtins.int]]
-        space_saving_ratio: NotRequired[pulumi.Input[_builtins.int]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    BackupV1VolumeBackupArgsDict: TypeAlias = Mapping[str, Any]
+class BackupV1VolumeBackupArgsDict(TypedDict):
+    average_speed: NotRequired[pulumi.Input[_builtins.int]]
+    bootable: NotRequired[pulumi.Input[_builtins.bool]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    image_type: NotRequired[pulumi.Input[_builtins.str]]
+    incremental: NotRequired[pulumi.Input[_builtins.bool]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
+    source_volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    source_volume_name: NotRequired[pulumi.Input[_builtins.str]]
+    source_volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    space_saving_ratio: NotRequired[pulumi.Input[_builtins.int]]
+    status: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class BackupV1VolumeBackupArgs:
@@ -869,42 +849,39 @@ class BackupV1VolumeBackupArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class BackupVmMetadataArgsDict(TypedDict):
-        cloud_service_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies ECS type.
-        """
-        disk: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Shows system disk size corresponding to the ECS specifications.
-        """
-        eip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies elastic IP address of the ECS.
-        """
-        image_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies image type.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of backup data.
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        It specifies internal IP address of the ECS.
-        """
-        ram: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies memory size of the ECS, in MB.
-        """
-        vcpus: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies CPU cores corresponding to the ECS.
-        """
-elif False:
-    BackupVmMetadataArgsDict: TypeAlias = Mapping[str, Any]
+class BackupVmMetadataArgsDict(TypedDict):
+    cloud_service_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies ECS type.
+    """
+    disk: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Shows system disk size corresponding to the ECS specifications.
+    """
+    eip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies elastic IP address of the ECS.
+    """
+    image_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies image type.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of backup data.
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    It specifies internal IP address of the ECS.
+    """
+    ram: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies memory size of the ECS, in MB.
+    """
+    vcpus: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies CPU cores corresponding to the ECS.
+    """
 
 @pulumi.input_type
 class BackupVmMetadataArgs:
@@ -1041,62 +1018,59 @@ class BackupVmMetadataArgs:
         pulumi.set(self, "vcpus", value)
 
 
-if not MYPY:
-    class BackupVolumeBackupArgsDict(TypedDict):
-        average_speed: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the average speed.
-        """
-        bootable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the disk is bootable.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies Cinder backup ID.
-        """
-        image_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies image type.
-        """
-        incremental: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Shows whether incremental backup is used.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of backup data.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies accumulated size (MB) of backups.
-        """
-        snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of snapshot.
-        """
-        source_volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        It specifies source volume ID.
-        """
-        source_volume_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies source volume name.
-        """
-        source_volume_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Shows source volume size in GB.
-        """
-        space_saving_ratio: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies space saving rate.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Status of backup Volume.
-        """
-elif False:
-    BackupVolumeBackupArgsDict: TypeAlias = Mapping[str, Any]
+class BackupVolumeBackupArgsDict(TypedDict):
+    average_speed: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the average speed.
+    """
+    bootable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the disk is bootable.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies Cinder backup ID.
+    """
+    image_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies image type.
+    """
+    incremental: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Shows whether incremental backup is used.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of backup data.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies accumulated size (MB) of backups.
+    """
+    snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of snapshot.
+    """
+    source_volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    It specifies source volume ID.
+    """
+    source_volume_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies source volume name.
+    """
+    source_volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Shows source volume size in GB.
+    """
+    space_saving_ratio: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies space saving rate.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Status of backup Volume.
+    """
 
 @pulumi.input_type
 class BackupVolumeBackupArgs:

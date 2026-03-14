@@ -25,6 +25,7 @@ class TopicAttributesArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TopicAttributes resource.
+
         :param pulumi.Input[_builtins.str] topic_urn: Specifies the topic URN. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] value: Specifies the topic attribute value, in JSON format.
         :param pulumi.Input[_builtins.str] name: Specifies the topic attribute name.  
@@ -101,6 +102,7 @@ class _TopicAttributesState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TopicAttributes resources.
+
         :param pulumi.Input[_builtins.str] name: Specifies the topic attribute name.  
                The valid values are as follows:
                + **access_policy**
@@ -223,11 +225,10 @@ class TopicAttributes(pulumi.CustomResource):
 
         The SMN topic attributes can be imported using the `topic_urn` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/topicAttributes:TopicAttributes test {topic_urn}/{name}
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -287,11 +288,10 @@ class TopicAttributes(pulumi.CustomResource):
 
         The SMN topic attributes can be imported using the `topic_urn` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/topicAttributes:TopicAttributes test {topic_urn}/{name}
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TopicAttributesArgs args: The arguments to use to populate this resource's properties.

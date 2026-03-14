@@ -23,6 +23,7 @@ class OpengaussBackupStopArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussBackupStop resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -66,6 +67,7 @@ class _OpengaussBackupStopState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussBackupStop resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -126,6 +128,7 @@ class OpengaussBackupStop(pulumi.CustomResource):
         test = huaweicloud.gaussdbforopengauss.OpengaussBackupStop("test", instance_id=instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance. Changing this parameter
@@ -152,6 +155,7 @@ class OpengaussBackupStop(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.gaussdbforopengauss.OpengaussBackupStop("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussBackupStopArgs args: The arguments to use to populate this resource's properties.

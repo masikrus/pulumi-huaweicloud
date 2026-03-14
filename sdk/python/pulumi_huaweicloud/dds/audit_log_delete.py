@@ -24,6 +24,7 @@ class AuditLogDeleteArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuditLogDelete resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] file_names: Specifies the audit log file names.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -86,6 +87,7 @@ class _AuditLogDeleteState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuditLogDelete resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] file_names: Specifies the audit log file names.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -169,6 +171,7 @@ class AuditLogDelete(pulumi.CustomResource):
             file_names=file_names)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] file_names: Specifies the audit log file names.
@@ -201,6 +204,7 @@ class AuditLogDelete(pulumi.CustomResource):
             instance_id=instance_id,
             file_names=file_names)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuditLogDeleteArgs args: The arguments to use to populate this resource's properties.

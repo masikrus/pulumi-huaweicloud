@@ -19,6 +19,10 @@ __all__ = [
     'AlarmActionRuleSmnTopic',
     'AlarmGroupRuleDetail',
     'AlarmGroupRuleDetailMatch',
+    'AlarmInhibitRuleSourceMatch',
+    'AlarmInhibitRuleSourceMatchCondition',
+    'AlarmInhibitRuleTargetMatch',
+    'AlarmInhibitRuleTargetMatchCondition',
     'AlarmPolicyAlarmNotification',
     'AlarmPolicyEventAlarmSpec',
     'AlarmPolicyEventAlarmSpecAlarmTag',
@@ -52,15 +56,20 @@ __all__ = [
     'AlarmSilenceRuleSilenceConditionCondition',
     'AlarmSilenceRuleSilenceTime',
     'EnvironmentEnvTag',
+    'EventReportEvent',
     'MessageTemplateTemplate',
     'MultiAccountAggregationRuleAccount',
     'MultiAccountAggregationRuleService',
+    'PromInstancePromLimits',
     'PrometheusInstancePromForCloudService',
     'ServiceDiscoveryRuleDiscoveryRule',
     'ServiceDiscoveryRuleLogPathRule',
     'ServiceDiscoveryRuleNameRules',
     'ServiceDiscoveryRuleNameRulesApplicationNameRule',
     'ServiceDiscoveryRuleNameRulesServiceNameRule',
+    'UniagentBatchInstallAgentImportParamList',
+    'UniagentBatchInstallPluginInstallBaseParam',
+    'UniagentBatchUpgradeAgentList',
     'GetAccessCodesAccessCodeResult',
     'GetAggregationMetricsServiceMetricResult',
     'GetAlarmActionRulesActionRuleResult',
@@ -68,6 +77,10 @@ __all__ = [
     'GetAlarmGroupRulesRuleResult',
     'GetAlarmGroupRulesRuleDetailResult',
     'GetAlarmGroupRulesRuleDetailMatchResult',
+    'GetAlarmNotifiedHistoriesNotifiedHistoryResult',
+    'GetAlarmNotifiedHistoriesNotifiedHistoryNotificationResult',
+    'GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelResult',
+    'GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelSmnNotifiedHistoryResult',
     'GetAlarmRulesAlarmRuleResult',
     'GetAlarmRulesAlarmRuleAlarmNotificationResult',
     'GetAlarmRulesAlarmRuleEventAlarmSpecResult',
@@ -97,6 +110,8 @@ __all__ = [
     'GetCloudServiceAuthorizationsAuthorizationResult',
     'GetDashboardsDashboardResult',
     'GetDashboardsFoldersFolderResult',
+    'GetEventStatisticSeriesResult',
+    'GetEventsEventResult',
     'GetMessageTemplatesMessageTemplateResult',
     'GetMessageTemplatesMessageTemplateTemplateResult',
     'GetMultiAccountAggregationRulesRuleResult',
@@ -280,6 +295,216 @@ class AlarmGroupRuleDetailMatch(dict):
         **clusters-nodes**, **configmaps**, **deployments**, **ingresses**, **jobs**, **node**, **pods**,
         **podsecuritypolicies**, **releases**, **rolebindings**, **roles**, **routes**, **secrets**, **service**.
         - If `key` is specific key, it can be specific values.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class AlarmInhibitRuleSourceMatch(dict):
+    def __init__(__self__, *,
+                 conditions: Sequence['outputs.AlarmInhibitRuleSourceMatchCondition']):
+        """
+        :param Sequence['AlarmInhibitRuleSourceMatchConditionArgs'] conditions: Specifies the serial conditions within a parallel condition group.  
+               The conditions structure is documented below.
+               The maximum number of elements is `10`.
+               
+               <a name="alarm_inhibit_rule_matches_conditions"></a>
+               The `conditions` block supports:
+        """
+        pulumi.set(__self__, "conditions", conditions)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.AlarmInhibitRuleSourceMatchCondition']:
+        """
+        Specifies the serial conditions within a parallel condition group.  
+        The conditions structure is documented below.
+        The maximum number of elements is `10`.
+
+        <a name="alarm_inhibit_rule_matches_conditions"></a>
+        The `conditions` block supports:
+        """
+        return pulumi.get(self, "conditions")
+
+
+@pulumi.output_type
+class AlarmInhibitRuleSourceMatchCondition(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 operate: _builtins.str,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the key of the alarm.  
+               The valid values are as follows:
+               + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+               + **event_severity**: Event severity.
+               + **resource_provider**: Alarm source.
+               + **resource_type**: Resource type.
+        :param _builtins.str operate: Specifies the match operator for the alarm key.  
+               The valid values are as follows:
+               + **EQUALS**
+               + **EXIST**
+               + **REGEX**
+        :param Sequence[_builtins.str] values: Specifies the value list corresponding to the key of the alarm.  
+               Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+               + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+               **Minor** and **Info**.
+               + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+               or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+               + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+               The service names can include **AOM**, **LTS**, **CCE**, etc.
+               + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+               only contain Chinese characters, letters, numbers, and underscores (_).
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "operate", operate)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the alarm.  
+        The valid values are as follows:
+        + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+        + **event_severity**: Event severity.
+        + **resource_provider**: Alarm source.
+        + **resource_type**: Resource type.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def operate(self) -> _builtins.str:
+        """
+        Specifies the match operator for the alarm key.  
+        The valid values are as follows:
+        + **EQUALS**
+        + **EXIST**
+        + **REGEX**
+        """
+        return pulumi.get(self, "operate")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value list corresponding to the key of the alarm.  
+        Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+        + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+        **Minor** and **Info**.
+        + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+        or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+        + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+        The service names can include **AOM**, **LTS**, **CCE**, etc.
+        + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+        only contain Chinese characters, letters, numbers, and underscores (_).
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class AlarmInhibitRuleTargetMatch(dict):
+    def __init__(__self__, *,
+                 conditions: Sequence['outputs.AlarmInhibitRuleTargetMatchCondition']):
+        """
+        :param Sequence['AlarmInhibitRuleTargetMatchConditionArgs'] conditions: Specifies the serial conditions within a parallel condition group.  
+               The conditions structure is documented below.
+               The maximum number of elements is `10`.
+               
+               <a name="alarm_inhibit_rule_matches_conditions"></a>
+               The `conditions` block supports:
+        """
+        pulumi.set(__self__, "conditions", conditions)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.AlarmInhibitRuleTargetMatchCondition']:
+        """
+        Specifies the serial conditions within a parallel condition group.  
+        The conditions structure is documented below.
+        The maximum number of elements is `10`.
+
+        <a name="alarm_inhibit_rule_matches_conditions"></a>
+        The `conditions` block supports:
+        """
+        return pulumi.get(self, "conditions")
+
+
+@pulumi.output_type
+class AlarmInhibitRuleTargetMatchCondition(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 operate: _builtins.str,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the key of the alarm.  
+               The valid values are as follows:
+               + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+               + **event_severity**: Event severity.
+               + **resource_provider**: Alarm source.
+               + **resource_type**: Resource type.
+        :param _builtins.str operate: Specifies the match operator for the alarm key.  
+               The valid values are as follows:
+               + **EQUALS**
+               + **EXIST**
+               + **REGEX**
+        :param Sequence[_builtins.str] values: Specifies the value list corresponding to the key of the alarm.  
+               Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+               + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+               **Minor** and **Info**.
+               + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+               or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+               + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+               The service names can include **AOM**, **LTS**, **CCE**, etc.
+               + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+               only contain Chinese characters, letters, numbers, and underscores (_).
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "operate", operate)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the alarm.  
+        The valid values are as follows:
+        + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+        + **event_severity**: Event severity.
+        + **resource_provider**: Alarm source.
+        + **resource_type**: Resource type.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def operate(self) -> _builtins.str:
+        """
+        Specifies the match operator for the alarm key.  
+        The valid values are as follows:
+        + **EQUALS**
+        + **EXIST**
+        + **REGEX**
+        """
+        return pulumi.get(self, "operate")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value list corresponding to the key of the alarm.  
+        Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+        + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+        **Minor** and **Info**.
+        + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+        or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+        + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+        The service names can include **AOM**, **LTS**, **CCE**, etc.
+        + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+        only contain Chinese characters, letters, numbers, and underscores (_).
         """
         return pulumi.get(self, "values")
 
@@ -1695,8 +1920,8 @@ class AlarmRuleV4MetricAlarmSpecTriggerCondition(dict):
             suggest = "metric_unit"
         elif key == "mixPromql":
             suggest = "mix_promql"
-        elif key == "promqlExprs":
-            suggest = "promql_exprs"
+        elif key == "promqlExpr":
+            suggest = "promql_expr"
         elif key == "promqlFor":
             suggest = "promql_for"
         elif key == "queryMatch":
@@ -1736,7 +1961,7 @@ class AlarmRuleV4MetricAlarmSpecTriggerCondition(dict):
                  metric_unit: Optional[_builtins.str] = None,
                  mix_promql: Optional[_builtins.str] = None,
                  operator: Optional[_builtins.str] = None,
-                 promql_exprs: Optional[Sequence[_builtins.str]] = None,
+                 promql_expr: Optional[_builtins.str] = None,
                  promql_for: Optional[_builtins.str] = None,
                  query_match: Optional[_builtins.str] = None,
                  query_param: Optional[_builtins.str] = None,
@@ -1770,7 +1995,7 @@ class AlarmRuleV4MetricAlarmSpecTriggerCondition(dict):
         :param _builtins.str metric_unit: Specifies the metric unit.
         :param _builtins.str mix_promql: Specifies the promQL of a combined operation.
         :param _builtins.str operator: Specifies the operator. Options: >, <, =, >=, and <=.
-        :param Sequence[_builtins.str] promql_exprs: Specifies the prometheus statement template.
+        :param _builtins.str promql_expr: Specifies the prometheus statement template.
         :param _builtins.str promql_for: Specifies the native prometheus monitoring duration.
         :param _builtins.str query_match: Specifies the query filter criteria.
         :param _builtins.str query_param: Specifies the query parameters.
@@ -1822,8 +2047,8 @@ class AlarmRuleV4MetricAlarmSpecTriggerCondition(dict):
             pulumi.set(__self__, "mix_promql", mix_promql)
         if operator is not None:
             pulumi.set(__self__, "operator", operator)
-        if promql_exprs is not None:
-            pulumi.set(__self__, "promql_exprs", promql_exprs)
+        if promql_expr is not None:
+            pulumi.set(__self__, "promql_expr", promql_expr)
         if promql_for is not None:
             pulumi.set(__self__, "promql_for", promql_for)
         if query_match is not None:
@@ -1963,12 +2188,12 @@ class AlarmRuleV4MetricAlarmSpecTriggerCondition(dict):
         return pulumi.get(self, "operator")
 
     @_builtins.property
-    @pulumi.getter(name="promqlExprs")
-    def promql_exprs(self) -> Optional[Sequence[_builtins.str]]:
+    @pulumi.getter(name="promqlExpr")
+    def promql_expr(self) -> Optional[_builtins.str]:
         """
         Specifies the prometheus statement template.
         """
-        return pulumi.get(self, "promql_exprs")
+        return pulumi.get(self, "promql_expr")
 
     @_builtins.property
     @pulumi.getter(name="promqlFor")
@@ -3070,12 +3295,14 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
             suggest = "metric_unit"
         elif key == "mixPromql":
             suggest = "mix_promql"
-        elif key == "promqlExprs":
-            suggest = "promql_exprs"
+        elif key == "promqlExpr":
+            suggest = "promql_expr"
         elif key == "promqlFor":
             suggest = "promql_for"
         elif key == "queryMatch":
             suggest = "query_match"
+        elif key == "queryParam":
+            suggest = "query_param"
         elif key == "triggerInterval":
             suggest = "trigger_interval"
         elif key == "triggerTimes":
@@ -3109,9 +3336,10 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
                  mix_promql: Optional[_builtins.str] = None,
                  operator: Optional[_builtins.str] = None,
                  promql: Optional[_builtins.str] = None,
-                 promql_exprs: Optional[Sequence[_builtins.str]] = None,
+                 promql_expr: Optional[_builtins.str] = None,
                  promql_for: Optional[_builtins.str] = None,
                  query_match: Optional[_builtins.str] = None,
+                 query_param: Optional[_builtins.str] = None,
                  thresholds: Optional[Mapping[str, _builtins.str]] = None,
                  trigger_interval: Optional[_builtins.str] = None,
                  trigger_times: Optional[_builtins.str] = None,
@@ -3142,9 +3370,10 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         :param _builtins.str mix_promql: Specifies the promQL of a combined operation.
         :param _builtins.str operator: Specifies the operator. Options: >, <, =, >=, and <=.
         :param _builtins.str promql: Specifies the prometheus statement.
-        :param Sequence[_builtins.str] promql_exprs: Specifies the prometheus statement template.
+        :param _builtins.str promql_expr: Specifies the prometheus statement template.
         :param _builtins.str promql_for: Specifies the native prometheus monitoring duration.
         :param _builtins.str query_match: Specifies the query filter criteria.
+        :param _builtins.str query_param: Specifies the query parameters.
         :param Mapping[str, _builtins.str] thresholds: Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
                the value indicates the alarm threshold.
         :param _builtins.str trigger_interval: Specifies the check interval.
@@ -3195,12 +3424,14 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
             pulumi.set(__self__, "operator", operator)
         if promql is not None:
             pulumi.set(__self__, "promql", promql)
-        if promql_exprs is not None:
-            pulumi.set(__self__, "promql_exprs", promql_exprs)
+        if promql_expr is not None:
+            pulumi.set(__self__, "promql_expr", promql_expr)
         if promql_for is not None:
             pulumi.set(__self__, "promql_for", promql_for)
         if query_match is not None:
             pulumi.set(__self__, "query_match", query_match)
+        if query_param is not None:
+            pulumi.set(__self__, "query_param", query_param)
         if thresholds is not None:
             pulumi.set(__self__, "thresholds", thresholds)
         if trigger_interval is not None:
@@ -3334,12 +3565,12 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         return pulumi.get(self, "promql")
 
     @_builtins.property
-    @pulumi.getter(name="promqlExprs")
-    def promql_exprs(self) -> Optional[Sequence[_builtins.str]]:
+    @pulumi.getter(name="promqlExpr")
+    def promql_expr(self) -> Optional[_builtins.str]:
         """
         Specifies the prometheus statement template.
         """
-        return pulumi.get(self, "promql_exprs")
+        return pulumi.get(self, "promql_expr")
 
     @_builtins.property
     @pulumi.getter(name="promqlFor")
@@ -3356,6 +3587,14 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         Specifies the query filter criteria.
         """
         return pulumi.get(self, "query_match")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParam")
+    def query_param(self) -> Optional[_builtins.str]:
+        """
+        Specifies the query parameters.
+        """
+        return pulumi.get(self, "query_param")
 
     @_builtins.property
     @pulumi.getter
@@ -3696,6 +3935,123 @@ class EnvironmentEnvTag(dict):
 
 
 @pulumi.output_type
+class EventReportEvent(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "endsAt":
+            suggest = "ends_at"
+        elif key == "startsAt":
+            suggest = "starts_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventReportEvent. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventReportEvent.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventReportEvent.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 metadata: Mapping[str, _builtins.str],
+                 annotations: Optional[_builtins.str] = None,
+                 ends_at: Optional[_builtins.int] = None,
+                 starts_at: Optional[_builtins.int] = None,
+                 timeout: Optional[_builtins.int] = None):
+        """
+        :param Mapping[str, _builtins.str] metadata: Specifies the detail of the event or alarm, in key:value pair format.
+               The following fields are required:
+        :param _builtins.str annotations: Specifies the additional fields of the event or alarm, in JSON
+               format.
+               This parameter can be empty.
+        :param _builtins.int ends_at: Specifies the time when the event or alarm was cleared, in UTC
+               milliseconds timestamp.
+               Default value is `0`, indicating that the alarm was not cleared.
+               Required if the `action` is **clear**.
+        :param _builtins.int starts_at: Specifies the time when the event or alarm occurred, in UTC
+               milliseconds timestamp.
+               For example: 2024-10-16 16:03:01 needs to be converted to UTC milliseconds timestamp: `1702759381000`.
+               Required if the `action` is empty.
+        :param _builtins.int timeout: Specifies the automatic clearing time for expired alarms, in milliseconds.
+               The maximum clearing time is `15` days.
+               + When `action` is empty:
+               - If `timeout` is empty, the default clearing time is `15` days.
+               - If `timeout` is specified with a time, the format of time should format be the corresponding milliseconds.
+               For example, if you want to set the clearing time to `5` days, the corresponding milliseconds: `432000000`.
+               + When `action` is **clear**:
+               - This parameter is not required when clearing alarms.
+        """
+        pulumi.set(__self__, "metadata", metadata)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if ends_at is not None:
+            pulumi.set(__self__, "ends_at", ends_at)
+        if starts_at is not None:
+            pulumi.set(__self__, "starts_at", starts_at)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Mapping[str, _builtins.str]:
+        """
+        Specifies the detail of the event or alarm, in key:value pair format.
+        The following fields are required:
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[_builtins.str]:
+        """
+        Specifies the additional fields of the event or alarm, in JSON
+        format.
+        This parameter can be empty.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="endsAt")
+    def ends_at(self) -> Optional[_builtins.int]:
+        """
+        Specifies the time when the event or alarm was cleared, in UTC
+        milliseconds timestamp.
+        Default value is `0`, indicating that the alarm was not cleared.
+        Required if the `action` is **clear**.
+        """
+        return pulumi.get(self, "ends_at")
+
+    @_builtins.property
+    @pulumi.getter(name="startsAt")
+    def starts_at(self) -> Optional[_builtins.int]:
+        """
+        Specifies the time when the event or alarm occurred, in UTC
+        milliseconds timestamp.
+        For example: 2024-10-16 16:03:01 needs to be converted to UTC milliseconds timestamp: `1702759381000`.
+        Required if the `action` is empty.
+        """
+        return pulumi.get(self, "starts_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[_builtins.int]:
+        """
+        Specifies the automatic clearing time for expired alarms, in milliseconds.
+        The maximum clearing time is `15` days.
+        + When `action` is empty:
+        - If `timeout` is empty, the default clearing time is `15` days.
+        - If `timeout` is specified with a time, the format of time should format be the corresponding milliseconds.
+        For example, if you want to set the clearing time to `5` days, the corresponding milliseconds: `432000000`.
+        + When `action` is **clear**:
+        - This parameter is not required when clearing alarms.
+        """
+        return pulumi.get(self, "timeout")
+
+
+@pulumi.output_type
 class MessageTemplateTemplate(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3884,6 +4240,51 @@ class MultiAccountAggregationRuleService(dict):
         Specifies the service name.
         """
         return pulumi.get(self, "service")
+
+
+@pulumi.output_type
+class PromInstancePromLimits(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "compactorBlocksRetentionPeriod":
+            suggest = "compactor_blocks_retention_period"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PromInstancePromLimits. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PromInstancePromLimits.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PromInstancePromLimits.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 compactor_blocks_retention_period: _builtins.str):
+        """
+        :param _builtins.str compactor_blocks_retention_period: Specifies the retention period for the compactor blocks.  
+               The valid values are as follows:
+               + **360h**
+               + **420h**
+               + **1440h**
+               + **2160h**
+        """
+        pulumi.set(__self__, "compactor_blocks_retention_period", compactor_blocks_retention_period)
+
+    @_builtins.property
+    @pulumi.getter(name="compactorBlocksRetentionPeriod")
+    def compactor_blocks_retention_period(self) -> _builtins.str:
+        """
+        Specifies the retention period for the compactor blocks.  
+        The valid values are as follows:
+        + **360h**
+        + **420h**
+        + **1440h**
+        + **2160h**
+        """
+        return pulumi.get(self, "compactor_blocks_retention_period")
 
 
 @pulumi.output_type
@@ -4237,6 +4638,239 @@ class ServiceDiscoveryRuleNameRulesServiceNameRule(dict):
         **cmdLineHash**.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class UniagentBatchInstallAgentImportParamList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "innerIp":
+            suggest = "inner_ip"
+        elif key == "osType":
+            suggest = "os_type"
+        elif key == "agentId":
+            suggest = "agent_id"
+        elif key == "cocCmdbId":
+            suggest = "coc_cmdb_id"
+        elif key == "vpcId":
+            suggest = "vpc_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UniagentBatchInstallAgentImportParamList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UniagentBatchInstallAgentImportParamList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UniagentBatchInstallAgentImportParamList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account: _builtins.str,
+                 inner_ip: _builtins.str,
+                 os_type: _builtins.str,
+                 password: _builtins.str,
+                 port: _builtins.int,
+                 agent_id: Optional[_builtins.str] = None,
+                 coc_cmdb_id: Optional[_builtins.str] = None,
+                 vpc_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str account: Specifies the SSH account of the target machine.
+        :param _builtins.str inner_ip: Specifies the IP address of the target machine.
+        :param _builtins.str os_type: Specifies the operating system type of the target machine.
+               The valid values are as follows:
+               + **LINUX**
+               + **WINDOWS**
+        :param _builtins.str password: Specifies the login password of the target machine.
+        :param _builtins.int port: Specifies the login port of the target machine, default is `22`.
+        :param _builtins.str agent_id: Specifies the unique value of the agent.
+               
+               > Required if the corresponding machine is already installed this agent and you want to re-import.
+        :param _builtins.str coc_cmdb_id: Specifies the external unique identifier for COC usage.
+               
+               <a name="aom_plugin_install_base_param"></a>
+               The `plugin_install_base_param` block supports:
+        :param _builtins.str vpc_id: Specifies the VPC ID of the target machine.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "inner_ip", inner_ip)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "port", port)
+        if agent_id is not None:
+            pulumi.set(__self__, "agent_id", agent_id)
+        if coc_cmdb_id is not None:
+            pulumi.set(__self__, "coc_cmdb_id", coc_cmdb_id)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> _builtins.str:
+        """
+        Specifies the SSH account of the target machine.
+        """
+        return pulumi.get(self, "account")
+
+    @_builtins.property
+    @pulumi.getter(name="innerIp")
+    def inner_ip(self) -> _builtins.str:
+        """
+        Specifies the IP address of the target machine.
+        """
+        return pulumi.get(self, "inner_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Specifies the operating system type of the target machine.
+        The valid values are as follows:
+        + **LINUX**
+        + **WINDOWS**
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> _builtins.str:
+        """
+        Specifies the login password of the target machine.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        Specifies the login port of the target machine, default is `22`.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the unique value of the agent.
+
+        > Required if the corresponding machine is already installed this agent and you want to re-import.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="cocCmdbId")
+    def coc_cmdb_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the external unique identifier for COC usage.
+
+        <a name="aom_plugin_install_base_param"></a>
+        The `plugin_install_base_param` block supports:
+        """
+        return pulumi.get(self, "coc_cmdb_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the VPC ID of the target machine.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class UniagentBatchInstallPluginInstallBaseParam(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "installVersion":
+            suggest = "install_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UniagentBatchInstallPluginInstallBaseParam. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UniagentBatchInstallPluginInstallBaseParam.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UniagentBatchInstallPluginInstallBaseParam.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 install_version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str install_version: Specifies the specified ICAgent version to install.
+               + When `icagent_install_flag` is set to **true**:
+               - If `plugin_install_base_param` is empty, the latest version of ICAgent plugin will be installed by default.
+               - If `plugin_install_base_param` is specified with a version, that version will be installed.
+               + When `icagent_install_flag` is set to **false**:
+               - No ICAgent plugin will be installed regardless of this parameter.
+        """
+        if install_version is not None:
+            pulumi.set(__self__, "install_version", install_version)
+
+    @_builtins.property
+    @pulumi.getter(name="installVersion")
+    def install_version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the specified ICAgent version to install.
+        + When `icagent_install_flag` is set to **true**:
+        - If `plugin_install_base_param` is empty, the latest version of ICAgent plugin will be installed by default.
+        - If `plugin_install_base_param` is specified with a version, that version will be installed.
+        + When `icagent_install_flag` is set to **false**:
+        - No ICAgent plugin will be installed regardless of this parameter.
+        """
+        return pulumi.get(self, "install_version")
+
+
+@pulumi.output_type
+class UniagentBatchUpgradeAgentList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "agentId":
+            suggest = "agent_id"
+        elif key == "innerIp":
+            suggest = "inner_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UniagentBatchUpgradeAgentList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UniagentBatchUpgradeAgentList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UniagentBatchUpgradeAgentList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 inner_ip: _builtins.str):
+        """
+        :param _builtins.str agent_id: Specifies the unique agent ID.
+        :param _builtins.str inner_ip: Specifies the host IP address.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "inner_ip", inner_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        Specifies the unique agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="innerIp")
+    def inner_ip(self) -> _builtins.str:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "inner_ip")
 
 
 @pulumi.output_type
@@ -4683,6 +5317,194 @@ class GetAlarmGroupRulesRuleDetailMatchResult(dict):
         Indicates the matching condition value.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetAlarmNotifiedHistoriesNotifiedHistoryResult(dict):
+    def __init__(__self__, *,
+                 event_sn: _builtins.str,
+                 notifications: Sequence['outputs.GetAlarmNotifiedHistoriesNotifiedHistoryNotificationResult']):
+        """
+        :param _builtins.str event_sn: Specifies the serial number of the alarm event.
+        :param Sequence['GetAlarmNotifiedHistoriesNotifiedHistoryNotificationArgs'] notifications: The list of notification results that associated the event.  
+               The notifications structure is documented below.
+        """
+        pulumi.set(__self__, "event_sn", event_sn)
+        pulumi.set(__self__, "notifications", notifications)
+
+    @_builtins.property
+    @pulumi.getter(name="eventSn")
+    def event_sn(self) -> _builtins.str:
+        """
+        Specifies the serial number of the alarm event.
+        """
+        return pulumi.get(self, "event_sn")
+
+    @_builtins.property
+    @pulumi.getter
+    def notifications(self) -> Sequence['outputs.GetAlarmNotifiedHistoriesNotifiedHistoryNotificationResult']:
+        """
+        The list of notification results that associated the event.  
+        The notifications structure is documented below.
+        """
+        return pulumi.get(self, "notifications")
+
+
+@pulumi.output_type
+class GetAlarmNotifiedHistoriesNotifiedHistoryNotificationResult(dict):
+    def __init__(__self__, *,
+                 action_rule: _builtins.str,
+                 notifier_channel: _builtins.str,
+                 smn_channels: Sequence['outputs.GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelResult']):
+        """
+        :param _builtins.str action_rule: The name of the alarm notification rule.
+        :param _builtins.str notifier_channel: The notification channel type.
+        :param Sequence['GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelArgs'] smn_channels: The result detail of the notification.
+               The smn_channel structure is documented below.
+        """
+        pulumi.set(__self__, "action_rule", action_rule)
+        pulumi.set(__self__, "notifier_channel", notifier_channel)
+        pulumi.set(__self__, "smn_channels", smn_channels)
+
+    @_builtins.property
+    @pulumi.getter(name="actionRule")
+    def action_rule(self) -> _builtins.str:
+        """
+        The name of the alarm notification rule.
+        """
+        return pulumi.get(self, "action_rule")
+
+    @_builtins.property
+    @pulumi.getter(name="notifierChannel")
+    def notifier_channel(self) -> _builtins.str:
+        """
+        The notification channel type.
+        """
+        return pulumi.get(self, "notifier_channel")
+
+    @_builtins.property
+    @pulumi.getter(name="smnChannels")
+    def smn_channels(self) -> Sequence['outputs.GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelResult']:
+        """
+        The result detail of the notification.
+        The smn_channel structure is documented below.
+        """
+        return pulumi.get(self, "smn_channels")
+
+
+@pulumi.output_type
+class GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelResult(dict):
+    def __init__(__self__, *,
+                 sent_time: _builtins.int,
+                 smn_notified_histories: Sequence['outputs.GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelSmnNotifiedHistoryResult'],
+                 smn_request_id: _builtins.str,
+                 smn_response_body: _builtins.str,
+                 smn_response_code: _builtins.str,
+                 smn_topic: _builtins.str):
+        """
+        :param _builtins.int sent_time: The timestamp when the notification was sent.
+        :param Sequence['GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelSmnNotifiedHistoryArgs'] smn_notified_histories: The list of smn notification that associated the event.
+               The smn_notified_history structure is documented below.
+        :param _builtins.str smn_request_id: The request ID of the notification detail.
+        :param _builtins.str smn_response_body: The response body of the notification detail.
+        :param _builtins.str smn_response_code: The response code of the notification detail.
+        :param _builtins.str smn_topic: The SMN topic used for notification.
+        """
+        pulumi.set(__self__, "sent_time", sent_time)
+        pulumi.set(__self__, "smn_notified_histories", smn_notified_histories)
+        pulumi.set(__self__, "smn_request_id", smn_request_id)
+        pulumi.set(__self__, "smn_response_body", smn_response_body)
+        pulumi.set(__self__, "smn_response_code", smn_response_code)
+        pulumi.set(__self__, "smn_topic", smn_topic)
+
+    @_builtins.property
+    @pulumi.getter(name="sentTime")
+    def sent_time(self) -> _builtins.int:
+        """
+        The timestamp when the notification was sent.
+        """
+        return pulumi.get(self, "sent_time")
+
+    @_builtins.property
+    @pulumi.getter(name="smnNotifiedHistories")
+    def smn_notified_histories(self) -> Sequence['outputs.GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelSmnNotifiedHistoryResult']:
+        """
+        The list of smn notification that associated the event.
+        The smn_notified_history structure is documented below.
+        """
+        return pulumi.get(self, "smn_notified_histories")
+
+    @_builtins.property
+    @pulumi.getter(name="smnRequestId")
+    def smn_request_id(self) -> _builtins.str:
+        """
+        The request ID of the notification detail.
+        """
+        return pulumi.get(self, "smn_request_id")
+
+    @_builtins.property
+    @pulumi.getter(name="smnResponseBody")
+    def smn_response_body(self) -> _builtins.str:
+        """
+        The response body of the notification detail.
+        """
+        return pulumi.get(self, "smn_response_body")
+
+    @_builtins.property
+    @pulumi.getter(name="smnResponseCode")
+    def smn_response_code(self) -> _builtins.str:
+        """
+        The response code of the notification detail.
+        """
+        return pulumi.get(self, "smn_response_code")
+
+    @_builtins.property
+    @pulumi.getter(name="smnTopic")
+    def smn_topic(self) -> _builtins.str:
+        """
+        The SMN topic used for notification.
+        """
+        return pulumi.get(self, "smn_topic")
+
+
+@pulumi.output_type
+class GetAlarmNotifiedHistoriesNotifiedHistoryNotificationSmnChannelSmnNotifiedHistoryResult(dict):
+    def __init__(__self__, *,
+                 smn_notified_content: _builtins.str,
+                 smn_subscription_status: _builtins.int,
+                 smn_subscription_type: _builtins.str):
+        """
+        :param _builtins.str smn_notified_content: The content of the notification.
+        :param _builtins.int smn_subscription_status: The subscription status of the notification.
+        :param _builtins.str smn_subscription_type: The subscription type of the notification.
+        """
+        pulumi.set(__self__, "smn_notified_content", smn_notified_content)
+        pulumi.set(__self__, "smn_subscription_status", smn_subscription_status)
+        pulumi.set(__self__, "smn_subscription_type", smn_subscription_type)
+
+    @_builtins.property
+    @pulumi.getter(name="smnNotifiedContent")
+    def smn_notified_content(self) -> _builtins.str:
+        """
+        The content of the notification.
+        """
+        return pulumi.get(self, "smn_notified_content")
+
+    @_builtins.property
+    @pulumi.getter(name="smnSubscriptionStatus")
+    def smn_subscription_status(self) -> _builtins.int:
+        """
+        The subscription status of the notification.
+        """
+        return pulumi.get(self, "smn_subscription_status")
+
+    @_builtins.property
+    @pulumi.getter(name="smnSubscriptionType")
+    def smn_subscription_type(self) -> _builtins.str:
+        """
+        The subscription type of the notification.
+        """
+        return pulumi.get(self, "smn_subscription_type")
 
 
 @pulumi.output_type
@@ -5298,7 +6120,7 @@ class GetAlarmRulesAlarmRuleMetricAlarmSpecTriggerConditionResult(dict):
                  mix_promql: _builtins.str,
                  operator: _builtins.str,
                  promql: _builtins.str,
-                 promql_exprs: Sequence[_builtins.str],
+                 promql_expr: _builtins.str,
                  promql_for: _builtins.str,
                  query_match: _builtins.str,
                  query_param: _builtins.str,
@@ -5330,7 +6152,7 @@ class GetAlarmRulesAlarmRuleMetricAlarmSpecTriggerConditionResult(dict):
         :param _builtins.str mix_promql: Indicates the promQL of a combined operation.
         :param _builtins.str operator: Indicates the operator.
         :param _builtins.str promql: Indicates the prometheus statement.
-        :param Sequence[_builtins.str] promql_exprs: Indicates the prometheus statement template.
+        :param _builtins.str promql_expr: Indicates the prometheus statement template.
         :param _builtins.str promql_for: Indicates the native Prometheus monitoring duration.
         :param _builtins.str query_match: Indicates the query filter criteria.
         :param _builtins.str query_param: Indicates the query parameters.
@@ -5359,7 +6181,7 @@ class GetAlarmRulesAlarmRuleMetricAlarmSpecTriggerConditionResult(dict):
         pulumi.set(__self__, "mix_promql", mix_promql)
         pulumi.set(__self__, "operator", operator)
         pulumi.set(__self__, "promql", promql)
-        pulumi.set(__self__, "promql_exprs", promql_exprs)
+        pulumi.set(__self__, "promql_expr", promql_expr)
         pulumi.set(__self__, "promql_for", promql_for)
         pulumi.set(__self__, "query_match", query_match)
         pulumi.set(__self__, "query_param", query_param)
@@ -5490,12 +6312,12 @@ class GetAlarmRulesAlarmRuleMetricAlarmSpecTriggerConditionResult(dict):
         return pulumi.get(self, "promql")
 
     @_builtins.property
-    @pulumi.getter(name="promqlExprs")
-    def promql_exprs(self) -> Sequence[_builtins.str]:
+    @pulumi.getter(name="promqlExpr")
+    def promql_expr(self) -> _builtins.str:
         """
         Indicates the prometheus statement template.
         """
-        return pulumi.get(self, "promql_exprs")
+        return pulumi.get(self, "promql_expr")
 
     @_builtins.property
     @pulumi.getter(name="promqlFor")
@@ -6314,9 +7136,10 @@ class GetAlarmRulesTemplatesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMe
                  mix_promql: _builtins.str,
                  operator: _builtins.str,
                  promql: _builtins.str,
-                 promql_exprs: Sequence[_builtins.str],
+                 promql_expr: _builtins.str,
                  promql_for: _builtins.str,
                  query_match: _builtins.str,
+                 query_param: _builtins.str,
                  thresholds: Mapping[str, _builtins.str],
                  trigger_interval: _builtins.str,
                  trigger_times: _builtins.str,
@@ -6345,9 +7168,10 @@ class GetAlarmRulesTemplatesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMe
         :param _builtins.str mix_promql: Indicates the promQL of a combined operation.
         :param _builtins.str operator: Indicates the operator.
         :param _builtins.str promql: Indicates the prometheus statement.
-        :param Sequence[_builtins.str] promql_exprs: Indicates the prometheus statement template.
+        :param _builtins.str promql_expr: Indicates the prometheus statement template.
         :param _builtins.str promql_for: Indicates the native Prometheus monitoring duration.
         :param _builtins.str query_match: Indicates the query filter criteria.
+        :param _builtins.str query_param: Indicates the query parameters.
         :param Mapping[str, _builtins.str] thresholds: Key-value pair. The key indicates the alarm severity while the value indicates the alarm threshold.
         :param _builtins.str trigger_interval: Indicates the check interval.
         :param _builtins.str trigger_times: Indicates the number of consecutive periods.
@@ -6373,9 +7197,10 @@ class GetAlarmRulesTemplatesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMe
         pulumi.set(__self__, "mix_promql", mix_promql)
         pulumi.set(__self__, "operator", operator)
         pulumi.set(__self__, "promql", promql)
-        pulumi.set(__self__, "promql_exprs", promql_exprs)
+        pulumi.set(__self__, "promql_expr", promql_expr)
         pulumi.set(__self__, "promql_for", promql_for)
         pulumi.set(__self__, "query_match", query_match)
+        pulumi.set(__self__, "query_param", query_param)
         pulumi.set(__self__, "thresholds", thresholds)
         pulumi.set(__self__, "trigger_interval", trigger_interval)
         pulumi.set(__self__, "trigger_times", trigger_times)
@@ -6503,12 +7328,12 @@ class GetAlarmRulesTemplatesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMe
         return pulumi.get(self, "promql")
 
     @_builtins.property
-    @pulumi.getter(name="promqlExprs")
-    def promql_exprs(self) -> Sequence[_builtins.str]:
+    @pulumi.getter(name="promqlExpr")
+    def promql_expr(self) -> _builtins.str:
         """
         Indicates the prometheus statement template.
         """
-        return pulumi.get(self, "promql_exprs")
+        return pulumi.get(self, "promql_expr")
 
     @_builtins.property
     @pulumi.getter(name="promqlFor")
@@ -6525,6 +7350,14 @@ class GetAlarmRulesTemplatesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMe
         Indicates the query filter criteria.
         """
         return pulumi.get(self, "query_match")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParam")
+    def query_param(self) -> _builtins.str:
+        """
+        Indicates the query parameters.
+        """
+        return pulumi.get(self, "query_param")
 
     @_builtins.property
     @pulumi.getter
@@ -6838,23 +7671,34 @@ class GetAlarmSilenceRulesRuleSilenceTimeResult(dict):
 @pulumi.output_type
 class GetCloudServiceAuthorizationsAuthorizationResult(dict):
     def __init__(__self__, *,
+                 need_optimized: _builtins.bool,
                  role_names: Sequence[_builtins.str],
                  service: _builtins.str,
                  status: _builtins.bool):
         """
-        :param Sequence[_builtins.str] role_names: Indicates the role names list.
-        :param _builtins.str service: Indicates the authorization service.
-        :param _builtins.bool status: Indicates the authorization status.
+        :param _builtins.bool need_optimized: Whether the authorization needs optimization.
+        :param Sequence[_builtins.str] role_names: The role names list.
+        :param _builtins.str service: The authorization service name.
+        :param _builtins.bool status: Whether the authorization is enabled.
         """
+        pulumi.set(__self__, "need_optimized", need_optimized)
         pulumi.set(__self__, "role_names", role_names)
         pulumi.set(__self__, "service", service)
         pulumi.set(__self__, "status", status)
 
     @_builtins.property
+    @pulumi.getter(name="needOptimized")
+    def need_optimized(self) -> _builtins.bool:
+        """
+        Whether the authorization needs optimization.
+        """
+        return pulumi.get(self, "need_optimized")
+
+    @_builtins.property
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[_builtins.str]:
         """
-        Indicates the role names list.
+        The role names list.
         """
         return pulumi.get(self, "role_names")
 
@@ -6862,7 +7706,7 @@ class GetCloudServiceAuthorizationsAuthorizationResult(dict):
     @pulumi.getter
     def service(self) -> _builtins.str:
         """
-        Indicates the authorization service.
+        The authorization service name.
         """
         return pulumi.get(self, "service")
 
@@ -6870,7 +7714,7 @@ class GetCloudServiceAuthorizationsAuthorizationResult(dict):
     @pulumi.getter
     def status(self) -> _builtins.bool:
         """
-        Indicates the authorization status.
+        Whether the authorization is enabled.
         """
         return pulumi.get(self, "status")
 
@@ -7162,6 +8006,152 @@ class GetDashboardsFoldersFolderResult(dict):
         Indicates the update time of the folder.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetEventStatisticSeriesResult(dict):
+    def __init__(__self__, *,
+                 event_severity: _builtins.str,
+                 values: Sequence[_builtins.int]):
+        """
+        :param _builtins.str event_severity: The event or alarm severity level.
+        :param Sequence[_builtins.int] values: The statistical results for events or alarms at each time point.
+        """
+        pulumi.set(__self__, "event_severity", event_severity)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter(name="eventSeverity")
+    def event_severity(self) -> _builtins.str:
+        """
+        The event or alarm severity level.
+        """
+        return pulumi.get(self, "event_severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.int]:
+        """
+        The statistical results for events or alarms at each time point.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetEventsEventResult(dict):
+    def __init__(__self__, *,
+                 annotations: _builtins.str,
+                 arrives_at: _builtins.int,
+                 ends_at: _builtins.int,
+                 enterprise_project_id: _builtins.str,
+                 event_sn: _builtins.str,
+                 id: _builtins.str,
+                 metadata: Mapping[str, _builtins.str],
+                 policy: _builtins.str,
+                 starts_at: _builtins.int,
+                 timeout: _builtins.int):
+        """
+        :param _builtins.str annotations: The additional fields of the event or alarm, in JSON format.
+        :param _builtins.int arrives_at: The time when the event arrived at the system, CST millisecond timestamp.
+        :param _builtins.int ends_at: The time when the event or alarm was cleared, CST millisecond timestamp, **0** means not cleared.
+        :param _builtins.str enterprise_project_id: The enterprise project ID to which the event or alarm belongs.
+        :param _builtins.str event_sn: The alarm serial number.
+        :param _builtins.str id: The ID of the event or alarm.
+        :param Mapping[str, _builtins.str] metadata: The detailed information (key/value pair) of the event or alarm.
+        :param _builtins.str policy: The open alarm policy, in JSON format.
+        :param _builtins.int starts_at: The time when the event or alarm occurred, CST millisecond timestamp.
+        :param _builtins.int timeout: The automatic clearing time for alarms in milliseconds.
+        """
+        pulumi.set(__self__, "annotations", annotations)
+        pulumi.set(__self__, "arrives_at", arrives_at)
+        pulumi.set(__self__, "ends_at", ends_at)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "event_sn", event_sn)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "metadata", metadata)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "starts_at", starts_at)
+        pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> _builtins.str:
+        """
+        The additional fields of the event or alarm, in JSON format.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="arrivesAt")
+    def arrives_at(self) -> _builtins.int:
+        """
+        The time when the event arrived at the system, CST millisecond timestamp.
+        """
+        return pulumi.get(self, "arrives_at")
+
+    @_builtins.property
+    @pulumi.getter(name="endsAt")
+    def ends_at(self) -> _builtins.int:
+        """
+        The time when the event or alarm was cleared, CST millisecond timestamp, **0** means not cleared.
+        """
+        return pulumi.get(self, "ends_at")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        The enterprise project ID to which the event or alarm belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="eventSn")
+    def event_sn(self) -> _builtins.str:
+        """
+        The alarm serial number.
+        """
+        return pulumi.get(self, "event_sn")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the event or alarm.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Mapping[str, _builtins.str]:
+        """
+        The detailed information (key/value pair) of the event or alarm.
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> _builtins.str:
+        """
+        The open alarm policy, in JSON format.
+        """
+        return pulumi.get(self, "policy")
+
+    @_builtins.property
+    @pulumi.getter(name="startsAt")
+    def starts_at(self) -> _builtins.int:
+        """
+        The time when the event or alarm occurred, CST millisecond timestamp.
+        """
+        return pulumi.get(self, "starts_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> _builtins.int:
+        """
+        The automatic clearing time for alarms in milliseconds.
+        """
+        return pulumi.get(self, "timeout")
 
 
 @pulumi.output_type

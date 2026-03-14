@@ -33,6 +33,7 @@ class AlarmRuleV4Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlarmRuleV4 resource.
+
         :param pulumi.Input['AlarmRuleV4AlarmNotificationsArgs'] alarm_notifications: Specifies the alarm notification module.
                The alarm_notifications structure is documented below.
         :param pulumi.Input[_builtins.str] type: Specifies the alarm rule type.
@@ -239,6 +240,7 @@ class _AlarmRuleV4State:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlarmRuleV4 resources.
+
         :param pulumi.Input['AlarmRuleV4AlarmNotificationsArgs'] alarm_notifications: Specifies the alarm notification module.
                The alarm_notifications structure is documented below.
         :param pulumi.Input[_builtins.str] alarm_rule_id: Indicates the alarm rule ID.
@@ -649,41 +651,17 @@ class AlarmRuleV4(pulumi.CustomResource):
 
         Alarm rule resources can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmRuleV4:AlarmRuleV4 test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `metric_alarm_spec.0.trigger_conditions`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the rule, or the resource definition should be updated to
-
         align with the rule. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_aomv4_alarm_rule" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              metric_alarm_spec.0.trigger_conditions,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -856,41 +834,17 @@ class AlarmRuleV4(pulumi.CustomResource):
 
         Alarm rule resources can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmRuleV4:AlarmRuleV4 test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `metric_alarm_spec.0.trigger_conditions`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the rule, or the resource definition should be updated to
-
         align with the rule. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_aomv4_alarm_rule" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              metric_alarm_spec.0.trigger_conditions,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AlarmRuleV4Args args: The arguments to use to populate this resource's properties.

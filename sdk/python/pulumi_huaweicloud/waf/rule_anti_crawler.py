@@ -31,6 +31,7 @@ class RuleAntiCrawlerArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RuleAntiCrawler resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['RuleAntiCrawlerConditionArgs']]] conditions: Specifies the match condition list.
                The conditions structure is documented below.
         :param pulumi.Input[_builtins.str] policy_id: Specifies the policy ID.
@@ -196,6 +197,7 @@ class _RuleAntiCrawlerState:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RuleAntiCrawler resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['RuleAntiCrawlerConditionArgs']]] conditions: Specifies the match condition list.
                The conditions structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the rule description.
@@ -423,19 +425,16 @@ class RuleAntiCrawler(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleAntiCrawler:RuleAntiCrawler test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleAntiCrawler:RuleAntiCrawler test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -512,19 +511,16 @@ class RuleAntiCrawler(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleAntiCrawler:RuleAntiCrawler test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleAntiCrawler:RuleAntiCrawler test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleAntiCrawlerArgs args: The arguments to use to populate this resource's properties.

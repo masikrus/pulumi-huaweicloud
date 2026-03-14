@@ -30,6 +30,7 @@ class InstanceNodeNumUpdateArgs:
                  volume: Optional[pulumi.Input['InstanceNodeNumUpdateVolumeArgs']] = None):
         """
         The set of arguments for constructing a InstanceNodeNumUpdate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
         :param pulumi.Input[_builtins.str] num: Specifies the number of mongos or shard nodes to be added. A cluster instance
                supports up to 32 mongos nodes and 32 shard nodes.
@@ -164,6 +165,7 @@ class _InstanceNodeNumUpdateState:
                  volume: Optional[pulumi.Input['InstanceNodeNumUpdateVolumeArgs']] = None):
         """
         Input properties used for looking up and filtering InstanceNodeNumUpdate resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
         :param pulumi.Input[_builtins.str] num: Specifies the number of mongos or shard nodes to be added. A cluster instance
                supports up to 32 mongos nodes and 32 shard nodes.
@@ -342,6 +344,7 @@ class InstanceNodeNumUpdate(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
@@ -405,6 +408,7 @@ class InstanceNodeNumUpdate(pulumi.CustomResource):
                 "size": "20",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceNodeNumUpdateArgs args: The arguments to use to populate this resource's properties.

@@ -20,7 +20,9 @@ __all__ = ['InterfaceAttachArgs', 'InterfaceAttach']
 class InterfaceAttachArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.str],
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_bandwidth_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  network_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -30,20 +32,24 @@ class InterfaceAttachArgs:
                  source_dest_check: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a InterfaceAttach resource.
+
         :param pulumi.Input[_builtins.str] instance_id: The ID of the Instance to attach the Port or Network to.
+        :param pulumi.Input[_builtins.str] delete_on_termination: Whether to delete a NIC when detaching it. Value options:
+               + **true**: Delete the NIC.
+               + **false**: Do not delete the NIC.
         :param pulumi.Input[_builtins.str] fixed_ip: An IP address to associate with the port.
                
-               ->This option cannot be used with port_id. You must specify a network_id. The IP address must lie in a range on
+               ->This option cannot be used with `port_id`. You must specify a `network_id`. The IP address must lie in a range on
                the supplied network.
+        :param pulumi.Input[_builtins.str] fixed_ipv6: The IPv6 address.
         :param pulumi.Input[_builtins.str] ipv6_bandwidth_id: Specifies the shared bandwidth ID to which the IPv6 NIC attaches.
         :param pulumi.Input[_builtins.bool] ipv6_enable: Specifies if the NIC supporting IPv6 or not.
-        :param pulumi.Input[_builtins.str] network_id: The ID of the Network to attach to an Instance. A port will be created
-               automatically.
+        :param pulumi.Input[_builtins.str] network_id: The ID of the Network to attach to an Instance. A port will be created automatically.
                This option and `port_id` are mutually exclusive.
         :param pulumi.Input[_builtins.str] port_id: The ID of the Port to attach to an Instance.
                This option and `network_id` are mutually exclusive.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the network interface attache resource. If
-               omitted, the provider-level region will be used. Changing this creates a new network interface attache resource.
+        :param pulumi.Input[_builtins.str] region: The region in which to create the network interface attach resource. If
+               omitted, the provider-level region will be used. Changing this creates a new network interface attach resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_group_ids: Specifies the list of security group IDs bound to the specified port.  
                Defaults to the default security group.
         :param pulumi.Input[_builtins.bool] source_dest_check: Specifies whether the ECS processes only traffic that is destined specifically
@@ -51,8 +57,12 @@ class InterfaceAttachArgs:
                virtual IP address bound to it.
         """
         pulumi.set(__self__, "instance_id", instance_id)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         if fixed_ip is not None:
             pulumi.set(__self__, "fixed_ip", fixed_ip)
+        if fixed_ipv6 is not None:
+            pulumi.set(__self__, "fixed_ipv6", fixed_ipv6)
         if ipv6_bandwidth_id is not None:
             pulumi.set(__self__, "ipv6_bandwidth_id", ipv6_bandwidth_id)
         if ipv6_enable is not None:
@@ -81,12 +91,26 @@ class InterfaceAttachArgs:
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to delete a NIC when detaching it. Value options:
+        + **true**: Delete the NIC.
+        + **false**: Do not delete the NIC.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
     @pulumi.getter(name="fixedIp")
     def fixed_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         An IP address to associate with the port.
 
-        ->This option cannot be used with port_id. You must specify a network_id. The IP address must lie in a range on
+        ->This option cannot be used with `port_id`. You must specify a `network_id`. The IP address must lie in a range on
         the supplied network.
         """
         return pulumi.get(self, "fixed_ip")
@@ -94,6 +118,18 @@ class InterfaceAttachArgs:
     @fixed_ip.setter
     def fixed_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "fixed_ip", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fixedIpv6")
+    def fixed_ipv6(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The IPv6 address.
+        """
+        return pulumi.get(self, "fixed_ipv6")
+
+    @fixed_ipv6.setter
+    def fixed_ipv6(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "fixed_ipv6", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6BandwidthId")
@@ -123,8 +159,7 @@ class InterfaceAttachArgs:
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the Network to attach to an Instance. A port will be created
-        automatically.
+        The ID of the Network to attach to an Instance. A port will be created automatically.
         This option and `port_id` are mutually exclusive.
         """
         return pulumi.get(self, "network_id")
@@ -150,8 +185,8 @@ class InterfaceAttachArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The region in which to create the network interface attache resource. If
-        omitted, the provider-level region will be used. Changing this creates a new network interface attache resource.
+        The region in which to create the network interface attach resource. If
+        omitted, the provider-level region will be used. Changing this creates a new network interface attach resource.
         """
         return pulumi.get(self, "region")
 
@@ -190,6 +225,7 @@ class InterfaceAttachArgs:
 @pulumi.input_type
 class _InterfaceAttachState:
     def __init__(__self__, *,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -203,28 +239,33 @@ class _InterfaceAttachState:
                  source_dest_check: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering InterfaceAttach resources.
+
+        :param pulumi.Input[_builtins.str] delete_on_termination: Whether to delete a NIC when detaching it. Value options:
+               + **true**: Delete the NIC.
+               + **false**: Do not delete the NIC.
         :param pulumi.Input[_builtins.str] fixed_ip: An IP address to associate with the port.
                
-               ->This option cannot be used with port_id. You must specify a network_id. The IP address must lie in a range on
+               ->This option cannot be used with `port_id`. You must specify a `network_id`. The IP address must lie in a range on
                the supplied network.
         :param pulumi.Input[_builtins.str] fixed_ipv6: The IPv6 address.
         :param pulumi.Input[_builtins.str] instance_id: The ID of the Instance to attach the Port or Network to.
         :param pulumi.Input[_builtins.str] ipv6_bandwidth_id: Specifies the shared bandwidth ID to which the IPv6 NIC attaches.
         :param pulumi.Input[_builtins.bool] ipv6_enable: Specifies if the NIC supporting IPv6 or not.
         :param pulumi.Input[_builtins.str] mac: The MAC address of the NIC.
-        :param pulumi.Input[_builtins.str] network_id: The ID of the Network to attach to an Instance. A port will be created
-               automatically.
+        :param pulumi.Input[_builtins.str] network_id: The ID of the Network to attach to an Instance. A port will be created automatically.
                This option and `port_id` are mutually exclusive.
         :param pulumi.Input[_builtins.str] port_id: The ID of the Port to attach to an Instance.
                This option and `network_id` are mutually exclusive.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the network interface attache resource. If
-               omitted, the provider-level region will be used. Changing this creates a new network interface attache resource.
+        :param pulumi.Input[_builtins.str] region: The region in which to create the network interface attach resource. If
+               omitted, the provider-level region will be used. Changing this creates a new network interface attach resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_group_ids: Specifies the list of security group IDs bound to the specified port.  
                Defaults to the default security group.
         :param pulumi.Input[_builtins.bool] source_dest_check: Specifies whether the ECS processes only traffic that is destined specifically
                for it. This function is enabled by default but should be disabled if the ECS functions as a SNAT server or has a
                virtual IP address bound to it.
         """
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         if fixed_ip is not None:
             pulumi.set(__self__, "fixed_ip", fixed_ip)
         if fixed_ipv6 is not None:
@@ -249,12 +290,26 @@ class _InterfaceAttachState:
             pulumi.set(__self__, "source_dest_check", source_dest_check)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to delete a NIC when detaching it. Value options:
+        + **true**: Delete the NIC.
+        + **false**: Do not delete the NIC.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
     @pulumi.getter(name="fixedIp")
     def fixed_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         An IP address to associate with the port.
 
-        ->This option cannot be used with port_id. You must specify a network_id. The IP address must lie in a range on
+        ->This option cannot be used with `port_id`. You must specify a `network_id`. The IP address must lie in a range on
         the supplied network.
         """
         return pulumi.get(self, "fixed_ip")
@@ -327,8 +382,7 @@ class _InterfaceAttachState:
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the Network to attach to an Instance. A port will be created
-        automatically.
+        The ID of the Network to attach to an Instance. A port will be created automatically.
         This option and `port_id` are mutually exclusive.
         """
         return pulumi.get(self, "network_id")
@@ -354,8 +408,8 @@ class _InterfaceAttachState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The region in which to create the network interface attache resource. If
-        omitted, the provider-level region will be used. Changing this creates a new network interface attache resource.
+        The region in which to create the network interface attach resource. If
+        omitted, the provider-level region will be used. Changing this creates a new network interface attach resource.
         """
         return pulumi.get(self, "region")
 
@@ -397,7 +451,9 @@ class InterfaceAttach(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_bandwidth_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -476,22 +532,26 @@ class InterfaceAttach(pulumi.CustomResource):
         $ pulumi import huaweicloud:Ecs/interfaceAttach:InterfaceAttach ai_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] delete_on_termination: Whether to delete a NIC when detaching it. Value options:
+               + **true**: Delete the NIC.
+               + **false**: Do not delete the NIC.
         :param pulumi.Input[_builtins.str] fixed_ip: An IP address to associate with the port.
                
-               ->This option cannot be used with port_id. You must specify a network_id. The IP address must lie in a range on
+               ->This option cannot be used with `port_id`. You must specify a `network_id`. The IP address must lie in a range on
                the supplied network.
+        :param pulumi.Input[_builtins.str] fixed_ipv6: The IPv6 address.
         :param pulumi.Input[_builtins.str] instance_id: The ID of the Instance to attach the Port or Network to.
         :param pulumi.Input[_builtins.str] ipv6_bandwidth_id: Specifies the shared bandwidth ID to which the IPv6 NIC attaches.
         :param pulumi.Input[_builtins.bool] ipv6_enable: Specifies if the NIC supporting IPv6 or not.
-        :param pulumi.Input[_builtins.str] network_id: The ID of the Network to attach to an Instance. A port will be created
-               automatically.
+        :param pulumi.Input[_builtins.str] network_id: The ID of the Network to attach to an Instance. A port will be created automatically.
                This option and `port_id` are mutually exclusive.
         :param pulumi.Input[_builtins.str] port_id: The ID of the Port to attach to an Instance.
                This option and `network_id` are mutually exclusive.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the network interface attache resource. If
-               omitted, the provider-level region will be used. Changing this creates a new network interface attache resource.
+        :param pulumi.Input[_builtins.str] region: The region in which to create the network interface attach resource. If
+               omitted, the provider-level region will be used. Changing this creates a new network interface attach resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_group_ids: Specifies the list of security group IDs bound to the specified port.  
                Defaults to the default security group.
         :param pulumi.Input[_builtins.bool] source_dest_check: Specifies whether the ECS processes only traffic that is destined specifically
@@ -573,6 +633,7 @@ class InterfaceAttach(pulumi.CustomResource):
         $ pulumi import huaweicloud:Ecs/interfaceAttach:InterfaceAttach ai_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666
         ```
 
+
         :param str resource_name: The name of the resource.
         :param InterfaceAttachArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -588,7 +649,9 @@ class InterfaceAttach(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_bandwidth_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -606,7 +669,9 @@ class InterfaceAttach(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InterfaceAttachArgs.__new__(InterfaceAttachArgs)
 
+            __props__.__dict__["delete_on_termination"] = delete_on_termination
             __props__.__dict__["fixed_ip"] = fixed_ip
+            __props__.__dict__["fixed_ipv6"] = fixed_ipv6
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
@@ -617,7 +682,6 @@ class InterfaceAttach(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["security_group_ids"] = security_group_ids
             __props__.__dict__["source_dest_check"] = source_dest_check
-            __props__.__dict__["fixed_ipv6"] = None
             __props__.__dict__["mac"] = None
         super(InterfaceAttach, __self__).__init__(
             'huaweicloud:Ecs/interfaceAttach:InterfaceAttach',
@@ -629,6 +693,7 @@ class InterfaceAttach(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
             fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
             fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -647,22 +712,24 @@ class InterfaceAttach(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] delete_on_termination: Whether to delete a NIC when detaching it. Value options:
+               + **true**: Delete the NIC.
+               + **false**: Do not delete the NIC.
         :param pulumi.Input[_builtins.str] fixed_ip: An IP address to associate with the port.
                
-               ->This option cannot be used with port_id. You must specify a network_id. The IP address must lie in a range on
+               ->This option cannot be used with `port_id`. You must specify a `network_id`. The IP address must lie in a range on
                the supplied network.
         :param pulumi.Input[_builtins.str] fixed_ipv6: The IPv6 address.
         :param pulumi.Input[_builtins.str] instance_id: The ID of the Instance to attach the Port or Network to.
         :param pulumi.Input[_builtins.str] ipv6_bandwidth_id: Specifies the shared bandwidth ID to which the IPv6 NIC attaches.
         :param pulumi.Input[_builtins.bool] ipv6_enable: Specifies if the NIC supporting IPv6 or not.
         :param pulumi.Input[_builtins.str] mac: The MAC address of the NIC.
-        :param pulumi.Input[_builtins.str] network_id: The ID of the Network to attach to an Instance. A port will be created
-               automatically.
+        :param pulumi.Input[_builtins.str] network_id: The ID of the Network to attach to an Instance. A port will be created automatically.
                This option and `port_id` are mutually exclusive.
         :param pulumi.Input[_builtins.str] port_id: The ID of the Port to attach to an Instance.
                This option and `network_id` are mutually exclusive.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the network interface attache resource. If
-               omitted, the provider-level region will be used. Changing this creates a new network interface attache resource.
+        :param pulumi.Input[_builtins.str] region: The region in which to create the network interface attach resource. If
+               omitted, the provider-level region will be used. Changing this creates a new network interface attach resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_group_ids: Specifies the list of security group IDs bound to the specified port.  
                Defaults to the default security group.
         :param pulumi.Input[_builtins.bool] source_dest_check: Specifies whether the ECS processes only traffic that is destined specifically
@@ -673,6 +740,7 @@ class InterfaceAttach(pulumi.CustomResource):
 
         __props__ = _InterfaceAttachState.__new__(_InterfaceAttachState)
 
+        __props__.__dict__["delete_on_termination"] = delete_on_termination
         __props__.__dict__["fixed_ip"] = fixed_ip
         __props__.__dict__["fixed_ipv6"] = fixed_ipv6
         __props__.__dict__["instance_id"] = instance_id
@@ -687,12 +755,22 @@ class InterfaceAttach(pulumi.CustomResource):
         return InterfaceAttach(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> pulumi.Output[_builtins.str]:
+        """
+        Whether to delete a NIC when detaching it. Value options:
+        + **true**: Delete the NIC.
+        + **false**: Do not delete the NIC.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @_builtins.property
     @pulumi.getter(name="fixedIp")
     def fixed_ip(self) -> pulumi.Output[_builtins.str]:
         """
         An IP address to associate with the port.
 
-        ->This option cannot be used with port_id. You must specify a network_id. The IP address must lie in a range on
+        ->This option cannot be used with `port_id`. You must specify a `network_id`. The IP address must lie in a range on
         the supplied network.
         """
         return pulumi.get(self, "fixed_ip")
@@ -741,8 +819,7 @@ class InterfaceAttach(pulumi.CustomResource):
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The ID of the Network to attach to an Instance. A port will be created
-        automatically.
+        The ID of the Network to attach to an Instance. A port will be created automatically.
         This option and `port_id` are mutually exclusive.
         """
         return pulumi.get(self, "network_id")
@@ -760,8 +837,8 @@ class InterfaceAttach(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        The region in which to create the network interface attache resource. If
-        omitted, the provider-level region will be used. Changing this creates a new network interface attache resource.
+        The region in which to create the network interface attach resource. If
+        omitted, the provider-level region will be used. Changing this creates a new network interface attach resource.
         """
         return pulumi.get(self, "region")
 

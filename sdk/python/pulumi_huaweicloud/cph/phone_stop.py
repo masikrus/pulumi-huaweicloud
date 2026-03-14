@@ -24,6 +24,7 @@ class PhoneStopArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PhoneStop resource.
+
         :param pulumi.Input[_builtins.str] phone_id: Specifies the ID of the CPH phone.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
@@ -79,6 +80,7 @@ class _PhoneStopState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PhoneStop resources.
+
         :param pulumi.Input[_builtins.str] phone_id: Specifies the ID of the CPH phone.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
@@ -127,7 +129,7 @@ class _PhoneStopState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:cph/phoneStop:PhoneStop")
+@pulumi.type_token("huaweicloud:Cph/phoneStop:PhoneStop")
 class PhoneStop(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -150,6 +152,7 @@ class PhoneStop(pulumi.CustomResource):
         phone_id = config.require_object("phoneId")
         test = huaweicloud.cph.PhoneStop("test", phone_id=phone_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -177,6 +180,7 @@ class PhoneStop(pulumi.CustomResource):
         phone_id = config.require_object("phoneId")
         test = huaweicloud.cph.PhoneStop("test", phone_id=phone_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PhoneStopArgs args: The arguments to use to populate this resource's properties.
@@ -211,7 +215,7 @@ class PhoneStop(pulumi.CustomResource):
             __props__.__dict__["phone_id"] = phone_id
             __props__.__dict__["region"] = region
         super(PhoneStop, __self__).__init__(
-            'huaweicloud:cph/phoneStop:PhoneStop',
+            'huaweicloud:Cph/phoneStop:PhoneStop',
             resource_name,
             __props__,
             opts)

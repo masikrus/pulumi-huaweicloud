@@ -142,7 +142,7 @@ def get_event_unblock_ips(enterprise_project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_unblock_ips()
+    test = huaweicloud.Hss.get_event_unblock_ips()
     ```
 
 
@@ -172,7 +172,7 @@ def get_event_unblock_ips(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['srcIp'] = src_ip
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getEventUnblockIps:getEventUnblockIps', __args__, opts=opts, typ=GetEventUnblockIpsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getEventUnblockIps:getEventUnblockIps', __args__, opts=opts, typ=GetEventUnblockIpsResult).value
 
     return AwaitableGetEventUnblockIpsResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -199,7 +199,7 @@ def get_event_unblock_ips_output(enterprise_project_id: Optional[pulumi.Input[Op
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_unblock_ips()
+    test = huaweicloud.Hss.get_event_unblock_ips()
     ```
 
 
@@ -229,7 +229,7 @@ def get_event_unblock_ips_output(enterprise_project_id: Optional[pulumi.Input[Op
     __args__['region'] = region
     __args__['srcIp'] = src_ip
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getEventUnblockIps:getEventUnblockIps', __args__, opts=opts, typ=GetEventUnblockIpsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getEventUnblockIps:getEventUnblockIps', __args__, opts=opts, typ=GetEventUnblockIpsResult)
     return __ret__.apply(lambda __response__: GetEventUnblockIpsResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

@@ -24,6 +24,7 @@ class DeleteFailureJobArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeleteFailureJob resource.
+
         :param pulumi.Input[_builtins.str] failure_job_id: Specifies the ID of the failure job to delete.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this will create a new resource.
@@ -77,6 +78,7 @@ class _DeleteFailureJobState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeleteFailureJob resources.
+
         :param pulumi.Input[_builtins.str] failure_job_id: Specifies the ID of the failure job to delete.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this will create a new resource.
@@ -123,7 +125,7 @@ class _DeleteFailureJobState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/deleteFailureJob:DeleteFailureJob")
+@pulumi.type_token("huaweicloud:Sdrs/deleteFailureJob:DeleteFailureJob")
 class DeleteFailureJob(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -149,6 +151,7 @@ class DeleteFailureJob(pulumi.CustomResource):
         failure_job_id = config.require_object("failureJobId")
         test = huaweicloud.sdrs.DeleteFailureJob("test", failure_job_id=failure_job_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -178,6 +181,7 @@ class DeleteFailureJob(pulumi.CustomResource):
         failure_job_id = config.require_object("failureJobId")
         test = huaweicloud.sdrs.DeleteFailureJob("test", failure_job_id=failure_job_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeleteFailureJobArgs args: The arguments to use to populate this resource's properties.
@@ -212,7 +216,7 @@ class DeleteFailureJob(pulumi.CustomResource):
             __props__.__dict__["failure_job_id"] = failure_job_id
             __props__.__dict__["region"] = region
         super(DeleteFailureJob, __self__).__init__(
-            'huaweicloud:sdrs/deleteFailureJob:DeleteFailureJob',
+            'huaweicloud:Sdrs/deleteFailureJob:DeleteFailureJob',
             resource_name,
             __props__,
             opts)

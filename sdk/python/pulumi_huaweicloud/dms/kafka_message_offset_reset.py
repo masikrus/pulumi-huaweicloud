@@ -28,21 +28,18 @@ class KafkaMessageOffsetResetArgs:
                  topic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KafkaMessageOffsetReset resource.
-        :param pulumi.Input[_builtins.str] group: Specifies the group name.
+
+        :param pulumi.Input[_builtins.str] group: Specifies the name of the consumer group.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Kafka instance.  
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] partition: Specifies the partiton number.
-               + If value is **-1**, reset all partitions. When `topic` is empty, only support reset all partitions.
-               + If value is specific number, reset that partiton only.
                
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] message_offset: Specifies the message offset.
+               > If value is `-1`, it means to reset offset of all partitions.
+        :param pulumi.Input[_builtins.str] message_offset: Specifies the offset to reset the consumption progress.
                + If this offset is earlier than the current earliest offset, the offset will be reset to the earliest offset.
                + If this offset is later than the current largest offset, the offset will be reset to the latest offset.
-               
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
+        :param pulumi.Input[_builtins.str] region: Specifies the region where the consumption progress is to be reset is located.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] timestamp: Specifies the time that the offset is to be reset to.
@@ -54,8 +51,10 @@ class KafkaMessageOffsetResetArgs:
                
                > Exactly one of `message_offset` and `timestamp` should be specified, when `topic` is empty, only support to reset
                with `timestamp`.
-        :param pulumi.Input[_builtins.str] topic: Specifies the topic name. If it is empty, reset all topic.
+        :param pulumi.Input[_builtins.str] topic: Specifies name of the topic.  
                Changing this creates a new resource.
+               
+               > When `topic` is not specified, it means to reset offset of all topics.
         """
         pulumi.set(__self__, "group", group)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -73,7 +72,7 @@ class KafkaMessageOffsetResetArgs:
     @pulumi.getter
     def group(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the group name.
+        Specifies the name of the consumer group.  
         Changing this creates a new resource.
         """
         return pulumi.get(self, "group")
@@ -86,7 +85,7 @@ class KafkaMessageOffsetResetArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the instance ID.
+        Specifies the ID of the Kafka instance.  
         Changing this creates a new resource.
         """
         return pulumi.get(self, "instance_id")
@@ -100,10 +99,8 @@ class KafkaMessageOffsetResetArgs:
     def partition(self) -> pulumi.Input[_builtins.int]:
         """
         Specifies the partiton number.
-        + If value is **-1**, reset all partitions. When `topic` is empty, only support reset all partitions.
-        + If value is specific number, reset that partiton only.
 
-        Changing this creates a new resource.
+        > If value is `-1`, it means to reset offset of all partitions.
         """
         return pulumi.get(self, "partition")
 
@@ -115,11 +112,9 @@ class KafkaMessageOffsetResetArgs:
     @pulumi.getter(name="messageOffset")
     def message_offset(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the message offset.
+        Specifies the offset to reset the consumption progress.
         + If this offset is earlier than the current earliest offset, the offset will be reset to the earliest offset.
         + If this offset is later than the current largest offset, the offset will be reset to the latest offset.
-
-        Changing this creates a new resource.
         """
         return pulumi.get(self, "message_offset")
 
@@ -131,7 +126,7 @@ class KafkaMessageOffsetResetArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the resource.
+        Specifies the region where the consumption progress is to be reset is located.
         If omitted, the provider-level region will be used.
         Changing this creates a new resource.
         """
@@ -165,8 +160,10 @@ class KafkaMessageOffsetResetArgs:
     @pulumi.getter
     def topic(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the topic name. If it is empty, reset all topic.
+        Specifies name of the topic.  
         Changing this creates a new resource.
+
+        > When `topic` is not specified, it means to reset offset of all topics.
         """
         return pulumi.get(self, "topic")
 
@@ -187,21 +184,18 @@ class _KafkaMessageOffsetResetState:
                  topic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaMessageOffsetReset resources.
-        :param pulumi.Input[_builtins.str] group: Specifies the group name.
+
+        :param pulumi.Input[_builtins.str] group: Specifies the name of the consumer group.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Kafka instance.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] message_offset: Specifies the message offset.
+        :param pulumi.Input[_builtins.str] message_offset: Specifies the offset to reset the consumption progress.
                + If this offset is earlier than the current earliest offset, the offset will be reset to the earliest offset.
                + If this offset is later than the current largest offset, the offset will be reset to the latest offset.
-               
-               Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] partition: Specifies the partiton number.
-               + If value is **-1**, reset all partitions. When `topic` is empty, only support reset all partitions.
-               + If value is specific number, reset that partiton only.
                
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
+               > If value is `-1`, it means to reset offset of all partitions.
+        :param pulumi.Input[_builtins.str] region: Specifies the region where the consumption progress is to be reset is located.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] timestamp: Specifies the time that the offset is to be reset to.
@@ -213,8 +207,10 @@ class _KafkaMessageOffsetResetState:
                
                > Exactly one of `message_offset` and `timestamp` should be specified, when `topic` is empty, only support to reset
                with `timestamp`.
-        :param pulumi.Input[_builtins.str] topic: Specifies the topic name. If it is empty, reset all topic.
+        :param pulumi.Input[_builtins.str] topic: Specifies name of the topic.  
                Changing this creates a new resource.
+               
+               > When `topic` is not specified, it means to reset offset of all topics.
         """
         if group is not None:
             pulumi.set(__self__, "group", group)
@@ -235,7 +231,7 @@ class _KafkaMessageOffsetResetState:
     @pulumi.getter
     def group(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the group name.
+        Specifies the name of the consumer group.  
         Changing this creates a new resource.
         """
         return pulumi.get(self, "group")
@@ -248,7 +244,7 @@ class _KafkaMessageOffsetResetState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the instance ID.
+        Specifies the ID of the Kafka instance.  
         Changing this creates a new resource.
         """
         return pulumi.get(self, "instance_id")
@@ -261,11 +257,9 @@ class _KafkaMessageOffsetResetState:
     @pulumi.getter(name="messageOffset")
     def message_offset(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the message offset.
+        Specifies the offset to reset the consumption progress.
         + If this offset is earlier than the current earliest offset, the offset will be reset to the earliest offset.
         + If this offset is later than the current largest offset, the offset will be reset to the latest offset.
-
-        Changing this creates a new resource.
         """
         return pulumi.get(self, "message_offset")
 
@@ -278,10 +272,8 @@ class _KafkaMessageOffsetResetState:
     def partition(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the partiton number.
-        + If value is **-1**, reset all partitions. When `topic` is empty, only support reset all partitions.
-        + If value is specific number, reset that partiton only.
 
-        Changing this creates a new resource.
+        > If value is `-1`, it means to reset offset of all partitions.
         """
         return pulumi.get(self, "partition")
 
@@ -293,7 +285,7 @@ class _KafkaMessageOffsetResetState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the resource.
+        Specifies the region where the consumption progress is to be reset is located.
         If omitted, the provider-level region will be used.
         Changing this creates a new resource.
         """
@@ -327,8 +319,10 @@ class _KafkaMessageOffsetResetState:
     @pulumi.getter
     def topic(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the topic name. If it is empty, reset all topic.
+        Specifies name of the topic.  
         Changing this creates a new resource.
+
+        > When `topic` is not specified, it means to reset offset of all topics.
         """
         return pulumi.get(self, "topic")
 
@@ -352,7 +346,12 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
                  topic: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manage DMS kafka message offset reset resource within HuaweiCloud.
+        Use this resource to reset the message offset under the specified consumer group within HuaweiCloud.
+
+        > 1. Before using this resource to reset the consumption progress, you must stop the client of the reset consumer group.
+        >       <br>2. This resource is only a one-time action resource for resetting the consumption progress of the consumer group.
+        >       Deleting this resource will not clear the corresponding request record, but will only remove the resource information
+        >       from the tfstate file.
 
         ## Example Usage
 
@@ -364,11 +363,10 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
 
         config = pulumi.Config()
         instance_id = config.require_object("instanceId")
-        group = config.require_object("group")
+        consumer_group_name = config.require_object("consumerGroupName")
         test = huaweicloud.dms.KafkaMessageOffsetReset("test",
             instance_id=instance_id,
-            group=group,
-            topic="",
+            group=consumer_group_name,
             partition=-1,
             timestamp="0")
         ```
@@ -381,12 +379,12 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
 
         config = pulumi.Config()
         instance_id = config.require_object("instanceId")
-        group = config.require_object("group")
-        topic = config.require_object("topic")
+        consumer_group_name = config.require_object("consumerGroupName")
+        topic_name = config.require_object("topicName")
         test = huaweicloud.dms.KafkaMessageOffsetReset("test",
             instance_id=instance_id,
-            group=group,
-            topic=topic,
+            group=consumer_group_name,
+            topic=topic_name,
             partition=-1,
             timestamp="0")
         ```
@@ -399,33 +397,30 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
 
         config = pulumi.Config()
         instance_id = config.require_object("instanceId")
-        group = config.require_object("group")
-        topic = config.require_object("topic")
+        consumer_group_name = config.require_object("consumerGroupName")
+        topic_name = config.require_object("topicName")
         test = huaweicloud.dms.KafkaMessageOffsetReset("test",
             instance_id=instance_id,
-            group=group,
-            topic=topic,
-            partition=-1,
+            group=consumer_group_name,
+            topic=topic_name,
+            partition=0,
             message_offset="0")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] group: Specifies the group name.
+        :param pulumi.Input[_builtins.str] group: Specifies the name of the consumer group.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Kafka instance.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] message_offset: Specifies the message offset.
+        :param pulumi.Input[_builtins.str] message_offset: Specifies the offset to reset the consumption progress.
                + If this offset is earlier than the current earliest offset, the offset will be reset to the earliest offset.
                + If this offset is later than the current largest offset, the offset will be reset to the latest offset.
-               
-               Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] partition: Specifies the partiton number.
-               + If value is **-1**, reset all partitions. When `topic` is empty, only support reset all partitions.
-               + If value is specific number, reset that partiton only.
                
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
+               > If value is `-1`, it means to reset offset of all partitions.
+        :param pulumi.Input[_builtins.str] region: Specifies the region where the consumption progress is to be reset is located.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] timestamp: Specifies the time that the offset is to be reset to.
@@ -437,8 +432,10 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
                
                > Exactly one of `message_offset` and `timestamp` should be specified, when `topic` is empty, only support to reset
                with `timestamp`.
-        :param pulumi.Input[_builtins.str] topic: Specifies the topic name. If it is empty, reset all topic.
+        :param pulumi.Input[_builtins.str] topic: Specifies name of the topic.  
                Changing this creates a new resource.
+               
+               > When `topic` is not specified, it means to reset offset of all topics.
         """
         ...
     @overload
@@ -447,7 +444,12 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
                  args: KafkaMessageOffsetResetArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manage DMS kafka message offset reset resource within HuaweiCloud.
+        Use this resource to reset the message offset under the specified consumer group within HuaweiCloud.
+
+        > 1. Before using this resource to reset the consumption progress, you must stop the client of the reset consumer group.
+        >       <br>2. This resource is only a one-time action resource for resetting the consumption progress of the consumer group.
+        >       Deleting this resource will not clear the corresponding request record, but will only remove the resource information
+        >       from the tfstate file.
 
         ## Example Usage
 
@@ -459,11 +461,10 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
 
         config = pulumi.Config()
         instance_id = config.require_object("instanceId")
-        group = config.require_object("group")
+        consumer_group_name = config.require_object("consumerGroupName")
         test = huaweicloud.dms.KafkaMessageOffsetReset("test",
             instance_id=instance_id,
-            group=group,
-            topic="",
+            group=consumer_group_name,
             partition=-1,
             timestamp="0")
         ```
@@ -476,12 +477,12 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
 
         config = pulumi.Config()
         instance_id = config.require_object("instanceId")
-        group = config.require_object("group")
-        topic = config.require_object("topic")
+        consumer_group_name = config.require_object("consumerGroupName")
+        topic_name = config.require_object("topicName")
         test = huaweicloud.dms.KafkaMessageOffsetReset("test",
             instance_id=instance_id,
-            group=group,
-            topic=topic,
+            group=consumer_group_name,
+            topic=topic_name,
             partition=-1,
             timestamp="0")
         ```
@@ -494,15 +495,16 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
 
         config = pulumi.Config()
         instance_id = config.require_object("instanceId")
-        group = config.require_object("group")
-        topic = config.require_object("topic")
+        consumer_group_name = config.require_object("consumerGroupName")
+        topic_name = config.require_object("topicName")
         test = huaweicloud.dms.KafkaMessageOffsetReset("test",
             instance_id=instance_id,
-            group=group,
-            topic=topic,
-            partition=-1,
+            group=consumer_group_name,
+            topic=topic_name,
+            partition=0,
             message_offset="0")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaMessageOffsetResetArgs args: The arguments to use to populate this resource's properties.
@@ -572,21 +574,17 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] group: Specifies the group name.
+        :param pulumi.Input[_builtins.str] group: Specifies the name of the consumer group.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Kafka instance.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] message_offset: Specifies the message offset.
+        :param pulumi.Input[_builtins.str] message_offset: Specifies the offset to reset the consumption progress.
                + If this offset is earlier than the current earliest offset, the offset will be reset to the earliest offset.
                + If this offset is later than the current largest offset, the offset will be reset to the latest offset.
-               
-               Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] partition: Specifies the partiton number.
-               + If value is **-1**, reset all partitions. When `topic` is empty, only support reset all partitions.
-               + If value is specific number, reset that partiton only.
                
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
+               > If value is `-1`, it means to reset offset of all partitions.
+        :param pulumi.Input[_builtins.str] region: Specifies the region where the consumption progress is to be reset is located.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] timestamp: Specifies the time that the offset is to be reset to.
@@ -598,8 +596,10 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
                
                > Exactly one of `message_offset` and `timestamp` should be specified, when `topic` is empty, only support to reset
                with `timestamp`.
-        :param pulumi.Input[_builtins.str] topic: Specifies the topic name. If it is empty, reset all topic.
+        :param pulumi.Input[_builtins.str] topic: Specifies name of the topic.  
                Changing this creates a new resource.
+               
+               > When `topic` is not specified, it means to reset offset of all topics.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -618,7 +618,7 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
     @pulumi.getter
     def group(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the group name.
+        Specifies the name of the consumer group.  
         Changing this creates a new resource.
         """
         return pulumi.get(self, "group")
@@ -627,7 +627,7 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the instance ID.
+        Specifies the ID of the Kafka instance.  
         Changing this creates a new resource.
         """
         return pulumi.get(self, "instance_id")
@@ -636,11 +636,9 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
     @pulumi.getter(name="messageOffset")
     def message_offset(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the message offset.
+        Specifies the offset to reset the consumption progress.
         + If this offset is earlier than the current earliest offset, the offset will be reset to the earliest offset.
         + If this offset is later than the current largest offset, the offset will be reset to the latest offset.
-
-        Changing this creates a new resource.
         """
         return pulumi.get(self, "message_offset")
 
@@ -649,10 +647,8 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
     def partition(self) -> pulumi.Output[_builtins.int]:
         """
         Specifies the partiton number.
-        + If value is **-1**, reset all partitions. When `topic` is empty, only support reset all partitions.
-        + If value is specific number, reset that partiton only.
 
-        Changing this creates a new resource.
+        > If value is `-1`, it means to reset offset of all partitions.
         """
         return pulumi.get(self, "partition")
 
@@ -660,7 +656,7 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the region in which to create the resource.
+        Specifies the region where the consumption progress is to be reset is located.
         If omitted, the provider-level region will be used.
         Changing this creates a new resource.
         """
@@ -686,8 +682,10 @@ class KafkaMessageOffsetReset(pulumi.CustomResource):
     @pulumi.getter
     def topic(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the topic name. If it is empty, reset all topic.
+        Specifies name of the topic.  
         Changing this creates a new resource.
+
+        > When `topic` is not specified, it means to reset offset of all topics.
         """
         return pulumi.get(self, "topic")
 

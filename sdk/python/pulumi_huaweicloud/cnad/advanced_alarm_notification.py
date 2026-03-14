@@ -22,6 +22,7 @@ class AdvancedAlarmNotificationArgs:
                  topic_urn: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a AdvancedAlarmNotification resource.
+
         :param pulumi.Input[_builtins.str] topic_urn: Specifies the topic urn of SMN. It is required that the SMN has been subscribed successfully.
         """
         pulumi.set(__self__, "topic_urn", topic_urn)
@@ -46,6 +47,7 @@ class _AdvancedAlarmNotificationState:
                  topic_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AdvancedAlarmNotification resources.
+
         :param pulumi.Input[_builtins.bool] is_close_attack_source_flag: Whether to enable the alarm content to shield the attack source information.
         :param pulumi.Input[_builtins.str] topic_urn: Specifies the topic urn of SMN. It is required that the SMN has been subscribed successfully.
         """
@@ -79,7 +81,7 @@ class _AdvancedAlarmNotificationState:
         pulumi.set(self, "topic_urn", value)
 
 
-@pulumi.type_token("huaweicloud:cnad/advancedAlarmNotification:AdvancedAlarmNotification")
+@pulumi.type_token("huaweicloud:Cnad/advancedAlarmNotification:AdvancedAlarmNotification")
 class AdvancedAlarmNotification(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -105,11 +107,10 @@ class AdvancedAlarmNotification(pulumi.CustomResource):
 
         The CNAD advanced alarm notification can be imported using the `topic_urn`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedAlarmNotification:AdvancedAlarmNotification test <topic_urn>
+        $ pulumi import huaweicloud:Cnad/advancedAlarmNotification:AdvancedAlarmNotification test <topic_urn>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -139,11 +140,10 @@ class AdvancedAlarmNotification(pulumi.CustomResource):
 
         The CNAD advanced alarm notification can be imported using the `topic_urn`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedAlarmNotification:AdvancedAlarmNotification test <topic_urn>
+        $ pulumi import huaweicloud:Cnad/advancedAlarmNotification:AdvancedAlarmNotification test <topic_urn>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AdvancedAlarmNotificationArgs args: The arguments to use to populate this resource's properties.
@@ -175,7 +175,7 @@ class AdvancedAlarmNotification(pulumi.CustomResource):
             __props__.__dict__["topic_urn"] = topic_urn
             __props__.__dict__["is_close_attack_source_flag"] = None
         super(AdvancedAlarmNotification, __self__).__init__(
-            'huaweicloud:cnad/advancedAlarmNotification:AdvancedAlarmNotification',
+            'huaweicloud:Cnad/advancedAlarmNotification:AdvancedAlarmNotification',
             resource_name,
             __props__,
             opts)

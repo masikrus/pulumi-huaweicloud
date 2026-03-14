@@ -82,7 +82,7 @@ def get_server_bandwidths(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_server_bandwidths()
+    test = huaweicloud.Cph.get_server_bandwidths()
     ```
 
 
@@ -92,7 +92,7 @@ def get_server_bandwidths(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cph/getServerBandwidths:getServerBandwidths', __args__, opts=opts, typ=GetServerBandwidthsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cph/getServerBandwidths:getServerBandwidths', __args__, opts=opts, typ=GetServerBandwidthsResult).value
 
     return AwaitableGetServerBandwidthsResult(
         bandwidths=pulumi.get(__ret__, 'bandwidths'),
@@ -109,7 +109,7 @@ def get_server_bandwidths_output(region: Optional[pulumi.Input[Optional[_builtin
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_server_bandwidths()
+    test = huaweicloud.Cph.get_server_bandwidths()
     ```
 
 
@@ -119,7 +119,7 @@ def get_server_bandwidths_output(region: Optional[pulumi.Input[Optional[_builtin
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cph/getServerBandwidths:getServerBandwidths', __args__, opts=opts, typ=GetServerBandwidthsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cph/getServerBandwidths:getServerBandwidths', __args__, opts=opts, typ=GetServerBandwidthsResult)
     return __ret__.apply(lambda __response__: GetServerBandwidthsResult(
         bandwidths=pulumi.get(__response__, 'bandwidths'),
         id=pulumi.get(__response__, 'id'),

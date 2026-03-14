@@ -147,7 +147,7 @@ def get_pipeline_plugin_metrics(display_name: Optional[_builtins.str] = None,
     __args__['version'] = version
     __args__['versionAttribution'] = version_attribution
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelinePluginMetrics:getPipelinePluginMetrics', __args__, opts=opts, typ=GetPipelinePluginMetricsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelinePluginMetrics:getPipelinePluginMetrics', __args__, opts=opts, typ=GetPipelinePluginMetricsResult).value
 
     return AwaitableGetPipelinePluginMetricsResult(
         display_name=pulumi.get(__ret__, 'display_name'),
@@ -185,7 +185,7 @@ def get_pipeline_plugin_metrics_output(display_name: Optional[pulumi.Input[Optio
     __args__['version'] = version
     __args__['versionAttribution'] = version_attribution
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelinePluginMetrics:getPipelinePluginMetrics', __args__, opts=opts, typ=GetPipelinePluginMetricsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelinePluginMetrics:getPipelinePluginMetrics', __args__, opts=opts, typ=GetPipelinePluginMetricsResult)
     return __ret__.apply(lambda __response__: GetPipelinePluginMetricsResult(
         display_name=pulumi.get(__response__, 'display_name'),
         id=pulumi.get(__response__, 'id'),

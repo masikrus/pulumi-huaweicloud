@@ -29,6 +29,7 @@ class BandwidthAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BandwidthAssociate resource.
+
         :param pulumi.Input[_builtins.str] bandwidth_id: Specifies the shared bandwidth ID to associate.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] bandwidth_charge_mode: Specifies the billing mode of the dedicated bandwidth used by the EIP that
@@ -185,6 +186,7 @@ class _BandwidthAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BandwidthAssociate resources.
+
         :param pulumi.Input[_builtins.str] bandwidth_charge_mode: Specifies the billing mode of the dedicated bandwidth used by the EIP that
                has been removed from a shared bandwidth. The value can be **bandwidth** or **traffic**. If not specified, the dedicated
                bandwidth will be billed by bandwidth.
@@ -415,29 +417,123 @@ class BandwidthAssociate(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Associates an **EIP** or a fixed **IPv6** address to a specified **shared** bandwidth.
+
+        > Yearly/monthly EIPs cannot be added to a shared bandwidth. After an EIP is removed from a shared bandwidth,
+          a dedicated bandwidth will be allocated to the EIP. By default, the dedicated bandwidth will be billed by bandwidth
+          and the size is 5 Mbit/s. You can configure the bandwidth as needed.
+
+        ## Example Usage
+
+        ### Associate an EIP
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        public_id = config.require_object("publicId")
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = huaweicloud.vpc.BandwidthAssociate("test",
+            bandwidth_id=test.id,
+            eip_id=public_id)
+        ```
+
+        ### Associate multiple EIPs
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        multiple_eips = config.require_object("multipleEips")
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = []
+        for range in [{"value": i} for i in range(0, len(multiple_eips))]:
+            test_bandwidth_associate.append(huaweicloud.vpc.BandwidthAssociate(f"test-{range['value']}",
+                bandwidth_id=test.id,
+                eip_id=multiple_eips[range["value"]]))
+        ```
+
+        ### Associate an EIP managed by Terraform
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        dedicated = huaweicloud.vpc.Eip("dedicated",
+            publicip={
+                "type": "5_bgp",
+            },
+            bandwidth={
+                "share_type": "PER",
+                "name": "dedicated",
+                "size": 5,
+                "charge_mode": "traffic",
+            })
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = huaweicloud.vpc.BandwidthAssociate("test",
+            bandwidth_id=test.id,
+            eip_id=dedicated.id)
+        ```
+
+        ### Associate with an IPv6 port by port ID
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        port_id = config.require_object("portId")
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = huaweicloud.vpc.BandwidthAssociate("test",
+            bandwidth_id=test.id,
+            port_id=port_id)
+        ```
+
+        ### Associate with a fixed IPv6 address
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        network_id = config.require_object("networkId")
+        fixed_ip = config.require_object("fixedIp")
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = huaweicloud.vpc.BandwidthAssociate("test",
+            bandwidth_id=test.id,
+            network_id=network_id,
+            fixed_ip=fixed_ip)
+        ```
+
         ## Import
 
         Bandwidth associations can be imported using the `bandwidth_id` and `eip_id` separated by a slash or the `bandwidth_id`
-
         and `port_id` separated by a slash, or `bandwidth_id`, `network_id` and `fixed_ip` separated by slashes, e.g.:
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Vpc/bandwidthAssociate:BandwidthAssociate eip <bandwidth_id>/<eip_id>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/bandwidthAssociate:BandwidthAssociate port <bandwidth_id>/<port_id>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/bandwidthAssociate:BandwidthAssociate fixed_ip_v6 <bandwidth_id>/<network_id>/<fixed_ip>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -465,29 +561,123 @@ class BandwidthAssociate(pulumi.CustomResource):
                  args: BandwidthAssociateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Associates an **EIP** or a fixed **IPv6** address to a specified **shared** bandwidth.
+
+        > Yearly/monthly EIPs cannot be added to a shared bandwidth. After an EIP is removed from a shared bandwidth,
+          a dedicated bandwidth will be allocated to the EIP. By default, the dedicated bandwidth will be billed by bandwidth
+          and the size is 5 Mbit/s. You can configure the bandwidth as needed.
+
+        ## Example Usage
+
+        ### Associate an EIP
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        public_id = config.require_object("publicId")
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = huaweicloud.vpc.BandwidthAssociate("test",
+            bandwidth_id=test.id,
+            eip_id=public_id)
+        ```
+
+        ### Associate multiple EIPs
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        multiple_eips = config.require_object("multipleEips")
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = []
+        for range in [{"value": i} for i in range(0, len(multiple_eips))]:
+            test_bandwidth_associate.append(huaweicloud.vpc.BandwidthAssociate(f"test-{range['value']}",
+                bandwidth_id=test.id,
+                eip_id=multiple_eips[range["value"]]))
+        ```
+
+        ### Associate an EIP managed by Terraform
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        dedicated = huaweicloud.vpc.Eip("dedicated",
+            publicip={
+                "type": "5_bgp",
+            },
+            bandwidth={
+                "share_type": "PER",
+                "name": "dedicated",
+                "size": 5,
+                "charge_mode": "traffic",
+            })
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = huaweicloud.vpc.BandwidthAssociate("test",
+            bandwidth_id=test.id,
+            eip_id=dedicated.id)
+        ```
+
+        ### Associate with an IPv6 port by port ID
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        port_id = config.require_object("portId")
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = huaweicloud.vpc.BandwidthAssociate("test",
+            bandwidth_id=test.id,
+            port_id=port_id)
+        ```
+
+        ### Associate with a fixed IPv6 address
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        network_id = config.require_object("networkId")
+        fixed_ip = config.require_object("fixedIp")
+        test = huaweicloud.vpc.Bandwidth("test",
+            name="bandwidth_1",
+            size=100)
+        test_bandwidth_associate = huaweicloud.vpc.BandwidthAssociate("test",
+            bandwidth_id=test.id,
+            network_id=network_id,
+            fixed_ip=fixed_ip)
+        ```
+
         ## Import
 
         Bandwidth associations can be imported using the `bandwidth_id` and `eip_id` separated by a slash or the `bandwidth_id`
-
         and `port_id` separated by a slash, or `bandwidth_id`, `network_id` and `fixed_ip` separated by slashes, e.g.:
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Vpc/bandwidthAssociate:BandwidthAssociate eip <bandwidth_id>/<eip_id>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/bandwidthAssociate:BandwidthAssociate port <bandwidth_id>/<port_id>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/bandwidthAssociate:BandwidthAssociate fixed_ip_v6 <bandwidth_id>/<network_id>/<fixed_ip>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BandwidthAssociateArgs args: The arguments to use to populate this resource's properties.

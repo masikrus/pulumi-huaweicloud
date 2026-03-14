@@ -23,6 +23,7 @@ class OpengaussRecyclingPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussRecyclingPolicy resource.
+
         :param pulumi.Input[_builtins.str] retention_period_in_days: Specifies the retention period, in days. Value ranges: **1** to **7**.
         :param pulumi.Input[_builtins.str] region: The region in which to create the recycling policy resource. If omitted, the
                provider-level region will be used. Changing this creates a new GaussDB OpenGauss instance resource.
@@ -64,6 +65,7 @@ class _OpengaussRecyclingPolicyState:
                  retention_period_in_days: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussRecyclingPolicy resources.
+
         :param pulumi.Input[_builtins.str] region: The region in which to create the recycling policy resource. If omitted, the
                provider-level region will be used. Changing this creates a new GaussDB OpenGauss instance resource.
         :param pulumi.Input[_builtins.str] retention_period_in_days: Specifies the retention period, in days. Value ranges: **1** to **7**.
@@ -124,11 +126,10 @@ class OpengaussRecyclingPolicy(pulumi.CustomResource):
 
         The GaussDB OpenGauss recycling policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussRecyclingPolicy:OpengaussRecyclingPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -158,11 +159,10 @@ class OpengaussRecyclingPolicy(pulumi.CustomResource):
 
         The GaussDB OpenGauss recycling policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussRecyclingPolicy:OpengaussRecyclingPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussRecyclingPolicyArgs args: The arguments to use to populate this resource's properties.

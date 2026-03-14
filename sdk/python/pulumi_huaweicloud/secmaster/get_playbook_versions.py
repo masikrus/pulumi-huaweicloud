@@ -147,7 +147,7 @@ def get_playbook_versions(enabled: Optional[_builtins.str] = None,
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     playbook_id = config.require_object("playbookId")
-    test = huaweicloud.secmaster.get_playbook_versions(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_versions(workspace_id=workspace_id,
         playbook_id=playbook_id)
     ```
 
@@ -175,7 +175,7 @@ def get_playbook_versions(enabled: Optional[_builtins.str] = None,
     __args__['type'] = type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getPlaybookVersions:getPlaybookVersions', __args__, opts=opts, typ=GetPlaybookVersionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getPlaybookVersions:getPlaybookVersions', __args__, opts=opts, typ=GetPlaybookVersionsResult).value
 
     return AwaitableGetPlaybookVersionsResult(
         enabled=pulumi.get(__ret__, 'enabled'),
@@ -205,7 +205,7 @@ def get_playbook_versions_output(enabled: Optional[pulumi.Input[Optional[_builti
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     playbook_id = config.require_object("playbookId")
-    test = huaweicloud.secmaster.get_playbook_versions(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_versions(workspace_id=workspace_id,
         playbook_id=playbook_id)
     ```
 
@@ -233,7 +233,7 @@ def get_playbook_versions_output(enabled: Optional[pulumi.Input[Optional[_builti
     __args__['type'] = type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getPlaybookVersions:getPlaybookVersions', __args__, opts=opts, typ=GetPlaybookVersionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getPlaybookVersions:getPlaybookVersions', __args__, opts=opts, typ=GetPlaybookVersionsResult)
     return __ret__.apply(lambda __response__: GetPlaybookVersionsResult(
         enabled=pulumi.get(__response__, 'enabled'),
         id=pulumi.get(__response__, 'id'),

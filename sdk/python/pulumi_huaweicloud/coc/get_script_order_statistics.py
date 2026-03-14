@@ -84,7 +84,7 @@ def get_script_order_statistics(execute_uuid: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     execute_uuid = config.require_object("executeUuid")
-    test = huaweicloud.coc.get_script_order_statistics(execute_uuid=execute_uuid)
+    test = huaweicloud.Coc.get_script_order_statistics(execute_uuid=execute_uuid)
     ```
 
 
@@ -93,7 +93,7 @@ def get_script_order_statistics(execute_uuid: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['executeUuid'] = execute_uuid
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getScriptOrderStatistics:getScriptOrderStatistics', __args__, opts=opts, typ=GetScriptOrderStatisticsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getScriptOrderStatistics:getScriptOrderStatistics', __args__, opts=opts, typ=GetScriptOrderStatisticsResult).value
 
     return AwaitableGetScriptOrderStatisticsResult(
         execute_statistics=pulumi.get(__ret__, 'execute_statistics'),
@@ -112,7 +112,7 @@ def get_script_order_statistics_output(execute_uuid: Optional[pulumi.Input[_buil
 
     config = pulumi.Config()
     execute_uuid = config.require_object("executeUuid")
-    test = huaweicloud.coc.get_script_order_statistics(execute_uuid=execute_uuid)
+    test = huaweicloud.Coc.get_script_order_statistics(execute_uuid=execute_uuid)
     ```
 
 
@@ -121,7 +121,7 @@ def get_script_order_statistics_output(execute_uuid: Optional[pulumi.Input[_buil
     __args__ = dict()
     __args__['executeUuid'] = execute_uuid
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getScriptOrderStatistics:getScriptOrderStatistics', __args__, opts=opts, typ=GetScriptOrderStatisticsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getScriptOrderStatistics:getScriptOrderStatistics', __args__, opts=opts, typ=GetScriptOrderStatisticsResult)
     return __ret__.apply(lambda __response__: GetScriptOrderStatisticsResult(
         execute_statistics=pulumi.get(__response__, 'execute_statistics'),
         execute_uuid=pulumi.get(__response__, 'execute_uuid'),

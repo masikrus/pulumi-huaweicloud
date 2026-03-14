@@ -28,6 +28,7 @@ class WorkloadQueueArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WorkloadQueue resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID of to which the workload queue belongs.
                Changing this parameter will create a new resource.
                
@@ -132,6 +133,7 @@ class _WorkloadQueueState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WorkloadQueue resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID of to which the workload queue belongs.
                Changing this parameter will create a new resource.
                
@@ -313,39 +315,16 @@ class WorkloadQueue(pulumi.CustomResource):
 
         The workload queue can be imported using `cluster_id` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadQueue:WorkloadQueue test <cluster_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `configuration`.
-
         It is generally recommended running `pulumi preview` after importing a workload queue.
-
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_cluster" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              configuration,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -444,39 +423,16 @@ class WorkloadQueue(pulumi.CustomResource):
 
         The workload queue can be imported using `cluster_id` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadQueue:WorkloadQueue test <cluster_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `configuration`.
-
         It is generally recommended running `pulumi preview` after importing a workload queue.
-
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_cluster" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              configuration,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param WorkloadQueueArgs args: The arguments to use to populate this resource's properties.

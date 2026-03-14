@@ -26,6 +26,7 @@ class ConfigurationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Configuration resource.
+
         :param pulumi.Input['ConfigurationInstanceConfigArgs'] instance_config: Specifies the information about instance configuration.
                The instance_config structure is documented below.
                Changing this will create a new resource.
@@ -98,6 +99,7 @@ class _ConfigurationState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Configuration resources.
+
         :param pulumi.Input[_builtins.str] create_time: The creation time of the AS configuration, in UTC format.
         :param pulumi.Input['ConfigurationInstanceConfigArgs'] instance_config: Specifies the information about instance configuration.
                The instance_config structure is documented below.
@@ -268,6 +270,37 @@ class Configuration(pulumi.CustomResource):
             })
         ```
 
+        ### AS Configuration With User Data and Metadata
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        flavor_id = config.require_object("flavorId")
+        image_id = config.require_object("imageId")
+        ssh_key = config.require_object("sshKey")
+        security_group_id = config.require_object("securityGroupId")
+        my_as_config = huaweicloud.as_.Configuration("my_as_config",
+            scaling_configuration_name="my_as_config",
+            instance_config={
+                "flavor": flavor_id,
+                "image": image_id,
+                "key_name": ssh_key,
+                "security_group_ids": [security_group_id],
+                "user_data": std.index.file(input="userdata.txt")["result"],
+                "disks": [{
+                    "size": 40,
+                    "volume_type": "SSD",
+                    "disk_type": "SYS",
+                }],
+                "metadata": {
+                    "some_key": "some_value",
+                },
+            })
+        ```
+
         ### AS Configuration uses password authentication for Linux ECS
 
         ```python
@@ -344,41 +377,14 @@ class Configuration(pulumi.CustomResource):
 
         AS configurations can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:As/configuration:Configuration test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to `instance_config.0.instance_id`,
-
         `instance_config.0.admin_pass`, `instance_config.0.user_data`, and `instance_config.0.metadata` are missing from the
-
         API response. You can ignore changes after importing an AS configuration as below.
 
-        hcl
-
-        resource "huaweicloud_as_configuration" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              instance_config.0.instance_id,
-            
-              instance_config.0.admin_pass,
-            
-              instance_config.0.user_data,
-            
-              instance_config.0.metadata,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -466,6 +472,37 @@ class Configuration(pulumi.CustomResource):
             })
         ```
 
+        ### AS Configuration With User Data and Metadata
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        flavor_id = config.require_object("flavorId")
+        image_id = config.require_object("imageId")
+        ssh_key = config.require_object("sshKey")
+        security_group_id = config.require_object("securityGroupId")
+        my_as_config = huaweicloud.as_.Configuration("my_as_config",
+            scaling_configuration_name="my_as_config",
+            instance_config={
+                "flavor": flavor_id,
+                "image": image_id,
+                "key_name": ssh_key,
+                "security_group_ids": [security_group_id],
+                "user_data": std.index.file(input="userdata.txt")["result"],
+                "disks": [{
+                    "size": 40,
+                    "volume_type": "SSD",
+                    "disk_type": "SYS",
+                }],
+                "metadata": {
+                    "some_key": "some_value",
+                },
+            })
+        ```
+
         ### AS Configuration uses password authentication for Linux ECS
 
         ```python
@@ -542,41 +579,14 @@ class Configuration(pulumi.CustomResource):
 
         AS configurations can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:As/configuration:Configuration test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to `instance_config.0.instance_id`,
-
         `instance_config.0.admin_pass`, `instance_config.0.user_data`, and `instance_config.0.metadata` are missing from the
-
         API response. You can ignore changes after importing an AS configuration as below.
 
-        hcl
-
-        resource "huaweicloud_as_configuration" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              instance_config.0.instance_id,
-            
-              instance_config.0.admin_pass,
-            
-              instance_config.0.user_data,
-            
-              instance_config.0.metadata,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ConfigurationArgs args: The arguments to use to populate this resource's properties.

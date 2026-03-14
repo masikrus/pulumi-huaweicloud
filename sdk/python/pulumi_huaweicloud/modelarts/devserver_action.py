@@ -24,6 +24,7 @@ class DevserverActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DevserverAction resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type of the DevServer.
                Changing this creates a new resource.
                The valid values are as follows:
@@ -92,6 +93,7 @@ class _DevserverActionState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DevserverAction resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type of the DevServer.
                Changing this creates a new resource.
                The valid values are as follows:
@@ -180,6 +182,7 @@ class DevserverAction(pulumi.CustomResource):
             action="start")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action type of the DevServer.
@@ -214,6 +217,7 @@ class DevserverAction(pulumi.CustomResource):
             devserver_id=devserver_id,
             action="start")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DevserverActionArgs args: The arguments to use to populate this resource's properties.

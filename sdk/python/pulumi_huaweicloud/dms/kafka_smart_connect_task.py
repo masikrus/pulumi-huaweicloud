@@ -37,6 +37,7 @@ class KafkaSmartConnectTaskArgs:
                  topics_regex: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KafkaSmartConnectTask resource.
+
         :param pulumi.Input[_builtins.str] access_key: Specifies the access key used to access the OBS bucket.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] connector_id: Specifies the connector ID of the kafka instance.
@@ -339,6 +340,7 @@ class _KafkaSmartConnectTaskState:
                  topics_regex: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaSmartConnectTask resources.
+
         :param pulumi.Input[_builtins.str] access_key: Specifies the access key used to access the OBS bucket.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] connector_id: Specifies the connector ID of the kafka instance.
@@ -715,39 +717,16 @@ class KafkaSmartConnectTask(pulumi.CustomResource):
 
         The kafka smart connect task can be imported using the kafka instance `connector_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaSmartConnectTask:KafkaSmartConnectTask test <connector_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from
-
         the API response. The missing attributes include: `source_type`, `access_key` and `secret_key`.
-
         It is generally recommended running `pulumi preview` after importing a kafka smart connect task.
-
         You can then decide if changes should be applied to the kafka smart connect task, or the resource definition
-
         should be updated to align with the kafka smart connect task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dms_kafka_smart_connect_task" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_type, access_key, secret_key,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -831,39 +810,16 @@ class KafkaSmartConnectTask(pulumi.CustomResource):
 
         The kafka smart connect task can be imported using the kafka instance `connector_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaSmartConnectTask:KafkaSmartConnectTask test <connector_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from
-
         the API response. The missing attributes include: `source_type`, `access_key` and `secret_key`.
-
         It is generally recommended running `pulumi preview` after importing a kafka smart connect task.
-
         You can then decide if changes should be applied to the kafka smart connect task, or the resource definition
-
         should be updated to align with the kafka smart connect task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dms_kafka_smart_connect_task" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_type, access_key, secret_key,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param KafkaSmartConnectTaskArgs args: The arguments to use to populate this resource's properties.

@@ -140,7 +140,7 @@ def get_eip_pools(access_site: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    all = huaweicloud.global.get_eip_pools()
+    all = huaweicloud.Global.get_eip_pools()
     ```
 
     ### Get specific available global EIP pools information
@@ -149,7 +149,7 @@ def get_eip_pools(access_site: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eip_pools(access_site="cn-south-guangzhou")
+    test = huaweicloud.Global.get_eip_pools(access_site="cn-south-guangzhou")
     ```
 
 
@@ -170,7 +170,7 @@ def get_eip_pools(access_site: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:global/getEipPools:getEipPools', __args__, opts=opts, typ=GetEipPoolsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Global/getEipPools:getEipPools', __args__, opts=opts, typ=GetEipPoolsResult).value
 
     return AwaitableGetEipPoolsResult(
         access_site=pulumi.get(__ret__, 'access_site'),
@@ -197,7 +197,7 @@ def get_eip_pools_output(access_site: Optional[pulumi.Input[Optional[_builtins.s
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    all = huaweicloud.global.get_eip_pools()
+    all = huaweicloud.Global.get_eip_pools()
     ```
 
     ### Get specific available global EIP pools information
@@ -206,7 +206,7 @@ def get_eip_pools_output(access_site: Optional[pulumi.Input[Optional[_builtins.s
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eip_pools(access_site="cn-south-guangzhou")
+    test = huaweicloud.Global.get_eip_pools(access_site="cn-south-guangzhou")
     ```
 
 
@@ -227,7 +227,7 @@ def get_eip_pools_output(access_site: Optional[pulumi.Input[Optional[_builtins.s
     __args__['name'] = name
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:global/getEipPools:getEipPools', __args__, opts=opts, typ=GetEipPoolsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Global/getEipPools:getEipPools', __args__, opts=opts, typ=GetEipPoolsResult)
     return __ret__.apply(lambda __response__: GetEipPoolsResult(
         access_site=pulumi.get(__response__, 'access_site'),
         geip_pools=pulumi.get(__response__, 'geip_pools'),

@@ -25,6 +25,7 @@ class MessageTemplateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MessageTemplate resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the template content, which supports plain text only.
                The template content cannot be left blank or larger than 256 KB.
                The fields within "{}" can be replaced based on the actual situation
@@ -130,6 +131,7 @@ class _MessageTemplateState:
                  tag_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering MessageTemplate resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the template content, which supports plain text only.
                The template content cannot be left blank or larger than 256 KB.
                The fields within "{}" can be replaced based on the actual situation
@@ -277,11 +279,10 @@ class MessageTemplate(pulumi.CustomResource):
 
         The SMN message template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/messageTemplate:MessageTemplate test <message_template_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -335,11 +336,10 @@ class MessageTemplate(pulumi.CustomResource):
 
         The SMN message template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/messageTemplate:MessageTemplate test <message_template_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MessageTemplateArgs args: The arguments to use to populate this resource's properties.

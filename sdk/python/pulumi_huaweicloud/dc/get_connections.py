@@ -200,7 +200,7 @@ def get_connections(connection_id: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getConnections:getConnections', __args__, opts=opts, typ=GetConnectionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getConnections:getConnections', __args__, opts=opts, typ=GetConnectionsResult).value
 
     return AwaitableGetConnectionsResult(
         connection_id=pulumi.get(__ret__, 'connection_id'),
@@ -261,7 +261,7 @@ def get_connections_output(connection_id: Optional[pulumi.Input[Optional[_builti
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getConnections:getConnections', __args__, opts=opts, typ=GetConnectionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getConnections:getConnections', __args__, opts=opts, typ=GetConnectionsResult)
     return __ret__.apply(lambda __response__: GetConnectionsResult(
         connection_id=pulumi.get(__response__, 'connection_id'),
         direct_connects=pulumi.get(__response__, 'direct_connects'),

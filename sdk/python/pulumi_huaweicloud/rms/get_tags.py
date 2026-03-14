@@ -86,7 +86,7 @@ def get_tags(key: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_tags()
+    test = huaweicloud.Rms.get_tags()
     ```
 
 
@@ -95,7 +95,7 @@ def get_tags(key: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['key'] = key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getTags:getTags', __args__, opts=opts, typ=GetTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getTags:getTags', __args__, opts=opts, typ=GetTagsResult).value
 
     return AwaitableGetTagsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -112,7 +112,7 @@ def get_tags_output(key: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_tags()
+    test = huaweicloud.Rms.get_tags()
     ```
 
 
@@ -121,7 +121,7 @@ def get_tags_output(key: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
     __args__ = dict()
     __args__['key'] = key
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getTags:getTags', __args__, opts=opts, typ=GetTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getTags:getTags', __args__, opts=opts, typ=GetTagsResult)
     return __ret__.apply(lambda __response__: GetTagsResult(
         id=pulumi.get(__response__, 'id'),
         key=pulumi.get(__response__, 'key'),

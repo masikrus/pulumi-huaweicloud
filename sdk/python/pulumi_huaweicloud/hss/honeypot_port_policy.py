@@ -32,6 +32,7 @@ class HoneypotPortPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a HoneypotPortPolicy resource.
+
         :param pulumi.Input[_builtins.str] os_type: Specifies the OS type.
                The valid values are as follows:
                + **Linux**
@@ -208,6 +209,7 @@ class _HoneypotPortPolicyState:
                  white_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering HoneypotPortPolicy resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.  
                This parameter is valid only when the enterprise project is enabled.
                The default value is **0**, indicating the default enterprise project.
@@ -404,7 +406,7 @@ class _HoneypotPortPolicyState:
         pulumi.set(self, "white_ips", value)
 
 
-@pulumi.type_token("huaweicloud:hss/honeypotPortPolicy:HoneypotPortPolicy")
+@pulumi.type_token("huaweicloud:Hss/honeypotPortPolicy:HoneypotPortPolicy")
 class HoneypotPortPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -462,41 +464,17 @@ class HoneypotPortPolicy(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/honeypotPortPolicy:HoneypotPortPolicy test <id>
+        $ pulumi import huaweicloud:Hss/honeypotPortPolicy:HoneypotPortPolicy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `ports_list`, `host_id`, `group_list`, `enterprise_project_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_honeypot_port_policy" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              "ports_list", host_id, group_list, enterprise_project_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -572,41 +550,17 @@ class HoneypotPortPolicy(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/honeypotPortPolicy:HoneypotPortPolicy test <id>
+        $ pulumi import huaweicloud:Hss/honeypotPortPolicy:HoneypotPortPolicy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `ports_list`, `host_id`, `group_list`, `enterprise_project_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_honeypot_port_policy" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              "ports_list", host_id, group_list, enterprise_project_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param HoneypotPortPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -661,7 +615,7 @@ class HoneypotPortPolicy(pulumi.CustomResource):
             __props__.__dict__["host_lists"] = None
             __props__.__dict__["port_lists"] = None
         super(HoneypotPortPolicy, __self__).__init__(
-            'huaweicloud:hss/honeypotPortPolicy:HoneypotPortPolicy',
+            'huaweicloud:Hss/honeypotPortPolicy:HoneypotPortPolicy',
             resource_name,
             __props__,
             opts)

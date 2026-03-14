@@ -182,7 +182,7 @@ def get_workflows(data_class_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_workflows(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_workflows(workspace_id=workspace_id)
     ```
 
 
@@ -209,7 +209,7 @@ def get_workflows(data_class_id: Optional[_builtins.str] = None,
     __args__['type'] = type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getWorkflows:getWorkflows', __args__, opts=opts, typ=GetWorkflowsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getWorkflows:getWorkflows', __args__, opts=opts, typ=GetWorkflowsResult).value
 
     return AwaitableGetWorkflowsResult(
         data_class_id=pulumi.get(__ret__, 'data_class_id'),
@@ -244,7 +244,7 @@ def get_workflows_output(data_class_id: Optional[pulumi.Input[Optional[_builtins
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_workflows(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_workflows(workspace_id=workspace_id)
     ```
 
 
@@ -271,7 +271,7 @@ def get_workflows_output(data_class_id: Optional[pulumi.Input[Optional[_builtins
     __args__['type'] = type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getWorkflows:getWorkflows', __args__, opts=opts, typ=GetWorkflowsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getWorkflows:getWorkflows', __args__, opts=opts, typ=GetWorkflowsResult)
     return __ret__.apply(lambda __response__: GetWorkflowsResult(
         data_class_id=pulumi.get(__response__, 'data_class_id'),
         data_class_name=pulumi.get(__response__, 'data_class_name'),

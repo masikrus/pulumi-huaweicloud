@@ -20,12 +20,16 @@ __all__ = ['SubnetPrivateIpArgs', 'SubnetPrivateIp']
 class SubnetPrivateIpArgs:
     def __init__(__self__, *,
                  subnet_id: pulumi.Input[_builtins.str],
+                 device_owner: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_address: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SubnetPrivateIp resource.
+
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the ID of the subnet to which the private IP belongs.
+        :param pulumi.Input[_builtins.str] device_owner: Specifies the resource using the private IP address.
+               Value options: **neutron:VIP_PORT**.
         :param pulumi.Input[_builtins.str] ip_address: Specifies the IP address. The value must be an unused address
                within the subnet cidr. If it is not specified, the system automatically assigns an IP address.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -33,6 +37,8 @@ class SubnetPrivateIpArgs:
                Changing this creates a new resource.
         """
         pulumi.set(__self__, "subnet_id", subnet_id)
+        if device_owner is not None:
+            pulumi.set(__self__, "device_owner", device_owner)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if ip_address is not None:
@@ -51,6 +57,19 @@ class SubnetPrivateIpArgs:
     @subnet_id.setter
     def subnet_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "subnet_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceOwner")
+    def device_owner(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the resource using the private IP address.
+        Value options: **neutron:VIP_PORT**.
+        """
+        return pulumi.get(self, "device_owner")
+
+    @device_owner.setter
+    def device_owner(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "device_owner", value)
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
@@ -100,7 +119,9 @@ class _SubnetPrivateIpState:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SubnetPrivateIp resources.
-        :param pulumi.Input[_builtins.str] device_owner: The resource using the private IP address. The parameter is left blank if it is not used.
+
+        :param pulumi.Input[_builtins.str] device_owner: Specifies the resource using the private IP address.
+               Value options: **neutron:VIP_PORT**.
         :param pulumi.Input[_builtins.str] ip_address: Specifies the IP address. The value must be an unused address
                within the subnet cidr. If it is not specified, the system automatically assigns an IP address.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -126,7 +147,8 @@ class _SubnetPrivateIpState:
     @pulumi.getter(name="deviceOwner")
     def device_owner(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The resource using the private IP address. The parameter is left blank if it is not used.
+        Specifies the resource using the private IP address.
+        Value options: **neutron:VIP_PORT**.
         """
         return pulumi.get(self, "device_owner")
 
@@ -201,6 +223,7 @@ class SubnetPrivateIp(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 device_owner: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_address: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -227,14 +250,15 @@ class SubnetPrivateIp(pulumi.CustomResource):
 
         The private IP can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subnetPrivateIp:SubnetPrivateIp test <id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] device_owner: Specifies the resource using the private IP address.
+               Value options: **neutron:VIP_PORT**.
         :param pulumi.Input[_builtins.str] ip_address: Specifies the IP address. The value must be an unused address
                within the subnet cidr. If it is not specified, the system automatically assigns an IP address.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -269,11 +293,10 @@ class SubnetPrivateIp(pulumi.CustomResource):
 
         The private IP can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subnetPrivateIp:SubnetPrivateIp test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SubnetPrivateIpArgs args: The arguments to use to populate this resource's properties.
@@ -290,6 +313,7 @@ class SubnetPrivateIp(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 device_owner: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_address: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -303,13 +327,13 @@ class SubnetPrivateIp(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SubnetPrivateIpArgs.__new__(SubnetPrivateIpArgs)
 
+            __props__.__dict__["device_owner"] = device_owner
             __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["ip_address"] = ip_address
             __props__.__dict__["region"] = region
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
-            __props__.__dict__["device_owner"] = None
             __props__.__dict__["status"] = None
         super(SubnetPrivateIp, __self__).__init__(
             'huaweicloud:Vpc/subnetPrivateIp:SubnetPrivateIp',
@@ -334,7 +358,8 @@ class SubnetPrivateIp(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] device_owner: The resource using the private IP address. The parameter is left blank if it is not used.
+        :param pulumi.Input[_builtins.str] device_owner: Specifies the resource using the private IP address.
+               Value options: **neutron:VIP_PORT**.
         :param pulumi.Input[_builtins.str] ip_address: Specifies the IP address. The value must be an unused address
                within the subnet cidr. If it is not specified, the system automatically assigns an IP address.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -359,7 +384,8 @@ class SubnetPrivateIp(pulumi.CustomResource):
     @pulumi.getter(name="deviceOwner")
     def device_owner(self) -> pulumi.Output[_builtins.str]:
         """
-        The resource using the private IP address. The parameter is left blank if it is not used.
+        Specifies the resource using the private IP address.
+        Value options: **neutron:VIP_PORT**.
         """
         return pulumi.get(self, "device_owner")
 

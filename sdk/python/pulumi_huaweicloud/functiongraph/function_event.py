@@ -25,6 +25,7 @@ class FunctionEventArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FunctionEvent resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the function event content.  
                The value is the base64 encoding of the JSON string.
         :param pulumi.Input[_builtins.str] function_urn: Specifies the URN of the function to which the event blongs.  
@@ -106,6 +107,7 @@ class _FunctionEventState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionEvent resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the function event content.  
                The value is the base64 encoding of the JSON string.
         :param pulumi.Input[_builtins.str] function_urn: Specifies the URN of the function to which the event blongs.  
@@ -210,15 +212,31 @@ class FunctionEvent(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create a simple event
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_urn = config.require_object("functionUrn")
+        event_name = config.require_object("eventName")
+        event_content = config.require_object("eventContent")
+        test = huaweicloud.functiongraph.FunctionEvent("test",
+            function_urn=function_urn,
+            name=event_name,
+            content=std.index.base64encode(input=event_content)["result"])
+        ```
+
         ## Import
 
         Function event can be imported using the `function_urn` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/functionEvent:FunctionEvent test <function_urn>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -243,15 +261,31 @@ class FunctionEvent(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create a simple event
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_urn = config.require_object("functionUrn")
+        event_name = config.require_object("eventName")
+        event_content = config.require_object("eventContent")
+        test = huaweicloud.functiongraph.FunctionEvent("test",
+            function_urn=function_urn,
+            name=event_name,
+            content=std.index.base64encode(input=event_content)["result"])
+        ```
+
         ## Import
 
         Function event can be imported using the `function_urn` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/functionEvent:FunctionEvent test <function_urn>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FunctionEventArgs args: The arguments to use to populate this resource's properties.

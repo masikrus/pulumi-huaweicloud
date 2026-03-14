@@ -208,7 +208,7 @@ def get_backup_v1(backup_name: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['vmIp'] = vm_ip
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:csbs/getBackupV1:getBackupV1', __args__, opts=opts, typ=GetBackupV1Result).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Csbs/getBackupV1:getBackupV1', __args__, opts=opts, typ=GetBackupV1Result).value
 
     return AwaitableGetBackupV1Result(
         auto_trigger=pulumi.get(__ret__, 'auto_trigger'),
@@ -253,7 +253,7 @@ def get_backup_v1_output(backup_name: Optional[pulumi.Input[Optional[_builtins.s
     __args__['status'] = status
     __args__['vmIp'] = vm_ip
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:csbs/getBackupV1:getBackupV1', __args__, opts=opts, typ=GetBackupV1Result)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Csbs/getBackupV1:getBackupV1', __args__, opts=opts, typ=GetBackupV1Result)
     return __ret__.apply(lambda __response__: GetBackupV1Result(
         auto_trigger=pulumi.get(__response__, 'auto_trigger'),
         average_speed=pulumi.get(__response__, 'average_speed'),

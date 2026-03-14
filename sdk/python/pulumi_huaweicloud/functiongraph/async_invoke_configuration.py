@@ -30,6 +30,7 @@ class AsyncInvokeConfigurationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AsyncInvokeConfiguration resource.
+
         :param pulumi.Input[_builtins.str] function_urn: Specifies the function URN to which the asynchronous invocation belongs.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.int] max_async_event_age_in_seconds: Specifies the maximum validity period of a message.  
@@ -171,6 +172,7 @@ class _AsyncInvokeConfigurationState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AsyncInvokeConfiguration resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the asynchronous invocation, in RFC3339 format.
         :param pulumi.Input[_builtins.bool] enable_async_status_log: Specifies whether to enable asynchronous invocation status persistence.
                
@@ -386,11 +388,10 @@ class AsyncInvokeConfiguration(pulumi.CustomResource):
 
         The configurations can be imported using their related `function_urn`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/asyncInvokeConfiguration:AsyncInvokeConfiguration test <function_urn>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -460,11 +461,10 @@ class AsyncInvokeConfiguration(pulumi.CustomResource):
 
         The configurations can be imported using their related `function_urn`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/asyncInvokeConfiguration:AsyncInvokeConfiguration test <function_urn>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AsyncInvokeConfigurationArgs args: The arguments to use to populate this resource's properties.

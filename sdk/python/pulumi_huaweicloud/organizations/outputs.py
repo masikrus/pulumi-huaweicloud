@@ -19,6 +19,7 @@ __all__ = [
     'GetAccountsAccountResult',
     'GetCloseAccountStatusCloseAccountStatusResult',
     'GetCreateAccountStatusCreateAccountStatusResult',
+    'GetDelegatedServicesDelegatedServiceResult',
     'GetOrganizationalUnitsChildrenResult',
     'GetPoliciesPolicyResult',
     'GetPolicyAttachedEntitiesAttachedEntityResult',
@@ -41,25 +42,34 @@ __all__ = [
 class GetAccountsAccountResult(dict):
     def __init__(__self__, *,
                  description: _builtins.str,
+                 email: _builtins.str,
                  id: _builtins.str,
+                 intl_number_prefix: _builtins.str,
                  join_method: _builtins.str,
                  joined_at: _builtins.str,
+                 mobile_phone: _builtins.str,
                  name: _builtins.str,
                  status: _builtins.str,
                  urn: _builtins.str):
         """
         :param _builtins.str description: The description of the account.
+        :param _builtins.str email: The email address associated with the account.
         :param _builtins.str id: The ID of the account.
+        :param _builtins.str intl_number_prefix: The prefix of a mobile phone number.
         :param _builtins.str join_method: How the account joined an organization.
         :param _builtins.str joined_at: The time when the account joined an organization.
+        :param _builtins.str mobile_phone: The mobile phone number.
         :param _builtins.str name: Specifies the name of the account.
         :param _builtins.str status: The status of the account.
         :param _builtins.str urn: The uniform resource name of the account.
         """
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "intl_number_prefix", intl_number_prefix)
         pulumi.set(__self__, "join_method", join_method)
         pulumi.set(__self__, "joined_at", joined_at)
+        pulumi.set(__self__, "mobile_phone", mobile_phone)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "urn", urn)
@@ -74,11 +84,27 @@ class GetAccountsAccountResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def email(self) -> _builtins.str:
+        """
+        The email address associated with the account.
+        """
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter
     def id(self) -> _builtins.str:
         """
         The ID of the account.
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="intlNumberPrefix")
+    def intl_number_prefix(self) -> _builtins.str:
+        """
+        The prefix of a mobile phone number.
+        """
+        return pulumi.get(self, "intl_number_prefix")
 
     @_builtins.property
     @pulumi.getter(name="joinMethod")
@@ -95,6 +121,14 @@ class GetAccountsAccountResult(dict):
         The time when the account joined an organization.
         """
         return pulumi.get(self, "joined_at")
+
+    @_builtins.property
+    @pulumi.getter(name="mobilePhone")
+    def mobile_phone(self) -> _builtins.str:
+        """
+        The mobile phone number.
+        """
+        return pulumi.get(self, "mobile_phone")
 
     @_builtins.property
     @pulumi.getter
@@ -276,6 +310,35 @@ class GetCreateAccountStatusCreateAccountStatusResult(dict):
         Indicates the status of the asynchronous request for creating an account.
         """
         return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class GetDelegatedServicesDelegatedServiceResult(dict):
+    def __init__(__self__, *,
+                 delegation_enabled_at: _builtins.str,
+                 service_principal: _builtins.str):
+        """
+        :param _builtins.str delegation_enabled_at: Date when the account became a delegated administrator for the service.
+        :param _builtins.str service_principal: Name of the service principal.
+        """
+        pulumi.set(__self__, "delegation_enabled_at", delegation_enabled_at)
+        pulumi.set(__self__, "service_principal", service_principal)
+
+    @_builtins.property
+    @pulumi.getter(name="delegationEnabledAt")
+    def delegation_enabled_at(self) -> _builtins.str:
+        """
+        Date when the account became a delegated administrator for the service.
+        """
+        return pulumi.get(self, "delegation_enabled_at")
+
+    @_builtins.property
+    @pulumi.getter(name="servicePrincipal")
+    def service_principal(self) -> _builtins.str:
+        """
+        Name of the service principal.
+        """
+        return pulumi.get(self, "service_principal")
 
 
 @pulumi.output_type

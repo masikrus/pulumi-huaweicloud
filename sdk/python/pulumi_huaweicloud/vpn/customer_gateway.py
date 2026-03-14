@@ -30,6 +30,7 @@ class CustomerGatewayArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a CustomerGateway resource.
+
         :param pulumi.Input[_builtins.int] asn: The BGP ASN number of the customer gateway.
                The value ranges from `1` to `4,294,967,295`, the default value is `65,000`.
                Set this parameter to `0` when `id_type` is set to **fqdn**.
@@ -215,6 +216,7 @@ class _CustomerGatewayState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomerGateway resources.
+
         :param pulumi.Input[_builtins.int] asn: The BGP ASN number of the customer gateway.
                The value ranges from `1` to `4,294,967,295`, the default value is `65,000`.
                Set this parameter to `0` when `id_type` is set to **fqdn**.
@@ -512,7 +514,7 @@ class _CustomerGatewayState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/customerGateway:CustomerGateway")
+@pulumi.type_token("huaweicloud:Vpn/customerGateway:CustomerGateway")
 class CustomerGateway(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -567,37 +569,15 @@ class CustomerGateway(pulumi.CustomResource):
 
         The customer gateway can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/customerGateway:CustomerGateway test <id>
+        $ pulumi import huaweicloud:Vpn/customerGateway:CustomerGateway test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute is `certificate_content`. It is generally recommended
-
         running `pulumi preview` after importing the resource. You can then decide if changes should be applied to the instance,
-
         or the resource definition should be updated to align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_customer_gateway" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              certificate_content,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -668,37 +648,15 @@ class CustomerGateway(pulumi.CustomResource):
 
         The customer gateway can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/customerGateway:CustomerGateway test <id>
+        $ pulumi import huaweicloud:Vpn/customerGateway:CustomerGateway test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute is `certificate_content`. It is generally recommended
-
         running `pulumi preview` after importing the resource. You can then decide if changes should be applied to the instance,
-
         or the resource definition should be updated to align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_customer_gateway" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              certificate_content,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CustomerGatewayArgs args: The arguments to use to populate this resource's properties.
@@ -752,7 +710,7 @@ class CustomerGateway(pulumi.CustomResource):
             __props__.__dict__["subject"] = None
             __props__.__dict__["updated_at"] = None
         super(CustomerGateway, __self__).__init__(
-            'huaweicloud:vpn/customerGateway:CustomerGateway',
+            'huaweicloud:Vpn/customerGateway:CustomerGateway',
             resource_name,
             __props__,
             opts)

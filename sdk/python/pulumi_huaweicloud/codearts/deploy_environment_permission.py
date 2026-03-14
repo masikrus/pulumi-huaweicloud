@@ -27,6 +27,7 @@ class DeployEnvironmentPermissionInitArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployEnvironmentPermission resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID.
@@ -143,6 +144,7 @@ class _DeployEnvironmentPermissionState:
                  role_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployEnvironmentPermission resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID.
@@ -252,7 +254,7 @@ class _DeployEnvironmentPermissionState:
         pulumi.set(self, "role_id", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployEnvironmentPermission:DeployEnvironmentPermission")
+@pulumi.type_token("huaweicloud:Codearts/deployEnvironmentPermission:DeployEnvironmentPermission")
 class DeployEnvironmentPermission(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -289,14 +291,12 @@ class DeployEnvironmentPermission(pulumi.CustomResource):
         ## Import
 
         The CodeArts deploy environment permission resource can be imported using the `application_id`, `environment_id`,
-
         `role_id` and `permission_name`, separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployEnvironmentPermission:DeployEnvironmentPermission test <app_id>/<env_id>/<role_id>/<permission_name>
+        $ pulumi import huaweicloud:Codearts/deployEnvironmentPermission:DeployEnvironmentPermission test <app_id>/<env_id>/<role_id>/<permission_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -345,14 +345,12 @@ class DeployEnvironmentPermission(pulumi.CustomResource):
         ## Import
 
         The CodeArts deploy environment permission resource can be imported using the `application_id`, `environment_id`,
-
         `role_id` and `permission_name`, separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployEnvironmentPermission:DeployEnvironmentPermission test <app_id>/<env_id>/<role_id>/<permission_name>
+        $ pulumi import huaweicloud:Codearts/deployEnvironmentPermission:DeployEnvironmentPermission test <app_id>/<env_id>/<role_id>/<permission_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeployEnvironmentPermissionInitArgs args: The arguments to use to populate this resource's properties.
@@ -399,7 +397,7 @@ class DeployEnvironmentPermission(pulumi.CustomResource):
                 raise TypeError("Missing required property 'role_id'")
             __props__.__dict__["role_id"] = role_id
         super(DeployEnvironmentPermission, __self__).__init__(
-            'huaweicloud:codearts/deployEnvironmentPermission:DeployEnvironmentPermission',
+            'huaweicloud:Codearts/deployEnvironmentPermission:DeployEnvironmentPermission',
             resource_name,
             __props__,
             opts)

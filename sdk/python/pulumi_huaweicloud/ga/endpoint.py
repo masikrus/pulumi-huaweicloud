@@ -28,6 +28,7 @@ class EndpointArgs:
                  weight: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Endpoint resource.
+
         :param pulumi.Input[_builtins.str] endpoint_group_id: Specifies the ID of the endpoint group
                to which the endpoint belongs.
                
@@ -140,6 +141,7 @@ class _EndpointState:
                  weight: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Endpoint resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates when the endpoint was created.
         :param pulumi.Input[_builtins.str] endpoint_group_id: Specifies the ID of the endpoint group
                to which the endpoint belongs.
@@ -327,7 +329,7 @@ class _EndpointState:
         pulumi.set(self, "weight", value)
 
 
-@pulumi.type_token("huaweicloud:ga/endpoint:Endpoint")
+@pulumi.type_token("huaweicloud:Ga/endpoint:Endpoint")
 class Endpoint(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -362,11 +364,10 @@ class Endpoint(pulumi.CustomResource):
 
         The endpoint can be imported using `endpoint_group_id`, `id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/endpoint:Endpoint test <endpoint_group_id>/<id>
+        $ pulumi import huaweicloud:Ga/endpoint:Endpoint test <endpoint_group_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -416,11 +417,10 @@ class Endpoint(pulumi.CustomResource):
 
         The endpoint can be imported using `endpoint_group_id`, `id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/endpoint:Endpoint test <endpoint_group_id>/<id>
+        $ pulumi import huaweicloud:Ga/endpoint:Endpoint test <endpoint_group_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EndpointArgs args: The arguments to use to populate this resource's properties.
@@ -468,7 +468,7 @@ class Endpoint(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Endpoint, __self__).__init__(
-            'huaweicloud:ga/endpoint:Endpoint',
+            'huaweicloud:Ga/endpoint:Endpoint',
             resource_name,
             __props__,
             opts)

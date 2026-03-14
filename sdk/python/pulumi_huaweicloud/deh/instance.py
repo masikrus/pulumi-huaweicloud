@@ -36,6 +36,7 @@ class InstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ to which the dedicated host belongs.
         :param pulumi.Input[_builtins.str] host_type: Specifies the type of the dedicated host.
         :param pulumi.Input[_builtins.str] auto_placement: Specifies whether to allow an ECS to be placed on any available dedicated host if
@@ -270,6 +271,7 @@ class _InstanceState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] allocated_at: Indicates the time when the dedicated host is allocated.
         :param pulumi.Input[_builtins.str] auto_placement: Specifies whether to allow an ECS to be placed on any available dedicated host if
                its dedicated host ID is not specified during its creation. Value options: **on** and **off**.
@@ -602,7 +604,7 @@ class _InstanceState:
         pulumi.set(self, "tags", value)
 
 
-@pulumi.type_token("huaweicloud:deh/instance:Instance")
+@pulumi.type_token("huaweicloud:Deh/instance:Instance")
 class Instance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -645,39 +647,16 @@ class Instance(pulumi.CustomResource):
 
         The DEH instance can be imported using the `id`, e.g.:
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:deh/instance:Instance test <id>
+        $ pulumi import huaweicloud:Deh/instance:Instance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`,`period`, `auto_renew` and
-
         `enterprise_project_id`. It is generally recommended running `pulumi preview` after importing a DEH instance. You can
-
         then decide if changes should be applied to the DEH instance, or the resource definition should be updated to align with
-
         the mesh. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_deh_instance" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew, enterprise_project_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -731,39 +710,16 @@ class Instance(pulumi.CustomResource):
 
         The DEH instance can be imported using the `id`, e.g.:
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:deh/instance:Instance test <id>
+        $ pulumi import huaweicloud:Deh/instance:Instance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`,`period`, `auto_renew` and
-
         `enterprise_project_id`. It is generally recommended running `pulumi preview` after importing a DEH instance. You can
-
         then decide if changes should be applied to the DEH instance, or the resource definition should be updated to align with
-
         the mesh. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_deh_instance" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew, enterprise_project_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -828,7 +784,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["state"] = None
             __props__.__dict__["sys_tags"] = None
         super(Instance, __self__).__init__(
-            'huaweicloud:deh/instance:Instance',
+            'huaweicloud:Deh/instance:Instance',
             resource_name,
             __props__,
             opts)

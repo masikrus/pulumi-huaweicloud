@@ -70,6 +70,10 @@ __all__ = [
     'GetQuotasV3QuotaSetVolumesSaResult',
     'GetQuotasV3QuotaSetVolumesSataResult',
     'GetQuotasV3QuotaSetVolumesSsdResult',
+    'GetRecycleBinVolumeDetailVolumeResult',
+    'GetRecycleBinVolumeDetailVolumeAttachmentResult',
+    'GetRecycleBinVolumesDetailVolumeResult',
+    'GetRecycleBinVolumesDetailVolumeAttachmentResult',
     'GetSnapshotChainsSnapshotChainResult',
     'GetSnapshotGroupsSnapshotGroupResult',
     'GetSnapshotGroupsTagsTagResult',
@@ -2786,6 +2790,766 @@ class GetQuotasV3QuotaSetVolumesSsdResult(dict):
         Maximum quota.
         """
         return pulumi.get(self, "limit")
+
+
+@pulumi.output_type
+class GetRecycleBinVolumeDetailVolumeResult(dict):
+    def __init__(__self__, *,
+                 attachments: Sequence['outputs.GetRecycleBinVolumeDetailVolumeAttachmentResult'],
+                 availability_zone: _builtins.str,
+                 bootable: _builtins.str,
+                 created_at: _builtins.str,
+                 dedicated_storage_id: _builtins.str,
+                 dedicated_storage_name: _builtins.str,
+                 description: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 id: _builtins.str,
+                 metadata: Mapping[str, _builtins.str],
+                 multiattach: _builtins.bool,
+                 name: _builtins.str,
+                 plan_delete_at: _builtins.str,
+                 pre_deleted_at: _builtins.str,
+                 service_type: _builtins.str,
+                 size: _builtins.int,
+                 status: _builtins.str,
+                 tags: Mapping[str, _builtins.str],
+                 updated_at: _builtins.str,
+                 volume_image_metadata: Mapping[str, _builtins.str],
+                 volume_type: _builtins.str,
+                 wwn: _builtins.str):
+        """
+        :param Sequence['GetRecycleBinVolumeDetailVolumeAttachmentArgs'] attachments: The attachment information of the disk.
+        :param _builtins.str availability_zone: The availability zone to which the disk belongs.
+        :param _builtins.str bootable: Whether the disk is a boot disk.  
+               The valid values are as follows:
+               + **true**: indicates a boot disk.
+               + **false**: indicates a non-boot disk.
+        :param _builtins.str created_at: The time when the disk was created. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param _builtins.str dedicated_storage_id: The ID of the dedicated storage pool to which the disk belongs.
+        :param _builtins.str dedicated_storage_name: The name of the dedicated storage pool to which the disk belongs.
+        :param _builtins.str description: The disk description.
+        :param _builtins.str enterprise_project_id: The enterprise project ID.
+        :param _builtins.str id: The ID of the attached resource.
+        :param Mapping[str, _builtins.str] metadata: The key-value pair disk metadata. Valid key-value pairs are as follows:
+               + **__system__cmkid**: The encrypted cmkid field in metadata, when combined with `__system__encrypted`, indicates the
+               need for encryption. The cmkid length is fixed at `36` bytes.
+               + **__system__encrypted**: The field in metadata that represents encryption function, where `0` represents no
+               encryption and `1` represents encryption. When this field is not specified, the encryption properties of the cloud
+               disk remain consistent with the data source. If the scene is not created from the data source, it is not encrypted
+               by default.
+               + **hw:passthrough**: The value of **true** indicates that the device type of the cloud disk is SCSI, which allows the
+               ECS operating system to directly access the underlying storage medium, supports SCSI lock command.
+               The value of **false** indicates that the device type of the cloud disk is VBD (Virtual Block Device), which is the
+               default type, VBD can only support simple SCSI read and write commands.
+               When this field does not exist, the cloud disk defaults to VBD type.
+        :param _builtins.bool multiattach: Whether the disk is shared.  
+               The valid values are as follows:
+               + **true**: Indicated as a shared cloud disk.
+               + **false**: Indicated as a common cloud disk.
+        :param _builtins.str name: The disk name.
+        :param _builtins.str plan_delete_at: The expected time for cleaning up the disk. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param _builtins.str pre_deleted_at: The time when the disk was put into the recycle bin.
+               The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param _builtins.str service_type: The service type to which the disk belongs.  
+               The valid values are as follows:
+               + **EVS**: Elastic Volume Service.
+               + **DSS**: Dedicated Storage Service.
+        :param _builtins.int size: The disk size in GiB.
+        :param _builtins.str status: The disk status.
+        :param Mapping[str, _builtins.str] tags: The disk tags.
+        :param _builtins.str updated_at: The time when the disk information was updated. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param Mapping[str, _builtins.str] volume_image_metadata: The image metadata of the disk. Regarding the detailed explanation of this field,
+               see [API docs](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0703.html).
+        :param _builtins.str volume_type: The disk type. The valid values are **SATA**, **SAS**, **GPSSD**, **SSD**, **ESSD**, **GPSSD2**,
+               and **ESSD2**.
+        :param _builtins.str wwn: The unique identifier of the disk.
+        """
+        pulumi.set(__self__, "attachments", attachments)
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "bootable", bootable)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "dedicated_storage_id", dedicated_storage_id)
+        pulumi.set(__self__, "dedicated_storage_name", dedicated_storage_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "metadata", metadata)
+        pulumi.set(__self__, "multiattach", multiattach)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "plan_delete_at", plan_delete_at)
+        pulumi.set(__self__, "pre_deleted_at", pre_deleted_at)
+        pulumi.set(__self__, "service_type", service_type)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "volume_image_metadata", volume_image_metadata)
+        pulumi.set(__self__, "volume_type", volume_type)
+        pulumi.set(__self__, "wwn", wwn)
+
+    @_builtins.property
+    @pulumi.getter
+    def attachments(self) -> Sequence['outputs.GetRecycleBinVolumeDetailVolumeAttachmentResult']:
+        """
+        The attachment information of the disk.
+        """
+        return pulumi.get(self, "attachments")
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> _builtins.str:
+        """
+        The availability zone to which the disk belongs.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @_builtins.property
+    @pulumi.getter
+    def bootable(self) -> _builtins.str:
+        """
+        Whether the disk is a boot disk.  
+        The valid values are as follows:
+        + **true**: indicates a boot disk.
+        + **false**: indicates a non-boot disk.
+        """
+        return pulumi.get(self, "bootable")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The time when the disk was created. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="dedicatedStorageId")
+    def dedicated_storage_id(self) -> _builtins.str:
+        """
+        The ID of the dedicated storage pool to which the disk belongs.
+        """
+        return pulumi.get(self, "dedicated_storage_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dedicatedStorageName")
+    def dedicated_storage_name(self) -> _builtins.str:
+        """
+        The name of the dedicated storage pool to which the disk belongs.
+        """
+        return pulumi.get(self, "dedicated_storage_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The disk description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        The enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the attached resource.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Mapping[str, _builtins.str]:
+        """
+        The key-value pair disk metadata. Valid key-value pairs are as follows:
+        + **__system__cmkid**: The encrypted cmkid field in metadata, when combined with `__system__encrypted`, indicates the
+        need for encryption. The cmkid length is fixed at `36` bytes.
+        + **__system__encrypted**: The field in metadata that represents encryption function, where `0` represents no
+        encryption and `1` represents encryption. When this field is not specified, the encryption properties of the cloud
+        disk remain consistent with the data source. If the scene is not created from the data source, it is not encrypted
+        by default.
+        + **hw:passthrough**: The value of **true** indicates that the device type of the cloud disk is SCSI, which allows the
+        ECS operating system to directly access the underlying storage medium, supports SCSI lock command.
+        The value of **false** indicates that the device type of the cloud disk is VBD (Virtual Block Device), which is the
+        default type, VBD can only support simple SCSI read and write commands.
+        When this field does not exist, the cloud disk defaults to VBD type.
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def multiattach(self) -> _builtins.bool:
+        """
+        Whether the disk is shared.  
+        The valid values are as follows:
+        + **true**: Indicated as a shared cloud disk.
+        + **false**: Indicated as a common cloud disk.
+        """
+        return pulumi.get(self, "multiattach")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The disk name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="planDeleteAt")
+    def plan_delete_at(self) -> _builtins.str:
+        """
+        The expected time for cleaning up the disk. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "plan_delete_at")
+
+    @_builtins.property
+    @pulumi.getter(name="preDeletedAt")
+    def pre_deleted_at(self) -> _builtins.str:
+        """
+        The time when the disk was put into the recycle bin.
+        The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "pre_deleted_at")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> _builtins.str:
+        """
+        The service type to which the disk belongs.  
+        The valid values are as follows:
+        + **EVS**: Elastic Volume Service.
+        + **DSS**: Dedicated Storage Service.
+        """
+        return pulumi.get(self, "service_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        The disk size in GiB.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The disk status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, _builtins.str]:
+        """
+        The disk tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The time when the disk information was updated. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeImageMetadata")
+    def volume_image_metadata(self) -> Mapping[str, _builtins.str]:
+        """
+        The image metadata of the disk. Regarding the detailed explanation of this field,
+        see [API docs](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0703.html).
+        """
+        return pulumi.get(self, "volume_image_metadata")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> _builtins.str:
+        """
+        The disk type. The valid values are **SATA**, **SAS**, **GPSSD**, **SSD**, **ESSD**, **GPSSD2**,
+        and **ESSD2**.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def wwn(self) -> _builtins.str:
+        """
+        The unique identifier of the disk.
+        """
+        return pulumi.get(self, "wwn")
+
+
+@pulumi.output_type
+class GetRecycleBinVolumeDetailVolumeAttachmentResult(dict):
+    def __init__(__self__, *,
+                 attached_at: _builtins.str,
+                 attachment_id: _builtins.str,
+                 device: _builtins.str,
+                 host_name: _builtins.str,
+                 id: _builtins.str,
+                 server_id: _builtins.str,
+                 volume_id: _builtins.str):
+        """
+        :param _builtins.str attached_at: The time when the disk was attached. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param _builtins.str attachment_id: The ID corresponding to the attachment information.
+        :param _builtins.str device: The attachment point.
+        :param _builtins.str host_name: The name of the physical host to which the disk is attached.
+        :param _builtins.str id: The ID of the attached resource.
+        :param _builtins.str server_id: The ID of the ECS to which the disk is attached.
+        :param _builtins.str volume_id: Specifies the disk ID.  
+               For its values, can be obtained using `evs_get_volumes` dataSource.
+        """
+        pulumi.set(__self__, "attached_at", attached_at)
+        pulumi.set(__self__, "attachment_id", attachment_id)
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "server_id", server_id)
+        pulumi.set(__self__, "volume_id", volume_id)
+
+    @_builtins.property
+    @pulumi.getter(name="attachedAt")
+    def attached_at(self) -> _builtins.str:
+        """
+        The time when the disk was attached. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "attached_at")
+
+    @_builtins.property
+    @pulumi.getter(name="attachmentId")
+    def attachment_id(self) -> _builtins.str:
+        """
+        The ID corresponding to the attachment information.
+        """
+        return pulumi.get(self, "attachment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        The attachment point.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The name of the physical host to which the disk is attached.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the attached resource.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> _builtins.str:
+        """
+        The ID of the ECS to which the disk is attached.
+        """
+        return pulumi.get(self, "server_id")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> _builtins.str:
+        """
+        Specifies the disk ID.  
+        For its values, can be obtained using `evs_get_volumes` dataSource.
+        """
+        return pulumi.get(self, "volume_id")
+
+
+@pulumi.output_type
+class GetRecycleBinVolumesDetailVolumeResult(dict):
+    def __init__(__self__, *,
+                 attachments: Sequence['outputs.GetRecycleBinVolumesDetailVolumeAttachmentResult'],
+                 availability_zone: _builtins.str,
+                 bootable: _builtins.str,
+                 created_at: _builtins.str,
+                 dedicated_storage_id: _builtins.str,
+                 dedicated_storage_name: _builtins.str,
+                 description: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 id: _builtins.str,
+                 metadata: Mapping[str, _builtins.str],
+                 multiattach: _builtins.bool,
+                 name: _builtins.str,
+                 plan_delete_at: _builtins.str,
+                 pre_deleted_at: _builtins.str,
+                 service_type: _builtins.str,
+                 size: _builtins.int,
+                 status: _builtins.str,
+                 tags: Mapping[str, _builtins.str],
+                 updated_at: _builtins.str,
+                 volume_image_metadata: Mapping[str, _builtins.str],
+                 volume_type: _builtins.str,
+                 wwn: _builtins.str):
+        """
+        :param Sequence['GetRecycleBinVolumesDetailVolumeAttachmentArgs'] attachments: The attachment information of the disk.
+        :param _builtins.str availability_zone: Specifies the availability zone.  
+               For its values, can be obtained using `evs_get_availability_zones` dataSource.
+        :param _builtins.str bootable: Whether the disk is a boot disk.  
+               The valid values are as follows:
+               + **true**: indicates a boot disk.
+               + **false**: indicates a non-boot disk.
+        :param _builtins.str created_at: The time when the disk was created. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param _builtins.str dedicated_storage_id: The ID of the dedicated storage pool to which the disk belongs.
+        :param _builtins.str dedicated_storage_name: The name of the dedicated storage pool to which the disk belongs.
+        :param _builtins.str description: The disk description.
+        :param _builtins.str enterprise_project_id: The enterprise project ID.
+        :param _builtins.str id: The ID of the attached resource.
+        :param Mapping[str, _builtins.str] metadata: The key-value pair disk metadata. Valid key-value pairs are as follows:
+               + **__system__cmkid**: The encrypted cmkid field in metadata, when combined with `__system__encrypted`, indicates the
+               need for encryption. The cmkid length is fixed at `36` bytes.
+               + **__system__encrypted**: The field in metadata that represents encryption function, where `0` represents no
+               encryption and `1` represents encryption. When this field is not specified, the encryption properties of the cloud
+               disk remain consistent with the data source. If the scene is not created from the data source, it is not encrypted
+               by default.
+               + **hw:passthrough**: The value of **true** indicates that the device type of the cloud disk is SCSI, which allows the
+               ECS operating system to directly access the underlying storage medium, supports SCSI lock command.
+               The value of **false** indicates that the device type of the cloud disk is VBD (Virtual Block Device), which is the
+               default type, VBD can only support simple SCSI read and write commands.
+               When this field does not exist, the cloud disk defaults to VBD type.
+        :param _builtins.bool multiattach: Whether the disk is shared.  
+               The valid values are as follows:
+               + **true**: Indicated as a shared cloud disk.
+               + **false**: Indicated as a common cloud disk.
+        :param _builtins.str name: Specifies the disk name.  
+               For its values, can be obtained using `evs_get_volumes` dataSource.
+        :param _builtins.str plan_delete_at: The expected time for cleaning up the disk. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param _builtins.str pre_deleted_at: The time when the disk was put into the recycle bin.
+               The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param _builtins.str service_type: Specifies the service type. The valid values are **EVS** and **DSS**.
+        :param _builtins.int size: The disk size in GiB.
+        :param _builtins.str status: Specifies the disk status.  
+               For its values, see [API docs](https://support.huaweicloud.com/intl/en-us/api-evs/evs_04_0040.html).
+        :param Mapping[str, _builtins.str] tags: The disk tags.
+        :param _builtins.str updated_at: The time when the disk information was updated. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param Mapping[str, _builtins.str] volume_image_metadata: The image metadata of the disk. Regarding the detailed explanation of this field,
+               see [API docs](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0703.html).
+        :param _builtins.str volume_type: The disk type. The valid values are **SATA**, **SAS**, **GPSSD**, **SSD**, **ESSD**, **GPSSD2**,
+               and **ESSD2**.
+        :param _builtins.str wwn: The unique identifier of the disk.
+        """
+        pulumi.set(__self__, "attachments", attachments)
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "bootable", bootable)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "dedicated_storage_id", dedicated_storage_id)
+        pulumi.set(__self__, "dedicated_storage_name", dedicated_storage_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "metadata", metadata)
+        pulumi.set(__self__, "multiattach", multiattach)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "plan_delete_at", plan_delete_at)
+        pulumi.set(__self__, "pre_deleted_at", pre_deleted_at)
+        pulumi.set(__self__, "service_type", service_type)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "volume_image_metadata", volume_image_metadata)
+        pulumi.set(__self__, "volume_type", volume_type)
+        pulumi.set(__self__, "wwn", wwn)
+
+    @_builtins.property
+    @pulumi.getter
+    def attachments(self) -> Sequence['outputs.GetRecycleBinVolumesDetailVolumeAttachmentResult']:
+        """
+        The attachment information of the disk.
+        """
+        return pulumi.get(self, "attachments")
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> _builtins.str:
+        """
+        Specifies the availability zone.  
+        For its values, can be obtained using `evs_get_availability_zones` dataSource.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @_builtins.property
+    @pulumi.getter
+    def bootable(self) -> _builtins.str:
+        """
+        Whether the disk is a boot disk.  
+        The valid values are as follows:
+        + **true**: indicates a boot disk.
+        + **false**: indicates a non-boot disk.
+        """
+        return pulumi.get(self, "bootable")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The time when the disk was created. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="dedicatedStorageId")
+    def dedicated_storage_id(self) -> _builtins.str:
+        """
+        The ID of the dedicated storage pool to which the disk belongs.
+        """
+        return pulumi.get(self, "dedicated_storage_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dedicatedStorageName")
+    def dedicated_storage_name(self) -> _builtins.str:
+        """
+        The name of the dedicated storage pool to which the disk belongs.
+        """
+        return pulumi.get(self, "dedicated_storage_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The disk description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        The enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the attached resource.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Mapping[str, _builtins.str]:
+        """
+        The key-value pair disk metadata. Valid key-value pairs are as follows:
+        + **__system__cmkid**: The encrypted cmkid field in metadata, when combined with `__system__encrypted`, indicates the
+        need for encryption. The cmkid length is fixed at `36` bytes.
+        + **__system__encrypted**: The field in metadata that represents encryption function, where `0` represents no
+        encryption and `1` represents encryption. When this field is not specified, the encryption properties of the cloud
+        disk remain consistent with the data source. If the scene is not created from the data source, it is not encrypted
+        by default.
+        + **hw:passthrough**: The value of **true** indicates that the device type of the cloud disk is SCSI, which allows the
+        ECS operating system to directly access the underlying storage medium, supports SCSI lock command.
+        The value of **false** indicates that the device type of the cloud disk is VBD (Virtual Block Device), which is the
+        default type, VBD can only support simple SCSI read and write commands.
+        When this field does not exist, the cloud disk defaults to VBD type.
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def multiattach(self) -> _builtins.bool:
+        """
+        Whether the disk is shared.  
+        The valid values are as follows:
+        + **true**: Indicated as a shared cloud disk.
+        + **false**: Indicated as a common cloud disk.
+        """
+        return pulumi.get(self, "multiattach")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the disk name.  
+        For its values, can be obtained using `evs_get_volumes` dataSource.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="planDeleteAt")
+    def plan_delete_at(self) -> _builtins.str:
+        """
+        The expected time for cleaning up the disk. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "plan_delete_at")
+
+    @_builtins.property
+    @pulumi.getter(name="preDeletedAt")
+    def pre_deleted_at(self) -> _builtins.str:
+        """
+        The time when the disk was put into the recycle bin.
+        The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "pre_deleted_at")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> _builtins.str:
+        """
+        Specifies the service type. The valid values are **EVS** and **DSS**.
+        """
+        return pulumi.get(self, "service_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        The disk size in GiB.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the disk status.  
+        For its values, see [API docs](https://support.huaweicloud.com/intl/en-us/api-evs/evs_04_0040.html).
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, _builtins.str]:
+        """
+        The disk tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The time when the disk information was updated. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeImageMetadata")
+    def volume_image_metadata(self) -> Mapping[str, _builtins.str]:
+        """
+        The image metadata of the disk. Regarding the detailed explanation of this field,
+        see [API docs](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0703.html).
+        """
+        return pulumi.get(self, "volume_image_metadata")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> _builtins.str:
+        """
+        The disk type. The valid values are **SATA**, **SAS**, **GPSSD**, **SSD**, **ESSD**, **GPSSD2**,
+        and **ESSD2**.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def wwn(self) -> _builtins.str:
+        """
+        The unique identifier of the disk.
+        """
+        return pulumi.get(self, "wwn")
+
+
+@pulumi.output_type
+class GetRecycleBinVolumesDetailVolumeAttachmentResult(dict):
+    def __init__(__self__, *,
+                 attached_at: _builtins.str,
+                 attachment_id: _builtins.str,
+                 device: _builtins.str,
+                 host_name: _builtins.str,
+                 id: _builtins.str,
+                 server_id: _builtins.str,
+                 volume_id: _builtins.str):
+        """
+        :param _builtins.str attached_at: The time when the disk was attached. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        :param _builtins.str attachment_id: The ID corresponding to the attachment information.
+        :param _builtins.str device: The attachment point.
+        :param _builtins.str host_name: The name of the physical host to which the disk is attached.
+        :param _builtins.str id: The ID of the attached resource.
+        :param _builtins.str server_id: The ID of the ECS to which the disk is attached.
+        :param _builtins.str volume_id: The disk ID.
+        """
+        pulumi.set(__self__, "attached_at", attached_at)
+        pulumi.set(__self__, "attachment_id", attachment_id)
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "server_id", server_id)
+        pulumi.set(__self__, "volume_id", volume_id)
+
+    @_builtins.property
+    @pulumi.getter(name="attachedAt")
+    def attached_at(self) -> _builtins.str:
+        """
+        The time when the disk was attached. The time format is UTC YYYY-MM-DDTHH:MM:SS.XXXXXX.
+        """
+        return pulumi.get(self, "attached_at")
+
+    @_builtins.property
+    @pulumi.getter(name="attachmentId")
+    def attachment_id(self) -> _builtins.str:
+        """
+        The ID corresponding to the attachment information.
+        """
+        return pulumi.get(self, "attachment_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        The attachment point.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The name of the physical host to which the disk is attached.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the attached resource.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> _builtins.str:
+        """
+        The ID of the ECS to which the disk is attached.
+        """
+        return pulumi.get(self, "server_id")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> _builtins.str:
+        """
+        The disk ID.
+        """
+        return pulumi.get(self, "volume_id")
 
 
 @pulumi.output_type

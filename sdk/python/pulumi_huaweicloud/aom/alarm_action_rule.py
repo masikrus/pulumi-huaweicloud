@@ -26,9 +26,11 @@ class AlarmActionRuleArgs:
                  type: pulumi.Input[_builtins.str],
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlarmActionRule resource.
+
         :param pulumi.Input[_builtins.str] notification_template: Specifies the notification template.
         :param pulumi.Input[Sequence[pulumi.Input['AlarmActionRuleSmnTopicArgs']]] smn_topics: Specifies the SMN topic configurations. A maximum of 5 topics are allowed.
                The SmnTopics structure is documented below.
@@ -41,6 +43,12 @@ class AlarmActionRuleArgs:
         :param pulumi.Input[_builtins.str] name: Specifies the SMN topic name.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] user_name: Specifies the IAM user name to which the action rule belongs.  
+               Changing this parameter will create a new resource.
+               
+               !> Currently, this parameter is required in some regions and more regions will be applied this behavior in the future.
+               <br>To avoid deployment errors caused by the validation behavior of this parameter in the OpenAPI in the future, it
+               is recommended to use a provider version of at least `1.80.4` and configure this parameter.
         """
         pulumi.set(__self__, "notification_template", notification_template)
         pulumi.set(__self__, "smn_topics", smn_topics)
@@ -51,6 +59,8 @@ class AlarmActionRuleArgs:
             pulumi.set(__self__, "name", name)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
 
     @_builtins.property
     @pulumi.getter(name="notificationTemplate")
@@ -130,6 +140,23 @@ class AlarmActionRuleArgs:
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
 
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IAM user name to which the action rule belongs.  
+        Changing this parameter will create a new resource.
+
+        !> Currently, this parameter is required in some regions and more regions will be applied this behavior in the future.
+        <br>To avoid deployment errors caused by the validation behavior of this parameter in the OpenAPI in the future, it
+        is recommended to use a provider version of at least `1.80.4` and configure this parameter.
+        """
+        return pulumi.get(self, "user_name")
+
+    @user_name.setter
+    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_name", value)
+
 
 @pulumi.input_type
 class _AlarmActionRuleState:
@@ -141,9 +168,11 @@ class _AlarmActionRuleState:
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  smn_topics: Optional[pulumi.Input[Sequence[pulumi.Input['AlarmActionRuleSmnTopicArgs']]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.int]] = None):
+                 updated_at: Optional[pulumi.Input[_builtins.int]] = None,
+                 user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlarmActionRule resources.
+
         :param pulumi.Input[_builtins.int] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the action rule description.
                The value can be a string of 0 to 1024 characters.
@@ -158,6 +187,12 @@ class _AlarmActionRuleState:
                The SmnTopics structure is documented below.
         :param pulumi.Input[_builtins.str] type: Specifies the action rule type. The value can be **1**, which indicates notification.
         :param pulumi.Input[_builtins.int] updated_at: The last update time.
+        :param pulumi.Input[_builtins.str] user_name: Specifies the IAM user name to which the action rule belongs.  
+               Changing this parameter will create a new resource.
+               
+               !> Currently, this parameter is required in some regions and more regions will be applied this behavior in the future.
+               <br>To avoid deployment errors caused by the validation behavior of this parameter in the OpenAPI in the future, it
+               is recommended to use a provider version of at least `1.80.4` and configure this parameter.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -175,6 +210,8 @@ class _AlarmActionRuleState:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -278,6 +315,23 @@ class _AlarmActionRuleState:
     def updated_at(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "updated_at", value)
 
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IAM user name to which the action rule belongs.  
+        Changing this parameter will create a new resource.
+
+        !> Currently, this parameter is required in some regions and more regions will be applied this behavior in the future.
+        <br>To avoid deployment errors caused by the validation behavior of this parameter in the OpenAPI in the future, it
+        is recommended to use a provider version of at least `1.80.4` and configure this parameter.
+        """
+        return pulumi.get(self, "user_name")
+
+    @user_name.setter
+    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_name", value)
+
 
 @pulumi.type_token("huaweicloud:Aom/alarmActionRule:AlarmActionRule")
 class AlarmActionRule(pulumi.CustomResource):
@@ -291,37 +345,19 @@ class AlarmActionRule(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  smn_topics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlarmActionRuleSmnTopicArgs', 'AlarmActionRuleSmnTopicArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an AOM alarm action rule resource within HuaweiCloud.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_huaweicloud as huaweicloud
-
-        config = pulumi.Config()
-        topic_urn = config.require_object("topicUrn")
-        test = huaweicloud.aom.AlarmActionRule("test",
-            name="test_rule",
-            description="terraform test",
-            type="1",
-            notification_template="aom.built-in.template.zh",
-            smn_topics=[{
-                "topic_urn": topic_urn,
-            }])
-        ```
 
         ## Import
 
         The application operations management can be imported using the `id` (name), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmActionRule:AlarmActionRule test test_rule
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -337,6 +373,12 @@ class AlarmActionRule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['AlarmActionRuleSmnTopicArgs', 'AlarmActionRuleSmnTopicArgsDict']]]] smn_topics: Specifies the SMN topic configurations. A maximum of 5 topics are allowed.
                The SmnTopics structure is documented below.
         :param pulumi.Input[_builtins.str] type: Specifies the action rule type. The value can be **1**, which indicates notification.
+        :param pulumi.Input[_builtins.str] user_name: Specifies the IAM user name to which the action rule belongs.  
+               Changing this parameter will create a new resource.
+               
+               !> Currently, this parameter is required in some regions and more regions will be applied this behavior in the future.
+               <br>To avoid deployment errors caused by the validation behavior of this parameter in the OpenAPI in the future, it
+               is recommended to use a provider version of at least `1.80.4` and configure this parameter.
         """
         ...
     @overload
@@ -347,33 +389,14 @@ class AlarmActionRule(pulumi.CustomResource):
         """
         Manages an AOM alarm action rule resource within HuaweiCloud.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_huaweicloud as huaweicloud
-
-        config = pulumi.Config()
-        topic_urn = config.require_object("topicUrn")
-        test = huaweicloud.aom.AlarmActionRule("test",
-            name="test_rule",
-            description="terraform test",
-            type="1",
-            notification_template="aom.built-in.template.zh",
-            smn_topics=[{
-                "topic_urn": topic_urn,
-            }])
-        ```
-
         ## Import
 
         The application operations management can be imported using the `id` (name), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmActionRule:AlarmActionRule test test_rule
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlarmActionRuleArgs args: The arguments to use to populate this resource's properties.
@@ -396,6 +419,7 @@ class AlarmActionRule(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  smn_topics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlarmActionRuleSmnTopicArgs', 'AlarmActionRuleSmnTopicArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -417,6 +441,7 @@ class AlarmActionRule(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["user_name"] = user_name
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(AlarmActionRule, __self__).__init__(
@@ -436,7 +461,8 @@ class AlarmActionRule(pulumi.CustomResource):
             region: Optional[pulumi.Input[_builtins.str]] = None,
             smn_topics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlarmActionRuleSmnTopicArgs', 'AlarmActionRuleSmnTopicArgsDict']]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.int]] = None) -> 'AlarmActionRule':
+            updated_at: Optional[pulumi.Input[_builtins.int]] = None,
+            user_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'AlarmActionRule':
         """
         Get an existing AlarmActionRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -458,6 +484,12 @@ class AlarmActionRule(pulumi.CustomResource):
                The SmnTopics structure is documented below.
         :param pulumi.Input[_builtins.str] type: Specifies the action rule type. The value can be **1**, which indicates notification.
         :param pulumi.Input[_builtins.int] updated_at: The last update time.
+        :param pulumi.Input[_builtins.str] user_name: Specifies the IAM user name to which the action rule belongs.  
+               Changing this parameter will create a new resource.
+               
+               !> Currently, this parameter is required in some regions and more regions will be applied this behavior in the future.
+               <br>To avoid deployment errors caused by the validation behavior of this parameter in the OpenAPI in the future, it
+               is recommended to use a provider version of at least `1.80.4` and configure this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -471,6 +503,7 @@ class AlarmActionRule(pulumi.CustomResource):
         __props__.__dict__["smn_topics"] = smn_topics
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
+        __props__.__dict__["user_name"] = user_name
         return AlarmActionRule(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -542,4 +575,17 @@ class AlarmActionRule(pulumi.CustomResource):
         The last update time.
         """
         return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies the IAM user name to which the action rule belongs.  
+        Changing this parameter will create a new resource.
+
+        !> Currently, this parameter is required in some regions and more regions will be applied this behavior in the future.
+        <br>To avoid deployment errors caused by the validation behavior of this parameter in the OpenAPI in the future, it
+        is recommended to use a provider version of at least `1.80.4` and configure this parameter.
+        """
+        return pulumi.get(self, "user_name")
 

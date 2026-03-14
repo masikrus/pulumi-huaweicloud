@@ -23,6 +23,7 @@ class AccountInviteAccepterArgs:
                  leave_organization_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AccountInviteAccepter resource.
+
         :param pulumi.Input[_builtins.str] invitation_id: Specifies the unique ID of an invitation (handshake).
                
                Changing this parameter will create a new resource.
@@ -64,6 +65,7 @@ class AccountInviteAccepterArgs:
 @pulumi.input_type
 class _AccountInviteAccepterState:
     def __init__(__self__, *,
+                 account_invite_accepter_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  account_id: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  invitation_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -72,10 +74,11 @@ class _AccountInviteAccepterState:
                  master_account_name: Optional[pulumi.Input[_builtins.str]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccountInviteAccepter resources.
+
+        :param pulumi.Input[_builtins.str] account_invite_accepter_urn: Indicates the uniform resource name of the invitation
         :param pulumi.Input[_builtins.str] account_id: Indicates the ID of the target account.
         :param pulumi.Input[_builtins.str] created_at: Indicates the date and time when an invitation (handshake) request was made.
         :param pulumi.Input[_builtins.str] invitation_id: Specifies the unique ID of an invitation (handshake).
@@ -89,8 +92,9 @@ class _AccountInviteAccepterState:
         :param pulumi.Input[_builtins.str] status: Indicates the current state of the invitation (handshake).
         :param pulumi.Input[_builtins.str] updated_at: Indicates the date and time when an invitation (handshake) request was accepted, cancelled,
                declined, or expired.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the invitation
         """
+        if account_invite_accepter_urn is not None:
+            pulumi.set(__self__, "account_invite_accepter_urn", account_invite_accepter_urn)
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
         if created_at is not None:
@@ -109,8 +113,18 @@ class _AccountInviteAccepterState:
             pulumi.set(__self__, "status", status)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountInviteAccepterUrn")
+    def account_invite_accepter_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the uniform resource name of the invitation
+        """
+        return pulumi.get(self, "account_invite_accepter_urn")
+
+    @account_invite_accepter_urn.setter
+    def account_invite_accepter_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account_invite_accepter_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="accountId")
@@ -224,20 +238,8 @@ class _AccountInviteAccepterState:
     def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Indicates the uniform resource name of the invitation
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:organizations/accountInviteAccepter:AccountInviteAccepter")
+@pulumi.type_token("huaweicloud:Organizations/accountInviteAccepter:AccountInviteAccepter")
 class AccountInviteAccepter(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -264,39 +266,16 @@ class AccountInviteAccepter(pulumi.CustomResource):
 
         The Organizations account invite accepter can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/accountInviteAccepter:AccountInviteAccepter test <id>
+        $ pulumi import huaweicloud:Organizations/accountInviteAccepter:AccountInviteAccepter test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `leave_organization_on_destroy`. It is
-
         generally recommended running `pulumi preview` after importing an account invite accepter. You can then decide if
-
         changes should be applied to the account invite accepter, or the resource definition should be updated to align with
-
         the account invite accepter. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_organizations_account_invite_accepter" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              leave_organization_on_destroy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -330,39 +309,16 @@ class AccountInviteAccepter(pulumi.CustomResource):
 
         The Organizations account invite accepter can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/accountInviteAccepter:AccountInviteAccepter test <id>
+        $ pulumi import huaweicloud:Organizations/accountInviteAccepter:AccountInviteAccepter test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `leave_organization_on_destroy`. It is
-
         generally recommended running `pulumi preview` after importing an account invite accepter. You can then decide if
-
         changes should be applied to the account invite accepter, or the resource definition should be updated to align with
-
         the account invite accepter. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_organizations_account_invite_accepter" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              leave_organization_on_destroy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AccountInviteAccepterArgs args: The arguments to use to populate this resource's properties.
@@ -394,6 +350,7 @@ class AccountInviteAccepter(pulumi.CustomResource):
                 raise TypeError("Missing required property 'invitation_id'")
             __props__.__dict__["invitation_id"] = invitation_id
             __props__.__dict__["leave_organization_on_destroy"] = leave_organization_on_destroy
+            __props__.__dict__["account_invite_accepter_urn"] = None
             __props__.__dict__["account_id"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["master_account_id"] = None
@@ -401,9 +358,8 @@ class AccountInviteAccepter(pulumi.CustomResource):
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
-            __props__.__dict__["urn"] = None
         super(AccountInviteAccepter, __self__).__init__(
-            'huaweicloud:organizations/accountInviteAccepter:AccountInviteAccepter',
+            'huaweicloud:Organizations/accountInviteAccepter:AccountInviteAccepter',
             resource_name,
             __props__,
             opts)
@@ -412,6 +368,7 @@ class AccountInviteAccepter(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_invite_accepter_urn: Optional[pulumi.Input[_builtins.str]] = None,
             account_id: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             invitation_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -420,8 +377,7 @@ class AccountInviteAccepter(pulumi.CustomResource):
             master_account_name: Optional[pulumi.Input[_builtins.str]] = None,
             organization_id: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'AccountInviteAccepter':
+            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'AccountInviteAccepter':
         """
         Get an existing AccountInviteAccepter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -429,6 +385,7 @@ class AccountInviteAccepter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] account_invite_accepter_urn: Indicates the uniform resource name of the invitation
         :param pulumi.Input[_builtins.str] account_id: Indicates the ID of the target account.
         :param pulumi.Input[_builtins.str] created_at: Indicates the date and time when an invitation (handshake) request was made.
         :param pulumi.Input[_builtins.str] invitation_id: Specifies the unique ID of an invitation (handshake).
@@ -442,12 +399,12 @@ class AccountInviteAccepter(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] status: Indicates the current state of the invitation (handshake).
         :param pulumi.Input[_builtins.str] updated_at: Indicates the date and time when an invitation (handshake) request was accepted, cancelled,
                declined, or expired.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the invitation
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccountInviteAccepterState.__new__(_AccountInviteAccepterState)
 
+        __props__.__dict__["account_invite_accepter_urn"] = account_invite_accepter_urn
         __props__.__dict__["account_id"] = account_id
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["invitation_id"] = invitation_id
@@ -457,8 +414,15 @@ class AccountInviteAccepter(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["status"] = status
         __props__.__dict__["updated_at"] = updated_at
-        __props__.__dict__["urn"] = urn
         return AccountInviteAccepter(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountInviteAccepterUrn")
+    def account_invite_accepter_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the uniform resource name of the invitation
+        """
+        return pulumi.get(self, "account_invite_accepter_urn")
 
     @_builtins.property
     @pulumi.getter(name="accountId")
@@ -535,12 +499,4 @@ class AccountInviteAccepter(pulumi.CustomResource):
         declined, or expired.
         """
         return pulumi.get(self, "updated_at")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        Indicates the uniform resource name of the invitation
-        """
-        return pulumi.get(self, "urn")
 

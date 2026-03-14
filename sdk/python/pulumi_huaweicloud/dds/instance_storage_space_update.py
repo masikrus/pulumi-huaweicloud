@@ -27,6 +27,7 @@ class InstanceStorageSpaceUpdateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceStorageSpaceUpdate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
         :param pulumi.Input[_builtins.int] size: Specifies the disk capacity. The value must be an integer multiple of 10 and
                greater than the current storage space.
@@ -149,6 +150,7 @@ class _InstanceStorageSpaceUpdateState:
                  size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering InstanceStorageSpaceUpdate resources.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the role ID.
                + This parameter is not specified for replica set instances.
                + For a cluster instance, this parameter is set to the ID of the shard group.
@@ -293,6 +295,7 @@ class InstanceStorageSpaceUpdate(pulumi.CustomResource):
             group_id=group_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] group_id: Specifies the role ID.
@@ -336,6 +339,7 @@ class InstanceStorageSpaceUpdate(pulumi.CustomResource):
             size=40,
             group_id=group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceStorageSpaceUpdateArgs args: The arguments to use to populate this resource's properties.

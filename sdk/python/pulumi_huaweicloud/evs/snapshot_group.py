@@ -31,6 +31,7 @@ class SnapshotGroupArgs:
                  volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SnapshotGroup resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the snapshot group description. The maximum length is `255` bytes.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID for the snapshot
                group.
@@ -214,6 +215,7 @@ class _SnapshotGroupState:
                  volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SnapshotGroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: The time when the snapshot group was created.
         :param pulumi.Input[_builtins.str] description: Specifies the snapshot group description. The maximum length is `255` bytes.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID for the snapshot
@@ -477,43 +479,30 @@ class SnapshotGroup(pulumi.CustomResource):
 
         EVS snapshot group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/snapshotGroup:SnapshotGroup test <id>
         ```
 
+        ```sh
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `volume_ids`, `instant_access`,
-
         `incremental`. It is generally recommended running `pulumi preview` after importing the resource. You can then decide
-
         if changes should be applied to the resource, or the resource definition should be updated to align with the snapshot
-
         group. Also, you can ignore changes as below.
 
-        hcl
-
+        ```hcl
         resource "huaweicloud_evs_snapshot_group" "test" {
-
             ...
-
           lifecycle {
-
             ignore_changes = [
-            
               volume_ids,
-            
               instant_access,
-            
               incremental,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -577,43 +566,30 @@ class SnapshotGroup(pulumi.CustomResource):
 
         EVS snapshot group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/snapshotGroup:SnapshotGroup test <id>
         ```
 
+        ```sh
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `volume_ids`, `instant_access`,
-
         `incremental`. It is generally recommended running `pulumi preview` after importing the resource. You can then decide
-
         if changes should be applied to the resource, or the resource definition should be updated to align with the snapshot
-
         group. Also, you can ignore changes as below.
 
-        hcl
-
+        ```hcl
         resource "huaweicloud_evs_snapshot_group" "test" {
-
             ...
-
           lifecycle {
-
             ignore_changes = [
-            
               volume_ids,
-            
               instant_access,
-            
               incremental,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotGroupArgs args: The arguments to use to populate this resource's properties.

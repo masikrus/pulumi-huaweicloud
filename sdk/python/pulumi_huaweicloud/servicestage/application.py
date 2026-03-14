@@ -28,6 +28,7 @@ class ApplicationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Application resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the application description.
                The description can contain a maximum of `128` characters.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the application
@@ -133,6 +134,7 @@ class _ApplicationState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Application resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] component_ids: The list of component IDs associated under the application.
         :param pulumi.Input[_builtins.str] description: Specifies the application description.
                The description can contain a maximum of `128` characters.
@@ -268,7 +270,6 @@ class Application(pulumi.CustomResource):
         config = pulumi.Config()
         env_id = config.require_object("envId")
         app_name = config.require_object("appName")
-        vpc_id = config.require_object("vpcId")
         test = huaweicloud.servicestage.Application("test",
             name=app_name,
             environments=[{
@@ -284,11 +285,10 @@ class Application(pulumi.CustomResource):
 
         Applications can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/application:Application test eeea08e7-c838-4794-926c-abc12f3e10e8
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -326,7 +326,6 @@ class Application(pulumi.CustomResource):
         config = pulumi.Config()
         env_id = config.require_object("envId")
         app_name = config.require_object("appName")
-        vpc_id = config.require_object("vpcId")
         test = huaweicloud.servicestage.Application("test",
             name=app_name,
             environments=[{
@@ -342,11 +341,10 @@ class Application(pulumi.CustomResource):
 
         Applications can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/application:Application test eeea08e7-c838-4794-926c-abc12f3e10e8
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationArgs args: The arguments to use to populate this resource's properties.

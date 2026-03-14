@@ -27,6 +27,7 @@ class DecryptDatakeyArgs:
                  sequence: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DecryptDatakey resource.
+
         :param pulumi.Input[_builtins.str] cipher_text: Specifies the DEK ciphertext and metadata in hexadecimal string.
                The value is the `cipher_text` in the result of encrypting the data key.
         :param pulumi.Input[_builtins.str] datakey_cipher_length: Specifies the byte length of the DEK ciphertext.
@@ -141,6 +142,7 @@ class _DecryptDatakeyState:
                  sequence: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DecryptDatakey resources.
+
         :param pulumi.Input[_builtins.str] cipher_text: Specifies the DEK ciphertext and metadata in hexadecimal string.
                The value is the `cipher_text` in the result of encrypting the data key.
         :param pulumi.Input[_builtins.str] data_key: The DEK plaintext in hexadecimal string.
@@ -324,6 +326,7 @@ class DecryptDatakey(pulumi.CustomResource):
             datakey_cipher_length=datakey_cipher_length)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cipher_text: Specifies the DEK ciphertext and metadata in hexadecimal string.
@@ -366,6 +369,7 @@ class DecryptDatakey(pulumi.CustomResource):
             cipher_text=cipher_text,
             datakey_cipher_length=datakey_cipher_length)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DecryptDatakeyArgs args: The arguments to use to populate this resource's properties.

@@ -23,6 +23,7 @@ class RecyclingPolicyArgs:
                  retention_period_in_days: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RecyclingPolicy resource.
+
         :param pulumi.Input[_builtins.str] region: The region in which to create the recycling policy resource. If omitted, the
                provider-level region will be used. Changing this creates a new rds instance resource.
         :param pulumi.Input[_builtins.int] retention_period_in_days: Specifies the period of retaining deleted DB instances. Value ranges
@@ -67,6 +68,7 @@ class _RecyclingPolicyState:
                  retention_period_in_days: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RecyclingPolicy resources.
+
         :param pulumi.Input[_builtins.str] region: The region in which to create the recycling policy resource. If omitted, the
                provider-level region will be used. Changing this creates a new rds instance resource.
         :param pulumi.Input[_builtins.int] retention_period_in_days: Specifies the period of retaining deleted DB instances. Value ranges
@@ -129,11 +131,10 @@ class RecyclingPolicy(pulumi.CustomResource):
 
         The RDS recycling policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/recyclingPolicy:RecyclingPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -164,11 +165,10 @@ class RecyclingPolicy(pulumi.CustomResource):
 
         The RDS recycling policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/recyclingPolicy:RecyclingPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RecyclingPolicyArgs args: The arguments to use to populate this resource's properties.

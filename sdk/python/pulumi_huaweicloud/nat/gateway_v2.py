@@ -37,6 +37,7 @@ class GatewayV2Args:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a GatewayV2 resource.
+
         :param pulumi.Input[_builtins.str] spec: The specification of the NAT gateway.
         :param pulumi.Input[_builtins.str] subnet_id: The network ID of the downstream interface (the next hop of the DVR) of the NAT gateway.
         :param pulumi.Input[_builtins.str] vpc_id: The ID of the VPC to which the NAT gateway belongs.
@@ -253,6 +254,7 @@ class _GatewayV2State:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GatewayV2 resources.
+
         :param pulumi.Input[_builtins.str] billing_info: The order information of the NAT gateway.
         :param pulumi.Input[_builtins.int] bps_max: The bandwidth that the NAT gateway can receive or send per second.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the NAT gateway.
@@ -574,6 +576,7 @@ class GatewayV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a GatewayV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the NAT gateway.
@@ -594,6 +597,7 @@ class GatewayV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a GatewayV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param GatewayV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

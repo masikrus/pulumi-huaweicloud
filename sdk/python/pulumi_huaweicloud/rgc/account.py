@@ -31,6 +31,7 @@ class AccountArgs:
                  phone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Account resource.
+
         :param pulumi.Input[_builtins.str] email: Specifies the email address of the account.
         :param pulumi.Input[_builtins.str] identity_store_email: Specifies the email address of the account in identity center.
         :param pulumi.Input[_builtins.str] identity_store_user_name: Specifies the name of the account in identity center.
@@ -160,6 +161,7 @@ class AccountArgs:
 @pulumi.input_type
 class _AccountState:
     def __init__(__self__, *,
+                 account_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  blueprint: Optional[pulumi.Input['AccountBlueprintArgs']] = None,
                  email: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_store_email: Optional[pulumi.Input[_builtins.str]] = None,
@@ -169,10 +171,11 @@ class _AccountState:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parent_organizational_unit_id: Optional[pulumi.Input[_builtins.str]] = None,
                  parent_organizational_unit_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 phone: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 phone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Account resources.
+
+        :param pulumi.Input[_builtins.str] account_urn: Indicates the uniform resource name of the account.
         :param pulumi.Input['AccountBlueprintArgs'] blueprint: Specifies the blueprint of the account.
                The blueprint structure is documented below.
                
@@ -187,8 +190,9 @@ class _AccountState:
         :param pulumi.Input[_builtins.str] parent_organizational_unit_id: Specifies the ID of the parent organizational unit.
         :param pulumi.Input[_builtins.str] parent_organizational_unit_name: Specifies the name of the parent organizational unit.
         :param pulumi.Input[_builtins.str] phone: Specifies the mobile number of the account.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the account.
         """
+        if account_urn is not None:
+            pulumi.set(__self__, "account_urn", account_urn)
         if blueprint is not None:
             pulumi.set(__self__, "blueprint", blueprint)
         if email is not None:
@@ -209,8 +213,18 @@ class _AccountState:
             pulumi.set(__self__, "parent_organizational_unit_name", parent_organizational_unit_name)
         if phone is not None:
             pulumi.set(__self__, "phone", phone)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountUrn")
+    def account_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the uniform resource name of the account.
+        """
+        return pulumi.get(self, "account_urn")
+
+    @account_urn.setter
+    def account_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account_urn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -336,20 +350,8 @@ class _AccountState:
     def phone(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "phone", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Indicates the uniform resource name of the account.
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:rgc/account:Account")
+@pulumi.type_token("huaweicloud:Rgc/account:Account")
 class Account(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -419,45 +421,18 @@ class Account(pulumi.CustomResource):
 
         The Organizations account can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rgc/account:Account test <id>
+        $ pulumi import huaweicloud:Rgc/account:Account test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include `email`, `phone`, `parent_organizational_unit_name`, `parent_organizational_unit_id`,
-
         `identity_store_user_name`, `identity_store_email` and `blueprint`.
-
         It is generally recommended running `pulumi preview` after importing an account.
-
         You can then decide if changes should be applied to the account, or the resource definition should be updated to
-
         align with the account. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rgc_account" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              email, phone, parent_organizational_unit_name, parent_organizational_unit_id, identity_store_user_name,
-            
-              identity_store_email, blueprint
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -535,45 +510,18 @@ class Account(pulumi.CustomResource):
 
         The Organizations account can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rgc/account:Account test <id>
+        $ pulumi import huaweicloud:Rgc/account:Account test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include `email`, `phone`, `parent_organizational_unit_name`, `parent_organizational_unit_id`,
-
         `identity_store_user_name`, `identity_store_email` and `blueprint`.
-
         It is generally recommended running `pulumi preview` after importing an account.
-
         You can then decide if changes should be applied to the account, or the resource definition should be updated to
-
         align with the account. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rgc_account" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              email, phone, parent_organizational_unit_name, parent_organizational_unit_id, identity_store_user_name,
-            
-              identity_store_email, blueprint
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AccountArgs args: The arguments to use to populate this resource's properties.
@@ -625,11 +573,11 @@ class Account(pulumi.CustomResource):
                 raise TypeError("Missing required property 'parent_organizational_unit_name'")
             __props__.__dict__["parent_organizational_unit_name"] = parent_organizational_unit_name
             __props__.__dict__["phone"] = phone
+            __props__.__dict__["account_urn"] = None
             __props__.__dict__["joined_at"] = None
             __props__.__dict__["joined_method"] = None
-            __props__.__dict__["urn"] = None
         super(Account, __self__).__init__(
-            'huaweicloud:rgc/account:Account',
+            'huaweicloud:Rgc/account:Account',
             resource_name,
             __props__,
             opts)
@@ -638,6 +586,7 @@ class Account(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_urn: Optional[pulumi.Input[_builtins.str]] = None,
             blueprint: Optional[pulumi.Input[Union['AccountBlueprintArgs', 'AccountBlueprintArgsDict']]] = None,
             email: Optional[pulumi.Input[_builtins.str]] = None,
             identity_store_email: Optional[pulumi.Input[_builtins.str]] = None,
@@ -647,8 +596,7 @@ class Account(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             parent_organizational_unit_id: Optional[pulumi.Input[_builtins.str]] = None,
             parent_organizational_unit_name: Optional[pulumi.Input[_builtins.str]] = None,
-            phone: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'Account':
+            phone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Account':
         """
         Get an existing Account resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -656,6 +604,7 @@ class Account(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] account_urn: Indicates the uniform resource name of the account.
         :param pulumi.Input[Union['AccountBlueprintArgs', 'AccountBlueprintArgsDict']] blueprint: Specifies the blueprint of the account.
                The blueprint structure is documented below.
                
@@ -670,12 +619,12 @@ class Account(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] parent_organizational_unit_id: Specifies the ID of the parent organizational unit.
         :param pulumi.Input[_builtins.str] parent_organizational_unit_name: Specifies the name of the parent organizational unit.
         :param pulumi.Input[_builtins.str] phone: Specifies the mobile number of the account.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the account.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccountState.__new__(_AccountState)
 
+        __props__.__dict__["account_urn"] = account_urn
         __props__.__dict__["blueprint"] = blueprint
         __props__.__dict__["email"] = email
         __props__.__dict__["identity_store_email"] = identity_store_email
@@ -686,8 +635,15 @@ class Account(pulumi.CustomResource):
         __props__.__dict__["parent_organizational_unit_id"] = parent_organizational_unit_id
         __props__.__dict__["parent_organizational_unit_name"] = parent_organizational_unit_name
         __props__.__dict__["phone"] = phone
-        __props__.__dict__["urn"] = urn
         return Account(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountUrn")
+    def account_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the uniform resource name of the account.
+        """
+        return pulumi.get(self, "account_urn")
 
     @_builtins.property
     @pulumi.getter
@@ -772,12 +728,4 @@ class Account(pulumi.CustomResource):
         Specifies the mobile number of the account.
         """
         return pulumi.get(self, "phone")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        Indicates the uniform resource name of the account.
-        """
-        return pulumi.get(self, "urn")
 

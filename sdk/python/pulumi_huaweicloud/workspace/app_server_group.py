@@ -48,6 +48,7 @@ class AppServerGroupArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AppServerGroup resource.
+
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the server group.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the server group.
@@ -148,8 +149,7 @@ class AppServerGroupArgs:
                <a name="app_server_group_ip_virtual"></a>
                The `ip_virtual` block supports:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the server group.
-               Supports up to 20 tags.
-               Changing this creates a new resource.
+               Supports up to `20` tags.
         """
         pulumi.set(__self__, "flavor_id", flavor_id)
         pulumi.set(__self__, "image_id", image_id)
@@ -562,8 +562,7 @@ class AppServerGroupArgs:
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies the key/value pairs to associate with the server group.
-        Supports up to 20 tags.
-        Changing this creates a new resource.
+        Supports up to `20` tags.
         """
         return pulumi.get(self, "tags")
 
@@ -605,6 +604,7 @@ class _AppServerGroupState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppServerGroup resources.
+
         :param pulumi.Input[_builtins.str] app_type: Specifies the type of application group associated with the server group.
                Defaults to **COMMON_APP**.
                The valid values are as follows:
@@ -705,8 +705,7 @@ class _AppServerGroupState:
                + **SAS**: High I/O type.
                + **SATA**: Common I/O type.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the server group.
-               Supports up to 20 tags.
-               Changing this creates a new resource.
+               Supports up to `20` tags.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID to which the server group belongs.
                Changing this creates a new resource.
                This parameter value must be the VPC ID corresponding to the Workspace service.
@@ -1158,8 +1157,7 @@ class _AppServerGroupState:
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies the key/value pairs to associate with the server group.
-        Supports up to 20 tags.
-        Changing this creates a new resource.
+        Supports up to `20` tags.
         """
         return pulumi.get(self, "tags")
 
@@ -1249,41 +1247,17 @@ class AppServerGroup(pulumi.CustomResource):
 
         The server group resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appServerGroup:AppServerGroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `vpc_id`, `image_type`, `image_product_id`, `availability_zone`, `ip_virtual` and `route_policy`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_app_server_group" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              vpc_id, image_type, image_product_id, availability_zone, ip_virtual, route_policy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1384,8 +1358,7 @@ class AppServerGroup(pulumi.CustomResource):
                + **SAS**: High I/O type.
                + **SATA**: Common I/O type.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the server group.
-               Supports up to 20 tags.
-               Changing this creates a new resource.
+               Supports up to `20` tags.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID to which the server group belongs.
                Changing this creates a new resource.
                This parameter value must be the VPC ID corresponding to the Workspace service.
@@ -1431,41 +1404,17 @@ class AppServerGroup(pulumi.CustomResource):
 
         The server group resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appServerGroup:AppServerGroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `vpc_id`, `image_type`, `image_product_id`, `availability_zone`, `ip_virtual` and `route_policy`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_app_server_group" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              vpc_id, image_type, image_product_id, availability_zone, ip_virtual, route_policy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AppServerGroupArgs args: The arguments to use to populate this resource's properties.
@@ -1705,8 +1654,7 @@ class AppServerGroup(pulumi.CustomResource):
                + **SAS**: High I/O type.
                + **SATA**: Common I/O type.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the server group.
-               Supports up to 20 tags.
-               Changing this creates a new resource.
+               Supports up to `20` tags.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID to which the server group belongs.
                Changing this creates a new resource.
                This parameter value must be the VPC ID corresponding to the Workspace service.
@@ -2031,8 +1979,7 @@ class AppServerGroup(pulumi.CustomResource):
     def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
         Specifies the key/value pairs to associate with the server group.
-        Supports up to 20 tags.
-        Changing this creates a new resource.
+        Supports up to `20` tags.
         """
         return pulumi.get(self, "tags")
 

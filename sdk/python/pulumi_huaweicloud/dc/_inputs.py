@@ -39,20 +39,15 @@ __all__ = [
     'GetResourcesByTagsTagsAnyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class GlobalGatewayLocaleArgsDict(TypedDict):
-        en_us: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region name in English.
-        """
-        zh_cn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region name in Chinese.
-        """
-elif False:
-    GlobalGatewayLocaleArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalGatewayLocaleArgsDict(TypedDict):
+    en_us: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region name in English.
+    """
+    zh_cn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region name in Chinese.
+    """
 
 @pulumi.input_type
 class GlobalGatewayLocaleArgs:
@@ -93,18 +88,15 @@ class GlobalGatewayLocaleArgs:
         pulumi.set(self, "zh_cn", value)
 
 
-if not MYPY:
-    class GlobalGatewayPeerLinkBandwidthInfoArgsDict(TypedDict):
-        bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The bandwidth size.
-        """
-        gcb_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The global connection bandwidth ID.
-        """
-elif False:
-    GlobalGatewayPeerLinkBandwidthInfoArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalGatewayPeerLinkBandwidthInfoArgsDict(TypedDict):
+    bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The bandwidth size.
+    """
+    gcb_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The global connection bandwidth ID.
+    """
 
 @pulumi.input_type
 class GlobalGatewayPeerLinkBandwidthInfoArgs:
@@ -145,37 +137,34 @@ class GlobalGatewayPeerLinkBandwidthInfoArgs:
         pulumi.set(self, "gcb_id", value)
 
 
-if not MYPY:
-    class GlobalGatewayPeerLinkPeerSiteArgsDict(TypedDict):
-        gateway_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of enterprise router (ER) that the global DC gateway
-        is attached to.
-        """
-        project_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the project ID of the enterprise router (ER) that the global
-        DC gateway is attached to.
-        """
-        region_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the region ID of the enterprise router (ER) that the global
-        DC gateway is attached to.
-        """
-        link_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The connection ID of the peer gateway at the peer site.
-        """
-        site_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The site information of the global DC gateway.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the peer gateway.
-        """
-elif False:
-    GlobalGatewayPeerLinkPeerSiteArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalGatewayPeerLinkPeerSiteArgsDict(TypedDict):
+    gateway_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of enterprise router (ER) that the global DC gateway
+    is attached to.
+    """
+    project_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the project ID of the enterprise router (ER) that the global
+    DC gateway is attached to.
+    """
+    region_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the region ID of the enterprise router (ER) that the global
+    DC gateway is attached to.
+    """
+    link_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The connection ID of the peer gateway at the peer site.
+    """
+    site_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The site information of the global DC gateway.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the peer gateway.
+    """
 
 @pulumi.input_type
 class GlobalGatewayPeerLinkPeerSiteArgs:
@@ -283,38 +272,57 @@ class GlobalGatewayPeerLinkPeerSiteArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class VirtualInterfaceExtendAttributeArgsDict(TypedDict):
-        detect_multiplier: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of detection retries.
-        """
-        ha_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The availability detection mode.
-        """
-        ha_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The availability detection type of the virtual interface.
-        """
-        local_disclaim: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The local identifier of the static BFD session.
-        """
-        min_rx_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The interval for receiving detection packets.
-        """
-        min_tx_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The interval for sending detection packets.
-        """
-        remote_disclaim: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The remote identifier of the static BFD session.
-        """
-elif False:
-    VirtualInterfaceExtendAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class VirtualInterfaceExtendAttributeArgsDict(TypedDict):
+    detect_multiplier: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of detection retries.
+    The valid value is range from `3` to `20`. The default value is `3`.
+    """
+    ha_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The availability detection mode.
+
+    Valid values are:
+    + **auto_single**: auto single bfd detection.
+    + **auto_multi**: auto multi bfd detection.
+    + **static_single**: static single bfd detection.
+    + **static_multi**: static multi bfd detection.
+    + **enhance_nqa**: enhance nqa detection.
+    """
+    ha_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The availability detection type of the virtual interface. The value can be **bfd** or **nqa**
+    """
+    ipv6_local_disclaim: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The local identifier of the static IPv6 BFD session.
+    The valid value is range from `1` to `16384`.
+    """
+    ipv6_remote_disclaim: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The remote identifier of the static IPv6 BFD session.
+    The valid value is range from `1` to `16384`.
+    """
+    local_disclaim: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The local identifier of the static BFD session.
+    The valid value is range from `1` to `16384`.
+    """
+    min_rx_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The interval for receiving detection packets.
+    The valid value is range from `200` to `5000`. The default value is `1000`.
+    """
+    min_tx_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The interval for sending detection packets.
+    The valid value is range from `200` to `5000`. The default value is `1000`.
+    """
+    remote_disclaim: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The remote identifier of the static BFD session.
+    The valid value is range from `1` to `16384`.
+    """
 
 @pulumi.input_type
 class VirtualInterfaceExtendAttributeArgs:
@@ -322,18 +330,36 @@ class VirtualInterfaceExtendAttributeArgs:
                  detect_multiplier: Optional[pulumi.Input[_builtins.int]] = None,
                  ha_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  ha_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 ipv6_local_disclaim: Optional[pulumi.Input[_builtins.int]] = None,
+                 ipv6_remote_disclaim: Optional[pulumi.Input[_builtins.int]] = None,
                  local_disclaim: Optional[pulumi.Input[_builtins.int]] = None,
                  min_rx_interval: Optional[pulumi.Input[_builtins.int]] = None,
                  min_tx_interval: Optional[pulumi.Input[_builtins.int]] = None,
                  remote_disclaim: Optional[pulumi.Input[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] detect_multiplier: The number of detection retries.
+               The valid value is range from `3` to `20`. The default value is `3`.
         :param pulumi.Input[_builtins.str] ha_mode: The availability detection mode.
-        :param pulumi.Input[_builtins.str] ha_type: The availability detection type of the virtual interface.
+               
+               Valid values are:
+               + **auto_single**: auto single bfd detection.
+               + **auto_multi**: auto multi bfd detection.
+               + **static_single**: static single bfd detection.
+               + **static_multi**: static multi bfd detection.
+               + **enhance_nqa**: enhance nqa detection.
+        :param pulumi.Input[_builtins.str] ha_type: The availability detection type of the virtual interface. The value can be **bfd** or **nqa**
+        :param pulumi.Input[_builtins.int] ipv6_local_disclaim: The local identifier of the static IPv6 BFD session.
+               The valid value is range from `1` to `16384`.
+        :param pulumi.Input[_builtins.int] ipv6_remote_disclaim: The remote identifier of the static IPv6 BFD session.
+               The valid value is range from `1` to `16384`.
         :param pulumi.Input[_builtins.int] local_disclaim: The local identifier of the static BFD session.
+               The valid value is range from `1` to `16384`.
         :param pulumi.Input[_builtins.int] min_rx_interval: The interval for receiving detection packets.
+               The valid value is range from `200` to `5000`. The default value is `1000`.
         :param pulumi.Input[_builtins.int] min_tx_interval: The interval for sending detection packets.
+               The valid value is range from `200` to `5000`. The default value is `1000`.
         :param pulumi.Input[_builtins.int] remote_disclaim: The remote identifier of the static BFD session.
+               The valid value is range from `1` to `16384`.
         """
         if detect_multiplier is not None:
             pulumi.set(__self__, "detect_multiplier", detect_multiplier)
@@ -341,6 +367,10 @@ class VirtualInterfaceExtendAttributeArgs:
             pulumi.set(__self__, "ha_mode", ha_mode)
         if ha_type is not None:
             pulumi.set(__self__, "ha_type", ha_type)
+        if ipv6_local_disclaim is not None:
+            pulumi.set(__self__, "ipv6_local_disclaim", ipv6_local_disclaim)
+        if ipv6_remote_disclaim is not None:
+            pulumi.set(__self__, "ipv6_remote_disclaim", ipv6_remote_disclaim)
         if local_disclaim is not None:
             pulumi.set(__self__, "local_disclaim", local_disclaim)
         if min_rx_interval is not None:
@@ -355,6 +385,7 @@ class VirtualInterfaceExtendAttributeArgs:
     def detect_multiplier(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The number of detection retries.
+        The valid value is range from `3` to `20`. The default value is `3`.
         """
         return pulumi.get(self, "detect_multiplier")
 
@@ -367,6 +398,13 @@ class VirtualInterfaceExtendAttributeArgs:
     def ha_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The availability detection mode.
+
+        Valid values are:
+        + **auto_single**: auto single bfd detection.
+        + **auto_multi**: auto multi bfd detection.
+        + **static_single**: static single bfd detection.
+        + **static_multi**: static multi bfd detection.
+        + **enhance_nqa**: enhance nqa detection.
         """
         return pulumi.get(self, "ha_mode")
 
@@ -378,7 +416,7 @@ class VirtualInterfaceExtendAttributeArgs:
     @pulumi.getter(name="haType")
     def ha_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The availability detection type of the virtual interface.
+        The availability detection type of the virtual interface. The value can be **bfd** or **nqa**
         """
         return pulumi.get(self, "ha_type")
 
@@ -387,10 +425,37 @@ class VirtualInterfaceExtendAttributeArgs:
         pulumi.set(self, "ha_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="ipv6LocalDisclaim")
+    def ipv6_local_disclaim(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The local identifier of the static IPv6 BFD session.
+        The valid value is range from `1` to `16384`.
+        """
+        return pulumi.get(self, "ipv6_local_disclaim")
+
+    @ipv6_local_disclaim.setter
+    def ipv6_local_disclaim(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ipv6_local_disclaim", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6RemoteDisclaim")
+    def ipv6_remote_disclaim(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The remote identifier of the static IPv6 BFD session.
+        The valid value is range from `1` to `16384`.
+        """
+        return pulumi.get(self, "ipv6_remote_disclaim")
+
+    @ipv6_remote_disclaim.setter
+    def ipv6_remote_disclaim(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ipv6_remote_disclaim", value)
+
+    @_builtins.property
     @pulumi.getter(name="localDisclaim")
     def local_disclaim(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The local identifier of the static BFD session.
+        The valid value is range from `1` to `16384`.
         """
         return pulumi.get(self, "local_disclaim")
 
@@ -403,6 +468,7 @@ class VirtualInterfaceExtendAttributeArgs:
     def min_rx_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The interval for receiving detection packets.
+        The valid value is range from `200` to `5000`. The default value is `1000`.
         """
         return pulumi.get(self, "min_rx_interval")
 
@@ -415,6 +481,7 @@ class VirtualInterfaceExtendAttributeArgs:
     def min_tx_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The interval for sending detection packets.
+        The valid value is range from `200` to `5000`. The default value is `1000`.
         """
         return pulumi.get(self, "min_tx_interval")
 
@@ -427,6 +494,7 @@ class VirtualInterfaceExtendAttributeArgs:
     def remote_disclaim(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The remote identifier of the static BFD session.
+        The valid value is range from `1` to `16384`.
         """
         return pulumi.get(self, "remote_disclaim")
 
@@ -435,106 +503,103 @@ class VirtualInterfaceExtendAttributeArgs:
         pulumi.set(self, "remote_disclaim", value)
 
 
-if not MYPY:
-    class VirtualInterfaceVifPeerArgsDict(TypedDict):
-        address_family: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the service type of the virtual interface.
-        The valid values are **ipv4** and **ipv6**. Defaults to **ipv4**.
-        Changing this will create a new resource.
-        """
-        bgp_asn: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ASN of the BGP peer.
-        """
-        bgp_md5: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the (MD5) password for the local BGP.
-        Changing this will create a new resource.
-        """
-        bgp_route_limit: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The BGP route configuration.
-        """
-        bgp_status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The BGP protocol status of the virtual interface peer. If the virtual interface peer uses **static**
-        routing, the status is null.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the virtual interface.
-        The description contain a maximum of `128` characters and the angle brackets (< and >) are not allowed.
-        Chinese characters must be in **UTF-8** or **Unicode** format.
-        """
-        device_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the device that the virtual interface peer belongs to.
-        """
-        enable_bfd: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the Bidirectional Forwarding Detection (BFD) function.
-        Defaults to `false`.
-        """
-        enable_nqa: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the Network Quality Analysis (NQA) function.
-        Defaults to `false`.
+class VirtualInterfaceVifPeerArgsDict(TypedDict):
+    address_family: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service type of the virtual interface.
+    The valid values are **ipv4** and **ipv6**. Defaults to **ipv4**.
+    Changing this will create a new resource.
+    """
+    bgp_asn: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ASN of the BGP peer.
+    """
+    bgp_md5: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the (MD5) password for the local BGP.
+    Changing this will create a new resource.
+    """
+    bgp_route_limit: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The BGP route configuration.
+    """
+    bgp_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The BGP protocol status of the virtual interface peer. If the virtual interface peer uses **static**
+    routing, the status is null.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the virtual interface.
+    The description contain a maximum of `128` characters and the angle brackets (< and >) are not allowed.
+    Chinese characters must be in **UTF-8** or **Unicode** format.
+    """
+    device_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the device that the virtual interface peer belongs to.
+    """
+    enable_bfd: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the Bidirectional Forwarding Detection (BFD) function.
+    Defaults to `false`.
+    """
+    enable_nqa: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the Network Quality Analysis (NQA) function.
+    Defaults to `false`.
 
-        > The values of parameter `enable_bfd` and `enable_nqa` cannot be `true` at the same time.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The VIF peer resource ID.
-        """
-        local_gateway_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the virtual interface peer used on the cloud.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the virtual interface.
-        The valid length is limited from `1` to `64`, only chinese and english letters, digits, hyphens (-), underscores (_)
-        and dots (.) are allowed.
-        The Chinese characters must be in **UTF-8** or **Unicode** format.
-        """
-        receive_route_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of received BGP routes if **bgp** routing is used. If **static** routing is used,
-        this parameter is meaningless and the value is **-1**.
-        """
-        remote_ep_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the CIDR list of remote subnets.
-        A CIDR that contains CIDRs of local subnet (corresponding to the parameter `local_gateway_v4_ip` or
-        `local_gateway_v6_ip`) and remote subnet (corresponding to the parameter `remote_gateway_v4_ip` or
-        `remote_gateway_v6_ip`) must exist in the list.
-        """
-        remote_gateway_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the virtual interface peer used in the on-premises data center.
-        """
-        route_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the route mode of the virtual interface.
-        The valid values are **static** and **bgp**.
-        Changing this will create a new resource.
-        """
-        service_ep_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the subnets that access Internet services through a connection.
-        This field is required in public network connections.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the virtual interface peer.
-        """
-        vif_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the virtual interface corresponding to the virtual interface peer.
-        """
-elif False:
-    VirtualInterfaceVifPeerArgsDict: TypeAlias = Mapping[str, Any]
+    > The values of parameter `enable_bfd` and `enable_nqa` cannot be `true` at the same time.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The VIF peer resource ID.
+    """
+    local_gateway_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the virtual interface peer used on the cloud.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the virtual interface.
+    The valid length is limited from `1` to `64`, only chinese and english letters, digits, hyphens (-), underscores (_)
+    and dots (.) are allowed.
+    The Chinese characters must be in **UTF-8** or **Unicode** format.
+    """
+    receive_route_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of received BGP routes if **bgp** routing is used. If **static** routing is used,
+    this parameter is meaningless and the value is **-1**.
+    """
+    remote_ep_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the CIDR list of remote subnets.
+    A CIDR that contains CIDRs of local subnet (corresponding to the parameter `local_gateway_v4_ip` or
+    `local_gateway_v6_ip`) and remote subnet (corresponding to the parameter `remote_gateway_v4_ip` or
+    `remote_gateway_v6_ip`) must exist in the list.
+    """
+    remote_gateway_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the virtual interface peer used in the on-premises data center.
+    """
+    route_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the route mode of the virtual interface.
+    The valid values are **static** and **bgp**.
+    Changing this will create a new resource.
+    """
+    service_ep_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the subnets that access Internet services through a connection.
+    This field is required in public network connections.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the virtual interface peer.
+    """
+    vif_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the virtual interface corresponding to the virtual interface peer.
+    """
 
 @pulumi.input_type
 class VirtualInterfaceVifPeerArgs:
@@ -887,21 +952,18 @@ class VirtualInterfaceVifPeerArgs:
         pulumi.set(self, "vif_id", value)
 
 
-if not MYPY:
-    class GetResourcesByTagsMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the tag.
-        """
-        value: _builtins.str
-        """
-        Specifies the tag value.
+class GetResourcesByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    value: _builtins.str
+    """
+    Specifies the tag value.
 
-        <a name="tags_struct"></a>
-        The `tags`, `not_tags`, `tags_any`, `not_tags_any` and `sys_tags` block supports:
-        """
-elif False:
-    GetResourcesByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="tags_struct"></a>
+    The `tags`, `not_tags`, `tags_any`, `not_tags_any` and `sys_tags` block supports:
+    """
 
 @pulumi.input_type
 class GetResourcesByTagsMatchArgs:
@@ -946,18 +1008,15 @@ class GetResourcesByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetResourcesByTagsNotTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the tag.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values of the tag.
-        """
-elif False:
-    GetResourcesByTagsNotTagArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourcesByTagsNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    """
 
 @pulumi.input_type
 class GetResourcesByTagsNotTagArgs:
@@ -996,18 +1055,15 @@ class GetResourcesByTagsNotTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetResourcesByTagsNotTagsAnyArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the tag.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values of the tag.
-        """
-elif False:
-    GetResourcesByTagsNotTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourcesByTagsNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    """
 
 @pulumi.input_type
 class GetResourcesByTagsNotTagsAnyArgs:
@@ -1046,18 +1102,15 @@ class GetResourcesByTagsNotTagsAnyArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetResourcesByTagsSysTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the tag.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values of the tag.
-        """
-elif False:
-    GetResourcesByTagsSysTagArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourcesByTagsSysTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    """
 
 @pulumi.input_type
 class GetResourcesByTagsSysTagArgs:
@@ -1096,18 +1149,15 @@ class GetResourcesByTagsSysTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetResourcesByTagsTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the tag.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values of the tag.
-        """
-elif False:
-    GetResourcesByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourcesByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    """
 
 @pulumi.input_type
 class GetResourcesByTagsTagArgs:
@@ -1146,18 +1196,15 @@ class GetResourcesByTagsTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetResourcesByTagsTagsAnyArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the tag.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values of the tag.
-        """
-elif False:
-    GetResourcesByTagsTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourcesByTagsTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    """
 
 @pulumi.input_type
 class GetResourcesByTagsTagsAnyArgs:

@@ -37,12 +37,16 @@ class InstanceV2Args:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enclave_options: Optional[pulumi.Input['InstanceV2EnclaveOptionsArgs']] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_name: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -69,6 +73,8 @@ class InstanceV2Args:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceV2 resource.
+
+        :param pulumi.Input[_builtins.bool] enable_jumbo_frame: schema: Internal
         :param pulumi.Input[_builtins.str] flavor_id: schema: Required
         :param pulumi.Input[_builtins.str] flavor_name: schema: Computed
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: schema: Computed
@@ -107,6 +113,10 @@ class InstanceV2Args:
             pulumi.set(__self__, "eip_id", eip_id)
         if eip_type is not None:
             pulumi.set(__self__, "eip_type", eip_type)
+        if enable_jumbo_frame is not None:
+            pulumi.set(__self__, "enable_jumbo_frame", enable_jumbo_frame)
+        if enclave_options is not None:
+            pulumi.set(__self__, "enclave_options", enclave_options)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if flavor_id is not None:
@@ -119,6 +129,10 @@ class InstanceV2Args:
             pulumi.set(__self__, "image_id", image_id)
         if image_name is not None:
             pulumi.set(__self__, "image_name", image_name)
+        if include_data_disks_on_update is not None:
+            pulumi.set(__self__, "include_data_disks_on_update", include_data_disks_on_update)
+        if include_publicips_on_update is not None:
+            pulumi.set(__self__, "include_publicips_on_update", include_publicips_on_update)
         if key_pair is not None:
             pulumi.set(__self__, "key_pair", key_pair)
         if metadata is not None:
@@ -314,6 +328,27 @@ class InstanceV2Args:
         pulumi.set(self, "eip_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableJumboFrame")
+    def enable_jumbo_frame(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        schema: Internal
+        """
+        return pulumi.get(self, "enable_jumbo_frame")
+
+    @enable_jumbo_frame.setter
+    def enable_jumbo_frame(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_jumbo_frame", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enclaveOptions")
+    def enclave_options(self) -> Optional[pulumi.Input['InstanceV2EnclaveOptionsArgs']]:
+        return pulumi.get(self, "enclave_options")
+
+    @enclave_options.setter
+    def enclave_options(self, value: Optional[pulumi.Input['InstanceV2EnclaveOptionsArgs']]):
+        pulumi.set(self, "enclave_options", value)
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "enterprise_project_id")
@@ -372,6 +407,24 @@ class InstanceV2Args:
     @image_name.setter
     def image_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "image_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="includeDataDisksOnUpdate")
+    def include_data_disks_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "include_data_disks_on_update")
+
+    @include_data_disks_on_update.setter
+    def include_data_disks_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_data_disks_on_update", value)
+
+    @_builtins.property
+    @pulumi.getter(name="includePublicipsOnUpdate")
+    def include_publicips_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "include_publicips_on_update")
+
+    @include_publicips_on_update.setter
+    def include_publicips_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_publicips_on_update", value)
 
     @_builtins.property
     @pulumi.getter(name="keyPair")
@@ -614,6 +667,8 @@ class _InstanceV2State:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enclave_options: Optional[pulumi.Input['InstanceV2EnclaveOptionsArgs']] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  expired_time: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -621,6 +676,8 @@ class _InstanceV2State:
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -653,6 +710,8 @@ class _InstanceV2State:
                  volume_attacheds: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceV2VolumeAttachedArgs']]]] = None):
         """
         Input properties used for looking up and filtering InstanceV2 resources.
+
+        :param pulumi.Input[_builtins.bool] enable_jumbo_frame: schema: Internal
         :param pulumi.Input[_builtins.str] flavor_id: schema: Required
         :param pulumi.Input[_builtins.str] flavor_name: schema: Computed
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: schema: Computed
@@ -696,6 +755,10 @@ class _InstanceV2State:
             pulumi.set(__self__, "eip_id", eip_id)
         if eip_type is not None:
             pulumi.set(__self__, "eip_type", eip_type)
+        if enable_jumbo_frame is not None:
+            pulumi.set(__self__, "enable_jumbo_frame", enable_jumbo_frame)
+        if enclave_options is not None:
+            pulumi.set(__self__, "enclave_options", enclave_options)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if expired_time is not None:
@@ -710,6 +773,10 @@ class _InstanceV2State:
             pulumi.set(__self__, "image_id", image_id)
         if image_name is not None:
             pulumi.set(__self__, "image_name", image_name)
+        if include_data_disks_on_update is not None:
+            pulumi.set(__self__, "include_data_disks_on_update", include_data_disks_on_update)
+        if include_publicips_on_update is not None:
+            pulumi.set(__self__, "include_publicips_on_update", include_publicips_on_update)
         if key_pair is not None:
             pulumi.set(__self__, "key_pair", key_pair)
         if metadata is not None:
@@ -935,6 +1002,27 @@ class _InstanceV2State:
         pulumi.set(self, "eip_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableJumboFrame")
+    def enable_jumbo_frame(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        schema: Internal
+        """
+        return pulumi.get(self, "enable_jumbo_frame")
+
+    @enable_jumbo_frame.setter
+    def enable_jumbo_frame(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_jumbo_frame", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enclaveOptions")
+    def enclave_options(self) -> Optional[pulumi.Input['InstanceV2EnclaveOptionsArgs']]:
+        return pulumi.get(self, "enclave_options")
+
+    @enclave_options.setter
+    def enclave_options(self, value: Optional[pulumi.Input['InstanceV2EnclaveOptionsArgs']]):
+        pulumi.set(self, "enclave_options", value)
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "enterprise_project_id")
@@ -1002,6 +1090,24 @@ class _InstanceV2State:
     @image_name.setter
     def image_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "image_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="includeDataDisksOnUpdate")
+    def include_data_disks_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "include_data_disks_on_update")
+
+    @include_data_disks_on_update.setter
+    def include_data_disks_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_data_disks_on_update", value)
+
+    @_builtins.property
+    @pulumi.getter(name="includePublicipsOnUpdate")
+    def include_publicips_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "include_publicips_on_update")
+
+    @include_publicips_on_update.setter
+    def include_publicips_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_publicips_on_update", value)
 
     @_builtins.property
     @pulumi.getter(name="keyPair")
@@ -1298,12 +1404,16 @@ class InstanceV2(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enclave_options: Optional[pulumi.Input[Union['InstanceV2EnclaveOptionsArgs', 'InstanceV2EnclaveOptionsArgsDict']]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_name: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1332,8 +1442,10 @@ class InstanceV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a InstanceV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] enable_jumbo_frame: schema: Internal
         :param pulumi.Input[_builtins.str] flavor_id: schema: Required
         :param pulumi.Input[_builtins.str] flavor_name: schema: Computed
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: schema: Computed
@@ -1346,6 +1458,7 @@ class InstanceV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a InstanceV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param InstanceV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1376,12 +1489,16 @@ class InstanceV2(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enclave_options: Optional[pulumi.Input[Union['InstanceV2EnclaveOptionsArgs', 'InstanceV2EnclaveOptionsArgsDict']]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_name: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1431,12 +1548,16 @@ class InstanceV2(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["eip_id"] = eip_id
             __props__.__dict__["eip_type"] = eip_type
+            __props__.__dict__["enable_jumbo_frame"] = enable_jumbo_frame
+            __props__.__dict__["enclave_options"] = enclave_options
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["flavor_id"] = flavor_id
             __props__.__dict__["flavor_name"] = flavor_name
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["image_id"] = image_id
             __props__.__dict__["image_name"] = image_name
+            __props__.__dict__["include_data_disks_on_update"] = include_data_disks_on_update
+            __props__.__dict__["include_publicips_on_update"] = include_publicips_on_update
             __props__.__dict__["key_pair"] = key_pair
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
@@ -1503,6 +1624,8 @@ class InstanceV2(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             eip_id: Optional[pulumi.Input[_builtins.str]] = None,
             eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+            enclave_options: Optional[pulumi.Input[Union['InstanceV2EnclaveOptionsArgs', 'InstanceV2EnclaveOptionsArgsDict']]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             expired_time: Optional[pulumi.Input[_builtins.str]] = None,
             flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1510,6 +1633,8 @@ class InstanceV2(pulumi.CustomResource):
             hostname: Optional[pulumi.Input[_builtins.str]] = None,
             image_id: Optional[pulumi.Input[_builtins.str]] = None,
             image_name: Optional[pulumi.Input[_builtins.str]] = None,
+            include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+            include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
             key_pair: Optional[pulumi.Input[_builtins.str]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1547,6 +1672,7 @@ class InstanceV2(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] enable_jumbo_frame: schema: Internal
         :param pulumi.Input[_builtins.str] flavor_id: schema: Required
         :param pulumi.Input[_builtins.str] flavor_name: schema: Computed
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: schema: Computed
@@ -1573,6 +1699,8 @@ class InstanceV2(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["eip_id"] = eip_id
         __props__.__dict__["eip_type"] = eip_type
+        __props__.__dict__["enable_jumbo_frame"] = enable_jumbo_frame
+        __props__.__dict__["enclave_options"] = enclave_options
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["expired_time"] = expired_time
         __props__.__dict__["flavor_id"] = flavor_id
@@ -1580,6 +1708,8 @@ class InstanceV2(pulumi.CustomResource):
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["image_id"] = image_id
         __props__.__dict__["image_name"] = image_name
+        __props__.__dict__["include_data_disks_on_update"] = include_data_disks_on_update
+        __props__.__dict__["include_publicips_on_update"] = include_publicips_on_update
         __props__.__dict__["key_pair"] = key_pair
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
@@ -1704,6 +1834,19 @@ class InstanceV2(pulumi.CustomResource):
         return pulumi.get(self, "eip_type")
 
     @_builtins.property
+    @pulumi.getter(name="enableJumboFrame")
+    def enable_jumbo_frame(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        schema: Internal
+        """
+        return pulumi.get(self, "enable_jumbo_frame")
+
+    @_builtins.property
+    @pulumi.getter(name="enclaveOptions")
+    def enclave_options(self) -> pulumi.Output['outputs.InstanceV2EnclaveOptions']:
+        return pulumi.get(self, "enclave_options")
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "enterprise_project_id")
@@ -1743,6 +1886,16 @@ class InstanceV2(pulumi.CustomResource):
     @pulumi.getter(name="imageName")
     def image_name(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="includeDataDisksOnUpdate")
+    def include_data_disks_on_update(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        return pulumi.get(self, "include_data_disks_on_update")
+
+    @_builtins.property
+    @pulumi.getter(name="includePublicipsOnUpdate")
+    def include_publicips_on_update(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        return pulumi.get(self, "include_publicips_on_update")
 
     @_builtins.property
     @pulumi.getter(name="keyPair")
@@ -1796,7 +1949,7 @@ class InstanceV2(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="schedulerHints")
-    def scheduler_hints(self) -> pulumi.Output[Sequence['outputs.InstanceV2SchedulerHint']]:
+    def scheduler_hints(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceV2SchedulerHint']]]:
         return pulumi.get(self, "scheduler_hints")
 
     @_builtins.property

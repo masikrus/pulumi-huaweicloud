@@ -63,6 +63,7 @@ class ArchitectureTableModelArgs:
                  use_recently_partition: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ArchitectureTableModel resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelAttributeArgs']]] attributes: Specifies the attributes of table model.
                The attributes structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of attribute.
@@ -776,6 +777,7 @@ class _ArchitectureTableModelState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureTableModel resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelAttributeArgs']]] attributes: Specifies the attributes of table model.
                The attributes structure is documented below.
         :param pulumi.Input[_builtins.str] business_asset_status: The business asset status of the table model.
@@ -1876,6 +1878,7 @@ class ArchitectureTableModel(pulumi.CustomResource):
         $ pulumi import huaweicloud:DataArtsStudio/architectureTableModel:ArchitectureTableModel test <workspace_id>/<id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ArchitectureTableModelAttributeArgs', 'ArchitectureTableModelAttributeArgsDict']]]] attributes: Specifies the attributes of table model.
@@ -2033,6 +2036,7 @@ class ArchitectureTableModel(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureTableModel:ArchitectureTableModel test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureTableModelArgs args: The arguments to use to populate this resource's properties.

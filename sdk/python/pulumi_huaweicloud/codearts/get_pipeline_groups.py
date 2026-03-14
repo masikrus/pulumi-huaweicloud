@@ -95,7 +95,7 @@ def get_pipeline_groups(project_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_groups(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_groups(project_id=codearts_project_id)
     ```
 
 
@@ -107,7 +107,7 @@ def get_pipeline_groups(project_id: Optional[_builtins.str] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineGroups:getPipelineGroups', __args__, opts=opts, typ=GetPipelineGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineGroups:getPipelineGroups', __args__, opts=opts, typ=GetPipelineGroupsResult).value
 
     return AwaitableGetPipelineGroupsResult(
         groups=pulumi.get(__ret__, 'groups'),
@@ -128,7 +128,7 @@ def get_pipeline_groups_output(project_id: Optional[pulumi.Input[_builtins.str]]
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_groups(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_groups(project_id=codearts_project_id)
     ```
 
 
@@ -140,7 +140,7 @@ def get_pipeline_groups_output(project_id: Optional[pulumi.Input[_builtins.str]]
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineGroups:getPipelineGroups', __args__, opts=opts, typ=GetPipelineGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineGroups:getPipelineGroups', __args__, opts=opts, typ=GetPipelineGroupsResult)
     return __ret__.apply(lambda __response__: GetPipelineGroupsResult(
         groups=pulumi.get(__response__, 'groups'),
         id=pulumi.get(__response__, 'id'),

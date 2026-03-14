@@ -26,6 +26,7 @@ class MysqlDatabaseArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlDatabase resource.
+
         :param pulumi.Input[_builtins.str] character_set: Specifies the database character set.
                Value options: **utf8mb4**, **utf8**, **latin1**, **gbk**.
                
@@ -132,6 +133,7 @@ class _MysqlDatabaseState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlDatabase resources.
+
         :param pulumi.Input[_builtins.str] character_set: Specifies the database character set.
                Value options: **utf8mb4**, **utf8**, **latin1**, **gbk**.
                
@@ -264,11 +266,10 @@ class MysqlDatabase(pulumi.CustomResource):
 
         The GaussDB MySQL database can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlDatabase:MysqlDatabase test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -316,11 +317,10 @@ class MysqlDatabase(pulumi.CustomResource):
 
         The GaussDB MySQL database can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlDatabase:MysqlDatabase test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlDatabaseArgs args: The arguments to use to populate this resource's properties.

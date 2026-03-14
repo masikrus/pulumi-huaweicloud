@@ -26,6 +26,7 @@ class LtsConfigArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LtsConfig resource.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
         :param pulumi.Input[_builtins.str] lts_attack_stream_id: Specifies the LTS attack stream ID.
         :param pulumi.Input[_builtins.str] lts_group_id: Specifies the LTS group ID.
@@ -109,6 +110,7 @@ class _LtsConfigState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LtsConfig resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
         :param pulumi.Input[_builtins.str] lts_attack_stream_id: Specifies the LTS attack stream ID.
         :param pulumi.Input[_builtins.str] lts_group_id: Specifies the LTS group ID.
@@ -222,11 +224,10 @@ class LtsConfig(pulumi.CustomResource):
 
         Anti-DDoS LTS configuration can be imported using `id`. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AntiDDos/ltsConfig:LtsConfig test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -267,11 +268,10 @@ class LtsConfig(pulumi.CustomResource):
 
         Anti-DDoS LTS configuration can be imported using `id`. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AntiDDos/ltsConfig:LtsConfig test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LtsConfigArgs args: The arguments to use to populate this resource's properties.

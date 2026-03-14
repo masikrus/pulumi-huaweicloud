@@ -35,6 +35,7 @@ class PoolArgs:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Pool resource.
+
         :param pulumi.Input[_builtins.str] lb_method: The load balancing algorithm to distribute traffic to the pool's members. Must be one
                of ROUND_ROBIN, LEAST_CONNECTIONS, or SOURCE_IP.
         :param pulumi.Input[_builtins.str] protocol: The protocol - can either be TCP, UDP or HTTP.
@@ -264,6 +265,7 @@ class _PoolState:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pool resources.
+
         :param pulumi.Input[_builtins.str] description: Human-readable description for the pool.
         :param pulumi.Input[_builtins.str] lb_method: The load balancing algorithm to distribute traffic to the pool's members. Must be one
                of ROUND_ROBIN, LEAST_CONNECTIONS, or SOURCE_IP.
@@ -534,11 +536,10 @@ class Pool(pulumi.CustomResource):
 
         ELB pool can be imported using the pool ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/pool:Pool pool_1 5c20fdad-7288-11eb-b817-0255ac10158b
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -597,11 +598,10 @@ class Pool(pulumi.CustomResource):
 
         ELB pool can be imported using the pool ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/pool:Pool pool_1 5c20fdad-7288-11eb-b817-0255ac10158b
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PoolArgs args: The arguments to use to populate this resource's properties.

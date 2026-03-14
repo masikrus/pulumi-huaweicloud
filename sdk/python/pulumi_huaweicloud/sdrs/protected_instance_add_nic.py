@@ -29,6 +29,7 @@ class ProtectedInstanceAddNicArgs:
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProtectedInstanceAddNicSecurityGroupArgs']]]] = None):
         """
         The set of arguments for constructing a ProtectedInstanceAddNic resource.
+
         :param pulumi.Input[_builtins.str] protected_instance_id: Specifies the ID of the protected instance to add the NIC to.
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the ID of the subnet to which the NIC will be attached.
                It is network ID of the subnet, which is the same as the `neutron_network_id` value.
@@ -143,6 +144,7 @@ class _ProtectedInstanceAddNicState:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProtectedInstanceAddNic resources.
+
         :param pulumi.Input[_builtins.str] ip_address: Specifies the IP address to assign to the NIC.
                If not specified, an available IP will be automatically assigned.
                
@@ -248,7 +250,7 @@ class _ProtectedInstanceAddNicState:
         pulumi.set(self, "subnet_id", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/protectedInstanceAddNic:ProtectedInstanceAddNic")
+@pulumi.type_token("huaweicloud:Sdrs/protectedInstanceAddNic:ProtectedInstanceAddNic")
 class ProtectedInstanceAddNic(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -291,6 +293,7 @@ class ProtectedInstanceAddNic(pulumi.CustomResource):
             ip_address=ip_address,
             security_groups=security_groups)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -345,6 +348,7 @@ class ProtectedInstanceAddNic(pulumi.CustomResource):
             security_groups=security_groups)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ProtectedInstanceAddNicArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -386,7 +390,7 @@ class ProtectedInstanceAddNic(pulumi.CustomResource):
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
         super(ProtectedInstanceAddNic, __self__).__init__(
-            'huaweicloud:sdrs/protectedInstanceAddNic:ProtectedInstanceAddNic',
+            'huaweicloud:Sdrs/protectedInstanceAddNic:ProtectedInstanceAddNic',
             resource_name,
             __props__,
             opts)

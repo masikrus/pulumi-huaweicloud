@@ -27,6 +27,7 @@ class AclArgs:
                  subnets: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Acl resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the network ACL. This parameter can
                contain a maximum of 255 characters and cannot contain angle brackets (< or >).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inbound_rules: A list of the IDs of ingress rules associated with the network ACL.
@@ -141,6 +142,7 @@ class _AclState:
                  subnets: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the network ACL. This parameter can
                contain a maximum of 255 characters and cannot contain angle brackets (< or >).
         :param pulumi.Input[_builtins.str] inbound_policy_id: The ID of the ingress firewall policy for the network ACL.
@@ -348,6 +350,7 @@ class Acl(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the network ACL. This parameter can
@@ -400,6 +403,7 @@ class Acl(pulumi.CustomResource):
                 rule2.id,
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclArgs args: The arguments to use to populate this resource's properties.

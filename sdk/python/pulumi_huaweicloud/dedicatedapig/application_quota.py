@@ -28,6 +28,7 @@ class ApplicationQuotaArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApplicationQuota resource.
+
         :param pulumi.Input[_builtins.int] call_limits: Specifies the access limit of the application quota.  
                The valid value ranges from `1` to `2,147,483,647`.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to
@@ -174,6 +175,7 @@ class _ApplicationQuotaState:
                  time_unit: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ApplicationQuota resources.
+
         :param pulumi.Input[_builtins.int] bind_num: The number of bound APPs.
         :param pulumi.Input[_builtins.int] call_limits: Specifies the access limit of the application quota.  
                The valid value ranges from `1` to `2,147,483,647`.
@@ -378,11 +380,10 @@ class ApplicationQuota(pulumi.CustomResource):
 
         The application quota can be imported using the `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/applicationQuota:ApplicationQuota test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -438,11 +439,10 @@ class ApplicationQuota(pulumi.CustomResource):
 
         The application quota can be imported using the `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/applicationQuota:ApplicationQuota test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationQuotaArgs args: The arguments to use to populate this resource's properties.

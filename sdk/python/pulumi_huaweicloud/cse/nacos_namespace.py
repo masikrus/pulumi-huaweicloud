@@ -24,6 +24,7 @@ class NacosNamespaceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NacosNamespace resource.
+
         :param pulumi.Input[_builtins.str] engine_id: Specifies the ID of the Nacos microservice engine to which the namespace
                belongs. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the Nacos namespace.
@@ -85,6 +86,7 @@ class _NacosNamespaceState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NacosNamespace resources.
+
         :param pulumi.Input[_builtins.str] engine_id: Specifies the ID of the Nacos microservice engine to which the namespace
                belongs. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the Nacos namespace.
@@ -170,11 +172,10 @@ class NacosNamespace(pulumi.CustomResource):
 
         Nacos namespace can be imported using related `engine_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/nacosNamespace:NacosNamespace test <engine_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -212,11 +213,10 @@ class NacosNamespace(pulumi.CustomResource):
 
         Nacos namespace can be imported using related `engine_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/nacosNamespace:NacosNamespace test <engine_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NacosNamespaceArgs args: The arguments to use to populate this resource's properties.

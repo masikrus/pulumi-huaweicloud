@@ -124,7 +124,7 @@ def get_accelerators(accelerator_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     accelerator_name = config.require_object("acceleratorName")
-    test = huaweicloud.ga.get_accelerators(name=accelerator_name)
+    test = huaweicloud.Ga.get_accelerators(name=accelerator_name)
     ```
 
 
@@ -143,7 +143,7 @@ def get_accelerators(accelerator_id: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ga/getAccelerators:getAccelerators', __args__, opts=opts, typ=GetAcceleratorsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ga/getAccelerators:getAccelerators', __args__, opts=opts, typ=GetAcceleratorsResult).value
 
     return AwaitableGetAcceleratorsResult(
         accelerator_id=pulumi.get(__ret__, 'accelerator_id'),
@@ -168,7 +168,7 @@ def get_accelerators_output(accelerator_id: Optional[pulumi.Input[Optional[_buil
 
     config = pulumi.Config()
     accelerator_name = config.require_object("acceleratorName")
-    test = huaweicloud.ga.get_accelerators(name=accelerator_name)
+    test = huaweicloud.Ga.get_accelerators(name=accelerator_name)
     ```
 
 
@@ -187,7 +187,7 @@ def get_accelerators_output(accelerator_id: Optional[pulumi.Input[Optional[_buil
     __args__['name'] = name
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ga/getAccelerators:getAccelerators', __args__, opts=opts, typ=GetAcceleratorsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ga/getAccelerators:getAccelerators', __args__, opts=opts, typ=GetAcceleratorsResult)
     return __ret__.apply(lambda __response__: GetAcceleratorsResult(
         accelerator_id=pulumi.get(__response__, 'accelerator_id'),
         accelerators=pulumi.get(__response__, 'accelerators'),

@@ -29,6 +29,7 @@ class AlarmSubscriptionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlarmSubscription resource.
+
         :param pulumi.Input[_builtins.int] enable: Whether the alarm subscription is enabled.  
                The options are as follows:
                + **1**: enable.
@@ -174,6 +175,7 @@ class _AlarmSubscriptionState:
                  time_zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlarmSubscription resources.
+
         :param pulumi.Input[_builtins.str] alarm_level: The level of alarm. separate multiple alarm levels with commas (,).
                The valid values are **urgent**, **important**, **minor**, and **prompt**.
         :param pulumi.Input[_builtins.int] enable: Whether the alarm subscription is enabled.  
@@ -352,11 +354,10 @@ class AlarmSubscription(pulumi.CustomResource):
 
         The DWS alarm subscription can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/alarmSubscription:AlarmSubscription test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -408,11 +409,10 @@ class AlarmSubscription(pulumi.CustomResource):
 
         The DWS alarm subscription can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/alarmSubscription:AlarmSubscription test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlarmSubscriptionArgs args: The arguments to use to populate this resource's properties.

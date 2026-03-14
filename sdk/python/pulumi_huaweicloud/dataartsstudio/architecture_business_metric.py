@@ -42,6 +42,7 @@ class ArchitectureBusinessMetricArgs:
                  unit: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureBusinessMetric resource.
+
         :param pulumi.Input[_builtins.str] biz_catalog_id: Specifies the process architecture ID.
         :param pulumi.Input[_builtins.str] definition: Specifies the indicator definition. The maximum length is 1000 characters.
         :param pulumi.Input[_builtins.str] destination: Specifies the purpose of setting. The maximum length is 1000 characters.
@@ -408,6 +409,7 @@ class _ArchitectureBusinessMetricState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureBusinessMetric resources.
+
         :param pulumi.Input[_builtins.str] apply_scenario: Specifies the application scenarios. The maximum length is 255 characters.
         :param pulumi.Input[_builtins.str] biz_catalog_id: Specifies the process architecture ID.
         :param pulumi.Input[_builtins.str] biz_catalog_path: The process architecture path.
@@ -1005,14 +1007,12 @@ class ArchitectureBusinessMetric(pulumi.CustomResource):
         ## Import
 
         The DataArts Architecture business metric resource can be imported using the `workspace_id` and `id`, separated by a
-
         slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureBusinessMetric:ArchitectureBusinessMetric test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1085,14 +1085,12 @@ class ArchitectureBusinessMetric(pulumi.CustomResource):
         ## Import
 
         The DataArts Architecture business metric resource can be imported using the `workspace_id` and `id`, separated by a
-
         slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureBusinessMetric:ArchitectureBusinessMetric test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureBusinessMetricArgs args: The arguments to use to populate this resource's properties.

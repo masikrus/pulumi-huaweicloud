@@ -26,6 +26,7 @@ class RouteTableArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RouteTable resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the ER instance to which the route table belongs.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the route table.  
@@ -128,6 +129,7 @@ class _RouteTableState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RouteTable resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the route table.  
                The description contain a maximum of `255` characters, and the angle brackets (< and >) are not allowed.
@@ -329,11 +331,10 @@ class RouteTable(pulumi.CustomResource):
 
         Route tables can be imported using their `id` and the related `instance_id`, separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/routeTable:RouteTable test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -380,11 +381,10 @@ class RouteTable(pulumi.CustomResource):
 
         Route tables can be imported using their `id` and the related `instance_id`, separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/routeTable:RouteTable test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RouteTableArgs args: The arguments to use to populate this resource's properties.

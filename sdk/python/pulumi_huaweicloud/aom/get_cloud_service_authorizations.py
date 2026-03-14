@@ -42,7 +42,7 @@ class GetCloudServiceAuthorizationsResult:
     @pulumi.getter
     def authorizations(self) -> Sequence['outputs.GetCloudServiceAuthorizationsAuthorizationResult']:
         """
-        Indicates the authorizations list.
+        The list of cloud service authorizations.
         The authorizations structure is documented below.
         """
         return pulumi.get(self, "authorizations")
@@ -87,7 +87,7 @@ def get_cloud_service_authorizations(region: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str region: Specifies the region in which to query the data source.
+    :param _builtins.str region: Specifies the region where the cloud service authorizations are located.  
            If omitted, the provider-level region will be used.
     """
     __args__ = dict()
@@ -114,7 +114,7 @@ def get_cloud_service_authorizations_output(region: Optional[pulumi.Input[Option
     ```
 
 
-    :param _builtins.str region: Specifies the region in which to query the data source.
+    :param _builtins.str region: Specifies the region where the cloud service authorizations are located.  
            If omitted, the provider-level region will be used.
     """
     __args__ = dict()

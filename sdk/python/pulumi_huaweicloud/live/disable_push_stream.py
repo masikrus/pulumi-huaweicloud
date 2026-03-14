@@ -26,6 +26,7 @@ class DisablePushStreamArgs:
                  resume_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DisablePushStream resource.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name of the disabling push stream.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the ingest domain name of the disabling push stream.
@@ -129,6 +130,7 @@ class _DisablePushStreamState:
                  stream_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DisablePushStream resources.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name of the disabling push stream.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the ingest domain name of the disabling push stream.
@@ -262,11 +264,10 @@ class DisablePushStream(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, `app_name` and `stream_name`, separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/disablePushStream:DisablePushStream test <domain_name>/<app_name>/<stream_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -316,11 +317,10 @@ class DisablePushStream(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, `app_name` and `stream_name`, separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/disablePushStream:DisablePushStream test <domain_name>/<app_name>/<stream_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DisablePushStreamArgs args: The arguments to use to populate this resource's properties.

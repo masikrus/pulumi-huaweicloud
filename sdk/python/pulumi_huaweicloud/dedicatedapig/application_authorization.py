@@ -27,6 +27,7 @@ class ApplicationAuthorizationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApplicationAuthorization resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids: Specifies the authorized API IDs.
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application authorized to access the APIs.
                Changing this will create a new resource.
@@ -35,8 +36,8 @@ class ApplicationAuthorizationArgs:
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the application
                and APIs belong.
                Changing this will create a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'api_ids'.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the application and APIs are located.  
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         """
@@ -105,8 +106,8 @@ class ApplicationAuthorizationArgs:
     @pulumi.getter(name="apiIdsOrigins")
     def api_ids_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'api_ids'.
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         """
         return pulumi.get(self, "api_ids_origins")
 
@@ -139,9 +140,10 @@ class _ApplicationAuthorizationState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ApplicationAuthorization resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids: Specifies the authorized API IDs.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'api_ids'.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application authorized to access the APIs.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] env_id: Specifies the environment ID where the APIs were published.
@@ -181,8 +183,8 @@ class _ApplicationAuthorizationState:
     @pulumi.getter(name="apiIdsOrigins")
     def api_ids_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'api_ids'.
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         """
         return pulumi.get(self, "api_ids_origins")
 
@@ -258,6 +260,15 @@ class ApplicationAuthorization(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Using this resource to authorize APIs for application, allowing it to access the published APIs within HuaweiCloud.
+
+        > Before binding the API(s), please make sure all APIs have been published, otherwise you will receive the following
+           warning message: `Warning: Resource not found`.
+
+        > If this resource was imported and no changes were deployed before deletion (a change must be triggered to apply the
+           `api_ids` configured in the script), terraform will delete all bound APIs for current configured application in
+           specified publish environment. Otherwise, terraform will only delete the bound API(s) managed by the last change.
+
         ## Example Usage
 
         ```python
@@ -287,17 +298,16 @@ class ApplicationAuthorization(pulumi.CustomResource):
 
         Authorize relationships of application can be imported using `id`, separated by the slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/applicationAuthorization:ApplicationAuthorization test <instance_id>/<env_id>/<application_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids: Specifies the authorized API IDs.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'api_ids'.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application authorized to access the APIs.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] env_id: Specifies the environment ID where the APIs were published.
@@ -315,6 +325,15 @@ class ApplicationAuthorization(pulumi.CustomResource):
                  args: ApplicationAuthorizationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Using this resource to authorize APIs for application, allowing it to access the published APIs within HuaweiCloud.
+
+        > Before binding the API(s), please make sure all APIs have been published, otherwise you will receive the following
+           warning message: `Warning: Resource not found`.
+
+        > If this resource was imported and no changes were deployed before deletion (a change must be triggered to apply the
+           `api_ids` configured in the script), terraform will delete all bound APIs for current configured application in
+           specified publish environment. Otherwise, terraform will only delete the bound API(s) managed by the last change.
+
         ## Example Usage
 
         ```python
@@ -344,11 +363,10 @@ class ApplicationAuthorization(pulumi.CustomResource):
 
         Authorize relationships of application can be imported using `id`, separated by the slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/applicationAuthorization:ApplicationAuthorization test <instance_id>/<env_id>/<application_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationAuthorizationArgs args: The arguments to use to populate this resource's properties.
@@ -418,8 +436,8 @@ class ApplicationAuthorization(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids: Specifies the authorized API IDs.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'api_ids'.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application authorized to access the APIs.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] env_id: Specifies the environment ID where the APIs were published.
@@ -454,8 +472,8 @@ class ApplicationAuthorization(pulumi.CustomResource):
     @pulumi.getter(name="apiIdsOrigins")
     def api_ids_origins(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'api_ids'.
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         """
         return pulumi.get(self, "api_ids_origins")
 

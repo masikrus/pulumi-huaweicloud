@@ -25,6 +25,7 @@ class RedisEipAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RedisEipAssociate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a GaussDB Redis instance.
                
                Changing this parameter will create a new resource.
@@ -110,6 +111,7 @@ class _RedisEipAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RedisEipAssociate resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a GaussDB Redis instance.
                
                Changing this parameter will create a new resource.
@@ -223,11 +225,10 @@ class RedisEipAssociate(pulumi.CustomResource):
 
         The GaussDB Redis node EIP associate can be imported using `instance_id` and `node_id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforNoSQL/redisEipAssociate:RedisEipAssociate test <instance_id>/<node_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -273,11 +274,10 @@ class RedisEipAssociate(pulumi.CustomResource):
 
         The GaussDB Redis node EIP associate can be imported using `instance_id` and `node_id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforNoSQL/redisEipAssociate:RedisEipAssociate test <instance_id>/<node_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RedisEipAssociateArgs args: The arguments to use to populate this resource's properties.

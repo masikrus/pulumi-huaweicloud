@@ -25,6 +25,7 @@ class AdvancedPolicyArgs:
                  udp: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AdvancedPolicy resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the CNAD advanced instance ID.
                You can find it through data source `cnad_get_advanced_instances`.
                
@@ -109,6 +110,7 @@ class _AdvancedPolicyState:
                  watermark_count: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AdvancedPolicy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] block_locations: The location block list.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] block_protocols: The protocol block list.
         :param pulumi.Input[_builtins.bool] connection_protection: Whether enable connection protection.
@@ -283,7 +285,7 @@ class _AdvancedPolicyState:
         pulumi.set(self, "watermark_count", value)
 
 
-@pulumi.type_token("huaweicloud:cnad/advancedPolicy:AdvancedPolicy")
+@pulumi.type_token("huaweicloud:Cnad/advancedPolicy:AdvancedPolicy")
 class AdvancedPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -303,7 +305,7 @@ class AdvancedPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.cnad.get_advanced_instances()
+        test = huaweicloud.Cnad.get_advanced_instances()
         test_advanced_policy = huaweicloud.cnad.AdvancedPolicy("test",
             instance_id=test_huaweicloud_cnad_advanced_instances["instances"][0]["instanceId"],
             name="test-policy",
@@ -315,39 +317,16 @@ class AdvancedPolicy(pulumi.CustomResource):
 
         The CNAD advanced policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedPolicy:AdvancedPolicy test <id>
+        $ pulumi import huaweicloud:Cnad/advancedPolicy:AdvancedPolicy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `udp`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cnad_advanced_policy" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              udp,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -374,7 +353,7 @@ class AdvancedPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.cnad.get_advanced_instances()
+        test = huaweicloud.Cnad.get_advanced_instances()
         test_advanced_policy = huaweicloud.cnad.AdvancedPolicy("test",
             instance_id=test_huaweicloud_cnad_advanced_instances["instances"][0]["instanceId"],
             name="test-policy",
@@ -386,39 +365,16 @@ class AdvancedPolicy(pulumi.CustomResource):
 
         The CNAD advanced policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedPolicy:AdvancedPolicy test <id>
+        $ pulumi import huaweicloud:Cnad/advancedPolicy:AdvancedPolicy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `udp`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cnad_advanced_policy" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              udp,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AdvancedPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -462,7 +418,7 @@ class AdvancedPolicy(pulumi.CustomResource):
             __props__.__dict__["port_block_count"] = None
             __props__.__dict__["watermark_count"] = None
         super(AdvancedPolicy, __self__).__init__(
-            'huaweicloud:cnad/advancedPolicy:AdvancedPolicy',
+            'huaweicloud:Cnad/advancedPolicy:AdvancedPolicy',
             resource_name,
             __props__,
             opts)

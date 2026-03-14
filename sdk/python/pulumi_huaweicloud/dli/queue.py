@@ -39,6 +39,7 @@ class QueueArgs:
                  vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Queue resource.
+
         :param pulumi.Input[_builtins.int] cu_count: Minimum number of CUs that are bound to a queue. Initial value can be `16`,
                `64`, or `256`. When scale_out or scale_in, the number must be a multiple of `16`.
         :param pulumi.Input[_builtins.str] description: Description of a queue. Changing this parameter will create a new
@@ -381,6 +382,7 @@ class _QueueState:
                  vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Queue resources.
+
         :param pulumi.Input[_builtins.int] create_time: Time when a queue is created.
         :param pulumi.Input[_builtins.int] cu_count: Minimum number of CUs that are bound to a queue. Initial value can be `16`,
                `64`, or `256`. When scale_out or scale_in, the number must be a multiple of `16`.
@@ -767,41 +769,27 @@ class Queue(pulumi.CustomResource):
 
         ## Import
 
-        ### Import a SQL type queue
+        DLI queue can be imported by `name` and `queue_type` (if omitted, the SQL type queue will be imported), separated by a
+        slash, e.g.
 
-        bash
+        ### Import a queue of the specified type (SQL type and general type)
+
+        ```sh
+        $ pulumi import huaweicloud:Dli/queue:Queue test <queue_type>/<name>
+        ```
+
+        ### Import a SQL type queue
 
         ```sh
         $ pulumi import huaweicloud:Dli/queue:Queue test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `tags`.
-
         It is generally recommended running `pulumi preview` after importing a DLI queue.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dli_queue" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -892,41 +880,27 @@ class Queue(pulumi.CustomResource):
 
         ## Import
 
-        ### Import a SQL type queue
+        DLI queue can be imported by `name` and `queue_type` (if omitted, the SQL type queue will be imported), separated by a
+        slash, e.g.
 
-        bash
+        ### Import a queue of the specified type (SQL type and general type)
+
+        ```sh
+        $ pulumi import huaweicloud:Dli/queue:Queue test <queue_type>/<name>
+        ```
+
+        ### Import a SQL type queue
 
         ```sh
         $ pulumi import huaweicloud:Dli/queue:Queue test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `tags`.
-
         It is generally recommended running `pulumi preview` after importing a DLI queue.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dli_queue" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param QueueArgs args: The arguments to use to populate this resource's properties.

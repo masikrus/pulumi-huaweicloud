@@ -28,6 +28,7 @@ class AcceleratorArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Accelerator resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['AcceleratorIpSetArgs']]] ip_sets: Specifies the IP addresses assigned to the global accelerator.
                The AccelerateIp structure is documented below.
                
@@ -144,6 +145,7 @@ class _AcceleratorState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Accelerator resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates when the global accelerator was created.
         :param pulumi.Input[_builtins.str] description: Specifies the description about the global accelerator.  
                The description contain a maximum of `255` characters, and the angle brackets (< and >) are not allowed.
@@ -329,7 +331,7 @@ class _AcceleratorState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:ga/accelerator:Accelerator")
+@pulumi.type_token("huaweicloud:Ga/accelerator:Accelerator")
 class Accelerator(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -399,11 +401,10 @@ class Accelerator(pulumi.CustomResource):
 
         The accelerator can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/accelerator:Accelerator test <id>
+        $ pulumi import huaweicloud:Ga/accelerator:Accelerator test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -489,11 +490,10 @@ class Accelerator(pulumi.CustomResource):
 
         The accelerator can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/accelerator:Accelerator test <id>
+        $ pulumi import huaweicloud:Ga/accelerator:Accelerator test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AcceleratorArgs args: The arguments to use to populate this resource's properties.
@@ -537,7 +537,7 @@ class Accelerator(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Accelerator, __self__).__init__(
-            'huaweicloud:ga/accelerator:Accelerator',
+            'huaweicloud:Ga/accelerator:Accelerator',
             resource_name,
             __props__,
             opts)

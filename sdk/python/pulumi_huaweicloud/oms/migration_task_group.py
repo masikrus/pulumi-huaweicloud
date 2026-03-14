@@ -39,6 +39,7 @@ class MigrationTaskGroupArgs:
                  source_cdn: Optional[pulumi.Input['MigrationTaskGroupSourceCdnArgs']] = None):
         """
         The set of arguments for constructing a MigrationTaskGroup resource.
+
         :param pulumi.Input['MigrationTaskGroupDestinationObjectArgs'] destination_object: Specifies the destination information.
                The object structure is documented below. Changing this creates a new resource.
         :param pulumi.Input['MigrationTaskGroupSourceObjectArgs'] source_object: Specifies the source information. The object
@@ -461,6 +462,7 @@ class _MigrationTaskGroupState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MigrationTaskGroup resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action for migration task group. Value options are as follows:
                + **retry**: Restart a failed migration task group. This will migrate all objects in the failed tasks again.
                + **start**: Resume a paused migration task group.
@@ -1129,6 +1131,7 @@ class MigrationTaskGroup(pulumi.CustomResource):
             description="test task group")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action for migration task group. Value options are as follows:
@@ -1353,6 +1356,7 @@ class MigrationTaskGroup(pulumi.CustomResource):
             type="URL_LIST",
             description="test task group")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MigrationTaskGroupArgs args: The arguments to use to populate this resource's properties.

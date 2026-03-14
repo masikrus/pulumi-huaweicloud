@@ -166,7 +166,7 @@ def get_host_vulnerabilities(enterprise_project_id: Optional[_builtins.str] = No
 
     config = pulumi.Config()
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_host_vulnerabilities(host_id=host_id)
+    test = huaweicloud.Hss.get_host_vulnerabilities(host_id=host_id)
     ```
 
 
@@ -218,7 +218,7 @@ def get_host_vulnerabilities(enterprise_project_id: Optional[_builtins.str] = No
     __args__['type'] = type
     __args__['vulName'] = vul_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getHostVulnerabilities:getHostVulnerabilities', __args__, opts=opts, typ=GetHostVulnerabilitiesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getHostVulnerabilities:getHostVulnerabilities', __args__, opts=opts, typ=GetHostVulnerabilitiesResult).value
 
     return AwaitableGetHostVulnerabilitiesResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -251,7 +251,7 @@ def get_host_vulnerabilities_output(enterprise_project_id: Optional[pulumi.Input
 
     config = pulumi.Config()
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_host_vulnerabilities(host_id=host_id)
+    test = huaweicloud.Hss.get_host_vulnerabilities(host_id=host_id)
     ```
 
 
@@ -303,7 +303,7 @@ def get_host_vulnerabilities_output(enterprise_project_id: Optional[pulumi.Input
     __args__['type'] = type
     __args__['vulName'] = vul_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getHostVulnerabilities:getHostVulnerabilities', __args__, opts=opts, typ=GetHostVulnerabilitiesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getHostVulnerabilities:getHostVulnerabilities', __args__, opts=opts, typ=GetHostVulnerabilitiesResult)
     return __ret__.apply(lambda __response__: GetHostVulnerabilitiesResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

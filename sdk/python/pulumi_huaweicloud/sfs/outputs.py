@@ -24,6 +24,8 @@ __all__ = [
     'TurboObsTargetObsAttributes',
     'TurboObsTargetObsPolicy',
     'TurboObsTargetObsPolicyAutoExportPolicy',
+    'GetQuotasQuotaResult',
+    'GetQuotasQuotaResourceResult',
     'GetTurboDataTasksTaskResult',
     'GetTurboDirUsageDirUsageResult',
     'GetTurboDuTasksTaskResult',
@@ -674,6 +676,99 @@ class TurboObsTargetObsPolicyAutoExportPolicy(dict):
         The `auto_export_policy` block supports:
         """
         return pulumi.get(self, "suffix")
+
+
+@pulumi.output_type
+class GetQuotasQuotaResult(dict):
+    def __init__(__self__, *,
+                 resources: Sequence['outputs.GetQuotasQuotaResourceResult']):
+        """
+        :param Sequence['GetQuotasQuotaResourceArgs'] resources: The list of quota resources.
+               The resources structure is documented below.
+        """
+        pulumi.set(__self__, "resources", resources)
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetQuotasQuotaResourceResult']:
+        """
+        The list of quota resources.
+        The resources structure is documented below.
+        """
+        return pulumi.get(self, "resources")
+
+
+@pulumi.output_type
+class GetQuotasQuotaResourceResult(dict):
+    def __init__(__self__, *,
+                 max: _builtins.int,
+                 min: _builtins.int,
+                 quota: _builtins.int,
+                 type: _builtins.str,
+                 unit: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int max: The maximum value of the quota.
+        :param _builtins.int min: The minimum value of the quota.
+        :param _builtins.int quota: The total quota value.
+        :param _builtins.str type: The type of the quota. The value can be **shares** or **capacity**.
+        :param _builtins.str unit: The unit of the quota.
+        :param _builtins.int used: The used quota value.
+        """
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "quota", quota)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unit", unit)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.int:
+        """
+        The maximum value of the quota.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.int:
+        """
+        The minimum value of the quota.
+        """
+        return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter
+    def quota(self) -> _builtins.int:
+        """
+        The total quota value.
+        """
+        return pulumi.get(self, "quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the quota. The value can be **shares** or **capacity**.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def unit(self) -> _builtins.str:
+        """
+        The unit of the quota.
+        """
+        return pulumi.get(self, "unit")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        The used quota value.
+        """
+        return pulumi.get(self, "used")
 
 
 @pulumi.output_type

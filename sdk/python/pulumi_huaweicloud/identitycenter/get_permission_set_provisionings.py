@@ -107,7 +107,7 @@ def get_permission_set_provisionings(instance_id: Optional[_builtins.str] = None
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.identitycenter.get_permission_set_provisionings(instance_id=instance_id)
+    test = huaweicloud.Identitycenter.get_permission_set_provisionings(instance_id=instance_id)
     ```
 
 
@@ -125,7 +125,7 @@ def get_permission_set_provisionings(instance_id: Optional[_builtins.str] = None
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:identitycenter/getPermissionSetProvisionings:getPermissionSetProvisionings', __args__, opts=opts, typ=GetPermissionSetProvisioningsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Identitycenter/getPermissionSetProvisionings:getPermissionSetProvisionings', __args__, opts=opts, typ=GetPermissionSetProvisioningsResult).value
 
     return AwaitableGetPermissionSetProvisioningsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -148,7 +148,7 @@ def get_permission_set_provisionings_output(instance_id: Optional[pulumi.Input[_
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.identitycenter.get_permission_set_provisionings(instance_id=instance_id)
+    test = huaweicloud.Identitycenter.get_permission_set_provisionings(instance_id=instance_id)
     ```
 
 
@@ -166,7 +166,7 @@ def get_permission_set_provisionings_output(instance_id: Optional[pulumi.Input[_
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:identitycenter/getPermissionSetProvisionings:getPermissionSetProvisionings', __args__, opts=opts, typ=GetPermissionSetProvisioningsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Identitycenter/getPermissionSetProvisionings:getPermissionSetProvisionings', __args__, opts=opts, typ=GetPermissionSetProvisioningsResult)
     return __ret__.apply(lambda __response__: GetPermissionSetProvisioningsResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

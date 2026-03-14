@@ -21,24 +21,30 @@ __all__ = [
     'ApiFuncGraphPolicy',
     'ApiFuncGraphPolicyBackendParam',
     'ApiFuncGraphPolicyCondition',
+    'ApiFuncGraphPolicyOrder',
     'ApiMock',
     'ApiMockPolicy',
     'ApiMockPolicyBackendParam',
     'ApiMockPolicyCondition',
+    'ApiMockPolicyOrder',
     'ApiPublishmentHistory',
     'ApiRequestParam',
+    'ApiRequestParamsOrder',
     'ApiWeb',
     'ApiWebPolicy',
     'ApiWebPolicyBackendParam',
     'ApiWebPolicyCondition',
+    'ApiWebPolicyOrder',
     'ApplicationQuotaAssociateApplication',
     'ChannelHealthCheck',
     'ChannelMember',
     'ChannelMemberGroup',
+    'ChannelMemberGroupMicroserviceLabel',
     'ChannelMicroservice',
     'ChannelMicroserviceCceConfig',
     'ChannelMicroserviceCseConfig',
     'CustomAuthorizerIdentity',
+    'GlobalCertificateBatchDomainsAssociateDomain',
     'GroupEnvironment',
     'GroupEnvironmentVariable',
     'GroupUrlDomain',
@@ -49,6 +55,7 @@ __all__ = [
     'ThrottlingPolicyUserThrottle',
     'VpcChannelMember',
     'GetAclPoliciesPolicyResult',
+    'GetApiAssociablePluginsPluginResult',
     'GetApiAssociatedAclPoliciesPolicyResult',
     'GetApiAssociatedApplicationsApplicationResult',
     'GetApiAssociatedPluginsPluginResult',
@@ -62,6 +69,7 @@ __all__ = [
     'GetApiFuncGraphPolicyResult',
     'GetApiFuncGraphPolicyBackendParamResult',
     'GetApiFuncGraphPolicyConditionResult',
+    'GetApiHistoryVersionsApiVersionResult',
     'GetApiMockResult',
     'GetApiMockPolicyResult',
     'GetApiMockPolicyBackendParamResult',
@@ -76,6 +84,10 @@ __all__ = [
     'GetApplicationsApplicationResult',
     'GetAvailabilityZonesAvailabilityZoneResult',
     'GetAvailabilityZonesAvailabilityZoneLocalNameResult',
+    'GetCertificateAssociatedDomainsDomainResult',
+    'GetChannelMemberGroupsMemberGroupResult',
+    'GetChannelMemberGroupsMemberGroupMicroserviceLabelResult',
+    'GetChannelMembersMemberResult',
     'GetChannelsVpcChannelResult',
     'GetChannelsVpcChannelMemberGroupResult',
     'GetChannelsVpcChannelMemberGroupMicroserviceLabelResult',
@@ -88,9 +100,14 @@ __all__ = [
     'GetGroupsGroupEnvironmentResult',
     'GetGroupsGroupEnvironmentVariableResult',
     'GetGroupsGroupUrlDomainResult',
+    'GetInstanceAssociatedCertificatesCertificateResult',
     'GetInstanceFeaturesFeatureResult',
+    'GetInstanceIngressAssociatedDomainsDomainResult',
+    'GetInstanceIngressPortsIngressPortResult',
+    'GetInstanceMetricDataDatapointResult',
     'GetInstanceQuotasQuotaResult',
     'GetInstanceSslCertificatesCertificateResult',
+    'GetInstanceTagsTagResult',
     'GetInstancesFilterInstanceResult',
     'GetInstancesFilterInstanceTagResult',
     'GetInstancesFilterMatchResult',
@@ -98,7 +115,9 @@ __all__ = [
     'GetInstancesInstanceResult',
     'GetOrchestrationRuleAssociatedApisApiResult',
     'GetOrchestrationRulesRuleResult',
+    'GetPluginAssociableApisApiResult',
     'GetPluginsPluginResult',
+    'GetQuotasQuotaResult',
     'GetSignaturesSignatureResult',
     'GetThrottlingPoliciesPolicyResult',
     'GetThrottlingPoliciesPolicyAppThrottleResult',
@@ -953,6 +972,29 @@ class ApiFuncGraphPolicyCondition(dict):
 
 
 @pulumi.output_type
+class ApiFuncGraphPolicyOrder(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Specifies the backend policy name.  
+               The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+               It must start with a letter.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the backend policy name.  
+        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+        It must start with a letter.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class ApiMock(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1476,6 +1518,29 @@ class ApiMockPolicyCondition(dict):
 
 
 @pulumi.output_type
+class ApiMockPolicyOrder(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Specifies the backend policy name.  
+               The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+               It must start with a letter.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the backend policy name.  
+        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+        It must start with a letter.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class ApiPublishmentHistory(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1744,6 +1809,29 @@ class ApiRequestParam(dict):
         + **2**: disable (by default)
         """
         return pulumi.get(self, "valid_enable")
+
+
+@pulumi.output_type
+class ApiRequestParamsOrder(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Specifies the backend policy name.  
+               The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+               It must start with a letter.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the backend policy name.  
+        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+        It must start with a letter.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -2537,6 +2625,29 @@ class ApiWebPolicyCondition(dict):
 
 
 @pulumi.output_type
+class ApiWebPolicyOrder(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Specifies the backend policy name.  
+               The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+               It must start with a letter.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the backend policy name.  
+        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+        It must start with a letter.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class ApplicationQuotaAssociateApplication(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3070,6 +3181,35 @@ class ChannelMemberGroup(dict):
 
 
 @pulumi.output_type
+class ChannelMemberGroupMicroserviceLabel(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: The name of the microservice label.
+        :param _builtins.str value: The value of the microservice label.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the microservice label.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the microservice label.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class ChannelMicroservice(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3327,6 +3467,122 @@ class CustomAuthorizerIdentity(dict):
         The valid value is range form `1` to `2,048`.
         """
         return pulumi.get(self, "validation")
+
+
+@pulumi.output_type
+class GlobalCertificateBatchDomainsAssociateDomain(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiGroupId":
+            suggest = "api_group_id"
+        elif key == "apiGroupName":
+            suggest = "api_group_name"
+        elif key == "instanceId":
+            suggest = "instance_id"
+        elif key == "minSslVersion":
+            suggest = "min_ssl_version"
+        elif key == "urlDomain":
+            suggest = "url_domain"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GlobalCertificateBatchDomainsAssociateDomain. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GlobalCertificateBatchDomainsAssociateDomain.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GlobalCertificateBatchDomainsAssociateDomain.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_group_id: Optional[_builtins.str] = None,
+                 api_group_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 instance_id: Optional[_builtins.str] = None,
+                 min_ssl_version: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.int] = None,
+                 url_domain: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_group_id: The ID of the API group to which the domain belongs.
+        :param _builtins.str api_group_name: The name of the API group to which the domain belongs.
+        :param _builtins.str id: The ID of the associated domain.
+        :param _builtins.str instance_id: The ID of the dedicated instance to which the domain belongs.
+        :param _builtins.str min_ssl_version: The minimum SSL protocol version of the domain.
+        :param _builtins.int status: The CNAME resolution status of the domain name.
+        :param _builtins.str url_domain: The associated domain name.
+        """
+        if api_group_id is not None:
+            pulumi.set(__self__, "api_group_id", api_group_id)
+        if api_group_name is not None:
+            pulumi.set(__self__, "api_group_name", api_group_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if min_ssl_version is not None:
+            pulumi.set(__self__, "min_ssl_version", min_ssl_version)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if url_domain is not None:
+            pulumi.set(__self__, "url_domain", url_domain)
+
+    @_builtins.property
+    @pulumi.getter(name="apiGroupId")
+    def api_group_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the API group to which the domain belongs.
+        """
+        return pulumi.get(self, "api_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="apiGroupName")
+    def api_group_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the API group to which the domain belongs.
+        """
+        return pulumi.get(self, "api_group_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the associated domain.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the dedicated instance to which the domain belongs.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="minSslVersion")
+    def min_ssl_version(self) -> Optional[_builtins.str]:
+        """
+        The minimum SSL protocol version of the domain.
+        """
+        return pulumi.get(self, "min_ssl_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.int]:
+        """
+        The CNAME resolution status of the domain name.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="urlDomain")
+    def url_domain(self) -> Optional[_builtins.str]:
+        """
+        The associated domain name.
+        """
+        return pulumi.get(self, "url_domain")
 
 
 @pulumi.output_type
@@ -4091,6 +4347,105 @@ class GetAclPoliciesPolicyResult(dict):
         The value of the ACL policy.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetApiAssociablePluginsPluginResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 scope: _builtins.str,
+                 type: _builtins.str,
+                 update_time: _builtins.str):
+        """
+        :param _builtins.str content: The content of the associable plugin configuration.
+        :param _builtins.str create_time: The creation time of the associable plugin, in RFC3339 format.
+        :param _builtins.str description: The description of the associable plugin.
+        :param _builtins.str id: The ID of the associable plugin.
+        :param _builtins.str name: The name of the associable plugin.
+        :param _builtins.str scope: The scope of the associable plugin.  
+               The valid values are as follows:
+               + **global** - Global scope
+        :param _builtins.str type: The type of the associable plugin.
+        :param _builtins.str update_time: The update time of the associable plugin, in RFC3339 format.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The content of the associable plugin configuration.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the associable plugin, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the associable plugin.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the associable plugin.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the associable plugin.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        """
+        The scope of the associable plugin.  
+        The valid values are as follows:
+        + **global** - Global scope
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the associable plugin.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time of the associable plugin, in RFC3339 format.
+        """
+        return pulumi.get(self, "update_time")
 
 
 @pulumi.output_type
@@ -5672,6 +6027,105 @@ class GetApiFuncGraphPolicyConditionResult(dict):
 
 
 @pulumi.output_type
+class GetApiHistoryVersionsApiVersionResult(dict):
+    def __init__(__self__, *,
+                 api_id: _builtins.str,
+                 env_id: _builtins.str,
+                 env_name: _builtins.str,
+                 id: _builtins.str,
+                 number: _builtins.str,
+                 publish_time: _builtins.str,
+                 remark: _builtins.str,
+                 status: _builtins.int):
+        """
+        :param _builtins.str api_id: Specifies the ID of the API.
+        :param _builtins.str env_id: Specifies the ID of the environment.
+        :param _builtins.str env_name: Specifies the name of the environment.
+        :param _builtins.str id: The ID of the API history version.
+        :param _builtins.str number: The version number of the API.
+        :param _builtins.str publish_time: The publish time of the version, in RFC3339 format.
+        :param _builtins.str remark: The publish description.
+        :param _builtins.int status: The status of the API version.  
+               + **1**: current version is online.
+               + **2**: this version is offline.
+        """
+        pulumi.set(__self__, "api_id", api_id)
+        pulumi.set(__self__, "env_id", env_id)
+        pulumi.set(__self__, "env_name", env_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "number", number)
+        pulumi.set(__self__, "publish_time", publish_time)
+        pulumi.set(__self__, "remark", remark)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the API.
+        """
+        return pulumi.get(self, "api_id")
+
+    @_builtins.property
+    @pulumi.getter(name="envId")
+    def env_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the environment.
+        """
+        return pulumi.get(self, "env_id")
+
+    @_builtins.property
+    @pulumi.getter(name="envName")
+    def env_name(self) -> _builtins.str:
+        """
+        Specifies the name of the environment.
+        """
+        return pulumi.get(self, "env_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the API history version.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def number(self) -> _builtins.str:
+        """
+        The version number of the API.
+        """
+        return pulumi.get(self, "number")
+
+    @_builtins.property
+    @pulumi.getter(name="publishTime")
+    def publish_time(self) -> _builtins.str:
+        """
+        The publish time of the version, in RFC3339 format.
+        """
+        return pulumi.get(self, "publish_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def remark(self) -> _builtins.str:
+        """
+        The publish description.
+        """
+        return pulumi.get(self, "remark")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the API version.  
+        + **1**: current version is online.
+        + **2**: this version is offline.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetApiMockResult(dict):
     def __init__(__self__, *,
                  authorizer_id: _builtins.str,
@@ -7105,6 +7559,409 @@ class GetAvailabilityZonesAvailabilityZoneLocalNameResult(dict):
 
 
 @pulumi.output_type
+class GetCertificateAssociatedDomainsDomainResult(dict):
+    def __init__(__self__, *,
+                 api_group_id: _builtins.str,
+                 api_group_name: _builtins.str,
+                 id: _builtins.str,
+                 instance_id: _builtins.str,
+                 min_ssl_version: _builtins.str,
+                 status: _builtins.int,
+                 url_domain: _builtins.str,
+                 verified_client_certificate_enabled: _builtins.bool):
+        """
+        :param _builtins.str api_group_id: The ID of the API group to which the domain belongs.
+        :param _builtins.str api_group_name: The name of the API group to which the domain belongs.
+        :param _builtins.str id: The ID of the associated domain.
+        :param _builtins.str instance_id: The ID of the dedicated instance to which the domain belongs.
+        :param _builtins.str min_ssl_version: The minimum SSL protocol version of the domain.
+        :param _builtins.int status: The CNAME resolution status of the domain name.
+               + **1**: Not resolved.
+               + **2**: Resolving.
+               + **3**: Resolved.
+               + **4**: Resolution failed.
+        :param _builtins.str url_domain: Specifies the associated domain name to be queried.
+        :param _builtins.bool verified_client_certificate_enabled: Whether client certificate verification is enabled.
+        """
+        pulumi.set(__self__, "api_group_id", api_group_id)
+        pulumi.set(__self__, "api_group_name", api_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "min_ssl_version", min_ssl_version)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "url_domain", url_domain)
+        pulumi.set(__self__, "verified_client_certificate_enabled", verified_client_certificate_enabled)
+
+    @_builtins.property
+    @pulumi.getter(name="apiGroupId")
+    def api_group_id(self) -> _builtins.str:
+        """
+        The ID of the API group to which the domain belongs.
+        """
+        return pulumi.get(self, "api_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="apiGroupName")
+    def api_group_name(self) -> _builtins.str:
+        """
+        The name of the API group to which the domain belongs.
+        """
+        return pulumi.get(self, "api_group_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the associated domain.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        The ID of the dedicated instance to which the domain belongs.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="minSslVersion")
+    def min_ssl_version(self) -> _builtins.str:
+        """
+        The minimum SSL protocol version of the domain.
+        """
+        return pulumi.get(self, "min_ssl_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The CNAME resolution status of the domain name.
+        + **1**: Not resolved.
+        + **2**: Resolving.
+        + **3**: Resolved.
+        + **4**: Resolution failed.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="urlDomain")
+    def url_domain(self) -> _builtins.str:
+        """
+        Specifies the associated domain name to be queried.
+        """
+        return pulumi.get(self, "url_domain")
+
+    @_builtins.property
+    @pulumi.getter(name="verifiedClientCertificateEnabled")
+    def verified_client_certificate_enabled(self) -> _builtins.bool:
+        """
+        Whether client certificate verification is enabled.
+        """
+        return pulumi.get(self, "verified_client_certificate_enabled")
+
+
+@pulumi.output_type
+class GetChannelMemberGroupsMemberGroupResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 microservice_labels: Sequence['outputs.GetChannelMemberGroupsMemberGroupMicroserviceLabelResult'],
+                 microservice_port: _builtins.int,
+                 microservice_version: _builtins.str,
+                 name: _builtins.str,
+                 reference_vpc_channel_id: _builtins.str,
+                 update_time: _builtins.str,
+                 weight: _builtins.int):
+        """
+        :param _builtins.str create_time: The creation time of the member group, in RFC3339 format.
+        :param _builtins.str description: The description of the member group.
+        :param _builtins.str id: The ID of the member group.
+        :param Sequence['GetChannelMemberGroupsMemberGroupMicroserviceLabelArgs'] microservice_labels: The microservice labels of the member group.  
+               The microservice_labels structure is documented below.
+        :param _builtins.int microservice_port: The microservice port of the member group.
+        :param _builtins.str microservice_version: The microservice version of the member group.
+        :param _builtins.str name: Specifies the name of the member group for fuzzy matching.
+        :param _builtins.str reference_vpc_channel_id: The ID of the referenced load channel.
+        :param _builtins.str update_time: The update time of the member group, in RFC3339 format.
+        :param _builtins.int weight: The weight value of the member group.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "microservice_labels", microservice_labels)
+        pulumi.set(__self__, "microservice_port", microservice_port)
+        pulumi.set(__self__, "microservice_version", microservice_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "reference_vpc_channel_id", reference_vpc_channel_id)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "weight", weight)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the member group, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the member group.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the member group.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="microserviceLabels")
+    def microservice_labels(self) -> Sequence['outputs.GetChannelMemberGroupsMemberGroupMicroserviceLabelResult']:
+        """
+        The microservice labels of the member group.  
+        The microservice_labels structure is documented below.
+        """
+        return pulumi.get(self, "microservice_labels")
+
+    @_builtins.property
+    @pulumi.getter(name="microservicePort")
+    def microservice_port(self) -> _builtins.int:
+        """
+        The microservice port of the member group.
+        """
+        return pulumi.get(self, "microservice_port")
+
+    @_builtins.property
+    @pulumi.getter(name="microserviceVersion")
+    def microservice_version(self) -> _builtins.str:
+        """
+        The microservice version of the member group.
+        """
+        return pulumi.get(self, "microservice_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the member group for fuzzy matching.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="referenceVpcChannelId")
+    def reference_vpc_channel_id(self) -> _builtins.str:
+        """
+        The ID of the referenced load channel.
+        """
+        return pulumi.get(self, "reference_vpc_channel_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time of the member group, in RFC3339 format.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def weight(self) -> _builtins.int:
+        """
+        The weight value of the member group.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class GetChannelMemberGroupsMemberGroupMicroserviceLabelResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: Specifies the name of the member group for fuzzy matching.
+        :param _builtins.str value: The value of the microservice label.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the member group for fuzzy matching.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the microservice label.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetChannelMembersMemberResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 ecs_id: _builtins.str,
+                 ecs_name: _builtins.str,
+                 health_status: _builtins.str,
+                 id: _builtins.str,
+                 is_backup: _builtins.bool,
+                 member_group_id: _builtins.str,
+                 member_group_name: _builtins.str,
+                 member_ip_address: _builtins.str,
+                 port: _builtins.int,
+                 status: _builtins.int,
+                 vpc_channel_id: _builtins.str,
+                 weight: _builtins.int):
+        """
+        :param _builtins.str create_time: The time when the channel member was added to the VPC channel, in RFC3339 format.
+        :param _builtins.str ecs_id: The ID of the ECS instance.
+        :param _builtins.str ecs_name: The name of the ECS instance.
+        :param _builtins.str health_status: The health status of the channel member.
+        :param _builtins.str id: The ID of the channel member.
+        :param _builtins.bool is_backup: Whether the channel member is a backup node.
+        :param _builtins.str member_group_id: Specifies the ID of the channel member group to be queried.
+        :param _builtins.str member_group_name: Specifies the name of the channel member group to be queried for fuzzy
+               matching.
+        :param _builtins.str member_ip_address: The IP address of the channel member.
+        :param _builtins.int port: The port of the channel member.
+        :param _builtins.int status: The status of the channel member.
+        :param _builtins.str vpc_channel_id: Specifies the ID of the VPC channel to which the members belong.
+        :param _builtins.int weight: The weight value of the channel member.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "ecs_id", ecs_id)
+        pulumi.set(__self__, "ecs_name", ecs_name)
+        pulumi.set(__self__, "health_status", health_status)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_backup", is_backup)
+        pulumi.set(__self__, "member_group_id", member_group_id)
+        pulumi.set(__self__, "member_group_name", member_group_name)
+        pulumi.set(__self__, "member_ip_address", member_ip_address)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "vpc_channel_id", vpc_channel_id)
+        pulumi.set(__self__, "weight", weight)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The time when the channel member was added to the VPC channel, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="ecsId")
+    def ecs_id(self) -> _builtins.str:
+        """
+        The ID of the ECS instance.
+        """
+        return pulumi.get(self, "ecs_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ecsName")
+    def ecs_name(self) -> _builtins.str:
+        """
+        The name of the ECS instance.
+        """
+        return pulumi.get(self, "ecs_name")
+
+    @_builtins.property
+    @pulumi.getter(name="healthStatus")
+    def health_status(self) -> _builtins.str:
+        """
+        The health status of the channel member.
+        """
+        return pulumi.get(self, "health_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the channel member.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isBackup")
+    def is_backup(self) -> _builtins.bool:
+        """
+        Whether the channel member is a backup node.
+        """
+        return pulumi.get(self, "is_backup")
+
+    @_builtins.property
+    @pulumi.getter(name="memberGroupId")
+    def member_group_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the channel member group to be queried.
+        """
+        return pulumi.get(self, "member_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="memberGroupName")
+    def member_group_name(self) -> _builtins.str:
+        """
+        Specifies the name of the channel member group to be queried for fuzzy
+        matching.
+        """
+        return pulumi.get(self, "member_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="memberIpAddress")
+    def member_ip_address(self) -> _builtins.str:
+        """
+        The IP address of the channel member.
+        """
+        return pulumi.get(self, "member_ip_address")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        The port of the channel member.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the channel member.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcChannelId")
+    def vpc_channel_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the VPC channel to which the members belong.
+        """
+        return pulumi.get(self, "vpc_channel_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def weight(self) -> _builtins.int:
+        """
+        The weight value of the channel member.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
 class GetChannelsVpcChannelResult(dict):
     def __init__(__self__, *,
                  balance_strategy: _builtins.int,
@@ -8066,6 +8923,156 @@ class GetGroupsGroupUrlDomainResult(dict):
 
 
 @pulumi.output_type
+class GetInstanceAssociatedCertificatesCertificateResult(dict):
+    def __init__(__self__, *,
+                 algorithm_type: _builtins.str,
+                 common_name: _builtins.str,
+                 create_time: _builtins.str,
+                 id: _builtins.str,
+                 instance_id: _builtins.str,
+                 is_has_trusted_root_ca: _builtins.bool,
+                 name: _builtins.str,
+                 not_after: _builtins.str,
+                 project_id: _builtins.str,
+                 sans: Sequence[_builtins.str],
+                 signature_algorithm: _builtins.str,
+                 type: _builtins.str,
+                 update_time: _builtins.str):
+        """
+        :param _builtins.str algorithm_type: Specifies the algorithm type of the SSL certificate(RSA, ECC, SM2).
+        :param _builtins.str common_name: Specifies the domain name of the SSL certificate.
+        :param _builtins.str create_time: The create time of the SSL certificate.
+        :param _builtins.str id: The data source ID.
+        :param _builtins.str instance_id: Specifies the ID of the dedicated instance to which the SSL certificates belong.
+        :param _builtins.bool is_has_trusted_root_ca: The certificate has trusted root certificate authority or not.
+        :param _builtins.str name: Specifies the name of the SSL certificate.
+        :param _builtins.str not_after: The expiration date of the SSL certificate.
+        :param _builtins.str project_id: The ID of the tenant project.
+        :param Sequence[_builtins.str] sans: The san extended domain of the SSL certificate.
+        :param _builtins.str signature_algorithm: Specifies the signature algorithm of the SSL certificate.
+        :param _builtins.str type: Specifies the visibility range of the SSL certificate.
+        :param _builtins.str update_time: The update time of the SSL certificate.
+        """
+        pulumi.set(__self__, "algorithm_type", algorithm_type)
+        pulumi.set(__self__, "common_name", common_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "is_has_trusted_root_ca", is_has_trusted_root_ca)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "not_after", not_after)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "sans", sans)
+        pulumi.set(__self__, "signature_algorithm", signature_algorithm)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="algorithmType")
+    def algorithm_type(self) -> _builtins.str:
+        """
+        Specifies the algorithm type of the SSL certificate(RSA, ECC, SM2).
+        """
+        return pulumi.get(self, "algorithm_type")
+
+    @_builtins.property
+    @pulumi.getter(name="commonName")
+    def common_name(self) -> _builtins.str:
+        """
+        Specifies the domain name of the SSL certificate.
+        """
+        return pulumi.get(self, "common_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The create time of the SSL certificate.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The data source ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the dedicated instance to which the SSL certificates belong.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="isHasTrustedRootCa")
+    def is_has_trusted_root_ca(self) -> _builtins.bool:
+        """
+        The certificate has trusted root certificate authority or not.
+        """
+        return pulumi.get(self, "is_has_trusted_root_ca")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the SSL certificate.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> _builtins.str:
+        """
+        The expiration date of the SSL certificate.
+        """
+        return pulumi.get(self, "not_after")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The ID of the tenant project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def sans(self) -> Sequence[_builtins.str]:
+        """
+        The san extended domain of the SSL certificate.
+        """
+        return pulumi.get(self, "sans")
+
+    @_builtins.property
+    @pulumi.getter(name="signatureAlgorithm")
+    def signature_algorithm(self) -> _builtins.str:
+        """
+        Specifies the signature algorithm of the SSL certificate.
+        """
+        return pulumi.get(self, "signature_algorithm")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the visibility range of the SSL certificate.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time of the SSL certificate.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
 class GetInstanceFeaturesFeatureResult(dict):
     def __init__(__self__, *,
                  config: _builtins.str,
@@ -8125,6 +9132,203 @@ class GetInstanceFeaturesFeatureResult(dict):
         The latest update time of the feature, in RFC3339 format.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetInstanceIngressAssociatedDomainsDomainResult(dict):
+    def __init__(__self__, *,
+                 group_id: _builtins.str,
+                 group_name: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str group_id: The ID of the API group bound to the ingress port.
+        :param _builtins.str group_name: The name of the API group bound to the ingress port.
+        :param _builtins.str name: The domain name bound to the ingress port.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        The ID of the API group bound to the ingress port.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        The name of the API group bound to the ingress port.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The domain name bound to the ingress port.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetInstanceIngressPortsIngressPortResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 port: _builtins.int,
+                 protocol: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the ingress port.
+        :param _builtins.int port: Specifies the port number of the ingress port to be queried.  
+               The valid value is range from `1,024` to `49,151`.
+        :param _builtins.str protocol: Specifies the protocol of the ingress port to be queried.  
+               The valid values are as follows:
+               + **HTTP**: The ingress port uses HTTP protocol.
+               + **HTTPS**: The ingress port uses HTTPS protocol.
+        :param _builtins.str status: The status of the ingress port.
+               + **normal**: The ingress port status is normal.
+               + **abnormal**: The ingress port status is abnormal and cannot be used.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the ingress port.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        Specifies the port number of the ingress port to be queried.  
+        The valid value is range from `1,024` to `49,151`.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        Specifies the protocol of the ingress port to be queried.  
+        The valid values are as follows:
+        + **HTTP**: The ingress port uses HTTP protocol.
+        + **HTTPS**: The ingress port uses HTTPS protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the ingress port.
+        + **normal**: The ingress port status is normal.
+        + **abnormal**: The ingress port status is abnormal and cannot be used.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetInstanceMetricDataDatapointResult(dict):
+    def __init__(__self__, *,
+                 average: _builtins.int,
+                 max: _builtins.int,
+                 min: _builtins.int,
+                 sum: _builtins.int,
+                 timestamp: _builtins.int,
+                 unit: _builtins.str,
+                 variance: _builtins.int):
+        """
+        :param _builtins.int average: The average value of the metric data within the aggregation period.  
+               Required if the `filter` parameter is set to `average`, this field is available.
+        :param _builtins.int max: The maximum value of the metric data within the aggregation period.  
+               Required if the `filter` parameter is set to `max`, this field is available.
+        :param _builtins.int min: The minimum value of the metric data within the aggregation period.  
+               Required if the `filter` parameter is set to `min`, this field is available.
+        :param _builtins.int sum: The sum value of the metric data within the aggregation period.  
+               Required if the `filter` parameter is set to `sum`, this field is available.
+        :param _builtins.int timestamp: The collection time of the metric data, UNIX timestamp in milliseconds.
+        :param _builtins.str unit: The unit of the metric.
+        :param _builtins.int variance: The variance value of the metric data within the aggregation period.  
+               Required if the `filter` parameter is set to `variance`, this field is available.
+        """
+        pulumi.set(__self__, "average", average)
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "sum", sum)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "unit", unit)
+        pulumi.set(__self__, "variance", variance)
+
+    @_builtins.property
+    @pulumi.getter
+    def average(self) -> _builtins.int:
+        """
+        The average value of the metric data within the aggregation period.  
+        Required if the `filter` parameter is set to `average`, this field is available.
+        """
+        return pulumi.get(self, "average")
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.int:
+        """
+        The maximum value of the metric data within the aggregation period.  
+        Required if the `filter` parameter is set to `max`, this field is available.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.int:
+        """
+        The minimum value of the metric data within the aggregation period.  
+        Required if the `filter` parameter is set to `min`, this field is available.
+        """
+        return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter
+    def sum(self) -> _builtins.int:
+        """
+        The sum value of the metric data within the aggregation period.  
+        Required if the `filter` parameter is set to `sum`, this field is available.
+        """
+        return pulumi.get(self, "sum")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        """
+        The collection time of the metric data, UNIX timestamp in milliseconds.
+        """
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def unit(self) -> _builtins.str:
+        """
+        The unit of the metric.
+        """
+        return pulumi.get(self, "unit")
+
+    @_builtins.property
+    @pulumi.getter
+    def variance(self) -> _builtins.int:
+        """
+        The variance value of the metric data within the aggregation period.  
+        Required if the `filter` parameter is set to `variance`, this field is available.
+        """
+        return pulumi.get(self, "variance")
 
 
 @pulumi.output_type
@@ -8348,6 +9552,35 @@ class GetInstanceSslCertificatesCertificateResult(dict):
         The update time of the SSL certificate.
         """
         return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetInstanceTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The key of the tag.
+        :param _builtins.str value: The value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -8836,6 +10069,195 @@ class GetOrchestrationRulesRuleResult(dict):
 
 
 @pulumi.output_type
+class GetPluginAssociableApisApiResult(dict):
+    def __init__(__self__, *,
+                 auth_type: _builtins.str,
+                 description: _builtins.str,
+                 group_id: _builtins.str,
+                 group_name: _builtins.str,
+                 id: _builtins.str,
+                 match_mode: _builtins.str,
+                 name: _builtins.str,
+                 req_method: _builtins.str,
+                 req_protocol: _builtins.str,
+                 req_uri: _builtins.str,
+                 tags: Sequence[_builtins.str],
+                 type: _builtins.int):
+        """
+        :param _builtins.str auth_type: The authentication type of the associable API.  
+               The valid values are as follows:
+               + **NONE** - No authentication
+               + **APP** - APP authentication
+               + **IAM** - IAM authentication
+               + **AUTHORIZER** - Custom authentication
+        :param _builtins.str description: The description of the associable API.
+        :param _builtins.str group_id: Specifies the ID of the API group to be queried to which the associable APIs belong.
+        :param _builtins.str group_name: The name of the API group to which the associable API belongs.
+        :param _builtins.str id: The ID of the associable API.
+        :param _builtins.str match_mode: The match mode of the associable API.  
+               The valid values are as follows:
+               + **SWA** - Prefix matching
+               + **NORMAL** - Normal matching (exact matching)
+        :param _builtins.str name: The name of the associable API.
+        :param _builtins.str req_method: Specifies the request method of the associable APIs to be queried.  
+               The valid values are as follows:
+               + **GET**
+               + **POST**
+               + **PUT**
+               + **DELETE**
+               + **HEAD**
+               + **PATCH**
+               + **OPTIONS**
+               + **ANY**
+        :param _builtins.str req_protocol: The request protocol of the associable API.  
+               The valid values are as follows:
+               + **HTTP**
+               + **HTTPS**
+               + **BOTH** - Both **HTTP** and **HTTPS**
+        :param _builtins.str req_uri: The request path of the associable API.
+        :param Sequence[_builtins.str] tags: Specifies the tags of the associable APIs to be queried.
+               The value `#no_tags#` means filtering APIs without tags.
+        :param _builtins.int type: The type of the associable API.  
+               The valid values are as follows:
+               + **1** - Public API
+               + **2** - Private API
+        """
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "match_mode", match_mode)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "req_method", req_method)
+        pulumi.set(__self__, "req_protocol", req_protocol)
+        pulumi.set(__self__, "req_uri", req_uri)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> _builtins.str:
+        """
+        The authentication type of the associable API.  
+        The valid values are as follows:
+        + **NONE** - No authentication
+        + **APP** - APP authentication
+        + **IAM** - IAM authentication
+        + **AUTHORIZER** - Custom authentication
+        """
+        return pulumi.get(self, "auth_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the associable API.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the API group to be queried to which the associable APIs belong.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        The name of the API group to which the associable API belongs.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the associable API.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="matchMode")
+    def match_mode(self) -> _builtins.str:
+        """
+        The match mode of the associable API.  
+        The valid values are as follows:
+        + **SWA** - Prefix matching
+        + **NORMAL** - Normal matching (exact matching)
+        """
+        return pulumi.get(self, "match_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the associable API.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="reqMethod")
+    def req_method(self) -> _builtins.str:
+        """
+        Specifies the request method of the associable APIs to be queried.  
+        The valid values are as follows:
+        + **GET**
+        + **POST**
+        + **PUT**
+        + **DELETE**
+        + **HEAD**
+        + **PATCH**
+        + **OPTIONS**
+        + **ANY**
+        """
+        return pulumi.get(self, "req_method")
+
+    @_builtins.property
+    @pulumi.getter(name="reqProtocol")
+    def req_protocol(self) -> _builtins.str:
+        """
+        The request protocol of the associable API.  
+        The valid values are as follows:
+        + **HTTP**
+        + **HTTPS**
+        + **BOTH** - Both **HTTP** and **HTTPS**
+        """
+        return pulumi.get(self, "req_protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="reqUri")
+    def req_uri(self) -> _builtins.str:
+        """
+        The request path of the associable API.
+        """
+        return pulumi.get(self, "req_uri")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the tags of the associable APIs to be queried.
+        The value `#no_tags#` means filtering APIs without tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.int:
+        """
+        The type of the associable API.  
+        The valid values are as follows:
+        + **1** - Public API
+        + **2** - Private API
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetPluginsPluginResult(dict):
     def __init__(__self__, *,
                  content: _builtins.str,
@@ -8950,6 +10372,68 @@ class GetPluginsPluginResult(dict):
         The latest update time of the plugin, in RFC3339 format.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetQuotasQuotaResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str created_at: The creation time of the quota, in RFC3339 format.
+        :param _builtins.str description: The description of the quota.
+        :param _builtins.str id: The ID of the quota.
+        :param _builtins.str name: The name of the quota.
+        :param _builtins.str value: The value of the quota.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The creation time of the quota, in RFC3339 format.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the quota.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the quota.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the quota.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the quota.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

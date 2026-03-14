@@ -26,6 +26,7 @@ class DnsResolutionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DnsResolution resource.
+
         :param pulumi.Input[_builtins.str] fw_instance_id: The ID of the firewall.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_dns_servers: The custom DNS servers.
@@ -121,6 +122,7 @@ class _DnsResolutionState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DnsResolution resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_dns_servers: The custom DNS servers.
                Currently, only two custom DNS server addresses can be specified.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_dns_servers: The default DNS servers.
@@ -244,11 +246,10 @@ class DnsResolution(pulumi.CustomResource):
 
         The DNS resolution resource can be imported using the firewall instance ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/dnsResolution:DnsResolution test <fw_instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -293,11 +294,10 @@ class DnsResolution(pulumi.CustomResource):
 
         The DNS resolution resource can be imported using the firewall instance ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/dnsResolution:DnsResolution test <fw_instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DnsResolutionArgs args: The arguments to use to populate this resource's properties.

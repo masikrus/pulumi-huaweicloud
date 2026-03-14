@@ -23,6 +23,7 @@ class JobPrimaryStandbySwitchArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a JobPrimaryStandbySwitch resource.
+
         :param pulumi.Input[_builtins.str] job_id: Specifies the DRS disaster recovery job ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -68,6 +69,7 @@ class _JobPrimaryStandbySwitchState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering JobPrimaryStandbySwitch resources.
+
         :param pulumi.Input[_builtins.str] job_id: Specifies the DRS disaster recovery job ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -133,6 +135,7 @@ class JobPrimaryStandbySwitch(pulumi.CustomResource):
         test = huaweicloud.drs.JobPrimaryStandbySwitch("test", job_id=job_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] job_id: Specifies the DRS disaster recovery job ID.
@@ -163,6 +166,7 @@ class JobPrimaryStandbySwitch(pulumi.CustomResource):
         job_id = config.require_object("jobId")
         test = huaweicloud.drs.JobPrimaryStandbySwitch("test", job_id=job_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param JobPrimaryStandbySwitchArgs args: The arguments to use to populate this resource's properties.

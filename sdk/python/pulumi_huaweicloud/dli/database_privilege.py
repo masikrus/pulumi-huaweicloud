@@ -25,6 +25,7 @@ class DatabasePrivilegeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatabasePrivilege resource.
+
         :param pulumi.Input[_builtins.str] object: The authorization object definition.
         :param pulumi.Input[_builtins.str] user_name: The name of the authorized (IAM) user.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] privileges: The list of permissions granted to the database or data table.
@@ -95,6 +96,7 @@ class _DatabasePrivilegeState:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabasePrivilege resources.
+
         :param pulumi.Input[_builtins.str] object: The authorization object definition.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] privileges: The list of permissions granted to the database or data table.
         :param pulumi.Input[_builtins.str] region: The region in which to create the resource.
@@ -178,11 +180,10 @@ class DatabasePrivilege(pulumi.CustomResource):
 
         The resource can be imported using the `object` and `user_name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/databasePrivilege:DatabasePrivilege test <object>/<user_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -206,11 +207,10 @@ class DatabasePrivilege(pulumi.CustomResource):
 
         The resource can be imported using the `object` and `user_name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/databasePrivilege:DatabasePrivilege test <object>/<user_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabasePrivilegeArgs args: The arguments to use to populate this resource's properties.

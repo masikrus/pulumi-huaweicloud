@@ -142,7 +142,7 @@ def get_pipeline_plugins(business_types: Optional[Sequence[_builtins.str]] = Non
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_pipeline_plugins(business_types=[
+    test = huaweicloud.Codearts.get_pipeline_plugins(business_types=[
         "Build",
         "Gate",
         "Deploy",
@@ -170,7 +170,7 @@ def get_pipeline_plugins(business_types: Optional[Sequence[_builtins.str]] = Non
     __args__['regexName'] = regex_name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelinePlugins:getPipelinePlugins', __args__, opts=opts, typ=GetPipelinePluginsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelinePlugins:getPipelinePlugins', __args__, opts=opts, typ=GetPipelinePluginsResult).value
 
     return AwaitableGetPipelinePluginsResult(
         business_types=pulumi.get(__ret__, 'business_types'),
@@ -197,7 +197,7 @@ def get_pipeline_plugins_output(business_types: Optional[pulumi.Input[Optional[S
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_pipeline_plugins(business_types=[
+    test = huaweicloud.Codearts.get_pipeline_plugins(business_types=[
         "Build",
         "Gate",
         "Deploy",
@@ -225,7 +225,7 @@ def get_pipeline_plugins_output(business_types: Optional[pulumi.Input[Optional[S
     __args__['regexName'] = regex_name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelinePlugins:getPipelinePlugins', __args__, opts=opts, typ=GetPipelinePluginsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelinePlugins:getPipelinePlugins', __args__, opts=opts, typ=GetPipelinePluginsResult)
     return __ret__.apply(lambda __response__: GetPipelinePluginsResult(
         business_types=pulumi.get(__response__, 'business_types'),
         id=pulumi.get(__response__, 'id'),

@@ -85,7 +85,7 @@ def get_components(application_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_components()
+    test = huaweicloud.Coc.get_components()
     ```
 
 
@@ -94,7 +94,7 @@ def get_components(application_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['applicationId'] = application_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getComponents:getComponents', __args__, opts=opts, typ=GetComponentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getComponents:getComponents', __args__, opts=opts, typ=GetComponentsResult).value
 
     return AwaitableGetComponentsResult(
         application_id=pulumi.get(__ret__, 'application_id'),
@@ -111,7 +111,7 @@ def get_components_output(application_id: Optional[pulumi.Input[Optional[_builti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_components()
+    test = huaweicloud.Coc.get_components()
     ```
 
 
@@ -120,7 +120,7 @@ def get_components_output(application_id: Optional[pulumi.Input[Optional[_builti
     __args__ = dict()
     __args__['applicationId'] = application_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getComponents:getComponents', __args__, opts=opts, typ=GetComponentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getComponents:getComponents', __args__, opts=opts, typ=GetComponentsResult)
     return __ret__.apply(lambda __response__: GetComponentsResult(
         application_id=pulumi.get(__response__, 'application_id'),
         datas=pulumi.get(__response__, 'datas'),

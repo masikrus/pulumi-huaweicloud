@@ -24,6 +24,7 @@ class ImageShareAccepterArgs:
                  vault_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ImageShareAccepter resource.
+
         :param pulumi.Input[_builtins.str] image_id: Specifies the ID of the image.
                
                Changing this parameter will create a new resource.
@@ -91,6 +92,7 @@ class _ImageShareAccepterState:
                  vault_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ImageShareAccepter resources.
+
         :param pulumi.Input[_builtins.str] image_id: Specifies the ID of the image.
                
                Changing this parameter will create a new resource.
@@ -177,6 +179,7 @@ class ImageShareAccepter(pulumi.CustomResource):
         test = huaweicloud.ims.ImageShareAccepter("test", image_id=image_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] image_id: Specifies the ID of the image.
@@ -210,6 +213,7 @@ class ImageShareAccepter(pulumi.CustomResource):
         image_id = config.require_object("imageId")
         test = huaweicloud.ims.ImageShareAccepter("test", image_id=image_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageShareAccepterArgs args: The arguments to use to populate this resource's properties.

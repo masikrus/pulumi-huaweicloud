@@ -61,6 +61,8 @@ __all__ = [
     'PipelineMicroServiceRepo',
     'PipelineParameterGroupRelatedPipeline',
     'PipelineParameterGroupVariable',
+    'PipelinePluginVersionExecutionInfo',
+    'PipelinePluginVersionInputInfo',
     'PipelineRolePermission',
     'PipelineRuleContent',
     'PipelineRuleContentProperty',
@@ -93,6 +95,9 @@ __all__ = [
     'GetInspectorHostsHostLastScanInfoResult',
     'GetInspectorWebsiteScanTasksTaskResult',
     'GetInspectorWebsitesWebsiteResult',
+    'GetPipelineAvailablePluginsDataResult',
+    'GetPipelineAvailablePluginsDataPluginsListResult',
+    'GetPipelineAvailablePluginsDataPluginsListAllStepResult',
     'GetPipelineGroupsGroupResult',
     'GetPipelineMicroServicesMicroServiceResult',
     'GetPipelineMicroServicesMicroServiceRepoResult',
@@ -102,6 +107,7 @@ __all__ = [
     'GetPipelineParameterGroupsGroupRelatedPipelineResult',
     'GetPipelineParameterGroupsGroupVariableResult',
     'GetPipelinePluginMetricsMetricResult',
+    'GetPipelinePluginVersionsVersionResult',
     'GetPipelinePluginsPluginResult',
     'GetPipelinePublishersPublisherResult',
     'GetPipelineQueueingRecordsRecordResult',
@@ -373,12 +379,8 @@ class BuildTaskScm(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "repoId":
-            suggest = "repo_id"
-        elif key == "scmType":
+        if key == "scmType":
             suggest = "scm_type"
-        elif key == "webUrl":
-            suggest = "web_url"
         elif key == "buildType":
             suggest = "build_type"
         elif key == "enableGitLfs":
@@ -389,8 +391,12 @@ class BuildTaskScm(dict):
             suggest = "group_name"
         elif key == "isAutoBuild":
             suggest = "is_auto_build"
+        elif key == "repoId":
+            suggest = "repo_id"
         elif key == "repoName":
             suggest = "repo_name"
+        elif key == "webUrl":
+            suggest = "web_url"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in BuildTaskScm. Access the value via the '{suggest}' property getter instead.")
@@ -404,10 +410,8 @@ class BuildTaskScm(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 repo_id: _builtins.str,
                  scm_type: _builtins.str,
                  url: _builtins.str,
-                 web_url: _builtins.str,
                  branch: Optional[_builtins.str] = None,
                  build_type: Optional[_builtins.str] = None,
                  depth: Optional[_builtins.str] = None,
@@ -415,13 +419,13 @@ class BuildTaskScm(dict):
                  endpoint_id: Optional[_builtins.str] = None,
                  group_name: Optional[_builtins.str] = None,
                  is_auto_build: Optional[_builtins.bool] = None,
+                 repo_id: Optional[_builtins.str] = None,
                  repo_name: Optional[_builtins.str] = None,
-                 source: Optional[_builtins.str] = None):
+                 source: Optional[_builtins.str] = None,
+                 web_url: Optional[_builtins.str] = None):
         """
-        :param _builtins.str repo_id: Specifies the repository ID.
         :param _builtins.str scm_type: Specifies the source code management type.
         :param _builtins.str url: Specifies the repository URL.
-        :param _builtins.str web_url: Specifies the web URL of the repository.
         :param _builtins.str branch: Specifies the branch name.
         :param _builtins.str build_type: Specifies the build type.
         :param _builtins.str depth: Specifies the depth.
@@ -429,16 +433,16 @@ class BuildTaskScm(dict):
         :param _builtins.str endpoint_id: Specifies the endpoint ID.
         :param _builtins.str group_name: Specifies the group name.
         :param _builtins.bool is_auto_build: Specifies whether to automatically build. Defaults to **false**.
+        :param _builtins.str repo_id: Specifies the repository ID.
         :param _builtins.str repo_name: Specifies the repository name.
         :param _builtins.str source: Specifies the source type.
                
                <a name="block--steps"></a>
                The `steps` block supports:
+        :param _builtins.str web_url: Specifies the web URL of the repository.
         """
-        pulumi.set(__self__, "repo_id", repo_id)
         pulumi.set(__self__, "scm_type", scm_type)
         pulumi.set(__self__, "url", url)
-        pulumi.set(__self__, "web_url", web_url)
         if branch is not None:
             pulumi.set(__self__, "branch", branch)
         if build_type is not None:
@@ -453,18 +457,14 @@ class BuildTaskScm(dict):
             pulumi.set(__self__, "group_name", group_name)
         if is_auto_build is not None:
             pulumi.set(__self__, "is_auto_build", is_auto_build)
+        if repo_id is not None:
+            pulumi.set(__self__, "repo_id", repo_id)
         if repo_name is not None:
             pulumi.set(__self__, "repo_name", repo_name)
         if source is not None:
             pulumi.set(__self__, "source", source)
-
-    @_builtins.property
-    @pulumi.getter(name="repoId")
-    def repo_id(self) -> _builtins.str:
-        """
-        Specifies the repository ID.
-        """
-        return pulumi.get(self, "repo_id")
+        if web_url is not None:
+            pulumi.set(__self__, "web_url", web_url)
 
     @_builtins.property
     @pulumi.getter(name="scmType")
@@ -481,14 +481,6 @@ class BuildTaskScm(dict):
         Specifies the repository URL.
         """
         return pulumi.get(self, "url")
-
-    @_builtins.property
-    @pulumi.getter(name="webUrl")
-    def web_url(self) -> _builtins.str:
-        """
-        Specifies the web URL of the repository.
-        """
-        return pulumi.get(self, "web_url")
 
     @_builtins.property
     @pulumi.getter
@@ -547,6 +539,14 @@ class BuildTaskScm(dict):
         return pulumi.get(self, "is_auto_build")
 
     @_builtins.property
+    @pulumi.getter(name="repoId")
+    def repo_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the repository ID.
+        """
+        return pulumi.get(self, "repo_id")
+
+    @_builtins.property
     @pulumi.getter(name="repoName")
     def repo_name(self) -> Optional[_builtins.str]:
         """
@@ -564,6 +564,14 @@ class BuildTaskScm(dict):
         The `steps` block supports:
         """
         return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter(name="webUrl")
+    def web_url(self) -> Optional[_builtins.str]:
+        """
+        Specifies the web URL of the repository.
+        """
+        return pulumi.get(self, "web_url")
 
 
 @pulumi.output_type
@@ -4256,6 +4264,121 @@ class PipelineParameterGroupVariable(dict):
         Specifies the custom parameter default value.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PipelinePluginVersionExecutionInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "innerExecutionInfo":
+            suggest = "inner_execution_info"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PipelinePluginVersionExecutionInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PipelinePluginVersionExecutionInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PipelinePluginVersionExecutionInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 inner_execution_info: _builtins.str):
+        """
+        :param _builtins.str inner_execution_info: Specifies the inner execution information in json format.
+               
+               <a name="block--input_info"></a>
+               The `input_info` block supports:
+        """
+        pulumi.set(__self__, "inner_execution_info", inner_execution_info)
+
+    @_builtins.property
+    @pulumi.getter(name="innerExecutionInfo")
+    def inner_execution_info(self) -> _builtins.str:
+        """
+        Specifies the inner execution information in json format.
+
+        <a name="block--input_info"></a>
+        The `input_info` block supports:
+        """
+        return pulumi.get(self, "inner_execution_info")
+
+
+@pulumi.output_type
+class PipelinePluginVersionInputInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValue":
+            suggest = "default_value"
+        elif key == "layoutContent":
+            suggest = "layout_content"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PipelinePluginVersionInputInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PipelinePluginVersionInputInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PipelinePluginVersionInputInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_value: Optional[_builtins.str] = None,
+                 layout_content: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str default_value: Specifies the default value.
+        :param _builtins.str layout_content: Specifies the style information..
+        :param _builtins.str name: Specifies the name.
+        :param _builtins.str type: Specifies the type.
+        """
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if layout_content is not None:
+            pulumi.set(__self__, "layout_content", layout_content)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the default value.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter(name="layoutContent")
+    def layout_content(self) -> Optional[_builtins.str]:
+        """
+        Specifies the style information..
+        """
+        return pulumi.get(self, "layout_content")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the type.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -8249,6 +8372,346 @@ class GetInspectorWebsitesWebsiteResult(dict):
 
 
 @pulumi.output_type
+class GetPipelineAvailablePluginsDataResult(dict):
+    def __init__(__self__, *,
+                 business_type: _builtins.str,
+                 cloneable: _builtins.bool,
+                 conditions: Sequence[_builtins.str],
+                 disabled: _builtins.bool,
+                 display_name: _builtins.str,
+                 editable: _builtins.bool,
+                 plugins_lists: Sequence['outputs.GetPipelineAvailablePluginsDataPluginsListResult'],
+                 removable: _builtins.bool,
+                 unique_id: _builtins.str):
+        """
+        :param _builtins.str business_type: Specifies the service type.
+        :param _builtins.bool cloneable: Indicates whether it is replicable.
+        :param Sequence[_builtins.str] conditions: Indicates the conditions.
+        :param _builtins.bool disabled: Indicates whether it is disabled.
+        :param _builtins.str display_name: Indicates the display name.
+        :param _builtins.bool editable: Indicates whether it is editable.
+        :param Sequence['GetPipelineAvailablePluginsDataPluginsListArgs'] plugins_lists: Indicates the extension list.
+        :param _builtins.bool removable: Indicates whether it is removable.
+        :param _builtins.str unique_id: Indicates the unique ID.
+        """
+        pulumi.set(__self__, "business_type", business_type)
+        pulumi.set(__self__, "cloneable", cloneable)
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "disabled", disabled)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "editable", editable)
+        pulumi.set(__self__, "plugins_lists", plugins_lists)
+        pulumi.set(__self__, "removable", removable)
+        pulumi.set(__self__, "unique_id", unique_id)
+
+    @_builtins.property
+    @pulumi.getter(name="businessType")
+    def business_type(self) -> _builtins.str:
+        """
+        Specifies the service type.
+        """
+        return pulumi.get(self, "business_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def cloneable(self) -> _builtins.bool:
+        """
+        Indicates whether it is replicable.
+        """
+        return pulumi.get(self, "cloneable")
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the conditions.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter
+    def disabled(self) -> _builtins.bool:
+        """
+        Indicates whether it is disabled.
+        """
+        return pulumi.get(self, "disabled")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Indicates the display name.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def editable(self) -> _builtins.bool:
+        """
+        Indicates whether it is editable.
+        """
+        return pulumi.get(self, "editable")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginsLists")
+    def plugins_lists(self) -> Sequence['outputs.GetPipelineAvailablePluginsDataPluginsListResult']:
+        """
+        Indicates the extension list.
+        """
+        return pulumi.get(self, "plugins_lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def removable(self) -> _builtins.bool:
+        """
+        Indicates whether it is removable.
+        """
+        return pulumi.get(self, "removable")
+
+    @_builtins.property
+    @pulumi.getter(name="uniqueId")
+    def unique_id(self) -> _builtins.str:
+        """
+        Indicates the unique ID.
+        """
+        return pulumi.get(self, "unique_id")
+
+
+@pulumi.output_type
+class GetPipelineAvailablePluginsDataPluginsListResult(dict):
+    def __init__(__self__, *,
+                 all_steps: Sequence['outputs.GetPipelineAvailablePluginsDataPluginsListAllStepResult'],
+                 description: _builtins.str,
+                 disabled: _builtins.bool,
+                 display_name: _builtins.str,
+                 group_name: _builtins.str,
+                 group_type: _builtins.str,
+                 icon_url: _builtins.str,
+                 location: _builtins.str,
+                 manifest_version: _builtins.str,
+                 multi_step_editable: _builtins.int,
+                 plugin_attribution: _builtins.str,
+                 plugin_composition_type: _builtins.str,
+                 plugin_name: _builtins.str,
+                 publisher_unique_id: _builtins.str,
+                 runtime_attribution: _builtins.str,
+                 unique_id: _builtins.str,
+                 version_attribution: _builtins.str):
+        """
+        :param Sequence['GetPipelineAvailablePluginsDataPluginsListAllStepArgs'] all_steps: Indicates the basic extension list.
+        :param _builtins.str description: Indicates the description.
+        :param _builtins.bool disabled: Indicates whether it is disabled.
+        :param _builtins.str display_name: Indicates the display name.
+        :param _builtins.str group_name: Indicates the group name.
+        :param _builtins.str group_type: Indicates the group type.
+        :param _builtins.str icon_url: Indicates the icon URL.
+        :param _builtins.str location: Indicates the address.
+        :param _builtins.str manifest_version: Indicates the version.
+        :param _builtins.int multi_step_editable: Indicates whether it is editable.
+        :param _builtins.str plugin_attribution: Indicates the attribute.
+        :param _builtins.str plugin_composition_type: Indicates the combination extension.
+        :param _builtins.str plugin_name: Indicates the extension name.
+        :param _builtins.str publisher_unique_id: Indicates the publisher ID.
+        :param _builtins.str runtime_attribution: Indicates the runtime attributes.
+        :param _builtins.str unique_id: Indicates the unique ID.
+        :param _builtins.str version_attribution: Indicates the version attribute.
+        """
+        pulumi.set(__self__, "all_steps", all_steps)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disabled", disabled)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "group_type", group_type)
+        pulumi.set(__self__, "icon_url", icon_url)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "manifest_version", manifest_version)
+        pulumi.set(__self__, "multi_step_editable", multi_step_editable)
+        pulumi.set(__self__, "plugin_attribution", plugin_attribution)
+        pulumi.set(__self__, "plugin_composition_type", plugin_composition_type)
+        pulumi.set(__self__, "plugin_name", plugin_name)
+        pulumi.set(__self__, "publisher_unique_id", publisher_unique_id)
+        pulumi.set(__self__, "runtime_attribution", runtime_attribution)
+        pulumi.set(__self__, "unique_id", unique_id)
+        pulumi.set(__self__, "version_attribution", version_attribution)
+
+    @_builtins.property
+    @pulumi.getter(name="allSteps")
+    def all_steps(self) -> Sequence['outputs.GetPipelineAvailablePluginsDataPluginsListAllStepResult']:
+        """
+        Indicates the basic extension list.
+        """
+        return pulumi.get(self, "all_steps")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def disabled(self) -> _builtins.bool:
+        """
+        Indicates whether it is disabled.
+        """
+        return pulumi.get(self, "disabled")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Indicates the display name.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        Indicates the group name.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="groupType")
+    def group_type(self) -> _builtins.str:
+        """
+        Indicates the group type.
+        """
+        return pulumi.get(self, "group_type")
+
+    @_builtins.property
+    @pulumi.getter(name="iconUrl")
+    def icon_url(self) -> _builtins.str:
+        """
+        Indicates the icon URL.
+        """
+        return pulumi.get(self, "icon_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        Indicates the address.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="manifestVersion")
+    def manifest_version(self) -> _builtins.str:
+        """
+        Indicates the version.
+        """
+        return pulumi.get(self, "manifest_version")
+
+    @_builtins.property
+    @pulumi.getter(name="multiStepEditable")
+    def multi_step_editable(self) -> _builtins.int:
+        """
+        Indicates whether it is editable.
+        """
+        return pulumi.get(self, "multi_step_editable")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginAttribution")
+    def plugin_attribution(self) -> _builtins.str:
+        """
+        Indicates the attribute.
+        """
+        return pulumi.get(self, "plugin_attribution")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginCompositionType")
+    def plugin_composition_type(self) -> _builtins.str:
+        """
+        Indicates the combination extension.
+        """
+        return pulumi.get(self, "plugin_composition_type")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> _builtins.str:
+        """
+        Indicates the extension name.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @_builtins.property
+    @pulumi.getter(name="publisherUniqueId")
+    def publisher_unique_id(self) -> _builtins.str:
+        """
+        Indicates the publisher ID.
+        """
+        return pulumi.get(self, "publisher_unique_id")
+
+    @_builtins.property
+    @pulumi.getter(name="runtimeAttribution")
+    def runtime_attribution(self) -> _builtins.str:
+        """
+        Indicates the runtime attributes.
+        """
+        return pulumi.get(self, "runtime_attribution")
+
+    @_builtins.property
+    @pulumi.getter(name="uniqueId")
+    def unique_id(self) -> _builtins.str:
+        """
+        Indicates the unique ID.
+        """
+        return pulumi.get(self, "unique_id")
+
+    @_builtins.property
+    @pulumi.getter(name="versionAttribution")
+    def version_attribution(self) -> _builtins.str:
+        """
+        Indicates the version attribute.
+        """
+        return pulumi.get(self, "version_attribution")
+
+
+@pulumi.output_type
+class GetPipelineAvailablePluginsDataPluginsListAllStepResult(dict):
+    def __init__(__self__, *,
+                 display_name: _builtins.str,
+                 plugin_name: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str display_name: Indicates the display name.
+        :param _builtins.str plugin_name: Indicates the extension name.
+        :param _builtins.str version: Indicates the version.
+        """
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "plugin_name", plugin_name)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Indicates the display name.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> _builtins.str:
+        """
+        Indicates the extension name.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Indicates the version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
 class GetPipelineGroupsGroupResult(dict):
     def __init__(__self__, *,
                  childrens: Sequence[_builtins.str],
@@ -9096,6 +9559,233 @@ class GetPipelinePluginMetricsMetricResult(dict):
         Specifies the version.
         """
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetPipelinePluginVersionsVersionResult(dict):
+    def __init__(__self__, *,
+                 active: _builtins.int,
+                 business_type: _builtins.str,
+                 business_type_display_name: _builtins.str,
+                 description: _builtins.str,
+                 display_name: _builtins.str,
+                 icon_url: _builtins.str,
+                 maintainers: _builtins.str,
+                 op_time: _builtins.str,
+                 op_user: _builtins.str,
+                 plugin_attribution: _builtins.str,
+                 plugin_composition_type: _builtins.str,
+                 plugin_name: _builtins.str,
+                 refer_count: _builtins.int,
+                 runtime_attribution: _builtins.str,
+                 unique_id: _builtins.str,
+                 usage_count: _builtins.int,
+                 version: _builtins.str,
+                 version_attribution: _builtins.str,
+                 version_description: _builtins.str,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.int active: Indicates the activated or not.
+        :param _builtins.str business_type: Indicates the service type.
+        :param _builtins.str business_type_display_name: Indicates the display name of service type.
+        :param _builtins.str description: Indicates the description.
+        :param _builtins.str display_name: Indicates the display name.
+        :param _builtins.str icon_url: Indicates the icon URL.
+        :param _builtins.str maintainers: Indicates the maintenance engineer.
+        :param _builtins.str op_time: Indicates the operation time.
+        :param _builtins.str op_user: Indicates the operator.
+        :param _builtins.str plugin_attribution: Indicates the attribute.
+        :param _builtins.str plugin_composition_type: Indicates the combination type.
+        :param _builtins.str plugin_name: Specifies the plugin name.
+        :param _builtins.int refer_count: Indicates the number of references.
+        :param _builtins.str runtime_attribution: Indicates the runtime attributes.
+        :param _builtins.str unique_id: Indicates the unique ID.
+        :param _builtins.int usage_count: Indicates the number of usages.
+        :param _builtins.str version: Indicates the version.
+        :param _builtins.str version_attribution: Indicates the version attribute.
+        :param _builtins.str version_description: Indicates the version description.
+        :param _builtins.str workspace_id: Indicates the tenant ID.
+        """
+        pulumi.set(__self__, "active", active)
+        pulumi.set(__self__, "business_type", business_type)
+        pulumi.set(__self__, "business_type_display_name", business_type_display_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "icon_url", icon_url)
+        pulumi.set(__self__, "maintainers", maintainers)
+        pulumi.set(__self__, "op_time", op_time)
+        pulumi.set(__self__, "op_user", op_user)
+        pulumi.set(__self__, "plugin_attribution", plugin_attribution)
+        pulumi.set(__self__, "plugin_composition_type", plugin_composition_type)
+        pulumi.set(__self__, "plugin_name", plugin_name)
+        pulumi.set(__self__, "refer_count", refer_count)
+        pulumi.set(__self__, "runtime_attribution", runtime_attribution)
+        pulumi.set(__self__, "unique_id", unique_id)
+        pulumi.set(__self__, "usage_count", usage_count)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "version_attribution", version_attribution)
+        pulumi.set(__self__, "version_description", version_description)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def active(self) -> _builtins.int:
+        """
+        Indicates the activated or not.
+        """
+        return pulumi.get(self, "active")
+
+    @_builtins.property
+    @pulumi.getter(name="businessType")
+    def business_type(self) -> _builtins.str:
+        """
+        Indicates the service type.
+        """
+        return pulumi.get(self, "business_type")
+
+    @_builtins.property
+    @pulumi.getter(name="businessTypeDisplayName")
+    def business_type_display_name(self) -> _builtins.str:
+        """
+        Indicates the display name of service type.
+        """
+        return pulumi.get(self, "business_type_display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Indicates the display name.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="iconUrl")
+    def icon_url(self) -> _builtins.str:
+        """
+        Indicates the icon URL.
+        """
+        return pulumi.get(self, "icon_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def maintainers(self) -> _builtins.str:
+        """
+        Indicates the maintenance engineer.
+        """
+        return pulumi.get(self, "maintainers")
+
+    @_builtins.property
+    @pulumi.getter(name="opTime")
+    def op_time(self) -> _builtins.str:
+        """
+        Indicates the operation time.
+        """
+        return pulumi.get(self, "op_time")
+
+    @_builtins.property
+    @pulumi.getter(name="opUser")
+    def op_user(self) -> _builtins.str:
+        """
+        Indicates the operator.
+        """
+        return pulumi.get(self, "op_user")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginAttribution")
+    def plugin_attribution(self) -> _builtins.str:
+        """
+        Indicates the attribute.
+        """
+        return pulumi.get(self, "plugin_attribution")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginCompositionType")
+    def plugin_composition_type(self) -> _builtins.str:
+        """
+        Indicates the combination type.
+        """
+        return pulumi.get(self, "plugin_composition_type")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> _builtins.str:
+        """
+        Specifies the plugin name.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @_builtins.property
+    @pulumi.getter(name="referCount")
+    def refer_count(self) -> _builtins.int:
+        """
+        Indicates the number of references.
+        """
+        return pulumi.get(self, "refer_count")
+
+    @_builtins.property
+    @pulumi.getter(name="runtimeAttribution")
+    def runtime_attribution(self) -> _builtins.str:
+        """
+        Indicates the runtime attributes.
+        """
+        return pulumi.get(self, "runtime_attribution")
+
+    @_builtins.property
+    @pulumi.getter(name="uniqueId")
+    def unique_id(self) -> _builtins.str:
+        """
+        Indicates the unique ID.
+        """
+        return pulumi.get(self, "unique_id")
+
+    @_builtins.property
+    @pulumi.getter(name="usageCount")
+    def usage_count(self) -> _builtins.int:
+        """
+        Indicates the number of usages.
+        """
+        return pulumi.get(self, "usage_count")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Indicates the version.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="versionAttribution")
+    def version_attribution(self) -> _builtins.str:
+        """
+        Indicates the version attribute.
+        """
+        return pulumi.get(self, "version_attribution")
+
+    @_builtins.property
+    @pulumi.getter(name="versionDescription")
+    def version_description(self) -> _builtins.str:
+        """
+        Indicates the version description.
+        """
+        return pulumi.get(self, "version_description")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Indicates the tenant ID.
+        """
+        return pulumi.get(self, "workspace_id")
 
 
 @pulumi.output_type

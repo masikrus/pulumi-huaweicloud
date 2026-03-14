@@ -77,105 +77,102 @@ __all__ = [
     'MemberStatusArgsDict',
     'MemberStatusReasonArgs',
     'MemberStatusReasonArgsDict',
+    'PoolAzAffinityArgs',
+    'PoolAzAffinityArgsDict',
     'PoolPersistenceArgs',
     'PoolPersistenceArgsDict',
     'SecurityPolicyListenerArgs',
     'SecurityPolicyListenerArgsDict',
 ]
 
-MYPY = False
+class ActiveStandbyPoolHealthmonitorArgsDict(TypedDict):
+    delay: pulumi.Input[_builtins.int]
+    """
+    Specifies the interval between health checks, in seconds. The value range is from
+    `1` to `50`. Changing this parameter will create a new resource.
+    """
+    max_retries: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of consecutive health checks when the health check
+    result of a backend server changes from **OFFLINE** to **ONLINE**. The value range is from `1` to `10`. Changing
+    this parameter will create a new resource.
+    """
+    timeout: pulumi.Input[_builtins.int]
+    """
+    Specifies the maximum time required for waiting for a response from the health
+    check, in seconds. It is recommended that you set the value less than that of parameter `delay`. The value range is
+    from `1` to `50`. Changing this parameter will create a new resource.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the health check protocol. Value options: **TCP**, **UDP_CONNECT**,
+    **HTTP**, and **HTTPS**.
+    + If the protocol of the backend server is **QUIC**, the value can only be **UDP_CONNECT**.
+    + If the protocol of the backend server is **UDP**, the value can only be **UDP_CONNECT**.
+    + If the protocol of the backend server is **TCP**, the value can only be **TCP**, **HTTP**, or **HTTPS**.
+    + If the protocol of the backend server is **HTTP**, the value can only be **TCP**, **HTTP**, or **HTTPS**.
+    + If the protocol of the backend server is **HTTPS**, the value can only be **TCP**, **HTTP**, or **HTTPS**.
 
-if not MYPY:
-    class ActiveStandbyPoolHealthmonitorArgsDict(TypedDict):
-        delay: pulumi.Input[_builtins.int]
-        """
-        Specifies the interval between health checks, in seconds. The value range is from
-        `1` to `50`. Changing this parameter will create a new resource.
-        """
-        max_retries: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of consecutive health checks when the health check
-        result of a backend server changes from **OFFLINE** to **ONLINE**. The value range is from `1` to `10`. Changing
-        this parameter will create a new resource.
-        """
-        timeout: pulumi.Input[_builtins.int]
-        """
-        Specifies the maximum time required for waiting for a response from the health
-        check, in seconds. It is recommended that you set the value less than that of parameter `delay`. The value range is
-        from `1` to `50`. Changing this parameter will create a new resource.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the health check protocol. Value options: **TCP**, **UDP_CONNECT**,
-        **HTTP**, and **HTTPS**.
-        + If the protocol of the backend server is **QUIC**, the value can only be **UDP_CONNECT**.
-        + If the protocol of the backend server is **UDP**, the value can only be **UDP_CONNECT**.
-        + If the protocol of the backend server is **TCP**, the value can only be **TCP**, **HTTP**, or **HTTPS**.
-        + If the protocol of the backend server is **HTTP**, the value can only be **TCP**, **HTTP**, or **HTTPS**.
-        + If the protocol of the backend server is **HTTPS**, the value can only be **TCP**, **HTTP**, or **HTTPS**.
+    Changing this parameter will create a new resource.
+    """
+    domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain name that HTTP requests are sent to during the health
+    check. The value can contain only digits, letters, hyphens (-), and periods (.) and must start with a digit or letter.
+    The value is left blank by default, indicating that the virtual IP address of the load balancer is used as the
+    destination address of HTTP requests. This parameter is available only when `type` is set to **HTTP**. The length
+    range of value is from `1` to `100`. Changing this parameter will create a new resource.
+    """
+    expected_codes: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the expected HTTP status code. This parameter will take
+    effect only when `type` is set to **HTTP** or **HTTPS**. The default value is 200. Multiple status codes can be
+    queried in the format of expected_codes=xxx&expected_codes=xxx. The length range of value is from `1` to `64`.
+    Value options:
+    + A specific value, for example, **200**
+    + A list of values that are separated with commas (,), for example, **200**, **202**
+    + A value range, for example, **200-204**
 
-        Changing this parameter will create a new resource.
-        """
-        domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the domain name that HTTP requests are sent to during the health
-        check. The value can contain only digits, letters, hyphens (-), and periods (.) and must start with a digit or letter.
-        The value is left blank by default, indicating that the virtual IP address of the load balancer is used as the
-        destination address of HTTP requests. This parameter is available only when `type` is set to **HTTP**. The length
-        range of value is from `1` to `100`. Changing this parameter will create a new resource.
-        """
-        expected_codes: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the expected HTTP status code. This parameter will take
-        effect only when `type` is set to **HTTP** or **HTTPS**. The default value is 200. Multiple status codes can be
-        queried in the format of expected_codes=xxx&expected_codes=xxx. The length range of value is from `1` to `64`.
-        Value options:
-        + A specific value, for example, **200**
-        + A list of values that are separated with commas (,), for example, **200**, **202**
-        + A value range, for example, **200-204**
+    Changing this parameter will create a new resource.
+    """
+    http_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the HTTP method. The value can be **GET**, **HEAD**, **POST**.
+    Default to **GET**. This parameter is available when `type` is set to **HTTP** or **HTTPS**.
 
-        Changing this parameter will create a new resource.
-        """
-        http_method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the HTTP method. The value can be **GET**, **HEAD**, **POST**.
-        Default to **GET**. This parameter is available when `type` is set to **HTTP** or **HTTPS**.
+    Changing this parameter will create a new resource.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The health check ID.
+    """
+    max_retries_down: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of consecutive health checks when the health check
+    result of a backend server changes from ONLINE to OFFLINE. The value range is from `1` to `10`. Defaults to `3`.
+    Changing this parameter will create a new resource.
+    """
+    monitor_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port used for the health check. If this parameter is left
+    blank, a port of the backend server will be used by default. The value range is from `1` to `65,535`. Changing this
+    parameter will create a new resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the health check name. The length range of value is from `1` to `255`.
+    Changing this parameter will create a new resource.
+    """
+    url_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the HTTP request path for the health check. The value must start
+    with a slash (/), and the default value is /. The value can contain letters, digits, hyphens (-), slashes (/),
+    periods (.), percentage signs (%), question marks (?), pound signs (#), ampersand signs (&), and the extended character
+    set **_;~!()*[]@$^:',+**. The length range of value is from `1` to `80`. Changing this parameter will create a new
+    resource.
 
-        Changing this parameter will create a new resource.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The health check ID.
-        """
-        max_retries_down: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of consecutive health checks when the health check
-        result of a backend server changes from ONLINE to OFFLINE. The value range is from `1` to `10`. Defaults to `3`.
-        Changing this parameter will create a new resource.
-        """
-        monitor_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port used for the health check. If this parameter is left
-        blank, a port of the backend server will be used by default. The value range is from `1` to `65,535`. Changing this
-        parameter will create a new resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the health check name. The length range of value is from `1` to `255`.
-        Changing this parameter will create a new resource.
-        """
-        url_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the HTTP request path for the health check. The value must start
-        with a slash (/), and the default value is /. The value can contain letters, digits, hyphens (-), slashes (/),
-        periods (.), percentage signs (%), question marks (?), pound signs (#), ampersand signs (&), and the extended character
-        set **_;~!()*[]@$^:',+**. The length range of value is from `1` to `80`. Changing this parameter will create a new
-        resource.
-
-        > **NOTE:** This parameter is available only when `type` is set to **HTTP** or **HTTPS**.
-        """
-elif False:
-    ActiveStandbyPoolHealthmonitorArgsDict: TypeAlias = Mapping[str, Any]
+    > **NOTE:** This parameter is available only when `type` is set to **HTTP** or **HTTPS**.
+    """
 
 @pulumi.input_type
 class ActiveStandbyPoolHealthmonitorArgs:
@@ -450,86 +447,83 @@ class ActiveStandbyPoolHealthmonitorArgs:
         pulumi.set(self, "url_path", value)
 
 
-if not MYPY:
-    class ActiveStandbyPoolMemberArgsDict(TypedDict):
-        address: pulumi.Input[_builtins.str]
-        """
-        Specifies the private IP address bound to the member.
-        + If `subnet_id` is left blank, IP as a Backend is enabled. In this case, the IP address must be an **IPv4** address.
-        + If `subnet_id` is not left blank, the IP address can be **IPv4** or **IPv6**. It must be in the subnet specified
-        by `subnet_id` and can only be bound to the primary NIC of the backend server.
+class ActiveStandbyPoolMemberArgsDict(TypedDict):
+    address: pulumi.Input[_builtins.str]
+    """
+    Specifies the private IP address bound to the member.
+    + If `subnet_id` is left blank, IP as a Backend is enabled. In this case, the IP address must be an **IPv4** address.
+    + If `subnet_id` is not left blank, the IP address can be **IPv4** or **IPv6**. It must be in the subnet specified
+    by `subnet_id` and can only be bound to the primary NIC of the backend server.
 
-        Changing this parameter will create a new resource.
-        """
-        role: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the member. Value options:
-        + **master**: active backend server.
-        + **slave**: standby backend server.
+    Changing this parameter will create a new resource.
+    """
+    role: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the member. Value options:
+    + **master**: active backend server.
+    + **slave**: standby backend server.
 
-        Changing this parameter will create a new resource.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The health check ID.
-        """
-        instance_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the ECS used as the member.
-        """
-        ip_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IP address version supported by active-standby pool.
-        The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
-        """
-        member_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the member.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the health check name. The length range of value is from `1` to `255`.
-        Changing this parameter will create a new resource.
-        """
-        operating_status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The health status of the backend server. The value can be:
-        + **ONLINE**: The backend server is running normally.
-        + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
-        + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
-        """
-        protocol_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port used by the member to receive requests. It is mandatory
-        if `any_port_enable` is **false**, and it does not take effect if `any_port_enable` is set to **true**. The value range
-        is from `1` to `65,535`. Changing this parameter will create a new resource.
-        """
-        reasons: NotRequired[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberReasonArgsDict']]]]
-        """
-        Why health check fails.
-        The reason structure is documented below.
-        """
-        statuses: NotRequired[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberStatusArgsDict']]]]
-        """
-        The health status of the backend server if `listener_id` under status is specified. If `listener_id` under
-        status is not specified, operating_status of member takes precedence.
-        The status structure is documented below.
-        """
-        subnet_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the IPv4 or IPv6 subnet where the member resides.
-        + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
-        + If this parameter is not passed, IP as a Backend has been enabled for the load balancer. In this case, IP as backend
-        servers must use private IPv4 addresses, and the protocol of the active-standby pool must be **TCP**, **HTTP**, or
-        **HTTPS**.
+    Changing this parameter will create a new resource.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The health check ID.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the ECS used as the member.
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP address version supported by active-standby pool.
+    The value can be **dualstack**, **v6**, or **v4**. Changing this parameter will create a new resource.
+    """
+    member_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the member.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the health check name. The length range of value is from `1` to `255`.
+    Changing this parameter will create a new resource.
+    """
+    operating_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The health status of the backend server. The value can be:
+    + **ONLINE**: The backend server is running normally.
+    + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+    + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+    """
+    protocol_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port used by the member to receive requests. It is mandatory
+    if `any_port_enable` is **false**, and it does not take effect if `any_port_enable` is set to **true**. The value range
+    is from `1` to `65,535`. Changing this parameter will create a new resource.
+    """
+    reasons: NotRequired[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberReasonArgsDict']]]]
+    """
+    Why health check fails.
+    The reason structure is documented below.
+    """
+    statuses: NotRequired[pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberStatusArgsDict']]]]
+    """
+    The health status of the backend server if `listener_id` under status is specified. If `listener_id` under
+    status is not specified, operating_status of member takes precedence.
+    The status structure is documented below.
+    """
+    subnet_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the IPv4 or IPv6 subnet where the member resides.
+    + The IPv4 or IPv6 subnet must be in the same VPC as the subnet of the load balancer.
+    + If this parameter is not passed, IP as a Backend has been enabled for the load balancer. In this case, IP as backend
+    servers must use private IPv4 addresses, and the protocol of the active-standby pool must be **TCP**, **HTTP**, or
+    **HTTPS**.
 
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
 
-        <a name="ELB_healthmonitor"></a>
-        The `healthmonitor` block supports:
-        """
-elif False:
-    ActiveStandbyPoolMemberArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ELB_healthmonitor"></a>
+    The `healthmonitor` block supports:
+    """
 
 @pulumi.input_type
 class ActiveStandbyPoolMemberArgs:
@@ -784,44 +778,41 @@ class ActiveStandbyPoolMemberArgs:
         pulumi.set(self, "subnet_id", value)
 
 
-if not MYPY:
-    class ActiveStandbyPoolMemberReasonArgsDict(TypedDict):
-        expected_response: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
-        **HTTPS** or **GRPC**.
-        + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
-        to other values, the status code ranges from **200** to **599**.
-        + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
-        + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
-        """
-        healthcheck_response: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The returned HTTP status code in the response. This parameter will take effect only when `type`
-        is set to **HTTP**, **HTTPS** or **GRPC**.
-        + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
-        other values, the status code ranges from **200** to **599**.
-        """
-        reason_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The code of the health check failures. The value can be:
-        + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
-        + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
-        + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
-        + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
-        + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
-        + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
-        + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
-        duration during a health check.
-        + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
-        check.
-        + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
-        timeout duration.
-        + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
-        + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
-        """
-elif False:
-    ActiveStandbyPoolMemberReasonArgsDict: TypeAlias = Mapping[str, Any]
+class ActiveStandbyPoolMemberReasonArgsDict(TypedDict):
+    expected_response: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The expected HTTP status code. This parameter will take effect only when `type` is set to **HTTP**,
+    **HTTPS** or **GRPC**.
+    + A specific status code. If `type` is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set
+    to other values, the status code ranges from **200** to **599**.
+    + A list of status codes that are separated with commas (,). A maximum of five status codes are supported.
+    + A status code range. Different ranges are separated with commas (,). A maximum of five ranges are supported.
+    """
+    healthcheck_response: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The returned HTTP status code in the response. This parameter will take effect only when `type`
+    is set to **HTTP**, **HTTPS** or **GRPC**.
+    + A specific status code. If type is set to **GRPC**, the status code ranges from **0** to **99**. If `type` is set to
+    other values, the status code ranges from **200** to **599**.
+    """
+    reason_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The code of the health check failures. The value can be:
+    + **CONNECT_TIMEOUT**: The connection with the backend server times out during a health check.
+    + **CONNECT_REFUSED**: The load balancer rejects connections with the backend server during a health check.
+    + **CONNECT_FAILED**: The load balancer fails to establish connections with the backend server during a health check.
+    + **CONNECT_INTERRUPT**: The load balancer is disconnected from the backend server during a health check.
+    + **SSL_HANDSHAKE_ERROR**: The SSL handshakes with the backend server fail during a health check.
+    + **RECV_RESPONSE_FAILED**: The load balancer fails to receive responses from the backend server during a health check.
+    + **RECV_RESPONSE_TIMEOUT**: The load balancer does not receive responses from the backend server within the timeout
+    duration during a health check.
+    + **SEND_REQUEST_FAILED**: The load balancer fails to send a health check request to the backend server during a health
+    check.
+    + **SEND_REQUEST_TIMEOUT**: The load balancer fails to send a health check request to the backend server within the
+    timeout duration.
+    + **RESPONSE_FORMAT_ERROR**: The load balancer receives invalid responses from the backend server during a health check.
+    + **RESPONSE_MISMATCH**: The response code received from the backend server is different from the preset code.
+    """
 
 @pulumi.input_type
 class ActiveStandbyPoolMemberReasonArgs:
@@ -922,24 +913,21 @@ class ActiveStandbyPoolMemberReasonArgs:
         pulumi.set(self, "reason_code", value)
 
 
-if not MYPY:
-    class ActiveStandbyPoolMemberStatusArgsDict(TypedDict):
-        listener_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the listener with which the active-standby pool is
-        associated. Changing this parameter will create a new resource.
+class ActiveStandbyPoolMemberStatusArgsDict(TypedDict):
+    listener_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the listener with which the active-standby pool is
+    associated. Changing this parameter will create a new resource.
 
-        > **NOTE:** At least one of `loadbalancer_id`, `listener_id`, `type` must be specified.
-        """
-        operating_status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The health status of the backend server. The value can be:
-        + **ONLINE**: The backend server is running normally.
-        + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
-        + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
-        """
-elif False:
-    ActiveStandbyPoolMemberStatusArgsDict: TypeAlias = Mapping[str, Any]
+    > **NOTE:** At least one of `loadbalancer_id`, `listener_id`, `type` must be specified.
+    """
+    operating_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The health status of the backend server. The value can be:
+    + **ONLINE**: The backend server is running normally.
+    + **NO_MONITOR**: No health check is configured for the backend server group to which the backend server belongs.
+    + **OFFLINE**: The cloud server used as the backend server is stopped or does not exist.
+    """
 
 @pulumi.input_type
 class ActiveStandbyPoolMemberStatusArgs:
@@ -992,20 +980,17 @@ class ActiveStandbyPoolMemberStatusArgs:
         pulumi.set(self, "operating_status", value)
 
 
-if not MYPY:
-    class ActiveStandbyPoolQuicCidHashStrategyArgsDict(TypedDict):
-        len: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lb_algorithm`
-        is **QUIC_CID**. Value range: **1** to **20**.
-        """
-        offset: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
-        `lb_algorithm` is **QUIC_CID**. Value range: **0** to **19**.
-        """
-elif False:
-    ActiveStandbyPoolQuicCidHashStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class ActiveStandbyPoolQuicCidHashStrategyArgsDict(TypedDict):
+    len: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The length of the hash factor in the connection ID, in byte. This parameter is valid only when `lb_algorithm`
+    is **QUIC_CID**. Value range: **1** to **20**.
+    """
+    offset: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The start position in the connection ID as the hash factor, in byte. This parameter is valid only when
+    `lb_algorithm` is **QUIC_CID**. Value range: **0** to **19**.
+    """
 
 @pulumi.input_type
 class ActiveStandbyPoolQuicCidHashStrategyArgs:
@@ -1050,18 +1035,15 @@ class ActiveStandbyPoolQuicCidHashStrategyArgs:
         pulumi.set(self, "offset", value)
 
 
-if not MYPY:
-    class IpgroupIpListArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        IP address or CIDR block.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Human-readable description for the ip.
-        """
-elif False:
-    IpgroupIpListArgsDict: TypeAlias = Mapping[str, Any]
+class IpgroupIpListArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    IP address or CIDR block.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Human-readable description for the ip.
+    """
 
 @pulumi.input_type
 class IpgroupIpListArgs:
@@ -1101,42 +1083,39 @@ class IpgroupIpListArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class L7policyFixedResponseConfigArgsDict(TypedDict):
-        status_code: pulumi.Input[_builtins.str]
-        """
-        The fixed HTTP status code configured in the forwarding rule. The value can be
-        any integer in the range of **200–299**, **400–499**, or **500–599**.
-        """
-        content_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The format of the response body. Value options: **text/plain**, **text/css**,
-        **text/html**, **application/javascript**, or **application/json**. Defaults to: **text/plain**.
-        """
-        insert_headers_config: NotRequired[pulumi.Input['L7policyFixedResponseConfigInsertHeadersConfigArgsDict']]
-        """
-        The header parameters to be added.
-        The insert_headers_config structure is documented below.
-        """
-        message_body: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The content of the response message body.
-        """
-        remove_headers_config: NotRequired[pulumi.Input['L7policyFixedResponseConfigRemoveHeadersConfigArgsDict']]
-        """
-        The header parameters to be removed.
-        The remove_headers_config structure is documented below.
-        """
-        traffic_limit_config: NotRequired[pulumi.Input['L7policyFixedResponseConfigTrafficLimitConfigArgsDict']]
-        """
-        The traffic limit config of the policy.
-        The traffic_limit_config structure is documented below.
+class L7policyFixedResponseConfigArgsDict(TypedDict):
+    status_code: pulumi.Input[_builtins.str]
+    """
+    The fixed HTTP status code configured in the forwarding rule. The value can be
+    any integer in the range of **200–299**, **400–499**, or **500–599**.
+    """
+    content_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The format of the response body. Value options: **text/plain**, **text/css**,
+    **text/html**, **application/javascript**, or **application/json**. Defaults to: **text/plain**.
+    """
+    insert_headers_config: NotRequired[pulumi.Input['L7policyFixedResponseConfigInsertHeadersConfigArgsDict']]
+    """
+    The header parameters to be added.
+    The insert_headers_config structure is documented below.
+    """
+    message_body: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The content of the response message body.
+    """
+    remove_headers_config: NotRequired[pulumi.Input['L7policyFixedResponseConfigRemoveHeadersConfigArgsDict']]
+    """
+    The header parameters to be removed.
+    The remove_headers_config structure is documented below.
+    """
+    traffic_limit_config: NotRequired[pulumi.Input['L7policyFixedResponseConfigTrafficLimitConfigArgsDict']]
+    """
+    The traffic limit config of the policy.
+    The traffic_limit_config structure is documented below.
 
-        <a name="insert_headers_config_object"></a>
-        The `insert_headers_config` block supports:
-        """
-elif False:
-    L7policyFixedResponseConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="insert_headers_config_object"></a>
+    The `insert_headers_config` block supports:
+    """
 
 @pulumi.input_type
 class L7policyFixedResponseConfigArgs:
@@ -1256,18 +1235,15 @@ class L7policyFixedResponseConfigArgs:
         pulumi.set(self, "traffic_limit_config", value)
 
 
-if not MYPY:
-    class L7policyFixedResponseConfigInsertHeadersConfigArgsDict(TypedDict):
-        configs: pulumi.Input[Sequence[pulumi.Input['L7policyFixedResponseConfigInsertHeadersConfigConfigArgsDict']]]
-        """
-        The list of request header parameters to be removed.
-        The remove_header_configs structure is documented below.
+class L7policyFixedResponseConfigInsertHeadersConfigArgsDict(TypedDict):
+    configs: pulumi.Input[Sequence[pulumi.Input['L7policyFixedResponseConfigInsertHeadersConfigConfigArgsDict']]]
+    """
+    The list of request header parameters to be removed.
+    The remove_header_configs structure is documented below.
 
-        <a name="remove_header_configs_object"></a>
-        The `remove_header_configs` block supports:
-        """
-elif False:
-    L7policyFixedResponseConfigInsertHeadersConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="remove_header_configs_object"></a>
+    The `remove_header_configs` block supports:
+    """
 
 @pulumi.input_type
 class L7policyFixedResponseConfigInsertHeadersConfigArgs:
@@ -1299,38 +1275,35 @@ class L7policyFixedResponseConfigInsertHeadersConfigArgs:
         pulumi.set(self, "configs", value)
 
 
-if not MYPY:
-    class L7policyFixedResponseConfigInsertHeadersConfigConfigArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The parameter name of the removed request header. The value can contain `1` to `40`
-        characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
-        **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
-        **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
-        **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
-        **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
-        **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
+class L7policyFixedResponseConfigInsertHeadersConfigConfigArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The parameter name of the removed request header. The value can contain `1` to `40`
+    characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
+    **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
+    **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
+    **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
+    **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
+    **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
 
-        <a name="traffic_limit_config_object"></a>
-        The `traffic_limit_config` block supports:
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        The value of the parameter. The value can contain `1` to `128`, only printable
-        characters in the range of ASCII code value 32<=ch<=127, asterisks (*) and question marks (?) are allowed, and it
-        cannot start or end with a space characters. If the value of `value_type` is **SYSTEM_DEFINED**, the value options is:
-        **CLIENT-PORT**, **CLIENT-IP**, **ELB-PROTOCOL**, **ELB-ID**, **ELB-PORT**, **ELB-EIP**, **ELB-VIP**.
+    <a name="traffic_limit_config_object"></a>
+    The `traffic_limit_config` block supports:
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value of the parameter. The value can contain `1` to `128`, only printable
+    characters in the range of ASCII code value 32<=ch<=127, asterisks (*) and question marks (?) are allowed, and it
+    cannot start or end with a space characters. If the value of `value_type` is **SYSTEM_DEFINED**, the value options is:
+    **CLIENT-PORT**, **CLIENT-IP**, **ELB-PROTOCOL**, **ELB-ID**, **ELB-PORT**, **ELB-EIP**, **ELB-VIP**.
 
-        <a name="remove_headers_config_object"></a>
-        The `remove_headers_config` block supports:
-        """
-        value_type: pulumi.Input[_builtins.str]
-        """
-        The value type of the parameter. Value options: **USER_DEFINED**,
-        **REFERENCE_HEADER**, **SYSTEM_DEFINED**.
-        """
-elif False:
-    L7policyFixedResponseConfigInsertHeadersConfigConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="remove_headers_config_object"></a>
+    The `remove_headers_config` block supports:
+    """
+    value_type: pulumi.Input[_builtins.str]
+    """
+    The value type of the parameter. Value options: **USER_DEFINED**,
+    **REFERENCE_HEADER**, **SYSTEM_DEFINED**.
+    """
 
 @pulumi.input_type
 class L7policyFixedResponseConfigInsertHeadersConfigConfigArgs:
@@ -1416,18 +1389,15 @@ class L7policyFixedResponseConfigInsertHeadersConfigConfigArgs:
         pulumi.set(self, "value_type", value)
 
 
-if not MYPY:
-    class L7policyFixedResponseConfigRemoveHeadersConfigArgsDict(TypedDict):
-        configs: pulumi.Input[Sequence[pulumi.Input['L7policyFixedResponseConfigRemoveHeadersConfigConfigArgsDict']]]
-        """
-        The list of request header parameters to be removed.
-        The remove_header_configs structure is documented below.
+class L7policyFixedResponseConfigRemoveHeadersConfigArgsDict(TypedDict):
+    configs: pulumi.Input[Sequence[pulumi.Input['L7policyFixedResponseConfigRemoveHeadersConfigConfigArgsDict']]]
+    """
+    The list of request header parameters to be removed.
+    The remove_header_configs structure is documented below.
 
-        <a name="remove_header_configs_object"></a>
-        The `remove_header_configs` block supports:
-        """
-elif False:
-    L7policyFixedResponseConfigRemoveHeadersConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="remove_header_configs_object"></a>
+    The `remove_header_configs` block supports:
+    """
 
 @pulumi.input_type
 class L7policyFixedResponseConfigRemoveHeadersConfigArgs:
@@ -1459,23 +1429,20 @@ class L7policyFixedResponseConfigRemoveHeadersConfigArgs:
         pulumi.set(self, "configs", value)
 
 
-if not MYPY:
-    class L7policyFixedResponseConfigRemoveHeadersConfigConfigArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The parameter name of the removed request header. The value can contain `1` to `40`
-        characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
-        **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
-        **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
-        **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
-        **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
-        **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
+class L7policyFixedResponseConfigRemoveHeadersConfigConfigArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The parameter name of the removed request header. The value can contain `1` to `40`
+    characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
+    **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
+    **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
+    **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
+    **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
+    **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
 
-        <a name="traffic_limit_config_object"></a>
-        The `traffic_limit_config` block supports:
-        """
-elif False:
-    L7policyFixedResponseConfigRemoveHeadersConfigConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="traffic_limit_config_object"></a>
+    The `traffic_limit_config` block supports:
+    """
 
 @pulumi.input_type
 class L7policyFixedResponseConfigRemoveHeadersConfigConfigArgs:
@@ -1517,29 +1484,26 @@ class L7policyFixedResponseConfigRemoveHeadersConfigConfigArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class L7policyFixedResponseConfigTrafficLimitConfigArgsDict(TypedDict):
-        burst: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The qps buffer.  
-        The valid value is range form `0` to `100,000`. When qps exceeds the limit, 503 will not be
-        returned, and requests that allow local burst size increases are supported.
-        """
-        per_source_ip_qps: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The single source qps of the policy.  
-        The valid value is range form `0` to `100,000`, `0` indicates no limit.
-        If the value of `qps` is not `0`, then the value of `per_source_ip_qps` must less than the value of `qps`.
-        If the `protocol` of the listener that the policy associated with is **QUIC**, then `per_source_ip_qps` is not
-        supported, the value should be `0` or empty.
-        """
-        qps: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The overall qps of the policy.  
-        The valid value is range form `0` to `100,000`, `0` indicates no limit.
-        """
-elif False:
-    L7policyFixedResponseConfigTrafficLimitConfigArgsDict: TypeAlias = Mapping[str, Any]
+class L7policyFixedResponseConfigTrafficLimitConfigArgsDict(TypedDict):
+    burst: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The qps buffer.  
+    The valid value is range form `0` to `100,000`. When qps exceeds the limit, 503 will not be
+    returned, and requests that allow local burst size increases are supported.
+    """
+    per_source_ip_qps: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The single source qps of the policy.  
+    The valid value is range form `0` to `100,000`, `0` indicates no limit.
+    If the value of `qps` is not `0`, then the value of `per_source_ip_qps` must less than the value of `qps`.
+    If the `protocol` of the listener that the policy associated with is **QUIC**, then `per_source_ip_qps` is not
+    supported, the value should be `0` or empty.
+    """
+    qps: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The overall qps of the policy.  
+    The valid value is range form `0` to `100,000`, `0` indicates no limit.
+    """
 
 @pulumi.input_type
 class L7policyFixedResponseConfigTrafficLimitConfigArgs:
@@ -1610,21 +1574,18 @@ class L7policyFixedResponseConfigTrafficLimitConfigArgs:
         pulumi.set(self, "qps", value)
 
 
-if not MYPY:
-    class L7policyRedirectPoolsConfigArgsDict(TypedDict):
-        pool_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the backend server group.
-        """
-        weight: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The weight of the backend server group.
+class L7policyRedirectPoolsConfigArgsDict(TypedDict):
+    pool_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the backend server group.
+    """
+    weight: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The weight of the backend server group.
 
-        <a name="redirect_pools_sticky_session_config_object"></a>
-        The `redirect_pools_sticky_session_config` block supports:
-        """
-elif False:
-    L7policyRedirectPoolsConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="redirect_pools_sticky_session_config_object"></a>
+    The `redirect_pools_sticky_session_config` block supports:
+    """
 
 @pulumi.input_type
 class L7policyRedirectPoolsConfigArgs:
@@ -1670,38 +1631,35 @@ class L7policyRedirectPoolsConfigArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class L7policyRedirectPoolsExtendConfigArgsDict(TypedDict):
-        insert_headers_config: NotRequired[pulumi.Input['L7policyRedirectPoolsExtendConfigInsertHeadersConfigArgsDict']]
-        """
-        The header parameters to be added.
-        The insert_headers_config structure is documented below.
-        """
-        remove_headers_config: NotRequired[pulumi.Input['L7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgsDict']]
-        """
-        The header parameters to be removed.
-        The remove_headers_config structure is documented below.
-        """
-        rewrite_url_config: NotRequired[pulumi.Input['L7policyRedirectPoolsExtendConfigRewriteUrlConfigArgsDict']]
-        """
-        The rewrite url config. This parameter is mandatory when `rewrite_url_enabled`
-        is set to **true**.
-        The rewrite_url_config structure is documented below.
-        """
-        rewrite_url_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the rewrite url is enabled.
-        """
-        traffic_limit_config: NotRequired[pulumi.Input['L7policyRedirectPoolsExtendConfigTrafficLimitConfigArgsDict']]
-        """
-        The traffic limit config of the policy.
-        The traffic_limit_config structure is documented below.
+class L7policyRedirectPoolsExtendConfigArgsDict(TypedDict):
+    insert_headers_config: NotRequired[pulumi.Input['L7policyRedirectPoolsExtendConfigInsertHeadersConfigArgsDict']]
+    """
+    The header parameters to be added.
+    The insert_headers_config structure is documented below.
+    """
+    remove_headers_config: NotRequired[pulumi.Input['L7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgsDict']]
+    """
+    The header parameters to be removed.
+    The remove_headers_config structure is documented below.
+    """
+    rewrite_url_config: NotRequired[pulumi.Input['L7policyRedirectPoolsExtendConfigRewriteUrlConfigArgsDict']]
+    """
+    The rewrite url config. This parameter is mandatory when `rewrite_url_enabled`
+    is set to **true**.
+    The rewrite_url_config structure is documented below.
+    """
+    rewrite_url_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the rewrite url is enabled.
+    """
+    traffic_limit_config: NotRequired[pulumi.Input['L7policyRedirectPoolsExtendConfigTrafficLimitConfigArgsDict']]
+    """
+    The traffic limit config of the policy.
+    The traffic_limit_config structure is documented below.
 
-        <a name="insert_headers_config_object"></a>
-        The `insert_headers_config` block supports:
-        """
-elif False:
-    L7policyRedirectPoolsExtendConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="insert_headers_config_object"></a>
+    The `insert_headers_config` block supports:
+    """
 
 @pulumi.input_type
 class L7policyRedirectPoolsExtendConfigArgs:
@@ -1806,18 +1764,15 @@ class L7policyRedirectPoolsExtendConfigArgs:
         pulumi.set(self, "traffic_limit_config", value)
 
 
-if not MYPY:
-    class L7policyRedirectPoolsExtendConfigInsertHeadersConfigArgsDict(TypedDict):
-        configs: pulumi.Input[Sequence[pulumi.Input['L7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgsDict']]]
-        """
-        The list of request header parameters to be removed.
-        The remove_header_configs structure is documented below.
+class L7policyRedirectPoolsExtendConfigInsertHeadersConfigArgsDict(TypedDict):
+    configs: pulumi.Input[Sequence[pulumi.Input['L7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgsDict']]]
+    """
+    The list of request header parameters to be removed.
+    The remove_header_configs structure is documented below.
 
-        <a name="remove_header_configs_object"></a>
-        The `remove_header_configs` block supports:
-        """
-elif False:
-    L7policyRedirectPoolsExtendConfigInsertHeadersConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="remove_header_configs_object"></a>
+    The `remove_header_configs` block supports:
+    """
 
 @pulumi.input_type
 class L7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs:
@@ -1849,38 +1804,35 @@ class L7policyRedirectPoolsExtendConfigInsertHeadersConfigArgs:
         pulumi.set(self, "configs", value)
 
 
-if not MYPY:
-    class L7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The parameter name of the removed request header. The value can contain `1` to `40`
-        characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
-        **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
-        **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
-        **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
-        **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
-        **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
+class L7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The parameter name of the removed request header. The value can contain `1` to `40`
+    characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
+    **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
+    **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
+    **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
+    **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
+    **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
 
-        <a name="traffic_limit_config_object"></a>
-        The `traffic_limit_config` block supports:
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        The value of the parameter. The value can contain `1` to `128`, only printable
-        characters in the range of ASCII code value 32<=ch<=127, asterisks (*) and question marks (?) are allowed, and it
-        cannot start or end with a space characters. If the value of `value_type` is **SYSTEM_DEFINED**, the value options is:
-        **CLIENT-PORT**, **CLIENT-IP**, **ELB-PROTOCOL**, **ELB-ID**, **ELB-PORT**, **ELB-EIP**, **ELB-VIP**.
+    <a name="traffic_limit_config_object"></a>
+    The `traffic_limit_config` block supports:
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value of the parameter. The value can contain `1` to `128`, only printable
+    characters in the range of ASCII code value 32<=ch<=127, asterisks (*) and question marks (?) are allowed, and it
+    cannot start or end with a space characters. If the value of `value_type` is **SYSTEM_DEFINED**, the value options is:
+    **CLIENT-PORT**, **CLIENT-IP**, **ELB-PROTOCOL**, **ELB-ID**, **ELB-PORT**, **ELB-EIP**, **ELB-VIP**.
 
-        <a name="remove_headers_config_object"></a>
-        The `remove_headers_config` block supports:
-        """
-        value_type: pulumi.Input[_builtins.str]
-        """
-        The value type of the parameter. Value options: **USER_DEFINED**,
-        **REFERENCE_HEADER**, **SYSTEM_DEFINED**.
-        """
-elif False:
-    L7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="remove_headers_config_object"></a>
+    The `remove_headers_config` block supports:
+    """
+    value_type: pulumi.Input[_builtins.str]
+    """
+    The value type of the parameter. Value options: **USER_DEFINED**,
+    **REFERENCE_HEADER**, **SYSTEM_DEFINED**.
+    """
 
 @pulumi.input_type
 class L7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs:
@@ -1966,18 +1918,15 @@ class L7policyRedirectPoolsExtendConfigInsertHeadersConfigConfigArgs:
         pulumi.set(self, "value_type", value)
 
 
-if not MYPY:
-    class L7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgsDict(TypedDict):
-        configs: pulumi.Input[Sequence[pulumi.Input['L7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgsDict']]]
-        """
-        The list of request header parameters to be removed.
-        The remove_header_configs structure is documented below.
+class L7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgsDict(TypedDict):
+    configs: pulumi.Input[Sequence[pulumi.Input['L7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgsDict']]]
+    """
+    The list of request header parameters to be removed.
+    The remove_header_configs structure is documented below.
 
-        <a name="remove_header_configs_object"></a>
-        The `remove_header_configs` block supports:
-        """
-elif False:
-    L7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="remove_header_configs_object"></a>
+    The `remove_header_configs` block supports:
+    """
 
 @pulumi.input_type
 class L7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs:
@@ -2009,23 +1958,20 @@ class L7policyRedirectPoolsExtendConfigRemoveHeadersConfigArgs:
         pulumi.set(self, "configs", value)
 
 
-if not MYPY:
-    class L7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The parameter name of the removed request header. The value can contain `1` to `40`
-        characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
-        **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
-        **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
-        **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
-        **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
-        **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
+class L7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The parameter name of the removed request header. The value can contain `1` to `40`
+    characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
+    **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
+    **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
+    **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
+    **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
+    **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
 
-        <a name="traffic_limit_config_object"></a>
-        The `traffic_limit_config` block supports:
-        """
-elif False:
-    L7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="traffic_limit_config_object"></a>
+    The `traffic_limit_config` block supports:
+    """
 
 @pulumi.input_type
 class L7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs:
@@ -2067,31 +2013,28 @@ class L7policyRedirectPoolsExtendConfigRemoveHeadersConfigConfigArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class L7policyRedirectPoolsExtendConfigRewriteUrlConfigArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name that requests are redirected to. The value can contain only letters,
-        digits, hyphens (-), and periods (.) and must start with a letter or digit. Defaults to **${host}**, indicating
-        that the host of the request will be used.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path that requests are redirected to. The value can contain only letters, digits,
-        and special characters _~';@^- %#&$.*+?,=!:|/()[]{} and must start with a slash (/).
-        Defaults to **${path}**, indicating that the path of the request will be used.
-        """
-        query: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The query string set in the URL for redirection. The value is case-sensitive and can
-        contain only letters, digits, and special characters !$&'()*+,-./:;=?@^_\\`. Defaults to **${query}**, indicating that
-        the query string of the request will be used.
-        For example, in the URL `https://www.xxx.com:8080/elb?type=loadbalancer`, **${query}** indicates **type=loadbalancer**.
-        If this parameter is set to **${query}&name=my_name**, the URL will be redirected to
-        URL `https://www.xxx.com:8080/elb?type=loadbalancer&name=my_name`.
-        """
-elif False:
-    L7policyRedirectPoolsExtendConfigRewriteUrlConfigArgsDict: TypeAlias = Mapping[str, Any]
+class L7policyRedirectPoolsExtendConfigRewriteUrlConfigArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name that requests are redirected to. The value can contain only letters,
+    digits, hyphens (-), and periods (.) and must start with a letter or digit. Defaults to **${host}**, indicating
+    that the host of the request will be used.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path that requests are redirected to. The value can contain only letters, digits,
+    and special characters _~';@^- %#&$.*+?,=!:|/()[]{} and must start with a slash (/).
+    Defaults to **${path}**, indicating that the path of the request will be used.
+    """
+    query: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The query string set in the URL for redirection. The value is case-sensitive and can
+    contain only letters, digits, and special characters !$&'()*+,-./:;=?@^_\\`. Defaults to **${query}**, indicating that
+    the query string of the request will be used.
+    For example, in the URL `https://www.xxx.com:8080/elb?type=loadbalancer`, **${query}** indicates **type=loadbalancer**.
+    If this parameter is set to **${query}&name=my_name**, the URL will be redirected to
+    URL `https://www.xxx.com:8080/elb?type=loadbalancer&name=my_name`.
+    """
 
 @pulumi.input_type
 class L7policyRedirectPoolsExtendConfigRewriteUrlConfigArgs:
@@ -2166,29 +2109,26 @@ class L7policyRedirectPoolsExtendConfigRewriteUrlConfigArgs:
         pulumi.set(self, "query", value)
 
 
-if not MYPY:
-    class L7policyRedirectPoolsExtendConfigTrafficLimitConfigArgsDict(TypedDict):
-        burst: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The qps buffer.  
-        The valid value is range form `0` to `100,000`. When qps exceeds the limit, 503 will not be
-        returned, and requests that allow local burst size increases are supported.
-        """
-        per_source_ip_qps: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The single source qps of the policy.  
-        The valid value is range form `0` to `100,000`, `0` indicates no limit.
-        If the value of `qps` is not `0`, then the value of `per_source_ip_qps` must less than the value of `qps`.
-        If the `protocol` of the listener that the policy associated with is **QUIC**, then `per_source_ip_qps` is not
-        supported, the value should be `0` or empty.
-        """
-        qps: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The overall qps of the policy.  
-        The valid value is range form `0` to `100,000`, `0` indicates no limit.
-        """
-elif False:
-    L7policyRedirectPoolsExtendConfigTrafficLimitConfigArgsDict: TypeAlias = Mapping[str, Any]
+class L7policyRedirectPoolsExtendConfigTrafficLimitConfigArgsDict(TypedDict):
+    burst: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The qps buffer.  
+    The valid value is range form `0` to `100,000`. When qps exceeds the limit, 503 will not be
+    returned, and requests that allow local burst size increases are supported.
+    """
+    per_source_ip_qps: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The single source qps of the policy.  
+    The valid value is range form `0` to `100,000`, `0` indicates no limit.
+    If the value of `qps` is not `0`, then the value of `per_source_ip_qps` must less than the value of `qps`.
+    If the `protocol` of the listener that the policy associated with is **QUIC**, then `per_source_ip_qps` is not
+    supported, the value should be `0` or empty.
+    """
+    qps: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The overall qps of the policy.  
+    The valid value is range form `0` to `100,000`, `0` indicates no limit.
+    """
 
 @pulumi.input_type
 class L7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs:
@@ -2259,21 +2199,18 @@ class L7policyRedirectPoolsExtendConfigTrafficLimitConfigArgs:
         pulumi.set(self, "qps", value)
 
 
-if not MYPY:
-    class L7policyRedirectPoolsStickySessionConfigArgsDict(TypedDict):
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether enable config session persistence between backend server groups.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The timeout of the session persistence.
+class L7policyRedirectPoolsStickySessionConfigArgsDict(TypedDict):
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether enable config session persistence between backend server groups.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The timeout of the session persistence.
 
-        <a name="redirect_pools_extend_config_object"></a>
-        The `redirect_pools_extend_config` block supports:
-        """
-elif False:
-    L7policyRedirectPoolsStickySessionConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="redirect_pools_extend_config_object"></a>
+    The `redirect_pools_extend_config` block supports:
+    """
 
 @pulumi.input_type
 class L7policyRedirectPoolsStickySessionConfigArgs:
@@ -2320,56 +2257,53 @@ class L7policyRedirectPoolsStickySessionConfigArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class L7policyRedirectUrlConfigArgsDict(TypedDict):
-        status_code: pulumi.Input[_builtins.str]
-        """
-        The fixed HTTP status code configured in the forwarding rule. The value can be
-        any integer in the range of **200–299**, **400–499**, or **500–599**.
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name that requests are redirected to. The value can contain only letters,
-        digits, hyphens (-), and periods (.) and must start with a letter or digit. Defaults to **${host}**, indicating
-        that the host of the request will be used.
-        """
-        insert_headers_config: NotRequired[pulumi.Input['L7policyRedirectUrlConfigInsertHeadersConfigArgsDict']]
-        """
-        The header parameters to be added.
-        The insert_headers_config structure is documented below.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path that requests are redirected to. The value can contain only letters, digits,
-        and special characters _~';@^- %#&$.*+?,=!:|/()[]{} and must start with a slash (/).
-        Defaults to **${path}**, indicating that the path of the request will be used.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The  port that requests are redirected to. Defaults to **${port}**, indicating that
-        the port of the request will be used.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protocol for redirection. Value options: **HTTP**, **HTTPS**, **${protocol}**.
-        Defaults to **${protocol}**, indicating that the path of the request will be used.
-        """
-        query: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The query string set in the URL for redirection. The value is case-sensitive and can
-        contain only letters, digits, and special characters !$&'()*+,-./:;=?@^_\\`. Defaults to **${query}**, indicating that
-        the query string of the request will be used.
-        For example, in the URL `https://www.xxx.com:8080/elb?type=loadbalancer`, **${query}** indicates **type=loadbalancer**.
-        If this parameter is set to **${query}&name=my_name**, the URL will be redirected to
-        URL `https://www.xxx.com:8080/elb?type=loadbalancer&name=my_name`.
-        """
-        remove_headers_config: NotRequired[pulumi.Input['L7policyRedirectUrlConfigRemoveHeadersConfigArgsDict']]
-        """
-        The header parameters to be removed.
-        The remove_headers_config structure is documented below.
-        """
-elif False:
-    L7policyRedirectUrlConfigArgsDict: TypeAlias = Mapping[str, Any]
+class L7policyRedirectUrlConfigArgsDict(TypedDict):
+    status_code: pulumi.Input[_builtins.str]
+    """
+    The fixed HTTP status code configured in the forwarding rule. The value can be
+    any integer in the range of **200–299**, **400–499**, or **500–599**.
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name that requests are redirected to. The value can contain only letters,
+    digits, hyphens (-), and periods (.) and must start with a letter or digit. Defaults to **${host}**, indicating
+    that the host of the request will be used.
+    """
+    insert_headers_config: NotRequired[pulumi.Input['L7policyRedirectUrlConfigInsertHeadersConfigArgsDict']]
+    """
+    The header parameters to be added.
+    The insert_headers_config structure is documented below.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path that requests are redirected to. The value can contain only letters, digits,
+    and special characters _~';@^- %#&$.*+?,=!:|/()[]{} and must start with a slash (/).
+    Defaults to **${path}**, indicating that the path of the request will be used.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The  port that requests are redirected to. Defaults to **${port}**, indicating that
+    the port of the request will be used.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protocol for redirection. Value options: **HTTP**, **HTTPS**, **${protocol}**.
+    Defaults to **${protocol}**, indicating that the path of the request will be used.
+    """
+    query: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The query string set in the URL for redirection. The value is case-sensitive and can
+    contain only letters, digits, and special characters !$&'()*+,-./:;=?@^_\\`. Defaults to **${query}**, indicating that
+    the query string of the request will be used.
+    For example, in the URL `https://www.xxx.com:8080/elb?type=loadbalancer`, **${query}** indicates **type=loadbalancer**.
+    If this parameter is set to **${query}&name=my_name**, the URL will be redirected to
+    URL `https://www.xxx.com:8080/elb?type=loadbalancer&name=my_name`.
+    """
+    remove_headers_config: NotRequired[pulumi.Input['L7policyRedirectUrlConfigRemoveHeadersConfigArgsDict']]
+    """
+    The header parameters to be removed.
+    The remove_headers_config structure is documented below.
+    """
 
 @pulumi.input_type
 class L7policyRedirectUrlConfigArgs:
@@ -2533,18 +2467,15 @@ class L7policyRedirectUrlConfigArgs:
         pulumi.set(self, "remove_headers_config", value)
 
 
-if not MYPY:
-    class L7policyRedirectUrlConfigInsertHeadersConfigArgsDict(TypedDict):
-        configs: pulumi.Input[Sequence[pulumi.Input['L7policyRedirectUrlConfigInsertHeadersConfigConfigArgsDict']]]
-        """
-        The list of request header parameters to be removed.
-        The remove_header_configs structure is documented below.
+class L7policyRedirectUrlConfigInsertHeadersConfigArgsDict(TypedDict):
+    configs: pulumi.Input[Sequence[pulumi.Input['L7policyRedirectUrlConfigInsertHeadersConfigConfigArgsDict']]]
+    """
+    The list of request header parameters to be removed.
+    The remove_header_configs structure is documented below.
 
-        <a name="remove_header_configs_object"></a>
-        The `remove_header_configs` block supports:
-        """
-elif False:
-    L7policyRedirectUrlConfigInsertHeadersConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="remove_header_configs_object"></a>
+    The `remove_header_configs` block supports:
+    """
 
 @pulumi.input_type
 class L7policyRedirectUrlConfigInsertHeadersConfigArgs:
@@ -2576,38 +2507,35 @@ class L7policyRedirectUrlConfigInsertHeadersConfigArgs:
         pulumi.set(self, "configs", value)
 
 
-if not MYPY:
-    class L7policyRedirectUrlConfigInsertHeadersConfigConfigArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The parameter name of the removed request header. The value can contain `1` to `40`
-        characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
-        **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
-        **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
-        **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
-        **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
-        **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
+class L7policyRedirectUrlConfigInsertHeadersConfigConfigArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The parameter name of the removed request header. The value can contain `1` to `40`
+    characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
+    **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
+    **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
+    **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
+    **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
+    **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
 
-        <a name="traffic_limit_config_object"></a>
-        The `traffic_limit_config` block supports:
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        The value of the parameter. The value can contain `1` to `128`, only printable
-        characters in the range of ASCII code value 32<=ch<=127, asterisks (*) and question marks (?) are allowed, and it
-        cannot start or end with a space characters. If the value of `value_type` is **SYSTEM_DEFINED**, the value options is:
-        **CLIENT-PORT**, **CLIENT-IP**, **ELB-PROTOCOL**, **ELB-ID**, **ELB-PORT**, **ELB-EIP**, **ELB-VIP**.
+    <a name="traffic_limit_config_object"></a>
+    The `traffic_limit_config` block supports:
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value of the parameter. The value can contain `1` to `128`, only printable
+    characters in the range of ASCII code value 32<=ch<=127, asterisks (*) and question marks (?) are allowed, and it
+    cannot start or end with a space characters. If the value of `value_type` is **SYSTEM_DEFINED**, the value options is:
+    **CLIENT-PORT**, **CLIENT-IP**, **ELB-PROTOCOL**, **ELB-ID**, **ELB-PORT**, **ELB-EIP**, **ELB-VIP**.
 
-        <a name="remove_headers_config_object"></a>
-        The `remove_headers_config` block supports:
-        """
-        value_type: pulumi.Input[_builtins.str]
-        """
-        The value type of the parameter. Value options: **USER_DEFINED**,
-        **REFERENCE_HEADER**, **SYSTEM_DEFINED**.
-        """
-elif False:
-    L7policyRedirectUrlConfigInsertHeadersConfigConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="remove_headers_config_object"></a>
+    The `remove_headers_config` block supports:
+    """
+    value_type: pulumi.Input[_builtins.str]
+    """
+    The value type of the parameter. Value options: **USER_DEFINED**,
+    **REFERENCE_HEADER**, **SYSTEM_DEFINED**.
+    """
 
 @pulumi.input_type
 class L7policyRedirectUrlConfigInsertHeadersConfigConfigArgs:
@@ -2693,18 +2621,15 @@ class L7policyRedirectUrlConfigInsertHeadersConfigConfigArgs:
         pulumi.set(self, "value_type", value)
 
 
-if not MYPY:
-    class L7policyRedirectUrlConfigRemoveHeadersConfigArgsDict(TypedDict):
-        configs: pulumi.Input[Sequence[pulumi.Input['L7policyRedirectUrlConfigRemoveHeadersConfigConfigArgsDict']]]
-        """
-        The list of request header parameters to be removed.
-        The remove_header_configs structure is documented below.
+class L7policyRedirectUrlConfigRemoveHeadersConfigArgsDict(TypedDict):
+    configs: pulumi.Input[Sequence[pulumi.Input['L7policyRedirectUrlConfigRemoveHeadersConfigConfigArgsDict']]]
+    """
+    The list of request header parameters to be removed.
+    The remove_header_configs structure is documented below.
 
-        <a name="remove_header_configs_object"></a>
-        The `remove_header_configs` block supports:
-        """
-elif False:
-    L7policyRedirectUrlConfigRemoveHeadersConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="remove_header_configs_object"></a>
+    The `remove_header_configs` block supports:
+    """
 
 @pulumi.input_type
 class L7policyRedirectUrlConfigRemoveHeadersConfigArgs:
@@ -2736,23 +2661,20 @@ class L7policyRedirectUrlConfigRemoveHeadersConfigArgs:
         pulumi.set(self, "configs", value)
 
 
-if not MYPY:
-    class L7policyRedirectUrlConfigRemoveHeadersConfigConfigArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The parameter name of the removed request header. The value can contain `1` to `40`
-        characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
-        **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
-        **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
-        **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
-        **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
-        **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
+class L7policyRedirectUrlConfigRemoveHeadersConfigConfigArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The parameter name of the removed request header. The value can contain `1` to `40`
+    characters, only a-z, digits, hyphens (-) and underscore (_) are allowed, and it can not be the following characters:
+    **connection**, **upgrade**, **content-length**, **transfer-encoding**, **keep-alive**, **te**, **host**, **cookie**,
+    **remoteip**, **authority**, **x-forwarded-host**, **x-forwarded-for**, **x-forwarded-for-port**,
+    **x-forwarded-tls-certificate-id**, **x-forwarded-tls-protocol**, **x-forwarded-tls-cipher**, **x-forwarded-elb-ip**,
+    **x-forwarded-port**, **x-forwarded-elb-id**, **x-forwarded-elb-vip**, **x-real-ip**, **x-forwarded-proto**,
+    **x-nuwa-trace-ne-in**, **x-nuwa-trace-ne-out**.
 
-        <a name="traffic_limit_config_object"></a>
-        The `traffic_limit_config` block supports:
-        """
-elif False:
-    L7policyRedirectUrlConfigRemoveHeadersConfigConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="traffic_limit_config_object"></a>
+    The `traffic_limit_config` block supports:
+    """
 
 @pulumi.input_type
 class L7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs:
@@ -2794,47 +2716,44 @@ class L7policyRedirectUrlConfigRemoveHeadersConfigConfigArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class L7ruleConditionArgsDict(TypedDict):
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the match item.
-        + If `type` is set to **HOST_NAME**, it indicates the domain name, which can contain 1 to 128 characters, including
-        letters, digits, hyphens (-), periods (.), and asterisks (), and must start with a letter, digit, or asterisk ().
-        If you want to use a wildcard domain name, enter an asterisk (*) as the leftmost label of the domain name.
-        + If `type` is set to **PATH**, it indicates the request path, which can contain 1 to 128 characters. If
-        `compare_type` is set to **STARTS_WITH** or **EQUAL_TO** for the forwarding rule, the value must start with a
-        slash (/) and can contain only letters, digits, and special characters _~';@^-%#&$.*+?,=!:|/()[]{}.
-        + If `type` is set to **HEADER**, it indicates the value of the HTTP header parameter. The value can contain 1 to 128
-        characters. Asterisks (*) and question marks (?)are allowed, but spaces and double quotation marks are not allowed.
-        An asterisk can match zero or more characters, and a question mark can match 1 character.
-        + If `type` is set to **QUERY_STRING**, it indicates the value of the query parameter. The value is case-sensitive
-        and can contain 1 to 128 characters. Spaces, square brackets ([]), curly brackets ({}), angle brackets (<>),
-        backslashes (), double quotation marks (""), pound signs (#), ampersands (&), vertical bars (|), percent signs (%),
-        and tildes (~) are not supported. Asterisks (*)and question marks (?) are allowed. An asterisk can match zero or
-        more characters, and a question mark can match 1 character.
-        + If `type` is set to **METHOD**, it indicates the HTTP method. The value can be **GET**, **PUT**, **POST**,
-        **DELETE**, **PATCH**, **HEAD**, or **OPTIONS**.
-        + If `type` is set to **SOURCE_IP**, it indicates the source IP address of the request. The value is an **IPv4** or
-        **IPv6** CIDR block, for example, 192.168.0.2/32 or 2049::49/64.
+class L7ruleConditionArgsDict(TypedDict):
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the match item.
+    + If `type` is set to **HOST_NAME**, it indicates the domain name, which can contain 1 to 128 characters, including
+    letters, digits, hyphens (-), periods (.), and asterisks (), and must start with a letter, digit, or asterisk ().
+    If you want to use a wildcard domain name, enter an asterisk (*) as the leftmost label of the domain name.
+    + If `type` is set to **PATH**, it indicates the request path, which can contain 1 to 128 characters. If
+    `compare_type` is set to **STARTS_WITH** or **EQUAL_TO** for the forwarding rule, the value must start with a
+    slash (/) and can contain only letters, digits, and special characters _~';@^-%#&$.*+?,=!:|/()[]{}.
+    + If `type` is set to **HEADER**, it indicates the value of the HTTP header parameter. The value can contain 1 to 128
+    characters. Asterisks (*) and question marks (?)are allowed, but spaces and double quotation marks are not allowed.
+    An asterisk can match zero or more characters, and a question mark can match 1 character.
+    + If `type` is set to **QUERY_STRING**, it indicates the value of the query parameter. The value is case-sensitive
+    and can contain 1 to 128 characters. Spaces, square brackets ([]), curly brackets ({}), angle brackets (<>),
+    backslashes (), double quotation marks (""), pound signs (#), ampersands (&), vertical bars (|), percent signs (%),
+    and tildes (~) are not supported. Asterisks (*)and question marks (?) are allowed. An asterisk can match zero or
+    more characters, and a question mark can match 1 character.
+    + If `type` is set to **METHOD**, it indicates the HTTP method. The value can be **GET**, **PUT**, **POST**,
+    **DELETE**, **PATCH**, **HEAD**, or **OPTIONS**.
+    + If `type` is set to **SOURCE_IP**, it indicates the source IP address of the request. The value is an **IPv4** or
+    **IPv6** CIDR block, for example, 192.168.0.2/32 or 2049::49/64.
 
-        > **NOTE:** All values in the conditions list in the same rule must be unique.
-        """
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the key of match item.
-        + If `type` is set to **HOST_NAME**, **PATH**, **METHOD**, or **SOURCE_IP**, this parameter is left blank.
-        + If `type` is set to **HEADER**, it indicates the name of the HTTP header parameter. It can contain 1 to 40
-        characters, including letters, digits, hyphens (-), and underscores (_).
-        + If `type` is set to **QUERY_STRING**, it indicates the name of the query parameter. It is case-sensitive and can
-        contain 1 to 128 characters. Spaces, square brackets ([]), curly brackets ({}), angle brackets (<>), backslashes (),
-        double quotation marks (" "), pound signs (#), ampersands (&), vertical bars (|), percent signs (%), and tildes (~)
-        are not supported.
+    > **NOTE:** All values in the conditions list in the same rule must be unique.
+    """
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key of match item.
+    + If `type` is set to **HOST_NAME**, **PATH**, **METHOD**, or **SOURCE_IP**, this parameter is left blank.
+    + If `type` is set to **HEADER**, it indicates the name of the HTTP header parameter. It can contain 1 to 40
+    characters, including letters, digits, hyphens (-), and underscores (_).
+    + If `type` is set to **QUERY_STRING**, it indicates the name of the query parameter. It is case-sensitive and can
+    contain 1 to 128 characters. Spaces, square brackets ([]), curly brackets ({}), angle brackets (<>), backslashes (),
+    double quotation marks (" "), pound signs (#), ampersands (&), vertical bars (|), percent signs (%), and tildes (~)
+    are not supported.
 
-        > **NOTE:** All keys in the conditions list in the same rule must be the same.
-        """
-elif False:
-    L7ruleConditionArgsDict: TypeAlias = Mapping[str, Any]
+    > **NOTE:** All keys in the conditions list in the same rule must be the same.
+    """
 
 @pulumi.input_type
 class L7ruleConditionArgs:
@@ -2932,18 +2851,15 @@ class L7ruleConditionArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class ListenerPortRangeArgsDict(TypedDict):
-        end_port: pulumi.Input[_builtins.int]
-        """
-        Specifies the end port. Changing this creates a new listener.
-        """
-        start_port: pulumi.Input[_builtins.int]
-        """
-        Specifies the start port. Changing this creates a new listener.
-        """
-elif False:
-    ListenerPortRangeArgsDict: TypeAlias = Mapping[str, Any]
+class ListenerPortRangeArgsDict(TypedDict):
+    end_port: pulumi.Input[_builtins.int]
+    """
+    Specifies the end port. Changing this creates a new listener.
+    """
+    start_port: pulumi.Input[_builtins.int]
+    """
+    Specifies the start port. Changing this creates a new listener.
+    """
 
 @pulumi.input_type
 class ListenerPortRangeArgs:
@@ -2982,22 +2898,19 @@ class ListenerPortRangeArgs:
         pulumi.set(self, "start_port", value)
 
 
-if not MYPY:
-    class MemberReasonArgsDict(TypedDict):
-        expected_response: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The code of the health check failures.
-        """
-        healthcheck_response: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The expected HTTP status code.
-        """
-        reason_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The returned HTTP status code in the response.
-        """
-elif False:
-    MemberReasonArgsDict: TypeAlias = Mapping[str, Any]
+class MemberReasonArgsDict(TypedDict):
+    expected_response: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The code of the health check failures.
+    """
+    healthcheck_response: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The expected HTTP status code.
+    """
+    reason_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The returned HTTP status code in the response.
+    """
 
 @pulumi.input_type
 class MemberReasonArgs:
@@ -3054,23 +2967,20 @@ class MemberReasonArgs:
         pulumi.set(self, "reason_code", value)
 
 
-if not MYPY:
-    class MemberStatusArgsDict(TypedDict):
-        listener_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The listener ID.
-        """
-        operating_status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The health status of the backend server.
-        """
-        reasons: NotRequired[pulumi.Input[Sequence[pulumi.Input['MemberStatusReasonArgsDict']]]]
-        """
-        Why health check fails.
-        The reason structure is documented below.
-        """
-elif False:
-    MemberStatusArgsDict: TypeAlias = Mapping[str, Any]
+class MemberStatusArgsDict(TypedDict):
+    listener_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The listener ID.
+    """
+    operating_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The health status of the backend server.
+    """
+    reasons: NotRequired[pulumi.Input[Sequence[pulumi.Input['MemberStatusReasonArgsDict']]]]
+    """
+    Why health check fails.
+    The reason structure is documented below.
+    """
 
 @pulumi.input_type
 class MemberStatusArgs:
@@ -3129,22 +3039,19 @@ class MemberStatusArgs:
         pulumi.set(self, "reasons", value)
 
 
-if not MYPY:
-    class MemberStatusReasonArgsDict(TypedDict):
-        expected_response: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The code of the health check failures.
-        """
-        healthcheck_response: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The expected HTTP status code.
-        """
-        reason_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The returned HTTP status code in the response.
-        """
-elif False:
-    MemberStatusReasonArgsDict: TypeAlias = Mapping[str, Any]
+class MemberStatusReasonArgsDict(TypedDict):
+    expected_response: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The code of the health check failures.
+    """
+    healthcheck_response: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The expected HTTP status code.
+    """
+    reason_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The returned HTTP status code in the response.
+    """
 
 @pulumi.input_type
 class MemberStatusReasonArgs:
@@ -3201,35 +3108,241 @@ class MemberStatusReasonArgs:
         pulumi.set(self, "reason_code", value)
 
 
-if not MYPY:
-    class PoolPersistenceArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the sticky session type. Value options: **SOURCE_IP**,
-        **HTTP_COOKIE**, and **APP_COOKIE**.
+class PoolAzAffinityArgsDict(TypedDict):
+    az_minimum_healthy_member_count: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a number that is used to determine the health of an
+    AZ. If the number of healthy servers in the AZ of the load balancer falls below the specified value,
+    `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_count` shows the number of healthy servers
+    in a backend server group of an AZ. An integer ranging from **-1** to **10000**. An integer from **0** to **10000**
+    indicates the number of healthy servers in the AZ of the load balancer. **-1** indicates that
+    `az_minimum_healthy_member_percentage` takes effect.
+    + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+    be set to **-1** at the same time.
+    + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+    must be set to **-1**.
+    """
+    az_minimum_healthy_member_percentage: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a percentage that is used to determine the
+    health of an AZ. If the percentage of healthy servers in the AZ of the load balancer falls below the specified value,
+    `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_percentage` shows the percentage of backend
+    servers that are healthy in a backend server group of an AZ. The number of healthy servers is rounded up. An integer
+    ranging from **-1** to **100**. An integer from **0** to **100** indicates the percentage of healthy servers in the AZ
+    of the load balancer. **-1** indicates that `az_minimum_healthy_member_count` takes effect.
+    + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+    be set to **-1** at the same time.
+    + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+    must be set to -1.
+    """
+    az_unhealthy_fallback_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies how traffic will be distributed across backend servers
+    in an AZ if the percentage or number of healthy servers in the AZ of the load balancer falls below the specified
+    value.
+    Value options:
+    + **forward_to_all_member_of_local_az**: forwards requests across all backend servers in the same AZ as the load
+    balancer, even if some servers are unhealthy.
+    + **forward_to_healthy_member_of_remote_az**: forwards requests across healthy backend servers in different AZs from
+    the load balancer.
+    + **forward_to_all_healthy_member**: forwards requests across healthy backend servers in all AZs.
+    + **forward_to_all_member**: forwards requests across all backend servers in all AZs, even if some servers are
+    unhealthy.
 
-        > **NOTE:** 1. If the protocol of the backend server group is **TCP** or **UDP**, only **SOURCE_IP** takes effect.
-        <br/> 2. If the protocol of the backend server group is **HTTP** or **HTTPS**, the value can only be **HTTP_COOKIE**.
-        <br/> 3. If the backend server group protocol is **QUIC**, sticky session must be enabled with type set to
-        **SOURCE_IP**.
+    Defaults to **forward_to_all_member_of_local_az**.
+    """
+    enable: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to enable AZ affinity for the backend server group. If this parameter
+    is set to **true**, ELB forwards traffic across the backend servers in the same AZ as the load balancer.
+    + AZ affinity cannot be enabled for a backend server group that has IP as backend servers whose availability_zone is
+    not specified.
+    + AZ affinity cannot be enabled if the backend server is bound to a TLS listener.
+    + This parameter is available for backend server groups that are associated with **IP**, **UDP**, and
+    **TCP** listeners.
+    + If the parameter is set to **true**, parameter `minimum_healthy_member_count` will be ignored.
+
+    Value options: **true**, **false**.
+    """
+
+@pulumi.input_type
+class PoolAzAffinityArgs:
+    def __init__(__self__, *,
+                 az_minimum_healthy_member_count: Optional[pulumi.Input[_builtins.str]] = None,
+                 az_minimum_healthy_member_percentage: Optional[pulumi.Input[_builtins.str]] = None,
+                 az_unhealthy_fallback_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        cookie_name: NotRequired[pulumi.Input[_builtins.str]]
+        :param pulumi.Input[_builtins.str] az_minimum_healthy_member_count: Specifies a number that is used to determine the health of an
+               AZ. If the number of healthy servers in the AZ of the load balancer falls below the specified value,
+               `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_count` shows the number of healthy servers
+               in a backend server group of an AZ. An integer ranging from **-1** to **10000**. An integer from **0** to **10000**
+               indicates the number of healthy servers in the AZ of the load balancer. **-1** indicates that
+               `az_minimum_healthy_member_percentage` takes effect.
+               + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+               be set to **-1** at the same time.
+               + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+               must be set to **-1**.
+        :param pulumi.Input[_builtins.str] az_minimum_healthy_member_percentage: Specifies a percentage that is used to determine the
+               health of an AZ. If the percentage of healthy servers in the AZ of the load balancer falls below the specified value,
+               `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_percentage` shows the percentage of backend
+               servers that are healthy in a backend server group of an AZ. The number of healthy servers is rounded up. An integer
+               ranging from **-1** to **100**. An integer from **0** to **100** indicates the percentage of healthy servers in the AZ
+               of the load balancer. **-1** indicates that `az_minimum_healthy_member_count` takes effect.
+               + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+               be set to **-1** at the same time.
+               + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+               must be set to -1.
+        :param pulumi.Input[_builtins.str] az_unhealthy_fallback_strategy: Specifies how traffic will be distributed across backend servers
+               in an AZ if the percentage or number of healthy servers in the AZ of the load balancer falls below the specified
+               value.
+               Value options:
+               + **forward_to_all_member_of_local_az**: forwards requests across all backend servers in the same AZ as the load
+               balancer, even if some servers are unhealthy.
+               + **forward_to_healthy_member_of_remote_az**: forwards requests across healthy backend servers in different AZs from
+               the load balancer.
+               + **forward_to_all_healthy_member**: forwards requests across healthy backend servers in all AZs.
+               + **forward_to_all_member**: forwards requests across all backend servers in all AZs, even if some servers are
+               unhealthy.
+               
+               Defaults to **forward_to_all_member_of_local_az**.
+        :param pulumi.Input[_builtins.str] enable: Specifies whether to enable AZ affinity for the backend server group. If this parameter
+               is set to **true**, ELB forwards traffic across the backend servers in the same AZ as the load balancer.
+               + AZ affinity cannot be enabled for a backend server group that has IP as backend servers whose availability_zone is
+               not specified.
+               + AZ affinity cannot be enabled if the backend server is bound to a TLS listener.
+               + This parameter is available for backend server groups that are associated with **IP**, **UDP**, and
+               **TCP** listeners.
+               + If the parameter is set to **true**, parameter `minimum_healthy_member_count` will be ignored.
+               
+               Value options: **true**, **false**.
         """
-        Specifies the cookie name. The value can contain only letters, digits,
-        hyphens (-), underscores (_), and periods (.). It is required if `type` of `persistence` is set to **APP_COOKIE**.
+        if az_minimum_healthy_member_count is not None:
+            pulumi.set(__self__, "az_minimum_healthy_member_count", az_minimum_healthy_member_count)
+        if az_minimum_healthy_member_percentage is not None:
+            pulumi.set(__self__, "az_minimum_healthy_member_percentage", az_minimum_healthy_member_percentage)
+        if az_unhealthy_fallback_strategy is not None:
+            pulumi.set(__self__, "az_unhealthy_fallback_strategy", az_unhealthy_fallback_strategy)
+        if enable is not None:
+            pulumi.set(__self__, "enable", enable)
+
+    @_builtins.property
+    @pulumi.getter(name="azMinimumHealthyMemberCount")
+    def az_minimum_healthy_member_count(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
+        Specifies a number that is used to determine the health of an
+        AZ. If the number of healthy servers in the AZ of the load balancer falls below the specified value,
+        `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_count` shows the number of healthy servers
+        in a backend server group of an AZ. An integer ranging from **-1** to **10000**. An integer from **0** to **10000**
+        indicates the number of healthy servers in the AZ of the load balancer. **-1** indicates that
+        `az_minimum_healthy_member_percentage` takes effect.
+        + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+        be set to **-1** at the same time.
+        + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+        must be set to **-1**.
         """
-        Specifies the sticky session timeout duration in minutes. This parameter is
-        invalid when `type` is set to **APP_COOKIE**. The value range varies depending on the protocol of the backend server
-        group:
-        + When the protocol of the backend server group is **TCP** or **UDP**, the value ranges from `1` to `60`, and
-        defaults to `1`.
-        + When the protocol of the backend server group is **HTTP** or **HTTPS**, the value ranges from `1` to `1,440`,
-        and defaults to `1,440`.
+        return pulumi.get(self, "az_minimum_healthy_member_count")
+
+    @az_minimum_healthy_member_count.setter
+    def az_minimum_healthy_member_count(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "az_minimum_healthy_member_count", value)
+
+    @_builtins.property
+    @pulumi.getter(name="azMinimumHealthyMemberPercentage")
+    def az_minimum_healthy_member_percentage(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-elif False:
-    PoolPersistenceArgsDict: TypeAlias = Mapping[str, Any]
+        Specifies a percentage that is used to determine the
+        health of an AZ. If the percentage of healthy servers in the AZ of the load balancer falls below the specified value,
+        `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_percentage` shows the percentage of backend
+        servers that are healthy in a backend server group of an AZ. The number of healthy servers is rounded up. An integer
+        ranging from **-1** to **100**. An integer from **0** to **100** indicates the percentage of healthy servers in the AZ
+        of the load balancer. **-1** indicates that `az_minimum_healthy_member_count` takes effect.
+        + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+        be set to **-1** at the same time.
+        + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+        must be set to -1.
+        """
+        return pulumi.get(self, "az_minimum_healthy_member_percentage")
+
+    @az_minimum_healthy_member_percentage.setter
+    def az_minimum_healthy_member_percentage(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "az_minimum_healthy_member_percentage", value)
+
+    @_builtins.property
+    @pulumi.getter(name="azUnhealthyFallbackStrategy")
+    def az_unhealthy_fallback_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies how traffic will be distributed across backend servers
+        in an AZ if the percentage or number of healthy servers in the AZ of the load balancer falls below the specified
+        value.
+        Value options:
+        + **forward_to_all_member_of_local_az**: forwards requests across all backend servers in the same AZ as the load
+        balancer, even if some servers are unhealthy.
+        + **forward_to_healthy_member_of_remote_az**: forwards requests across healthy backend servers in different AZs from
+        the load balancer.
+        + **forward_to_all_healthy_member**: forwards requests across healthy backend servers in all AZs.
+        + **forward_to_all_member**: forwards requests across all backend servers in all AZs, even if some servers are
+        unhealthy.
+
+        Defaults to **forward_to_all_member_of_local_az**.
+        """
+        return pulumi.get(self, "az_unhealthy_fallback_strategy")
+
+    @az_unhealthy_fallback_strategy.setter
+    def az_unhealthy_fallback_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "az_unhealthy_fallback_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether to enable AZ affinity for the backend server group. If this parameter
+        is set to **true**, ELB forwards traffic across the backend servers in the same AZ as the load balancer.
+        + AZ affinity cannot be enabled for a backend server group that has IP as backend servers whose availability_zone is
+        not specified.
+        + AZ affinity cannot be enabled if the backend server is bound to a TLS listener.
+        + This parameter is available for backend server groups that are associated with **IP**, **UDP**, and
+        **TCP** listeners.
+        + If the parameter is set to **true**, parameter `minimum_healthy_member_count` will be ignored.
+
+        Value options: **true**, **false**.
+        """
+        return pulumi.get(self, "enable")
+
+    @enable.setter
+    def enable(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable", value)
+
+
+class PoolPersistenceArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the sticky session type. Value options: **SOURCE_IP**,
+    **HTTP_COOKIE**, and **APP_COOKIE**.
+
+    > **NOTE:** 1. If the protocol of the backend server group is **TCP** or **UDP**, only **SOURCE_IP** takes effect.
+    <br/> 2. If the protocol of the backend server group is **HTTP** or **HTTPS**, the value can only be **HTTP_COOKIE**.
+    <br/> 3. If the backend server group protocol is **QUIC**, sticky session must be enabled with type set to
+    **SOURCE_IP**.
+    """
+    cookie_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cookie name. The value can contain only letters, digits,
+    hyphens (-), underscores (_), and periods (.). It is required if `type` of `persistence` is set to **APP_COOKIE**.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the sticky session timeout duration in minutes. This parameter is
+    invalid when `type` is set to **APP_COOKIE**. The value range varies depending on the protocol of the backend server
+    group:
+    + When the protocol of the backend server group is **TCP** or **UDP**, the value ranges from `1` to `60`, and
+    defaults to `1`.
+    + When the protocol of the backend server group is **HTTP** or **HTTPS**, the value ranges from `1` to `1,440`,
+    and defaults to `1,440`.
+
+    <a name="az_affinity_struct"></a>
+    The `az_affinity` block supports:
+    """
 
 @pulumi.input_type
 class PoolPersistenceArgs:
@@ -3254,6 +3367,9 @@ class PoolPersistenceArgs:
                defaults to `1`.
                + When the protocol of the backend server group is **HTTP** or **HTTPS**, the value ranges from `1` to `1,440`,
                and defaults to `1,440`.
+               
+               <a name="az_affinity_struct"></a>
+               The `az_affinity` block supports:
         """
         pulumi.set(__self__, "type", type)
         if cookie_name is not None:
@@ -3303,6 +3419,9 @@ class PoolPersistenceArgs:
         defaults to `1`.
         + When the protocol of the backend server group is **HTTP** or **HTTPS**, the value ranges from `1` to `1,440`,
         and defaults to `1,440`.
+
+        <a name="az_affinity_struct"></a>
+        The `az_affinity` block supports:
         """
         return pulumi.get(self, "timeout")
 
@@ -3311,14 +3430,11 @@ class PoolPersistenceArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class SecurityPolicyListenerArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The listener id.
-        """
-elif False:
-    SecurityPolicyListenerArgsDict: TypeAlias = Mapping[str, Any]
+class SecurityPolicyListenerArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The listener id.
+    """
 
 @pulumi.input_type
 class SecurityPolicyListenerArgs:

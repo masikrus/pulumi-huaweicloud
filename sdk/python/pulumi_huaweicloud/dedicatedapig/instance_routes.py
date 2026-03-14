@@ -24,6 +24,7 @@ class InstanceRoutesArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceRoutes resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the routes belong.
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nexthops: Specifies the configuration of the next-hop routes.
@@ -86,6 +87,7 @@ class _InstanceRoutesState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceRoutes resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the routes belong.
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nexthops: Specifies the configuration of the next-hop routes.
@@ -175,11 +177,10 @@ class InstanceRoutes(pulumi.CustomResource):
 
         Routes can be imported using their related dedicated instance ID (`instance_id`), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/instanceRoutes:InstanceRoutes test 128001b3c5eb4d3e91a8da9c0f46420f
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -220,11 +221,10 @@ class InstanceRoutes(pulumi.CustomResource):
 
         Routes can be imported using their related dedicated instance ID (`instance_id`), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/instanceRoutes:InstanceRoutes test 128001b3c5eb4d3e91a8da9c0f46420f
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceRoutesArgs args: The arguments to use to populate this resource's properties.

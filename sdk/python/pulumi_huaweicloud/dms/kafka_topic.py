@@ -34,6 +34,7 @@ class KafkaTopicArgs:
                  sync_replication: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a KafkaTopic resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DMS kafka instance to which the topic belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] partitions: Specifies the partition number. The value ranges from `1` to `200`.
@@ -245,6 +246,7 @@ class _KafkaTopicState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaTopic resources.
+
         :param pulumi.Input[_builtins.int] aging_time: Specifies the aging time in hours.
                The value ranges from `1` to `720` and defaults to `72`.
         :param pulumi.Input[Sequence[pulumi.Input['KafkaTopicConfigArgs']]] configs: Specifies the other topic configurations.
@@ -527,6 +529,7 @@ class KafkaTopic(pulumi.CustomResource):
         $ pulumi import huaweicloud:Dms/kafkaTopic:KafkaTopic topic c8057fe5-23a8-46ef-ad83-c0055b4e0c5c/topic_1
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] aging_time: Specifies the aging time in hours.
@@ -584,6 +587,7 @@ class KafkaTopic(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaTopic:KafkaTopic topic c8057fe5-23a8-46ef-ad83-c0055b4e0c5c/topic_1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaTopicArgs args: The arguments to use to populate this resource's properties.

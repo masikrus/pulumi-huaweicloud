@@ -16,10 +16,15 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AclIpCidersOrder',
     'AclIpCidr',
     'AclIpRange',
+    'AclIpRangesOrder',
+    'AgencyEnterpriseProjectRole',
     'AgencyProjectRole',
+    'AgencyV1EnterpriseProjectRole',
     'AgencyV1ProjectRole',
+    'AgencyV3EnterpriseProjectRole',
     'AgencyV3ProjectRole',
     'ProtectionPolicySelfManagement',
     'ProviderAccessConfig',
@@ -29,15 +34,66 @@ __all__ = [
     'ProviderConversionRule',
     'ProviderConversionRuleLocal',
     'ProviderConversionRuleRemote',
+    'ProviderProtocolLink',
+    'GetAccessKeyCredentialResult',
     'GetAgenciesAgencyResult',
+    'GetAuthProjectsProjectResult',
+    'GetCatalogCatalogResult',
+    'GetCatalogCatalogEndpointResult',
+    'GetDomainQuotaResourceResult',
+    'GetEndpointsEndpointResult',
+    'GetEnterpriseProjectGroupsGroupResult',
+    'GetEnterpriseProjectGroupsGroupEnterpriseProjectResult',
+    'GetEnterpriseProjectUsersUserResult',
+    'GetEnterpriseProjectUsersUserEnterpriseProjectResult',
+    'GetFederationDomainsDomainResult',
+    'GetFederationProjectsProjectResult',
     'GetGroupUserResult',
+    'GetLoginProtectsLoginProtectResult',
     'GetPermissionsPermissionResult',
+    'GetProjectQuotaResourceResult',
     'GetProjectsProjectResult',
+    'GetProviderProtocolsProtocolResult',
+    'GetProviderProtocolsProtocolLinkResult',
     'GetProvidersIdentityProviderResult',
     'GetProvidersIdentityProviderLinkResult',
+    'GetRegionsRegionResult',
+    'GetRoleAssignmentsRoleAssignmentResult',
+    'GetRolesRoleResult',
+    'GetRolesRoleLinkResult',
+    'GetServicesServiceResult',
+    'GetUserProjectsProjectResult',
+    'GetUserTokenInfoCatalogResult',
+    'GetUserTokenInfoCatalogEndpointResult',
+    'GetUserTokenInfoProjectResult',
+    'GetUserTokenInfoRoleResult',
+    'GetUserTokenInfoUserResult',
     'GetUsersUserResult',
     'GetVirtualMfaDevicesVirtualMfaDeviceResult',
 ]
+
+@pulumi.output_type
+class AclIpCidersOrder(dict):
+    def __init__(__self__, *,
+                 cidr: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str cidr: Specifies the IPv4 CIDR block which allow access through console or API.
+               
+               > CIDR blocks are not allowed to conflict with or duplicate each other.
+        """
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+
+    @_builtins.property
+    @pulumi.getter
+    def cidr(self) -> Optional[_builtins.str]:
+        """
+        Specifies the IPv4 CIDR block which allow access through console or API.
+
+        > CIDR blocks are not allowed to conflict with or duplicate each other.
+        """
+        return pulumi.get(self, "cidr")
+
 
 @pulumi.output_type
 class AclIpCidr(dict):
@@ -45,9 +101,11 @@ class AclIpCidr(dict):
                  cidr: _builtins.str,
                  description: Optional[_builtins.str] = None):
         """
-        :param _builtins.str cidr: Specifies the IPv4 CIDR block, for example, **192.168.0.0/24**.
+        :param _builtins.str cidr: Specifies the IPv4 CIDR block which allow access through console or API.
+               
+               > CIDR blocks are not allowed to conflict with or duplicate each other.
         :param _builtins.str description: Specifies a description about an IP address range. This parameter can contain a
-               maximum of 255 characters and the following characters are not allowed:**@#%^&*<>\\\\**.
+               maximum of `255` characters and the following characters are not allowed:**@#%^&*<>\\\\**.
         """
         pulumi.set(__self__, "cidr", cidr)
         if description is not None:
@@ -57,7 +115,9 @@ class AclIpCidr(dict):
     @pulumi.getter
     def cidr(self) -> _builtins.str:
         """
-        Specifies the IPv4 CIDR block, for example, **192.168.0.0/24**.
+        Specifies the IPv4 CIDR block which allow access through console or API.
+
+        > CIDR blocks are not allowed to conflict with or duplicate each other.
         """
         return pulumi.get(self, "cidr")
 
@@ -66,7 +126,7 @@ class AclIpCidr(dict):
     def description(self) -> Optional[_builtins.str]:
         """
         Specifies a description about an IP address range. This parameter can contain a
-        maximum of 255 characters and the following characters are not allowed:**@#%^&*<>\\\\**.
+        maximum of `255` characters and the following characters are not allowed:**@#%^&*<>\\\\**.
         """
         return pulumi.get(self, "description")
 
@@ -77,9 +137,11 @@ class AclIpRange(dict):
                  range: _builtins.str,
                  description: Optional[_builtins.str] = None):
         """
-        :param _builtins.str range: Specifies the Ip address range, for example, **0.0.0.0-255.255.255.0**.
+        :param _builtins.str range: Specifies the IPv4 address range which allow access through console or API.
+               
+               > IP address ranges are not allowed to conflict with or duplicate each other.
         :param _builtins.str description: Specifies a description about an IP address range. This parameter can contain a
-               maximum of 255 characters and the following characters are not allowed:**@#%^&*<>\\\\**.
+               maximum of `255` characters and the following characters are not allowed:**@#%^&*<>\\\\**.
         """
         pulumi.set(__self__, "range", range)
         if description is not None:
@@ -89,7 +151,9 @@ class AclIpRange(dict):
     @pulumi.getter
     def range(self) -> _builtins.str:
         """
-        Specifies the Ip address range, for example, **0.0.0.0-255.255.255.0**.
+        Specifies the IPv4 address range which allow access through console or API.
+
+        > IP address ranges are not allowed to conflict with or duplicate each other.
         """
         return pulumi.get(self, "range")
 
@@ -98,9 +162,78 @@ class AclIpRange(dict):
     def description(self) -> Optional[_builtins.str]:
         """
         Specifies a description about an IP address range. This parameter can contain a
-        maximum of 255 characters and the following characters are not allowed:**@#%^&*<>\\\\**.
+        maximum of `255` characters and the following characters are not allowed:**@#%^&*<>\\\\**.
         """
         return pulumi.get(self, "description")
+
+
+@pulumi.output_type
+class AclIpRangesOrder(dict):
+    def __init__(__self__, *,
+                 range: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str range: Specifies the IPv4 address range which allow access through console or API.
+               
+               > IP address ranges are not allowed to conflict with or duplicate each other.
+        """
+        if range is not None:
+            pulumi.set(__self__, "range", range)
+
+    @_builtins.property
+    @pulumi.getter
+    def range(self) -> Optional[_builtins.str]:
+        """
+        Specifies the IPv4 address range which allow access through console or API.
+
+        > IP address ranges are not allowed to conflict with or duplicate each other.
+        """
+        return pulumi.get(self, "range")
+
+
+@pulumi.output_type
+class AgencyEnterpriseProjectRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "enterpriseProject":
+            suggest = "enterprise_project"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AgencyEnterpriseProjectRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AgencyEnterpriseProjectRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AgencyEnterpriseProjectRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enterprise_project: _builtins.str,
+                 roles: Sequence[_builtins.str]):
+        """
+        :param _builtins.str enterprise_project: Specifies the name of enterprise project.
+        :param Sequence[_builtins.str] roles: Specifies the list of role names used for assignment in a specified enterprise project.
+        """
+        pulumi.set(__self__, "enterprise_project", enterprise_project)
+        pulumi.set(__self__, "roles", roles)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProject")
+    def enterprise_project(self) -> _builtins.str:
+        """
+        Specifies the name of enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of role names used for assignment in a specified enterprise project.
+        """
+        return pulumi.get(self, "roles")
 
 
 @pulumi.output_type
@@ -110,7 +243,7 @@ class AgencyProjectRole(dict):
                  roles: Sequence[_builtins.str]):
         """
         :param _builtins.str project: Specifies the name of project.
-        :param Sequence[_builtins.str] roles: Specifies an array of role names.
+        :param Sequence[_builtins.str] roles: Specifies the list of role names used for assignment in a specified enterprise project.
         """
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "roles", roles)
@@ -127,7 +260,53 @@ class AgencyProjectRole(dict):
     @pulumi.getter
     def roles(self) -> Sequence[_builtins.str]:
         """
-        Specifies an array of role names.
+        Specifies the list of role names used for assignment in a specified enterprise project.
+        """
+        return pulumi.get(self, "roles")
+
+
+@pulumi.output_type
+class AgencyV1EnterpriseProjectRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "enterpriseProject":
+            suggest = "enterprise_project"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AgencyV1EnterpriseProjectRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AgencyV1EnterpriseProjectRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AgencyV1EnterpriseProjectRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enterprise_project: _builtins.str,
+                 roles: Sequence[_builtins.str]):
+        """
+        :param _builtins.str enterprise_project: The name of the enterprise project.
+        :param Sequence[_builtins.str] roles: The list of role names used for assignment in a specified enterprise project.
+        """
+        pulumi.set(__self__, "enterprise_project", enterprise_project)
+        pulumi.set(__self__, "roles", roles)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProject")
+    def enterprise_project(self) -> _builtins.str:
+        """
+        The name of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        The list of role names used for assignment in a specified enterprise project.
         """
         return pulumi.get(self, "roles")
 
@@ -137,17 +316,73 @@ class AgencyV1ProjectRole(dict):
     def __init__(__self__, *,
                  project: _builtins.str,
                  roles: Sequence[_builtins.str]):
+        """
+        :param _builtins.str project: The name of the project.
+        :param Sequence[_builtins.str] roles: The list of role names used for assignment in a specified project.
+        """
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "roles", roles)
 
     @_builtins.property
     @pulumi.getter
     def project(self) -> _builtins.str:
+        """
+        The name of the project.
+        """
         return pulumi.get(self, "project")
 
     @_builtins.property
     @pulumi.getter
     def roles(self) -> Sequence[_builtins.str]:
+        """
+        The list of role names used for assignment in a specified project.
+        """
+        return pulumi.get(self, "roles")
+
+
+@pulumi.output_type
+class AgencyV3EnterpriseProjectRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "enterpriseProject":
+            suggest = "enterprise_project"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AgencyV3EnterpriseProjectRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AgencyV3EnterpriseProjectRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AgencyV3EnterpriseProjectRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enterprise_project: _builtins.str,
+                 roles: Sequence[_builtins.str]):
+        """
+        :param _builtins.str enterprise_project: The name of the enterprise project.
+        :param Sequence[_builtins.str] roles: The list of role names used for assignment in a specified enterprise project.
+        """
+        pulumi.set(__self__, "enterprise_project", enterprise_project)
+        pulumi.set(__self__, "roles", roles)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProject")
+    def enterprise_project(self) -> _builtins.str:
+        """
+        The name of the enterprise project.
+        """
+        return pulumi.get(self, "enterprise_project")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        The list of role names used for assignment in a specified enterprise project.
+        """
         return pulumi.get(self, "roles")
 
 
@@ -156,17 +391,27 @@ class AgencyV3ProjectRole(dict):
     def __init__(__self__, *,
                  project: _builtins.str,
                  roles: Sequence[_builtins.str]):
+        """
+        :param _builtins.str project: The name of the project.
+        :param Sequence[_builtins.str] roles: The list of role names used for assignment in a specified project.
+        """
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "roles", roles)
 
     @_builtins.property
     @pulumi.getter
     def project(self) -> _builtins.str:
+        """
+        The name of the project.
+        """
         return pulumi.get(self, "project")
 
     @_builtins.property
     @pulumi.getter
     def roles(self) -> Sequence[_builtins.str]:
+        """
+        The list of role names used for assignment in a specified project.
+        """
         return pulumi.get(self, "roles")
 
 
@@ -283,8 +528,8 @@ class ProviderAccessConfig(dict):
                  response_type: Optional[_builtins.str] = None,
                  scopes: Optional[Sequence[_builtins.str]] = None):
         """
-        :param _builtins.str access_type: Specifies the access type of the identity provider.
-               Available options are:
+        :param _builtins.str access_type: Specifies the access type of the identity provider.  
+               The valid values are as follows:
                + **program**: programmatic access only.
                + **program_console**: programmatic access and management console access.
         :param _builtins.str client_id: Specifies the ID of a client registered with the OpenID Connect identity provider.
@@ -324,8 +569,8 @@ class ProviderAccessConfig(dict):
     @pulumi.getter(name="accessType")
     def access_type(self) -> _builtins.str:
         """
-        Specifies the access type of the identity provider.
-        Available options are:
+        Specifies the access type of the identity provider.  
+        The valid values are as follows:
         + **program**: programmatic access only.
         + **program_console**: programmatic access and management console access.
         """
@@ -406,12 +651,17 @@ class ProviderConversionConversionRule(dict):
                  locals: Sequence['outputs.ProviderConversionConversionRuleLocal'],
                  remotes: Sequence['outputs.ProviderConversionConversionRuleRemote']):
         """
-        :param Sequence['ProviderConversionConversionRuleLocalArgs'] locals: Specifies the federated user information on the cloud platform.
-        :param Sequence['ProviderConversionConversionRuleRemoteArgs'] remotes: Specifies Federated user information in the IDP system.
+        :param Sequence['ProviderConversionConversionRuleLocalArgs'] locals: Specifies the federated user information on the cloud platform.  
+               The local structure is documented below.
+        :param Sequence['ProviderConversionConversionRuleRemoteArgs'] remotes: Specifies Federated user information in the IDP system.  
+               The remote structure is documented below.
                
-               > **NOTE:** If the protocol of identity provider is SAML, this field is an expression consisting of assertion
+               > **NOTE:** 1.If the protocol of identity provider is **SAML**, this field is an expression consisting of assertion
                attributes and operators.
-               If the protocol of identity provider is OIDC, the value of this field is determined by the ID token.
+               <br/>2.If the protocol of identity provider is **OIDC**, the value of this field is determined by the ID token.
+               
+               <a name="identity_provider_conversion_local"></a>
+               The `local` block supports:
         """
         pulumi.set(__self__, "locals", locals)
         pulumi.set(__self__, "remotes", remotes)
@@ -420,7 +670,8 @@ class ProviderConversionConversionRule(dict):
     @pulumi.getter
     def locals(self) -> Sequence['outputs.ProviderConversionConversionRuleLocal']:
         """
-        Specifies the federated user information on the cloud platform.
+        Specifies the federated user information on the cloud platform.  
+        The local structure is documented below.
         """
         return pulumi.get(self, "locals")
 
@@ -428,11 +679,15 @@ class ProviderConversionConversionRule(dict):
     @pulumi.getter
     def remotes(self) -> Sequence['outputs.ProviderConversionConversionRuleRemote']:
         """
-        Specifies Federated user information in the IDP system.
+        Specifies Federated user information in the IDP system.  
+        The remote structure is documented below.
 
-        > **NOTE:** If the protocol of identity provider is SAML, this field is an expression consisting of assertion
+        > **NOTE:** 1.If the protocol of identity provider is **SAML**, this field is an expression consisting of assertion
         attributes and operators.
-        If the protocol of identity provider is OIDC, the value of this field is determined by the ID token.
+        <br/>2.If the protocol of identity provider is **OIDC**, the value of this field is determined by the ID token.
+
+        <a name="identity_provider_conversion_local"></a>
+        The `local` block supports:
         """
         return pulumi.get(self, "remotes")
 
@@ -444,6 +699,9 @@ class ProviderConversionConversionRuleLocal(dict):
                  username: Optional[_builtins.str] = None):
         """
         :param _builtins.str group: Specifies the user group to which the federated user belongs on the cloud platform.
+               
+               <a name="identity_provider_conversion_remote"></a>
+               The `remote` block supports:
         :param _builtins.str username: Specifies the name of a federated user on the cloud platform.
         """
         if group is not None:
@@ -456,6 +714,9 @@ class ProviderConversionConversionRuleLocal(dict):
     def group(self) -> Optional[_builtins.str]:
         """
         Specifies the user group to which the federated user belongs on the cloud platform.
+
+        <a name="identity_provider_conversion_remote"></a>
+        The `remote` block supports:
         """
         return pulumi.get(self, "group")
 
@@ -476,8 +737,13 @@ class ProviderConversionConversionRuleRemote(dict):
                  values: Optional[Sequence[_builtins.str]] = None):
         """
         :param _builtins.str attribute: Specifies the attribute in the IDP assertion.
-        :param _builtins.str condition: Specifies the condition of conversion rule.
-               Available options are:
+        :param _builtins.str condition: Specifies the condition of conversion rule.  
+               The valid values are as follows:
+               + **any_one_of**: The rule is matched only if the specified strings appear in the attribute type.
+               + **not_any_of**: The rule is matched only if the specified strings do not appear in the attribute type.
+               
+               > **NOTE:** 1. The condition result is Boolean rather than the argument that is passed as input.
+               <br/>2. In a remote array, `any_one_of` and `not_any_of` are mutually exclusive and cannot be set at the same time.
         :param Sequence[_builtins.str] values: Specifies the rule is matched only if the specified strings appear in the attribute type.
         """
         pulumi.set(__self__, "attribute", attribute)
@@ -498,8 +764,13 @@ class ProviderConversionConversionRuleRemote(dict):
     @pulumi.getter
     def condition(self) -> Optional[_builtins.str]:
         """
-        Specifies the condition of conversion rule.
-        Available options are:
+        Specifies the condition of conversion rule.  
+        The valid values are as follows:
+        + **any_one_of**: The rule is matched only if the specified strings appear in the attribute type.
+        + **not_any_of**: The rule is matched only if the specified strings do not appear in the attribute type.
+
+        > **NOTE:** 1. The condition result is Boolean rather than the argument that is passed as input.
+        <br/>2. In a remote array, `any_one_of` and `not_any_of` are mutually exclusive and cannot be set at the same time.
         """
         return pulumi.get(self, "condition")
 
@@ -518,8 +789,10 @@ class ProviderConversionRule(dict):
                  locals: Optional[Sequence['outputs.ProviderConversionRuleLocal']] = None,
                  remotes: Optional[Sequence['outputs.ProviderConversionRuleRemote']] = None):
         """
-        :param Sequence['ProviderConversionRuleLocalArgs'] locals: The federated user information on the cloud platform.
-        :param Sequence['ProviderConversionRuleRemoteArgs'] remotes: The description of the identity provider.
+        :param Sequence['ProviderConversionRuleLocalArgs'] locals: The federated user information on the cloud platform.  
+               The local structure is documented below.
+        :param Sequence['ProviderConversionRuleRemoteArgs'] remotes: The description of the identity provider.  
+               The remote structure is documented below.
         """
         if locals is not None:
             pulumi.set(__self__, "locals", locals)
@@ -530,7 +803,8 @@ class ProviderConversionRule(dict):
     @pulumi.getter
     def locals(self) -> Optional[Sequence['outputs.ProviderConversionRuleLocal']]:
         """
-        The federated user information on the cloud platform.
+        The federated user information on the cloud platform.  
+        The local structure is documented below.
         """
         return pulumi.get(self, "locals")
 
@@ -538,7 +812,8 @@ class ProviderConversionRule(dict):
     @pulumi.getter
     def remotes(self) -> Optional[Sequence['outputs.ProviderConversionRuleRemote']]:
         """
-        The description of the identity provider.
+        The description of the identity provider.  
+        The remote structure is documented below.
         """
         return pulumi.get(self, "remotes")
 
@@ -615,6 +890,133 @@ class ProviderConversionRuleRemote(dict):
         The rule is matched only if the specified strings appear in the attribute type.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class ProviderProtocolLink(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "identityProvider":
+            suggest = "identity_provider"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProviderProtocolLink. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProviderProtocolLink.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProviderProtocolLink.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 identity_provider: Optional[_builtins.str] = None,
+                 self: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str identity_provider: Indicates the identity provider resource link.
+        :param _builtins.str self: Indicates the resource link.
+        """
+        if identity_provider is not None:
+            pulumi.set(__self__, "identity_provider", identity_provider)
+        if self is not None:
+            pulumi.set(__self__, "self", self)
+
+    @_builtins.property
+    @pulumi.getter(name="identityProvider")
+    def identity_provider(self) -> Optional[_builtins.str]:
+        """
+        Indicates the identity provider resource link.
+        """
+        return pulumi.get(self, "identity_provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def self(self) -> Optional[_builtins.str]:
+        """
+        Indicates the resource link.
+        """
+        return pulumi.get(self, "self")
+
+
+@pulumi.output_type
+class GetAccessKeyCredentialResult(dict):
+    def __init__(__self__, *,
+                 access: _builtins.str,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 last_use_time: _builtins.str,
+                 status: _builtins.str,
+                 user_id: _builtins.str):
+        """
+        :param _builtins.str access: Indicates the Access Key (AK) that was queried.
+        :param _builtins.str create_time: Indicates the creation time of the access_key. The value is a UTC time in the
+               **YYYY-MM-DDTHH:mm:ss.ssssssZ** format.
+        :param _builtins.str description: Indicates the description of the access_key.
+        :param _builtins.str last_use_time: Indicates the field is only present when you are certified by access_key.
+        :param _builtins.str status: Indicates the status of the access_key. Valid values:
+               + **active**: The access_key is enabled.
+               + **inactive**: The access_key is disabled.
+        :param _builtins.str user_id: Specifies the IAM user ID associated with the access_key.
+        """
+        pulumi.set(__self__, "access", access)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "last_use_time", last_use_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def access(self) -> _builtins.str:
+        """
+        Indicates the Access Key (AK) that was queried.
+        """
+        return pulumi.get(self, "access")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        Indicates the creation time of the access_key. The value is a UTC time in the
+        **YYYY-MM-DDTHH:mm:ss.ssssssZ** format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the description of the access_key.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUseTime")
+    def last_use_time(self) -> _builtins.str:
+        """
+        Indicates the field is only present when you are certified by access_key.
+        """
+        return pulumi.get(self, "last_use_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the status of the access_key. Valid values:
+        + **active**: The access_key is enabled.
+        + **inactive**: The access_key is disabled.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        Specifies the IAM user ID associated with the access_key.
+        """
+        return pulumi.get(self, "user_id")
 
 
 @pulumi.output_type
@@ -713,6 +1115,627 @@ class GetAgenciesAgencyResult(dict):
 
 
 @pulumi.output_type
+class GetAuthProjectsProjectResult(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.bool enabled: Indicates whether the IAM project is enabled.
+        :param _builtins.str id: Indicates the IAM project ID.
+        :param _builtins.str name: Indicates the IAM project name.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Indicates whether the IAM project is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the IAM project ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the IAM project name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetCatalogCatalogResult(dict):
+    def __init__(__self__, *,
+                 endpoints: Sequence['outputs.GetCatalogCatalogEndpointResult'],
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param Sequence['GetCatalogCatalogEndpointArgs'] endpoints: Indicates service endpoint information.
+               The endpoints structure is documented below.
+        :param _builtins.str id: Indicates the endpoint id.
+        :param _builtins.str name: Indicates the service name.
+        :param _builtins.str type: Indicates the service type.
+        """
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetCatalogCatalogEndpointResult']:
+        """
+        Indicates service endpoint information.
+        The endpoints structure is documented below.
+        """
+        return pulumi.get(self, "endpoints")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the endpoint id.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the service name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the service type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetCatalogCatalogEndpointResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 interface: _builtins.str,
+                 region: _builtins.str,
+                 region_id: _builtins.str,
+                 url: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the endpoint id.
+        :param _builtins.str interface: Indicates the endpoint interface.
+        :param _builtins.str region: Indicates the endpoint region.
+        :param _builtins.str region_id: Indicates the endpoint region id.
+        :param _builtins.str url: Indicates the endpoint url.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "interface", interface)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the endpoint id.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def interface(self) -> _builtins.str:
+        """
+        Indicates the endpoint interface.
+        """
+        return pulumi.get(self, "interface")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Indicates the endpoint region.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the endpoint region id.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        Indicates the endpoint url.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetDomainQuotaResourceResult(dict):
+    def __init__(__self__, *,
+                 max: _builtins.int,
+                 min: _builtins.int,
+                 quota: _builtins.int,
+                 type: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int max: Indicates the maximum quota.
+        :param _builtins.int min: Indicates the minimum quota.
+        :param _builtins.int quota: Indicates the current quota.
+        :param _builtins.str type: Specifies the type of quota.
+               The valid values are `user`, `group`, `idp`, `agency`, `policy`, `assigment_group_mp`, `assigment_agency_mp`,
+               `assigment_group_ep`, `assigment_user_ep` and `mapping`.
+        :param _builtins.int used: Indicates the used quota.
+        """
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "quota", quota)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.int:
+        """
+        Indicates the maximum quota.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.int:
+        """
+        Indicates the minimum quota.
+        """
+        return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter
+    def quota(self) -> _builtins.int:
+        """
+        Indicates the current quota.
+        """
+        return pulumi.get(self, "quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the type of quota.
+        The valid values are `user`, `group`, `idp`, `agency`, `policy`, `assigment_group_mp`, `assigment_agency_mp`,
+        `assigment_group_ep`, `assigment_user_ep` and `mapping`.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        Indicates the used quota.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetEndpointsEndpointResult(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 id: _builtins.str,
+                 interface: _builtins.str,
+                 link: _builtins.str,
+                 region: _builtins.str,
+                 region_id: _builtins.str,
+                 service_id: _builtins.str,
+                 url: _builtins.str):
+        """
+        :param _builtins.bool enabled: Indicates whether the endpoint is accessible and operational. The value can be:
+               + **true**: accessible;
+               + **false**: operational;
+        :param _builtins.str id: Indicates the endpoint ID.
+        :param _builtins.str interface: Specifies terminal node plane. It's not allowed if `endpoint_id` is specified.
+        :param _builtins.str link: Indicates the resource URL information.
+        :param _builtins.str region: Indicates the region where the endpoint is located.
+        :param _builtins.str region_id: Indicates the region ID.
+        :param _builtins.str service_id: Specifies the ID of service. It's not allowed if `endpoint_id` is specified.
+        :param _builtins.str url: Indicates the URL or network address of the endpoint.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "interface", interface)
+        pulumi.set(__self__, "link", link)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "service_id", service_id)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Indicates whether the endpoint is accessible and operational. The value can be:
+        + **true**: accessible;
+        + **false**: operational;
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the endpoint ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def interface(self) -> _builtins.str:
+        """
+        Specifies terminal node plane. It's not allowed if `endpoint_id` is specified.
+        """
+        return pulumi.get(self, "interface")
+
+    @_builtins.property
+    @pulumi.getter
+    def link(self) -> _builtins.str:
+        """
+        Indicates the resource URL information.
+        """
+        return pulumi.get(self, "link")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Indicates the region where the endpoint is located.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> _builtins.str:
+        """
+        Specifies the ID of service. It's not allowed if `endpoint_id` is specified.
+        """
+        return pulumi.get(self, "service_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        Indicates the URL or network address of the endpoint.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetEnterpriseProjectGroupsGroupResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.int,
+                 description: _builtins.str,
+                 domain_id: _builtins.str,
+                 enterprise_projects: Sequence['outputs.GetEnterpriseProjectGroupsGroupEnterpriseProjectResult'],
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.int create_time: Indicates the time of the IAM user groups creat.
+        :param _builtins.str description: Indicates the description of the IAM user groups.
+        :param _builtins.str domain_id: Indicates the domain ID of the IAM user groups.
+        :param Sequence['GetEnterpriseProjectGroupsGroupEnterpriseProjectArgs'] enterprise_projects: Indicates the projects contains.
+               The enterprise_projects structure is documented below.
+        :param _builtins.str id: Indicates the ID of the IAM user groups.
+        :param _builtins.str name: Indicates the name of the IAM user groups.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "enterprise_projects", enterprise_projects)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        Indicates the time of the IAM user groups creat.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the description of the IAM user groups.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the domain ID of the IAM user groups.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjects")
+    def enterprise_projects(self) -> Sequence['outputs.GetEnterpriseProjectGroupsGroupEnterpriseProjectResult']:
+        """
+        Indicates the projects contains.
+        The enterprise_projects structure is documented below.
+        """
+        return pulumi.get(self, "enterprise_projects")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the IAM user groups.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of the IAM user groups.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetEnterpriseProjectGroupsGroupEnterpriseProjectResult(dict):
+    def __init__(__self__, *,
+                 project_id: _builtins.str):
+        """
+        :param _builtins.str project_id: Indicates the ID of enterprise projects.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the ID of enterprise projects.
+        """
+        return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
+class GetEnterpriseProjectUsersUserResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 domain_id: _builtins.str,
+                 enabled: _builtins.bool,
+                 enterprise_projects: Sequence['outputs.GetEnterpriseProjectUsersUserEnterpriseProjectResult'],
+                 id: _builtins.str,
+                 lastest_policy_time: _builtins.int,
+                 name: _builtins.str,
+                 policy_num: _builtins.int):
+        """
+        :param _builtins.str description: Indicates the description of the IAM user.
+        :param _builtins.str domain_id: Indicates the domain ID of the IAM user.
+        :param _builtins.bool enabled: Indicates whether to enable authorized users.
+        :param Sequence['GetEnterpriseProjectUsersUserEnterpriseProjectArgs'] enterprise_projects: Indicates the projects contains.
+               The enterprise_projects structure is documented below.
+        :param _builtins.str id: Indicates the ID of the IAM user.
+        :param _builtins.int lastest_policy_time: Indicates the time when the user was recently associated with the
+               enterprise project strategy.
+        :param _builtins.str name: Indicates the name of the IAM user.
+        :param _builtins.int policy_num: Indicates number of user strategies
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "enterprise_projects", enterprise_projects)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lastest_policy_time", lastest_policy_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policy_num", policy_num)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the description of the IAM user.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the domain ID of the IAM user.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Indicates whether to enable authorized users.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjects")
+    def enterprise_projects(self) -> Sequence['outputs.GetEnterpriseProjectUsersUserEnterpriseProjectResult']:
+        """
+        Indicates the projects contains.
+        The enterprise_projects structure is documented below.
+        """
+        return pulumi.get(self, "enterprise_projects")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the IAM user.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastestPolicyTime")
+    def lastest_policy_time(self) -> _builtins.int:
+        """
+        Indicates the time when the user was recently associated with the
+        enterprise project strategy.
+        """
+        return pulumi.get(self, "lastest_policy_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of the IAM user.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="policyNum")
+    def policy_num(self) -> _builtins.int:
+        """
+        Indicates number of user strategies
+        """
+        return pulumi.get(self, "policy_num")
+
+
+@pulumi.output_type
+class GetEnterpriseProjectUsersUserEnterpriseProjectResult(dict):
+    def __init__(__self__, *,
+                 project_id: _builtins.str):
+        """
+        :param _builtins.str project_id: Indicates the ID of enterprise projects.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the ID of enterprise projects.
+        """
+        return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
+class GetFederationDomainsDomainResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 enabled: _builtins.bool,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str description: Indicates the account description information.
+        :param _builtins.bool enabled: Indicates whether the account is enabled.
+        :param _builtins.str id: Indicates the account id.
+        :param _builtins.str name: Indicates the account name.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the account description information.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Indicates whether the account is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the account id.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the account name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFederationProjectsProjectResult(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.bool enabled: Indicates whether the IAM project is enabled.
+        :param _builtins.str id: Indicates the IAM project ID.
+        :param _builtins.str name: Indicates the IAM project name.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Indicates whether the IAM project is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the IAM project ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the IAM project name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class GetGroupUserResult(dict):
     def __init__(__self__, *,
                  description: _builtins.str,
@@ -801,6 +1824,46 @@ class GetGroupUserResult(dict):
 
 
 @pulumi.output_type
+class GetLoginProtectsLoginProtectResult(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 user_id: _builtins.str,
+                 verification_method: _builtins.str):
+        """
+        :param _builtins.bool enabled: Indicates whether to enable login protection.
+        :param _builtins.str user_id: Specifies the user id.
+        :param _builtins.str verification_method: Indicates the login verification method.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "verification_method", verification_method)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Indicates whether to enable login protection.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        Specifies the user id.
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="verificationMethod")
+    def verification_method(self) -> _builtins.str:
+        """
+        Indicates the login verification method.
+        """
+        return pulumi.get(self, "verification_method")
+
+
+@pulumi.output_type
 class GetPermissionsPermissionResult(dict):
     def __init__(__self__, *,
                  catalog: _builtins.str,
@@ -882,6 +1945,68 @@ class GetPermissionsPermissionResult(dict):
 
 
 @pulumi.output_type
+class GetProjectQuotaResourceResult(dict):
+    def __init__(__self__, *,
+                 max: _builtins.int,
+                 min: _builtins.int,
+                 quota: _builtins.int,
+                 type: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int max: Indicates the maximum quota.
+        :param _builtins.int min: Indicates the minimum quota.
+        :param _builtins.int quota: Indicates the current quota.
+        :param _builtins.str type: Indicates the type of resource, must be **project**.
+        :param _builtins.int used: Indicates the used quota.
+        """
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "quota", quota)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.int:
+        """
+        Indicates the maximum quota.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.int:
+        """
+        Indicates the minimum quota.
+        """
+        return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter
+    def quota(self) -> _builtins.int:
+        """
+        Indicates the current quota.
+        """
+        return pulumi.get(self, "quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the type of resource, must be **project**.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        Indicates the used quota.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
 class GetProjectsProjectResult(dict):
     def __init__(__self__, *,
                  enabled: _builtins.bool,
@@ -919,6 +2044,77 @@ class GetProjectsProjectResult(dict):
         Specifies the IAM project name to query.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetProviderProtocolsProtocolResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 links: Sequence['outputs.GetProviderProtocolsProtocolLinkResult'],
+                 mapping_id: _builtins.str):
+        """
+        :param _builtins.str id: The protocol id.
+        :param Sequence['GetProviderProtocolsProtocolLinkArgs'] links: Indicates the links of protocol.
+               The links structure is documented below.
+        :param _builtins.str mapping_id: Indicates the mapping id of the protocol.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "mapping_id", mapping_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The protocol id.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def links(self) -> Sequence['outputs.GetProviderProtocolsProtocolLinkResult']:
+        """
+        Indicates the links of protocol.
+        The links structure is documented below.
+        """
+        return pulumi.get(self, "links")
+
+    @_builtins.property
+    @pulumi.getter(name="mappingId")
+    def mapping_id(self) -> _builtins.str:
+        """
+        Indicates the mapping id of the protocol.
+        """
+        return pulumi.get(self, "mapping_id")
+
+
+@pulumi.output_type
+class GetProviderProtocolsProtocolLinkResult(dict):
+    def __init__(__self__, *,
+                 identity_provider: _builtins.str,
+                 self: _builtins.str):
+        """
+        :param _builtins.str identity_provider: Indicates the identity provider resource link.
+        :param _builtins.str self: Indicates the protocol resource link.
+        """
+        pulumi.set(__self__, "identity_provider", identity_provider)
+        pulumi.set(__self__, "self", self)
+
+    @_builtins.property
+    @pulumi.getter(name="identityProvider")
+    def identity_provider(self) -> _builtins.str:
+        """
+        Indicates the identity provider resource link.
+        """
+        return pulumi.get(self, "identity_provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def self(self) -> _builtins.str:
+        """
+        Indicates the protocol resource link.
+        """
+        return pulumi.get(self, "self")
 
 
 @pulumi.output_type
@@ -1024,6 +2220,728 @@ class GetProvidersIdentityProviderLinkResult(dict):
 
 
 @pulumi.output_type
+class GetRegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 link: _builtins.str,
+                 locales: Mapping[str, _builtins.str],
+                 type: _builtins.str):
+        """
+        :param _builtins.str description: The description of the region.
+        :param _builtins.str id: The ID of the region.
+        :param _builtins.str link: The resource link of the region.
+        :param Mapping[str, _builtins.str] locales: The map of localized region names, where the key is the language code and the value is the
+               region name in that language.
+        :param _builtins.str type: The type of the region.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "link", link)
+        pulumi.set(__self__, "locales", locales)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the region.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the region.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def link(self) -> _builtins.str:
+        """
+        The resource link of the region.
+        """
+        return pulumi.get(self, "link")
+
+    @_builtins.property
+    @pulumi.getter
+    def locales(self) -> Mapping[str, _builtins.str]:
+        """
+        The map of localized region names, where the key is the language code and the value is the
+        region name in that language.
+        """
+        return pulumi.get(self, "locales")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the region.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetRoleAssignmentsRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 agency_id: _builtins.str,
+                 group_id: _builtins.str,
+                 is_inherited: _builtins.bool,
+                 role_id: _builtins.str,
+                 scope: Mapping[str, _builtins.str],
+                 user_id: _builtins.str):
+        """
+        :param _builtins.str agency_id: Indicates commission ID.
+        :param _builtins.str group_id: Indicates user Group ID.
+        :param _builtins.bool is_inherited: Specifies takes effect when the parameter scope=domain or scope.domain_id exists.
+               + **true**: query records based on authorization for all projects.
+               + **false**: query records based on global service authorization.
+               
+               Default: **false**.
+        :param _builtins.str role_id: Specifies the role ID.
+        :param Mapping[str, _builtins.str] scope: Specifies scope of authorization, value range: **project**, **domain**, **enterprise_project**.
+               Default: **domain**.
+        :param _builtins.str user_id: Indicates IAM user ID.
+        """
+        pulumi.set(__self__, "agency_id", agency_id)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "is_inherited", is_inherited)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyId")
+    def agency_id(self) -> _builtins.str:
+        """
+        Indicates commission ID.
+        """
+        return pulumi.get(self, "agency_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        Indicates user Group ID.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="isInherited")
+    def is_inherited(self) -> _builtins.bool:
+        """
+        Specifies takes effect when the parameter scope=domain or scope.domain_id exists.
+        + **true**: query records based on authorization for all projects.
+        + **false**: query records based on global service authorization.
+
+        Default: **false**.
+        """
+        return pulumi.get(self, "is_inherited")
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> _builtins.str:
+        """
+        Specifies the role ID.
+        """
+        return pulumi.get(self, "role_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> Mapping[str, _builtins.str]:
+        """
+        Specifies scope of authorization, value range: **project**, **domain**, **enterprise_project**.
+        Default: **domain**.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        Indicates IAM user ID.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetRolesRoleResult(dict):
+    def __init__(__self__, *,
+                 catalog: _builtins.str,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 description_cn: _builtins.str,
+                 display_name: _builtins.str,
+                 domain_id: _builtins.str,
+                 flag: _builtins.str,
+                 id: _builtins.str,
+                 links: Sequence['outputs.GetRolesRoleLinkResult'],
+                 name: _builtins.str,
+                 policy: _builtins.str,
+                 type: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str catalog: Specifies the catalog of the role to be queried.  
+               The service catalog of the permission.
+        :param _builtins.str created_at: The creation time of the role, in RFC339 format.
+        :param _builtins.str description: The description of the role.
+        :param _builtins.str description_cn: The description of the role in Chinese.
+        :param _builtins.str display_name: Specifies the display name of the role to be queried.  
+               This parameter can be used to filter roles by permission name:
+               + **Permission name**: If you set this parameter to **ECS FullAccess**, the information about this permission
+               will be returned.
+               + **Filter condition**: If you set this parameter to **Administrator**, all administrator permissions that match
+               the condition will be returned.
+        :param _builtins.str domain_id: Specifies the domain ID to be queried.  
+               If this parameter is specified, only custom policies of the account are returned.
+               If this parameter is not specified, all system permissions (including system policies and system roles) are returned.
+        :param _builtins.str flag: The flag of the role.
+        :param _builtins.str id: The ID of the role.
+        :param Sequence['GetRolesRoleLinkArgs'] links: The links of the role.
+               The links structure is documented below.
+        :param _builtins.str name: Specifies the name of the role to be queried.  
+               The system internal name of the permission.
+               For example, the name of **CCS User** permission is **ccs_user**.
+               It is recommended to use the `display_name` parameter.
+        :param _builtins.str policy: The content of the role, in JSON format.
+        :param _builtins.str type: Specifies the display mode of the role to be queried.  
+               The valid values are as follows:
+               + **domain**: Returns roles with type **AA** and **AX**.
+               + **project**: Returns roles with type **AA** and **XA**.
+               + **all**: Returns roles with type **AA**, **AX** and **XA**.
+               
+               > The type values in the response have the following meanings:<br>
+               **AX** indicates displayed at the domain level;<br>
+               **XA** indicates displayed at the project level;<br>
+               **AA** indicates displayed at both domain and project levels;<br>
+               **XX** indicates not displayed at either domain or project level.
+        :param _builtins.str updated_at: The last update time of the role, in RFC339 format.
+        """
+        pulumi.set(__self__, "catalog", catalog)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "description_cn", description_cn)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "flag", flag)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def catalog(self) -> _builtins.str:
+        """
+        Specifies the catalog of the role to be queried.  
+        The service catalog of the permission.
+        """
+        return pulumi.get(self, "catalog")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The creation time of the role, in RFC339 format.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the role.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="descriptionCn")
+    def description_cn(self) -> _builtins.str:
+        """
+        The description of the role in Chinese.
+        """
+        return pulumi.get(self, "description_cn")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Specifies the display name of the role to be queried.  
+        This parameter can be used to filter roles by permission name:
+        + **Permission name**: If you set this parameter to **ECS FullAccess**, the information about this permission
+        will be returned.
+        + **Filter condition**: If you set this parameter to **Administrator**, all administrator permissions that match
+        the condition will be returned.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Specifies the domain ID to be queried.  
+        If this parameter is specified, only custom policies of the account are returned.
+        If this parameter is not specified, all system permissions (including system policies and system roles) are returned.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def flag(self) -> _builtins.str:
+        """
+        The flag of the role.
+        """
+        return pulumi.get(self, "flag")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the role.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def links(self) -> Sequence['outputs.GetRolesRoleLinkResult']:
+        """
+        The links of the role.
+        The links structure is documented below.
+        """
+        return pulumi.get(self, "links")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the role to be queried.  
+        The system internal name of the permission.
+        For example, the name of **CCS User** permission is **ccs_user**.
+        It is recommended to use the `display_name` parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> _builtins.str:
+        """
+        The content of the role, in JSON format.
+        """
+        return pulumi.get(self, "policy")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the display mode of the role to be queried.  
+        The valid values are as follows:
+        + **domain**: Returns roles with type **AA** and **AX**.
+        + **project**: Returns roles with type **AA** and **XA**.
+        + **all**: Returns roles with type **AA**, **AX** and **XA**.
+
+        > The type values in the response have the following meanings:<br>
+        **AX** indicates displayed at the domain level;<br>
+        **XA** indicates displayed at the project level;<br>
+        **AA** indicates displayed at both domain and project levels;<br>
+        **XX** indicates not displayed at either domain or project level.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The last update time of the role, in RFC339 format.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetRolesRoleLinkResult(dict):
+    def __init__(__self__, *,
+                 next: _builtins.str,
+                 previous: _builtins.str,
+                 self: _builtins.str):
+        """
+        :param _builtins.str next: The next link of the role.
+        :param _builtins.str previous: The previous link of the role.
+        :param _builtins.str self: The self link of the role.
+        """
+        pulumi.set(__self__, "next", next)
+        pulumi.set(__self__, "previous", previous)
+        pulumi.set(__self__, "self", self)
+
+    @_builtins.property
+    @pulumi.getter
+    def next(self) -> _builtins.str:
+        """
+        The next link of the role.
+        """
+        return pulumi.get(self, "next")
+
+    @_builtins.property
+    @pulumi.getter
+    def previous(self) -> _builtins.str:
+        """
+        The previous link of the role.
+        """
+        return pulumi.get(self, "previous")
+
+    @_builtins.property
+    @pulumi.getter
+    def self(self) -> _builtins.str:
+        """
+        The self link of the role.
+        """
+        return pulumi.get(self, "self")
+
+
+@pulumi.output_type
+class GetServicesServiceResult(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 id: _builtins.str,
+                 link: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.bool enabled: Indicates the service available.
+        :param _builtins.str id: Indicates service ID
+        :param _builtins.str link: Indicates the Resource link of service.
+        :param _builtins.str name: Indicates the service name.
+        :param _builtins.str type: Indicates the service type.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "link", link)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Indicates the service available.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates service ID
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def link(self) -> _builtins.str:
+        """
+        Indicates the Resource link of service.
+        """
+        return pulumi.get(self, "link")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the service name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the service type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetUserProjectsProjectResult(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.bool enabled: Indicates whether the IAM project is enabled.
+        :param _builtins.str id: Indicates the IAM project ID.
+        :param _builtins.str name: Indicates the IAM project name.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Indicates whether the IAM project is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the IAM project ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the IAM project name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetUserTokenInfoCatalogResult(dict):
+    def __init__(__self__, *,
+                 endpoints: Sequence['outputs.GetUserTokenInfoCatalogEndpointResult'],
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of IAM domain.
+        :param _builtins.str name: Indicates the name of IAM domain.
+        :param _builtins.str type: Indicates the Interface type of service
+        """
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetUserTokenInfoCatalogEndpointResult']:
+        return pulumi.get(self, "endpoints")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of IAM domain.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of IAM domain.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the Interface type of service
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetUserTokenInfoCatalogEndpointResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 interface: _builtins.str,
+                 region: _builtins.str,
+                 region_id: _builtins.str,
+                 url: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of IAM domain.
+        :param _builtins.str interface: Indicates Interface type, describing the visibility of the interface at this endpoint. A value of
+               'public' indicates that this interface is a public interface.
+        :param _builtins.str region: Indicates the region of endpoint.
+        :param _builtins.str region_id: Indicates the region ID of endpoint.
+        :param _builtins.str url: Indicates the url of endpoint.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "interface", interface)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of IAM domain.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def interface(self) -> _builtins.str:
+        """
+        Indicates Interface type, describing the visibility of the interface at this endpoint. A value of
+        'public' indicates that this interface is a public interface.
+        """
+        return pulumi.get(self, "interface")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Indicates the region of endpoint.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the region ID of endpoint.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        Indicates the url of endpoint.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetUserTokenInfoProjectResult(dict):
+    def __init__(__self__, *,
+                 domain: Mapping[str, _builtins.str],
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param Mapping[str, _builtins.str] domain: Indicates the information of domain.
+               The domain structure is documented below.
+        :param _builtins.str id: Indicates the ID of IAM domain.
+        :param _builtins.str name: Indicates the name of IAM domain.
+        """
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> Mapping[str, _builtins.str]:
+        """
+        Indicates the information of domain.
+        The domain structure is documented below.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of IAM domain.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of IAM domain.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetUserTokenInfoRoleResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of IAM domain.
+        :param _builtins.str name: Indicates the name of IAM domain.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of IAM domain.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of IAM domain.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetUserTokenInfoUserResult(dict):
+    def __init__(__self__, *,
+                 domain: Mapping[str, _builtins.str],
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 password_expires_at: _builtins.str):
+        """
+        :param Mapping[str, _builtins.str] domain: Indicates the information of domain.
+               The domain structure is documented below.
+        :param _builtins.str id: Indicates the ID of IAM domain.
+        :param _builtins.str name: Indicates the name of IAM domain.
+        :param _builtins.str password_expires_at: Indicates The password expiration time, "" indicates that the password does not expire.
+               Note: UTC time, formatted as YYYY-MM-DDTHH:mm:ss.ssssssZ, date and timestamp format refers to ISO-8601,
+               for example: 2023-06-28T08:56:33.710000Z.
+        """
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "password_expires_at", password_expires_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> Mapping[str, _builtins.str]:
+        """
+        Indicates the information of domain.
+        The domain structure is documented below.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of IAM domain.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of IAM domain.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordExpiresAt")
+    def password_expires_at(self) -> _builtins.str:
+        """
+        Indicates The password expiration time, "" indicates that the password does not expire.
+        Note: UTC time, formatted as YYYY-MM-DDTHH:mm:ss.ssssssZ, date and timestamp format refers to ISO-8601,
+        for example: 2023-06-28T08:56:33.710000Z.
+        """
+        return pulumi.get(self, "password_expires_at")
+
+
+@pulumi.output_type
 class GetUsersUserResult(dict):
     def __init__(__self__, *,
                  description: _builtins.str,
@@ -1038,7 +2956,7 @@ class GetUsersUserResult(dict):
         :param _builtins.bool enabled: Specifies the status of the IAM user, the default value is **true**.
         :param Sequence[_builtins.str] groups: Indicates the user groups to which an IAM user belongs.
         :param _builtins.str id: Indicates the ID of the User.
-        :param _builtins.str name: Specifies the IAM user name.
+        :param _builtins.str name: Specifies the IAM username.
         :param _builtins.str password_expires_at: Indicates the time when the password will expire.
                If this value is not set, the password will not expire.
         :param _builtins.bool password_status: Indicates the password status. True means that the password needs to be changed,
@@ -1088,7 +3006,7 @@ class GetUsersUserResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Specifies the IAM user name.
+        Specifies the IAM username.
         """
         return pulumi.get(self, "name")
 

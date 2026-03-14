@@ -25,14 +25,16 @@ class ProviderConversionArgs:
                  provider_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a ProviderConversion resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ProviderConversionConversionRuleArgs']]] conversion_rules: Specifies the identity conversion rules of the identity provider.
                You can use identity conversion rules to map the identities of existing users to Huawei Cloud and manage their access
                to cloud resources.
-               The object structure is documented below.
+               The conversion_rules structure is documented below.
                
-               <a name="conversion_rules"></a>
+               <a name="identity_provider_conversion_rules"></a>
                The `conversion_rules` block supports:
-        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the conversion rules.
+        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the
+               conversion rules.
                Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "conversion_rules", conversion_rules)
@@ -45,9 +47,9 @@ class ProviderConversionArgs:
         Specifies the identity conversion rules of the identity provider.
         You can use identity conversion rules to map the identities of existing users to Huawei Cloud and manage their access
         to cloud resources.
-        The object structure is documented below.
+        The conversion_rules structure is documented below.
 
-        <a name="conversion_rules"></a>
+        <a name="identity_provider_conversion_rules"></a>
         The `conversion_rules` block supports:
         """
         return pulumi.get(self, "conversion_rules")
@@ -60,7 +62,8 @@ class ProviderConversionArgs:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the ID of the identity provider used to manage the conversion rules.
+        Specifies the ID of the identity provider used to manage the
+        conversion rules.
         Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "provider_id")
@@ -77,14 +80,16 @@ class _ProviderConversionState:
                  provider_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProviderConversion resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ProviderConversionConversionRuleArgs']]] conversion_rules: Specifies the identity conversion rules of the identity provider.
                You can use identity conversion rules to map the identities of existing users to Huawei Cloud and manage their access
                to cloud resources.
-               The object structure is documented below.
+               The conversion_rules structure is documented below.
                
-               <a name="conversion_rules"></a>
+               <a name="identity_provider_conversion_rules"></a>
                The `conversion_rules` block supports:
-        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the conversion rules.
+        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the
+               conversion rules.
                Changing this parameter will create a new resource.
         """
         if conversion_rules is not None:
@@ -99,9 +104,9 @@ class _ProviderConversionState:
         Specifies the identity conversion rules of the identity provider.
         You can use identity conversion rules to map the identities of existing users to Huawei Cloud and manage their access
         to cloud resources.
-        The object structure is documented below.
+        The conversion_rules structure is documented below.
 
-        <a name="conversion_rules"></a>
+        <a name="identity_provider_conversion_rules"></a>
         The `conversion_rules` block supports:
         """
         return pulumi.get(self, "conversion_rules")
@@ -114,7 +119,8 @@ class _ProviderConversionState:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of the identity provider used to manage the conversion rules.
+        Specifies the ID of the identity provider used to manage the
+        conversion rules.
         Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "provider_id")
@@ -134,7 +140,7 @@ class ProviderConversion(pulumi.CustomResource):
                  provider_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manage the conversion rules of identity provider within HuaweiCloud IAM service.
+        Manages an IAM conversion resource within HuaweiCloud.
 
         ## Example Usage
 
@@ -144,7 +150,7 @@ class ProviderConversion(pulumi.CustomResource):
 
         config = pulumi.Config()
         provider_id = config.require_object("providerId")
-        conversion = huaweicloud.iam.ProviderConversion("conversion",
+        test = huaweicloud.iam.ProviderConversion("test",
             provider_id=provider_id,
             conversion_rules=[
                 {
@@ -177,22 +183,22 @@ class ProviderConversion(pulumi.CustomResource):
 
         Identity provider conversion rules are imported using the `provider_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/providerConversion:ProviderConversion conversion example_com_provider_oidc
+        $ pulumi import huaweicloud:Iam/providerConversion:ProviderConversion test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderConversionConversionRuleArgs', 'ProviderConversionConversionRuleArgsDict']]]] conversion_rules: Specifies the identity conversion rules of the identity provider.
                You can use identity conversion rules to map the identities of existing users to Huawei Cloud and manage their access
                to cloud resources.
-               The object structure is documented below.
+               The conversion_rules structure is documented below.
                
-               <a name="conversion_rules"></a>
+               <a name="identity_provider_conversion_rules"></a>
                The `conversion_rules` block supports:
-        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the conversion rules.
+        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the
+               conversion rules.
                Changing this parameter will create a new resource.
         """
         ...
@@ -202,7 +208,7 @@ class ProviderConversion(pulumi.CustomResource):
                  args: ProviderConversionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manage the conversion rules of identity provider within HuaweiCloud IAM service.
+        Manages an IAM conversion resource within HuaweiCloud.
 
         ## Example Usage
 
@@ -212,7 +218,7 @@ class ProviderConversion(pulumi.CustomResource):
 
         config = pulumi.Config()
         provider_id = config.require_object("providerId")
-        conversion = huaweicloud.iam.ProviderConversion("conversion",
+        test = huaweicloud.iam.ProviderConversion("test",
             provider_id=provider_id,
             conversion_rules=[
                 {
@@ -245,11 +251,10 @@ class ProviderConversion(pulumi.CustomResource):
 
         Identity provider conversion rules are imported using the `provider_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/providerConversion:ProviderConversion conversion example_com_provider_oidc
+        $ pulumi import huaweicloud:Iam/providerConversion:ProviderConversion test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProviderConversionArgs args: The arguments to use to populate this resource's properties.
@@ -305,11 +310,12 @@ class ProviderConversion(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderConversionConversionRuleArgs', 'ProviderConversionConversionRuleArgsDict']]]] conversion_rules: Specifies the identity conversion rules of the identity provider.
                You can use identity conversion rules to map the identities of existing users to Huawei Cloud and manage their access
                to cloud resources.
-               The object structure is documented below.
+               The conversion_rules structure is documented below.
                
-               <a name="conversion_rules"></a>
+               <a name="identity_provider_conversion_rules"></a>
                The `conversion_rules` block supports:
-        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the conversion rules.
+        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the
+               conversion rules.
                Changing this parameter will create a new resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -327,9 +333,9 @@ class ProviderConversion(pulumi.CustomResource):
         Specifies the identity conversion rules of the identity provider.
         You can use identity conversion rules to map the identities of existing users to Huawei Cloud and manage their access
         to cloud resources.
-        The object structure is documented below.
+        The conversion_rules structure is documented below.
 
-        <a name="conversion_rules"></a>
+        <a name="identity_provider_conversion_rules"></a>
         The `conversion_rules` block supports:
         """
         return pulumi.get(self, "conversion_rules")
@@ -338,7 +344,8 @@ class ProviderConversion(pulumi.CustomResource):
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the ID of the identity provider used to manage the conversion rules.
+        Specifies the ID of the identity provider used to manage the
+        conversion rules.
         Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "provider_id")

@@ -198,7 +198,7 @@ def get_asset_users(category: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_asset_users(user_name="daemon")
+    test = huaweicloud.Hss.get_asset_users(user_name="daemon")
     ```
 
 
@@ -234,7 +234,7 @@ def get_asset_users(category: Optional[_builtins.str] = None,
     __args__['userGroup'] = user_group
     __args__['userName'] = user_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAssetUsers:getAssetUsers', __args__, opts=opts, typ=GetAssetUsersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAssetUsers:getAssetUsers', __args__, opts=opts, typ=GetAssetUsersResult).value
 
     return AwaitableGetAssetUsersResult(
         category=pulumi.get(__ret__, 'category'),
@@ -271,7 +271,7 @@ def get_asset_users_output(category: Optional[pulumi.Input[Optional[_builtins.st
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_asset_users(user_name="daemon")
+    test = huaweicloud.Hss.get_asset_users(user_name="daemon")
     ```
 
 
@@ -307,7 +307,7 @@ def get_asset_users_output(category: Optional[pulumi.Input[Optional[_builtins.st
     __args__['userGroup'] = user_group
     __args__['userName'] = user_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAssetUsers:getAssetUsers', __args__, opts=opts, typ=GetAssetUsersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAssetUsers:getAssetUsers', __args__, opts=opts, typ=GetAssetUsersResult)
     return __ret__.apply(lambda __response__: GetAssetUsersResult(
         category=pulumi.get(__response__, 'category'),
         data_lists=pulumi.get(__response__, 'data_lists'),

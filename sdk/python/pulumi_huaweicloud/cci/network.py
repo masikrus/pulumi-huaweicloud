@@ -27,6 +27,7 @@ class NetworkArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Network resource.
+
         :param pulumi.Input[_builtins.str] namespace: Specifies the namespace to logically divide your cloud container instances
                into different group. Changing this will create a new CCI network resource.
         :param pulumi.Input[_builtins.str] network_id: Specifies a network ID of the VPC subnet which the CCI network belongs to.
@@ -154,6 +155,7 @@ class _NetworkState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Network resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone (AZ) to which the CCI network
                belongs. Changing this will create a new CCI network resource.
         :param pulumi.Input[_builtins.str] cidr: The network segment on which the subnet resides.
@@ -367,11 +369,10 @@ class Network(pulumi.CustomResource):
 
         Networks can be imported using their `namespace` and `id`, separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cci/network:Network test <namespace>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -424,11 +425,10 @@ class Network(pulumi.CustomResource):
 
         Networks can be imported using their `namespace` and `id`, separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cci/network:Network test <namespace>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NetworkArgs args: The arguments to use to populate this resource's properties.

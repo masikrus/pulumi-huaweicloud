@@ -21,46 +21,41 @@ __all__ = [
     'EipAssociateGcBandwidthArgsDict',
 ]
 
-MYPY = False
+class EipAssociateAssociateInstanceArgsDict(TypedDict):
+    instance_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance ID.
+    Changing this creates a new resource.
+    """
+    instance_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance type. Valid values are **ECS**, **PORT**,
+    **NATGW** and **ELB**. If value is **ECS** or **PORT**, make sure the VPC associating with an internet gateway.
+    Changing this creates a new resource.
+    """
+    project_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the project ID of the region.
+    Changing this creates a new resource.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region of the instance.
+    Changing this creates a new resource.
+    """
+    service_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service ID.
+    Changing this creates a new resource.
+    """
+    service_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service type.
+    Changing this creates a new resource.
 
-if not MYPY:
-    class EipAssociateAssociateInstanceArgsDict(TypedDict):
-        instance_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the instance ID.
-        Changing this creates a new resource.
-        """
-        instance_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the instance type. Valid values are **ECS**, **PORT**,
-        **NATGW** and **ELB**. If value is **ECS** or **PORT**, make sure the VPC associating with an internet gateway.
-        Changing this creates a new resource.
-        """
-        project_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the project ID of the region.
-        Changing this creates a new resource.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region of the instance.
-        Changing this creates a new resource.
-        """
-        service_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the service ID.
-        Changing this creates a new resource.
-        """
-        service_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the service type.
-        Changing this creates a new resource.
-
-        <a name="block--gc_bandwidth"></a>
-        The `gc_bandwidth` block supports:
-        """
-elif False:
-    EipAssociateAssociateInstanceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--gc_bandwidth"></a>
+    The `gc_bandwidth` block supports:
+    """
 
 @pulumi.input_type
 class EipAssociateAssociateInstanceArgs:
@@ -181,52 +176,49 @@ class EipAssociateAssociateInstanceArgs:
         pulumi.set(self, "service_type", value)
 
 
-if not MYPY:
-    class EipAssociateGcBandwidthArgsDict(TypedDict):
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the GCB charge mode. When `gc_bandwidth.id` is empty, it is
-        **Required** for creating a new GCB.
+class EipAssociateGcBandwidthArgsDict(TypedDict):
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the GCB charge mode. When `gc_bandwidth.id` is empty, it is
+    **Required** for creating a new GCB.
 
-        Valid values are as follows:
-        + **bwd**: Billed by bandwidth.
-        + **95**: Billed by 95th percentile bandwidth.
+    Valid values are as follows:
+    + **bwd**: Billed by bandwidth.
+    + **95**: Billed by 95th percentile bandwidth.
 
-        Changing this creates a new resource.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of GCB.
-        Changing this creates a new resource.
-        """
-        enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the enterprise project ID of GCB.
-        Changing this creates a new resource.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the GCB ID which is existing.
-        Changing this creates a new resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the GCB name. When `gc_bandwidth.id` is empty, it is **Required** for
-        creating a new GCB. Changing this creates a new resource.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the GCB size. When `gc_bandwidth.id` is empty, it is **Required** for
-        creating a new GCB. If `gc_bandwidth.charge_mode` is **95**, the range is **100-300 Mbit/s**, otherwise, the range is
-        **2-300 Mbit/s**. Changing this creates a new resource.
-        """
-        tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the tags of GCB.
-        Changing this creates a new resource.
-        """
-elif False:
-    EipAssociateGcBandwidthArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this creates a new resource.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of GCB.
+    Changing this creates a new resource.
+    """
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise project ID of GCB.
+    Changing this creates a new resource.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the GCB ID which is existing.
+    Changing this creates a new resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the GCB name. When `gc_bandwidth.id` is empty, it is **Required** for
+    creating a new GCB. Changing this creates a new resource.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the GCB size. When `gc_bandwidth.id` is empty, it is **Required** for
+    creating a new GCB. If `gc_bandwidth.charge_mode` is **95**, the range is **100-300 Mbit/s**, otherwise, the range is
+    **2-300 Mbit/s**. Changing this creates a new resource.
+    """
+    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the tags of GCB.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class EipAssociateGcBandwidthArgs:

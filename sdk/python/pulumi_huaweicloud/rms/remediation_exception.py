@@ -27,6 +27,7 @@ class RemediationExceptionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RemediationException resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['RemediationExceptionExceptionArgs']]] exceptions: Specifies the list of remediation exceptions.
                The exceptions structure is documented below.
                
@@ -103,6 +104,7 @@ class _RemediationExceptionState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RemediationException resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['RemediationExceptionExceptionArgs']]] exceptions: Specifies the list of remediation exceptions.
                The exceptions structure is documented below.
                
@@ -172,7 +174,7 @@ class _RemediationExceptionState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:rms/remediationException:RemediationException")
+@pulumi.type_token("huaweicloud:Rms/remediationException:RemediationException")
 class RemediationException(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -206,11 +208,10 @@ class RemediationException(pulumi.CustomResource):
 
         The remediation exception can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/remediationException:RemediationException test <id>
+        $ pulumi import huaweicloud:Rms/remediationException:RemediationException test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -252,11 +253,10 @@ class RemediationException(pulumi.CustomResource):
 
         The remediation exception can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/remediationException:RemediationException test <id>
+        $ pulumi import huaweicloud:Rms/remediationException:RemediationException test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RemediationExceptionArgs args: The arguments to use to populate this resource's properties.
@@ -295,7 +295,7 @@ class RemediationException(pulumi.CustomResource):
             __props__.__dict__["policy_assignment_id"] = policy_assignment_id
             __props__.__dict__["region"] = region
         super(RemediationException, __self__).__init__(
-            'huaweicloud:rms/remediationException:RemediationException',
+            'huaweicloud:Rms/remediationException:RemediationException',
             resource_name,
             __props__,
             opts)

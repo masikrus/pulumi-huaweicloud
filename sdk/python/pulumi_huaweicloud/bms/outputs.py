@@ -18,10 +18,20 @@ from . import outputs
 __all__ = [
     'InstanceDataDisk',
     'InstanceNic',
+    'InstanceRestartServer',
+    'OsReinstallOsReinstallValue',
+    'OsReinstallOsReinstallValueMetadata',
+    'GetAvailableResourcesAvailableResourceResult',
+    'GetAvailableResourcesAvailableResourceFlavorResult',
     'GetFlavorsFlavorResult',
+    'GetInstanceRemotelyLoginAddressRemoteConsoleResult',
     'GetInstancesServerResult',
     'GetInstancesServerNicResult',
     'GetInstancesServerVolumesAttachedResult',
+    'GetInterfaceAttachmentsInterfaceAttachmentResult',
+    'GetInterfaceAttachmentsInterfaceAttachmentFixedIpResult',
+    'GetQuotasAbsoluteResult',
+    'GetVolumeAttachmentsVolumeAttachmentResult',
 ]
 
 @pulumi.output_type
@@ -135,6 +145,290 @@ class InstanceNic(dict):
 
 
 @pulumi.output_type
+class InstanceRestartServer(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: Specifies the BMS ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Specifies the BMS ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class OsReinstallOsReinstallValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "adminPass":
+            suggest = "admin_pass"
+        elif key == "keyName":
+            suggest = "key_name"
+        elif key == "userId":
+            suggest = "user_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OsReinstallOsReinstallValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OsReinstallOsReinstallValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OsReinstallOsReinstallValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 admin_pass: Optional[_builtins.str] = None,
+                 key_name: Optional[_builtins.str] = None,
+                 metadata: Optional['outputs.OsReinstallOsReinstallValueMetadata'] = None,
+                 user_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str admin_pass: Specifies the initial password of the BMS administrator account. The
+               Linux administrator is **root**, and the Windows administrator is **Administrator**. Recommended password complexity
+               requirements are as follows:
+               + The password contains 8 to 26 characters.
+               + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+               characters **!@$%^-_=+[{}]:,./?**.
+               + The password cannot contain the username or the username in reverse.
+               
+               > **NOTE:**
+               1.For Windows BMSs, the password cannot contain more than two consecutive characters in the username.
+               <br/>2.For Linux BMSs, `user_data` can be used to inject a password. In this case, `admin_pass` is invalid.
+               <br/>3.Either `admin_pass` or `key_name` can be set.
+               <br/>4.If both `admin_pass` and `key_name` are empty, `user_data` in metadata must be set.
+        :param _builtins.str key_name: Specifies the key pair name.
+        :param 'OsReinstallOsReinstallValueMetadataArgs' metadata: Specifies the BMS metadata.
+               The metadata structure is documented below.
+               
+               <a name="os_reinstall_metadata_struct"></a>
+               The `metadata` block supports:
+        :param _builtins.str user_id: Specifies the user ID.
+        """
+        if admin_pass is not None:
+            pulumi.set(__self__, "admin_pass", admin_pass)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter(name="adminPass")
+    def admin_pass(self) -> Optional[_builtins.str]:
+        """
+        Specifies the initial password of the BMS administrator account. The
+        Linux administrator is **root**, and the Windows administrator is **Administrator**. Recommended password complexity
+        requirements are as follows:
+        + The password contains 8 to 26 characters.
+        + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+        characters **!@$%^-_=+[{}]:,./?**.
+        + The password cannot contain the username or the username in reverse.
+
+        > **NOTE:**
+        1.For Windows BMSs, the password cannot contain more than two consecutive characters in the username.
+        <br/>2.For Linux BMSs, `user_data` can be used to inject a password. In this case, `admin_pass` is invalid.
+        <br/>3.Either `admin_pass` or `key_name` can be set.
+        <br/>4.If both `admin_pass` and `key_name` are empty, `user_data` in metadata must be set.
+        """
+        return pulumi.get(self, "admin_pass")
+
+    @_builtins.property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the key pair name.
+        """
+        return pulumi.get(self, "key_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional['outputs.OsReinstallOsReinstallValueMetadata']:
+        """
+        Specifies the BMS metadata.
+        The metadata structure is documented below.
+
+        <a name="os_reinstall_metadata_struct"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the user ID.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class OsReinstallOsReinstallValueMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "__systemCmkid":
+            suggest = "__system_cmkid"
+        elif key == "__systemEncrypted":
+            suggest = "__system_encrypted"
+        elif key == "__systemEncryptionAlgorithm":
+            suggest = "__system_encryption_algorithm"
+        elif key == "userData":
+            suggest = "user_data"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OsReinstallOsReinstallValueMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OsReinstallOsReinstallValueMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OsReinstallOsReinstallValueMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 __system_cmkid: Optional[_builtins.str] = None,
+                 __system_encrypted: Optional[_builtins.str] = None,
+                 __system_encryption_algorithm: Optional[_builtins.str] = None,
+                 user_data: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str __system_cmkid: Specifies the CMK ID which is used for encryption. This parameter
+               is used with `__system__encrypted`.
+        :param _builtins.str __system_encrypted: Specifies whether the system disk is encrypted. The value can
+               be **0 (not encrypted)** or **1 (encrypted)**.
+               + If this parameter is not specified, the system disk will not be encrypted by default.
+               + If this parameter is set to **0**, `__system__cmkid` will be invalid.
+        :param _builtins.str __system_encryption_algorithm: Specifies the encryption algorithms for encrypted
+               volumes. Value options: **AES_256**, **SM4**. Defaults to **AES_256**.
+        :param _builtins.str user_data: Specifies the Linux image root password injected during the BMS OS
+               reinstallation. It is a user-defined initial password. The password change script must be encoded using Base64.
+               Recommended password complexity requirements are as follows:
+               + Contains 8 to 26 characters.
+               + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+               **characters !@$%^-_=+[{}]:,./?**.
+        """
+        if __system_cmkid is not None:
+            pulumi.set(__self__, "__system_cmkid", __system_cmkid)
+        if __system_encrypted is not None:
+            pulumi.set(__self__, "__system_encrypted", __system_encrypted)
+        if __system_encryption_algorithm is not None:
+            pulumi.set(__self__, "__system_encryption_algorithm", __system_encryption_algorithm)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemCmkid")
+    def __system_cmkid(self) -> Optional[_builtins.str]:
+        """
+        Specifies the CMK ID which is used for encryption. This parameter
+        is used with `__system__encrypted`.
+        """
+        return pulumi.get(self, "__system_cmkid")
+
+    @_builtins.property
+    @pulumi.getter(name="__systemEncrypted")
+    def __system_encrypted(self) -> Optional[_builtins.str]:
+        """
+        Specifies whether the system disk is encrypted. The value can
+        be **0 (not encrypted)** or **1 (encrypted)**.
+        + If this parameter is not specified, the system disk will not be encrypted by default.
+        + If this parameter is set to **0**, `__system__cmkid` will be invalid.
+        """
+        return pulumi.get(self, "__system_encrypted")
+
+    @_builtins.property
+    @pulumi.getter(name="__systemEncryptionAlgorithm")
+    def __system_encryption_algorithm(self) -> Optional[_builtins.str]:
+        """
+        Specifies the encryption algorithms for encrypted
+        volumes. Value options: **AES_256**, **SM4**. Defaults to **AES_256**.
+        """
+        return pulumi.get(self, "__system_encryption_algorithm")
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[_builtins.str]:
+        """
+        Specifies the Linux image root password injected during the BMS OS
+        reinstallation. It is a user-defined initial password. The password change script must be encoded using Base64.
+        Recommended password complexity requirements are as follows:
+        + Contains 8 to 26 characters.
+        + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+        **characters !@$%^-_=+[{}]:,./?**.
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class GetAvailableResourcesAvailableResourceResult(dict):
+    def __init__(__self__, *,
+                 availability_zone: _builtins.str,
+                 flavors: Sequence['outputs.GetAvailableResourcesAvailableResourceFlavorResult']):
+        """
+        :param _builtins.str availability_zone: Specifies the list of availability zone.
+        :param Sequence['GetAvailableResourcesAvailableResourceFlavorArgs'] flavors: Indicates the flavors.
+               The flavors structure is documented below.
+        """
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "flavors", flavors)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> _builtins.str:
+        """
+        Specifies the list of availability zone.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @_builtins.property
+    @pulumi.getter
+    def flavors(self) -> Sequence['outputs.GetAvailableResourcesAvailableResourceFlavorResult']:
+        """
+        Indicates the flavors.
+        The flavors structure is documented below.
+        """
+        return pulumi.get(self, "flavors")
+
+
+@pulumi.output_type
+class GetAvailableResourcesAvailableResourceFlavorResult(dict):
+    def __init__(__self__, *,
+                 flavor_id: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str flavor_id: Indicates the ID of the flavor.
+        :param _builtins.str status: Indicates the status of the flavor.
+        """
+        pulumi.set(__self__, "flavor_id", flavor_id)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="flavorId")
+    def flavor_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the flavor.
+        """
+        return pulumi.get(self, "flavor_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the status of the flavor.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetFlavorsFlavorResult(dict):
     def __init__(__self__, *,
                  cpu_arch: _builtins.str,
@@ -196,6 +490,46 @@ class GetFlavorsFlavorResult(dict):
         Specifies the number of vCPUs in the BMS flavor.
         """
         return pulumi.get(self, "vcpus")
+
+
+@pulumi.output_type
+class GetInstanceRemotelyLoginAddressRemoteConsoleResult(dict):
+    def __init__(__self__, *,
+                 protocol: _builtins.str,
+                 type: _builtins.str,
+                 url: _builtins.str):
+        """
+        :param _builtins.str protocol: Specifies the remote login protocol. Set it to **serial**.
+        :param _builtins.str type: Specifies the remote login mode. Set it to **serial**.
+        :param _builtins.str url: Indicates the remote login URL.
+        """
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        Specifies the remote login protocol. Set it to **serial**.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the remote login mode. Set it to **serial**.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        Indicates the remote login URL.
+        """
+        return pulumi.get(self, "url")
 
 
 @pulumi.output_type
@@ -655,5 +989,387 @@ class GetInstancesServerVolumesAttachedResult(dict):
         The disk ID in UUID format.
         """
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetInterfaceAttachmentsInterfaceAttachmentResult(dict):
+    def __init__(__self__, *,
+                 driver_mode: _builtins.str,
+                 fixed_ips: Sequence['outputs.GetInterfaceAttachmentsInterfaceAttachmentFixedIpResult'],
+                 mac_addr: _builtins.str,
+                 net_id: _builtins.str,
+                 pci_address: _builtins.str,
+                 port_id: _builtins.str,
+                 port_state: _builtins.str):
+        """
+        :param _builtins.str driver_mode: Indicates the NIC driver type in Guest OS.
+        :param Sequence['GetInterfaceAttachmentsInterfaceAttachmentFixedIpArgs'] fixed_ips: Indicates private IP addresses of NICs.
+        :param _builtins.str mac_addr: Indicates the MAC address of the NIC.
+        :param _builtins.str net_id: Indicates the ID of the subnet (network_id) to which the NIC ports belong.
+        :param _builtins.str pci_address: Indicates the BDF number of the NIC in Linux Guest OS.
+        :param _builtins.str port_id: Indicates the ID of the NIC port.
+        :param _builtins.str port_state: Indicates the NIC port status.
+        """
+        pulumi.set(__self__, "driver_mode", driver_mode)
+        pulumi.set(__self__, "fixed_ips", fixed_ips)
+        pulumi.set(__self__, "mac_addr", mac_addr)
+        pulumi.set(__self__, "net_id", net_id)
+        pulumi.set(__self__, "pci_address", pci_address)
+        pulumi.set(__self__, "port_id", port_id)
+        pulumi.set(__self__, "port_state", port_state)
+
+    @_builtins.property
+    @pulumi.getter(name="driverMode")
+    def driver_mode(self) -> _builtins.str:
+        """
+        Indicates the NIC driver type in Guest OS.
+        """
+        return pulumi.get(self, "driver_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="fixedIps")
+    def fixed_ips(self) -> Sequence['outputs.GetInterfaceAttachmentsInterfaceAttachmentFixedIpResult']:
+        """
+        Indicates private IP addresses of NICs.
+        """
+        return pulumi.get(self, "fixed_ips")
+
+    @_builtins.property
+    @pulumi.getter(name="macAddr")
+    def mac_addr(self) -> _builtins.str:
+        """
+        Indicates the MAC address of the NIC.
+        """
+        return pulumi.get(self, "mac_addr")
+
+    @_builtins.property
+    @pulumi.getter(name="netId")
+    def net_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the subnet (network_id) to which the NIC ports belong.
+        """
+        return pulumi.get(self, "net_id")
+
+    @_builtins.property
+    @pulumi.getter(name="pciAddress")
+    def pci_address(self) -> _builtins.str:
+        """
+        Indicates the BDF number of the NIC in Linux Guest OS.
+        """
+        return pulumi.get(self, "pci_address")
+
+    @_builtins.property
+    @pulumi.getter(name="portId")
+    def port_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the NIC port.
+        """
+        return pulumi.get(self, "port_id")
+
+    @_builtins.property
+    @pulumi.getter(name="portState")
+    def port_state(self) -> _builtins.str:
+        """
+        Indicates the NIC port status.
+        """
+        return pulumi.get(self, "port_state")
+
+
+@pulumi.output_type
+class GetInterfaceAttachmentsInterfaceAttachmentFixedIpResult(dict):
+    def __init__(__self__, *,
+                 ip_address: _builtins.str,
+                 subnet_id: _builtins.str):
+        """
+        :param _builtins.str ip_address: Indicates the NIC private IP address.
+        :param _builtins.str subnet_id: Indicates the ID of the subnet (subnet_id) corresponding to the private IP address of the NIC.
+        """
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        Indicates the NIC private IP address.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the subnet (subnet_id) corresponding to the private IP address of the NIC.
+        """
+        return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class GetQuotasAbsoluteResult(dict):
+    def __init__(__self__, *,
+                 max_image_meta: _builtins.int,
+                 max_personality: _builtins.int,
+                 max_personality_size: _builtins.int,
+                 max_security_group_rules: _builtins.int,
+                 max_security_groups: _builtins.int,
+                 max_server_group_members: _builtins.int,
+                 max_server_groups: _builtins.int,
+                 max_server_meta: _builtins.int,
+                 max_total_cores: _builtins.int,
+                 max_total_floating_ips: _builtins.int,
+                 max_total_instances: _builtins.int,
+                 max_total_keypairs: _builtins.int,
+                 max_total_ram_size: _builtins.int,
+                 total_cores_used: _builtins.int,
+                 total_floating_ips_used: _builtins.int,
+                 total_instances_used: _builtins.int,
+                 total_ram_used: _builtins.int,
+                 total_security_groups_used: _builtins.int,
+                 total_server_groups_used: _builtins.int):
+        """
+        :param _builtins.int max_image_meta: Indicates the maximum length of the image metadata.
+        :param _builtins.int max_personality: Indicates the maximum number of files that can be injected.
+        :param _builtins.int max_personality_size: Indicates the maximum size (byte) of the file to be injected.
+        :param _builtins.int max_security_group_rules: Indicates the maximum number of security group rules that you can configure in a security
+               group.
+        :param _builtins.int max_security_groups: Indicates the maximum number of security groups you can use.
+        :param _builtins.int max_server_group_members: Indicates the maximum number of BMSs in a server group.
+        :param _builtins.int max_server_groups: Indicates the maximum number of server groups.
+        :param _builtins.int max_server_meta: Indicates the maximum length of the metadata you can use.
+        :param _builtins.int max_total_cores: Indicates the maximum number of CPU cores you can use.
+        :param _builtins.int max_total_floating_ips: Indicates the maximum number of EIPs you can use.
+        :param _builtins.int max_total_instances: Indicates the maximum number of BMSs you can create.
+        :param _builtins.int max_total_keypairs: Indicates the maximum number of SSH key pairs you can use.
+        :param _builtins.int max_total_ram_size: Indicates the maximum memory (MB) you can use.
+        :param _builtins.int total_cores_used: Indicates the number of used CPU cores.
+        :param _builtins.int total_floating_ips_used: Indicates the number of used EIPs.
+        :param _builtins.int total_instances_used: Indicates the number of the used BMSs.
+        :param _builtins.int total_ram_used: Indicates the used memory (MB).
+        :param _builtins.int total_security_groups_used: Indicates the number of used security groups.
+        :param _builtins.int total_server_groups_used: Indicates the number of used server groups.
+        """
+        pulumi.set(__self__, "max_image_meta", max_image_meta)
+        pulumi.set(__self__, "max_personality", max_personality)
+        pulumi.set(__self__, "max_personality_size", max_personality_size)
+        pulumi.set(__self__, "max_security_group_rules", max_security_group_rules)
+        pulumi.set(__self__, "max_security_groups", max_security_groups)
+        pulumi.set(__self__, "max_server_group_members", max_server_group_members)
+        pulumi.set(__self__, "max_server_groups", max_server_groups)
+        pulumi.set(__self__, "max_server_meta", max_server_meta)
+        pulumi.set(__self__, "max_total_cores", max_total_cores)
+        pulumi.set(__self__, "max_total_floating_ips", max_total_floating_ips)
+        pulumi.set(__self__, "max_total_instances", max_total_instances)
+        pulumi.set(__self__, "max_total_keypairs", max_total_keypairs)
+        pulumi.set(__self__, "max_total_ram_size", max_total_ram_size)
+        pulumi.set(__self__, "total_cores_used", total_cores_used)
+        pulumi.set(__self__, "total_floating_ips_used", total_floating_ips_used)
+        pulumi.set(__self__, "total_instances_used", total_instances_used)
+        pulumi.set(__self__, "total_ram_used", total_ram_used)
+        pulumi.set(__self__, "total_security_groups_used", total_security_groups_used)
+        pulumi.set(__self__, "total_server_groups_used", total_server_groups_used)
+
+    @_builtins.property
+    @pulumi.getter(name="maxImageMeta")
+    def max_image_meta(self) -> _builtins.int:
+        """
+        Indicates the maximum length of the image metadata.
+        """
+        return pulumi.get(self, "max_image_meta")
+
+    @_builtins.property
+    @pulumi.getter(name="maxPersonality")
+    def max_personality(self) -> _builtins.int:
+        """
+        Indicates the maximum number of files that can be injected.
+        """
+        return pulumi.get(self, "max_personality")
+
+    @_builtins.property
+    @pulumi.getter(name="maxPersonalitySize")
+    def max_personality_size(self) -> _builtins.int:
+        """
+        Indicates the maximum size (byte) of the file to be injected.
+        """
+        return pulumi.get(self, "max_personality_size")
+
+    @_builtins.property
+    @pulumi.getter(name="maxSecurityGroupRules")
+    def max_security_group_rules(self) -> _builtins.int:
+        """
+        Indicates the maximum number of security group rules that you can configure in a security
+        group.
+        """
+        return pulumi.get(self, "max_security_group_rules")
+
+    @_builtins.property
+    @pulumi.getter(name="maxSecurityGroups")
+    def max_security_groups(self) -> _builtins.int:
+        """
+        Indicates the maximum number of security groups you can use.
+        """
+        return pulumi.get(self, "max_security_groups")
+
+    @_builtins.property
+    @pulumi.getter(name="maxServerGroupMembers")
+    def max_server_group_members(self) -> _builtins.int:
+        """
+        Indicates the maximum number of BMSs in a server group.
+        """
+        return pulumi.get(self, "max_server_group_members")
+
+    @_builtins.property
+    @pulumi.getter(name="maxServerGroups")
+    def max_server_groups(self) -> _builtins.int:
+        """
+        Indicates the maximum number of server groups.
+        """
+        return pulumi.get(self, "max_server_groups")
+
+    @_builtins.property
+    @pulumi.getter(name="maxServerMeta")
+    def max_server_meta(self) -> _builtins.int:
+        """
+        Indicates the maximum length of the metadata you can use.
+        """
+        return pulumi.get(self, "max_server_meta")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalCores")
+    def max_total_cores(self) -> _builtins.int:
+        """
+        Indicates the maximum number of CPU cores you can use.
+        """
+        return pulumi.get(self, "max_total_cores")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalFloatingIps")
+    def max_total_floating_ips(self) -> _builtins.int:
+        """
+        Indicates the maximum number of EIPs you can use.
+        """
+        return pulumi.get(self, "max_total_floating_ips")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalInstances")
+    def max_total_instances(self) -> _builtins.int:
+        """
+        Indicates the maximum number of BMSs you can create.
+        """
+        return pulumi.get(self, "max_total_instances")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalKeypairs")
+    def max_total_keypairs(self) -> _builtins.int:
+        """
+        Indicates the maximum number of SSH key pairs you can use.
+        """
+        return pulumi.get(self, "max_total_keypairs")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalRamSize")
+    def max_total_ram_size(self) -> _builtins.int:
+        """
+        Indicates the maximum memory (MB) you can use.
+        """
+        return pulumi.get(self, "max_total_ram_size")
+
+    @_builtins.property
+    @pulumi.getter(name="totalCoresUsed")
+    def total_cores_used(self) -> _builtins.int:
+        """
+        Indicates the number of used CPU cores.
+        """
+        return pulumi.get(self, "total_cores_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalFloatingIpsUsed")
+    def total_floating_ips_used(self) -> _builtins.int:
+        """
+        Indicates the number of used EIPs.
+        """
+        return pulumi.get(self, "total_floating_ips_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalInstancesUsed")
+    def total_instances_used(self) -> _builtins.int:
+        """
+        Indicates the number of the used BMSs.
+        """
+        return pulumi.get(self, "total_instances_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRamUsed")
+    def total_ram_used(self) -> _builtins.int:
+        """
+        Indicates the used memory (MB).
+        """
+        return pulumi.get(self, "total_ram_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalSecurityGroupsUsed")
+    def total_security_groups_used(self) -> _builtins.int:
+        """
+        Indicates the number of used security groups.
+        """
+        return pulumi.get(self, "total_security_groups_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalServerGroupsUsed")
+    def total_server_groups_used(self) -> _builtins.int:
+        """
+        Indicates the number of used server groups.
+        """
+        return pulumi.get(self, "total_server_groups_used")
+
+
+@pulumi.output_type
+class GetVolumeAttachmentsVolumeAttachmentResult(dict):
+    def __init__(__self__, *,
+                 device: _builtins.str,
+                 id: _builtins.str,
+                 server_id: _builtins.str,
+                 volume_id: _builtins.str):
+        """
+        :param _builtins.str device: Indicates the mount directory, for example, dev/sdd.
+        :param _builtins.str id: Indicates the ID of the attached resource.
+        :param _builtins.str server_id: Specifies the BMS ID.
+        :param _builtins.str volume_id: Indicates the ID of the disk attached to the BMS.
+        """
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "server_id", server_id)
+        pulumi.set(__self__, "volume_id", volume_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        Indicates the mount directory, for example, dev/sdd.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the attached resource.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> _builtins.str:
+        """
+        Specifies the BMS ID.
+        """
+        return pulumi.get(self, "server_id")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the disk attached to the BMS.
+        """
+        return pulumi.get(self, "volume_id")
 
 

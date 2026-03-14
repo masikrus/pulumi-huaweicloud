@@ -30,6 +30,7 @@ class MemberV2Args:
                  weight: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a MemberV2 resource.
+
         :param pulumi.Input[_builtins.str] subnet_id: the IPv4 subnet ID of the subnet in which to access the member
         :param pulumi.Input[_builtins.bool] admin_state_up: schema: Deprecated
         """
@@ -156,6 +157,7 @@ class _MemberV2State:
                  weight: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering MemberV2 resources.
+
         :param pulumi.Input[_builtins.bool] admin_state_up: schema: Deprecated
         :param pulumi.Input[_builtins.str] subnet_id: the IPv4 subnet ID of the subnet in which to access the member
         """
@@ -310,6 +312,7 @@ class MemberV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a MemberV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] admin_state_up: schema: Deprecated
@@ -323,6 +326,7 @@ class MemberV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a MemberV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param MemberV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

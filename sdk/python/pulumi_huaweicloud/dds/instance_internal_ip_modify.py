@@ -25,6 +25,7 @@ class InstanceInternalIpModifyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceInternalIpModify resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] new_ip: Specifies the new IP of the DDS instance node.
@@ -104,6 +105,7 @@ class _InstanceInternalIpModifyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceInternalIpModify resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] new_ip: Specifies the new IP of the DDS instance node.
@@ -215,11 +217,10 @@ class InstanceInternalIpModify(pulumi.CustomResource):
 
         DDS instance node can be imported using `<instance_id>/<node_id>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/instanceInternalIpModify:InstanceInternalIpModify test <instance_id>/<node_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -266,11 +267,10 @@ class InstanceInternalIpModify(pulumi.CustomResource):
 
         DDS instance node can be imported using `<instance_id>/<node_id>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/instanceInternalIpModify:InstanceInternalIpModify test <instance_id>/<node_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceInternalIpModifyArgs args: The arguments to use to populate this resource's properties.

@@ -30,6 +30,7 @@ class MessageTemplateArgs:
                  source: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MessageTemplate resource.
+
         :param pulumi.Input[_builtins.str] locale: Specifies the meesage template language. Valid values are **en-us** and **zh-cn**.
         :param pulumi.Input[Sequence[pulumi.Input['MessageTemplateTemplateArgs']]] templates: Specifies the templates.
                The templates structure is documented below.
@@ -172,6 +173,7 @@ class _MessageTemplateState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MessageTemplate resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the meesage template create time.
         :param pulumi.Input[_builtins.str] description: Specifies the meesage template description.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the template belongs.
@@ -381,11 +383,10 @@ class MessageTemplate(pulumi.CustomResource):
 
         The message template can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/messageTemplate:MessageTemplate test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -449,11 +450,10 @@ class MessageTemplate(pulumi.CustomResource):
 
         The message template can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/messageTemplate:MessageTemplate test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MessageTemplateArgs args: The arguments to use to populate this resource's properties.

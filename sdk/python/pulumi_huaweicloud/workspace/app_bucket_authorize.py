@@ -22,6 +22,7 @@ class AppBucketAuthorizeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppBucketAuthorize resource.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region where the OBS bucket and the application to be
                authorized are located.
                If omitted, the provider-level region will be used. Changing this will create new resource.
@@ -50,6 +51,7 @@ class _AppBucketAuthorizeState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppBucketAuthorize resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region where the OBS bucket and the application to be
                authorized are located.
                If omitted, the provider-level region will be used. Changing this will create new resource.
@@ -98,6 +100,7 @@ class AppBucketAuthorize(pulumi.CustomResource):
         test = huaweicloud.workspace.AppBucketAuthorize("test")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the OBS bucket and the application to be
@@ -127,6 +130,7 @@ class AppBucketAuthorize(pulumi.CustomResource):
 
         test = huaweicloud.workspace.AppBucketAuthorize("test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppBucketAuthorizeArgs args: The arguments to use to populate this resource's properties.

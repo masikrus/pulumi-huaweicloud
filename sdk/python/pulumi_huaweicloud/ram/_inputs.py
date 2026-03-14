@@ -17,32 +17,35 @@ from .. import _utilities
 __all__ = [
     'ResourceShareAssociatedPermissionArgs',
     'ResourceShareAssociatedPermissionArgsDict',
+    'GetResourceInstancesCountMatchArgs',
+    'GetResourceInstancesCountMatchArgsDict',
+    'GetResourceInstancesCountTagArgs',
+    'GetResourceInstancesCountTagArgsDict',
+    'GetResourceInstancesFilterMatchArgs',
+    'GetResourceInstancesFilterMatchArgsDict',
+    'GetResourceInstancesFilterTagArgs',
+    'GetResourceInstancesFilterTagArgsDict',
     'GetResourceSharesTagFilterArgs',
     'GetResourceSharesTagFilterArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ResourceShareAssociatedPermissionArgsDict(TypedDict):
-        permission_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The permission ID.
-        """
-        permission_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The permission name.
-        """
-        resource_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The resource type of the permission.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the permission.
-        """
-elif False:
-    ResourceShareAssociatedPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class ResourceShareAssociatedPermissionArgsDict(TypedDict):
+    permission_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The permission ID.
+    """
+    permission_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The permission name.
+    """
+    resource_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The resource type of the permission.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the permission.
+    """
 
 @pulumi.input_type
 class ResourceShareAssociatedPermissionArgs:
@@ -115,18 +118,223 @@ class ResourceShareAssociatedPermissionArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class GetResourceSharesTagFilterArgsDict(TypedDict):
-        key: _builtins.str
+class GetResourceInstancesCountMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of matched tags.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the key in the matched tags.
+    """
+
+@pulumi.input_type
+class GetResourceInstancesCountMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
         """
-        Specifies the identifier or name of the tag key.
+        :param _builtins.str key: Specifies the key of matched tags.
+        :param _builtins.str value: Specifies the value of the key in the matched tags.
         """
-        values: NotRequired[Sequence[_builtins.str]]
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
         """
-        Specifies the list of values for the tag key.
+        Specifies the key of matched tags.
         """
-elif False:
-    GetResourceSharesTagFilterArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the key in the matched tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetResourceInstancesCountTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of matched tags.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies all values of the key in the tags.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourceInstancesCountTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the key of matched tags.
+        :param Sequence[_builtins.str] values: Specifies all values of the key in the tags.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of matched tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies all values of the key in the tags.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
+
+
+class GetResourceInstancesFilterMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of matched tags.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the key in the matched tags.
+    """
+
+@pulumi.input_type
+class GetResourceInstancesFilterMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of matched tags.
+        :param _builtins.str value: Specifies the value of the key in the matched tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of matched tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the key in the matched tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetResourceInstancesFilterTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of matched tags.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies all values of the key in the tags.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourceInstancesFilterTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the key of matched tags.
+        :param Sequence[_builtins.str] values: Specifies all values of the key in the tags.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of matched tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies all values of the key in the tags.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "values", value)
+
+
+class GetResourceSharesTagFilterArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the identifier or name of the tag key.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of values for the tag key.
+    """
 
 @pulumi.input_type
 class GetResourceSharesTagFilterArgs:

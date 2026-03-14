@@ -24,6 +24,7 @@ class PhysicalSessionsKillArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PhysicalSessionsKill resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] process_ids: Specifies the list of process IDs.
@@ -82,6 +83,7 @@ class _PhysicalSessionsKillState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PhysicalSessionsKill resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] process_ids: Specifies the list of process IDs.
@@ -134,7 +136,7 @@ class _PhysicalSessionsKillState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:ddm/physicalSessionsKill:PhysicalSessionsKill")
+@pulumi.type_token("huaweicloud:Ddm/physicalSessionsKill:PhysicalSessionsKill")
 class PhysicalSessionsKill(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -163,6 +165,7 @@ class PhysicalSessionsKill(pulumi.CustomResource):
             instance_id=instance_id,
             process_ids=[process_id])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -197,6 +200,7 @@ class PhysicalSessionsKill(pulumi.CustomResource):
             instance_id=instance_id,
             process_ids=[process_id])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PhysicalSessionsKillArgs args: The arguments to use to populate this resource's properties.
@@ -233,7 +237,7 @@ class PhysicalSessionsKill(pulumi.CustomResource):
             __props__.__dict__["process_ids"] = process_ids
             __props__.__dict__["region"] = region
         super(PhysicalSessionsKill, __self__).__init__(
-            'huaweicloud:ddm/physicalSessionsKill:PhysicalSessionsKill',
+            'huaweicloud:Ddm/physicalSessionsKill:PhysicalSessionsKill',
             resource_name,
             __props__,
             opts)

@@ -20,7 +20,9 @@ __all__ = [
     'EndpointIpAddress',
     'ResolverRuleIpAddress',
     'ResolverRuleVpc',
+    'ZoneAuthorizationRecord',
     'ZoneDnssecInfo',
+    'ZoneRetrievalRecord',
     'ZoneRouter',
     'ZoneV2DnssecInfo',
     'ZoneV2Router',
@@ -33,10 +35,13 @@ __all__ = [
     'GetNameserversNameserverNsRecordResult',
     'GetPtrrecordsV21PtrrecordResult',
     'GetPublicZoneLinesLineResult',
+    'GetPublicZoneRecordsetsRecordsetResult',
     'GetQuotasQuotaResult',
     'GetRecordsetsRecordsetResult',
+    'GetResolverAccessLogsAccessLogResult',
     'GetResolverRulesResolverRuleResult',
     'GetResolverRulesResolverRuleRouterResult',
+    'GetSystemLinesLineResult',
     'GetTagsFilterMatchResult',
     'GetTagsFilterNotTagResult',
     'GetTagsFilterNotTagsAnyResult',
@@ -45,6 +50,7 @@ __all__ = [
     'GetTagsFilterTagResult',
     'GetTagsFilterTagsAnyResult',
     'GetTagsTagResult',
+    'GetZoneNameserversNameserverResult',
     'GetZonesZoneResult',
     'GetZonesZoneRouterResult',
 ]
@@ -294,6 +300,37 @@ class ResolverRuleVpc(dict):
 
 
 @pulumi.output_type
+class ZoneAuthorizationRecord(dict):
+    def __init__(__self__, *,
+                 host: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str host: The host record of the TXT record.
+        :param _builtins.str value: The record value of the TXT record.
+        """
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[_builtins.str]:
+        """
+        The host record of the TXT record.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        The record value of the TXT record.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class ZoneDnssecInfo(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -461,6 +498,37 @@ class ZoneDnssecInfo(dict):
         Indicates the update time. Format is **yyyy-MM-dd'T'HH:mm:ss.SSS**.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class ZoneRetrievalRecord(dict):
+    def __init__(__self__, *,
+                 host: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str host: Indicates the record host.
+        :param _builtins.str value: Indicates the record value.
+        """
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[_builtins.str]:
+        """
+        Indicates the record host.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Indicates the record value.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1166,8 +1234,7 @@ class GetNameserversNameserverResult(dict):
                  type: _builtins.str):
         """
         :param Sequence['GetNameserversNameserverNsRecordArgs'] ns_records: The list of name servers.
-        :param _builtins.str region: Specifies the region in which to query the resource.
-               If omitted, the provider-level region will be used.
+        :param _builtins.str region: The region where the name server is located.
         :param _builtins.str type: Specifies the type of the name server.
                The valid values are as follows:
                + **public**
@@ -1189,8 +1256,7 @@ class GetNameserversNameserverResult(dict):
     @pulumi.getter
     def region(self) -> _builtins.str:
         """
-        Specifies the region in which to query the resource.
-        If omitted, the provider-level region will be used.
+        The region where the name server is located.
         """
         return pulumi.get(self, "region")
 
@@ -1396,6 +1462,96 @@ class GetPublicZoneLinesLineResult(dict):
         Indicates the line name.
         """
         return pulumi.get(self, "line")
+
+
+@pulumi.output_type
+class GetPublicZoneRecordsetsRecordsetResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 default: _builtins.bool,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 updated_at: _builtins.str,
+                 zone_id: _builtins.str):
+        """
+        :param _builtins.str created_at: The creation time of the recordset, in RFC3339 format.
+        :param _builtins.bool default: Whether the recordset is default.
+        :param _builtins.str id: The ID of the recordset.
+        :param _builtins.str name: The name of the recordset.
+        :param _builtins.str type: Specifies the type of the domain name to be queried.  
+               The valid values are as follows:
+               + **email**
+               + **website**
+        :param _builtins.str updated_at: The update time of the recordset, in RFC3339 format.
+        :param _builtins.str zone_id: Specifies the ID of the public zone to be queried.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "default", default)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The creation time of the recordset, in RFC3339 format.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def default(self) -> _builtins.bool:
+        """
+        Whether the recordset is default.
+        """
+        return pulumi.get(self, "default")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the recordset.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the recordset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the type of the domain name to be queried.  
+        The valid values are as follows:
+        + **email**
+        + **website**
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The update time of the recordset, in RFC3339 format.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the public zone to be queried.
+        """
+        return pulumi.get(self, "zone_id")
 
 
 @pulumi.output_type
@@ -1653,6 +1809,57 @@ class GetRecordsetsRecordsetResult(dict):
 
 
 @pulumi.output_type
+class GetResolverAccessLogsAccessLogResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 lts_group_id: _builtins.str,
+                 lts_topic_id: _builtins.str,
+                 vpc_ids: Sequence[_builtins.str]):
+        """
+        :param _builtins.str id: The ID of the resolver access log.
+        :param _builtins.str lts_group_id: The ID of the log group.
+        :param _builtins.str lts_topic_id: The ID of the log stream.
+        :param Sequence[_builtins.str] vpc_ids: The list of VPC IDs associated with the resolver access log.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lts_group_id", lts_group_id)
+        pulumi.set(__self__, "lts_topic_id", lts_topic_id)
+        pulumi.set(__self__, "vpc_ids", vpc_ids)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the resolver access log.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="ltsGroupId")
+    def lts_group_id(self) -> _builtins.str:
+        """
+        The ID of the log group.
+        """
+        return pulumi.get(self, "lts_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ltsTopicId")
+    def lts_topic_id(self) -> _builtins.str:
+        """
+        The ID of the log stream.
+        """
+        return pulumi.get(self, "lts_topic_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcIds")
+    def vpc_ids(self) -> Sequence[_builtins.str]:
+        """
+        The list of VPC IDs associated with the resolver access log.
+        """
+        return pulumi.get(self, "vpc_ids")
+
+
+@pulumi.output_type
 class GetResolverRulesResolverRuleResult(dict):
     def __init__(__self__, *,
                  create_time: _builtins.str,
@@ -1807,6 +2014,46 @@ class GetResolverRulesResolverRuleRouterResult(dict):
         Indicates the resource status.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetSystemLinesLineResult(dict):
+    def __init__(__self__, *,
+                 father_id: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str father_id: The ID of the parent line.
+        :param _builtins.str id: The ID of the system line.
+        :param _builtins.str name: The name of the system line.
+        """
+        pulumi.set(__self__, "father_id", father_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="fatherId")
+    def father_id(self) -> _builtins.str:
+        """
+        The ID of the parent line.
+        """
+        return pulumi.get(self, "father_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the system line.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the system line.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -2073,6 +2320,35 @@ class GetTagsTagResult(dict):
         The values of the tag.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetZoneNameserversNameserverResult(dict):
+    def __init__(__self__, *,
+                 hostname: _builtins.str,
+                 priority: _builtins.int):
+        """
+        :param _builtins.str hostname: The host name of the name server.
+        :param _builtins.int priority: The priority of the name server.
+        """
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "priority", priority)
+
+    @_builtins.property
+    @pulumi.getter
+    def hostname(self) -> _builtins.str:
+        """
+        The host name of the name server.
+        """
+        return pulumi.get(self, "hostname")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> _builtins.int:
+        """
+        The priority of the name server.
+        """
+        return pulumi.get(self, "priority")
 
 
 @pulumi.output_type

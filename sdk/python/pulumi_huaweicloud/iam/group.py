@@ -23,8 +23,12 @@ class GroupArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Group resource.
-        :param pulumi.Input[_builtins.str] description: Specifies the description of the group.
-        :param pulumi.Input[_builtins.str] name: Specifies the name of the group. The length is less than or equal to 64 bytes.
+
+        :param pulumi.Input[_builtins.str] description: Specifies the description of the group.  
+               The valid length is limited from `0` to `255`, cannot includes these special characters: `@#$%^&*<>\\`.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the group.  
+               The valid length is limited from `1` to `128`, only Chinese characters, letters, digits, spaces, hyphens (-) and
+               underscores (_) are allowed.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -35,7 +39,8 @@ class GroupArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the description of the group.
+        Specifies the description of the group.  
+        The valid length is limited from `0` to `255`, cannot includes these special characters: `@#$%^&*<>\\`.
         """
         return pulumi.get(self, "description")
 
@@ -47,7 +52,9 @@ class GroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the name of the group. The length is less than or equal to 64 bytes.
+        Specifies the name of the group.  
+        The valid length is limited from `1` to `128`, only Chinese characters, letters, digits, spaces, hyphens (-) and
+        underscores (_) are allowed.
         """
         return pulumi.get(self, "name")
 
@@ -63,8 +70,12 @@ class _GroupState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Group resources.
-        :param pulumi.Input[_builtins.str] description: Specifies the description of the group.
-        :param pulumi.Input[_builtins.str] name: Specifies the name of the group. The length is less than or equal to 64 bytes.
+
+        :param pulumi.Input[_builtins.str] description: Specifies the description of the group.  
+               The valid length is limited from `0` to `255`, cannot includes these special characters: `@#$%^&*<>\\`.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the group.  
+               The valid length is limited from `1` to `128`, only Chinese characters, letters, digits, spaces, hyphens (-) and
+               underscores (_) are allowed.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -75,7 +86,8 @@ class _GroupState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the description of the group.
+        Specifies the description of the group.  
+        The valid length is limited from `0` to `255`, cannot includes these special characters: `@#$%^&*<>\\`.
         """
         return pulumi.get(self, "description")
 
@@ -87,7 +99,9 @@ class _GroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the name of the group. The length is less than or equal to 64 bytes.
+        Specifies the name of the group.  
+        The valid length is limited from `1` to `128`, only Chinese characters, letters, digits, spaces, hyphens (-) and
+        underscores (_) are allowed.
         """
         return pulumi.get(self, "name")
 
@@ -108,7 +122,7 @@ class Group(pulumi.CustomResource):
         """
         Manages an IAM user group resource within HuaweiCloud.
 
-        > **NOTE:** You *must* have admin privileges to use this resource.
+        > You *must* have admin privileges to use this resource.
 
         ## Example Usage
 
@@ -116,25 +130,30 @@ class Group(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        group1 = huaweicloud.iam.Group("group_1",
-            name="group_1",
-            description="This is a test group")
+        config = pulumi.Config()
+        group_name = config.require_object("groupName")
+        group_description = config.require_object("groupDescription")
+        test = huaweicloud.iam.Group("test",
+            name=group_name,
+            description=group_description)
         ```
 
         ## Import
 
-        Groups can be imported using the `id`, e.g.
-
-        bash
+        Groups can be imported using their `id`, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/group:Group group_1 89c60255-9bd6-460c-822a-e2b959ede9d2
+        $ pulumi import huaweicloud:Iam/group:Group test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] description: Specifies the description of the group.
-        :param pulumi.Input[_builtins.str] name: Specifies the name of the group. The length is less than or equal to 64 bytes.
+        :param pulumi.Input[_builtins.str] description: Specifies the description of the group.  
+               The valid length is limited from `0` to `255`, cannot includes these special characters: `@#$%^&*<>\\`.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the group.  
+               The valid length is limited from `1` to `128`, only Chinese characters, letters, digits, spaces, hyphens (-) and
+               underscores (_) are allowed.
         """
         ...
     @overload
@@ -145,7 +164,7 @@ class Group(pulumi.CustomResource):
         """
         Manages an IAM user group resource within HuaweiCloud.
 
-        > **NOTE:** You *must* have admin privileges to use this resource.
+        > You *must* have admin privileges to use this resource.
 
         ## Example Usage
 
@@ -153,20 +172,22 @@ class Group(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        group1 = huaweicloud.iam.Group("group_1",
-            name="group_1",
-            description="This is a test group")
+        config = pulumi.Config()
+        group_name = config.require_object("groupName")
+        group_description = config.require_object("groupDescription")
+        test = huaweicloud.iam.Group("test",
+            name=group_name,
+            description=group_description)
         ```
 
         ## Import
 
-        Groups can be imported using the `id`, e.g.
-
-        bash
+        Groups can be imported using their `id`, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/group:Group group_1 89c60255-9bd6-460c-822a-e2b959ede9d2
+        $ pulumi import huaweicloud:Iam/group:Group test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.
@@ -215,8 +236,11 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] description: Specifies the description of the group.
-        :param pulumi.Input[_builtins.str] name: Specifies the name of the group. The length is less than or equal to 64 bytes.
+        :param pulumi.Input[_builtins.str] description: Specifies the description of the group.  
+               The valid length is limited from `0` to `255`, cannot includes these special characters: `@#$%^&*<>\\`.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the group.  
+               The valid length is limited from `1` to `128`, only Chinese characters, letters, digits, spaces, hyphens (-) and
+               underscores (_) are allowed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -230,7 +254,8 @@ class Group(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the description of the group.
+        Specifies the description of the group.  
+        The valid length is limited from `0` to `255`, cannot includes these special characters: `@#$%^&*<>\\`.
         """
         return pulumi.get(self, "description")
 
@@ -238,7 +263,9 @@ class Group(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the name of the group. The length is less than or equal to 64 bytes.
+        Specifies the name of the group.  
+        The valid length is limited from `1` to `128`, only Chinese characters, letters, digits, spaces, hyphens (-) and
+        underscores (_) are allowed.
         """
         return pulumi.get(self, "name")
 

@@ -31,6 +31,7 @@ class PgSqlLimitArgs:
                  switch: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgSqlLimit resource.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the name of the database.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS PostgreSQL instance.
         :param pulumi.Input[_builtins.int] max_concurrency: Specifies the number of SQL statements executed simultaneously.
@@ -205,6 +206,7 @@ class _PgSqlLimitState:
                  switch: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PgSqlLimit resources.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the name of the database.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS PostgreSQL instance.
         :param pulumi.Input[_builtins.bool] is_effective: Indicates whether the SQL limit is effective.
@@ -437,39 +439,16 @@ class PgSqlLimit(pulumi.CustomResource):
 
         The SQL limit can be imported using the `instance_id`, `db_name` and `sql_limit_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgSqlLimit:PgSqlLimit test <instance_id>/<db_name>/<sql_limit_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `query_id`, `query_string`. It is generally
-
         recommended running `pulumi preview` after importing an RDS PostgreSQL SQL limit. You can then decide if changes should
-
         be applied to the RDS PostgreSQL SQL limit, or the resource definition should be updated to align with the RDS PostgreSQL
-
         SQL limit. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_pg_sql_limit" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              "query_id", "query_string",
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -519,39 +498,16 @@ class PgSqlLimit(pulumi.CustomResource):
 
         The SQL limit can be imported using the `instance_id`, `db_name` and `sql_limit_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgSqlLimit:PgSqlLimit test <instance_id>/<db_name>/<sql_limit_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `query_id`, `query_string`. It is generally
-
         recommended running `pulumi preview` after importing an RDS PostgreSQL SQL limit. You can then decide if changes should
-
         be applied to the RDS PostgreSQL SQL limit, or the resource definition should be updated to align with the RDS PostgreSQL
-
         SQL limit. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_pg_sql_limit" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              "query_id", "query_string",
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PgSqlLimitArgs args: The arguments to use to populate this resource's properties.

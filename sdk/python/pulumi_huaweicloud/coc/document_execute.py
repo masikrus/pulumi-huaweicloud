@@ -32,6 +32,7 @@ class DocumentExecuteArgs:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DocumentExecute resource.
+
         :param pulumi.Input[_builtins.str] document_id: Specifies the document ID.
         :param pulumi.Input[_builtins.str] description: Specifies the execution description.
                
@@ -207,6 +208,7 @@ class _DocumentExecuteState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DocumentExecute resources.
+
         :param pulumi.Input[_builtins.str] creator: Indicates the work order creator.
         :param pulumi.Input[_builtins.str] description: Specifies the execution description.
                
@@ -509,7 +511,7 @@ class _DocumentExecuteState:
         pulumi.set(self, "version", value)
 
 
-@pulumi.type_token("huaweicloud:coc/documentExecute:DocumentExecute")
+@pulumi.type_token("huaweicloud:Coc/documentExecute:DocumentExecute")
 class DocumentExecute(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -558,41 +560,17 @@ class DocumentExecute(pulumi.CustomResource):
 
         The COC document execution can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/documentExecute:DocumentExecute test <id>
+        $ pulumi import huaweicloud:Coc/documentExecute:DocumentExecute test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `parameters`, `sys_tags` and `document_type`.
-
         It is generally recommended running `pulumi preview` after importing a document execution.
-
         You can then decide if changes should be applied to the document execution, or the resource definition should be updated
-
         to align with the document execution. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_coc_document_execute" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              parameters, sys_tags, document_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -653,41 +631,17 @@ class DocumentExecute(pulumi.CustomResource):
 
         The COC document execution can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/documentExecute:DocumentExecute test <id>
+        $ pulumi import huaweicloud:Coc/documentExecute:DocumentExecute test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `parameters`, `sys_tags` and `document_type`.
-
         It is generally recommended running `pulumi preview` after importing a document execution.
-
         You can then decide if changes should be applied to the document execution, or the resource definition should be updated
-
         to align with the document execution. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_coc_document_execute" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              parameters, sys_tags, document_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DocumentExecuteArgs args: The arguments to use to populate this resource's properties.
@@ -744,7 +698,7 @@ class DocumentExecute(pulumi.CustomResource):
             __props__.__dict__["type"] = None
             __props__.__dict__["update_time"] = None
         super(DocumentExecute, __self__).__init__(
-            'huaweicloud:coc/documentExecute:DocumentExecute',
+            'huaweicloud:Coc/documentExecute:DocumentExecute',
             resource_name,
             __props__,
             opts)

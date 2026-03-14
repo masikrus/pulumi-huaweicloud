@@ -47,6 +47,7 @@ class NodeAttachArgs:
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodeAttachTaintArgs']]]] = None):
         """
         The set of arguments for constructing a NodeAttach resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the cluster. Changing this parameter will create a new
                resource.
         :param pulumi.Input[_builtins.str] os: Specifies the operating System of the node. Changing this parameter will reset the node.
@@ -502,6 +503,7 @@ class _NodeAttachState:
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodeAttachTaintArgs']]]] = None):
         """
         Input properties used for looking up and filtering NodeAttach resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: The name of the available partition (AZ).
         :param pulumi.Input[_builtins.str] charging_mode: The charging mode of the CCE node. Valid values are *prePaid* and *postPaid*.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the cluster. Changing this parameter will create a new
@@ -1156,6 +1158,7 @@ class NodeAttach(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the cluster. Changing this parameter will create a new
@@ -1239,6 +1242,7 @@ class NodeAttach(pulumi.CustomResource):
                 "key": "value",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NodeAttachArgs args: The arguments to use to populate this resource's properties.

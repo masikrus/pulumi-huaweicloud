@@ -125,7 +125,7 @@ class _RouteV1State:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:cs/routeV1:RouteV1")
+@pulumi.type_token("huaweicloud:Cs/routeV1:RouteV1")
 class RouteV1(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -138,6 +138,7 @@ class RouteV1(pulumi.CustomResource):
                  __props__=None):
         """
         Create a RouteV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -149,6 +150,7 @@ class RouteV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a RouteV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param RouteV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -188,7 +190,7 @@ class RouteV1(pulumi.CustomResource):
             __props__.__dict__["peering_id"] = peering_id
             __props__.__dict__["region"] = region
         super(RouteV1, __self__).__init__(
-            'huaweicloud:cs/routeV1:RouteV1',
+            'huaweicloud:Cs/routeV1:RouteV1',
             resource_name,
             __props__,
             opts)

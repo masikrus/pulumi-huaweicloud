@@ -29,6 +29,7 @@ class SecgroupArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Secgroup resource.
+
         :param pulumi.Input[_builtins.bool] delete_default_rules: Specifies whether or not to delete the default security rules.
                This is `false` by default.
         :param pulumi.Input[_builtins.str] description: Specifies the description for the security group.
@@ -150,6 +151,7 @@ class _SecgroupState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Secgroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time, in UTC format.
         :param pulumi.Input[_builtins.bool] delete_default_rules: Specifies whether or not to delete the default security rules.
                This is `false` by default.
@@ -318,15 +320,56 @@ class Secgroup(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
+        Manages a Security Group resource within HuaweiCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        secgroup = huaweicloud.vpc.Secgroup("secgroup",
+            name="secgroup_1",
+            description="My security group")
+        ```
+
+        ## Default Security Group Rules
+
+        In most cases, HuaweiCloud will create some security group rules for each new security group. These security group rules
+        will not be managed by Terraform, so if you prefer to have *all*
+        aspects of your infrastructure managed by Terraform, set `delete_default_rules` to `true`
+        and then create separate security group rules such as the following:
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        secgroup_rule_v4 = huaweicloud.vpc.SecgroupRule("secgroup_rule_v4",
+            security_group_id=secgroup["id"],
+            direction="egress",
+            ethertype="IPv4")
+        secgroup_rule_v6 = huaweicloud.vpc.SecgroupRule("secgroup_rule_v6",
+            security_group_id=secgroup["id"],
+            direction="egress",
+            ethertype="IPv6")
+        allow_ssh = huaweicloud.vpc.SecgroupRule("allow_ssh",
+            security_group_id=secgroup["id"],
+            direction="ingress",
+            ethertype="IPv4",
+            protocol="tcp",
+            port_range_min=22,
+            port_range_max=22,
+            remote_ip_prefix="0.0.0.0/0")
+        ```
+
         ## Import
 
         Security Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/secgroup:Secgroup secgroup_1 38809219-5e8a-4852-9139-6f461c90e8bc
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -351,15 +394,56 @@ class Secgroup(pulumi.CustomResource):
                  args: Optional[SecgroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages a Security Group resource within HuaweiCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        secgroup = huaweicloud.vpc.Secgroup("secgroup",
+            name="secgroup_1",
+            description="My security group")
+        ```
+
+        ## Default Security Group Rules
+
+        In most cases, HuaweiCloud will create some security group rules for each new security group. These security group rules
+        will not be managed by Terraform, so if you prefer to have *all*
+        aspects of your infrastructure managed by Terraform, set `delete_default_rules` to `true`
+        and then create separate security group rules such as the following:
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        secgroup_rule_v4 = huaweicloud.vpc.SecgroupRule("secgroup_rule_v4",
+            security_group_id=secgroup["id"],
+            direction="egress",
+            ethertype="IPv4")
+        secgroup_rule_v6 = huaweicloud.vpc.SecgroupRule("secgroup_rule_v6",
+            security_group_id=secgroup["id"],
+            direction="egress",
+            ethertype="IPv6")
+        allow_ssh = huaweicloud.vpc.SecgroupRule("allow_ssh",
+            security_group_id=secgroup["id"],
+            direction="ingress",
+            ethertype="IPv4",
+            protocol="tcp",
+            port_range_min=22,
+            port_range_max=22,
+            remote_ip_prefix="0.0.0.0/0")
+        ```
+
         ## Import
 
         Security Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/secgroup:Secgroup secgroup_1 38809219-5e8a-4852-9139-6f461c90e8bc
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecgroupArgs args: The arguments to use to populate this resource's properties.

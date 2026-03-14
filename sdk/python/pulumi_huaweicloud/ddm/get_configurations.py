@@ -83,7 +83,7 @@ def get_configurations(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ddm.get_configurations()
+    test = huaweicloud.Ddm.get_configurations()
     ```
 
 
@@ -93,7 +93,7 @@ def get_configurations(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getConfigurations:getConfigurations', __args__, opts=opts, typ=GetConfigurationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getConfigurations:getConfigurations', __args__, opts=opts, typ=GetConfigurationsResult).value
 
     return AwaitableGetConfigurationsResult(
         configurations=pulumi.get(__ret__, 'configurations'),
@@ -110,7 +110,7 @@ def get_configurations_output(region: Optional[pulumi.Input[Optional[_builtins.s
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ddm.get_configurations()
+    test = huaweicloud.Ddm.get_configurations()
     ```
 
 
@@ -120,7 +120,7 @@ def get_configurations_output(region: Optional[pulumi.Input[Optional[_builtins.s
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getConfigurations:getConfigurations', __args__, opts=opts, typ=GetConfigurationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getConfigurations:getConfigurations', __args__, opts=opts, typ=GetConfigurationsResult)
     return __ret__.apply(lambda __response__: GetConfigurationsResult(
         configurations=pulumi.get(__response__, 'configurations'),
         id=pulumi.get(__response__, 'id'),

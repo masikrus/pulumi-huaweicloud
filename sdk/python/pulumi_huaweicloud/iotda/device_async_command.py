@@ -28,6 +28,7 @@ class DeviceAsyncCommandArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeviceAsyncCommand resource.
+
         :param pulumi.Input[_builtins.str] device_id: Specifies the ID of the device to which the command is delivered.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] send_strategy: Specifies the delivery policy.
@@ -196,6 +197,7 @@ class _DeviceAsyncCommandState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeviceAsyncCommand resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the device command.
                The format is **yyyyMMdd'T'HHmmss'Z'**, e.g. **20151212T121212Z**.
         :param pulumi.Input[_builtins.str] delivered_time: The time of the device received the command.
@@ -510,6 +512,7 @@ class DeviceAsyncCommand(pulumi.CustomResource):
             send_strategy=send_strategy)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] device_id: Specifies the ID of the device to which the command is delivered.
@@ -581,6 +584,7 @@ class DeviceAsyncCommand(pulumi.CustomResource):
             device_id=device_id,
             send_strategy=send_strategy)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeviceAsyncCommandArgs args: The arguments to use to populate this resource's properties.

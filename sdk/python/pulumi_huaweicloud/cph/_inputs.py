@@ -33,20 +33,15 @@ __all__ = [
     'ServerServerShareDataVolumeArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class PhonePropertyPhonesArgsDict(TypedDict):
-        phone_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the phone ID.
-        """
-        property: pulumi.Input[_builtins.str]
-        """
-        Specifies the phone property, the format is json string.
-        """
-elif False:
-    PhonePropertyPhonesArgsDict: TypeAlias = Mapping[str, Any]
+class PhonePropertyPhonesArgsDict(TypedDict):
+    phone_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the phone ID.
+    """
+    property: pulumi.Input[_builtins.str]
+    """
+    Specifies the phone property, the format is json string.
+    """
 
 @pulumi.input_type
 class PhonePropertyPhonesArgs:
@@ -85,18 +80,15 @@ class PhonePropertyPhonesArgs:
         pulumi.set(self, "property", value)
 
 
-if not MYPY:
-    class PhoneResetPhonesArgsDict(TypedDict):
-        phone_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the CPH phone.
-        """
-        property: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the property of the CPH phone.
-        """
-elif False:
-    PhoneResetPhonesArgsDict: TypeAlias = Mapping[str, Any]
+class PhoneResetPhonesArgsDict(TypedDict):
+    phone_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the CPH phone.
+    """
+    property: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the property of the CPH phone.
+    """
 
 @pulumi.input_type
 class PhoneResetPhonesArgs:
@@ -136,18 +128,15 @@ class PhoneResetPhonesArgs:
         pulumi.set(self, "property", value)
 
 
-if not MYPY:
-    class PhoneRestartPhonesArgsDict(TypedDict):
-        phone_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the CPH phone.
-        """
-        property: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the property of the CPH phone.
-        """
-elif False:
-    PhoneRestartPhonesArgsDict: TypeAlias = Mapping[str, Any]
+class PhoneRestartPhonesArgsDict(TypedDict):
+    phone_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the CPH phone.
+    """
+    property: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the property of the CPH phone.
+    """
 
 @pulumi.input_type
 class PhoneRestartPhonesArgs:
@@ -187,18 +176,15 @@ class PhoneRestartPhonesArgs:
         pulumi.set(self, "property", value)
 
 
-if not MYPY:
-    class ServerAddressArgsDict(TypedDict):
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IP address of the CPH server.
-        """
-        server_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The internal IP address of the CPH server.
-        """
-elif False:
-    ServerAddressArgsDict: TypeAlias = Mapping[str, Any]
+class ServerAddressArgsDict(TypedDict):
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IP address of the CPH server.
+    """
+    server_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The internal IP address of the CPH server.
+    """
 
 @pulumi.input_type
 class ServerAddressArgs:
@@ -239,39 +225,36 @@ class ServerAddressArgs:
         pulumi.set(self, "server_ip", value)
 
 
-if not MYPY:
-    class ServerBandwidthArgsDict(TypedDict):
-        share_type: pulumi.Input[_builtins.str]
-        """
-        The bandwidth type.  
-        The options are as follows:
-        + **0**: Dedicated bandwidth.
-        + **1**: Shared bandwidth.
-        """
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Which the bandwidth used by the CPH server is billed.  
-        This parameter is mandatory for a dedicated bandwidth.
-        The options are as follows:
-        + **0**: Billed by bandwidth.
-        + **1**: Billed by traffic.
+class ServerBandwidthArgsDict(TypedDict):
+    share_type: pulumi.Input[_builtins.str]
+    """
+    The bandwidth type.  
+    The options are as follows:
+    + **0**: Dedicated bandwidth.
+    + **1**: Shared bandwidth.
+    """
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Which the bandwidth used by the CPH server is billed.  
+    This parameter is mandatory for a dedicated bandwidth.
+    The options are as follows:
+    + **0**: Billed by bandwidth.
+    + **1**: Billed by traffic.
 
-        <a name="cphServer_ApplicationPort"></a>
-        The `ApplicationPort` block supports:
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bandwidth ID.  
-        You can specify an existing shared bandwidth when assigning an EIP for a shared bandwidth.
-        This parameter is mandatory when you create a shared bandwidth.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the share volume size, the unit is GB.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ServerBandwidthArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="cphServer_ApplicationPort"></a>
+    The `ApplicationPort` block supports:
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth ID.  
+    You can specify an existing shared bandwidth when assigning an EIP for a shared bandwidth.
+    This parameter is mandatory when you create a shared bandwidth.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the share volume size, the unit is GB.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ServerBandwidthArgs:
@@ -369,36 +352,33 @@ class ServerBandwidthArgs:
         pulumi.set(self, "size", value)
 
 
-if not MYPY:
-    class ServerPhoneDataVolumeArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creation time.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The update time.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume ID.
-        """
-        volume_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume name.
-        """
-        volume_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the volume size, the unit is GB.
-        Changing this parameter will create a new resource.
-        """
-        volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the share volume type.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ServerPhoneDataVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ServerPhoneDataVolumeArgsDict(TypedDict):
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creation time.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The update time.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume ID.
+    """
+    volume_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume name.
+    """
+    volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the volume size, the unit is GB.
+    Changing this parameter will create a new resource.
+    """
+    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the share volume type.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ServerPhoneDataVolumeArgs:
@@ -507,29 +487,26 @@ class ServerPhoneDataVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ServerPortArgsDict(TypedDict):
-        internet_accessible: pulumi.Input[_builtins.str]
-        """
-        Whether public network access is mapped.
-        The options are as follows:
-        + **true**: public network access is mapped.
-        + **false**: no mapping is performed.
+class ServerPortArgsDict(TypedDict):
+    internet_accessible: pulumi.Input[_builtins.str]
+    """
+    Whether public network access is mapped.
+    The options are as follows:
+    + **true**: public network access is mapped.
+    + **false**: no mapping is performed.
 
-        <a name="phone_data_volume"></a>
-        The `phone_data_volume` block supports:
-        """
-        listen_port: pulumi.Input[_builtins.int]
-        """
-        The port number, which ranges from `10,000` to `50,000`.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The application port name, which can contain a maximum of 16 bytes.  
-        The key service name cannot be **adb** or **vnc**.
-        """
-elif False:
-    ServerPortArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="phone_data_volume"></a>
+    The `phone_data_volume` block supports:
+    """
+    listen_port: pulumi.Input[_builtins.int]
+    """
+    The port number, which ranges from `10,000` to `50,000`.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The application port name, which can contain a maximum of 16 bytes.  
+    The key service name cannot be **adb** or **vnc**.
+    """
 
 @pulumi.input_type
 class ServerPortArgs:
@@ -597,24 +574,21 @@ class ServerPortArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ServerServerShareDataVolumeArgsDict(TypedDict):
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the share volume size, the unit is GB.
-        Changing this parameter will create a new resource.
-        """
-        version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The share volume type.
-        """
-        volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the share volume type.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ServerServerShareDataVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ServerServerShareDataVolumeArgsDict(TypedDict):
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the share volume size, the unit is GB.
+    Changing this parameter will create a new resource.
+    """
+    version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The share volume type.
+    """
+    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the share volume type.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ServerServerShareDataVolumeArgs:

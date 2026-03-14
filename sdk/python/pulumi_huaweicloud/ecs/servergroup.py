@@ -25,6 +25,7 @@ class ServergroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Servergroup resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: Specifies an array of one or more instance ID to attach server group.
         :param pulumi.Input[_builtins.str] name: Specifies a unique name for the server group. This parameter can contain a
                maximum of 255 characters, which may consist of letters, digits, underscores (_), and hyphens (-). Changing this
@@ -112,6 +113,7 @@ class _ServergroupState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Servergroup resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fault_domains: schema: Internal
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: Specifies an array of one or more instance ID to attach server group.
         :param pulumi.Input[_builtins.str] name: Specifies a unique name for the server group. This parameter can contain a
@@ -235,11 +237,10 @@ class Servergroup(pulumi.CustomResource):
 
         Server Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ecs/servergroup:Servergroup test-sg 1bc30ee9-9d5b-4c30-bdd5-7f1e663f5edf
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -281,11 +282,10 @@ class Servergroup(pulumi.CustomResource):
 
         Server Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ecs/servergroup:Servergroup test-sg 1bc30ee9-9d5b-4c30-bdd5-7f1e663f5edf
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServergroupArgs args: The arguments to use to populate this resource's properties.

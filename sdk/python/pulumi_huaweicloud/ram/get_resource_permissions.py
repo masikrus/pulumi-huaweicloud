@@ -73,7 +73,6 @@ class GetResourcePermissionsResult:
     def permissions(self) -> Sequence['outputs.GetResourcePermissionsPermissionResult']:
         """
         Indicates the list of the RAM permissions
-        The permissions structure is documented below.
         """
         return pulumi.get(self, "permissions")
 
@@ -104,7 +103,7 @@ def get_resource_permissions(name: Optional[_builtins.str] = None,
                              resource_type: Optional[_builtins.str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourcePermissionsResult:
     """
-    Use this data source to get the list of RAM permissions.
+    Use this data source to get the list of RAM resource permissions within HuaweiCloud.
 
     ## Example Usage
 
@@ -115,7 +114,7 @@ def get_resource_permissions(name: Optional[_builtins.str] = None,
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
     name = config.require_object("name")
-    test = huaweicloud.ram.get_resource_permissions(resource_type=resource_type,
+    test = huaweicloud.Ram.get_resource_permissions(resource_type=resource_type,
         name=name)
     ```
 
@@ -135,7 +134,7 @@ def get_resource_permissions(name: Optional[_builtins.str] = None,
     __args__['permissionType'] = permission_type
     __args__['resourceType'] = resource_type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ram/getResourcePermissions:getResourcePermissions', __args__, opts=opts, typ=GetResourcePermissionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ram/getResourcePermissions:getResourcePermissions', __args__, opts=opts, typ=GetResourcePermissionsResult).value
 
     return AwaitableGetResourcePermissionsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -148,7 +147,7 @@ def get_resource_permissions_output(name: Optional[pulumi.Input[Optional[_builti
                                     resource_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourcePermissionsResult]:
     """
-    Use this data source to get the list of RAM permissions.
+    Use this data source to get the list of RAM resource permissions within HuaweiCloud.
 
     ## Example Usage
 
@@ -159,7 +158,7 @@ def get_resource_permissions_output(name: Optional[pulumi.Input[Optional[_builti
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
     name = config.require_object("name")
-    test = huaweicloud.ram.get_resource_permissions(resource_type=resource_type,
+    test = huaweicloud.Ram.get_resource_permissions(resource_type=resource_type,
         name=name)
     ```
 
@@ -179,7 +178,7 @@ def get_resource_permissions_output(name: Optional[pulumi.Input[Optional[_builti
     __args__['permissionType'] = permission_type
     __args__['resourceType'] = resource_type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ram/getResourcePermissions:getResourcePermissions', __args__, opts=opts, typ=GetResourcePermissionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ram/getResourcePermissions:getResourcePermissions', __args__, opts=opts, typ=GetResourcePermissionsResult)
     return __ret__.apply(lambda __response__: GetResourcePermissionsResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

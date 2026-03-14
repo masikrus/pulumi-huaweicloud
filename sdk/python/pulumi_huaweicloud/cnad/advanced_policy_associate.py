@@ -26,6 +26,7 @@ class AdvancedPolicyAssociateArgs:
                  protected_object_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a AdvancedPolicyAssociate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID. You can find it through data source
                `cnad_get_advanced_instances`.
                
@@ -94,6 +95,7 @@ class _AdvancedPolicyAssociateState:
                  protected_objects: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedPolicyAssociateProtectedObjectArgs']]]] = None):
         """
         Input properties used for looking up and filtering AdvancedPolicyAssociate resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID. You can find it through data source
                `cnad_get_advanced_instances`.
                
@@ -173,7 +175,7 @@ class _AdvancedPolicyAssociateState:
         pulumi.set(self, "protected_objects", value)
 
 
-@pulumi.type_token("huaweicloud:cnad/advancedPolicyAssociate:AdvancedPolicyAssociate")
+@pulumi.type_token("huaweicloud:Cnad/advancedPolicyAssociate:AdvancedPolicyAssociate")
 class AdvancedPolicyAssociate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -206,11 +208,10 @@ class AdvancedPolicyAssociate(pulumi.CustomResource):
 
         The CNAD advanced policy associate can be imported using the `policy_id` and `instance_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedPolicyAssociate:AdvancedPolicyAssociate test <policy_id>/<instance_id>
+        $ pulumi import huaweicloud:Cnad/advancedPolicyAssociate:AdvancedPolicyAssociate test <policy_id>/<instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -254,11 +255,10 @@ class AdvancedPolicyAssociate(pulumi.CustomResource):
 
         The CNAD advanced policy associate can be imported using the `policy_id` and `instance_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedPolicyAssociate:AdvancedPolicyAssociate test <policy_id>/<instance_id>
+        $ pulumi import huaweicloud:Cnad/advancedPolicyAssociate:AdvancedPolicyAssociate test <policy_id>/<instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AdvancedPolicyAssociateArgs args: The arguments to use to populate this resource's properties.
@@ -298,7 +298,7 @@ class AdvancedPolicyAssociate(pulumi.CustomResource):
             __props__.__dict__["protected_object_ids"] = protected_object_ids
             __props__.__dict__["protected_objects"] = None
         super(AdvancedPolicyAssociate, __self__).__init__(
-            'huaweicloud:cnad/advancedPolicyAssociate:AdvancedPolicyAssociate',
+            'huaweicloud:Cnad/advancedPolicyAssociate:AdvancedPolicyAssociate',
             resource_name,
             __props__,
             opts)

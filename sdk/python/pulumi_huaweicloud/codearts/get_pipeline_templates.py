@@ -142,7 +142,7 @@ def get_pipeline_templates(is_system: Optional[_builtins.bool] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_pipeline_templates()
+    test = huaweicloud.Codearts.get_pipeline_templates()
     ```
 
 
@@ -163,7 +163,7 @@ def get_pipeline_templates(is_system: Optional[_builtins.bool] = None,
     __args__['sortDir'] = sort_dir
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineTemplates:getPipelineTemplates', __args__, opts=opts, typ=GetPipelineTemplatesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineTemplates:getPipelineTemplates', __args__, opts=opts, typ=GetPipelineTemplatesResult).value
 
     return AwaitableGetPipelineTemplatesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -190,7 +190,7 @@ def get_pipeline_templates_output(is_system: Optional[pulumi.Input[Optional[_bui
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_pipeline_templates()
+    test = huaweicloud.Codearts.get_pipeline_templates()
     ```
 
 
@@ -211,7 +211,7 @@ def get_pipeline_templates_output(is_system: Optional[pulumi.Input[Optional[_bui
     __args__['sortDir'] = sort_dir
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineTemplates:getPipelineTemplates', __args__, opts=opts, typ=GetPipelineTemplatesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineTemplates:getPipelineTemplates', __args__, opts=opts, typ=GetPipelineTemplatesResult)
     return __ret__.apply(lambda __response__: GetPipelineTemplatesResult(
         id=pulumi.get(__response__, 'id'),
         is_system=pulumi.get(__response__, 'is_system'),

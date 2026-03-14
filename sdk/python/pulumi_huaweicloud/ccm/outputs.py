@@ -27,10 +27,38 @@ __all__ = [
     'PrivateCertificateDistinguishedName',
     'PrivateCertificateSubjectAlternativeName',
     'PrivateCertificateValidity',
+    'GetCertificateTagsTagResult',
+    'GetCertificatesByTagsMatchResult',
+    'GetCertificatesByTagsNotTagResult',
+    'GetCertificatesByTagsNotTagsAnyResult',
+    'GetCertificatesByTagsResourceResult',
+    'GetCertificatesByTagsResourceResourceDetailResult',
+    'GetCertificatesByTagsResourceTagResult',
+    'GetCertificatesByTagsTagResult',
+    'GetCertificatesByTagsTagsAnyResult',
     'GetCertificatesCertificateResult',
+    'GetCsrsCsrListResult',
+    'GetDeployedResourcesResultResult',
+    'GetDeployedResourcesResultDeployedResourceResult',
+    'GetDeployedResourcesResultDeployedResourceRegionResourceResult',
+    'GetDeployedResourcesResultDeployedResourceRegionResourceResourceResult',
+    'GetPrivateCaQuotaQuotaResult',
+    'GetPrivateCaQuotaQuotaResourceResult',
+    'GetPrivateCaTagsTagResult',
+    'GetPrivateCasByTagsMatchResult',
+    'GetPrivateCasByTagsResourceResult',
+    'GetPrivateCasByTagsResourceTagResult',
+    'GetPrivateCasByTagsTagResult',
     'GetPrivateCasCaResult',
     'GetPrivateCasCaCrlConfigurationResult',
     'GetPrivateCasCaDistinguishedNameResult',
+    'GetPrivateCertificateQuotaQuotaResult',
+    'GetPrivateCertificateQuotaQuotaResourceResult',
+    'GetPrivateCertificateTagsTagResult',
+    'GetPrivateCertificatesByTagsMatchResult',
+    'GetPrivateCertificatesByTagsResourceResult',
+    'GetPrivateCertificatesByTagsResourceTagResult',
+    'GetPrivateCertificatesByTagsTagResult',
     'GetPrivateCertificatesCertificateResult',
     'GetPrivateCertificatesCertificateDistinguishedNameResult',
 ]
@@ -939,6 +967,601 @@ class PrivateCertificateValidity(dict):
 
 
 @pulumi.output_type
+class GetCertificateTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The tag key.
+        :param Sequence[_builtins.str] values: The tag value list.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The tag value list.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetCertificatesByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param _builtins.str value: Specifies the match value.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the match value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCertificatesByTagsNotTagResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetCertificatesByTagsNotTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetCertificatesByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_details: Sequence['outputs.GetCertificatesByTagsResourceResourceDetailResult'],
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 tags: Sequence['outputs.GetCertificatesByTagsResourceTagResult']):
+        """
+        :param Sequence['GetCertificatesByTagsResourceResourceDetailArgs'] resource_details: The resource detail of the certificate.
+               The resource_detail structure is documented below.
+        :param _builtins.str resource_id: The resource ID of the certificate.
+        :param _builtins.str resource_name: The resource name of the certificate.
+        :param Sequence['GetCertificatesByTagsResourceTagArgs'] tags: Specifies the containing tags.
+               It can contain a maximum of `20` keys, with a maximum of `20` values ​​under each key. The value array for each key can
+               be empty, but the structure must be complete. Keys cannot be duplicated, and values ​​for the same key cannot be
+               duplicated. The result returns a list of resources containing all tags. Keys are related by AND, and values ​​in the
+               key-value structure are related by OR. Without tag filtering, the full dataset is returned.
+               
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_details", resource_details)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetails")
+    def resource_details(self) -> Sequence['outputs.GetCertificatesByTagsResourceResourceDetailResult']:
+        """
+        The resource detail of the certificate.
+        The resource_detail structure is documented below.
+        """
+        return pulumi.get(self, "resource_details")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The resource ID of the certificate.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The resource name of the certificate.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetCertificatesByTagsResourceTagResult']:
+        """
+        Specifies the containing tags.
+        It can contain a maximum of `20` keys, with a maximum of `20` values ​​under each key. The value array for each key can
+        be empty, but the structure must be complete. Keys cannot be duplicated, and values ​​for the same key cannot be
+        duplicated. The result returns a list of resources containing all tags. Keys are related by AND, and values ​​in the
+        key-value structure are related by OR. Without tag filtering, the full dataset is returned.
+
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetCertificatesByTagsResourceResourceDetailResult(dict):
+    def __init__(__self__, *,
+                 auto_deploy_support: _builtins.bool,
+                 auto_renew_status: _builtins.int,
+                 cert_brand: _builtins.str,
+                 cert_des: _builtins.str,
+                 cert_id: _builtins.str,
+                 cert_issued_time: _builtins.str,
+                 cert_name: _builtins.str,
+                 cert_type: _builtins.str,
+                 domain: _builtins.str,
+                 domain_num: _builtins.int,
+                 domain_type: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 expired_time: _builtins.str,
+                 fail_reason: _builtins.str,
+                 order_status: _builtins.str,
+                 origin_cert_id: _builtins.str,
+                 partner_order_id: _builtins.str,
+                 purchase_period: _builtins.int,
+                 push_support: _builtins.bool,
+                 remain_cert_number: _builtins.int,
+                 renewal_cert_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 sans: _builtins.str,
+                 signature_algorithm: _builtins.str,
+                 unsubscribe_support: _builtins.bool,
+                 wildcard_number: _builtins.int):
+        """
+        :param _builtins.bool auto_deploy_support: Whether the certificate is supported to auto-deploy.
+        :param _builtins.int auto_renew_status: The auto-renewal status.
+        :param _builtins.str cert_brand: The brand of the certificate.
+        :param _builtins.str cert_des: The description of the certificate.
+        :param _builtins.str cert_id: The ID of the certificate.
+        :param _builtins.str cert_issued_time: The certificate issue time, unit is milliseconds.
+        :param _builtins.str cert_name: The name of the certificate.
+        :param _builtins.str cert_type: The type of the certificate. Valid values are **OV_SSL_CERT** and **EV_SSL_CERT**.
+        :param _builtins.str domain: The domain of the certificate.
+        :param _builtins.int domain_num: The number of domains.
+        :param _builtins.str domain_type: The type of the domain. Valid values are **SINGLE_DOMAIN**, **MULTI_DOMAIN**, and **WILDCARD**.
+        :param _builtins.str enterprise_project_id: The enterprise project ID.
+        :param _builtins.str expired_time: The expiration time of the certificate, the unit is milliseconds.
+        :param _builtins.str fail_reason: The fail reason.
+        :param _builtins.str order_status: The order status of the certificate.
+        :param _builtins.str origin_cert_id: The origin certificate ID.
+        :param _builtins.str partner_order_id: The order serial number.
+        :param _builtins.int purchase_period: The purchase period of the certificate, the unit is year.
+        :param _builtins.bool push_support: Whether the certificate is supported to push.
+        :param _builtins.int remain_cert_number: The remaining number of certificates.
+        :param _builtins.str renewal_cert_id: The renewal certificate ID.
+        :param _builtins.str resource_id: The resource ID of the certificate.
+        :param _builtins.str sans: The SANs of the certificate.
+        :param _builtins.str signature_algorithm: The signature algorithm.
+        :param _builtins.bool unsubscribe_support: Whether the certificate is supported to unsubscribe.
+        :param _builtins.int wildcard_number: The number of wildcard domains.
+        """
+        pulumi.set(__self__, "auto_deploy_support", auto_deploy_support)
+        pulumi.set(__self__, "auto_renew_status", auto_renew_status)
+        pulumi.set(__self__, "cert_brand", cert_brand)
+        pulumi.set(__self__, "cert_des", cert_des)
+        pulumi.set(__self__, "cert_id", cert_id)
+        pulumi.set(__self__, "cert_issued_time", cert_issued_time)
+        pulumi.set(__self__, "cert_name", cert_name)
+        pulumi.set(__self__, "cert_type", cert_type)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "domain_num", domain_num)
+        pulumi.set(__self__, "domain_type", domain_type)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "expired_time", expired_time)
+        pulumi.set(__self__, "fail_reason", fail_reason)
+        pulumi.set(__self__, "order_status", order_status)
+        pulumi.set(__self__, "origin_cert_id", origin_cert_id)
+        pulumi.set(__self__, "partner_order_id", partner_order_id)
+        pulumi.set(__self__, "purchase_period", purchase_period)
+        pulumi.set(__self__, "push_support", push_support)
+        pulumi.set(__self__, "remain_cert_number", remain_cert_number)
+        pulumi.set(__self__, "renewal_cert_id", renewal_cert_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "sans", sans)
+        pulumi.set(__self__, "signature_algorithm", signature_algorithm)
+        pulumi.set(__self__, "unsubscribe_support", unsubscribe_support)
+        pulumi.set(__self__, "wildcard_number", wildcard_number)
+
+    @_builtins.property
+    @pulumi.getter(name="autoDeploySupport")
+    def auto_deploy_support(self) -> _builtins.bool:
+        """
+        Whether the certificate is supported to auto-deploy.
+        """
+        return pulumi.get(self, "auto_deploy_support")
+
+    @_builtins.property
+    @pulumi.getter(name="autoRenewStatus")
+    def auto_renew_status(self) -> _builtins.int:
+        """
+        The auto-renewal status.
+        """
+        return pulumi.get(self, "auto_renew_status")
+
+    @_builtins.property
+    @pulumi.getter(name="certBrand")
+    def cert_brand(self) -> _builtins.str:
+        """
+        The brand of the certificate.
+        """
+        return pulumi.get(self, "cert_brand")
+
+    @_builtins.property
+    @pulumi.getter(name="certDes")
+    def cert_des(self) -> _builtins.str:
+        """
+        The description of the certificate.
+        """
+        return pulumi.get(self, "cert_des")
+
+    @_builtins.property
+    @pulumi.getter(name="certId")
+    def cert_id(self) -> _builtins.str:
+        """
+        The ID of the certificate.
+        """
+        return pulumi.get(self, "cert_id")
+
+    @_builtins.property
+    @pulumi.getter(name="certIssuedTime")
+    def cert_issued_time(self) -> _builtins.str:
+        """
+        The certificate issue time, unit is milliseconds.
+        """
+        return pulumi.get(self, "cert_issued_time")
+
+    @_builtins.property
+    @pulumi.getter(name="certName")
+    def cert_name(self) -> _builtins.str:
+        """
+        The name of the certificate.
+        """
+        return pulumi.get(self, "cert_name")
+
+    @_builtins.property
+    @pulumi.getter(name="certType")
+    def cert_type(self) -> _builtins.str:
+        """
+        The type of the certificate. Valid values are **OV_SSL_CERT** and **EV_SSL_CERT**.
+        """
+        return pulumi.get(self, "cert_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The domain of the certificate.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter(name="domainNum")
+    def domain_num(self) -> _builtins.int:
+        """
+        The number of domains.
+        """
+        return pulumi.get(self, "domain_num")
+
+    @_builtins.property
+    @pulumi.getter(name="domainType")
+    def domain_type(self) -> _builtins.str:
+        """
+        The type of the domain. Valid values are **SINGLE_DOMAIN**, **MULTI_DOMAIN**, and **WILDCARD**.
+        """
+        return pulumi.get(self, "domain_type")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        The enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> _builtins.str:
+        """
+        The expiration time of the certificate, the unit is milliseconds.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @_builtins.property
+    @pulumi.getter(name="failReason")
+    def fail_reason(self) -> _builtins.str:
+        """
+        The fail reason.
+        """
+        return pulumi.get(self, "fail_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="orderStatus")
+    def order_status(self) -> _builtins.str:
+        """
+        The order status of the certificate.
+        """
+        return pulumi.get(self, "order_status")
+
+    @_builtins.property
+    @pulumi.getter(name="originCertId")
+    def origin_cert_id(self) -> _builtins.str:
+        """
+        The origin certificate ID.
+        """
+        return pulumi.get(self, "origin_cert_id")
+
+    @_builtins.property
+    @pulumi.getter(name="partnerOrderId")
+    def partner_order_id(self) -> _builtins.str:
+        """
+        The order serial number.
+        """
+        return pulumi.get(self, "partner_order_id")
+
+    @_builtins.property
+    @pulumi.getter(name="purchasePeriod")
+    def purchase_period(self) -> _builtins.int:
+        """
+        The purchase period of the certificate, the unit is year.
+        """
+        return pulumi.get(self, "purchase_period")
+
+    @_builtins.property
+    @pulumi.getter(name="pushSupport")
+    def push_support(self) -> _builtins.bool:
+        """
+        Whether the certificate is supported to push.
+        """
+        return pulumi.get(self, "push_support")
+
+    @_builtins.property
+    @pulumi.getter(name="remainCertNumber")
+    def remain_cert_number(self) -> _builtins.int:
+        """
+        The remaining number of certificates.
+        """
+        return pulumi.get(self, "remain_cert_number")
+
+    @_builtins.property
+    @pulumi.getter(name="renewalCertId")
+    def renewal_cert_id(self) -> _builtins.str:
+        """
+        The renewal certificate ID.
+        """
+        return pulumi.get(self, "renewal_cert_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The resource ID of the certificate.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def sans(self) -> _builtins.str:
+        """
+        The SANs of the certificate.
+        """
+        return pulumi.get(self, "sans")
+
+    @_builtins.property
+    @pulumi.getter(name="signatureAlgorithm")
+    def signature_algorithm(self) -> _builtins.str:
+        """
+        The signature algorithm.
+        """
+        return pulumi.get(self, "signature_algorithm")
+
+    @_builtins.property
+    @pulumi.getter(name="unsubscribeSupport")
+    def unsubscribe_support(self) -> _builtins.bool:
+        """
+        Whether the certificate is supported to unsubscribe.
+        """
+        return pulumi.get(self, "unsubscribe_support")
+
+    @_builtins.property
+    @pulumi.getter(name="wildcardNumber")
+    def wildcard_number(self) -> _builtins.int:
+        """
+        The number of wildcard domains.
+        """
+        return pulumi.get(self, "wildcard_number")
+
+
+@pulumi.output_type
+class GetCertificatesByTagsResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param _builtins.str value: Specifies the match value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the match value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCertificatesByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetCertificatesByTagsTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetCertificatesCertificateResult(dict):
     def __init__(__self__, *,
                  brand: _builtins.str,
@@ -1165,6 +1788,589 @@ class GetCertificatesCertificateResult(dict):
         The number of wildcard domain names that can be associated with the certificate.
         """
         return pulumi.get(self, "wildcard_count")
+
+
+@pulumi.output_type
+class GetCsrsCsrListResult(dict):
+    def __init__(__self__, *,
+                 company_city: _builtins.str,
+                 company_country: _builtins.str,
+                 company_name: _builtins.str,
+                 company_province: _builtins.str,
+                 create_time: _builtins.int,
+                 csr: _builtins.str,
+                 domain_name: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 private_key_algo: _builtins.str,
+                 sans: _builtins.str,
+                 update_time: _builtins.int,
+                 usage: _builtins.str):
+        """
+        :param _builtins.str company_city: The city.
+        :param _builtins.str company_country: The country.
+        :param _builtins.str company_name: The company name.
+        :param _builtins.str company_province: The province.
+        :param _builtins.int create_time: The CSR creation time.
+        :param _builtins.str csr: The CSR content.
+        :param _builtins.str domain_name: The domain name bound to the CSR.
+        :param _builtins.str id: The CSR ID.
+        :param _builtins.str name: Specifies the CSR name.
+        :param _builtins.str private_key_algo: Specifies the key algorithm type. Valid values are:
+               + **RSA_2048**
+               + **RSA_3072**
+               + **RSA_4096**
+               + **EC_P256**
+               + **EC_P384**
+               + **SM2**
+        :param _builtins.str sans: The additional domain name bound to the CSR.
+        :param _builtins.int update_time: The CSR update time.
+        :param _builtins.str usage: The CSR usage.
+        """
+        pulumi.set(__self__, "company_city", company_city)
+        pulumi.set(__self__, "company_country", company_country)
+        pulumi.set(__self__, "company_name", company_name)
+        pulumi.set(__self__, "company_province", company_province)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "csr", csr)
+        pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "private_key_algo", private_key_algo)
+        pulumi.set(__self__, "sans", sans)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "usage", usage)
+
+    @_builtins.property
+    @pulumi.getter(name="companyCity")
+    def company_city(self) -> _builtins.str:
+        """
+        The city.
+        """
+        return pulumi.get(self, "company_city")
+
+    @_builtins.property
+    @pulumi.getter(name="companyCountry")
+    def company_country(self) -> _builtins.str:
+        """
+        The country.
+        """
+        return pulumi.get(self, "company_country")
+
+    @_builtins.property
+    @pulumi.getter(name="companyName")
+    def company_name(self) -> _builtins.str:
+        """
+        The company name.
+        """
+        return pulumi.get(self, "company_name")
+
+    @_builtins.property
+    @pulumi.getter(name="companyProvince")
+    def company_province(self) -> _builtins.str:
+        """
+        The province.
+        """
+        return pulumi.get(self, "company_province")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The CSR creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def csr(self) -> _builtins.str:
+        """
+        The CSR content.
+        """
+        return pulumi.get(self, "csr")
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> _builtins.str:
+        """
+        The domain name bound to the CSR.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The CSR ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the CSR name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyAlgo")
+    def private_key_algo(self) -> _builtins.str:
+        """
+        Specifies the key algorithm type. Valid values are:
+        + **RSA_2048**
+        + **RSA_3072**
+        + **RSA_4096**
+        + **EC_P256**
+        + **EC_P384**
+        + **SM2**
+        """
+        return pulumi.get(self, "private_key_algo")
+
+    @_builtins.property
+    @pulumi.getter
+    def sans(self) -> _builtins.str:
+        """
+        The additional domain name bound to the CSR.
+        """
+        return pulumi.get(self, "sans")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The CSR update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def usage(self) -> _builtins.str:
+        """
+        The CSR usage.
+        """
+        return pulumi.get(self, "usage")
+
+
+@pulumi.output_type
+class GetDeployedResourcesResultResult(dict):
+    def __init__(__self__, *,
+                 certificate_id: _builtins.str,
+                 deployed_resources: Sequence['outputs.GetDeployedResourcesResultDeployedResourceResult'],
+                 total_num: _builtins.int):
+        """
+        :param _builtins.str certificate_id: The certificate ID.
+        :param Sequence['GetDeployedResourcesResultDeployedResourceArgs'] deployed_resources: The list of resources deployed under the current certificate.
+        :param _builtins.int total_num: The number of resources deployed for the certificate in the current service.
+        """
+        pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "deployed_resources", deployed_resources)
+        pulumi.set(__self__, "total_num", total_num)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> _builtins.str:
+        """
+        The certificate ID.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deployedResources")
+    def deployed_resources(self) -> Sequence['outputs.GetDeployedResourcesResultDeployedResourceResult']:
+        """
+        The list of resources deployed under the current certificate.
+        """
+        return pulumi.get(self, "deployed_resources")
+
+    @_builtins.property
+    @pulumi.getter(name="totalNum")
+    def total_num(self) -> _builtins.int:
+        """
+        The number of resources deployed for the certificate in the current service.
+        """
+        return pulumi.get(self, "total_num")
+
+
+@pulumi.output_type
+class GetDeployedResourcesResultDeployedResourceResult(dict):
+    def __init__(__self__, *,
+                 region_resources: Sequence['outputs.GetDeployedResourcesResultDeployedResourceRegionResourceResult'],
+                 resource_location: _builtins.str,
+                 resource_num: _builtins.int,
+                 service: _builtins.str):
+        """
+        :param Sequence['GetDeployedResourcesResultDeployedResourceRegionResourceArgs'] region_resources: The region resource list.
+        :param _builtins.str resource_location: The global service or region-level service.
+        :param _builtins.int resource_num: The number of resources deployed for the certificate in the current service.
+        :param _builtins.str service: The name of the resource service where the certificate has been deployed. Valid values are:
+               + **WAF**: The certificate is associated with WAF resources.
+               + **CDN**: The certificate is associated with the resources of the content delivery network.
+               + **ELB**: The certificate is associated with ELB (classic) resources.
+        """
+        pulumi.set(__self__, "region_resources", region_resources)
+        pulumi.set(__self__, "resource_location", resource_location)
+        pulumi.set(__self__, "resource_num", resource_num)
+        pulumi.set(__self__, "service", service)
+
+    @_builtins.property
+    @pulumi.getter(name="regionResources")
+    def region_resources(self) -> Sequence['outputs.GetDeployedResourcesResultDeployedResourceRegionResourceResult']:
+        """
+        The region resource list.
+        """
+        return pulumi.get(self, "region_resources")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceLocation")
+    def resource_location(self) -> _builtins.str:
+        """
+        The global service or region-level service.
+        """
+        return pulumi.get(self, "resource_location")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceNum")
+    def resource_num(self) -> _builtins.int:
+        """
+        The number of resources deployed for the certificate in the current service.
+        """
+        return pulumi.get(self, "resource_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def service(self) -> _builtins.str:
+        """
+        The name of the resource service where the certificate has been deployed. Valid values are:
+        + **WAF**: The certificate is associated with WAF resources.
+        + **CDN**: The certificate is associated with the resources of the content delivery network.
+        + **ELB**: The certificate is associated with ELB (classic) resources.
+        """
+        return pulumi.get(self, "service")
+
+
+@pulumi.output_type
+class GetDeployedResourcesResultDeployedResourceRegionResourceResult(dict):
+    def __init__(__self__, *,
+                 is_error: _builtins.bool,
+                 region_id: _builtins.str,
+                 resources: Sequence['outputs.GetDeployedResourcesResultDeployedResourceRegionResourceResourceResult']):
+        """
+        :param _builtins.bool is_error: Whether an exception occurs in the response when the resource information of the current region
+               is requested.
+               + **true**: An exception occurs. The statistics of the current region are inaccurate.
+               + **false**: No exception occurs. The statistics of the current region are correct.
+        :param _builtins.str region_id: The region ID. If the service is a global service, the value of this field is **global**.
+               Other services are named based on the IAM.
+        :param Sequence['GetDeployedResourcesResultDeployedResourceRegionResourceResourceArgs'] resources: The resource set. The identifier of each resource is in the format of `resource ID + : + resource name`.
+        """
+        pulumi.set(__self__, "is_error", is_error)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resources", resources)
+
+    @_builtins.property
+    @pulumi.getter(name="isError")
+    def is_error(self) -> _builtins.bool:
+        """
+        Whether an exception occurs in the response when the resource information of the current region
+        is requested.
+        + **true**: An exception occurs. The statistics of the current region are inaccurate.
+        + **false**: No exception occurs. The statistics of the current region are correct.
+        """
+        return pulumi.get(self, "is_error")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID. If the service is a global service, the value of this field is **global**.
+        Other services are named based on the IAM.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetDeployedResourcesResultDeployedResourceRegionResourceResourceResult']:
+        """
+        The resource set. The identifier of each resource is in the format of `resource ID + : + resource name`.
+        """
+        return pulumi.get(self, "resources")
+
+
+@pulumi.output_type
+class GetDeployedResourcesResultDeployedResourceRegionResourceResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str):
+        """
+        :param _builtins.str resource_id: The resource ID.
+        :param _builtins.str resource_name: The resource name.
+        """
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+
+@pulumi.output_type
+class GetPrivateCaQuotaQuotaResult(dict):
+    def __init__(__self__, *,
+                 resources: Sequence['outputs.GetPrivateCaQuotaQuotaResourceResult']):
+        """
+        :param Sequence['GetPrivateCaQuotaQuotaResourceArgs'] resources: The resource quota list.
+        """
+        pulumi.set(__self__, "resources", resources)
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetPrivateCaQuotaQuotaResourceResult']:
+        """
+        The resource quota list.
+        """
+        return pulumi.get(self, "resources")
+
+
+@pulumi.output_type
+class GetPrivateCaQuotaQuotaResourceResult(dict):
+    def __init__(__self__, *,
+                 quota: _builtins.int,
+                 type: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int quota: The total quota.
+        :param _builtins.str type: The certificate type.
+        :param _builtins.int used: The used quota.
+        """
+        pulumi.set(__self__, "quota", quota)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter
+    def quota(self) -> _builtins.int:
+        """
+        The total quota.
+        """
+        return pulumi.get(self, "quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The certificate type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        The used quota.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetPrivateCaTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The tag key.
+        :param Sequence[_builtins.str] values: The tag value list.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The tag value list.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetPrivateCasByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param _builtins.str value: Specifies the match value.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the match value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetPrivateCasByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_detail: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 tags: Sequence['outputs.GetPrivateCasByTagsResourceTagResult']):
+        """
+        :param _builtins.str resource_detail: The details of the private CA in JSON string format.
+        :param _builtins.str resource_id: The ID of the private CA.
+        :param _builtins.str resource_name: The name of the private CA.
+        :param Sequence['GetPrivateCasByTagsResourceTagArgs'] tags: Specifies the containing tags.
+               It can contain a maximum of `20` keys, with a maximum of `20` values ​​under each key. The value array for each key can
+               be empty, but the structure must be complete. Keys cannot be duplicated, and values ​​for the same key cannot be
+               duplicated. The result returns a list of resources containing all tags. Keys are related by AND, and values ​​in the
+               key-value structure are related by OR. Without tag filtering, the full dataset is returned.
+               
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_detail", resource_detail)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetail")
+    def resource_detail(self) -> _builtins.str:
+        """
+        The details of the private CA in JSON string format.
+        """
+        return pulumi.get(self, "resource_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The ID of the private CA.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The name of the private CA.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetPrivateCasByTagsResourceTagResult']:
+        """
+        Specifies the containing tags.
+        It can contain a maximum of `20` keys, with a maximum of `20` values ​​under each key. The value array for each key can
+        be empty, but the structure must be complete. Keys cannot be duplicated, and values ​​for the same key cannot be
+        duplicated. The result returns a list of resources containing all tags. Keys are related by AND, and values ​​in the
+        key-value structure are related by OR. Without tag filtering, the full dataset is returned.
+
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetPrivateCasByTagsResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param _builtins.str value: Specifies the match value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the match value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetPrivateCasByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -1533,6 +2739,261 @@ class GetPrivateCasCaDistinguishedNameResult(dict):
         The state or city name.
         """
         return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class GetPrivateCertificateQuotaQuotaResult(dict):
+    def __init__(__self__, *,
+                 resources: Sequence['outputs.GetPrivateCertificateQuotaQuotaResourceResult']):
+        """
+        :param Sequence['GetPrivateCertificateQuotaQuotaResourceArgs'] resources: The resource quota list.
+        """
+        pulumi.set(__self__, "resources", resources)
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetPrivateCertificateQuotaQuotaResourceResult']:
+        """
+        The resource quota list.
+        """
+        return pulumi.get(self, "resources")
+
+
+@pulumi.output_type
+class GetPrivateCertificateQuotaQuotaResourceResult(dict):
+    def __init__(__self__, *,
+                 quota: _builtins.int,
+                 type: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int quota: The total quota. There are two scenarios:
+               + For **CERTIFICATE_AUTHORITY** certificate, the default value is `100`.
+               + For **CERTIFICATE** certificate, the default value is `100,000`.
+        :param _builtins.str type: The certificate type. Valid values are:
+               + **CERTIFICATE_AUTHORITY**: CA certificate.
+               + **CERTIFICATE**: Private certificate.
+        :param _builtins.int used: The used quota.
+        """
+        pulumi.set(__self__, "quota", quota)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter
+    def quota(self) -> _builtins.int:
+        """
+        The total quota. There are two scenarios:
+        + For **CERTIFICATE_AUTHORITY** certificate, the default value is `100`.
+        + For **CERTIFICATE** certificate, the default value is `100,000`.
+        """
+        return pulumi.get(self, "quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The certificate type. Valid values are:
+        + **CERTIFICATE_AUTHORITY**: CA certificate.
+        + **CERTIFICATE**: Private certificate.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        The used quota.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetPrivateCertificateTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The tag key.
+        :param Sequence[_builtins.str] values: The tag value list.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The tag value list.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetPrivateCertificatesByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param _builtins.str value: Specifies the match value.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the match value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetPrivateCertificatesByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_detail: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 tags: Sequence['outputs.GetPrivateCertificatesByTagsResourceTagResult']):
+        """
+        :param _builtins.str resource_detail: The details of the private certificate in JSON string format.
+        :param _builtins.str resource_id: The ID of the private certificate.
+        :param _builtins.str resource_name: The name of the private certificate.
+        :param Sequence['GetPrivateCertificatesByTagsResourceTagArgs'] tags: Specifies the containing tags.
+               It can contain a maximum of `20` keys, with a maximum of `20` values ​​under each key. The value array for each key can
+               be empty, but the structure must be complete. Keys cannot be duplicated, and values ​​for the same key cannot be
+               duplicated. The result returns a list of resources containing all tags. Keys are related by AND, and values ​​in the
+               key-value structure are related by OR. Without tag filtering, the full dataset is returned.
+               
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_detail", resource_detail)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetail")
+    def resource_detail(self) -> _builtins.str:
+        """
+        The details of the private certificate in JSON string format.
+        """
+        return pulumi.get(self, "resource_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The ID of the private certificate.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The name of the private certificate.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetPrivateCertificatesByTagsResourceTagResult']:
+        """
+        Specifies the containing tags.
+        It can contain a maximum of `20` keys, with a maximum of `20` values ​​under each key. The value array for each key can
+        be empty, but the structure must be complete. Keys cannot be duplicated, and values ​​for the same key cannot be
+        duplicated. The result returns a list of resources containing all tags. Keys are related by AND, and values ​​in the
+        key-value structure are related by OR. Without tag filtering, the full dataset is returned.
+
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetPrivateCertificatesByTagsResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param _builtins.str value: Specifies the match value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the match value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetPrivateCertificatesByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the field to be matched.
+        :param Sequence[_builtins.str] values: Specifies the value array.
+               
+               <a name="matches_Match"></a>
+               The `matches` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field to be matched.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the value array.
+
+        <a name="matches_Match"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type

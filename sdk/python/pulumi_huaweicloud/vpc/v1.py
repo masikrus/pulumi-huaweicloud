@@ -33,6 +33,7 @@ class V1Args:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a V1 resource.
+
         :param pulumi.Input[_builtins.str] secondary_cidr: schema: Deprecated; use secondary_cidrs instead
         """
         pulumi.set(__self__, "cidr", cidr)
@@ -166,6 +167,7 @@ class _V1State:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering V1 resources.
+
         :param pulumi.Input[_builtins.str] secondary_cidr: schema: Deprecated; use secondary_cidrs instead
         """
         if block_service_endpoint_states is not None:
@@ -328,6 +330,7 @@ class V1(pulumi.CustomResource):
                  __props__=None):
         """
         Create a V1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] secondary_cidr: schema: Deprecated; use secondary_cidrs instead
@@ -340,6 +343,7 @@ class V1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a V1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param V1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -27,6 +27,7 @@ class DatabaseArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Database resource.
+
         :param pulumi.Input[_builtins.str] character_set: Specifies the character set used by the database.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS Mysql instance.
         :param pulumi.Input[_builtins.str] description: Specifies the database description.
@@ -121,6 +122,7 @@ class _DatabaseState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
+
         :param pulumi.Input[_builtins.str] character_set: Specifies the character set used by the database.
         :param pulumi.Input[_builtins.str] description: Specifies the database description.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS Mysql instance.
@@ -221,6 +223,7 @@ class Database(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Database resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] character_set: Specifies the character set used by the database.
@@ -236,6 +239,7 @@ class Database(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Database resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param DatabaseArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

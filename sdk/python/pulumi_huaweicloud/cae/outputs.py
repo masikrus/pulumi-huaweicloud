@@ -60,8 +60,8 @@ class ComponentActionMetadata(dict):
         :param Mapping[str, _builtins.str] annotations: Specifies the key/value pairs parameters related to the component to be operated.  
                Currently, only `version` is supported.
                
-               > If the `annotations` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-               you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
+               > If the `annotations` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+               you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         pulumi.set(__self__, "name", name)
         if annotations is not None:
@@ -90,8 +90,8 @@ class ComponentActionMetadata(dict):
         Specifies the key/value pairs parameters related to the component to be operated.  
         Currently, only `version` is supported.
 
-        > If the `annotations` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-        you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
+        > If the `annotations` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+        you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         return pulumi.get(self, "annotations")
 

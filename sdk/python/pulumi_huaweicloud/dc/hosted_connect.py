@@ -29,6 +29,7 @@ class HostedConnectArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a HostedConnect resource.
+
         :param pulumi.Input[_builtins.int] bandwidth: The bandwidth size of the hosted connect in Mbit/s.
         :param pulumi.Input[_builtins.str] hosting_id: The ID of the operations connection on which the hosted connect is created.
                
@@ -178,6 +179,7 @@ class _HostedConnectState:
                  vlan: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering HostedConnect resources.
+
         :param pulumi.Input[_builtins.int] bandwidth: The bandwidth size of the hosted connect in Mbit/s.
         :param pulumi.Input[_builtins.str] description: The description of the hosted connect.
         :param pulumi.Input[_builtins.str] hosting_id: The ID of the operations connection on which the hosted connect is created.
@@ -348,7 +350,7 @@ class _HostedConnectState:
         pulumi.set(self, "vlan", value)
 
 
-@pulumi.type_token("huaweicloud:dc/hostedConnect:HostedConnect")
+@pulumi.type_token("huaweicloud:Dc/hostedConnect:HostedConnect")
 class HostedConnect(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -390,11 +392,10 @@ class HostedConnect(pulumi.CustomResource):
 
         The hosted connect can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/hostedConnect:HostedConnect test ac0fe389-02f5-4463-9647-58bbb3d21fed
+        $ pulumi import huaweicloud:Dc/hostedConnect:HostedConnect test ac0fe389-02f5-4463-9647-58bbb3d21fed
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -448,11 +449,10 @@ class HostedConnect(pulumi.CustomResource):
 
         The hosted connect can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/hostedConnect:HostedConnect test ac0fe389-02f5-4463-9647-58bbb3d21fed
+        $ pulumi import huaweicloud:Dc/hostedConnect:HostedConnect test ac0fe389-02f5-4463-9647-58bbb3d21fed
         ```
+
 
         :param str resource_name: The name of the resource.
         :param HostedConnectArgs args: The arguments to use to populate this resource's properties.
@@ -504,7 +504,7 @@ class HostedConnect(pulumi.CustomResource):
             __props__.__dict__["vlan"] = vlan
             __props__.__dict__["status"] = None
         super(HostedConnect, __self__).__init__(
-            'huaweicloud:dc/hostedConnect:HostedConnect',
+            'huaweicloud:Dc/hostedConnect:HostedConnect',
             resource_name,
             __props__,
             opts)

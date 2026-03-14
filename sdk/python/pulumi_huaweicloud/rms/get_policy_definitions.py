@@ -140,7 +140,7 @@ def get_policy_definitions(keywords: Optional[Sequence[_builtins.str]] = None,
 
     config = pulumi.Config()
     trigger_type = config.require_object("triggerType")
-    test = huaweicloud.rms.get_policy_definitions(trigger_type=trigger_type)
+    test = huaweicloud.Rms.get_policy_definitions(trigger_type=trigger_type)
     ```
 
 
@@ -159,7 +159,7 @@ def get_policy_definitions(keywords: Optional[Sequence[_builtins.str]] = None,
     __args__['policyType'] = policy_type
     __args__['triggerType'] = trigger_type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getPolicyDefinitions:getPolicyDefinitions', __args__, opts=opts, typ=GetPolicyDefinitionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getPolicyDefinitions:getPolicyDefinitions', __args__, opts=opts, typ=GetPolicyDefinitionsResult).value
 
     return AwaitableGetPolicyDefinitionsResult(
         definitions=pulumi.get(__ret__, 'definitions'),
@@ -186,7 +186,7 @@ def get_policy_definitions_output(keywords: Optional[pulumi.Input[Optional[Seque
 
     config = pulumi.Config()
     trigger_type = config.require_object("triggerType")
-    test = huaweicloud.rms.get_policy_definitions(trigger_type=trigger_type)
+    test = huaweicloud.Rms.get_policy_definitions(trigger_type=trigger_type)
     ```
 
 
@@ -205,7 +205,7 @@ def get_policy_definitions_output(keywords: Optional[pulumi.Input[Optional[Seque
     __args__['policyType'] = policy_type
     __args__['triggerType'] = trigger_type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getPolicyDefinitions:getPolicyDefinitions', __args__, opts=opts, typ=GetPolicyDefinitionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getPolicyDefinitions:getPolicyDefinitions', __args__, opts=opts, typ=GetPolicyDefinitionsResult)
     return __ret__.apply(lambda __response__: GetPolicyDefinitionsResult(
         definitions=pulumi.get(__response__, 'definitions'),
         id=pulumi.get(__response__, 'id'),

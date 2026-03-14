@@ -28,6 +28,7 @@ class PackageArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Package resource.
+
         :param pulumi.Input[_builtins.str] object_path: Specifies the OBS storage path where the package is located.
                For example, `https://{bucket_name}.obs.{region}.myhuaweicloud.com/dli/packages/object_file.py`.
                Changing this parameter will delete the current package and upload a new package.
@@ -174,6 +175,7 @@ class _PackageState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Package resources.
+
         :param pulumi.Input[_builtins.str] created_at: Time when a queue is created.
         :param pulumi.Input[_builtins.str] group_name: Specifies the group name which the package belongs to.
                Changing this parameter will delete the current package and upload a new package.
@@ -400,6 +402,7 @@ class Package(pulumi.CustomResource):
             type="pyFile")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] group_name: Specifies the group name which the package belongs to.
@@ -447,6 +450,7 @@ class Package(pulumi.CustomResource):
             object_path=f"https://{access_domain_name}/dli/packages/object_file.py",
             type="pyFile")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PackageArgs args: The arguments to use to populate this resource's properties.

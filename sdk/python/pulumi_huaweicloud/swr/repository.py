@@ -27,6 +27,7 @@ class RepositoryArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Repository resource.
+
         :param pulumi.Input[_builtins.str] organization: Specifies the name of the organization (namespace) the repository
                belongs. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] category: Specifies the category of the repository.
@@ -147,6 +148,7 @@ class _RepositoryState:
                  size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Repository resources.
+
         :param pulumi.Input[_builtins.str] category: Specifies the category of the repository.
                The value can be `app_server`, `linux`, `framework_app`, `database`, `lang`, `other`, `windows`, `arm`.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the repository.
@@ -360,13 +362,20 @@ class Repository(pulumi.CustomResource):
 
         ## Import
 
-        Repository can be imported using the organization name and repository name separated by a slash, e.g.:
+        Repository can be imported using the organization name and repository name separated by a slash or a comma, e.g.:
 
-        bash
+        Only when repository name is with no slashes, can use a slash to separate the organization name and repository name.
 
         ```sh
         $ pulumi import huaweicloud:Swr/repository:Repository test org-name/repo-name
         ```
+
+        Using comma to separate the organization name and repository name is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/repository:Repository test org-name,repo-name
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -409,13 +418,20 @@ class Repository(pulumi.CustomResource):
 
         ## Import
 
-        Repository can be imported using the organization name and repository name separated by a slash, e.g.:
+        Repository can be imported using the organization name and repository name separated by a slash or a comma, e.g.:
 
-        bash
+        Only when repository name is with no slashes, can use a slash to separate the organization name and repository name.
 
         ```sh
         $ pulumi import huaweicloud:Swr/repository:Repository test org-name/repo-name
         ```
+
+        Using comma to separate the organization name and repository name is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/repository:Repository test org-name,repo-name
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RepositoryArgs args: The arguments to use to populate this resource's properties.

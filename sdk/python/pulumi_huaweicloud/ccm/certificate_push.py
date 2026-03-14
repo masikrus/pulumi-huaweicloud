@@ -27,6 +27,7 @@ class CertificatePushArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CertificatePush resource.
+
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the ID of the SSL certificate to be pushed.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] service: Specifies the target service for certificate push.
@@ -114,6 +115,7 @@ class _CertificatePushState:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['CertificatePushTargetArgs']]]] = None):
         """
         Input properties used for looking up and filtering CertificatePush resources.
+
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the ID of the SSL certificate to be pushed.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the certificate region. Changing this creates a new
@@ -195,7 +197,7 @@ class _CertificatePushState:
         pulumi.set(self, "targets", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/certificatePush:CertificatePush")
+@pulumi.type_token("huaweicloud:Ccm/certificatePush:CertificatePush")
 class CertificatePush(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -250,6 +252,7 @@ class CertificatePush(pulumi.CustomResource):
                 "project_name": project_name,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -318,6 +321,7 @@ class CertificatePush(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param CertificatePushArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -357,7 +361,7 @@ class CertificatePush(pulumi.CustomResource):
                 raise TypeError("Missing required property 'targets'")
             __props__.__dict__["targets"] = targets
         super(CertificatePush, __self__).__init__(
-            'huaweicloud:ccm/certificatePush:CertificatePush',
+            'huaweicloud:Ccm/certificatePush:CertificatePush',
             resource_name,
             __props__,
             opts)

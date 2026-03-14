@@ -119,7 +119,7 @@ def get_killing_sessions_audit_logs(end_time: Optional[_builtins.str] = None,
     instance_id = config.require_object("instanceId")
     start_time = config.require_object("startTime")
     end_time = config.require_object("endTime")
-    test = huaweicloud.ddm.get_killing_sessions_audit_logs(instance_id=instance_id,
+    test = huaweicloud.Ddm.get_killing_sessions_audit_logs(instance_id=instance_id,
         start_time=start_time,
         end_time=end_time)
     ```
@@ -139,7 +139,7 @@ def get_killing_sessions_audit_logs(end_time: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['startTime'] = start_time
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getKillingSessionsAuditLogs:getKillingSessionsAuditLogs', __args__, opts=opts, typ=GetKillingSessionsAuditLogsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getKillingSessionsAuditLogs:getKillingSessionsAuditLogs', __args__, opts=opts, typ=GetKillingSessionsAuditLogsResult).value
 
     return AwaitableGetKillingSessionsAuditLogsResult(
         end_time=pulumi.get(__ret__, 'end_time'),
@@ -166,7 +166,7 @@ def get_killing_sessions_audit_logs_output(end_time: Optional[pulumi.Input[_buil
     instance_id = config.require_object("instanceId")
     start_time = config.require_object("startTime")
     end_time = config.require_object("endTime")
-    test = huaweicloud.ddm.get_killing_sessions_audit_logs(instance_id=instance_id,
+    test = huaweicloud.Ddm.get_killing_sessions_audit_logs(instance_id=instance_id,
         start_time=start_time,
         end_time=end_time)
     ```
@@ -186,7 +186,7 @@ def get_killing_sessions_audit_logs_output(end_time: Optional[pulumi.Input[_buil
     __args__['region'] = region
     __args__['startTime'] = start_time
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getKillingSessionsAuditLogs:getKillingSessionsAuditLogs', __args__, opts=opts, typ=GetKillingSessionsAuditLogsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getKillingSessionsAuditLogs:getKillingSessionsAuditLogs', __args__, opts=opts, typ=GetKillingSessionsAuditLogsResult)
     return __ret__.apply(lambda __response__: GetKillingSessionsAuditLogsResult(
         end_time=pulumi.get(__response__, 'end_time'),
         id=pulumi.get(__response__, 'id'),

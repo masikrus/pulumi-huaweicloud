@@ -24,6 +24,7 @@ class DeleteSpecifiedGroupFailureJobsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeleteSpecifiedGroupFailureJobs resource.
+
         :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the protected group to delete all failure
                jobs from.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -79,6 +80,7 @@ class _DeleteSpecifiedGroupFailureJobsState:
                  server_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeleteSpecifiedGroupFailureJobs resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the protected group to delete all failure
@@ -127,7 +129,7 @@ class _DeleteSpecifiedGroupFailureJobsState:
         pulumi.set(self, "server_group_id", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/deleteSpecifiedGroupFailureJobs:DeleteSpecifiedGroupFailureJobs")
+@pulumi.type_token("huaweicloud:Sdrs/deleteSpecifiedGroupFailureJobs:DeleteSpecifiedGroupFailureJobs")
 class DeleteSpecifiedGroupFailureJobs(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -154,6 +156,7 @@ class DeleteSpecifiedGroupFailureJobs(pulumi.CustomResource):
         server_group_id = config.require_object("serverGroupId")
         test = huaweicloud.sdrs.DeleteSpecifiedGroupFailureJobs("test", server_group_id=server_group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -185,6 +188,7 @@ class DeleteSpecifiedGroupFailureJobs(pulumi.CustomResource):
         server_group_id = config.require_object("serverGroupId")
         test = huaweicloud.sdrs.DeleteSpecifiedGroupFailureJobs("test", server_group_id=server_group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeleteSpecifiedGroupFailureJobsArgs args: The arguments to use to populate this resource's properties.
@@ -219,7 +223,7 @@ class DeleteSpecifiedGroupFailureJobs(pulumi.CustomResource):
                 raise TypeError("Missing required property 'server_group_id'")
             __props__.__dict__["server_group_id"] = server_group_id
         super(DeleteSpecifiedGroupFailureJobs, __self__).__init__(
-            'huaweicloud:sdrs/deleteSpecifiedGroupFailureJobs:DeleteSpecifiedGroupFailureJobs',
+            'huaweicloud:Sdrs/deleteSpecifiedGroupFailureJobs:DeleteSpecifiedGroupFailureJobs',
             resource_name,
             __props__,
             opts)

@@ -28,6 +28,7 @@ class ClusterArgs:
                  vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
+
         :param pulumi.Input[_builtins.str] description: cluster description.
         :param pulumi.Input[_builtins.int] max_spu_num: Cluster maximum SPU number.
         :param pulumi.Input[_builtins.str] name: Cluster name.
@@ -157,6 +158,7 @@ class _ClusterState:
                  vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
+
         :param pulumi.Input[_builtins.str] created_at: Cluster creation time.
         :param pulumi.Input[_builtins.str] description: cluster description.
         :param pulumi.Input[_builtins.int] manager_node_spu_num: Cluster management node SPU number.
@@ -316,7 +318,7 @@ class _ClusterState:
         pulumi.set(self, "vpc_cidr", value)
 
 
-@pulumi.type_token("huaweicloud:cs/cluster:Cluster")
+@pulumi.type_token("huaweicloud:Cs/cluster:Cluster")
 class Cluster(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -345,6 +347,7 @@ class Cluster(pulumi.CustomResource):
 
         cluster = huaweicloud.cs.Cluster("cluster", name="terraform_cs_cluster_test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -380,6 +383,7 @@ class Cluster(pulumi.CustomResource):
 
         cluster = huaweicloud.cs.Cluster("cluster", name="terraform_cs_cluster_test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.
@@ -423,7 +427,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["manager_node_spu_num"] = None
             __props__.__dict__["used_spu_num"] = None
         super(Cluster, __self__).__init__(
-            'huaweicloud:cs/cluster:Cluster',
+            'huaweicloud:Cs/cluster:Cluster',
             resource_name,
             __props__,
             opts)

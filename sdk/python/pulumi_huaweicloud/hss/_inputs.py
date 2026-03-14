@@ -41,18 +41,39 @@ __all__ = [
     'HoneypotPortPolicyPortsListArgsDict',
     'ImageBatchScanImageInfoListArgs',
     'ImageBatchScanImageInfoListArgsDict',
+    'ModifyWebtamperProtectionPolicyPrivilegedProcessInfoArgs',
+    'ModifyWebtamperProtectionPolicyPrivilegedProcessInfoArgsDict',
+    'ModifyWebtamperProtectionPolicyProtectDirInfoArgs',
+    'ModifyWebtamperProtectionPolicyProtectDirInfoArgsDict',
+    'ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgs',
+    'ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgsDict',
+    'ModifyWebtamperProtectionPolicyTimingOffConfigInfoArgs',
+    'ModifyWebtamperProtectionPolicyTimingOffConfigInfoArgsDict',
+    'ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgs',
+    'ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgsDict',
+    'RansomwareProtectionPolicyProcessWhitelistArgs',
+    'RansomwareProtectionPolicyProcessWhitelistArgsDict',
+    'RansomwareProtectionPolicyProcessWhitelistAttributeArgs',
+    'RansomwareProtectionPolicyProcessWhitelistAttributeArgsDict',
+    'RaspProtectionPolicyFeatureListArgs',
+    'RaspProtectionPolicyFeatureListArgsDict',
+    'RaspProtectionPolicyRuleListArgs',
+    'RaspProtectionPolicyRuleListArgsDict',
+    'VulnerabilityHistoryExportTaskSpecificVulArgs',
+    'VulnerabilityHistoryExportTaskSpecificVulArgsDict',
+    'GetBaselineCheckRuleHabCheckRuleListArgs',
+    'GetBaselineCheckRuleHabCheckRuleListArgsDict',
+    'GetCommonTasksClusterScanInfoArgs',
+    'GetCommonTasksClusterScanInfoArgsDict',
+    'GetCommonTasksIacScanInfoArgs',
+    'GetCommonTasksIacScanInfoArgsDict',
     'GetContainerKubernetesClustersConfigsClusterInfoListArgs',
     'GetContainerKubernetesClustersConfigsClusterInfoListArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class CceProtectionRuntimeInfoArgsDict(TypedDict):
-        runtime_name: NotRequired[pulumi.Input[_builtins.str]]
-        runtime_path: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    CceProtectionRuntimeInfoArgsDict: TypeAlias = Mapping[str, Any]
+class CceProtectionRuntimeInfoArgsDict(TypedDict):
+    runtime_name: NotRequired[pulumi.Input[_builtins.str]]
+    runtime_path: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class CceProtectionRuntimeInfoArgs:
@@ -83,12 +104,9 @@ class CceProtectionRuntimeInfoArgs:
         pulumi.set(self, "runtime_path", value)
 
 
-if not MYPY:
-    class CceProtectionScheduleInfoArgsDict(TypedDict):
-        node_selectors: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        pod_tolerances: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    CceProtectionScheduleInfoArgsDict: TypeAlias = Mapping[str, Any]
+class CceProtectionScheduleInfoArgsDict(TypedDict):
+    node_selectors: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    pod_tolerances: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class CceProtectionScheduleInfoArgs:
@@ -119,18 +137,15 @@ class CceProtectionScheduleInfoArgs:
         pulumi.set(self, "pod_tolerances", value)
 
 
-if not MYPY:
-    class ContainerExportTaskCreateTimeArgsDict(TypedDict):
-        end_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the end time for filtering containers.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the start time for filtering containers.
-        """
-elif False:
-    ContainerExportTaskCreateTimeArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerExportTaskCreateTimeArgsDict(TypedDict):
+    end_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the end time for filtering containers.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the start time for filtering containers.
+    """
 
 @pulumi.input_type
 class ContainerExportTaskCreateTimeArgs:
@@ -171,22 +186,19 @@ class ContainerExportTaskCreateTimeArgs:
         pulumi.set(self, "start_time", value)
 
 
-if not MYPY:
-    class ContainerKubernetesClusterDaemonsetDsInfoArgsDict(TypedDict):
-        current_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The current quantity.
-        """
-        desired_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The target number.
-        """
-        ready_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ready quantity.
-        """
-elif False:
-    ContainerKubernetesClusterDaemonsetDsInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerKubernetesClusterDaemonsetDsInfoArgsDict(TypedDict):
+    current_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The current quantity.
+    """
+    desired_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The target number.
+    """
+    ready_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ready quantity.
+    """
 
 @pulumi.input_type
 class ContainerKubernetesClusterDaemonsetDsInfoArgs:
@@ -243,27 +255,24 @@ class ContainerKubernetesClusterDaemonsetDsInfoArgs:
         pulumi.set(self, "ready_num", value)
 
 
-if not MYPY:
-    class ContainerKubernetesClusterDaemonsetRuntimeInfoArgsDict(TypedDict):
-        runtime_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the runtime name.  
-        The valid values are as follows:
-        + **crio_endpoint**: CRIO.
-        + **containerd_endpoint**: Containerd.
-        + **docker_endpoint**: Docker.
-        + **isulad_endpoint**: Isulad.
-        + **podman_endpoint**: Podman.
-        """
-        runtime_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the runtime path.  
+class ContainerKubernetesClusterDaemonsetRuntimeInfoArgsDict(TypedDict):
+    runtime_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the runtime name.  
+    The valid values are as follows:
+    + **crio_endpoint**: CRIO.
+    + **containerd_endpoint**: Containerd.
+    + **docker_endpoint**: Docker.
+    + **isulad_endpoint**: Isulad.
+    + **podman_endpoint**: Podman.
+    """
+    runtime_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the runtime path.  
 
-        <a name="schedule_info_struct"></a>
-        The `schedule_info` block supports:
-        """
-elif False:
-    ContainerKubernetesClusterDaemonsetRuntimeInfoArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="schedule_info_struct"></a>
+    The `schedule_info` block supports:
+    """
 
 @pulumi.input_type
 class ContainerKubernetesClusterDaemonsetRuntimeInfoArgs:
@@ -321,18 +330,15 @@ class ContainerKubernetesClusterDaemonsetRuntimeInfoArgs:
         pulumi.set(self, "runtime_path", value)
 
 
-if not MYPY:
-    class ContainerKubernetesClusterDaemonsetScheduleInfoArgsDict(TypedDict):
-        node_selectors: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the node selector.
-        """
-        pod_tolerances: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the pod tolerance.
-        """
-elif False:
-    ContainerKubernetesClusterDaemonsetScheduleInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerKubernetesClusterDaemonsetScheduleInfoArgsDict(TypedDict):
+    node_selectors: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the node selector.
+    """
+    pod_tolerances: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the pod tolerance.
+    """
 
 @pulumi.input_type
 class ContainerKubernetesClusterDaemonsetScheduleInfoArgs:
@@ -373,14 +379,11 @@ class ContainerKubernetesClusterDaemonsetScheduleInfoArgs:
         pulumi.set(self, "pod_tolerances", value)
 
 
-if not MYPY:
-    class ContainerKubernetesSyncMccsDataListArgsDict(TypedDict):
-        cluster_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the cluster to synchronize.
-        """
-elif False:
-    ContainerKubernetesSyncMccsDataListArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerKubernetesSyncMccsDataListArgsDict(TypedDict):
+    cluster_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the cluster to synchronize.
+    """
 
 @pulumi.input_type
 class ContainerKubernetesSyncMccsDataListArgs:
@@ -404,90 +407,87 @@ class ContainerKubernetesSyncMccsDataListArgs:
         pulumi.set(self, "cluster_id", value)
 
 
-if not MYPY:
-    class EventAlarmWhiteListDeleteDataListArgsDict(TypedDict):
-        description: pulumi.Input[_builtins.str]
-        """
-        Specifies the description.
-        """
-        event_type: pulumi.Input[_builtins.int]
-        """
-        Specifies the event type.  
-        The valid values are as follows:
-        + **1001**: General malware.
-        + **1002**: Virus.
-        + **1003**: Worm.
-        + **1004**: Trojan.
-        + **1005**: Botnet.
-        + **1006**: Backdoor.
-        + **1010**: Rootkit.
-        + **1011**: Ransomware.
-        + **1012**: Hacker tool.
-        + **1015**: Webshell.
-        + **1016**: Mining.
-        + **1017**: Reverse Shell.
-        + **2001**: General vulnerability exploitation.
-        + **2012**: Remote code execution.
-        + **2047**: Redis vulnerability exploitation.
-        + **2048**: Hadoop vulnerability exploitation.
-        + **2049**: MySQL vulnerability exploitation.
-        + **3002**: File privilege escalation.
-        + **3003**: Process privilege escalation.
-        + **3004**: Key file change.
-        + **3005**: File/directory change.
-        + **3007**: Process abnormal behavior.
-        + **3015**: High-risk command execution.
-        + **3018**: Abnormal Shell.
-        + **3027**: Crontab suspicious task.
-        + **3029**: System security protection disabled.
-        + **3030**: Backup deletion.
-        + **3031**: Abnormal registry operation.
-        + **3036**: Container image blocking.
-        + **4002**: Brute force cracking.
-        + **4004**: Abnormal login.
-        + **4006**: Illegal system account.
-        + **4014**: User account addition.
-        + **4020**: User password theft.
-        + **6002**: Port scanning.
-        + **6003**: Host scanning.
-        + **13001**: Kubernetes event deletion.
-        + **13002**: Pod abnormal behavior.
-        + **13003**: Enumerate user information.
-        + **13004**: Bind cluster user role.
-        """
-        hash: pulumi.Input[_builtins.str]
-        """
-        Specifies the event white list SHA256.
-        """
-        delete_white_rule: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to delete the alarm white list rule.
-        This field is only used when the deleted white list is of rule type.
-        """
-        field_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the white field value.
-        """
-        file_hash: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the file hash.
-        """
-        file_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the file path.
-        """
-        judge_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the judge type.  
-        The valid values for this field, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-hss2.0/ListAlarmWhiteList.html).
-        """
-        white_field: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the white field.  
-        The valid values for this field, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-hss2.0/ListAlarmWhiteList.html).
-        """
-elif False:
-    EventAlarmWhiteListDeleteDataListArgsDict: TypeAlias = Mapping[str, Any]
+class EventAlarmWhiteListDeleteDataListArgsDict(TypedDict):
+    description: pulumi.Input[_builtins.str]
+    """
+    Specifies the description.
+    """
+    event_type: pulumi.Input[_builtins.int]
+    """
+    Specifies the event type.  
+    The valid values are as follows:
+    + **1001**: General malware.
+    + **1002**: Virus.
+    + **1003**: Worm.
+    + **1004**: Trojan.
+    + **1005**: Botnet.
+    + **1006**: Backdoor.
+    + **1010**: Rootkit.
+    + **1011**: Ransomware.
+    + **1012**: Hacker tool.
+    + **1015**: Webshell.
+    + **1016**: Mining.
+    + **1017**: Reverse Shell.
+    + **2001**: General vulnerability exploitation.
+    + **2012**: Remote code execution.
+    + **2047**: Redis vulnerability exploitation.
+    + **2048**: Hadoop vulnerability exploitation.
+    + **2049**: MySQL vulnerability exploitation.
+    + **3002**: File privilege escalation.
+    + **3003**: Process privilege escalation.
+    + **3004**: Key file change.
+    + **3005**: File/directory change.
+    + **3007**: Process abnormal behavior.
+    + **3015**: High-risk command execution.
+    + **3018**: Abnormal Shell.
+    + **3027**: Crontab suspicious task.
+    + **3029**: System security protection disabled.
+    + **3030**: Backup deletion.
+    + **3031**: Abnormal registry operation.
+    + **3036**: Container image blocking.
+    + **4002**: Brute force cracking.
+    + **4004**: Abnormal login.
+    + **4006**: Illegal system account.
+    + **4014**: User account addition.
+    + **4020**: User password theft.
+    + **6002**: Port scanning.
+    + **6003**: Host scanning.
+    + **13001**: Kubernetes event deletion.
+    + **13002**: Pod abnormal behavior.
+    + **13003**: Enumerate user information.
+    + **13004**: Bind cluster user role.
+    """
+    hash: pulumi.Input[_builtins.str]
+    """
+    Specifies the event white list SHA256.
+    """
+    delete_white_rule: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to delete the alarm white list rule.
+    This field is only used when the deleted white list is of rule type.
+    """
+    field_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the white field value.
+    """
+    file_hash: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the file hash.
+    """
+    file_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the file path.
+    """
+    judge_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the judge type.  
+    The valid values for this field, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-hss2.0/ListAlarmWhiteList.html).
+    """
+    white_field: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the white field.  
+    The valid values for this field, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-hss2.0/ListAlarmWhiteList.html).
+    """
 
 @pulumi.input_type
 class EventAlarmWhiteListDeleteDataListArgs:
@@ -725,14 +725,11 @@ class EventAlarmWhiteListDeleteDataListArgs:
         pulumi.set(self, "white_field", value)
 
 
-if not MYPY:
-    class EventDeleteIsolatedFileDataListArgsDict(TypedDict):
-        file_attr: pulumi.Input[_builtins.str]
-        file_hash: pulumi.Input[_builtins.str]
-        file_path: pulumi.Input[_builtins.str]
-        host_id: pulumi.Input[_builtins.str]
-elif False:
-    EventDeleteIsolatedFileDataListArgsDict: TypeAlias = Mapping[str, Any]
+class EventDeleteIsolatedFileDataListArgsDict(TypedDict):
+    file_attr: pulumi.Input[_builtins.str]
+    file_hash: pulumi.Input[_builtins.str]
+    file_path: pulumi.Input[_builtins.str]
+    host_id: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class EventDeleteIsolatedFileDataListArgs:
@@ -783,27 +780,24 @@ class EventDeleteIsolatedFileDataListArgs:
         pulumi.set(self, "host_id", value)
 
 
-if not MYPY:
-    class EventUnblockIpDataListArgsDict(TypedDict):
-        host_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the host ID.
-        """
-        login_type: pulumi.Input[_builtins.str]
-        """
-        Specifies login type.  
-        The valid values are as follows:
-        + **mysql**: Represents the MySQL service.
-        + **rdp**: Represents the RDP service.
-        + **ssh**: Represents the SSH service.
-        + **vsftp**: Represents the VSFTP service.
-        """
-        src_ip: pulumi.Input[_builtins.str]
-        """
-        Specifies the IP address of the attack source.
-        """
-elif False:
-    EventUnblockIpDataListArgsDict: TypeAlias = Mapping[str, Any]
+class EventUnblockIpDataListArgsDict(TypedDict):
+    host_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the host ID.
+    """
+    login_type: pulumi.Input[_builtins.str]
+    """
+    Specifies login type.  
+    The valid values are as follows:
+    + **mysql**: Represents the MySQL service.
+    + **rdp**: Represents the RDP service.
+    + **ssh**: Represents the SSH service.
+    + **vsftp**: Represents the VSFTP service.
+    """
+    src_ip: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address of the attack source.
+    """
 
 @pulumi.input_type
 class EventUnblockIpDataListArgs:
@@ -867,21 +861,18 @@ class EventUnblockIpDataListArgs:
         pulumi.set(self, "src_ip", value)
 
 
-if not MYPY:
-    class HoneypotPortPolicyPortListArgsDict(TypedDict):
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port number.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the protocol type.
-        The valid values are as follows:
-        + **tcp**
-        + **tcp6**
-        """
-elif False:
-    HoneypotPortPolicyPortListArgsDict: TypeAlias = Mapping[str, Any]
+class HoneypotPortPolicyPortListArgsDict(TypedDict):
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port number.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol type.
+    The valid values are as follows:
+    + **tcp**
+    + **tcp6**
+    """
 
 @pulumi.input_type
 class HoneypotPortPolicyPortListArgs:
@@ -928,21 +919,18 @@ class HoneypotPortPolicyPortListArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class HoneypotPortPolicyPortsListArgsDict(TypedDict):
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the port number.
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol type.
-        The valid values are as follows:
-        + **tcp**
-        + **tcp6**
-        """
-elif False:
-    HoneypotPortPolicyPortsListArgsDict: TypeAlias = Mapping[str, Any]
+class HoneypotPortPolicyPortsListArgsDict(TypedDict):
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the port number.
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol type.
+    The valid values are as follows:
+    + **tcp**
+    + **tcp6**
+    """
 
 @pulumi.input_type
 class HoneypotPortPolicyPortsListArgs:
@@ -987,30 +975,27 @@ class HoneypotPortPolicyPortsListArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class ImageBatchScanImageInfoListArgsDict(TypedDict):
-        image_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the image name.
-        """
-        image_version: pulumi.Input[_builtins.str]
-        """
-        Specifies the image version.
-        """
-        namespace: pulumi.Input[_builtins.str]
-        """
-        Specifies the namespace.
-        """
-        instance_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the enterprise instance ID.
-        """
-        instance_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the URL for downloading enterprise images.
-        """
-elif False:
-    ImageBatchScanImageInfoListArgsDict: TypeAlias = Mapping[str, Any]
+class ImageBatchScanImageInfoListArgsDict(TypedDict):
+    image_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the image name.
+    """
+    image_version: pulumi.Input[_builtins.str]
+    """
+    Specifies the image version.
+    """
+    namespace: pulumi.Input[_builtins.str]
+    """
+    Specifies the namespace.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enterprise instance ID.
+    """
+    instance_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the URL for downloading enterprise images.
+    """
 
 @pulumi.input_type
 class ImageBatchScanImageInfoListArgs:
@@ -1096,18 +1081,1103 @@ class ImageBatchScanImageInfoListArgs:
         pulumi.set(self, "instance_url", value)
 
 
-if not MYPY:
-    class GetContainerKubernetesClustersConfigsClusterInfoListArgsDict(TypedDict):
-        cluster_id: _builtins.str
+class ModifyWebtamperProtectionPolicyPrivilegedProcessInfoArgsDict(TypedDict):
+    privileged_process_path_lists: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the list of privileged process file paths.
+
+    > At least one, up to `10` items included.
+    """
+    privileged_child_status: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the privileged sub-process trusted status.
+    The valid values are as follows:
+    + **true**: Indicates the sub-process is trusted.
+    + **false**: Indicates the sub-process is not trusted. Defaults value.
+    """
+
+@pulumi.input_type
+class ModifyWebtamperProtectionPolicyPrivilegedProcessInfoArgs:
+    def __init__(__self__, *,
+                 privileged_process_path_lists: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 privileged_child_status: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        Specifies the cluster ID.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] privileged_process_path_lists: Specifies the list of privileged process file paths.
+               
+               > At least one, up to `10` items included.
+        :param pulumi.Input[_builtins.bool] privileged_child_status: Specifies the privileged sub-process trusted status.
+               The valid values are as follows:
+               + **true**: Indicates the sub-process is trusted.
+               + **false**: Indicates the sub-process is not trusted. Defaults value.
         """
-        cluster_name: _builtins.str
+        pulumi.set(__self__, "privileged_process_path_lists", privileged_process_path_lists)
+        if privileged_child_status is not None:
+            pulumi.set(__self__, "privileged_child_status", privileged_child_status)
+
+    @_builtins.property
+    @pulumi.getter(name="privilegedProcessPathLists")
+    def privileged_process_path_lists(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Specifies the cluster name.
+        Specifies the list of privileged process file paths.
+
+        > At least one, up to `10` items included.
         """
-elif False:
-    GetContainerKubernetesClustersConfigsClusterInfoListArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "privileged_process_path_lists")
+
+    @privileged_process_path_lists.setter
+    def privileged_process_path_lists(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "privileged_process_path_lists", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privilegedChildStatus")
+    def privileged_child_status(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies the privileged sub-process trusted status.
+        The valid values are as follows:
+        + **true**: Indicates the sub-process is trusted.
+        + **false**: Indicates the sub-process is not trusted. Defaults value.
+        """
+        return pulumi.get(self, "privileged_child_status")
+
+    @privileged_child_status.setter
+    def privileged_child_status(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "privileged_child_status", value)
+
+
+class ModifyWebtamperProtectionPolicyProtectDirInfoArgsDict(TypedDict):
+    protect_dir_lists: pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgsDict']]]
+    """
+    Specifies the protected directory list.
+    The protect_dir_list structure is documented below.
+
+    > At least one, up to `50` items included.
+    """
+    exclude_file_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the excluded file type.
+    The file type can only contain letters and digits, a maximum of `10` file types are supported, and each file type
+    not exceeding `10` characters, multiple file types should be separated by semicolons (;).
+    """
+    protect_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protection mode.
+    The valid values are as follows:
+    + **recovery**: Indicates interception mode.
+    + **alarm**: Indicates alarm mode. Only Linux server are supported.
+
+    <a name="protect_dir_list_struct"></a>
+    The `protect_dir_list` block supports:
+    """
+
+@pulumi.input_type
+class ModifyWebtamperProtectionPolicyProtectDirInfoArgs:
+    def __init__(__self__, *,
+                 protect_dir_lists: pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgs']]],
+                 exclude_file_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 protect_mode: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgs']]] protect_dir_lists: Specifies the protected directory list.
+               The protect_dir_list structure is documented below.
+               
+               > At least one, up to `50` items included.
+        :param pulumi.Input[_builtins.str] exclude_file_type: Specifies the excluded file type.
+               The file type can only contain letters and digits, a maximum of `10` file types are supported, and each file type
+               not exceeding `10` characters, multiple file types should be separated by semicolons (;).
+        :param pulumi.Input[_builtins.str] protect_mode: Specifies the protection mode.
+               The valid values are as follows:
+               + **recovery**: Indicates interception mode.
+               + **alarm**: Indicates alarm mode. Only Linux server are supported.
+               
+               <a name="protect_dir_list_struct"></a>
+               The `protect_dir_list` block supports:
+        """
+        pulumi.set(__self__, "protect_dir_lists", protect_dir_lists)
+        if exclude_file_type is not None:
+            pulumi.set(__self__, "exclude_file_type", exclude_file_type)
+        if protect_mode is not None:
+            pulumi.set(__self__, "protect_mode", protect_mode)
+
+    @_builtins.property
+    @pulumi.getter(name="protectDirLists")
+    def protect_dir_lists(self) -> pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgs']]]:
+        """
+        Specifies the protected directory list.
+        The protect_dir_list structure is documented below.
+
+        > At least one, up to `50` items included.
+        """
+        return pulumi.get(self, "protect_dir_lists")
+
+    @protect_dir_lists.setter
+    def protect_dir_lists(self, value: pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgs']]]):
+        pulumi.set(self, "protect_dir_lists", value)
+
+    @_builtins.property
+    @pulumi.getter(name="excludeFileType")
+    def exclude_file_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the excluded file type.
+        The file type can only contain letters and digits, a maximum of `10` file types are supported, and each file type
+        not exceeding `10` characters, multiple file types should be separated by semicolons (;).
+        """
+        return pulumi.get(self, "exclude_file_type")
+
+    @exclude_file_type.setter
+    def exclude_file_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "exclude_file_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="protectMode")
+    def protect_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the protection mode.
+        The valid values are as follows:
+        + **recovery**: Indicates interception mode.
+        + **alarm**: Indicates alarm mode. Only Linux server are supported.
+
+        <a name="protect_dir_list_struct"></a>
+        The `protect_dir_list` block supports:
+        """
+        return pulumi.get(self, "protect_mode")
+
+    @protect_mode.setter
+    def protect_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protect_mode", value)
+
+
+class ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgsDict(TypedDict):
+    protect_dir: pulumi.Input[_builtins.str]
+    """
+    Specifies the protected directory.
+    + The valid length is `1` to `256` characters.
+    + For Linux servers, the value must start with a slash (/) and cannot end with a slash (/). Only letters, digits,
+    underscores (_), hyphens (-), and periods (.) are allowed.
+    + For Windows servers, the directory name cannot start with a space or end with a backslash (\\\\), and cannot contain
+    the following special characters: ;/*?"<>|.
+    """
+    exclude_child_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the excluded subdirectory.
+    + The subdirectory must be a relative path under the protected directory.
+    + The maximum length of the subdirectory is `256` characters. A maximum of `10` subdirectories can be added,
+    separated by semicolons (;).
+    + A subdirectory name on a Linux server cannot start or end with a slash (/). A subdirectory name on a Windows server
+    cannot start or end with a backslash (\\\\).
+    """
+    exclude_file_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the excluded file path.
+    + The file path must be a relative path under the protected directory.
+    + The maximum length of the file path is `256` characters. A maximum of `50` paths can be added,
+    separated by semicolons (;).
+    + The file path cannot start or end with a slash (/).
+
+    > This parameter is only valid for Linux servers.
+
+    <a name="policy_timing_off_config_info_struct"></a>
+    The `timing_off_config_info` block supports:
+    """
+    local_backup_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the local backup path.
+    + The local backup path cannot start with a space or end with a slash (/), and cannot contain semicolons (;).
+    + The value consists of a maximum of `256` characters.
+
+    > This parameter is only valid and required for Linux servers.
+    """
+
+@pulumi.input_type
+class ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgs:
+    def __init__(__self__, *,
+                 protect_dir: pulumi.Input[_builtins.str],
+                 exclude_child_dir: Optional[pulumi.Input[_builtins.str]] = None,
+                 exclude_file_path: Optional[pulumi.Input[_builtins.str]] = None,
+                 local_backup_dir: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] protect_dir: Specifies the protected directory.
+               + The valid length is `1` to `256` characters.
+               + For Linux servers, the value must start with a slash (/) and cannot end with a slash (/). Only letters, digits,
+               underscores (_), hyphens (-), and periods (.) are allowed.
+               + For Windows servers, the directory name cannot start with a space or end with a backslash (\\\\), and cannot contain
+               the following special characters: ;/*?"<>|.
+        :param pulumi.Input[_builtins.str] exclude_child_dir: Specifies the excluded subdirectory.
+               + The subdirectory must be a relative path under the protected directory.
+               + The maximum length of the subdirectory is `256` characters. A maximum of `10` subdirectories can be added,
+               separated by semicolons (;).
+               + A subdirectory name on a Linux server cannot start or end with a slash (/). A subdirectory name on a Windows server
+               cannot start or end with a backslash (\\\\).
+        :param pulumi.Input[_builtins.str] exclude_file_path: Specifies the excluded file path.
+               + The file path must be a relative path under the protected directory.
+               + The maximum length of the file path is `256` characters. A maximum of `50` paths can be added,
+               separated by semicolons (;).
+               + The file path cannot start or end with a slash (/).
+               
+               > This parameter is only valid for Linux servers.
+               
+               <a name="policy_timing_off_config_info_struct"></a>
+               The `timing_off_config_info` block supports:
+        :param pulumi.Input[_builtins.str] local_backup_dir: Specifies the local backup path.
+               + The local backup path cannot start with a space or end with a slash (/), and cannot contain semicolons (;).
+               + The value consists of a maximum of `256` characters.
+               
+               > This parameter is only valid and required for Linux servers.
+        """
+        pulumi.set(__self__, "protect_dir", protect_dir)
+        if exclude_child_dir is not None:
+            pulumi.set(__self__, "exclude_child_dir", exclude_child_dir)
+        if exclude_file_path is not None:
+            pulumi.set(__self__, "exclude_file_path", exclude_file_path)
+        if local_backup_dir is not None:
+            pulumi.set(__self__, "local_backup_dir", local_backup_dir)
+
+    @_builtins.property
+    @pulumi.getter(name="protectDir")
+    def protect_dir(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the protected directory.
+        + The valid length is `1` to `256` characters.
+        + For Linux servers, the value must start with a slash (/) and cannot end with a slash (/). Only letters, digits,
+        underscores (_), hyphens (-), and periods (.) are allowed.
+        + For Windows servers, the directory name cannot start with a space or end with a backslash (\\\\), and cannot contain
+        the following special characters: ;/*?"<>|.
+        """
+        return pulumi.get(self, "protect_dir")
+
+    @protect_dir.setter
+    def protect_dir(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "protect_dir", value)
+
+    @_builtins.property
+    @pulumi.getter(name="excludeChildDir")
+    def exclude_child_dir(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the excluded subdirectory.
+        + The subdirectory must be a relative path under the protected directory.
+        + The maximum length of the subdirectory is `256` characters. A maximum of `10` subdirectories can be added,
+        separated by semicolons (;).
+        + A subdirectory name on a Linux server cannot start or end with a slash (/). A subdirectory name on a Windows server
+        cannot start or end with a backslash (\\\\).
+        """
+        return pulumi.get(self, "exclude_child_dir")
+
+    @exclude_child_dir.setter
+    def exclude_child_dir(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "exclude_child_dir", value)
+
+    @_builtins.property
+    @pulumi.getter(name="excludeFilePath")
+    def exclude_file_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the excluded file path.
+        + The file path must be a relative path under the protected directory.
+        + The maximum length of the file path is `256` characters. A maximum of `50` paths can be added,
+        separated by semicolons (;).
+        + The file path cannot start or end with a slash (/).
+
+        > This parameter is only valid for Linux servers.
+
+        <a name="policy_timing_off_config_info_struct"></a>
+        The `timing_off_config_info` block supports:
+        """
+        return pulumi.get(self, "exclude_file_path")
+
+    @exclude_file_path.setter
+    def exclude_file_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "exclude_file_path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="localBackupDir")
+    def local_backup_dir(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the local backup path.
+        + The local backup path cannot start with a space or end with a slash (/), and cannot contain semicolons (;).
+        + The value consists of a maximum of `256` characters.
+
+        > This parameter is only valid and required for Linux servers.
+        """
+        return pulumi.get(self, "local_backup_dir")
+
+    @local_backup_dir.setter
+    def local_backup_dir(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "local_backup_dir", value)
+
+
+class ModifyWebtamperProtectionPolicyTimingOffConfigInfoArgsDict(TypedDict):
+    timing_range_lists: pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgsDict']]]
+    """
+    Specifies the automatically turn off the protection period.
+    The timing_range_list structure is documented below.
+
+    > At least one, up to `5` items included.
+
+    <a name="timing_range_list_struct"></a>
+    The `timing_range_list` block supports:
+    """
+    week_off_lists: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
+    """
+    Specifies the automatically close the protection cycle.
+    The valid value from `1` to `7`, `1` indicates Monday, `2` indicates Tuesday and so on.
+    """
+
+@pulumi.input_type
+class ModifyWebtamperProtectionPolicyTimingOffConfigInfoArgs:
+    def __init__(__self__, *,
+                 timing_range_lists: pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgs']]],
+                 week_off_lists: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgs']]] timing_range_lists: Specifies the automatically turn off the protection period.
+               The timing_range_list structure is documented below.
+               
+               > At least one, up to `5` items included.
+               
+               <a name="timing_range_list_struct"></a>
+               The `timing_range_list` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] week_off_lists: Specifies the automatically close the protection cycle.
+               The valid value from `1` to `7`, `1` indicates Monday, `2` indicates Tuesday and so on.
+        """
+        pulumi.set(__self__, "timing_range_lists", timing_range_lists)
+        pulumi.set(__self__, "week_off_lists", week_off_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="timingRangeLists")
+    def timing_range_lists(self) -> pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgs']]]:
+        """
+        Specifies the automatically turn off the protection period.
+        The timing_range_list structure is documented below.
+
+        > At least one, up to `5` items included.
+
+        <a name="timing_range_list_struct"></a>
+        The `timing_range_list` block supports:
+        """
+        return pulumi.get(self, "timing_range_lists")
+
+    @timing_range_lists.setter
+    def timing_range_lists(self, value: pulumi.Input[Sequence[pulumi.Input['ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgs']]]):
+        pulumi.set(self, "timing_range_lists", value)
+
+    @_builtins.property
+    @pulumi.getter(name="weekOffLists")
+    def week_off_lists(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]:
+        """
+        Specifies the automatically close the protection cycle.
+        The valid value from `1` to `7`, `1` indicates Monday, `2` indicates Tuesday and so on.
+        """
+        return pulumi.get(self, "week_off_lists")
+
+    @week_off_lists.setter
+    def week_off_lists(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]):
+        pulumi.set(self, "week_off_lists", value)
+
+
+class ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgsDict(TypedDict):
+    time_range: pulumi.Input[_builtins.str]
+    """
+    Specifies the time range of automatically turn off the protection
+    period.
+    + The start time and end time are separated by a hyphen (-). e.g. **15:00-15:30**.
+    + A time range must be at least `5` minutes.
+    + Time ranges cannot overlap and must have at least a 5-minute interval.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of automatically turn off the protection
+    period.
+
+    <a name="policy_privileged_process_info_struct"></a>
+    The `privileged_process_info` block supports:
+    """
+
+@pulumi.input_type
+class ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgs:
+    def __init__(__self__, *,
+                 time_range: pulumi.Input[_builtins.str],
+                 description: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] time_range: Specifies the time range of automatically turn off the protection
+               period.
+               + The start time and end time are separated by a hyphen (-). e.g. **15:00-15:30**.
+               + A time range must be at least `5` minutes.
+               + Time ranges cannot overlap and must have at least a 5-minute interval.
+        :param pulumi.Input[_builtins.str] description: Specifies the description of automatically turn off the protection
+               period.
+               
+               <a name="policy_privileged_process_info_struct"></a>
+               The `privileged_process_info` block supports:
+        """
+        pulumi.set(__self__, "time_range", time_range)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @_builtins.property
+    @pulumi.getter(name="timeRange")
+    def time_range(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the time range of automatically turn off the protection
+        period.
+        + The start time and end time are separated by a hyphen (-). e.g. **15:00-15:30**.
+        + A time range must be at least `5` minutes.
+        + Time ranges cannot overlap and must have at least a 5-minute interval.
+        """
+        return pulumi.get(self, "time_range")
+
+    @time_range.setter
+    def time_range(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "time_range", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the description of automatically turn off the protection
+        period.
+
+        <a name="policy_privileged_process_info_struct"></a>
+        The `privileged_process_info` block supports:
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+
+class RansomwareProtectionPolicyProcessWhitelistArgsDict(TypedDict):
+    hash: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the hash value of the process to be added to the whitelist.
+    The value can contain `0` to `128` characters.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path of the process to be added to the whitelist.
+    The value can contain `0` to `128` characters.
+    """
+
+@pulumi.input_type
+class RansomwareProtectionPolicyProcessWhitelistArgs:
+    def __init__(__self__, *,
+                 hash: Optional[pulumi.Input[_builtins.str]] = None,
+                 path: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] hash: Specifies the hash value of the process to be added to the whitelist.
+               The value can contain `0` to `128` characters.
+        :param pulumi.Input[_builtins.str] path: Specifies the path of the process to be added to the whitelist.
+               The value can contain `0` to `128` characters.
+        """
+        if hash is not None:
+            pulumi.set(__self__, "hash", hash)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the hash value of the process to be added to the whitelist.
+        The value can contain `0` to `128` characters.
+        """
+        return pulumi.get(self, "hash")
+
+    @hash.setter
+    def hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "hash", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the path of the process to be added to the whitelist.
+        The value can contain `0` to `128` characters.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "path", value)
+
+
+class RansomwareProtectionPolicyProcessWhitelistAttributeArgsDict(TypedDict):
+    hash: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the hash value of the process to be added to the whitelist.
+    The value can contain `0` to `128` characters.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path of the process to be added to the whitelist.
+    The value can contain `0` to `128` characters.
+    """
+
+@pulumi.input_type
+class RansomwareProtectionPolicyProcessWhitelistAttributeArgs:
+    def __init__(__self__, *,
+                 hash: Optional[pulumi.Input[_builtins.str]] = None,
+                 path: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] hash: Specifies the hash value of the process to be added to the whitelist.
+               The value can contain `0` to `128` characters.
+        :param pulumi.Input[_builtins.str] path: Specifies the path of the process to be added to the whitelist.
+               The value can contain `0` to `128` characters.
+        """
+        if hash is not None:
+            pulumi.set(__self__, "hash", hash)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the hash value of the process to be added to the whitelist.
+        The value can contain `0` to `128` characters.
+        """
+        return pulumi.get(self, "hash")
+
+    @hash.setter
+    def hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "hash", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the path of the process to be added to the whitelist.
+        The value can contain `0` to `128` characters.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "path", value)
+
+
+class RaspProtectionPolicyFeatureListArgsDict(TypedDict):
+    chk_feature_id: pulumi.Input[_builtins.int]
+    """
+    Specifies the detection feature rule ID.
+    """
+    enabled: pulumi.Input[_builtins.int]
+    """
+    Specifies the enabled status.
+    The valid values are as follows:
+    + **0**: Indicates disabled.
+    + **1**: Indicates enabled.
+    """
+    feature_configure: pulumi.Input[_builtins.str]
+    """
+    Specifies the detection feature rule configuration information.
+    """
+    protective_action: pulumi.Input[_builtins.int]
+    """
+    Specifies the protective action.
+    The valid values are as follows:
+    + **1**: Indicates detect.
+    + **2**: Indicates detect and block.
+    """
+
+@pulumi.input_type
+class RaspProtectionPolicyFeatureListArgs:
+    def __init__(__self__, *,
+                 chk_feature_id: pulumi.Input[_builtins.int],
+                 enabled: pulumi.Input[_builtins.int],
+                 feature_configure: pulumi.Input[_builtins.str],
+                 protective_action: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] chk_feature_id: Specifies the detection feature rule ID.
+        :param pulumi.Input[_builtins.int] enabled: Specifies the enabled status.
+               The valid values are as follows:
+               + **0**: Indicates disabled.
+               + **1**: Indicates enabled.
+        :param pulumi.Input[_builtins.str] feature_configure: Specifies the detection feature rule configuration information.
+        :param pulumi.Input[_builtins.int] protective_action: Specifies the protective action.
+               The valid values are as follows:
+               + **1**: Indicates detect.
+               + **2**: Indicates detect and block.
+        """
+        pulumi.set(__self__, "chk_feature_id", chk_feature_id)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "feature_configure", feature_configure)
+        pulumi.set(__self__, "protective_action", protective_action)
+
+    @_builtins.property
+    @pulumi.getter(name="chkFeatureId")
+    def chk_feature_id(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the detection feature rule ID.
+        """
+        return pulumi.get(self, "chk_feature_id")
+
+    @chk_feature_id.setter
+    def chk_feature_id(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "chk_feature_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the enabled status.
+        The valid values are as follows:
+        + **0**: Indicates disabled.
+        + **1**: Indicates enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="featureConfigure")
+    def feature_configure(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the detection feature rule configuration information.
+        """
+        return pulumi.get(self, "feature_configure")
+
+    @feature_configure.setter
+    def feature_configure(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "feature_configure", value)
+
+    @_builtins.property
+    @pulumi.getter(name="protectiveAction")
+    def protective_action(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the protective action.
+        The valid values are as follows:
+        + **1**: Indicates detect.
+        + **2**: Indicates detect and block.
+        """
+        return pulumi.get(self, "protective_action")
+
+    @protective_action.setter
+    def protective_action(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "protective_action", value)
+
+
+class RaspProtectionPolicyRuleListArgsDict(TypedDict):
+    chk_feature_desc: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The detection rule description.
+    """
+    chk_feature_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the detection feature rule ID.
+    """
+    chk_feature_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The detection rule name.
+    """
+    editable: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Whether the configuration information can be edited.
+    The valid values are as follows:
+    + **0**: Indicates no.
+    + **1**: Indicates yes.
+    """
+    enabled: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the enabled status.
+    The valid values are as follows:
+    + **0**: Indicates disabled.
+    + **1**: Indicates enabled.
+    """
+    feature_configure: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the detection feature rule configuration information.
+    """
+    optional_protective_action: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The optional protection action.
+    The valid values are as follows:
+    + **1**: Indicates detect.
+    + **2**: Indicates detect and block.
+    + **3**: Indicates all.
+    """
+    protective_action: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the protective action.
+    The valid values are as follows:
+    + **1**: Indicates detect.
+    + **2**: Indicates detect and block.
+    """
+
+@pulumi.input_type
+class RaspProtectionPolicyRuleListArgs:
+    def __init__(__self__, *,
+                 chk_feature_desc: Optional[pulumi.Input[_builtins.str]] = None,
+                 chk_feature_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 chk_feature_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 editable: Optional[pulumi.Input[_builtins.int]] = None,
+                 enabled: Optional[pulumi.Input[_builtins.int]] = None,
+                 feature_configure: Optional[pulumi.Input[_builtins.str]] = None,
+                 optional_protective_action: Optional[pulumi.Input[_builtins.int]] = None,
+                 protective_action: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] chk_feature_desc: The detection rule description.
+        :param pulumi.Input[_builtins.int] chk_feature_id: Specifies the detection feature rule ID.
+        :param pulumi.Input[_builtins.str] chk_feature_name: The detection rule name.
+        :param pulumi.Input[_builtins.int] editable: Whether the configuration information can be edited.
+               The valid values are as follows:
+               + **0**: Indicates no.
+               + **1**: Indicates yes.
+        :param pulumi.Input[_builtins.int] enabled: Specifies the enabled status.
+               The valid values are as follows:
+               + **0**: Indicates disabled.
+               + **1**: Indicates enabled.
+        :param pulumi.Input[_builtins.str] feature_configure: Specifies the detection feature rule configuration information.
+        :param pulumi.Input[_builtins.int] optional_protective_action: The optional protection action.
+               The valid values are as follows:
+               + **1**: Indicates detect.
+               + **2**: Indicates detect and block.
+               + **3**: Indicates all.
+        :param pulumi.Input[_builtins.int] protective_action: Specifies the protective action.
+               The valid values are as follows:
+               + **1**: Indicates detect.
+               + **2**: Indicates detect and block.
+        """
+        if chk_feature_desc is not None:
+            pulumi.set(__self__, "chk_feature_desc", chk_feature_desc)
+        if chk_feature_id is not None:
+            pulumi.set(__self__, "chk_feature_id", chk_feature_id)
+        if chk_feature_name is not None:
+            pulumi.set(__self__, "chk_feature_name", chk_feature_name)
+        if editable is not None:
+            pulumi.set(__self__, "editable", editable)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if feature_configure is not None:
+            pulumi.set(__self__, "feature_configure", feature_configure)
+        if optional_protective_action is not None:
+            pulumi.set(__self__, "optional_protective_action", optional_protective_action)
+        if protective_action is not None:
+            pulumi.set(__self__, "protective_action", protective_action)
+
+    @_builtins.property
+    @pulumi.getter(name="chkFeatureDesc")
+    def chk_feature_desc(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The detection rule description.
+        """
+        return pulumi.get(self, "chk_feature_desc")
+
+    @chk_feature_desc.setter
+    def chk_feature_desc(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "chk_feature_desc", value)
+
+    @_builtins.property
+    @pulumi.getter(name="chkFeatureId")
+    def chk_feature_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the detection feature rule ID.
+        """
+        return pulumi.get(self, "chk_feature_id")
+
+    @chk_feature_id.setter
+    def chk_feature_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "chk_feature_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="chkFeatureName")
+    def chk_feature_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The detection rule name.
+        """
+        return pulumi.get(self, "chk_feature_name")
+
+    @chk_feature_name.setter
+    def chk_feature_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "chk_feature_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def editable(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Whether the configuration information can be edited.
+        The valid values are as follows:
+        + **0**: Indicates no.
+        + **1**: Indicates yes.
+        """
+        return pulumi.get(self, "editable")
+
+    @editable.setter
+    def editable(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "editable", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the enabled status.
+        The valid values are as follows:
+        + **0**: Indicates disabled.
+        + **1**: Indicates enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="featureConfigure")
+    def feature_configure(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the detection feature rule configuration information.
+        """
+        return pulumi.get(self, "feature_configure")
+
+    @feature_configure.setter
+    def feature_configure(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "feature_configure", value)
+
+    @_builtins.property
+    @pulumi.getter(name="optionalProtectiveAction")
+    def optional_protective_action(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The optional protection action.
+        The valid values are as follows:
+        + **1**: Indicates detect.
+        + **2**: Indicates detect and block.
+        + **3**: Indicates all.
+        """
+        return pulumi.get(self, "optional_protective_action")
+
+    @optional_protective_action.setter
+    def optional_protective_action(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "optional_protective_action", value)
+
+    @_builtins.property
+    @pulumi.getter(name="protectiveAction")
+    def protective_action(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the protective action.
+        The valid values are as follows:
+        + **1**: Indicates detect.
+        + **2**: Indicates detect and block.
+        """
+        return pulumi.get(self, "protective_action")
+
+    @protective_action.setter
+    def protective_action(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "protective_action", value)
+
+
+class VulnerabilityHistoryExportTaskSpecificVulArgsDict(TypedDict):
+    host_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the host ID.
+    """
+    vul_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the vulnerability ID.
+    """
+
+@pulumi.input_type
+class VulnerabilityHistoryExportTaskSpecificVulArgs:
+    def __init__(__self__, *,
+                 host_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 vul_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] host_id: Specifies the host ID.
+        :param pulumi.Input[_builtins.str] vul_id: Specifies the vulnerability ID.
+        """
+        if host_id is not None:
+            pulumi.set(__self__, "host_id", host_id)
+        if vul_id is not None:
+            pulumi.set(__self__, "vul_id", vul_id)
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @host_id.setter
+    def host_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "host_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the vulnerability ID.
+        """
+        return pulumi.get(self, "vul_id")
+
+    @vul_id.setter
+    def vul_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vul_id", value)
+
+
+class GetBaselineCheckRuleHabCheckRuleListArgsDict(TypedDict):
+    check_name: NotRequired[_builtins.str]
+    """
+    Specifies the name of the baseline check.
+    The value can contain up to `256` characters.
+    """
+    check_rule_id: NotRequired[_builtins.str]
+    """
+    Specifies the ID of the baseline check rule.
+    The value can contain up to `256` characters.
+    """
+    standard: NotRequired[_builtins.str]
+    """
+    Specifies the standard type of the baseline check.
+    Valid values are:
+    + **cn_standard**: Compliance standard.
+    + **hw_standard**: Cloud security practice standard.
+    + **cis_standard**: General security standard.
+    """
+
+@pulumi.input_type
+class GetBaselineCheckRuleHabCheckRuleListArgs:
+    def __init__(__self__, *,
+                 check_name: Optional[_builtins.str] = None,
+                 check_rule_id: Optional[_builtins.str] = None,
+                 standard: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str check_name: Specifies the name of the baseline check.
+               The value can contain up to `256` characters.
+        :param _builtins.str check_rule_id: Specifies the ID of the baseline check rule.
+               The value can contain up to `256` characters.
+        :param _builtins.str standard: Specifies the standard type of the baseline check.
+               Valid values are:
+               + **cn_standard**: Compliance standard.
+               + **hw_standard**: Cloud security practice standard.
+               + **cis_standard**: General security standard.
+        """
+        if check_name is not None:
+            pulumi.set(__self__, "check_name", check_name)
+        if check_rule_id is not None:
+            pulumi.set(__self__, "check_rule_id", check_rule_id)
+        if standard is not None:
+            pulumi.set(__self__, "standard", standard)
+
+    @_builtins.property
+    @pulumi.getter(name="checkName")
+    def check_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the baseline check.
+        The value can contain up to `256` characters.
+        """
+        return pulumi.get(self, "check_name")
+
+    @check_name.setter
+    def check_name(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "check_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleId")
+    def check_rule_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the baseline check rule.
+        The value can contain up to `256` characters.
+        """
+        return pulumi.get(self, "check_rule_id")
+
+    @check_rule_id.setter
+    def check_rule_id(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "check_rule_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def standard(self) -> Optional[_builtins.str]:
+        """
+        Specifies the standard type of the baseline check.
+        Valid values are:
+        + **cn_standard**: Compliance standard.
+        + **hw_standard**: Cloud security practice standard.
+        + **cis_standard**: General security standard.
+        """
+        return pulumi.get(self, "standard")
+
+    @standard.setter
+    def standard(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "standard", value)
+
+
+class GetCommonTasksClusterScanInfoArgsDict(TypedDict):
+    scan_type_lists: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of scan types.
+    Valid values are **cluster_vul**, **risk_assessment**, and **benchmark**.
+
+    <a name="iac_scan_info_struct"></a>
+    The `iac_scan_info` block supports:
+    """
+
+@pulumi.input_type
+class GetCommonTasksClusterScanInfoArgs:
+    def __init__(__self__, *,
+                 scan_type_lists: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] scan_type_lists: Specifies the list of scan types.
+               Valid values are **cluster_vul**, **risk_assessment**, and **benchmark**.
+               
+               <a name="iac_scan_info_struct"></a>
+               The `iac_scan_info` block supports:
+        """
+        if scan_type_lists is not None:
+            pulumi.set(__self__, "scan_type_lists", scan_type_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="scanTypeLists")
+    def scan_type_lists(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of scan types.
+        Valid values are **cluster_vul**, **risk_assessment**, and **benchmark**.
+
+        <a name="iac_scan_info_struct"></a>
+        The `iac_scan_info` block supports:
+        """
+        return pulumi.get(self, "scan_type_lists")
+
+    @scan_type_lists.setter
+    def scan_type_lists(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "scan_type_lists", value)
+
+
+class GetCommonTasksIacScanInfoArgsDict(TypedDict):
+    file_type: NotRequired[_builtins.str]
+    """
+    Specifies the file type to scan. Valid values are **dockerfile** and **k8s_yaml**.
+    """
+
+@pulumi.input_type
+class GetCommonTasksIacScanInfoArgs:
+    def __init__(__self__, *,
+                 file_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str file_type: Specifies the file type to scan. Valid values are **dockerfile** and **k8s_yaml**.
+        """
+        if file_type is not None:
+            pulumi.set(__self__, "file_type", file_type)
+
+    @_builtins.property
+    @pulumi.getter(name="fileType")
+    def file_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the file type to scan. Valid values are **dockerfile** and **k8s_yaml**.
+        """
+        return pulumi.get(self, "file_type")
+
+    @file_type.setter
+    def file_type(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "file_type", value)
+
+
+class GetContainerKubernetesClustersConfigsClusterInfoListArgsDict(TypedDict):
+    cluster_id: _builtins.str
+    """
+    Specifies the cluster ID.
+    """
+    cluster_name: _builtins.str
+    """
+    Specifies the cluster name.
+    """
 
 @pulumi.input_type
 class GetContainerKubernetesClustersConfigsClusterInfoListArgs:

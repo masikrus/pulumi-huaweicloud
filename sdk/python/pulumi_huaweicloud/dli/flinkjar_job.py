@@ -13,12 +13,17 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['FlinkjarJobArgs', 'FlinkjarJob']
 
 @pulumi.input_type
 class FlinkjarJobArgs:
     def __init__(__self__, *,
+                 checkpoint_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 checkpoint_interval: Optional[pulumi.Input[_builtins.int]] = None,
+                 checkpoint_mode: Optional[pulumi.Input[_builtins.int]] = None,
                  checkpoint_path: Optional[pulumi.Input[_builtins.str]] = None,
                  cu_num: Optional[pulumi.Input[_builtins.int]] = None,
                  dependency_files: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -26,6 +31,7 @@ class FlinkjarJobArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  entrypoint: Optional[pulumi.Input[_builtins.str]] = None,
                  entrypoint_args: Optional[pulumi.Input[_builtins.str]] = None,
+                 execution_agency_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  feature: Optional[pulumi.Input[_builtins.str]] = None,
                  flink_version: Optional[pulumi.Input[_builtins.str]] = None,
                  image: Optional[pulumi.Input[_builtins.str]] = None,
@@ -37,6 +43,8 @@ class FlinkjarJobArgs:
                  parallel_num: Optional[pulumi.Input[_builtins.int]] = None,
                  queue_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_config: Optional[pulumi.Input['FlinkjarJobResourceConfigArgs']] = None,
+                 resource_config_version: Optional[pulumi.Input[_builtins.str]] = None,
                  restart_when_exception: Optional[pulumi.Input[_builtins.bool]] = None,
                  resume_checkpoint: Optional[pulumi.Input[_builtins.bool]] = None,
                  resume_max_num: Optional[pulumi.Input[_builtins.int]] = None,
@@ -47,8 +55,18 @@ class FlinkjarJobArgs:
                  tm_slot_num: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a FlinkjarJob resource.
+
+        :param pulumi.Input[_builtins.bool] checkpoint_enabled: Specifies whether to enable the automatic job snapshot function.  
+               Defaults to `false`.
+        :param pulumi.Input[_builtins.int] checkpoint_interval: Specifies the interval of the snapshot, in seconds.
+               Defaults to `30`.
+        :param pulumi.Input[_builtins.int] checkpoint_mode: Specifies the mode of the snapshot.  
+               The default value is `1`.
+               + **1**: ExactlyOnce, indicates that data is processed only once.
+               + **2**: AtLeastOnce, indicates that data is processed at least once.
         :param pulumi.Input[_builtins.str] checkpoint_path: Specifies storage address of the checkpoint in the JAR file of the user.
                The path must be unique.
+               This parameter is **required** only when `resume_checkpoint` is set to `true` and `checkpoint_enabled` is set to `false`.
         :param pulumi.Input[_builtins.int] cu_num: Specifies number of CUs selected for a job. The default value is `2`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dependency_files: Specifies dependency files. It is the name of the package that has been
                uploaded to the DLI.
@@ -68,6 +86,8 @@ class FlinkjarJobArgs:
                The arguments are keys followed by values. Keys have to start with '-' or '--'.
                
                Example: `--key1 value1 --key2 value2 -key3 value3`
+        :param pulumi.Input[_builtins.str] execution_agency_urn: Specifies the name of the delegation authorized to DLI.  
+               This parameter is supported only when the Flink version is `1.15`.
         :param pulumi.Input[_builtins.str] feature: Specifies job feature. Type of the Flink image used by a job.
                + **basic**: indicates that the basic Flink image provided by DLI is used.
                + **custom**: indicates that the user-defined Flink image is used.
@@ -95,9 +115,22 @@ class FlinkjarJobArgs:
                must be `general`.
         :param pulumi.Input[_builtins.str] region: The region in which to create the DLI flink job resource. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input['FlinkjarJobResourceConfigArgs'] resource_config: Specifies the resource configuration of the Flink job.  
+               This parameter is valid only when the `resource_config_version` is set to `v2`.
+               The object structure is documented below.
+               
+               <a name="flinkjar_job_resource_config"></a>
+               The `resource_config` block supports:
+        :param pulumi.Input[_builtins.str] resource_config_version: Specifies the version of the resource configuration.  
+               The default value is `v1`, it is recommended to use the `v2` version of the parameter settings.
+               The valid values are as follows:
+               + **v1**: The v1 version is supported by Flink `1.12`, Flink `1.13`, and Flink `1.15`.
+               + **v2**: The v2 version is not supported to set the CU number, and supports setting Job Manager Memory and
+               Task Manager Memory. The v2 version is supported by Flink `1.13`, Flink `1.15`, and Flink `1.17`.
         :param pulumi.Input[_builtins.bool] restart_when_exception: Specifies whether to enable the function of restart upon exceptions.
                The default value is `false`.
         :param pulumi.Input[_builtins.bool] resume_checkpoint: Specifies whether the abnormal restart is recovered from the checkpoint.
+               Defaults to `false`.
         :param pulumi.Input[_builtins.int] resume_max_num: Specifies maximum number of retry times upon exceptions. The unit is
                `times/hour`. Value range: `-1` or greater than `0`. The default value is `-1`, indicating that the number of times is
                unlimited.
@@ -109,6 +142,12 @@ class FlinkjarJobArgs:
         :param pulumi.Input[_builtins.int] tm_slot_num: Specifies number of slots in each TaskManager.
                The default value is `(parallel_num * tm_cu_num) / (cu_num - manager_cu_num)`.
         """
+        if checkpoint_enabled is not None:
+            pulumi.set(__self__, "checkpoint_enabled", checkpoint_enabled)
+        if checkpoint_interval is not None:
+            pulumi.set(__self__, "checkpoint_interval", checkpoint_interval)
+        if checkpoint_mode is not None:
+            pulumi.set(__self__, "checkpoint_mode", checkpoint_mode)
         if checkpoint_path is not None:
             pulumi.set(__self__, "checkpoint_path", checkpoint_path)
         if cu_num is not None:
@@ -123,6 +162,8 @@ class FlinkjarJobArgs:
             pulumi.set(__self__, "entrypoint", entrypoint)
         if entrypoint_args is not None:
             pulumi.set(__self__, "entrypoint_args", entrypoint_args)
+        if execution_agency_urn is not None:
+            pulumi.set(__self__, "execution_agency_urn", execution_agency_urn)
         if feature is not None:
             pulumi.set(__self__, "feature", feature)
         if flink_version is not None:
@@ -145,6 +186,10 @@ class FlinkjarJobArgs:
             pulumi.set(__self__, "queue_name", queue_name)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if resource_config is not None:
+            pulumi.set(__self__, "resource_config", resource_config)
+        if resource_config_version is not None:
+            pulumi.set(__self__, "resource_config_version", resource_config_version)
         if restart_when_exception is not None:
             pulumi.set(__self__, "restart_when_exception", restart_when_exception)
         if resume_checkpoint is not None:
@@ -163,11 +208,53 @@ class FlinkjarJobArgs:
             pulumi.set(__self__, "tm_slot_num", tm_slot_num)
 
     @_builtins.property
+    @pulumi.getter(name="checkpointEnabled")
+    def checkpoint_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to enable the automatic job snapshot function.  
+        Defaults to `false`.
+        """
+        return pulumi.get(self, "checkpoint_enabled")
+
+    @checkpoint_enabled.setter
+    def checkpoint_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "checkpoint_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkpointInterval")
+    def checkpoint_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the interval of the snapshot, in seconds.
+        Defaults to `30`.
+        """
+        return pulumi.get(self, "checkpoint_interval")
+
+    @checkpoint_interval.setter
+    def checkpoint_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "checkpoint_interval", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkpointMode")
+    def checkpoint_mode(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the mode of the snapshot.  
+        The default value is `1`.
+        + **1**: ExactlyOnce, indicates that data is processed only once.
+        + **2**: AtLeastOnce, indicates that data is processed at least once.
+        """
+        return pulumi.get(self, "checkpoint_mode")
+
+    @checkpoint_mode.setter
+    def checkpoint_mode(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "checkpoint_mode", value)
+
+    @_builtins.property
     @pulumi.getter(name="checkpointPath")
     def checkpoint_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies storage address of the checkpoint in the JAR file of the user.
         The path must be unique.
+        This parameter is **required** only when `resume_checkpoint` is set to `true` and `checkpoint_enabled` is set to `false`.
         """
         return pulumi.get(self, "checkpoint_path")
 
@@ -259,6 +346,19 @@ class FlinkjarJobArgs:
     @entrypoint_args.setter
     def entrypoint_args(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "entrypoint_args", value)
+
+    @_builtins.property
+    @pulumi.getter(name="executionAgencyUrn")
+    def execution_agency_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of the delegation authorized to DLI.  
+        This parameter is supported only when the Flink version is `1.15`.
+        """
+        return pulumi.get(self, "execution_agency_urn")
+
+    @execution_agency_urn.setter
+    def execution_agency_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "execution_agency_urn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -409,6 +509,40 @@ class FlinkjarJobArgs:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="resourceConfig")
+    def resource_config(self) -> Optional[pulumi.Input['FlinkjarJobResourceConfigArgs']]:
+        """
+        Specifies the resource configuration of the Flink job.  
+        This parameter is valid only when the `resource_config_version` is set to `v2`.
+        The object structure is documented below.
+
+        <a name="flinkjar_job_resource_config"></a>
+        The `resource_config` block supports:
+        """
+        return pulumi.get(self, "resource_config")
+
+    @resource_config.setter
+    def resource_config(self, value: Optional[pulumi.Input['FlinkjarJobResourceConfigArgs']]):
+        pulumi.set(self, "resource_config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceConfigVersion")
+    def resource_config_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the version of the resource configuration.  
+        The default value is `v1`, it is recommended to use the `v2` version of the parameter settings.
+        The valid values are as follows:
+        + **v1**: The v1 version is supported by Flink `1.12`, Flink `1.13`, and Flink `1.15`.
+        + **v2**: The v2 version is not supported to set the CU number, and supports setting Job Manager Memory and
+        Task Manager Memory. The v2 version is supported by Flink `1.13`, Flink `1.15`, and Flink `1.17`.
+        """
+        return pulumi.get(self, "resource_config_version")
+
+    @resource_config_version.setter
+    def resource_config_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_config_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="restartWhenException")
     def restart_when_exception(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -426,6 +560,7 @@ class FlinkjarJobArgs:
     def resume_checkpoint(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Specifies whether the abnormal restart is recovered from the checkpoint.
+        Defaults to `false`.
         """
         return pulumi.get(self, "resume_checkpoint")
 
@@ -513,6 +648,9 @@ class FlinkjarJobArgs:
 @pulumi.input_type
 class _FlinkjarJobState:
     def __init__(__self__, *,
+                 checkpoint_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 checkpoint_interval: Optional[pulumi.Input[_builtins.int]] = None,
+                 checkpoint_mode: Optional[pulumi.Input[_builtins.int]] = None,
                  checkpoint_path: Optional[pulumi.Input[_builtins.str]] = None,
                  cu_num: Optional[pulumi.Input[_builtins.int]] = None,
                  dependency_files: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -520,6 +658,7 @@ class _FlinkjarJobState:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  entrypoint: Optional[pulumi.Input[_builtins.str]] = None,
                  entrypoint_args: Optional[pulumi.Input[_builtins.str]] = None,
+                 execution_agency_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  feature: Optional[pulumi.Input[_builtins.str]] = None,
                  flink_version: Optional[pulumi.Input[_builtins.str]] = None,
                  image: Optional[pulumi.Input[_builtins.str]] = None,
@@ -531,6 +670,8 @@ class _FlinkjarJobState:
                  parallel_num: Optional[pulumi.Input[_builtins.int]] = None,
                  queue_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_config: Optional[pulumi.Input['FlinkjarJobResourceConfigArgs']] = None,
+                 resource_config_version: Optional[pulumi.Input[_builtins.str]] = None,
                  restart_when_exception: Optional[pulumi.Input[_builtins.bool]] = None,
                  resume_checkpoint: Optional[pulumi.Input[_builtins.bool]] = None,
                  resume_max_num: Optional[pulumi.Input[_builtins.int]] = None,
@@ -542,8 +683,18 @@ class _FlinkjarJobState:
                  tm_slot_num: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering FlinkjarJob resources.
+
+        :param pulumi.Input[_builtins.bool] checkpoint_enabled: Specifies whether to enable the automatic job snapshot function.  
+               Defaults to `false`.
+        :param pulumi.Input[_builtins.int] checkpoint_interval: Specifies the interval of the snapshot, in seconds.
+               Defaults to `30`.
+        :param pulumi.Input[_builtins.int] checkpoint_mode: Specifies the mode of the snapshot.  
+               The default value is `1`.
+               + **1**: ExactlyOnce, indicates that data is processed only once.
+               + **2**: AtLeastOnce, indicates that data is processed at least once.
         :param pulumi.Input[_builtins.str] checkpoint_path: Specifies storage address of the checkpoint in the JAR file of the user.
                The path must be unique.
+               This parameter is **required** only when `resume_checkpoint` is set to `true` and `checkpoint_enabled` is set to `false`.
         :param pulumi.Input[_builtins.int] cu_num: Specifies number of CUs selected for a job. The default value is `2`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dependency_files: Specifies dependency files. It is the name of the package that has been
                uploaded to the DLI.
@@ -563,6 +714,8 @@ class _FlinkjarJobState:
                The arguments are keys followed by values. Keys have to start with '-' or '--'.
                
                Example: `--key1 value1 --key2 value2 -key3 value3`
+        :param pulumi.Input[_builtins.str] execution_agency_urn: Specifies the name of the delegation authorized to DLI.  
+               This parameter is supported only when the Flink version is `1.15`.
         :param pulumi.Input[_builtins.str] feature: Specifies job feature. Type of the Flink image used by a job.
                + **basic**: indicates that the basic Flink image provided by DLI is used.
                + **custom**: indicates that the user-defined Flink image is used.
@@ -590,9 +743,22 @@ class _FlinkjarJobState:
                must be `general`.
         :param pulumi.Input[_builtins.str] region: The region in which to create the DLI flink job resource. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input['FlinkjarJobResourceConfigArgs'] resource_config: Specifies the resource configuration of the Flink job.  
+               This parameter is valid only when the `resource_config_version` is set to `v2`.
+               The object structure is documented below.
+               
+               <a name="flinkjar_job_resource_config"></a>
+               The `resource_config` block supports:
+        :param pulumi.Input[_builtins.str] resource_config_version: Specifies the version of the resource configuration.  
+               The default value is `v1`, it is recommended to use the `v2` version of the parameter settings.
+               The valid values are as follows:
+               + **v1**: The v1 version is supported by Flink `1.12`, Flink `1.13`, and Flink `1.15`.
+               + **v2**: The v2 version is not supported to set the CU number, and supports setting Job Manager Memory and
+               Task Manager Memory. The v2 version is supported by Flink `1.13`, Flink `1.15`, and Flink `1.17`.
         :param pulumi.Input[_builtins.bool] restart_when_exception: Specifies whether to enable the function of restart upon exceptions.
                The default value is `false`.
         :param pulumi.Input[_builtins.bool] resume_checkpoint: Specifies whether the abnormal restart is recovered from the checkpoint.
+               Defaults to `false`.
         :param pulumi.Input[_builtins.int] resume_max_num: Specifies maximum number of retry times upon exceptions. The unit is
                `times/hour`. Value range: `-1` or greater than `0`. The default value is `-1`, indicating that the number of times is
                unlimited.
@@ -605,6 +771,12 @@ class _FlinkjarJobState:
         :param pulumi.Input[_builtins.int] tm_slot_num: Specifies number of slots in each TaskManager.
                The default value is `(parallel_num * tm_cu_num) / (cu_num - manager_cu_num)`.
         """
+        if checkpoint_enabled is not None:
+            pulumi.set(__self__, "checkpoint_enabled", checkpoint_enabled)
+        if checkpoint_interval is not None:
+            pulumi.set(__self__, "checkpoint_interval", checkpoint_interval)
+        if checkpoint_mode is not None:
+            pulumi.set(__self__, "checkpoint_mode", checkpoint_mode)
         if checkpoint_path is not None:
             pulumi.set(__self__, "checkpoint_path", checkpoint_path)
         if cu_num is not None:
@@ -619,6 +791,8 @@ class _FlinkjarJobState:
             pulumi.set(__self__, "entrypoint", entrypoint)
         if entrypoint_args is not None:
             pulumi.set(__self__, "entrypoint_args", entrypoint_args)
+        if execution_agency_urn is not None:
+            pulumi.set(__self__, "execution_agency_urn", execution_agency_urn)
         if feature is not None:
             pulumi.set(__self__, "feature", feature)
         if flink_version is not None:
@@ -641,6 +815,10 @@ class _FlinkjarJobState:
             pulumi.set(__self__, "queue_name", queue_name)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if resource_config is not None:
+            pulumi.set(__self__, "resource_config", resource_config)
+        if resource_config_version is not None:
+            pulumi.set(__self__, "resource_config_version", resource_config_version)
         if restart_when_exception is not None:
             pulumi.set(__self__, "restart_when_exception", restart_when_exception)
         if resume_checkpoint is not None:
@@ -661,11 +839,53 @@ class _FlinkjarJobState:
             pulumi.set(__self__, "tm_slot_num", tm_slot_num)
 
     @_builtins.property
+    @pulumi.getter(name="checkpointEnabled")
+    def checkpoint_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to enable the automatic job snapshot function.  
+        Defaults to `false`.
+        """
+        return pulumi.get(self, "checkpoint_enabled")
+
+    @checkpoint_enabled.setter
+    def checkpoint_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "checkpoint_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkpointInterval")
+    def checkpoint_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the interval of the snapshot, in seconds.
+        Defaults to `30`.
+        """
+        return pulumi.get(self, "checkpoint_interval")
+
+    @checkpoint_interval.setter
+    def checkpoint_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "checkpoint_interval", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkpointMode")
+    def checkpoint_mode(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the mode of the snapshot.  
+        The default value is `1`.
+        + **1**: ExactlyOnce, indicates that data is processed only once.
+        + **2**: AtLeastOnce, indicates that data is processed at least once.
+        """
+        return pulumi.get(self, "checkpoint_mode")
+
+    @checkpoint_mode.setter
+    def checkpoint_mode(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "checkpoint_mode", value)
+
+    @_builtins.property
     @pulumi.getter(name="checkpointPath")
     def checkpoint_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies storage address of the checkpoint in the JAR file of the user.
         The path must be unique.
+        This parameter is **required** only when `resume_checkpoint` is set to `true` and `checkpoint_enabled` is set to `false`.
         """
         return pulumi.get(self, "checkpoint_path")
 
@@ -757,6 +977,19 @@ class _FlinkjarJobState:
     @entrypoint_args.setter
     def entrypoint_args(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "entrypoint_args", value)
+
+    @_builtins.property
+    @pulumi.getter(name="executionAgencyUrn")
+    def execution_agency_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of the delegation authorized to DLI.  
+        This parameter is supported only when the Flink version is `1.15`.
+        """
+        return pulumi.get(self, "execution_agency_urn")
+
+    @execution_agency_urn.setter
+    def execution_agency_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "execution_agency_urn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -907,6 +1140,40 @@ class _FlinkjarJobState:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="resourceConfig")
+    def resource_config(self) -> Optional[pulumi.Input['FlinkjarJobResourceConfigArgs']]:
+        """
+        Specifies the resource configuration of the Flink job.  
+        This parameter is valid only when the `resource_config_version` is set to `v2`.
+        The object structure is documented below.
+
+        <a name="flinkjar_job_resource_config"></a>
+        The `resource_config` block supports:
+        """
+        return pulumi.get(self, "resource_config")
+
+    @resource_config.setter
+    def resource_config(self, value: Optional[pulumi.Input['FlinkjarJobResourceConfigArgs']]):
+        pulumi.set(self, "resource_config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceConfigVersion")
+    def resource_config_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the version of the resource configuration.  
+        The default value is `v1`, it is recommended to use the `v2` version of the parameter settings.
+        The valid values are as follows:
+        + **v1**: The v1 version is supported by Flink `1.12`, Flink `1.13`, and Flink `1.15`.
+        + **v2**: The v2 version is not supported to set the CU number, and supports setting Job Manager Memory and
+        Task Manager Memory. The v2 version is supported by Flink `1.13`, Flink `1.15`, and Flink `1.17`.
+        """
+        return pulumi.get(self, "resource_config_version")
+
+    @resource_config_version.setter
+    def resource_config_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_config_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="restartWhenException")
     def restart_when_exception(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -924,6 +1191,7 @@ class _FlinkjarJobState:
     def resume_checkpoint(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Specifies whether the abnormal restart is recovered from the checkpoint.
+        Defaults to `false`.
         """
         return pulumi.get(self, "resume_checkpoint")
 
@@ -1026,6 +1294,9 @@ class FlinkjarJob(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 checkpoint_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 checkpoint_interval: Optional[pulumi.Input[_builtins.int]] = None,
+                 checkpoint_mode: Optional[pulumi.Input[_builtins.int]] = None,
                  checkpoint_path: Optional[pulumi.Input[_builtins.str]] = None,
                  cu_num: Optional[pulumi.Input[_builtins.int]] = None,
                  dependency_files: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1033,6 +1304,7 @@ class FlinkjarJob(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  entrypoint: Optional[pulumi.Input[_builtins.str]] = None,
                  entrypoint_args: Optional[pulumi.Input[_builtins.str]] = None,
+                 execution_agency_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  feature: Optional[pulumi.Input[_builtins.str]] = None,
                  flink_version: Optional[pulumi.Input[_builtins.str]] = None,
                  image: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1044,6 +1316,8 @@ class FlinkjarJob(pulumi.CustomResource):
                  parallel_num: Optional[pulumi.Input[_builtins.int]] = None,
                  queue_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_config: Optional[pulumi.Input[Union['FlinkjarJobResourceConfigArgs', 'FlinkjarJobResourceConfigArgsDict']]] = None,
+                 resource_config_version: Optional[pulumi.Input[_builtins.str]] = None,
                  restart_when_exception: Optional[pulumi.Input[_builtins.bool]] = None,
                  resume_checkpoint: Optional[pulumi.Input[_builtins.bool]] = None,
                  resume_max_num: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1092,16 +1366,24 @@ class FlinkjarJob(pulumi.CustomResource):
 
         The job can be imported by `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/flinkjarJob:FlinkjarJob test 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] checkpoint_enabled: Specifies whether to enable the automatic job snapshot function.  
+               Defaults to `false`.
+        :param pulumi.Input[_builtins.int] checkpoint_interval: Specifies the interval of the snapshot, in seconds.
+               Defaults to `30`.
+        :param pulumi.Input[_builtins.int] checkpoint_mode: Specifies the mode of the snapshot.  
+               The default value is `1`.
+               + **1**: ExactlyOnce, indicates that data is processed only once.
+               + **2**: AtLeastOnce, indicates that data is processed at least once.
         :param pulumi.Input[_builtins.str] checkpoint_path: Specifies storage address of the checkpoint in the JAR file of the user.
                The path must be unique.
+               This parameter is **required** only when `resume_checkpoint` is set to `true` and `checkpoint_enabled` is set to `false`.
         :param pulumi.Input[_builtins.int] cu_num: Specifies number of CUs selected for a job. The default value is `2`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dependency_files: Specifies dependency files. It is the name of the package that has been
                uploaded to the DLI.
@@ -1121,6 +1403,8 @@ class FlinkjarJob(pulumi.CustomResource):
                The arguments are keys followed by values. Keys have to start with '-' or '--'.
                
                Example: `--key1 value1 --key2 value2 -key3 value3`
+        :param pulumi.Input[_builtins.str] execution_agency_urn: Specifies the name of the delegation authorized to DLI.  
+               This parameter is supported only when the Flink version is `1.15`.
         :param pulumi.Input[_builtins.str] feature: Specifies job feature. Type of the Flink image used by a job.
                + **basic**: indicates that the basic Flink image provided by DLI is used.
                + **custom**: indicates that the user-defined Flink image is used.
@@ -1148,9 +1432,22 @@ class FlinkjarJob(pulumi.CustomResource):
                must be `general`.
         :param pulumi.Input[_builtins.str] region: The region in which to create the DLI flink job resource. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[Union['FlinkjarJobResourceConfigArgs', 'FlinkjarJobResourceConfigArgsDict']] resource_config: Specifies the resource configuration of the Flink job.  
+               This parameter is valid only when the `resource_config_version` is set to `v2`.
+               The object structure is documented below.
+               
+               <a name="flinkjar_job_resource_config"></a>
+               The `resource_config` block supports:
+        :param pulumi.Input[_builtins.str] resource_config_version: Specifies the version of the resource configuration.  
+               The default value is `v1`, it is recommended to use the `v2` version of the parameter settings.
+               The valid values are as follows:
+               + **v1**: The v1 version is supported by Flink `1.12`, Flink `1.13`, and Flink `1.15`.
+               + **v2**: The v2 version is not supported to set the CU number, and supports setting Job Manager Memory and
+               Task Manager Memory. The v2 version is supported by Flink `1.13`, Flink `1.15`, and Flink `1.17`.
         :param pulumi.Input[_builtins.bool] restart_when_exception: Specifies whether to enable the function of restart upon exceptions.
                The default value is `false`.
         :param pulumi.Input[_builtins.bool] resume_checkpoint: Specifies whether the abnormal restart is recovered from the checkpoint.
+               Defaults to `false`.
         :param pulumi.Input[_builtins.int] resume_max_num: Specifies maximum number of retry times upon exceptions. The unit is
                `times/hour`. Value range: `-1` or greater than `0`. The default value is `-1`, indicating that the number of times is
                unlimited.
@@ -1207,11 +1504,10 @@ class FlinkjarJob(pulumi.CustomResource):
 
         The job can be imported by `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/flinkjarJob:FlinkjarJob test 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FlinkjarJobArgs args: The arguments to use to populate this resource's properties.
@@ -1228,6 +1524,9 @@ class FlinkjarJob(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 checkpoint_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 checkpoint_interval: Optional[pulumi.Input[_builtins.int]] = None,
+                 checkpoint_mode: Optional[pulumi.Input[_builtins.int]] = None,
                  checkpoint_path: Optional[pulumi.Input[_builtins.str]] = None,
                  cu_num: Optional[pulumi.Input[_builtins.int]] = None,
                  dependency_files: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1235,6 +1534,7 @@ class FlinkjarJob(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  entrypoint: Optional[pulumi.Input[_builtins.str]] = None,
                  entrypoint_args: Optional[pulumi.Input[_builtins.str]] = None,
+                 execution_agency_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  feature: Optional[pulumi.Input[_builtins.str]] = None,
                  flink_version: Optional[pulumi.Input[_builtins.str]] = None,
                  image: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1246,6 +1546,8 @@ class FlinkjarJob(pulumi.CustomResource):
                  parallel_num: Optional[pulumi.Input[_builtins.int]] = None,
                  queue_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_config: Optional[pulumi.Input[Union['FlinkjarJobResourceConfigArgs', 'FlinkjarJobResourceConfigArgsDict']]] = None,
+                 resource_config_version: Optional[pulumi.Input[_builtins.str]] = None,
                  restart_when_exception: Optional[pulumi.Input[_builtins.bool]] = None,
                  resume_checkpoint: Optional[pulumi.Input[_builtins.bool]] = None,
                  resume_max_num: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1263,6 +1565,9 @@ class FlinkjarJob(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FlinkjarJobArgs.__new__(FlinkjarJobArgs)
 
+            __props__.__dict__["checkpoint_enabled"] = checkpoint_enabled
+            __props__.__dict__["checkpoint_interval"] = checkpoint_interval
+            __props__.__dict__["checkpoint_mode"] = checkpoint_mode
             __props__.__dict__["checkpoint_path"] = checkpoint_path
             __props__.__dict__["cu_num"] = cu_num
             __props__.__dict__["dependency_files"] = dependency_files
@@ -1270,6 +1575,7 @@ class FlinkjarJob(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["entrypoint"] = entrypoint
             __props__.__dict__["entrypoint_args"] = entrypoint_args
+            __props__.__dict__["execution_agency_urn"] = execution_agency_urn
             __props__.__dict__["feature"] = feature
             __props__.__dict__["flink_version"] = flink_version
             __props__.__dict__["image"] = image
@@ -1281,6 +1587,8 @@ class FlinkjarJob(pulumi.CustomResource):
             __props__.__dict__["parallel_num"] = parallel_num
             __props__.__dict__["queue_name"] = queue_name
             __props__.__dict__["region"] = region
+            __props__.__dict__["resource_config"] = resource_config
+            __props__.__dict__["resource_config_version"] = resource_config_version
             __props__.__dict__["restart_when_exception"] = restart_when_exception
             __props__.__dict__["resume_checkpoint"] = resume_checkpoint
             __props__.__dict__["resume_max_num"] = resume_max_num
@@ -1300,6 +1608,9 @@ class FlinkjarJob(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            checkpoint_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+            checkpoint_interval: Optional[pulumi.Input[_builtins.int]] = None,
+            checkpoint_mode: Optional[pulumi.Input[_builtins.int]] = None,
             checkpoint_path: Optional[pulumi.Input[_builtins.str]] = None,
             cu_num: Optional[pulumi.Input[_builtins.int]] = None,
             dependency_files: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1307,6 +1618,7 @@ class FlinkjarJob(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             entrypoint: Optional[pulumi.Input[_builtins.str]] = None,
             entrypoint_args: Optional[pulumi.Input[_builtins.str]] = None,
+            execution_agency_urn: Optional[pulumi.Input[_builtins.str]] = None,
             feature: Optional[pulumi.Input[_builtins.str]] = None,
             flink_version: Optional[pulumi.Input[_builtins.str]] = None,
             image: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1318,6 +1630,8 @@ class FlinkjarJob(pulumi.CustomResource):
             parallel_num: Optional[pulumi.Input[_builtins.int]] = None,
             queue_name: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
+            resource_config: Optional[pulumi.Input[Union['FlinkjarJobResourceConfigArgs', 'FlinkjarJobResourceConfigArgsDict']]] = None,
+            resource_config_version: Optional[pulumi.Input[_builtins.str]] = None,
             restart_when_exception: Optional[pulumi.Input[_builtins.bool]] = None,
             resume_checkpoint: Optional[pulumi.Input[_builtins.bool]] = None,
             resume_max_num: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1334,8 +1648,17 @@ class FlinkjarJob(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] checkpoint_enabled: Specifies whether to enable the automatic job snapshot function.  
+               Defaults to `false`.
+        :param pulumi.Input[_builtins.int] checkpoint_interval: Specifies the interval of the snapshot, in seconds.
+               Defaults to `30`.
+        :param pulumi.Input[_builtins.int] checkpoint_mode: Specifies the mode of the snapshot.  
+               The default value is `1`.
+               + **1**: ExactlyOnce, indicates that data is processed only once.
+               + **2**: AtLeastOnce, indicates that data is processed at least once.
         :param pulumi.Input[_builtins.str] checkpoint_path: Specifies storage address of the checkpoint in the JAR file of the user.
                The path must be unique.
+               This parameter is **required** only when `resume_checkpoint` is set to `true` and `checkpoint_enabled` is set to `false`.
         :param pulumi.Input[_builtins.int] cu_num: Specifies number of CUs selected for a job. The default value is `2`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dependency_files: Specifies dependency files. It is the name of the package that has been
                uploaded to the DLI.
@@ -1355,6 +1678,8 @@ class FlinkjarJob(pulumi.CustomResource):
                The arguments are keys followed by values. Keys have to start with '-' or '--'.
                
                Example: `--key1 value1 --key2 value2 -key3 value3`
+        :param pulumi.Input[_builtins.str] execution_agency_urn: Specifies the name of the delegation authorized to DLI.  
+               This parameter is supported only when the Flink version is `1.15`.
         :param pulumi.Input[_builtins.str] feature: Specifies job feature. Type of the Flink image used by a job.
                + **basic**: indicates that the basic Flink image provided by DLI is used.
                + **custom**: indicates that the user-defined Flink image is used.
@@ -1382,9 +1707,22 @@ class FlinkjarJob(pulumi.CustomResource):
                must be `general`.
         :param pulumi.Input[_builtins.str] region: The region in which to create the DLI flink job resource. If omitted, the
                provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[Union['FlinkjarJobResourceConfigArgs', 'FlinkjarJobResourceConfigArgsDict']] resource_config: Specifies the resource configuration of the Flink job.  
+               This parameter is valid only when the `resource_config_version` is set to `v2`.
+               The object structure is documented below.
+               
+               <a name="flinkjar_job_resource_config"></a>
+               The `resource_config` block supports:
+        :param pulumi.Input[_builtins.str] resource_config_version: Specifies the version of the resource configuration.  
+               The default value is `v1`, it is recommended to use the `v2` version of the parameter settings.
+               The valid values are as follows:
+               + **v1**: The v1 version is supported by Flink `1.12`, Flink `1.13`, and Flink `1.15`.
+               + **v2**: The v2 version is not supported to set the CU number, and supports setting Job Manager Memory and
+               Task Manager Memory. The v2 version is supported by Flink `1.13`, Flink `1.15`, and Flink `1.17`.
         :param pulumi.Input[_builtins.bool] restart_when_exception: Specifies whether to enable the function of restart upon exceptions.
                The default value is `false`.
         :param pulumi.Input[_builtins.bool] resume_checkpoint: Specifies whether the abnormal restart is recovered from the checkpoint.
+               Defaults to `false`.
         :param pulumi.Input[_builtins.int] resume_max_num: Specifies maximum number of retry times upon exceptions. The unit is
                `times/hour`. Value range: `-1` or greater than `0`. The default value is `-1`, indicating that the number of times is
                unlimited.
@@ -1401,6 +1739,9 @@ class FlinkjarJob(pulumi.CustomResource):
 
         __props__ = _FlinkjarJobState.__new__(_FlinkjarJobState)
 
+        __props__.__dict__["checkpoint_enabled"] = checkpoint_enabled
+        __props__.__dict__["checkpoint_interval"] = checkpoint_interval
+        __props__.__dict__["checkpoint_mode"] = checkpoint_mode
         __props__.__dict__["checkpoint_path"] = checkpoint_path
         __props__.__dict__["cu_num"] = cu_num
         __props__.__dict__["dependency_files"] = dependency_files
@@ -1408,6 +1749,7 @@ class FlinkjarJob(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["entrypoint"] = entrypoint
         __props__.__dict__["entrypoint_args"] = entrypoint_args
+        __props__.__dict__["execution_agency_urn"] = execution_agency_urn
         __props__.__dict__["feature"] = feature
         __props__.__dict__["flink_version"] = flink_version
         __props__.__dict__["image"] = image
@@ -1419,6 +1761,8 @@ class FlinkjarJob(pulumi.CustomResource):
         __props__.__dict__["parallel_num"] = parallel_num
         __props__.__dict__["queue_name"] = queue_name
         __props__.__dict__["region"] = region
+        __props__.__dict__["resource_config"] = resource_config
+        __props__.__dict__["resource_config_version"] = resource_config_version
         __props__.__dict__["restart_when_exception"] = restart_when_exception
         __props__.__dict__["resume_checkpoint"] = resume_checkpoint
         __props__.__dict__["resume_max_num"] = resume_max_num
@@ -1431,11 +1775,41 @@ class FlinkjarJob(pulumi.CustomResource):
         return FlinkjarJob(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
+    @pulumi.getter(name="checkpointEnabled")
+    def checkpoint_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies whether to enable the automatic job snapshot function.  
+        Defaults to `false`.
+        """
+        return pulumi.get(self, "checkpoint_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="checkpointInterval")
+    def checkpoint_interval(self) -> pulumi.Output[_builtins.int]:
+        """
+        Specifies the interval of the snapshot, in seconds.
+        Defaults to `30`.
+        """
+        return pulumi.get(self, "checkpoint_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="checkpointMode")
+    def checkpoint_mode(self) -> pulumi.Output[_builtins.int]:
+        """
+        Specifies the mode of the snapshot.  
+        The default value is `1`.
+        + **1**: ExactlyOnce, indicates that data is processed only once.
+        + **2**: AtLeastOnce, indicates that data is processed at least once.
+        """
+        return pulumi.get(self, "checkpoint_mode")
+
+    @_builtins.property
     @pulumi.getter(name="checkpointPath")
-    def checkpoint_path(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def checkpoint_path(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies storage address of the checkpoint in the JAR file of the user.
         The path must be unique.
+        This parameter is **required** only when `resume_checkpoint` is set to `true` and `checkpoint_enabled` is set to `false`.
         """
         return pulumi.get(self, "checkpoint_path")
 
@@ -1501,6 +1875,15 @@ class FlinkjarJob(pulumi.CustomResource):
         return pulumi.get(self, "entrypoint_args")
 
     @_builtins.property
+    @pulumi.getter(name="executionAgencyUrn")
+    def execution_agency_urn(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the name of the delegation authorized to DLI.  
+        This parameter is supported only when the Flink version is `1.15`.
+        """
+        return pulumi.get(self, "execution_agency_urn")
+
+    @_builtins.property
     @pulumi.getter
     def feature(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1553,7 +1936,7 @@ class FlinkjarJob(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="managerCuNum")
-    def manager_cu_num(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def manager_cu_num(self) -> pulumi.Output[_builtins.int]:
         """
         Specifies number of CUs in the JobManager selected for a job.
         The default value is `1`.
@@ -1580,7 +1963,7 @@ class FlinkjarJob(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="parallelNum")
-    def parallel_num(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def parallel_num(self) -> pulumi.Output[_builtins.int]:
         """
         Specifies number of parallel for a job. The default value is `1`.
         """
@@ -1605,6 +1988,32 @@ class FlinkjarJob(pulumi.CustomResource):
         return pulumi.get(self, "region")
 
     @_builtins.property
+    @pulumi.getter(name="resourceConfig")
+    def resource_config(self) -> pulumi.Output['outputs.FlinkjarJobResourceConfig']:
+        """
+        Specifies the resource configuration of the Flink job.  
+        This parameter is valid only when the `resource_config_version` is set to `v2`.
+        The object structure is documented below.
+
+        <a name="flinkjar_job_resource_config"></a>
+        The `resource_config` block supports:
+        """
+        return pulumi.get(self, "resource_config")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceConfigVersion")
+    def resource_config_version(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies the version of the resource configuration.  
+        The default value is `v1`, it is recommended to use the `v2` version of the parameter settings.
+        The valid values are as follows:
+        + **v1**: The v1 version is supported by Flink `1.12`, Flink `1.13`, and Flink `1.15`.
+        + **v2**: The v2 version is not supported to set the CU number, and supports setting Job Manager Memory and
+        Task Manager Memory. The v2 version is supported by Flink `1.13`, Flink `1.15`, and Flink `1.17`.
+        """
+        return pulumi.get(self, "resource_config_version")
+
+    @_builtins.property
     @pulumi.getter(name="restartWhenException")
     def restart_when_exception(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
@@ -1618,6 +2027,7 @@ class FlinkjarJob(pulumi.CustomResource):
     def resume_checkpoint(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         Specifies whether the abnormal restart is recovered from the checkpoint.
+        Defaults to `false`.
         """
         return pulumi.get(self, "resume_checkpoint")
 
@@ -1666,7 +2076,7 @@ class FlinkjarJob(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="tmCuNum")
-    def tm_cu_num(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def tm_cu_num(self) -> pulumi.Output[_builtins.int]:
         """
         Specifies number of CUs for each TaskManager. The default value is `1`.
         """

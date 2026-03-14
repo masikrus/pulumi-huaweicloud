@@ -27,6 +27,7 @@ class LogstashConnectivityArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogstashConnectivity resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['LogstashConnectivityAddressAndPortArgs']]] address_and_ports: Specifies the list of addresses and ports.
                The address_and_ports structure is documented below.
                
@@ -106,6 +107,7 @@ class _LogstashConnectivityState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstashConnectivity resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['LogstashConnectivityAddressAndPortArgs']]] address_and_ports: Specifies the list of addresses and ports.
                The address_and_ports structure is documented below.
                
@@ -224,6 +226,7 @@ class LogstashConnectivity(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LogstashConnectivityAddressAndPortArgs', 'LogstashConnectivityAddressAndPortArgsDict']]]] address_and_ports: Specifies the list of addresses and ports.
@@ -260,6 +263,7 @@ class LogstashConnectivity(pulumi.CustomResource):
                 "port": 9600,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogstashConnectivityArgs args: The arguments to use to populate this resource's properties.

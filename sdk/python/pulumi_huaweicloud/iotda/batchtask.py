@@ -30,6 +30,7 @@ class BatchtaskArgs:
                  targets_filters: Optional[pulumi.Input[Sequence[pulumi.Input['BatchtaskTargetsFilterArgs']]]] = None):
         """
         The set of arguments for constructing a Batchtask resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the batch task type.
                Changing this parameter will create a new resource.
                The valid values are as follows:
@@ -208,6 +209,7 @@ class _BatchtaskState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Batchtask resources.
+
         :param pulumi.Input[_builtins.str] created_at: The time of batch task creation. The format is **yyyyMMdd'T'HHmmss'Z**. e.g. **20190528T153000Z**.
         :param pulumi.Input[_builtins.str] name: Specifies the batch task name. The length does not exceed `128`, and only
                combinations of Chinese characters, letters, numbers, and underscores (_) are allowed.
@@ -497,39 +499,16 @@ class Batchtask(pulumi.CustomResource):
 
         The batch task can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/batchtask:Batchtask test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `space_id`, `targets`, `targets_filter`,
-
          `targets_file`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_iotda_batchtask" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              space_id, targets, targets_filter, targets_file,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -608,39 +587,16 @@ class Batchtask(pulumi.CustomResource):
 
         The batch task can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/batchtask:Batchtask test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `space_id`, `targets`, `targets_filter`,
-
          `targets_file`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_iotda_batchtask" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              space_id, targets, targets_filter, targets_file,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param BatchtaskArgs args: The arguments to use to populate this resource's properties.

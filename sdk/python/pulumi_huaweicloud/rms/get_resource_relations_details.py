@@ -105,7 +105,7 @@ def get_resource_relations_details(direction: Optional[_builtins.str] = None,
     config = pulumi.Config()
     resource_id = config.require_object("resourceId")
     direction = config.require_object("direction")
-    test = huaweicloud.rms.get_resource_relations_details(resource_id=resource_id,
+    test = huaweicloud.Rms.get_resource_relations_details(resource_id=resource_id,
         direction=direction)
     ```
 
@@ -120,7 +120,7 @@ def get_resource_relations_details(direction: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['resourceId'] = resource_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceRelationsDetails:getResourceRelationsDetails', __args__, opts=opts, typ=GetResourceRelationsDetailsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceRelationsDetails:getResourceRelationsDetails', __args__, opts=opts, typ=GetResourceRelationsDetailsResult).value
 
     return AwaitableGetResourceRelationsDetailsResult(
         direction=pulumi.get(__ret__, 'direction'),
@@ -144,7 +144,7 @@ def get_resource_relations_details_output(direction: Optional[pulumi.Input[_buil
     config = pulumi.Config()
     resource_id = config.require_object("resourceId")
     direction = config.require_object("direction")
-    test = huaweicloud.rms.get_resource_relations_details(resource_id=resource_id,
+    test = huaweicloud.Rms.get_resource_relations_details(resource_id=resource_id,
         direction=direction)
     ```
 
@@ -159,7 +159,7 @@ def get_resource_relations_details_output(direction: Optional[pulumi.Input[_buil
     __args__['region'] = region
     __args__['resourceId'] = resource_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceRelationsDetails:getResourceRelationsDetails', __args__, opts=opts, typ=GetResourceRelationsDetailsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceRelationsDetails:getResourceRelationsDetails', __args__, opts=opts, typ=GetResourceRelationsDetailsResult)
     return __ret__.apply(lambda __response__: GetResourceRelationsDetailsResult(
         direction=pulumi.get(__response__, 'direction'),
         id=pulumi.get(__response__, 'id'),

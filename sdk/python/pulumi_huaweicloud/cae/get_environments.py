@@ -131,7 +131,7 @@ def get_environments(enterprise_project_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     environment_name = config.require_object("environmentName")
-    test = huaweicloud.cae.get_environments(name=environment_name)
+    test = huaweicloud.Cae.get_environments(name=environment_name)
     ```
 
 
@@ -150,7 +150,7 @@ def get_environments(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cae/getEnvironments:getEnvironments', __args__, opts=opts, typ=GetEnvironmentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cae/getEnvironments:getEnvironments', __args__, opts=opts, typ=GetEnvironmentsResult).value
 
     return AwaitableGetEnvironmentsResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -177,7 +177,7 @@ def get_environments_output(enterprise_project_id: Optional[pulumi.Input[Optiona
 
     config = pulumi.Config()
     environment_name = config.require_object("environmentName")
-    test = huaweicloud.cae.get_environments(name=environment_name)
+    test = huaweicloud.Cae.get_environments(name=environment_name)
     ```
 
 
@@ -196,7 +196,7 @@ def get_environments_output(enterprise_project_id: Optional[pulumi.Input[Optiona
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cae/getEnvironments:getEnvironments', __args__, opts=opts, typ=GetEnvironmentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cae/getEnvironments:getEnvironments', __args__, opts=opts, typ=GetEnvironmentsResult)
     return __ret__.apply(lambda __response__: GetEnvironmentsResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         environment_id=pulumi.get(__response__, 'environment_id'),

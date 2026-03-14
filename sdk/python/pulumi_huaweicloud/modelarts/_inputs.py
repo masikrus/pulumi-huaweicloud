@@ -117,63 +117,58 @@ __all__ = [
     'WorkspaceGrantArgsDict',
 ]
 
-MYPY = False
+class DatasetDataSourceArgsDict(TypedDict):
+    cluster_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster ID of DWS/MRS when `data_type` is `1` or `4`.
+    Changing this parameter will create a new resource.
+    """
+    data_type: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the type of data source. The options are as follows:
+    + **0**: OBS.
+    + **1**: GaussDB(DWS).
+    + **2**: DLI.
+    + **4**: MRS.
 
-if not MYPY:
-    class DatasetDataSourceArgsDict(TypedDict):
-        cluster_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster ID of DWS/MRS when `data_type` is `1` or `4`.
-        Changing this parameter will create a new resource.
-        """
-        data_type: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the type of data source. The options are as follows:
-        + **0**: OBS.
-        + **1**: GaussDB(DWS).
-        + **2**: DLI.
-        + **4**: MRS.
-
-        Default value is 0. Changing this parameter will create a new resource.
-        """
-        database_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the database name of DWS/DLI when `data_type` is `1` or `2`.
-        Changing this parameter will create a new resource.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the password of database when `data_type` is `1`.
-        Changing this parameter will create a new resource.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the OBS path when `data_type` is `0`
-        or the hdsf path when `data_type` is `4`. All the file in this directory and subdirectories will be which be imported
-        to the dataset. Changing this parameter will create a new resource.
-        """
-        queue_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the queue name of DLI when `data_type` is `2`.
-        Changing this parameter will create a new resource.
-        """
-        table_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the table name of DWS/DLI when `data_type` is `1` or `2`.
-        Changing this parameter will create a new resource.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the user name of database when `data_type` is `1`.
-        Changing this parameter will create a new resource.
-        """
-        with_column_header: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the data contains table header when the type
-        of dataset is `400`(Table type). Default value is `true`. Changing this parameter will create a new resource.
-        """
-elif False:
-    DatasetDataSourceArgsDict: TypeAlias = Mapping[str, Any]
+    Default value is 0. Changing this parameter will create a new resource.
+    """
+    database_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database name of DWS/DLI when `data_type` is `1` or `2`.
+    Changing this parameter will create a new resource.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the password of database when `data_type` is `1`.
+    Changing this parameter will create a new resource.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OBS path when `data_type` is `0`
+    or the hdsf path when `data_type` is `4`. All the file in this directory and subdirectories will be which be imported
+    to the dataset. Changing this parameter will create a new resource.
+    """
+    queue_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the queue name of DLI when `data_type` is `2`.
+    Changing this parameter will create a new resource.
+    """
+    table_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the table name of DWS/DLI when `data_type` is `1` or `2`.
+    Changing this parameter will create a new resource.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user name of database when `data_type` is `1`.
+    Changing this parameter will create a new resource.
+    """
+    with_column_header: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the data contains table header when the type
+    of dataset is `400`(Table type). Default value is `true`. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class DatasetDataSourceArgs:
@@ -356,27 +351,24 @@ class DatasetDataSourceArgs:
         pulumi.set(self, "with_column_header", value)
 
 
-if not MYPY:
-    class DatasetLabelArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of label.
-        """
-        property_color: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies color of label.
-        """
-        property_shape: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies shape of label. Valid values include: `bndbox`, `polygon`,
-        `circle`, `line`, `dashed`, `point`, `polyline`.
-        """
-        property_shortcut: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies shortcut of label.
-        """
-elif False:
-    DatasetLabelArgsDict: TypeAlias = Mapping[str, Any]
+class DatasetLabelArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of label.
+    """
+    property_color: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies color of label.
+    """
+    property_shape: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies shape of label. Valid values include: `bndbox`, `polygon`,
+    `circle`, `line`, `dashed`, `point`, `polyline`.
+    """
+    property_shortcut: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies shortcut of label.
+    """
 
 @pulumi.input_type
 class DatasetLabelArgs:
@@ -450,32 +442,29 @@ class DatasetLabelArgs:
         pulumi.set(self, "property_shortcut", value)
 
 
-if not MYPY:
-    class DatasetLabelFormatArgsDict(TypedDict):
-        label_separator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the separator between label and label.
-        Changing this parameter will create a new resource.
-        """
-        text_label_separator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the separator between text and label.
-        Changing this parameter will create a new resource.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies Label type for text classification.
-        The optional values are as follows:
+class DatasetLabelFormatArgsDict(TypedDict):
+    label_separator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the separator between label and label.
+    Changing this parameter will create a new resource.
+    """
+    text_label_separator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the separator between text and label.
+    Changing this parameter will create a new resource.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies Label type for text classification.
+    The optional values are as follows:
 
-        + **0**: Label and text are separated, distinguished by the suffix `_result`.
-        For example: the text file is *abc.txt*, and the label file is *abc_result.txt*.
-        + **1**: Default, labels and text are in one file, separated by a delimiter. The separator between text and labels,
-        the separator between label and label can be specified by `label_separator` and `text_label_separator`.
+    + **0**: Label and text are separated, distinguished by the suffix `_result`.
+    For example: the text file is *abc.txt*, and the label file is *abc_result.txt*.
+    + **1**: Default, labels and text are in one file, separated by a delimiter. The separator between text and labels,
+    the separator between label and label can be specified by `label_separator` and `text_label_separator`.
 
-        Default value is `1`.
-        """
-elif False:
-    DatasetLabelFormatArgsDict: TypeAlias = Mapping[str, Any]
+    Default value is `1`.
+    """
 
 @pulumi.input_type
 class DatasetLabelFormatArgs:
@@ -552,19 +541,16 @@ class DatasetLabelFormatArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class DatasetSchemaArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the field name. Changing this parameter will create a new resource.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the field type. Valid values include: `String`, `Short`, `Int`,
-        `Long`, `Double`, `Float`, `Byte`, `Date`, `Timestamp`, `Bool`. Changing this parameter will create a new resource.
-        """
-elif False:
-    DatasetSchemaArgsDict: TypeAlias = Mapping[str, Any]
+class DatasetSchemaArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the field name. Changing this parameter will create a new resource.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the field type. Valid values include: `String`, `Short`, `Int`,
+    `Long`, `Double`, `Float`, `Byte`, `Date`, `Timestamp`, `Bool`. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class DatasetSchemaArgs:
@@ -605,26 +591,23 @@ class DatasetSchemaArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class DevserverRootVolumeArgsDict(TypedDict):
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the size of system disk.
-        Changing this creates a new resource.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of system disk.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **ESSD**: Extreme SSD type.
-        + **SSD**: Ultra-high I/O type.
-        + **GPSSD**: General purpose SSD type.
-        + **SAS**: High I/O type.
-        + **SATA**: Common I/O type.
-        """
-elif False:
-    DevserverRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class DevserverRootVolumeArgsDict(TypedDict):
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size of system disk.
+    Changing this creates a new resource.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of system disk.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **ESSD**: Extreme SSD type.
+    + **SSD**: Ultra-high I/O type.
+    + **GPSSD**: General purpose SSD type.
+    + **SAS**: High I/O type.
+    + **SATA**: Common I/O type.
+    """
 
 @pulumi.input_type
 class DevserverRootVolumeArgs:
@@ -681,24 +664,21 @@ class DevserverRootVolumeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ModelDependencyArgsDict(TypedDict):
-        installer: pulumi.Input[_builtins.str]
-        """
-        Installation mode. Only **pip** is supported.
-        Changing this parameter will create a new resource.
-        """
-        packages: pulumi.Input[Sequence[pulumi.Input['ModelDependencyPackageArgsDict']]]
-        """
-        Collection of dependency packages.
-        The package structure is documented below.
-        Changing this parameter will create a new resource.
+class ModelDependencyArgsDict(TypedDict):
+    installer: pulumi.Input[_builtins.str]
+    """
+    Installation mode. Only **pip** is supported.
+    Changing this parameter will create a new resource.
+    """
+    packages: pulumi.Input[Sequence[pulumi.Input['ModelDependencyPackageArgsDict']]]
+    """
+    Collection of dependency packages.
+    The package structure is documented below.
+    Changing this parameter will create a new resource.
 
-        <a name="ModelartsModel_package"></a>
-        The `package` block supports:
-        """
-elif False:
-    ModelDependencyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsModel_package"></a>
+    The `package` block supports:
+    """
 
 @pulumi.input_type
 class ModelDependencyArgs:
@@ -749,30 +729,27 @@ class ModelDependencyArgs:
         pulumi.set(self, "packages", value)
 
 
-if not MYPY:
-    class ModelDependencyPackageArgsDict(TypedDict):
-        package_name: pulumi.Input[_builtins.str]
-        """
-        Name of a dependency package.
-        Ensure that the package name is correct and available.
-        Chinese characters and special characters (&!'"<>=) are not allowed.
-        Changing this parameter will create a new resource.
-        """
-        package_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Version of a dependency package.
-        If this parameter is left blank, the latest version is installed by default.
-        Chinese characters and special characters (&!'"<>=) are not allowed.
-        Changing this parameter will create a new resource.
-        """
-        restraint: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Version restriction, which can be **EXACT**, **ATLEAST**, or **ATMOST**.
-        This parameter is mandatory only when package_version is available.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ModelDependencyPackageArgsDict: TypeAlias = Mapping[str, Any]
+class ModelDependencyPackageArgsDict(TypedDict):
+    package_name: pulumi.Input[_builtins.str]
+    """
+    Name of a dependency package.
+    Ensure that the package name is correct and available.
+    Chinese characters and special characters (&!'"<>=) are not allowed.
+    Changing this parameter will create a new resource.
+    """
+    package_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Version of a dependency package.
+    If this parameter is left blank, the latest version is installed by default.
+    Chinese characters and special characters (&!'"<>=) are not allowed.
+    Changing this parameter will create a new resource.
+    """
+    restraint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Version restriction, which can be **EXACT**, **ATLEAST**, or **ATMOST**.
+    This parameter is mandatory only when package_version is available.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ModelDependencyPackageArgs:
@@ -844,24 +821,21 @@ class ModelDependencyPackageArgs:
         pulumi.set(self, "restraint", value)
 
 
-if not MYPY:
-    class ModelModelDocArgsDict(TypedDict):
-        doc_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Document name, which must start with a letter. Enter 1 to 48 characters.  
-        Only letters, digits, hyphens (-), and underscores (_) are allowed.
-        Changing this parameter will create a new resource.
+class ModelModelDocArgsDict(TypedDict):
+    doc_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Document name, which must start with a letter. Enter 1 to 48 characters.  
+    Only letters, digits, hyphens (-), and underscores (_) are allowed.
+    Changing this parameter will create a new resource.
 
-        <a name="ModelartsModel_Template"></a>
-        The `Template` block supports:
-        """
-        doc_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        HTTP(S) link of the document.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ModelModelDocArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsModel_Template"></a>
+    The `Template` block supports:
+    """
+    doc_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    HTTP(S) link of the document.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ModelModelDocArgs:
@@ -914,32 +888,29 @@ class ModelModelDocArgs:
         pulumi.set(self, "doc_url", value)
 
 
-if not MYPY:
-    class ModelTemplateArgsDict(TypedDict):
-        template_id: pulumi.Input[_builtins.str]
-        """
-        ID of the used template.  
-        The template has a built-in input and output mode.
-        Changing this parameter will create a new resource.
-        """
-        template_inputs: pulumi.Input[Sequence[pulumi.Input['ModelTemplateTemplateInputArgsDict']]]
-        """
-        Template input configuration,
-        specifying the source path for configuring a model.
-        The TemplateInput structure is documented below.
-        Changing this parameter will create a new resource.
-        """
-        infer_format: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the input and output mode.  
-        When this parameter is used, the input and output mode built in the template does not take effect.
-        Changing this parameter will create a new resource.
+class ModelTemplateArgsDict(TypedDict):
+    template_id: pulumi.Input[_builtins.str]
+    """
+    ID of the used template.  
+    The template has a built-in input and output mode.
+    Changing this parameter will create a new resource.
+    """
+    template_inputs: pulumi.Input[Sequence[pulumi.Input['ModelTemplateTemplateInputArgsDict']]]
+    """
+    Template input configuration,
+    specifying the source path for configuring a model.
+    The TemplateInput structure is documented below.
+    Changing this parameter will create a new resource.
+    """
+    infer_format: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the input and output mode.  
+    When this parameter is used, the input and output mode built in the template does not take effect.
+    Changing this parameter will create a new resource.
 
-        <a name="ModelartsModel_TemplateInput"></a>
-        The `TemplateInput` block supports:
-        """
-elif False:
-    ModelTemplateArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsModel_TemplateInput"></a>
+    The `TemplateInput` block supports:
+    """
 
 @pulumi.input_type
 class ModelTemplateArgs:
@@ -1014,26 +985,23 @@ class ModelTemplateArgs:
         pulumi.set(self, "infer_format", value)
 
 
-if not MYPY:
-    class ModelTemplateTemplateInputArgsDict(TypedDict):
-        input: pulumi.Input[_builtins.str]
-        """
-        Template input path, which can be a path to an OBS file or directory.  
-        When you use a template with multiple input items to create a model,
-        if the target paths input_properties specified in the template are the same,
-        the OBS directory or OBS file name entered here must be unique to prevent files from being overwritten.
-        Changing this parameter will create a new resource.
-        """
-        input_id: pulumi.Input[_builtins.str]
-        """
-        Input item ID, which is obtained from template details.
-        Changing this parameter will create a new resource.
+class ModelTemplateTemplateInputArgsDict(TypedDict):
+    input: pulumi.Input[_builtins.str]
+    """
+    Template input path, which can be a path to an OBS file or directory.  
+    When you use a template with multiple input items to create a model,
+    if the target paths input_properties specified in the template are the same,
+    the OBS directory or OBS file name entered here must be unique to prevent files from being overwritten.
+    Changing this parameter will create a new resource.
+    """
+    input_id: pulumi.Input[_builtins.str]
+    """
+    Input item ID, which is obtained from template details.
+    Changing this parameter will create a new resource.
 
-        <a name="ModelartsModel_Dependency"></a>
-        The `Dependency` block supports:
-        """
-elif False:
-    ModelTemplateTemplateInputArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsModel_Dependency"></a>
+    The `Dependency` block supports:
+    """
 
 @pulumi.input_type
 class ModelTemplateTemplateInputArgs:
@@ -1088,18 +1056,15 @@ class ModelTemplateTemplateInputArgs:
         pulumi.set(self, "input_id", value)
 
 
-if not MYPY:
-    class NetworkPeerConnectionArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Interconnect subnet ID.
-        """
-        vpc_id: pulumi.Input[_builtins.str]
-        """
-        Interconnect VPC ID.
-        """
-elif False:
-    NetworkPeerConnectionArgsDict: TypeAlias = Mapping[str, Any]
+class NetworkPeerConnectionArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Interconnect subnet ID.
+    """
+    vpc_id: pulumi.Input[_builtins.str]
+    """
+    Interconnect VPC ID.
+    """
 
 @pulumi.input_type
 class NetworkPeerConnectionArgs:
@@ -1138,30 +1103,27 @@ class NetworkPeerConnectionArgs:
         pulumi.set(self, "vpc_id", value)
 
 
-if not MYPY:
-    class NotebookMountStorageArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The mount ID.
-        """
-        mount_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The local mount path.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path of storage which be mounted.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of mount.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of storage which be mounted.
-        """
-elif False:
-    NotebookMountStorageArgsDict: TypeAlias = Mapping[str, Any]
+class NotebookMountStorageArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The mount ID.
+    """
+    mount_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The local mount path.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path of storage which be mounted.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of mount.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of storage which be mounted.
+    """
 
 @pulumi.input_type
 class NotebookMountStorageArgs:
@@ -1250,46 +1212,43 @@ class NotebookMountStorageArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NotebookVolumeArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. The options are as follows:
-        - *EFS*: use Scalable File Service, default 50GB is **free**.
-        - *EVS*: use Elastic Volume Service, default size is 5 GB.
+class NotebookVolumeArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. The options are as follows:
+    - *EFS*: use Scalable File Service, default 50GB is **free**.
+    - *EVS*: use Elastic Volume Service, default size is 5 GB.
 
-        Changing this parameter will create a new resource.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of dedicated storage disk, which is mandatory when the `type`
-        is `EFS` and the `ownership` is `DEDICATED`.
-        Changing this parameter will create a new resource.
-        """
-        mount_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The local mount path.
-        """
-        ownership: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the volume ownership. The options are as follows:
-        - *MANAGED*: shared storage disk of the ModelArts service.
-        - *DEDICATED*: dedicated storage disk, only supported when the category is `EFS`.
+    Changing this parameter will create a new resource.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of dedicated storage disk, which is mandatory when the `type`
+    is `EFS` and the `ownership` is `DEDICATED`.
+    Changing this parameter will create a new resource.
+    """
+    mount_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The local mount path.
+    """
+    ownership: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the volume ownership. The options are as follows:
+    - *MANAGED*: shared storage disk of the ModelArts service.
+    - *DEDICATED*: dedicated storage disk, only supported when the category is `EFS`.
 
-        Changing this parameter will create a new resource.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the volume size. Its value range is from `5` GB to `4,096` GB.
-        """
-        uri: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the URL of dedicated storage disk, which is mandatory when the `type`
-        is `EFS` and the `ownership` is `DEDICATED`. Example: `192.168.0.1:/user-9sfdsdgdfgh5ea4d56871e75d6966aa274/mount/`.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    NotebookVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the volume size. Its value range is from `5` GB to `4,096` GB.
+    """
+    uri: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the URL of dedicated storage disk, which is mandatory when the `type`
+    is `EFS` and the `ownership` is `DEDICATED`. Example: `192.168.0.1:/user-9sfdsdgdfgh5ea4d56871e75d6966aa274/mount/`.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class NotebookVolumeArgs:
@@ -1417,21 +1376,18 @@ class NotebookVolumeArgs:
         pulumi.set(self, "uri", value)
 
 
-if not MYPY:
-    class ResourcePoolClusterArgsDict(TypedDict):
-        provider_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the CCE cluster.
+class ResourcePoolClusterArgsDict(TypedDict):
+    provider_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the CCE cluster.
 
-        <a name="ModelartsResourcePool_User_login"></a>
-        The `user_login` block supports:
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the OS name of the image.
-        """
-elif False:
-    ResourcePoolClusterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_User_login"></a>
+    The `user_login` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OS name of the image.
+    """
 
 @pulumi.input_type
 class ResourcePoolClusterArgs:
@@ -1477,20 +1433,17 @@ class ResourcePoolClusterArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ResourcePoolMetadataArgsDict(TypedDict):
-        annotations: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the annotations of the resource pool, in JSON format.  
-        For details, please refer to the [document](https://support.huaweicloud.com/intl/en-us/api-modelarts/CreatePool.html#EN-US_TOPIC_0000001868289874__request_PoolAnnotationsCreation).
+class ResourcePoolMetadataArgsDict(TypedDict):
+    annotations: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the annotations of the resource pool, in JSON format.  
+    For details, please refer to the [document](https://support.huaweicloud.com/intl/en-us/api-modelarts/CreatePool.html#EN-US_TOPIC_0000001868289874__request_PoolAnnotationsCreation).
 
-        > 1. This parameter only affects the nodes to be expanded, and will be applied to all nodes that are expanded under
-        the `resources` parameter.
-        <br>2. The parameter is not allowed to modify the resource pool billing-related parameters.
-        <br>3. The `os.modelarts/description` cannot be set at the same time as the external `description` parameter.
-        """
-elif False:
-    ResourcePoolMetadataArgsDict: TypeAlias = Mapping[str, Any]
+    > 1. This parameter only affects the nodes to be expanded, and will be applied to all nodes that are expanded under
+    the `resources` parameter.
+    <br>2. The parameter is not allowed to modify the resource pool billing-related parameters.
+    <br>3. The `os.modelarts/description` cannot be set at the same time as the external `description` parameter.
+    """
 
 @pulumi.input_type
 class ResourcePoolMetadataArgs:
@@ -1527,22 +1480,19 @@ class ResourcePoolMetadataArgs:
         pulumi.set(self, "annotations", value)
 
 
-if not MYPY:
-    class ResourcePoolNodeBatchResizeNodeArgsDict(TypedDict):
-        batch_uid: pulumi.Input[_builtins.str]
-        """
-        Specifies the batch UID of the node.
-        """
-        delete_node_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of nodes to be deleted.  
-        This parameter is **required** only when downgrading specification of the nodes and cannot be set when upgrading.
+class ResourcePoolNodeBatchResizeNodeArgsDict(TypedDict):
+    batch_uid: pulumi.Input[_builtins.str]
+    """
+    Specifies the batch UID of the node.
+    """
+    delete_node_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of nodes to be deleted.  
+    This parameter is **required** only when downgrading specification of the nodes and cannot be set when upgrading.
 
-        <a name="resource_pool_node_batch_resize_node_pool_configuration"></a>
-        The `source` and `target` block supports:
-        """
-elif False:
-    ResourcePoolNodeBatchResizeNodeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="resource_pool_node_batch_resize_node_pool_configuration"></a>
+    The `source` and `target` block supports:
+    """
 
 @pulumi.input_type
 class ResourcePoolNodeBatchResizeNodeArgs:
@@ -1590,26 +1540,23 @@ class ResourcePoolNodeBatchResizeNodeArgs:
         pulumi.set(self, "delete_node_names", value)
 
 
-if not MYPY:
-    class ResourcePoolNodeBatchResizeSourceArgsDict(TypedDict):
-        creating_step: pulumi.Input['ResourcePoolNodeBatchResizeSourceCreatingStepArgsDict']
-        """
-        Specifies the creating step of the node pool.  
-        The creating_step structure is documented below.
+class ResourcePoolNodeBatchResizeSourceArgsDict(TypedDict):
+    creating_step: pulumi.Input['ResourcePoolNodeBatchResizeSourceCreatingStepArgsDict']
+    """
+    Specifies the creating step of the node pool.  
+    The creating_step structure is documented below.
 
-        <a name="resource_pool_node_batch_resize_source_creating_step"></a>
-        The `creating_step` block supports:
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the flavor of the node pool.
-        """
-        node_pool: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the node pool.
-        """
-elif False:
-    ResourcePoolNodeBatchResizeSourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="resource_pool_node_batch_resize_source_creating_step"></a>
+    The `creating_step` block supports:
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the flavor of the node pool.
+    """
+    node_pool: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the node pool.
+    """
 
 @pulumi.input_type
 class ResourcePoolNodeBatchResizeSourceArgs:
@@ -1671,20 +1618,17 @@ class ResourcePoolNodeBatchResizeSourceArgs:
         pulumi.set(self, "node_pool", value)
 
 
-if not MYPY:
-    class ResourcePoolNodeBatchResizeSourceCreatingStepArgsDict(TypedDict):
-        step: pulumi.Input[_builtins.int]
-        """
-        Specifies the step number of the nodes.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the nodes.  
-        The valid values are as follows:
-        + **hyperinstance**
-        """
-elif False:
-    ResourcePoolNodeBatchResizeSourceCreatingStepArgsDict: TypeAlias = Mapping[str, Any]
+class ResourcePoolNodeBatchResizeSourceCreatingStepArgsDict(TypedDict):
+    step: pulumi.Input[_builtins.int]
+    """
+    Specifies the step number of the nodes.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the nodes.  
+    The valid values are as follows:
+    + **hyperinstance**
+    """
 
 @pulumi.input_type
 class ResourcePoolNodeBatchResizeSourceCreatingStepArgs:
@@ -1727,26 +1671,23 @@ class ResourcePoolNodeBatchResizeSourceCreatingStepArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ResourcePoolNodeBatchResizeTargetArgsDict(TypedDict):
-        creating_step: pulumi.Input['ResourcePoolNodeBatchResizeTargetCreatingStepArgsDict']
-        """
-        Specifies the creating step of the node pool.  
-        The creating_step structure is documented below.
+class ResourcePoolNodeBatchResizeTargetArgsDict(TypedDict):
+    creating_step: pulumi.Input['ResourcePoolNodeBatchResizeTargetCreatingStepArgsDict']
+    """
+    Specifies the creating step of the node pool.  
+    The creating_step structure is documented below.
 
-        <a name="resource_pool_node_batch_resize_source_creating_step"></a>
-        The `creating_step` block supports:
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the flavor of the node pool.
-        """
-        node_pool: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the node pool.
-        """
-elif False:
-    ResourcePoolNodeBatchResizeTargetArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="resource_pool_node_batch_resize_source_creating_step"></a>
+    The `creating_step` block supports:
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the flavor of the node pool.
+    """
+    node_pool: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the node pool.
+    """
 
 @pulumi.input_type
 class ResourcePoolNodeBatchResizeTargetArgs:
@@ -1808,20 +1749,17 @@ class ResourcePoolNodeBatchResizeTargetArgs:
         pulumi.set(self, "node_pool", value)
 
 
-if not MYPY:
-    class ResourcePoolNodeBatchResizeTargetCreatingStepArgsDict(TypedDict):
-        step: pulumi.Input[_builtins.int]
-        """
-        Specifies the step number of the nodes.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the nodes.  
-        The valid values are as follows:
-        + **hyperinstance**
-        """
-elif False:
-    ResourcePoolNodeBatchResizeTargetCreatingStepArgsDict: TypeAlias = Mapping[str, Any]
+class ResourcePoolNodeBatchResizeTargetCreatingStepArgsDict(TypedDict):
+    step: pulumi.Input[_builtins.int]
+    """
+    Specifies the step number of the nodes.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the nodes.  
+    The valid values are as follows:
+    + **hyperinstance**
+    """
 
 @pulumi.input_type
 class ResourcePoolNodeBatchResizeTargetCreatingStepArgs:
@@ -1864,107 +1802,104 @@ class ResourcePoolNodeBatchResizeTargetCreatingStepArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceArgsDict(TypedDict):
-        count: pulumi.Input[_builtins.int]
-        """
-        Specifies the count of the current data volume configuration.
+class ResourcePoolResourceArgsDict(TypedDict):
+    count: pulumi.Input[_builtins.int]
+    """
+    Specifies the count of the current data volume configuration.
 
-        <a name="ModelartsResourcePool_Resources_volume_group_configs"></a>
-        The `volume_group_configs` block supports:
-        """
-        flavor_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource flavor ID.
-        """
-        azs: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResourcePoolResourceAzArgsDict']]]]
-        """
-        Specifies the AZs for resource pool nodes.
-        The azs structure is documented below.
-        """
-        creating_step: NotRequired[pulumi.Input['ResourcePoolResourceCreatingStepArgsDict']]
-        """
-        Specifies the creation step configuration of the resource pool nodes.  
-        The creating_step structure is documented below.
+    <a name="ModelartsResourcePool_Resources_volume_group_configs"></a>
+    The `volume_group_configs` block supports:
+    """
+    flavor_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource flavor ID.
+    """
+    azs: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResourcePoolResourceAzArgsDict']]]]
+    """
+    Specifies the AZs for resource pool nodes.
+    The azs structure is documented below.
+    """
+    creating_step: NotRequired[pulumi.Input['ResourcePoolResourceCreatingStepArgsDict']]
+    """
+    Specifies the creation step configuration of the resource pool nodes.  
+    The creating_step structure is documented below.
 
-        <a name="ModelartsResourcePool_Resources_azs"></a>
-        The `azs` block supports:
-        """
-        data_volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResourcePoolResourceDataVolumeArgsDict']]]]
-        """
-        Specifies the data volumes of the resource pool nodes.  
-        The data_volumes structure is documented below.
-        """
-        driver: NotRequired[pulumi.Input['ResourcePoolResourceDriverArgsDict']]
-        """
-        Specifies the driver information.  
-        The driver structure is documented below.
-        """
-        extend_params: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the extend parameters of the data volume.
-        """
-        labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the labels of resource pool nodes.
-        """
-        max_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the max number of resources of the corresponding flavors.
-        This parameter must be an integer multiple of `resources.creating_step.step`.
-        """
-        node_pool: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of resource pool nodes. It can contain `1` to `50`
-        characters, and should start with a letter and ending with a letter or digit, only lowercase letters, digits,
-        hyphens (-) are allowed, and cannot end with a hyphen (-).
-        """
-        os: NotRequired[pulumi.Input['ResourcePoolResourceOsArgsDict']]
-        """
-        Specifies the image information for the specified OS.  
-        The os structure is documented below.
-        """
-        post_install: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The script to be executed after security.
-        """
-        root_volume: NotRequired[pulumi.Input['ResourcePoolResourceRootVolumeArgsDict']]
-        """
-        Specifies the root volume of the resource pool nodes.  
-        The root_volume structure is documented below.
-        """
-        security_group_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the security group IDs. It can not be specified when `network_id` is
-        specified.
-        """
-        subnet_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the network ID of a subnet. It is mandatory when
-        `resources.security_group_ids`is specified, and can not be specified when `network_id` is specified.
-        """
-        tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the key/value pairs to associate with the resource pool. It can not be specified
-        when `network_id` is specified.
-        """
-        taints: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResourcePoolResourceTaintArgsDict']]]]
-        """
-        Specifies the taints added to nodes. It can not be specified when `network_id` is specified.
-        The taints structure is documented below.
-        """
-        volume_group_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResourcePoolResourceVolumeGroupConfigArgsDict']]]]
-        """
-        Specifies the extend configurations of the volume groups.  
-        The volume_group_configs structure is documented below.
-        """
-        vpc_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the VPC ID. It is mandatory when `resources.subnet_id`,
-        `resources.security_group_ids` is specified, and can not be specified when `network_id` is specified.
-        """
-elif False:
-    ResourcePoolResourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Resources_azs"></a>
+    The `azs` block supports:
+    """
+    data_volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResourcePoolResourceDataVolumeArgsDict']]]]
+    """
+    Specifies the data volumes of the resource pool nodes.  
+    The data_volumes structure is documented below.
+    """
+    driver: NotRequired[pulumi.Input['ResourcePoolResourceDriverArgsDict']]
+    """
+    Specifies the driver information.  
+    The driver structure is documented below.
+    """
+    extend_params: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the extend parameters of the data volume.
+    """
+    labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the labels of resource pool nodes.
+    """
+    max_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the max number of resources of the corresponding flavors.
+    This parameter must be an integer multiple of `resources.creating_step.step`.
+    """
+    node_pool: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of resource pool nodes. It can contain `1` to `50`
+    characters, and should start with a letter and ending with a letter or digit, only lowercase letters, digits,
+    hyphens (-) are allowed, and cannot end with a hyphen (-).
+    """
+    os: NotRequired[pulumi.Input['ResourcePoolResourceOsArgsDict']]
+    """
+    Specifies the image information for the specified OS.  
+    The os structure is documented below.
+    """
+    post_install: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The script to be executed after security.
+    """
+    root_volume: NotRequired[pulumi.Input['ResourcePoolResourceRootVolumeArgsDict']]
+    """
+    Specifies the root volume of the resource pool nodes.  
+    The root_volume structure is documented below.
+    """
+    security_group_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the security group IDs. It can not be specified when `network_id` is
+    specified.
+    """
+    subnet_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network ID of a subnet. It is mandatory when
+    `resources.security_group_ids`is specified, and can not be specified when `network_id` is specified.
+    """
+    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the key/value pairs to associate with the resource pool. It can not be specified
+    when `network_id` is specified.
+    """
+    taints: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResourcePoolResourceTaintArgsDict']]]]
+    """
+    Specifies the taints added to nodes. It can not be specified when `network_id` is specified.
+    The taints structure is documented below.
+    """
+    volume_group_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResourcePoolResourceVolumeGroupConfigArgsDict']]]]
+    """
+    Specifies the extend configurations of the volume groups.  
+    The volume_group_configs structure is documented below.
+    """
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VPC ID. It is mandatory when `resources.subnet_id`,
+    `resources.security_group_ids` is specified, and can not be specified when `network_id` is specified.
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceArgs:
@@ -2317,21 +2252,18 @@ class ResourcePoolResourceArgs:
         pulumi.set(self, "vpc_id", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceAzArgsDict(TypedDict):
-        az: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the AZ name.
-        """
-        count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the count of the current data volume configuration.
+class ResourcePoolResourceAzArgsDict(TypedDict):
+    az: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the AZ name.
+    """
+    count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the count of the current data volume configuration.
 
-        <a name="ModelartsResourcePool_Resources_volume_group_configs"></a>
-        The `volume_group_configs` block supports:
-        """
-elif False:
-    ResourcePoolResourceAzArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Resources_volume_group_configs"></a>
+    The `volume_group_configs` block supports:
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceAzArgs:
@@ -2378,23 +2310,20 @@ class ResourcePoolResourceAzArgs:
         pulumi.set(self, "count", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceCreatingStepArgsDict(TypedDict):
-        step: pulumi.Input[_builtins.int]
-        """
-        Specifies the creation step of the resource pool nodes.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the resource pool nodes.
-        The valid values are as follows:
-        + **hyperinstance**
+class ResourcePoolResourceCreatingStepArgsDict(TypedDict):
+    step: pulumi.Input[_builtins.int]
+    """
+    Specifies the creation step of the resource pool nodes.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the resource pool nodes.
+    The valid values are as follows:
+    + **hyperinstance**
 
-        <a name="ModelartsResourcePool_Clusters"></a>
-        The `clusters` block supports:
-        """
-elif False:
-    ResourcePoolResourceCreatingStepArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Clusters"></a>
+    The `clusters` block supports:
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceCreatingStepArgs:
@@ -2443,33 +2372,30 @@ class ResourcePoolResourceCreatingStepArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceDataVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.str]
-        """
-        Specifies the size of the data volume, e.g. **100Gi**.
-        """
-        volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the data volume.  
-        The valid values are as follows:
-        + **SSD**
-        + **GPSSD**
-        + **SAS**
-        """
-        count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the count of the current data volume configuration.
+class ResourcePoolResourceDataVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.str]
+    """
+    Specifies the size of the data volume, e.g. **100Gi**.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the data volume.  
+    The valid values are as follows:
+    + **SSD**
+    + **GPSSD**
+    + **SAS**
+    """
+    count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the count of the current data volume configuration.
 
-        <a name="ModelartsResourcePool_Resources_volume_group_configs"></a>
-        The `volume_group_configs` block supports:
-        """
-        extend_params: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the extend parameters of the data volume.
-        """
-elif False:
-    ResourcePoolResourceDataVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Resources_volume_group_configs"></a>
+    The `volume_group_configs` block supports:
+    """
+    extend_params: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the extend parameters of the data volume.
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceDataVolumeArgs:
@@ -2554,17 +2480,14 @@ class ResourcePoolResourceDataVolumeArgs:
         pulumi.set(self, "extend_params", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceDriverArgsDict(TypedDict):
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the driver version.
+class ResourcePoolResourceDriverArgsDict(TypedDict):
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the driver version.
 
-        <a name="ModelartsResourcePool_Resources_creating_step"></a>
-        The `creating_step` block supports:
-        """
-elif False:
-    ResourcePoolResourceDriverArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Resources_creating_step"></a>
+    The `creating_step` block supports:
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceDriverArgs:
@@ -2595,25 +2518,22 @@ class ResourcePoolResourceDriverArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceOsArgsDict(TypedDict):
-        image_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image ID.
-        """
-        image_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image type.
+class ResourcePoolResourceOsArgsDict(TypedDict):
+    image_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image ID.
+    """
+    image_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image type.
 
-        <a name="ModelartsResourcePool_Resources_driver"></a>
-        The `driver` block supports:
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the OS name of the image.
-        """
-elif False:
-    ResourcePoolResourceOsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Resources_driver"></a>
+    The `driver` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OS name of the image.
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceOsArgs:
@@ -2676,26 +2596,23 @@ class ResourcePoolResourceOsArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceRootVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.str]
-        """
-        Specifies the size of the data volume, e.g. **100Gi**.
-        """
-        volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the data volume.  
-        The valid values are as follows:
-        + **SSD**
-        + **GPSSD**
-        + **SAS**
-        """
-        extend_params: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the extend parameters of the data volume.
-        """
-elif False:
-    ResourcePoolResourceRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ResourcePoolResourceRootVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.str]
+    """
+    Specifies the size of the data volume, e.g. **100Gi**.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the data volume.  
+    The valid values are as follows:
+    + **SSD**
+    + **GPSSD**
+    + **SAS**
+    """
+    extend_params: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the extend parameters of the data volume.
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceRootVolumeArgs:
@@ -2758,26 +2675,23 @@ class ResourcePoolResourceRootVolumeArgs:
         pulumi.set(self, "extend_params", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceTaintArgsDict(TypedDict):
-        effect: pulumi.Input[_builtins.str]
-        """
-        Specifies the effect of the taint. Value options: **NoSchedule**, **PreferNoSchedule**,
-        **NoExecute**.
+class ResourcePoolResourceTaintArgsDict(TypedDict):
+    effect: pulumi.Input[_builtins.str]
+    """
+    Specifies the effect of the taint. Value options: **NoSchedule**, **PreferNoSchedule**,
+    **NoExecute**.
 
-        <a name="ModelartsResourcePool_Resources_root_volume"></a>
-        The `root_volume` block supports:
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key of the taint.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the taint.
-        """
-elif False:
-    ResourcePoolResourceTaintArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Resources_root_volume"></a>
+    The `root_volume` block supports:
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key of the taint.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the taint.
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceTaintArgs:
@@ -2840,39 +2754,36 @@ class ResourcePoolResourceTaintArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceVolumeGroupConfigArgsDict(TypedDict):
-        volume_group: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the volume group.  
-        The valid values are as follows:
-        + **vgpaas**
-        + **default**
-        + **vguser{num}**
-        + **vg-everest-localvolume-persistent**
-        + **vg-everest-localvolume-ephemeral**
-        """
-        docker_thin_pool: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the percentage of container volumes to data volumes on resource pool nodes.
-        """
-        lvm_config: NotRequired[pulumi.Input['ResourcePoolResourceVolumeGroupConfigLvmConfigArgsDict']]
-        """
-        Specifies the configuration of the LVM management.  
-        The lvm_config structure is documented below.
-        """
-        types: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the storage types of the volume group.  
-        The valid values for the list elements are as follows:
-        + **volume**
-        + **local**
+class ResourcePoolResourceVolumeGroupConfigArgsDict(TypedDict):
+    volume_group: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the volume group.  
+    The valid values are as follows:
+    + **vgpaas**
+    + **default**
+    + **vguser{num}**
+    + **vg-everest-localvolume-persistent**
+    + **vg-everest-localvolume-ephemeral**
+    """
+    docker_thin_pool: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the percentage of container volumes to data volumes on resource pool nodes.
+    """
+    lvm_config: NotRequired[pulumi.Input['ResourcePoolResourceVolumeGroupConfigLvmConfigArgsDict']]
+    """
+    Specifies the configuration of the LVM management.  
+    The lvm_config structure is documented below.
+    """
+    types: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the storage types of the volume group.  
+    The valid values for the list elements are as follows:
+    + **volume**
+    + **local**
 
-        <a name="ModelartsResourcePool_Resources_volume_group_configs_lvm_config"></a>
-        The `lvm_config` block supports:
-        """
-elif False:
-    ResourcePoolResourceVolumeGroupConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Resources_volume_group_configs_lvm_config"></a>
+    The `lvm_config` block supports:
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceVolumeGroupConfigArgs:
@@ -2970,24 +2881,21 @@ class ResourcePoolResourceVolumeGroupConfigArgs:
         pulumi.set(self, "types", value)
 
 
-if not MYPY:
-    class ResourcePoolResourceVolumeGroupConfigLvmConfigArgsDict(TypedDict):
-        lv_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the LVM write mode.  
-        The valid values are as follows:
-        + **linear**
-        + **striped**
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the volume mount path.
+class ResourcePoolResourceVolumeGroupConfigLvmConfigArgsDict(TypedDict):
+    lv_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the LVM write mode.  
+    The valid values are as follows:
+    + **linear**
+    + **striped**
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the volume mount path.
 
-        <a name="ModelartsResourcePool_Resources_os_info"></a>
-        The `os` block supports:
-        """
-elif False:
-    ResourcePoolResourceVolumeGroupConfigLvmConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Resources_os_info"></a>
+    The `os` block supports:
+    """
 
 @pulumi.input_type
 class ResourcePoolResourceVolumeGroupConfigLvmConfigArgs:
@@ -3039,28 +2947,25 @@ class ResourcePoolResourceVolumeGroupConfigLvmConfigArgs:
         pulumi.set(self, "path", value)
 
 
-if not MYPY:
-    class ResourcePoolResourcesOrderOriginArgsDict(TypedDict):
-        creating_step: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the creation step configuration of the resource pool nodes.  
-        The creating_step structure is documented below.
+class ResourcePoolResourcesOrderOriginArgsDict(TypedDict):
+    creating_step: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the creation step configuration of the resource pool nodes.  
+    The creating_step structure is documented below.
 
-        <a name="ModelartsResourcePool_Resources_azs"></a>
-        The `azs` block supports:
-        """
-        flavor_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the resource flavor ID.
-        """
-        node_pool: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of resource pool nodes. It can contain `1` to `50`
-        characters, and should start with a letter and ending with a letter or digit, only lowercase letters, digits,
-        hyphens (-) are allowed, and cannot end with a hyphen (-).
-        """
-elif False:
-    ResourcePoolResourcesOrderOriginArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsResourcePool_Resources_azs"></a>
+    The `azs` block supports:
+    """
+    flavor_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the resource flavor ID.
+    """
+    node_pool: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of resource pool nodes. It can contain `1` to `50`
+    characters, and should start with a letter and ending with a letter or digit, only lowercase letters, digits,
+    hyphens (-) are allowed, and cannot end with a hyphen (-).
+    """
 
 @pulumi.input_type
 class ResourcePoolResourcesOrderOriginArgs:
@@ -3129,28 +3034,25 @@ class ResourcePoolResourcesOrderOriginArgs:
         pulumi.set(self, "node_pool", value)
 
 
-if not MYPY:
-    class ResourcePoolUserLoginArgsDict(TypedDict):
-        key_pair_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies key pair name of the login user.
+class ResourcePoolUserLoginArgsDict(TypedDict):
+    key_pair_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies key pair name of the login user.
 
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
 
-        > **NOTE:** Exactly one of `password`, `key_pair_name` should be specified.
+    > **NOTE:** Exactly one of `password`, `key_pair_name` should be specified.
 
-        <a name="ModelartsResourcePool_Metadata"></a>
-        The `metadata` block supports:
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the password of the login user. The value needs to be salted,
-        encrypted and base64 encoded. Default user is **root**.
+    <a name="ModelartsResourcePool_Metadata"></a>
+    The `metadata` block supports:
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the password of the login user. The value needs to be salted,
+    encrypted and base64 encoded. Default user is **root**.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ResourcePoolUserLoginArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ResourcePoolUserLoginArgs:
@@ -3211,23 +3113,20 @@ class ResourcePoolUserLoginArgs:
         pulumi.set(self, "password", value)
 
 
-if not MYPY:
-    class ServiceAdditionalPropertiesArgsDict(TypedDict):
-        log_report_channels: NotRequired[pulumi.Input['ServiceAdditionalPropertiesLogReportChannelsArgsDict']]
-        """
-        Advanced Log configuration.
-        The LogReportChannel structure is documented below.
+class ServiceAdditionalPropertiesArgsDict(TypedDict):
+    log_report_channels: NotRequired[pulumi.Input['ServiceAdditionalPropertiesLogReportChannelsArgsDict']]
+    """
+    Advanced Log configuration.
+    The LogReportChannel structure is documented below.
 
-        <a name="ModelartsService_SmnNotification"></a>
-        The `SmnNotification` block supports:
-        """
-        smn_notification: NotRequired[pulumi.Input['ServiceAdditionalPropertiesSmnNotificationArgsDict']]
-        """
-        SMN message notification configuration.
-        The SmnNotification structure is documented below.
-        """
-elif False:
-    ServiceAdditionalPropertiesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsService_SmnNotification"></a>
+    The `SmnNotification` block supports:
+    """
+    smn_notification: NotRequired[pulumi.Input['ServiceAdditionalPropertiesSmnNotificationArgsDict']]
+    """
+    SMN message notification configuration.
+    The SmnNotification structure is documented below.
+    """
 
 @pulumi.input_type
 class ServiceAdditionalPropertiesArgs:
@@ -3278,17 +3177,14 @@ class ServiceAdditionalPropertiesArgs:
         pulumi.set(self, "smn_notification", value)
 
 
-if not MYPY:
-    class ServiceAdditionalPropertiesLogReportChannelsArgsDict(TypedDict):
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of log report channel. The valid value is **LTS**.  
-        If this parameter is configured, the advanced log management service, Log Tank Service (LTS) will be used.
-        If not, the ModelArts log system will be used, which provides simple log query and caches runtime logs
-        for a maximum of seven days.
-        """
-elif False:
-    ServiceAdditionalPropertiesLogReportChannelsArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceAdditionalPropertiesLogReportChannelsArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of log report channel. The valid value is **LTS**.  
+    If this parameter is configured, the advanced log management service, Log Tank Service (LTS) will be used.
+    If not, the ModelArts log system will be used, which provides simple log query and caches runtime logs
+    for a maximum of seven days.
+    """
 
 @pulumi.input_type
 class ServiceAdditionalPropertiesLogReportChannelsArgs:
@@ -3319,28 +3215,25 @@ class ServiceAdditionalPropertiesLogReportChannelsArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ServiceAdditionalPropertiesSmnNotificationArgsDict(TypedDict):
-        events: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Event ID.  
-        Value options are as follows:
-        + **1**: failed.
-        + **2**: stopped.
-        + **3**: running.
-        + **7**: alarm.
-        + **9**: deleted.
-        + **11**: pending.
+class ServiceAdditionalPropertiesSmnNotificationArgsDict(TypedDict):
+    events: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Event ID.  
+    Value options are as follows:
+    + **1**: failed.
+    + **2**: stopped.
+    + **3**: running.
+    + **7**: alarm.
+    + **9**: deleted.
+    + **11**: pending.
 
-        <a name="ModelartsService_LogReportChannel"></a>
-        The `LogReportChannel` block supports:
-        """
-        topic_urn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        URN of an SMN topic.
-        """
-elif False:
-    ServiceAdditionalPropertiesSmnNotificationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsService_LogReportChannel"></a>
+    The `LogReportChannel` block supports:
+    """
+    topic_urn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    URN of an SMN topic.
+    """
 
 @pulumi.input_type
 class ServiceAdditionalPropertiesSmnNotificationArgs:
@@ -3401,110 +3294,107 @@ class ServiceAdditionalPropertiesSmnNotificationArgs:
         pulumi.set(self, "topic_urn", value)
 
 
-if not MYPY:
-    class ServiceConfigArgsDict(TypedDict):
-        custom_spec: NotRequired[pulumi.Input['ServiceConfigCustomSpecArgsDict']]
-        """
-        Custom resource specifications.  
-        The CustomSpec structure is documented below.
-        """
-        dest_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OBS path to the output data of a batch job. Mandatory for batch services.
-        """
-        envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Environment variable key-value pair required for running a model.
-        """
-        instance_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of instances deployed for a model.  
-        The maximum number of instances is 5. To use more instances, submit a service ticket.
-        """
-        mapping_rule: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Mapping between input parameters and CSV data. Optional for batch services.  
-        This parameter is mandatory only when mapping_type is set to csv.
-        The mapping rule is similar to the definition of the input parameters in the config.json file.
-        You only need to configure the index parameters under each parameter of the string, number, integer,
-        or boolean type, and specify the value of this parameter to the values of the index parameters
-        in the CSV file to send an inference request. Use commas (,) to separate multiple pieces of CSV data.
-        The values of the index parameters start from 0. If the value of the index parameter is -1, ignore this parameter.
-        For details, see the sample of creating a batch service.
-        """
-        mapping_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Mapping type of the input data. Mandatory for batch services.  
-        The value can be file or csv. file indicates that each inference request corresponds to a file
-        in the input data directory.
-        If this parameter is set to file, req_uri of the model can have only one input parameter and the type
-        of this parameter is file.
-        If this parameter is set to csv, each inference request corresponds to a row of data in the CSV file.
-        When csv is used, the file in the input data directory can only be suffixed with .csv,
-        and the mapping_rule parameter must be configured to map the index of each parameter in
-        the inference request body to the CSV file.
-        """
-        model_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Model ID, which can be obtained by calling the API for obtaining a model list.
-        """
-        nodes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Edge node ID array. Mandatory for edge services.  
-        The node ID is the edge node ID on IEF, which can be obtained after the edge node is created on IEF.
-        """
-        pool_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the new dedicated resource pool.  
-        When using dedicated resource pool to deploy services, ensure that the cluster status is normal.
-        If both `pool_name` and `config.pool_name` are configured, `pool_name` in real-time config is preferred.
-        """
-        req_uri: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Inference API called in a batch task, which is the RESTful API exposed in the model image.
-        Mandatory for batch services.
-        You must select an API URL from the config.json file of the model for inference.
-        If a built-in inference image of ModelArts is used, the API is displayed as /.
-        """
-        specification: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Resource flavors.  
-        The valid values are **modelarts.vm.cpu.2u**, **modelarts.vm.gpu.p4** (must be requested for),
-        **modelsarts.vm.ai1.a310** (must be requested for),
-        and **custom** (available only when the service is deployed in a dedicated resource pool) in the current version.
-        To request for a flavor, submit a service ticket and obtain permissions from ModelArts O&M engineers.
-        If this parameter is set to custom, the custom_spec parameter must be specified.
-        Value options are as follows:
-        + **modelarts.vm.cpu.free**: [Time-limited free] CPU: 1 vCPUs | 4 GiB.
-        + **modelarts.vm.cpu.2u**: CPU: 2 vCPUs | 8 GiB.
-        + **modelarts.vm.gpu.p4**: CPU: 1 vCPUs | 4 GiB GPU：P4 (must be requested for).
-        + **modelarts.vm.gpu.p4u8.container**: CPU: 8 vCPUs | 32 GiB GPU：P4.
-        + **modelarts.vm.gpu.t4u8.container**: CPU: 8 vCPUs | 32 GiB GPU：T4.
-        + **custom**: available only when the service is deployed in a dedicated resource pool,
-        and the `custom_spec` parameter must be specified.
-        """
-        src_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OBS path to the input data of a batch job.  
-        Mandatory for batch services.
-        """
-        src_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Data source type, which can be ManifestFile. Mandatory for batch services.  
-        By default, this parameter is left blank, indicating that only files in the src_path directory are read.
-        If this parameter is set to ManifestFile, src_path must be set to a specific manifest path.
-        Multiple data paths can be specified in the manifest file. For details, see the manifest inference specifications.
-        """
-        weight: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Weight of traffic allocated to a model.  
-        This parameter is mandatory only when `infer_type` is set to **real-time**.
-        The sum of all weights must be equal to 100. If multiple model versions are configured with different
-        traffic weights in a real-time service, ModelArts will continuously access the prediction API of the
-        service and forward prediction requests to the model instances of the corresponding versions based on the weights.
-        """
-elif False:
-    ServiceConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceConfigArgsDict(TypedDict):
+    custom_spec: NotRequired[pulumi.Input['ServiceConfigCustomSpecArgsDict']]
+    """
+    Custom resource specifications.  
+    The CustomSpec structure is documented below.
+    """
+    dest_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OBS path to the output data of a batch job. Mandatory for batch services.
+    """
+    envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Environment variable key-value pair required for running a model.
+    """
+    instance_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of instances deployed for a model.  
+    The maximum number of instances is 5. To use more instances, submit a service ticket.
+    """
+    mapping_rule: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Mapping between input parameters and CSV data. Optional for batch services.  
+    This parameter is mandatory only when mapping_type is set to csv.
+    The mapping rule is similar to the definition of the input parameters in the config.json file.
+    You only need to configure the index parameters under each parameter of the string, number, integer,
+    or boolean type, and specify the value of this parameter to the values of the index parameters
+    in the CSV file to send an inference request. Use commas (,) to separate multiple pieces of CSV data.
+    The values of the index parameters start from 0. If the value of the index parameter is -1, ignore this parameter.
+    For details, see the sample of creating a batch service.
+    """
+    mapping_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Mapping type of the input data. Mandatory for batch services.  
+    The value can be file or csv. file indicates that each inference request corresponds to a file
+    in the input data directory.
+    If this parameter is set to file, req_uri of the model can have only one input parameter and the type
+    of this parameter is file.
+    If this parameter is set to csv, each inference request corresponds to a row of data in the CSV file.
+    When csv is used, the file in the input data directory can only be suffixed with .csv,
+    and the mapping_rule parameter must be configured to map the index of each parameter in
+    the inference request body to the CSV file.
+    """
+    model_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Model ID, which can be obtained by calling the API for obtaining a model list.
+    """
+    nodes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Edge node ID array. Mandatory for edge services.  
+    The node ID is the edge node ID on IEF, which can be obtained after the edge node is created on IEF.
+    """
+    pool_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the new dedicated resource pool.  
+    When using dedicated resource pool to deploy services, ensure that the cluster status is normal.
+    If both `pool_name` and `config.pool_name` are configured, `pool_name` in real-time config is preferred.
+    """
+    req_uri: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Inference API called in a batch task, which is the RESTful API exposed in the model image.
+    Mandatory for batch services.
+    You must select an API URL from the config.json file of the model for inference.
+    If a built-in inference image of ModelArts is used, the API is displayed as /.
+    """
+    specification: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Resource flavors.  
+    The valid values are **modelarts.vm.cpu.2u**, **modelarts.vm.gpu.p4** (must be requested for),
+    **modelsarts.vm.ai1.a310** (must be requested for),
+    and **custom** (available only when the service is deployed in a dedicated resource pool) in the current version.
+    To request for a flavor, submit a service ticket and obtain permissions from ModelArts O&M engineers.
+    If this parameter is set to custom, the custom_spec parameter must be specified.
+    Value options are as follows:
+    + **modelarts.vm.cpu.free**: [Time-limited free] CPU: 1 vCPUs | 4 GiB.
+    + **modelarts.vm.cpu.2u**: CPU: 2 vCPUs | 8 GiB.
+    + **modelarts.vm.gpu.p4**: CPU: 1 vCPUs | 4 GiB GPU：P4 (must be requested for).
+    + **modelarts.vm.gpu.p4u8.container**: CPU: 8 vCPUs | 32 GiB GPU：P4.
+    + **modelarts.vm.gpu.t4u8.container**: CPU: 8 vCPUs | 32 GiB GPU：T4.
+    + **custom**: available only when the service is deployed in a dedicated resource pool,
+    and the `custom_spec` parameter must be specified.
+    """
+    src_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OBS path to the input data of a batch job.  
+    Mandatory for batch services.
+    """
+    src_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Data source type, which can be ManifestFile. Mandatory for batch services.  
+    By default, this parameter is left blank, indicating that only files in the src_path directory are read.
+    If this parameter is set to ManifestFile, src_path must be set to a specific manifest path.
+    Multiple data paths can be specified in the manifest file. For details, see the manifest inference specifications.
+    """
+    weight: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Weight of traffic allocated to a model.  
+    This parameter is mandatory only when `infer_type` is set to **real-time**.
+    The sum of all weights must be equal to 100. If multiple model versions are configured with different
+    traffic weights in a real-time service, ModelArts will continuously access the prediction API of the
+    service and forward prediction requests to the model instances of the corresponding versions based on the weights.
+    """
 
 @pulumi.input_type
 class ServiceConfigArgs:
@@ -3825,30 +3715,27 @@ class ServiceConfigArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class ServiceConfigCustomSpecArgsDict(TypedDict):
-        ascend_a310: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of Ascend chips. Either this parameter or `gpu_p4` is configured.
+class ServiceConfigCustomSpecArgsDict(TypedDict):
+    ascend_a310: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of Ascend chips. Either this parameter or `gpu_p4` is configured.
 
-        <a name="ModelartsService_Schedule"></a>
-        The `Schedule` block supports:
-        """
-        cpu: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Number of CPU cores, which can be a decimal. The value cannot be smaller than 0.01.
-        """
-        gpu_p4: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Number of GPU cores, which can be a decimal.  
-        The value cannot be smaller than 0, which allows up to two decimal places.
-        """
-        memory: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Memory in MB, which must be an integer.
-        """
-elif False:
-    ServiceConfigCustomSpecArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ModelartsService_Schedule"></a>
+    The `Schedule` block supports:
+    """
+    cpu: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Number of CPU cores, which can be a decimal. The value cannot be smaller than 0.01.
+    """
+    gpu_p4: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Number of GPU cores, which can be a decimal.  
+    The value cannot be smaller than 0, which allows up to two decimal places.
+    """
+    memory: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Memory in MB, which must be an integer.
+    """
 
 @pulumi.input_type
 class ServiceConfigCustomSpecArgs:
@@ -3929,26 +3816,23 @@ class ServiceConfigCustomSpecArgs:
         pulumi.set(self, "memory", value)
 
 
-if not MYPY:
-    class ServiceScheduleArgsDict(TypedDict):
-        duration: pulumi.Input[_builtins.int]
-        """
-        Value mapping a time unit.  
-        For example, if the task stops after two hours, set time_unit to HOURS and duration to 2.
-        """
-        time_unit: pulumi.Input[_builtins.str]
-        """
-        Scheduling time unit. Possible values are DAYS, HOURS, and MINUTES.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        The type of log report channel. The valid value is **LTS**.  
-        If this parameter is configured, the advanced log management service, Log Tank Service (LTS) will be used.
-        If not, the ModelArts log system will be used, which provides simple log query and caches runtime logs
-        for a maximum of seven days.
-        """
-elif False:
-    ServiceScheduleArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceScheduleArgsDict(TypedDict):
+    duration: pulumi.Input[_builtins.int]
+    """
+    Value mapping a time unit.  
+    For example, if the task stops after two hours, set time_unit to HOURS and duration to 2.
+    """
+    time_unit: pulumi.Input[_builtins.str]
+    """
+    Scheduling time unit. Possible values are DAYS, HOURS, and MINUTES.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    The type of log report channel. The valid value is **LTS**.  
+    If this parameter is configured, the advanced log management service, Log Tank Service (LTS) will be used.
+    If not, the ModelArts log system will be used, which provides simple log query and caches runtime logs
+    for a maximum of seven days.
+    """
 
 @pulumi.input_type
 class ServiceScheduleArgs:
@@ -4010,59 +3894,56 @@ class ServiceScheduleArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ServiceV2GroupConfigArgsDict(TypedDict):
-        count: pulumi.Input[_builtins.int]
-        """
-        Specifies the instance number of the group unit.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the instance group.  
-        The valid length is limited from `1` to `64`, only English letters, Chinese characters, digits, hyphens (-) and
-        underscores (_) are allowed.
-        """
-        unit_configs: pulumi.Input[Sequence[pulumi.Input['ServiceV2GroupConfigUnitConfigArgsDict']]]
-        """
-        Specifies the unit configurations of the instance group.  
-        The unit_configs structure is documented below.
-        When the unit is used for **SINGLE** deploy type, the length of `unit_configs` is `1`.
-        When used for **SINGLE** and **DIST** deploy type, the number of units configuration depending on the framework.
-        """
-        weight: pulumi.Input[_builtins.int]
-        """
-        Specifies the weight percentage of the instance group.
+class ServiceV2GroupConfigArgsDict(TypedDict):
+    count: pulumi.Input[_builtins.int]
+    """
+    Specifies the instance number of the group unit.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the instance group.  
+    The valid length is limited from `1` to `64`, only English letters, Chinese characters, digits, hyphens (-) and
+    underscores (_) are allowed.
+    """
+    unit_configs: pulumi.Input[Sequence[pulumi.Input['ServiceV2GroupConfigUnitConfigArgsDict']]]
+    """
+    Specifies the unit configurations of the instance group.  
+    The unit_configs structure is documented below.
+    When the unit is used for **SINGLE** deploy type, the length of `unit_configs` is `1`.
+    When used for **SINGLE** and **DIST** deploy type, the number of units configuration depending on the framework.
+    """
+    weight: pulumi.Input[_builtins.int]
+    """
+    Specifies the weight percentage of the instance group.
 
-        > The sum of all group weights must be `100`.
-        """
-        framework: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the algorithm framework.  
-        The valid values are as follows:
-        + **COMMON**
-        + **VLLM**
-        + **MINDIE**
+    > The sum of all group weights must be `100`.
+    """
+    framework: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the algorithm framework.  
+    The valid values are as follows:
+    + **COMMON**
+    + **VLLM**
+    + **MINDIE**
 
-        > Updates to the `name`, `pool_id` and `framework` parameters in existing group configurations are not supported, but
-        new group configurations and remove existing group configurations are not limited.
+    > Updates to the `name`, `pool_id` and `framework` parameters in existing group configurations are not supported, but
+    new group configurations and remove existing group configurations are not limited.
 
-        <a name="v2_service_unit_configs"></a>
-        The `unit_configs` block supports:
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image ID of the group unit.  
-        Only available if the value of parameter `source` is **IMAGE**.
+    <a name="v2_service_unit_configs"></a>
+    The `unit_configs` block supports:
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image ID of the group unit.  
+    Only available if the value of parameter `source` is **IMAGE**.
 
-        <a name="v2_service_unit_config_custom_spec"></a>
-        The `custom_spec` block supports:
-        """
-        pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the dedicated resource pool for the instance group.
-        """
-elif False:
-    ServiceV2GroupConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="v2_service_unit_config_custom_spec"></a>
+    The `custom_spec` block supports:
+    """
+    pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the dedicated resource pool for the instance group.
+    """
 
 @pulumi.input_type
 class ServiceV2GroupConfigArgs:
@@ -4221,97 +4102,94 @@ class ServiceV2GroupConfigArgs:
         pulumi.set(self, "pool_id", value)
 
 
-if not MYPY:
-    class ServiceV2GroupConfigUnitConfigArgsDict(TypedDict):
-        image: pulumi.Input['ServiceV2GroupConfigUnitConfigImageArgsDict']
-        """
-        Specifies the image configuration of the group unit.  
-        The image structure is documented below.
-        """
-        cmd: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the startup commands of the group unit.
-        """
-        codes: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2GroupConfigUnitConfigCodeArgsDict']]]]
-        """
-        Specifies the code configuration of the group unit.  
-        The codes structure is documented below.
-        """
-        count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the instance number of the group unit.
-        """
-        custom_spec: NotRequired[pulumi.Input['ServiceV2GroupConfigUnitConfigCustomSpecArgsDict']]
-        """
-        Specifies the configuration of the custom resource specification.  
-        The custom_spec structure is documented below.
-        """
-        envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the environment variables of the group unit.
-        """
-        flavor: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the instance flavor of the group unit.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image ID of the group unit.  
-        Only available if the value of parameter `source` is **IMAGE**.
+class ServiceV2GroupConfigUnitConfigArgsDict(TypedDict):
+    image: pulumi.Input['ServiceV2GroupConfigUnitConfigImageArgsDict']
+    """
+    Specifies the image configuration of the group unit.  
+    The image structure is documented below.
+    """
+    cmd: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the startup commands of the group unit.
+    """
+    codes: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2GroupConfigUnitConfigCodeArgsDict']]]]
+    """
+    Specifies the code configuration of the group unit.  
+    The codes structure is documented below.
+    """
+    count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the instance number of the group unit.
+    """
+    custom_spec: NotRequired[pulumi.Input['ServiceV2GroupConfigUnitConfigCustomSpecArgsDict']]
+    """
+    Specifies the configuration of the custom resource specification.  
+    The custom_spec structure is documented below.
+    """
+    envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the environment variables of the group unit.
+    """
+    flavor: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance flavor of the group unit.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image ID of the group unit.  
+    Only available if the value of parameter `source` is **IMAGE**.
 
-        <a name="v2_service_unit_config_custom_spec"></a>
-        The `custom_spec` block supports:
-        """
-        liveness_health: NotRequired[pulumi.Input['ServiceV2GroupConfigUnitConfigLivenessHealthArgsDict']]
-        """
-        Specifies the configuration of the liveness health check.  
-        The liveness_health structure is documented below.
-        """
-        models: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2GroupConfigUnitConfigModelArgsDict']]]]
-        """
-        Specifies the model configuration of the group unit.  
-        The models structure is documented below.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port of the group unit.
-        """
-        readiness_health: NotRequired[pulumi.Input['ServiceV2GroupConfigUnitConfigReadinessHealthArgsDict']]
-        """
-        Specifies the configuration of the readiness health check.  
-        The readiness_health structure is documented below.
-        """
-        recovery: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the recovery strategy of the group unit.  
-        The valid values are as follows:
-        + **INSTANCE_GROUP**
-        + **INSTANCE**
+    <a name="v2_service_unit_config_custom_spec"></a>
+    The `custom_spec` block supports:
+    """
+    liveness_health: NotRequired[pulumi.Input['ServiceV2GroupConfigUnitConfigLivenessHealthArgsDict']]
+    """
+    Specifies the configuration of the liveness health check.  
+    The liveness_health structure is documented below.
+    """
+    models: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2GroupConfigUnitConfigModelArgsDict']]]]
+    """
+    Specifies the model configuration of the group unit.  
+    The models structure is documented below.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port of the group unit.
+    """
+    readiness_health: NotRequired[pulumi.Input['ServiceV2GroupConfigUnitConfigReadinessHealthArgsDict']]
+    """
+    Specifies the configuration of the readiness health check.  
+    The readiness_health structure is documented below.
+    """
+    recovery: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the recovery strategy of the group unit.  
+    The valid values are as follows:
+    + **INSTANCE_GROUP**
+    + **INSTANCE**
 
-        > Updates to the `role` parameter in existing unit configurations are not supported, but new unit configurations and
-        remove existing unit configurations are not limited.
+    > Updates to the `role` parameter in existing unit configurations are not supported, but new unit configurations and
+    remove existing unit configurations are not limited.
 
-        <a name="v2_service_unit_config_image"></a>
-        The `image` block supports:
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the role of the group unit.  
-        The valid values are as follows:
-        + **SCHEDULER**: Scheduling unit, valid in the **MINDIE** framework.
-        + **MANAGER**: Management unit, valid in the **MINDIE** framework.
-        + **WORKER**: Work unit, valid in the **MINDIE** framework.
-        + **PREFILL**: Total unit, valid in the **VLLM** framework.
-        + **DECODE**: Incremental unit, valid in the **VLLM** framework.
-        + **COMMON**: Others.
-        """
-        startup_health: NotRequired[pulumi.Input['ServiceV2GroupConfigUnitConfigStartupHealthArgsDict']]
-        """
-        Specifies the configuration of the startup health check.  
-        The startup_health structure is documented below.
-        """
-elif False:
-    ServiceV2GroupConfigUnitConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="v2_service_unit_config_image"></a>
+    The `image` block supports:
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the role of the group unit.  
+    The valid values are as follows:
+    + **SCHEDULER**: Scheduling unit, valid in the **MINDIE** framework.
+    + **MANAGER**: Management unit, valid in the **MINDIE** framework.
+    + **WORKER**: Work unit, valid in the **MINDIE** framework.
+    + **PREFILL**: Total unit, valid in the **VLLM** framework.
+    + **DECODE**: Incremental unit, valid in the **VLLM** framework.
+    + **COMMON**: Others.
+    """
+    startup_health: NotRequired[pulumi.Input['ServiceV2GroupConfigUnitConfigStartupHealthArgsDict']]
+    """
+    Specifies the configuration of the startup health check.  
+    The startup_health structure is documented below.
+    """
 
 @pulumi.input_type
 class ServiceV2GroupConfigUnitConfigArgs:
@@ -4613,39 +4491,36 @@ class ServiceV2GroupConfigUnitConfigArgs:
         pulumi.set(self, "startup_health", value)
 
 
-if not MYPY:
-    class ServiceV2GroupConfigUnitConfigCodeArgsDict(TypedDict):
-        mount_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the path to mount into the container.  
-        The value must start with a slash (/) and the path content allows letters, digits, hyphens (-), underscores (_),
-        backslash (\\\\) and dots (.).
-        """
-        source: pulumi.Input[_builtins.str]
-        """
-        Specifies the source type of the code configuration.  
-        The valid values are as follows:
-        + **OBS**
-        + **OBSFS**
-        + **EFS**
-        + **GIT**
-        """
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source address of the code configuration.  
-        This parameter is mutually exclusive with `source_id` and only required if the value of `source` is not **EFS**.
-        """
-        source_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source ID of the code configuration.  
-        This parameter is mutually exclusive with `mount_path` and the SFS Turbo ID is required if the value of `source` is
-        **EFS**.
+class ServiceV2GroupConfigUnitConfigCodeArgsDict(TypedDict):
+    mount_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the path to mount into the container.  
+    The value must start with a slash (/) and the path content allows letters, digits, hyphens (-), underscores (_),
+    backslash (\\\\) and dots (.).
+    """
+    source: pulumi.Input[_builtins.str]
+    """
+    Specifies the source type of the code configuration.  
+    The valid values are as follows:
+    + **OBS**
+    + **OBSFS**
+    + **EFS**
+    + **GIT**
+    """
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source address of the code configuration.  
+    This parameter is mutually exclusive with `source_id` and only required if the value of `source` is not **EFS**.
+    """
+    source_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source ID of the code configuration.  
+    This parameter is mutually exclusive with `mount_path` and the SFS Turbo ID is required if the value of `source` is
+    **EFS**.
 
-        <a name="v2_service_unit_config_health_check"></a>
-        The `readiness_health`, `startup_health` and `liveness_health` blocks support:
-        """
-elif False:
-    ServiceV2GroupConfigUnitConfigCodeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="v2_service_unit_config_health_check"></a>
+    The `readiness_health`, `startup_health` and `liveness_health` blocks support:
+    """
 
 @pulumi.input_type
 class ServiceV2GroupConfigUnitConfigCodeArgs:
@@ -4742,32 +4617,29 @@ class ServiceV2GroupConfigUnitConfigCodeArgs:
         pulumi.set(self, "source_id", value)
 
 
-if not MYPY:
-    class ServiceV2GroupConfigUnitConfigCustomSpecArgsDict(TypedDict):
-        ascend: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of Ascend chips.  
-        This parameter cannot be configured together with `gpu`.
+class ServiceV2GroupConfigUnitConfigCustomSpecArgsDict(TypedDict):
+    ascend: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of Ascend chips.  
+    This parameter cannot be configured together with `gpu`.
 
-        <a name="v2_service_unit_config_models"></a>
-        The `models` block supports:
-        """
-        cpu: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the CPU number of the custom specification.
-        The input value must be greater than `0` and support two decimal places (the third decimal place will be rounded off).
-        """
-        gpu: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the GPU number of the custom specification.
-        The input value must be greater than `0` and support two decimal places (the third decimal place will be rounded off).
-        """
-        memory: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the memory size of the custom specification.
-        """
-elif False:
-    ServiceV2GroupConfigUnitConfigCustomSpecArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="v2_service_unit_config_models"></a>
+    The `models` block supports:
+    """
+    cpu: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the CPU number of the custom specification.
+    The input value must be greater than `0` and support two decimal places (the third decimal place will be rounded off).
+    """
+    gpu: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the GPU number of the custom specification.
+    The input value must be greater than `0` and support two decimal places (the third decimal place will be rounded off).
+    """
+    memory: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the memory size of the custom specification.
+    """
 
 @pulumi.input_type
 class ServiceV2GroupConfigUnitConfigCustomSpecArgs:
@@ -4852,31 +4724,28 @@ class ServiceV2GroupConfigUnitConfigCustomSpecArgs:
         pulumi.set(self, "memory", value)
 
 
-if not MYPY:
-    class ServiceV2GroupConfigUnitConfigImageArgsDict(TypedDict):
-        source: pulumi.Input[_builtins.str]
-        """
-        Specifies the source type of the code configuration.  
-        The valid values are as follows:
-        + **OBS**
-        + **OBSFS**
-        + **EFS**
-        + **GIT**
-        """
-        swr_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the SWR storage path of the group unit.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image ID of the group unit.  
-        Only available if the value of parameter `source` is **IMAGE**.
+class ServiceV2GroupConfigUnitConfigImageArgsDict(TypedDict):
+    source: pulumi.Input[_builtins.str]
+    """
+    Specifies the source type of the code configuration.  
+    The valid values are as follows:
+    + **OBS**
+    + **OBSFS**
+    + **EFS**
+    + **GIT**
+    """
+    swr_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the SWR storage path of the group unit.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image ID of the group unit.  
+    Only available if the value of parameter `source` is **IMAGE**.
 
-        <a name="v2_service_unit_config_custom_spec"></a>
-        The `custom_spec` block supports:
-        """
-elif False:
-    ServiceV2GroupConfigUnitConfigImageArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="v2_service_unit_config_custom_spec"></a>
+    The `custom_spec` block supports:
+    """
 
 @pulumi.input_type
 class ServiceV2GroupConfigUnitConfigImageArgs:
@@ -4949,50 +4818,47 @@ class ServiceV2GroupConfigUnitConfigImageArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class ServiceV2GroupConfigUnitConfigLivenessHealthArgsDict(TypedDict):
-        check_method: pulumi.Input[_builtins.str]
-        """
-        Specifies the method of the health check.  
-        The valid values are as follows:
-        + **EXEC**
-        + **HTTP**
-        """
-        failure_threshold: pulumi.Input[_builtins.int]
-        """
-        Specifies the minimum number of consecutive detection failures.  
-        The minimum timeout value is `1`.
-        """
-        initial_delay_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the time to wait when performing the first probe.  
-        The minimum timeout value is `1`.
-        """
-        period_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the period time for performing health check.  
-        The minimum timeout value is `1`.
-        """
-        timeout_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the timeout for executing the probe.  
-        The minimum timeout value is `1`.
-        """
-        command: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the commands configuration of the health check.  
-        Only available if the `check_method` is **EXEC**.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request URL of the health check.  
-        Only available if the `check_method` is **HTTP**.
+class ServiceV2GroupConfigUnitConfigLivenessHealthArgsDict(TypedDict):
+    check_method: pulumi.Input[_builtins.str]
+    """
+    Specifies the method of the health check.  
+    The valid values are as follows:
+    + **EXEC**
+    + **HTTP**
+    """
+    failure_threshold: pulumi.Input[_builtins.int]
+    """
+    Specifies the minimum number of consecutive detection failures.  
+    The minimum timeout value is `1`.
+    """
+    initial_delay_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the time to wait when performing the first probe.  
+    The minimum timeout value is `1`.
+    """
+    period_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the period time for performing health check.  
+    The minimum timeout value is `1`.
+    """
+    timeout_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the timeout for executing the probe.  
+    The minimum timeout value is `1`.
+    """
+    command: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the commands configuration of the health check.  
+    Only available if the `check_method` is **EXEC**.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request URL of the health check.  
+    Only available if the `check_method` is **HTTP**.
 
-        <a name="v2_service_log_configs"></a>
-        The `log_configs` block supports:
-        """
-elif False:
-    ServiceV2GroupConfigUnitConfigLivenessHealthArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="v2_service_log_configs"></a>
+    The `log_configs` block supports:
+    """
 
 @pulumi.input_type
 class ServiceV2GroupConfigUnitConfigLivenessHealthArgs:
@@ -5132,39 +4998,36 @@ class ServiceV2GroupConfigUnitConfigLivenessHealthArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class ServiceV2GroupConfigUnitConfigModelArgsDict(TypedDict):
-        mount_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the path to mount into the container.  
-        The value must start with a slash (/) and the path content allows letters, digits, hyphens (-), underscores (_),
-        backslash (\\\\) and dots (.).
-        """
-        source: pulumi.Input[_builtins.str]
-        """
-        Specifies the source type of the code configuration.  
-        The valid values are as follows:
-        + **OBS**
-        + **OBSFS**
-        + **EFS**
-        + **GIT**
-        """
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source address of the code configuration.  
-        This parameter is mutually exclusive with `source_id` and only required if the value of `source` is not **EFS**.
-        """
-        source_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source ID of the code configuration.  
-        This parameter is mutually exclusive with `mount_path` and the SFS Turbo ID is required if the value of `source` is
-        **EFS**.
+class ServiceV2GroupConfigUnitConfigModelArgsDict(TypedDict):
+    mount_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the path to mount into the container.  
+    The value must start with a slash (/) and the path content allows letters, digits, hyphens (-), underscores (_),
+    backslash (\\\\) and dots (.).
+    """
+    source: pulumi.Input[_builtins.str]
+    """
+    Specifies the source type of the code configuration.  
+    The valid values are as follows:
+    + **OBS**
+    + **OBSFS**
+    + **EFS**
+    + **GIT**
+    """
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source address of the code configuration.  
+    This parameter is mutually exclusive with `source_id` and only required if the value of `source` is not **EFS**.
+    """
+    source_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source ID of the code configuration.  
+    This parameter is mutually exclusive with `mount_path` and the SFS Turbo ID is required if the value of `source` is
+    **EFS**.
 
-        <a name="v2_service_unit_config_health_check"></a>
-        The `readiness_health`, `startup_health` and `liveness_health` blocks support:
-        """
-elif False:
-    ServiceV2GroupConfigUnitConfigModelArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="v2_service_unit_config_health_check"></a>
+    The `readiness_health`, `startup_health` and `liveness_health` blocks support:
+    """
 
 @pulumi.input_type
 class ServiceV2GroupConfigUnitConfigModelArgs:
@@ -5261,50 +5124,47 @@ class ServiceV2GroupConfigUnitConfigModelArgs:
         pulumi.set(self, "source_id", value)
 
 
-if not MYPY:
-    class ServiceV2GroupConfigUnitConfigReadinessHealthArgsDict(TypedDict):
-        check_method: pulumi.Input[_builtins.str]
-        """
-        Specifies the method of the health check.  
-        The valid values are as follows:
-        + **EXEC**
-        + **HTTP**
-        """
-        failure_threshold: pulumi.Input[_builtins.int]
-        """
-        Specifies the minimum number of consecutive detection failures.  
-        The minimum timeout value is `1`.
-        """
-        initial_delay_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the time to wait when performing the first probe.  
-        The minimum timeout value is `1`.
-        """
-        period_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the period time for performing health check.  
-        The minimum timeout value is `1`.
-        """
-        timeout_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the timeout for executing the probe.  
-        The minimum timeout value is `1`.
-        """
-        command: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the commands configuration of the health check.  
-        Only available if the `check_method` is **EXEC**.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request URL of the health check.  
-        Only available if the `check_method` is **HTTP**.
+class ServiceV2GroupConfigUnitConfigReadinessHealthArgsDict(TypedDict):
+    check_method: pulumi.Input[_builtins.str]
+    """
+    Specifies the method of the health check.  
+    The valid values are as follows:
+    + **EXEC**
+    + **HTTP**
+    """
+    failure_threshold: pulumi.Input[_builtins.int]
+    """
+    Specifies the minimum number of consecutive detection failures.  
+    The minimum timeout value is `1`.
+    """
+    initial_delay_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the time to wait when performing the first probe.  
+    The minimum timeout value is `1`.
+    """
+    period_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the period time for performing health check.  
+    The minimum timeout value is `1`.
+    """
+    timeout_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the timeout for executing the probe.  
+    The minimum timeout value is `1`.
+    """
+    command: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the commands configuration of the health check.  
+    Only available if the `check_method` is **EXEC**.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request URL of the health check.  
+    Only available if the `check_method` is **HTTP**.
 
-        <a name="v2_service_log_configs"></a>
-        The `log_configs` block supports:
-        """
-elif False:
-    ServiceV2GroupConfigUnitConfigReadinessHealthArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="v2_service_log_configs"></a>
+    The `log_configs` block supports:
+    """
 
 @pulumi.input_type
 class ServiceV2GroupConfigUnitConfigReadinessHealthArgs:
@@ -5444,50 +5304,47 @@ class ServiceV2GroupConfigUnitConfigReadinessHealthArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class ServiceV2GroupConfigUnitConfigStartupHealthArgsDict(TypedDict):
-        check_method: pulumi.Input[_builtins.str]
-        """
-        Specifies the method of the health check.  
-        The valid values are as follows:
-        + **EXEC**
-        + **HTTP**
-        """
-        failure_threshold: pulumi.Input[_builtins.int]
-        """
-        Specifies the minimum number of consecutive detection failures.  
-        The minimum timeout value is `1`.
-        """
-        initial_delay_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the time to wait when performing the first probe.  
-        The minimum timeout value is `1`.
-        """
-        period_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the period time for performing health check.  
-        The minimum timeout value is `1`.
-        """
-        timeout_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the timeout for executing the probe.  
-        The minimum timeout value is `1`.
-        """
-        command: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the commands configuration of the health check.  
-        Only available if the `check_method` is **EXEC**.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request URL of the health check.  
-        Only available if the `check_method` is **HTTP**.
+class ServiceV2GroupConfigUnitConfigStartupHealthArgsDict(TypedDict):
+    check_method: pulumi.Input[_builtins.str]
+    """
+    Specifies the method of the health check.  
+    The valid values are as follows:
+    + **EXEC**
+    + **HTTP**
+    """
+    failure_threshold: pulumi.Input[_builtins.int]
+    """
+    Specifies the minimum number of consecutive detection failures.  
+    The minimum timeout value is `1`.
+    """
+    initial_delay_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the time to wait when performing the first probe.  
+    The minimum timeout value is `1`.
+    """
+    period_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the period time for performing health check.  
+    The minimum timeout value is `1`.
+    """
+    timeout_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the timeout for executing the probe.  
+    The minimum timeout value is `1`.
+    """
+    command: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the commands configuration of the health check.  
+    Only available if the `check_method` is **EXEC**.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request URL of the health check.  
+    Only available if the `check_method` is **HTTP**.
 
-        <a name="v2_service_log_configs"></a>
-        The `log_configs` block supports:
-        """
-elif False:
-    ServiceV2GroupConfigUnitConfigStartupHealthArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="v2_service_log_configs"></a>
+    The `log_configs` block supports:
+    """
 
 @pulumi.input_type
 class ServiceV2GroupConfigUnitConfigStartupHealthArgs:
@@ -5627,23 +5484,20 @@ class ServiceV2GroupConfigUnitConfigStartupHealthArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class ServiceV2LogConfigArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of LTS configuration.
-        Currently, the valid value is **STDOUT**.
-        """
-        log_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the LTS group.
-        """
-        log_stream_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the LTS stream.
-        """
-elif False:
-    ServiceV2LogConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceV2LogConfigArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of LTS configuration.
+    Currently, the valid value is **STDOUT**.
+    """
+    log_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the LTS group.
+    """
+    log_stream_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the LTS stream.
+    """
 
 @pulumi.input_type
 class ServiceV2LogConfigArgs:
@@ -5701,19 +5555,16 @@ class ServiceV2LogConfigArgs:
         pulumi.set(self, "log_stream_id", value)
 
 
-if not MYPY:
-    class ServiceV2PredictUrlArgsDict(TypedDict):
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of LTS configuration.
-        Currently, the valid value is **STDOUT**.
-        """
-        urls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The URLs of service access.
-        """
-elif False:
-    ServiceV2PredictUrlArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceV2PredictUrlArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of LTS configuration.
+    Currently, the valid value is **STDOUT**.
+    """
+    urls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The URLs of service access.
+    """
 
 @pulumi.input_type
 class ServiceV2PredictUrlArgs:
@@ -5756,19 +5607,16 @@ class ServiceV2PredictUrlArgs:
         pulumi.set(self, "urls", value)
 
 
-if not MYPY:
-    class WorkspaceGrantArgsDict(TypedDict):
-        user_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IAM user ID.  
-        User ID and username specify at least one. If both are specified, User ID is preferred.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IAM username.
-        """
-elif False:
-    WorkspaceGrantArgsDict: TypeAlias = Mapping[str, Any]
+class WorkspaceGrantArgsDict(TypedDict):
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IAM user ID.  
+    User ID and username specify at least one. If both are specified, User ID is preferred.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IAM username.
+    """
 
 @pulumi.input_type
 class WorkspaceGrantArgs:

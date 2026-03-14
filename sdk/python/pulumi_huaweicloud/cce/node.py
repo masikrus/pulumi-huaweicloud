@@ -73,6 +73,7 @@ class NodeArgs:
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodeTaintArgs']]]] = None):
         """
         The set of arguments for constructing a Node resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the name of the available partition (AZ).
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the cluster.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID.
@@ -965,6 +966,7 @@ class _NodeState:
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodeTaintArgs']]]] = None):
         """
         Input properties used for looking up and filtering Node resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: schema: Internal
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the name of the available partition (AZ).
@@ -1922,7 +1924,9 @@ class Node(pulumi.CustomResource):
         """
         Add a node to a CCE cluster.
 
-        ## Basic Usage
+        ## Example Usage
+
+        ### Basic Usage
 
         ```python
         import pulumi
@@ -1932,7 +1936,7 @@ class Node(pulumi.CustomResource):
         cluster_id = config.require_object("clusterId")
         node_name = config.require_object("nodeName")
         keypair_name = config.require_object("keypairName")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         myflavors = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -1956,7 +1960,7 @@ class Node(pulumi.CustomResource):
             }])
         ```
 
-        ## Node with Eip
+        ### Node with Eip
 
         ```python
         import pulumi
@@ -1966,7 +1970,7 @@ class Node(pulumi.CustomResource):
         cluster_id = config.require_object("clusterId")
         node_name = config.require_object("nodeName")
         keypair_name = config.require_object("keypairName")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         test = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -1994,7 +1998,7 @@ class Node(pulumi.CustomResource):
             bandwidth_size=100)
         ```
 
-        ## Node with Existing Eip
+        ### Node with Existing Eip
 
         ```python
         import pulumi
@@ -2004,7 +2008,7 @@ class Node(pulumi.CustomResource):
         cluster_id = config.require_object("clusterId")
         node_name = config.require_object("nodeName")
         keypair_name = config.require_object("keypairName")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         test = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -2039,7 +2043,7 @@ class Node(pulumi.CustomResource):
             eip_id=myeip.id)
         ```
 
-        ## Node with storage configuration
+        ### Node with storage configuration
 
         ```python
         import pulumi
@@ -2050,7 +2054,7 @@ class Node(pulumi.CustomResource):
         node_name = config.require_object("nodeName")
         keypair_name = config.require_object("keypairName")
         kms_key_name = config.require_object("kmsKeyName")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         test = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -2130,47 +2134,60 @@ class Node(pulumi.CustomResource):
             })
         ```
 
+        ### Spot Node
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        cluster_id = config.require_object("clusterId")
+        node_name = config.require_object("nodeName")
+        keypair_name = config.require_object("keypairName")
+        myaz = huaweicloud.Index.get_availability_zones()
+        myflavors = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
+            performance_type="normal",
+            cpu_core_count=2,
+            memory_size=4)
+        mykp = huaweicloud.dew.Keypair("mykp",
+            name=keypair_name,
+            public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAjpC1hwiOCCmKEWxJ4qzTTsJbKzndLo1BCz5PcwtUnflmU+gHJtWMZKpuEGVi29h0A/+ydKek1O18k10Ff+4tyFjiHDQAT9+OfgWf7+b1yK+qDip3X1C0UPMbwHlTfSGWLGZquwhvEFx9k3h/M+VtMvwR1lJ9LUyTAImnNjWG7TAIPmui30HvM2UiFEmqkr4ijq45MyX2+fLIePLRIFuu1p4whjHAQYufqyno3BS48icQb4p6iVEZPo4AE2o9oIyQvj2mx4dk5Y8CgSETOZTYDOR3rU2fZTRDRgPJDH9FWvQjF5tA0p3d9CoWWd2s6GKKbfoUIi8R/Db1BSPJwkqB jrp-hp-pc")
+        node = huaweicloud.cce.Node("node",
+            cluster_id=cluster_id,
+            name=node_name,
+            flavor_id=myflavors.ids[0],
+            availability_zone=myaz.names[0],
+            key_pair=mykp.name,
+            root_volume={
+                "size": 40,
+                "volumetype": "SATA",
+            },
+            data_volumes=[{
+                "size": 100,
+                "volumetype": "SATA",
+            }],
+            extend_params={
+                "market_type": "spot",
+                "spot_price": "0.83",
+            })
+        ```
+
         ## Import
 
         CCE node can be imported using the cluster ID and node ID separated by a slash, e.g.:
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cce/node:Node my_node 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `password`, `private_key`, `storage`, `fixed_ip`, `extension_nics`, `eip_id`, `iptype`, `bandwidth_charge_mode`,
-
         `bandwidth_size`, `share_type`, `extend_params`, `dedicated_host_id`, `initialized_conditions`, `labels`, `taints`
-
         and arguments for pre-paid. It is generally recommended running `pulumi preview` after importing a node.
-
         You can then decide if changes should be applied to the node, or the resource definition should be updated to align
-
         with the node. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cce_node" "my_node" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              extend_params, labels,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2272,7 +2289,9 @@ class Node(pulumi.CustomResource):
         """
         Add a node to a CCE cluster.
 
-        ## Basic Usage
+        ## Example Usage
+
+        ### Basic Usage
 
         ```python
         import pulumi
@@ -2282,7 +2301,7 @@ class Node(pulumi.CustomResource):
         cluster_id = config.require_object("clusterId")
         node_name = config.require_object("nodeName")
         keypair_name = config.require_object("keypairName")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         myflavors = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -2306,7 +2325,7 @@ class Node(pulumi.CustomResource):
             }])
         ```
 
-        ## Node with Eip
+        ### Node with Eip
 
         ```python
         import pulumi
@@ -2316,7 +2335,7 @@ class Node(pulumi.CustomResource):
         cluster_id = config.require_object("clusterId")
         node_name = config.require_object("nodeName")
         keypair_name = config.require_object("keypairName")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         test = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -2344,7 +2363,7 @@ class Node(pulumi.CustomResource):
             bandwidth_size=100)
         ```
 
-        ## Node with Existing Eip
+        ### Node with Existing Eip
 
         ```python
         import pulumi
@@ -2354,7 +2373,7 @@ class Node(pulumi.CustomResource):
         cluster_id = config.require_object("clusterId")
         node_name = config.require_object("nodeName")
         keypair_name = config.require_object("keypairName")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         test = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -2389,7 +2408,7 @@ class Node(pulumi.CustomResource):
             eip_id=myeip.id)
         ```
 
-        ## Node with storage configuration
+        ### Node with storage configuration
 
         ```python
         import pulumi
@@ -2400,7 +2419,7 @@ class Node(pulumi.CustomResource):
         node_name = config.require_object("nodeName")
         keypair_name = config.require_object("keypairName")
         kms_key_name = config.require_object("kmsKeyName")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         test = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -2480,47 +2499,60 @@ class Node(pulumi.CustomResource):
             })
         ```
 
+        ### Spot Node
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        cluster_id = config.require_object("clusterId")
+        node_name = config.require_object("nodeName")
+        keypair_name = config.require_object("keypairName")
+        myaz = huaweicloud.Index.get_availability_zones()
+        myflavors = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
+            performance_type="normal",
+            cpu_core_count=2,
+            memory_size=4)
+        mykp = huaweicloud.dew.Keypair("mykp",
+            name=keypair_name,
+            public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAjpC1hwiOCCmKEWxJ4qzTTsJbKzndLo1BCz5PcwtUnflmU+gHJtWMZKpuEGVi29h0A/+ydKek1O18k10Ff+4tyFjiHDQAT9+OfgWf7+b1yK+qDip3X1C0UPMbwHlTfSGWLGZquwhvEFx9k3h/M+VtMvwR1lJ9LUyTAImnNjWG7TAIPmui30HvM2UiFEmqkr4ijq45MyX2+fLIePLRIFuu1p4whjHAQYufqyno3BS48icQb4p6iVEZPo4AE2o9oIyQvj2mx4dk5Y8CgSETOZTYDOR3rU2fZTRDRgPJDH9FWvQjF5tA0p3d9CoWWd2s6GKKbfoUIi8R/Db1BSPJwkqB jrp-hp-pc")
+        node = huaweicloud.cce.Node("node",
+            cluster_id=cluster_id,
+            name=node_name,
+            flavor_id=myflavors.ids[0],
+            availability_zone=myaz.names[0],
+            key_pair=mykp.name,
+            root_volume={
+                "size": 40,
+                "volumetype": "SATA",
+            },
+            data_volumes=[{
+                "size": 100,
+                "volumetype": "SATA",
+            }],
+            extend_params={
+                "market_type": "spot",
+                "spot_price": "0.83",
+            })
+        ```
+
         ## Import
 
         CCE node can be imported using the cluster ID and node ID separated by a slash, e.g.:
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cce/node:Node my_node 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `password`, `private_key`, `storage`, `fixed_ip`, `extension_nics`, `eip_id`, `iptype`, `bandwidth_charge_mode`,
-
         `bandwidth_size`, `share_type`, `extend_params`, `dedicated_host_id`, `initialized_conditions`, `labels`, `taints`
-
         and arguments for pre-paid. It is generally recommended running `pulumi preview` after importing a node.
-
         You can then decide if changes should be applied to the node, or the resource definition should be updated to align
-
         with the node. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cce_node" "my_node" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              extend_params, labels,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param NodeArgs args: The arguments to use to populate this resource's properties.

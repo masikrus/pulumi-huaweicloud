@@ -54,6 +54,10 @@ class GetTagsResult:
     @_builtins.property
     @pulumi.getter
     def tags(self) -> Sequence['outputs.GetTagsTagResult']:
+        """
+        The list of tags.  
+        The tags structure is documented below.
+        """
         return pulumi.get(self, "tags")
 
 
@@ -71,7 +75,20 @@ class AwaitableGetTagsResult(GetTagsResult):
 def get_tags(region: Optional[_builtins.str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTagsResult:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to get the list of CTS tags within HuaweiCloud.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    test = huaweicloud.Cts.get_tags()
+    ```
+
+
+    :param _builtins.str region: Specifies the region in which to query the resource.  
+           If omitted, the provider-level region will be used.
     """
     __args__ = dict()
     __args__['region'] = region
@@ -85,7 +102,20 @@ def get_tags(region: Optional[_builtins.str] = None,
 def get_tags_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTagsResult]:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to get the list of CTS tags within HuaweiCloud.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    test = huaweicloud.Cts.get_tags()
+    ```
+
+
+    :param _builtins.str region: Specifies the region in which to query the resource.  
+           If omitted, the provider-level region will be used.
     """
     __args__ = dict()
     __args__['region'] = region

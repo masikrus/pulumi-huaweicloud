@@ -25,6 +25,7 @@ class PermissionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Permission resource.
+
         :param pulumi.Input[_builtins.str] object: Specifies which object's data usage permissions will be shared.
                Its naming format is as follows:
                + **queues.`queues_name`**: the usage permissions of queue.
@@ -173,6 +174,7 @@ class _PermissionState:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Permission resources.
+
         :param pulumi.Input[_builtins.bool] is_admin: Whether this user is an administrator.
         :param pulumi.Input[_builtins.str] object: Specifies which object's data usage permissions will be shared.
                Its naming format is as follows:
@@ -384,11 +386,10 @@ class Permission(pulumi.CustomResource):
 
         The permission can be imported by `id`, it is composed of `object` and `user_name`, separated by a slash. e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/permission:Permission test databases.database_name/user_name
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -486,11 +487,10 @@ class Permission(pulumi.CustomResource):
 
         The permission can be imported by `id`, it is composed of `object` and `user_name`, separated by a slash. e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/permission:Permission test databases.database_name/user_name
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PermissionArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class PlaybookArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Playbook resource.
+
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the playbook belongs.
                
                Changing this parameter will create a new resource.
@@ -148,6 +149,7 @@ class _PlaybookState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Playbook resources.
+
         :param pulumi.Input[_builtins.str] active_version_id: schema: Deprecated; Specifies the active version ID.
         :param pulumi.Input[_builtins.str] approve_role: Indicates the approve role of the playbook.
         :param pulumi.Input[_builtins.str] created_at: Indicates the created time of the playbook.
@@ -427,7 +429,7 @@ class _PlaybookState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/playbook:Playbook")
+@pulumi.type_token("huaweicloud:Secmaster/playbook:Playbook")
 class Playbook(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -468,11 +470,10 @@ class Playbook(pulumi.CustomResource):
 
         The playbook can be imported using the workspace ID and the playbook ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/playbook:Playbook test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/playbook:Playbook test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -520,11 +521,10 @@ class Playbook(pulumi.CustomResource):
 
         The playbook can be imported using the workspace ID and the playbook ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/playbook:Playbook test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/playbook:Playbook test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PlaybookArgs args: The arguments to use to populate this resource's properties.
@@ -577,7 +577,7 @@ class Playbook(pulumi.CustomResource):
             __props__.__dict__["version"] = None
             __props__.__dict__["version_id"] = None
         super(Playbook, __self__).__init__(
-            'huaweicloud:secmaster/playbook:Playbook',
+            'huaweicloud:Secmaster/playbook:Playbook',
             resource_name,
             __props__,
             opts)

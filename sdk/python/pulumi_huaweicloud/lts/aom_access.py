@@ -31,6 +31,7 @@ class AomAccessArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AomAccess resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['AomAccessAccessRuleArgs']]] access_rules: Specifies the access log details.
                The access_rules structure is documented below.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the CCE or CCI cluster ID. It is fixed to **CCI-ClusterID** for CCI.
@@ -178,6 +179,7 @@ class _AomAccessState:
                  workloads: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering AomAccess resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['AomAccessAccessRuleArgs']]] access_rules: Specifies the access log details.
                The access_rules structure is documented below.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the CCE or CCI cluster ID. It is fixed to **CCI-ClusterID** for CCI.
@@ -437,11 +439,10 @@ class AomAccess(pulumi.CustomResource):
 
         The AOM to LTS log mapping rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/aomAccess:AomAccess test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -573,11 +574,10 @@ class AomAccess(pulumi.CustomResource):
 
         The AOM to LTS log mapping rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/aomAccess:AomAccess test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AomAccessArgs args: The arguments to use to populate this resource's properties.

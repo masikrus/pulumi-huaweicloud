@@ -33,6 +33,7 @@ class FactoryJobArgs:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FactoryJob resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['FactoryJobNodeArgs']]] nodes: Node definition.
                The nodes structure is documented below.
         :param pulumi.Input[_builtins.str] process_type: Job type.  
@@ -232,6 +233,7 @@ class _FactoryJobState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FactoryJob resources.
+
         :param pulumi.Input['FactoryJobBasicConfigArgs'] basic_config: Baisc job information.
                The basic_config structure is documented below.
                
@@ -498,11 +500,10 @@ class FactoryJob(pulumi.CustomResource):
 
         The job can be imported using `workspace_id`, `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/factoryJob:FactoryJob test <workspace_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -602,11 +603,10 @@ class FactoryJob(pulumi.CustomResource):
 
         The job can be imported using `workspace_id`, `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/factoryJob:FactoryJob test <workspace_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FactoryJobArgs args: The arguments to use to populate this resource's properties.

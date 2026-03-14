@@ -23,6 +23,7 @@ class OrganizationArgs:
                  root_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Organization resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_policy_types: Specifies the list of Organizations policy types to enable in the
                Organization Root. Value options:
                + **service_control_policy**: service control policy.
@@ -65,6 +66,7 @@ class OrganizationArgs:
 @pulumi.input_type
 class _OrganizationState:
     def __init__(__self__, *,
+                 organization_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled_policy_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  master_account_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -72,10 +74,11 @@ class _OrganizationState:
                  root_id: Optional[pulumi.Input[_builtins.str]] = None,
                  root_name: Optional[pulumi.Input[_builtins.str]] = None,
                  root_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 root_urn: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 root_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
+
+        :param pulumi.Input[_builtins.str] organization_urn: Indicates the uniform resource name of the organization.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the organization was created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_policy_types: Specifies the list of Organizations policy types to enable in the
                Organization Root. Value options:
@@ -87,8 +90,9 @@ class _OrganizationState:
         :param pulumi.Input[_builtins.str] root_name: Indicates the name of the root.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] root_tags: Specifies the key/value to attach to the root.
         :param pulumi.Input[_builtins.str] root_urn: Indicates the urn of the root.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the organization.
         """
+        if organization_urn is not None:
+            pulumi.set(__self__, "organization_urn", organization_urn)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if enabled_policy_types is not None:
@@ -105,8 +109,18 @@ class _OrganizationState:
             pulumi.set(__self__, "root_tags", root_tags)
         if root_urn is not None:
             pulumi.set(__self__, "root_urn", root_urn)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="OrganizationUrn")
+    def organization_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the uniform resource name of the organization.
+        """
+        return pulumi.get(self, "organization_urn")
+
+    @organization_urn.setter
+    def organization_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "organization_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -207,20 +221,8 @@ class _OrganizationState:
     def root_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "root_urn", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Indicates the uniform resource name of the organization.
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:organizations/organization:Organization")
+@pulumi.type_token("huaweicloud:Organizations/organization:Organization")
 class Organization(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -245,11 +247,10 @@ class Organization(pulumi.CustomResource):
 
         The Organizations organization can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/organization:Organization test <id>
+        $ pulumi import huaweicloud:Organizations/organization:Organization test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -281,11 +282,10 @@ class Organization(pulumi.CustomResource):
 
         The Organizations organization can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/organization:Organization test <id>
+        $ pulumi import huaweicloud:Organizations/organization:Organization test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrganizationArgs args: The arguments to use to populate this resource's properties.
@@ -315,15 +315,15 @@ class Organization(pulumi.CustomResource):
 
             __props__.__dict__["enabled_policy_types"] = enabled_policy_types
             __props__.__dict__["root_tags"] = root_tags
+            __props__.__dict__["organization_urn"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["master_account_id"] = None
             __props__.__dict__["master_account_name"] = None
             __props__.__dict__["root_id"] = None
             __props__.__dict__["root_name"] = None
             __props__.__dict__["root_urn"] = None
-            __props__.__dict__["urn"] = None
         super(Organization, __self__).__init__(
-            'huaweicloud:organizations/organization:Organization',
+            'huaweicloud:Organizations/organization:Organization',
             resource_name,
             __props__,
             opts)
@@ -332,6 +332,7 @@ class Organization(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            organization_urn: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             enabled_policy_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             master_account_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -339,8 +340,7 @@ class Organization(pulumi.CustomResource):
             root_id: Optional[pulumi.Input[_builtins.str]] = None,
             root_name: Optional[pulumi.Input[_builtins.str]] = None,
             root_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            root_urn: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'Organization':
+            root_urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -348,6 +348,7 @@ class Organization(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] organization_urn: Indicates the uniform resource name of the organization.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the organization was created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_policy_types: Specifies the list of Organizations policy types to enable in the
                Organization Root. Value options:
@@ -359,12 +360,12 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] root_name: Indicates the name of the root.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] root_tags: Specifies the key/value to attach to the root.
         :param pulumi.Input[_builtins.str] root_urn: Indicates the urn of the root.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the organization.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _OrganizationState.__new__(_OrganizationState)
 
+        __props__.__dict__["organization_urn"] = organization_urn
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["enabled_policy_types"] = enabled_policy_types
         __props__.__dict__["master_account_id"] = master_account_id
@@ -373,8 +374,15 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["root_name"] = root_name
         __props__.__dict__["root_tags"] = root_tags
         __props__.__dict__["root_urn"] = root_urn
-        __props__.__dict__["urn"] = urn
         return Organization(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="OrganizationUrn")
+    def organization_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the uniform resource name of the organization.
+        """
+        return pulumi.get(self, "organization_urn")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -442,12 +450,4 @@ class Organization(pulumi.CustomResource):
         Indicates the urn of the root.
         """
         return pulumi.get(self, "root_urn")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        Indicates the uniform resource name of the organization.
-        """
-        return pulumi.get(self, "urn")
 

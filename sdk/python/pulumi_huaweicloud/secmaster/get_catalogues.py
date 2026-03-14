@@ -118,9 +118,9 @@ def get_catalogues(catalogue_code: Optional[_builtins.str] = None,
     catalogue_type = config.require_object("catalogueType")
     catalogue_code = config.require_object("catalogueCode")
     # Get all catalogues
-    all = huaweicloud.secmaster.get_catalogues(workspace_id=workspace_id)
+    all = huaweicloud.Secmaster.get_catalogues(workspace_id=workspace_id)
     # Get specific catalogues by type and code
-    filtered = huaweicloud.secmaster.get_catalogues(workspace_id=workspace_id,
+    filtered = huaweicloud.Secmaster.get_catalogues(workspace_id=workspace_id,
         catalogue_type=catalogue_type,
         catalogue_code=catalogue_code)
     ```
@@ -138,7 +138,7 @@ def get_catalogues(catalogue_code: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getCatalogues:getCatalogues', __args__, opts=opts, typ=GetCataloguesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getCatalogues:getCatalogues', __args__, opts=opts, typ=GetCataloguesResult).value
 
     return AwaitableGetCataloguesResult(
         catalogue_code=pulumi.get(__ret__, 'catalogue_code'),
@@ -167,9 +167,9 @@ def get_catalogues_output(catalogue_code: Optional[pulumi.Input[Optional[_builti
     catalogue_type = config.require_object("catalogueType")
     catalogue_code = config.require_object("catalogueCode")
     # Get all catalogues
-    all = huaweicloud.secmaster.get_catalogues(workspace_id=workspace_id)
+    all = huaweicloud.Secmaster.get_catalogues(workspace_id=workspace_id)
     # Get specific catalogues by type and code
-    filtered = huaweicloud.secmaster.get_catalogues(workspace_id=workspace_id,
+    filtered = huaweicloud.Secmaster.get_catalogues(workspace_id=workspace_id,
         catalogue_type=catalogue_type,
         catalogue_code=catalogue_code)
     ```
@@ -187,7 +187,7 @@ def get_catalogues_output(catalogue_code: Optional[pulumi.Input[Optional[_builti
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getCatalogues:getCatalogues', __args__, opts=opts, typ=GetCataloguesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getCatalogues:getCatalogues', __args__, opts=opts, typ=GetCataloguesResult)
     return __ret__.apply(lambda __response__: GetCataloguesResult(
         catalogue_code=pulumi.get(__response__, 'catalogue_code'),
         catalogue_type=pulumi.get(__response__, 'catalogue_type'),

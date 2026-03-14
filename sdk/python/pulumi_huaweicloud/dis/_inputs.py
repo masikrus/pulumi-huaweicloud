@@ -21,28 +21,23 @@ __all__ = [
     'StreamV2PartitionArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class StreamPartitionArgsDict(TypedDict):
-        hash_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Possible value range of the hash key used by each partition.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the partition.
-        """
-        sequence_number_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Sequence number range of each partition.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the partition.
-        """
-elif False:
-    StreamPartitionArgsDict: TypeAlias = Mapping[str, Any]
+class StreamPartitionArgsDict(TypedDict):
+    hash_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Possible value range of the hash key used by each partition.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the partition.
+    """
+    sequence_number_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Sequence number range of each partition.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the partition.
+    """
 
 @pulumi.input_type
 class StreamPartitionArgs:
@@ -115,14 +110,11 @@ class StreamPartitionArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class StreamV2PartitionArgsDict(TypedDict):
-        hash_range: NotRequired[pulumi.Input[_builtins.str]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        sequence_number_range: NotRequired[pulumi.Input[_builtins.str]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    StreamV2PartitionArgsDict: TypeAlias = Mapping[str, Any]
+class StreamV2PartitionArgsDict(TypedDict):
+    hash_range: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    sequence_number_range: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class StreamV2PartitionArgs:

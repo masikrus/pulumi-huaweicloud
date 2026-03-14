@@ -129,7 +129,7 @@ def get_protection_groups(availability_zone: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protection_groups()
+    test = huaweicloud.Sdrs.get_protection_groups()
     ```
 
 
@@ -154,7 +154,7 @@ def get_protection_groups(availability_zone: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:sdrs/getProtectionGroups:getProtectionGroups', __args__, opts=opts, typ=GetProtectionGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Sdrs/getProtectionGroups:getProtectionGroups', __args__, opts=opts, typ=GetProtectionGroupsResult).value
 
     return AwaitableGetProtectionGroupsResult(
         availability_zone=pulumi.get(__ret__, 'availability_zone'),
@@ -179,7 +179,7 @@ def get_protection_groups_output(availability_zone: Optional[pulumi.Input[Option
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protection_groups()
+    test = huaweicloud.Sdrs.get_protection_groups()
     ```
 
 
@@ -204,7 +204,7 @@ def get_protection_groups_output(availability_zone: Optional[pulumi.Input[Option
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:sdrs/getProtectionGroups:getProtectionGroups', __args__, opts=opts, typ=GetProtectionGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Sdrs/getProtectionGroups:getProtectionGroups', __args__, opts=opts, typ=GetProtectionGroupsResult)
     return __ret__.apply(lambda __response__: GetProtectionGroupsResult(
         availability_zone=pulumi.get(__response__, 'availability_zone'),
         id=pulumi.get(__response__, 'id'),

@@ -151,7 +151,7 @@ def get_asset_port_info(category: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_asset_port_info(port=8080,
+    test = huaweicloud.Hss.get_asset_port_info(port=8080,
         category="0")
     ```
 
@@ -176,7 +176,7 @@ def get_asset_port_info(category: Optional[_builtins.str] = None,
     __args__['port'] = port
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAssetPortInfo:getAssetPortInfo', __args__, opts=opts, typ=GetAssetPortInfoResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAssetPortInfo:getAssetPortInfo', __args__, opts=opts, typ=GetAssetPortInfoResult).value
 
     return AwaitableGetAssetPortInfoResult(
         category=pulumi.get(__ret__, 'category'),
@@ -202,7 +202,7 @@ def get_asset_port_info_output(category: Optional[pulumi.Input[_builtins.str]] =
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_asset_port_info(port=8080,
+    test = huaweicloud.Hss.get_asset_port_info(port=8080,
         category="0")
     ```
 
@@ -227,7 +227,7 @@ def get_asset_port_info_output(category: Optional[pulumi.Input[_builtins.str]] =
     __args__['port'] = port
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAssetPortInfo:getAssetPortInfo', __args__, opts=opts, typ=GetAssetPortInfoResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAssetPortInfo:getAssetPortInfo', __args__, opts=opts, typ=GetAssetPortInfoResult)
     return __ret__.apply(lambda __response__: GetAssetPortInfoResult(
         category=pulumi.get(__response__, 'category'),
         description=pulumi.get(__response__, 'description'),

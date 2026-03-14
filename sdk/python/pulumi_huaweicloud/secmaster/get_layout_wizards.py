@@ -108,7 +108,7 @@ def get_layout_wizards(layout_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     layout_id = config.require_object("layoutId")
-    test = huaweicloud.secmaster.get_layout_wizards(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_layout_wizards(workspace_id=workspace_id,
         layout_id=layout_id)
     ```
 
@@ -123,7 +123,7 @@ def get_layout_wizards(layout_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getLayoutWizards:getLayoutWizards', __args__, opts=opts, typ=GetLayoutWizardsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getLayoutWizards:getLayoutWizards', __args__, opts=opts, typ=GetLayoutWizardsResult).value
 
     return AwaitableGetLayoutWizardsResult(
         datas=pulumi.get(__ret__, 'datas'),
@@ -147,7 +147,7 @@ def get_layout_wizards_output(layout_id: Optional[pulumi.Input[_builtins.str]] =
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     layout_id = config.require_object("layoutId")
-    test = huaweicloud.secmaster.get_layout_wizards(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_layout_wizards(workspace_id=workspace_id,
         layout_id=layout_id)
     ```
 
@@ -162,7 +162,7 @@ def get_layout_wizards_output(layout_id: Optional[pulumi.Input[_builtins.str]] =
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getLayoutWizards:getLayoutWizards', __args__, opts=opts, typ=GetLayoutWizardsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getLayoutWizards:getLayoutWizards', __args__, opts=opts, typ=GetLayoutWizardsResult)
     return __ret__.apply(lambda __response__: GetLayoutWizardsResult(
         datas=pulumi.get(__response__, 'datas'),
         id=pulumi.get(__response__, 'id'),

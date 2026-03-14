@@ -19,6 +19,12 @@ __all__ = [
     'DatasourceConnectionHostArgsDict',
     'DatasourceConnectionRouteArgs',
     'DatasourceConnectionRouteArgsDict',
+    'FlinkjarJobResourceConfigArgs',
+    'FlinkjarJobResourceConfigArgsDict',
+    'FlinkjarJobResourceConfigJobManagerResourceSpecArgs',
+    'FlinkjarJobResourceConfigJobManagerResourceSpecArgsDict',
+    'FlinkjarJobResourceConfigTaskManagerResourceSpecArgs',
+    'FlinkjarJobResourceConfigTaskManagerResourceSpecArgsDict',
     'QueueScalingPolicyArgs',
     'QueueScalingPolicyArgsDict',
     'QueueSparkDriverArgs',
@@ -53,24 +59,19 @@ __all__ = [
     'TemplateSparkBodyResourceArgsDict',
 ]
 
-MYPY = False
+class DatasourceConnectionHostArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    IPv4 address of the host.
 
-if not MYPY:
-    class DatasourceConnectionHostArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        IPv4 address of the host.
-
-        <a name="datasourceConnection_Route"></a>
-        The `Route` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The route name.  
-        The valid length is limited from `1` to `64`.
-        """
-elif False:
-    DatasourceConnectionHostArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="datasourceConnection_Route"></a>
+    The `Route` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The route name.  
+    The valid length is limited from `1` to `64`.
+    """
 
 @pulumi.input_type
 class DatasourceConnectionHostArgs:
@@ -117,19 +118,16 @@ class DatasourceConnectionHostArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class DatasourceConnectionRouteArgsDict(TypedDict):
-        cidr: pulumi.Input[_builtins.str]
-        """
-        The CIDR of the route.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The route name.  
-        The valid length is limited from `1` to `64`.
-        """
-elif False:
-    DatasourceConnectionRouteArgsDict: TypeAlias = Mapping[str, Any]
+class DatasourceConnectionRouteArgsDict(TypedDict):
+    cidr: pulumi.Input[_builtins.str]
+    """
+    The CIDR of the route.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The route name.  
+    The valid length is limited from `1` to `64`.
+    """
 
 @pulumi.input_type
 class DatasourceConnectionRouteArgs:
@@ -170,45 +168,256 @@ class DatasourceConnectionRouteArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class QueueScalingPolicyArgsDict(TypedDict):
-        impact_start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the effective time of the queue scaling policy.
-        The value can be set only by hour.
-        """
-        impact_stop_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the expiration time of the queue scaling policy.
-        The value can be set only by hour.
+class FlinkjarJobResourceConfigArgsDict(TypedDict):
+    job_manager_resource_spec: NotRequired[pulumi.Input['FlinkjarJobResourceConfigJobManagerResourceSpecArgsDict']]
+    """
+    Specifies the resource configuration of the JobManager.  
+    The object structure is documented below.
+    """
+    max_slot: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of slots in the JobManager.
+    """
+    parallel_number: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of parallel for the Flink job.
+    """
+    task_manager_resource_spec: NotRequired[pulumi.Input['FlinkjarJobResourceConfigTaskManagerResourceSpecArgsDict']]
+    """
+    Specifies the resource configuration of the TaskManager.  
+    The object structure is documented below.
 
-        > The time ranges of different scaling policies in the same queue cannot overlap.
-        The time range includes the start time but not the end time, e.g. `[00:00, 24:00)`.
-        """
-        max_cu: pulumi.Input[_builtins.int]
-        """
-        Specifies the maximum number of CUs allowed by the scaling policy.
-        The number must be a multiple of `4`.
+    <a name="flinkjar_job_resource_config_manager_resource_spec"></a>
+    The `job_manager_resource_spec` and `task_manager_resource_spec` block supports:
+    """
 
-        > The maximum CUs of any queue in an elastic resource pool cannot be more than the maximum CUs of the pool.
+@pulumi.input_type
+class FlinkjarJobResourceConfigArgs:
+    def __init__(__self__, *,
+                 job_manager_resource_spec: Optional[pulumi.Input['FlinkjarJobResourceConfigJobManagerResourceSpecArgs']] = None,
+                 max_slot: Optional[pulumi.Input[_builtins.int]] = None,
+                 parallel_number: Optional[pulumi.Input[_builtins.int]] = None,
+                 task_manager_resource_spec: Optional[pulumi.Input['FlinkjarJobResourceConfigTaskManagerResourceSpecArgs']] = None):
+        """
+        :param pulumi.Input['FlinkjarJobResourceConfigJobManagerResourceSpecArgs'] job_manager_resource_spec: Specifies the resource configuration of the JobManager.  
+               The object structure is documented below.
+        :param pulumi.Input[_builtins.int] max_slot: Specifies the maximum number of slots in the JobManager.
+        :param pulumi.Input[_builtins.int] parallel_number: Specifies the number of parallel for the Flink job.
+        :param pulumi.Input['FlinkjarJobResourceConfigTaskManagerResourceSpecArgs'] task_manager_resource_spec: Specifies the resource configuration of the TaskManager.  
+               The object structure is documented below.
+               
+               <a name="flinkjar_job_resource_config_manager_resource_spec"></a>
+               The `job_manager_resource_spec` and `task_manager_resource_spec` block supports:
+        """
+        if job_manager_resource_spec is not None:
+            pulumi.set(__self__, "job_manager_resource_spec", job_manager_resource_spec)
+        if max_slot is not None:
+            pulumi.set(__self__, "max_slot", max_slot)
+        if parallel_number is not None:
+            pulumi.set(__self__, "parallel_number", parallel_number)
+        if task_manager_resource_spec is not None:
+            pulumi.set(__self__, "task_manager_resource_spec", task_manager_resource_spec)
 
-        <a name="queue_spark_driver"></a>
-        The `spark_driver` block supports:
+    @_builtins.property
+    @pulumi.getter(name="jobManagerResourceSpec")
+    def job_manager_resource_spec(self) -> Optional[pulumi.Input['FlinkjarJobResourceConfigJobManagerResourceSpecArgs']]:
         """
-        min_cu: pulumi.Input[_builtins.int]
+        Specifies the resource configuration of the JobManager.  
+        The object structure is documented below.
         """
-        Specifies the minimum number of CUs allowed by the scaling policy.
-        The number must be a multiple of `4`.
+        return pulumi.get(self, "job_manager_resource_spec")
 
-        > The total minimum CUs of all queues in an elastic resource pool cannot be more than the minimum CUs of the pool.
+    @job_manager_resource_spec.setter
+    def job_manager_resource_spec(self, value: Optional[pulumi.Input['FlinkjarJobResourceConfigJobManagerResourceSpecArgs']]):
+        pulumi.set(self, "job_manager_resource_spec", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxSlot")
+    def max_slot(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        priority: pulumi.Input[_builtins.int]
+        Specifies the maximum number of slots in the JobManager.
         """
-        Specifies the priority of the queue scaling policy.
-        The valid value ranges from `1` to `100`. The larger value means the higher priority.
+        return pulumi.get(self, "max_slot")
+
+    @max_slot.setter
+    def max_slot(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_slot", value)
+
+    @_builtins.property
+    @pulumi.getter(name="parallelNumber")
+    def parallel_number(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-elif False:
-    QueueScalingPolicyArgsDict: TypeAlias = Mapping[str, Any]
+        Specifies the number of parallel for the Flink job.
+        """
+        return pulumi.get(self, "parallel_number")
+
+    @parallel_number.setter
+    def parallel_number(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "parallel_number", value)
+
+    @_builtins.property
+    @pulumi.getter(name="taskManagerResourceSpec")
+    def task_manager_resource_spec(self) -> Optional[pulumi.Input['FlinkjarJobResourceConfigTaskManagerResourceSpecArgs']]:
+        """
+        Specifies the resource configuration of the TaskManager.  
+        The object structure is documented below.
+
+        <a name="flinkjar_job_resource_config_manager_resource_spec"></a>
+        The `job_manager_resource_spec` and `task_manager_resource_spec` block supports:
+        """
+        return pulumi.get(self, "task_manager_resource_spec")
+
+    @task_manager_resource_spec.setter
+    def task_manager_resource_spec(self, value: Optional[pulumi.Input['FlinkjarJobResourceConfigTaskManagerResourceSpecArgs']]):
+        pulumi.set(self, "task_manager_resource_spec", value)
+
+
+class FlinkjarJobResourceConfigJobManagerResourceSpecArgsDict(TypedDict):
+    cpu: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the cores of the CPU.  
+    The default value is `1.0`. The minimum value cannot be less than `0.5`.
+    """
+    memory: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the memory size, in MB or GB (default).  
+    The default value is `4GB`. The minimum value cannot be less than `2GB`.
+    """
+
+@pulumi.input_type
+class FlinkjarJobResourceConfigJobManagerResourceSpecArgs:
+    def __init__(__self__, *,
+                 cpu: Optional[pulumi.Input[_builtins.float]] = None,
+                 memory: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.float] cpu: Specifies the cores of the CPU.  
+               The default value is `1.0`. The minimum value cannot be less than `0.5`.
+        :param pulumi.Input[_builtins.str] memory: Specifies the memory size, in MB or GB (default).  
+               The default value is `4GB`. The minimum value cannot be less than `2GB`.
+        """
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> Optional[pulumi.Input[_builtins.float]]:
+        """
+        Specifies the cores of the CPU.  
+        The default value is `1.0`. The minimum value cannot be less than `0.5`.
+        """
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: Optional[pulumi.Input[_builtins.float]]):
+        pulumi.set(self, "cpu", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the memory size, in MB or GB (default).  
+        The default value is `4GB`. The minimum value cannot be less than `2GB`.
+        """
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "memory", value)
+
+
+class FlinkjarJobResourceConfigTaskManagerResourceSpecArgsDict(TypedDict):
+    cpu: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the cores of the CPU.  
+    The default value is `1.0`. The minimum value cannot be less than `0.5`.
+    """
+    memory: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the memory size, in MB or GB (default).  
+    The default value is `4GB`. The minimum value cannot be less than `2GB`.
+    """
+
+@pulumi.input_type
+class FlinkjarJobResourceConfigTaskManagerResourceSpecArgs:
+    def __init__(__self__, *,
+                 cpu: Optional[pulumi.Input[_builtins.float]] = None,
+                 memory: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.float] cpu: Specifies the cores of the CPU.  
+               The default value is `1.0`. The minimum value cannot be less than `0.5`.
+        :param pulumi.Input[_builtins.str] memory: Specifies the memory size, in MB or GB (default).  
+               The default value is `4GB`. The minimum value cannot be less than `2GB`.
+        """
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> Optional[pulumi.Input[_builtins.float]]:
+        """
+        Specifies the cores of the CPU.  
+        The default value is `1.0`. The minimum value cannot be less than `0.5`.
+        """
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: Optional[pulumi.Input[_builtins.float]]):
+        pulumi.set(self, "cpu", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the memory size, in MB or GB (default).  
+        The default value is `4GB`. The minimum value cannot be less than `2GB`.
+        """
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "memory", value)
+
+
+class QueueScalingPolicyArgsDict(TypedDict):
+    impact_start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the effective time of the queue scaling policy.
+    The value can be set only by hour.
+    """
+    impact_stop_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the expiration time of the queue scaling policy.
+    The value can be set only by hour.
+
+    > The time ranges of different scaling policies in the same queue cannot overlap.
+    The time range includes the start time but not the end time, e.g. `[00:00, 24:00)`.
+    """
+    max_cu: pulumi.Input[_builtins.int]
+    """
+    Specifies the maximum number of CUs allowed by the scaling policy.
+    The number must be a multiple of `4`.
+
+    > The maximum CUs of any queue in an elastic resource pool cannot be more than the maximum CUs of the pool.
+
+    <a name="queue_spark_driver"></a>
+    The `spark_driver` block supports:
+    """
+    min_cu: pulumi.Input[_builtins.int]
+    """
+    Specifies the minimum number of CUs allowed by the scaling policy.
+    The number must be a multiple of `4`.
+
+    > The total minimum CUs of all queues in an elastic resource pool cannot be more than the minimum CUs of the pool.
+    """
+    priority: pulumi.Input[_builtins.int]
+    """
+    Specifies the priority of the queue scaling policy.
+    The valid value ranges from `1` to `100`. The larger value means the higher priority.
+    """
 
 @pulumi.input_type
 class QueueScalingPolicyArgs:
@@ -322,31 +531,28 @@ class QueueScalingPolicyArgs:
         pulumi.set(self, "priority", value)
 
 
-if not MYPY:
-    class QueueSparkDriverArgsDict(TypedDict):
-        max_concurrent: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of tasks that can be concurrently executed by a spark driver.
-        The valid value ranges from `1` to `32`.
-        """
-        max_instance: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of spark drivers that can be started on the queue.
-        If the `cu_count` is `16`, the value can only be `2`.
-        If The `cu_count` is greater than `16`, the minimum value is `2`, the maximum value is the number of queue CUs
-        divided by `16`.
-        """
-        max_prefetch_instance: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the maximum number of spark drivers to be pre-started on the queue.
-        The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
-        If the `cu_count` is greater than or equal to `32`, the maximum value is the number of queue CUs divided by `16`.
+class QueueSparkDriverArgsDict(TypedDict):
+    max_concurrent: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of tasks that can be concurrently executed by a spark
+    driver. The valid value ranges from `1` to `32`.
+    """
+    max_instance: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of spark drivers that can be started on the queue.
+    If the `cu_count` is `16`, the value can only be `2`.
+    If The `cu_count` is greater than `16`, the minimum value is `2`, the maximum value is the number of queue CUs
+    divided by `16`.
+    """
+    max_prefetch_instance: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the maximum number of spark drivers to be pre-started on the
+    queue. The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
+    If the `cu_count` is greater than or equal to `32`, the maximum value is the number of queue CUs divided by `16`.
 
-        > If the minimum CUs of the queue is less than `16` CUs, the `max_instance` and `max_prefetch_instance` parameters
-        does not take effect.
-        """
-elif False:
-    QueueSparkDriverArgsDict: TypeAlias = Mapping[str, Any]
+    > If the minimum CUs of the queue is less than `16` CUs, the `max_instance` and `max_prefetch_instance` parameters
+    does not take effect.
+    """
 
 @pulumi.input_type
 class QueueSparkDriverArgs:
@@ -355,14 +561,14 @@ class QueueSparkDriverArgs:
                  max_instance: Optional[pulumi.Input[_builtins.int]] = None,
                  max_prefetch_instance: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.int] max_concurrent: Specifies the maximum number of tasks that can be concurrently executed by a spark driver.
-               The valid value ranges from `1` to `32`.
+        :param pulumi.Input[_builtins.int] max_concurrent: Specifies the maximum number of tasks that can be concurrently executed by a spark
+               driver. The valid value ranges from `1` to `32`.
         :param pulumi.Input[_builtins.int] max_instance: Specifies the maximum number of spark drivers that can be started on the queue.
                If the `cu_count` is `16`, the value can only be `2`.
                If The `cu_count` is greater than `16`, the minimum value is `2`, the maximum value is the number of queue CUs
                divided by `16`.
-        :param pulumi.Input[_builtins.str] max_prefetch_instance: Specifies the maximum number of spark drivers to be pre-started on the queue.
-               The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
+        :param pulumi.Input[_builtins.str] max_prefetch_instance: Specifies the maximum number of spark drivers to be pre-started on the
+               queue. The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
                If the `cu_count` is greater than or equal to `32`, the maximum value is the number of queue CUs divided by `16`.
                
                > If the minimum CUs of the queue is less than `16` CUs, the `max_instance` and `max_prefetch_instance` parameters
@@ -379,8 +585,8 @@ class QueueSparkDriverArgs:
     @pulumi.getter(name="maxConcurrent")
     def max_concurrent(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the maximum number of tasks that can be concurrently executed by a spark driver.
-        The valid value ranges from `1` to `32`.
+        Specifies the maximum number of tasks that can be concurrently executed by a spark
+        driver. The valid value ranges from `1` to `32`.
         """
         return pulumi.get(self, "max_concurrent")
 
@@ -407,8 +613,8 @@ class QueueSparkDriverArgs:
     @pulumi.getter(name="maxPrefetchInstance")
     def max_prefetch_instance(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the maximum number of spark drivers to be pre-started on the queue.
-        The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
+        Specifies the maximum number of spark drivers to be pre-started on the
+        queue. The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
         If the `cu_count` is greater than or equal to `32`, the maximum value is the number of queue CUs divided by `16`.
 
         > If the minimum CUs of the queue is less than `16` CUs, the `max_instance` and `max_prefetch_instance` parameters
@@ -421,15 +627,12 @@ class QueueSparkDriverArgs:
         pulumi.set(self, "max_prefetch_instance", value)
 
 
-if not MYPY:
-    class QueueV1ScalingPolicyArgsDict(TypedDict):
-        impact_start_time: pulumi.Input[_builtins.str]
-        impact_stop_time: pulumi.Input[_builtins.str]
-        max_cu: pulumi.Input[_builtins.int]
-        min_cu: pulumi.Input[_builtins.int]
-        priority: pulumi.Input[_builtins.int]
-elif False:
-    QueueV1ScalingPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class QueueV1ScalingPolicyArgsDict(TypedDict):
+    impact_start_time: pulumi.Input[_builtins.str]
+    impact_stop_time: pulumi.Input[_builtins.str]
+    max_cu: pulumi.Input[_builtins.int]
+    min_cu: pulumi.Input[_builtins.int]
+    priority: pulumi.Input[_builtins.int]
 
 @pulumi.input_type
 class QueueV1ScalingPolicyArgs:
@@ -491,13 +694,10 @@ class QueueV1ScalingPolicyArgs:
         pulumi.set(self, "priority", value)
 
 
-if not MYPY:
-    class QueueV1SparkDriverArgsDict(TypedDict):
-        max_concurrent: NotRequired[pulumi.Input[_builtins.int]]
-        max_instance: NotRequired[pulumi.Input[_builtins.int]]
-        max_prefetch_instance: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    QueueV1SparkDriverArgsDict: TypeAlias = Mapping[str, Any]
+class QueueV1SparkDriverArgsDict(TypedDict):
+    max_concurrent: NotRequired[pulumi.Input[_builtins.int]]
+    max_instance: NotRequired[pulumi.Input[_builtins.int]]
+    max_prefetch_instance: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class QueueV1SparkDriverArgs:
@@ -540,25 +740,22 @@ class QueueV1SparkDriverArgs:
         pulumi.set(self, "max_prefetch_instance", value)
 
 
-if not MYPY:
-    class SparkJobDependentPackageArgsDict(TypedDict):
-        group_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the user group name.  
-        Only letters, digits, dots (.), hyphens (-) and underscores (_) are allowed.
-        Changing this parameter will submit a new spark job.
-        """
-        packages: pulumi.Input[Sequence[pulumi.Input['SparkJobDependentPackagePackageArgsDict']]]
-        """
-        Specifies the user group resource for details.
-        Changing this parameter will submit a new spark job.
-        The object structure is documented below.
+class SparkJobDependentPackageArgsDict(TypedDict):
+    group_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the user group name.  
+    Only letters, digits, dots (.), hyphens (-) and underscores (_) are allowed.
+    Changing this parameter will submit a new spark job.
+    """
+    packages: pulumi.Input[Sequence[pulumi.Input['SparkJobDependentPackagePackageArgsDict']]]
+    """
+    Specifies the user group resource for details.
+    Changing this parameter will submit a new spark job.
+    The object structure is documented below.
 
-        <a name="dependent_packages_packages"></a>
-        The `packages` block supports:
-        """
-elif False:
-    SparkJobDependentPackageArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="dependent_packages_packages"></a>
+    The `packages` block supports:
+    """
 
 @pulumi.input_type
 class SparkJobDependentPackageArgs:
@@ -611,20 +808,17 @@ class SparkJobDependentPackageArgs:
         pulumi.set(self, "packages", value)
 
 
-if not MYPY:
-    class SparkJobDependentPackagePackageArgsDict(TypedDict):
-        package_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource name of the package.
-        Changing this parameter will submit a new spark job.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource type of the package.
-        Changing this parameter will submit a new spark job.
-        """
-elif False:
-    SparkJobDependentPackagePackageArgsDict: TypeAlias = Mapping[str, Any]
+class SparkJobDependentPackagePackageArgsDict(TypedDict):
+    package_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource name of the package.
+    Changing this parameter will submit a new spark job.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource type of the package.
+    Changing this parameter will submit a new spark job.
+    """
 
 @pulumi.input_type
 class SparkJobDependentPackagePackageArgs:
@@ -667,130 +861,127 @@ class SparkJobDependentPackagePackageArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class SparkTemplateBodyArgsDict(TypedDict):
-        app_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the package that is of the JAR or pyFile type.  
-        You can also specify an OBS path, for example, obs://Bucket name/Package name.
-        """
-        app_parameters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Input parameters of the main class, that is application parameters.
-        """
-        auto_recovery: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to enable the retry function.  
-        If enabled, Spark jobs will be automatically retried after an exception occurs.
-        The default value is false.
-        """
-        configurations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        The configuration items of the DLI spark.  
-        For details, see [Spark configuration](https://spark.apache.org/docs/latest/configuration.html)
-        If you want to enable the **access metadata** of DLI spark in HuaweiCloud, please set
-        **spark.dli.metaAccess.enable** to **true**.
-        """
-        dependent_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['SparkTemplateBodyDependentPackageArgsDict']]]]
-        """
-        The list of package resource objects.  
-        The dependent_packages structure is documented below.
-        """
-        driver_cores: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of CPU cores of the Spark application driver.  
-        This configuration item replaces the default parameter in **specification**.
-        """
-        driver_memory: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Driver memory of the Spark application, for example, 2 GB and 2048 MB.  
-        This configuration item replaces the default parameter in **specification**.
-        The unit must be provided. Otherwise, the startup fails.
-        """
-        executor_cores: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of CPU cores of each Executor in the Spark application.  
-        This configuration item replaces the default parameter in **specification**.
-        """
-        executor_memory: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Executor memory of the Spark application, for example, 2 GB and 2048 MB.  
-        This configuration item replaces the default parameter in **specification**.
-        The unit must be provided. Otherwise, the startup fails.
-        """
-        files: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Name of the package that is of the file type and has been uploaded to the
-        DLI resource management system. You can also specify an OBS path, for example, obs://Bucket name/Package name.
-        """
-        jars: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Name of the package that is of the JAR type and has been uploaded to the DLI
-        resource management system. You can also specify an OBS path, for example, obs://Bucket name/Package name.
-        """
-        main_class: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Java/Spark main class of the template.
-        """
-        max_retry_times: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum retry times.  
-        The maximum value is 100, and the default value is 20.
+class SparkTemplateBodyArgsDict(TypedDict):
+    app_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the package that is of the JAR or pyFile type.  
+    You can also specify an OBS path, for example, obs://Bucket name/Package name.
+    """
+    app_parameters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Input parameters of the main class, that is application parameters.
+    """
+    auto_recovery: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to enable the retry function.  
+    If enabled, Spark jobs will be automatically retried after an exception occurs.
+    The default value is false.
+    """
+    configurations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The configuration items of the DLI spark.  
+    For details, see [Spark configuration](https://spark.apache.org/docs/latest/configuration.html)
+    If you want to enable the **access metadata** of DLI spark in HuaweiCloud, please set
+    **spark.dli.metaAccess.enable** to **true**.
+    """
+    dependent_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['SparkTemplateBodyDependentPackageArgsDict']]]]
+    """
+    The list of package resource objects.  
+    The dependent_packages structure is documented below.
+    """
+    driver_cores: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of CPU cores of the Spark application driver.  
+    This configuration item replaces the default parameter in **specification**.
+    """
+    driver_memory: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Driver memory of the Spark application, for example, 2 GB and 2048 MB.  
+    This configuration item replaces the default parameter in **specification**.
+    The unit must be provided. Otherwise, the startup fails.
+    """
+    executor_cores: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of CPU cores of each Executor in the Spark application.  
+    This configuration item replaces the default parameter in **specification**.
+    """
+    executor_memory: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Executor memory of the Spark application, for example, 2 GB and 2048 MB.  
+    This configuration item replaces the default parameter in **specification**.
+    The unit must be provided. Otherwise, the startup fails.
+    """
+    files: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Name of the package that is of the file type and has been uploaded to the
+    DLI resource management system. You can also specify an OBS path, for example, obs://Bucket name/Package name.
+    """
+    jars: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Name of the package that is of the JAR type and has been uploaded to the DLI
+    resource management system. You can also specify an OBS path, for example, obs://Bucket name/Package name.
+    """
+    main_class: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Java/Spark main class of the template.
+    """
+    max_retry_times: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum retry times.  
+    The maximum value is 100, and the default value is 20.
 
-        <a name="SparkTemplate_Resources"></a>
-        The `resources` block supports:
-        """
-        modules: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Name of the dependent system resource module.
-        DLI provides dependencies for executing datasource jobs.
-        The dependent modules and corresponding services are as follows.
-        + **sys.datasource.hbase**: CloudTable/MRS HBase
-        + **sys.datasource.opentsdb**: CloudTable/MRS OpenTSDB
-        + **sys.datasource.rds**: RDS MySQL
-        + **sys.datasource.css**: CSS
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        User group name.
-        """
-        num_executors: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of Executors in a Spark application.  
-        This configuration item replaces the default parameter in **specification**.
-        """
-        obs_bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OBS bucket for storing the Spark jobs.  
-        Set this parameter when you need to save jobs.
-        """
-        python_files: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Name of the package that is of the PyFile type and has been uploaded to the DLI
-        resource management system. You can also specify an OBS path, for example, obs://Bucket name/Package name.
-        """
-        queue_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DLI queue name.
-        """
-        resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['SparkTemplateBodyResourceArgsDict']]]]
-        """
-        User group resource.
-        The resources structure is documented above.
-        """
-        specification: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Compute resource type. Currently, resource types A, B, and C are available.  
-        The available types and related specifications are as follows, default to minimum configuration (type **A**).
+    <a name="SparkTemplate_Resources"></a>
+    The `resources` block supports:
+    """
+    modules: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Name of the dependent system resource module.
+    DLI provides dependencies for executing datasource jobs.
+    The dependent modules and corresponding services are as follows.
+    + **sys.datasource.hbase**: CloudTable/MRS HBase
+    + **sys.datasource.opentsdb**: CloudTable/MRS OpenTSDB
+    + **sys.datasource.rds**: RDS MySQL
+    + **sys.datasource.css**: CSS
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    User group name.
+    """
+    num_executors: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of Executors in a Spark application.  
+    This configuration item replaces the default parameter in **specification**.
+    """
+    obs_bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OBS bucket for storing the Spark jobs.  
+    Set this parameter when you need to save jobs.
+    """
+    python_files: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Name of the package that is of the PyFile type and has been uploaded to the DLI
+    resource management system. You can also specify an OBS path, for example, obs://Bucket name/Package name.
+    """
+    queue_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DLI queue name.
+    """
+    resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['SparkTemplateBodyResourceArgsDict']]]]
+    """
+    User group resource.
+    The resources structure is documented above.
+    """
+    specification: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Compute resource type. Currently, resource types A, B, and C are available.  
+    The available types and related specifications are as follows, default to minimum configuration (type **A**).
 
-        | type | resource | driver cores | executor cores | driver memory | executor memory | num executor |
-        | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-        | A | 8 vCPUs, 32-GB memory | 2 | 1 | 7G | 4G | 6 |
-        | B | 16 vCPUs, 64-GB memory | 2 | 2 | 7G | 8G | 7 |
-        | C | 32 vCPUs, 128-GB memory | 4 | 2 | 12G | 8G | 14 |
-        """
-elif False:
-    SparkTemplateBodyArgsDict: TypeAlias = Mapping[str, Any]
+    | type | resource | driver cores | executor cores | driver memory | executor memory | num executor |
+    | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+    | A | 8 vCPUs, 32-GB memory | 2 | 1 | 7G | 4G | 6 |
+    | B | 16 vCPUs, 64-GB memory | 2 | 2 | 7G | 8G | 7 |
+    | C | 32 vCPUs, 128-GB memory | 4 | 2 | 12G | 8G | 14 |
+    """
 
 @pulumi.input_type
 class SparkTemplateBodyArgs:
@@ -1207,19 +1398,16 @@ class SparkTemplateBodyArgs:
         pulumi.set(self, "specification", value)
 
 
-if not MYPY:
-    class SparkTemplateBodyDependentPackageArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        User group name.
-        """
-        resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['SparkTemplateBodyDependentPackageResourceArgsDict']]]]
-        """
-        User group resource.
-        The resources structure is documented above.
-        """
-elif False:
-    SparkTemplateBodyDependentPackageArgsDict: TypeAlias = Mapping[str, Any]
+class SparkTemplateBodyDependentPackageArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    User group name.
+    """
+    resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['SparkTemplateBodyDependentPackageResourceArgsDict']]]]
+    """
+    User group resource.
+    The resources structure is documented above.
+    """
 
 @pulumi.input_type
 class SparkTemplateBodyDependentPackageArgs:
@@ -1262,21 +1450,18 @@ class SparkTemplateBodyDependentPackageArgs:
         pulumi.set(self, "resources", value)
 
 
-if not MYPY:
-    class SparkTemplateBodyDependentPackageResourceArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        User group name.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Resource type.
+class SparkTemplateBodyDependentPackageResourceArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    User group name.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Resource type.
 
-        <a name="SparkTemplate_Dependent_packages"></a>
-        The `dependent_packages` block supports:
-        """
-elif False:
-    SparkTemplateBodyDependentPackageResourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="SparkTemplate_Dependent_packages"></a>
+    The `dependent_packages` block supports:
+    """
 
 @pulumi.input_type
 class SparkTemplateBodyDependentPackageResourceArgs:
@@ -1323,21 +1508,18 @@ class SparkTemplateBodyDependentPackageResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class SparkTemplateBodyResourceArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        User group name.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Resource type.
+class SparkTemplateBodyResourceArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    User group name.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Resource type.
 
-        <a name="SparkTemplate_Dependent_packages"></a>
-        The `dependent_packages` block supports:
-        """
-elif False:
-    SparkTemplateBodyResourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="SparkTemplate_Dependent_packages"></a>
+    The `dependent_packages` block supports:
+    """
 
 @pulumi.input_type
 class SparkTemplateBodyResourceArgs:
@@ -1384,59 +1566,56 @@ class SparkTemplateBodyResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class SqlJobConfArgsDict(TypedDict):
-        dli_sql_job_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Sets the job running timeout interval. If the timeout interval
-        expires, the job is canceled. Unit: `ms`. Changing this parameter will create a new resource.
-        """
-        dli_sql_sqlasync_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether DDL and DCL statements are executed
-        asynchronously. The value true indicates that asynchronous execution is enabled. Default value is `false`.
-        Changing this parameter will create a new resource.
-        """
-        spark_sql_auto_broadcast_join_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum size of the table that
-        displays all working nodes when a connection is executed. You can set this parameter to -1 to disable the display.
-        Default value is `209715200`. Changing this parameter will create a new resource.
+class SqlJobConfArgsDict(TypedDict):
+    dli_sql_job_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Sets the job running timeout interval. If the timeout interval
+    expires, the job is canceled. Unit: `ms`. Changing this parameter will create a new resource.
+    """
+    dli_sql_sqlasync_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether DDL and DCL statements are executed
+    asynchronously. The value true indicates that asynchronous execution is enabled. Default value is `false`.
+    Changing this parameter will create a new resource.
+    """
+    spark_sql_auto_broadcast_join_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum size of the table that
+    displays all working nodes when a connection is executed. You can set this parameter to -1 to disable the display.
+    Default value is `209715200`. Changing this parameter will create a new resource.
 
-        > Currently, only the configuration unit metastore table that runs the ANALYZE TABLE COMPUTE statistics noscan
-        command and the file-based data source table that directly calculates statistics based on data files are supported.
-        Changing this parameter will create a new resource.
-        """
-        spark_sql_bad_records_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Path of bad records. Changing this parameter will create
-        a new resource.
-        """
-        spark_sql_dynamic_partition_overwrite_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        In dynamic mode, Spark does not delete
-        the previous partitions and only overwrites the partitions without data during execution. Default value is `false`.
-        Changing this parameter will create a new resource.
-        """
-        spark_sql_files_max_partition_bytes: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of bytes to be packed into a
-        single partition when a file is read. Default value is `134217728`. Changing this parameter will create a new
-        resource.
-        """
-        spark_sql_max_records_per_file: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of records to be written
-        into a single file. If the value is zero or negative, there is no limit. Default value is `0`.
-        Changing this parameter will create a new resource.
-        """
-        spark_sql_shuffle_partitions: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Default number of partitions used to filter
-        data for join or aggregation. Default value is `4096`. Changing this parameter will create a new resource.
-        """
-elif False:
-    SqlJobConfArgsDict: TypeAlias = Mapping[str, Any]
+    > Currently, only the configuration unit metastore table that runs the ANALYZE TABLE COMPUTE statistics noscan
+    command and the file-based data source table that directly calculates statistics based on data files are supported.
+    Changing this parameter will create a new resource.
+    """
+    spark_sql_bad_records_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Path of bad records. Changing this parameter will create
+    a new resource.
+    """
+    spark_sql_dynamic_partition_overwrite_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    In dynamic mode, Spark does not delete
+    the previous partitions and only overwrites the partitions without data during execution. Default value is `false`.
+    Changing this parameter will create a new resource.
+    """
+    spark_sql_files_max_partition_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of bytes to be packed into a
+    single partition when a file is read. Default value is `134217728`. Changing this parameter will create a new
+    resource.
+    """
+    spark_sql_max_records_per_file: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of records to be written
+    into a single file. If the value is zero or negative, there is no limit. Default value is `0`.
+    Changing this parameter will create a new resource.
+    """
+    spark_sql_shuffle_partitions: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Default number of partitions used to filter
+    data for join or aggregation. Default value is `4096`. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class SqlJobConfArgs:
@@ -1607,34 +1786,31 @@ class SqlJobConfArgs:
         pulumi.set(self, "spark_sql_shuffle_partitions", value)
 
 
-if not MYPY:
-    class TableColumnArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the table name. The name can contain only digits, letters,
-        and underscores, but cannot contain only digits or start with an underscore. Length range: 1 to 128 characters.
-        Changing this parameter will create a new resource.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies data type of column. Changing this parameter will create a new
-        resource.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies description of the table.
-        Changing this parameter will create a new resource.
-        """
-        is_partition: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the column is a partition column. The value
-        `true` indicates a partition column, and the value false indicates a non-partition column. The default value
-        is false. Changing this parameter will create a new resource.
+class TableColumnArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the table name. The name can contain only digits, letters,
+    and underscores, but cannot contain only digits or start with an underscore. Length range: 1 to 128 characters.
+    Changing this parameter will create a new resource.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies data type of column. Changing this parameter will create a new
+    resource.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies description of the table.
+    Changing this parameter will create a new resource.
+    """
+    is_partition: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the column is a partition column. The value
+    `true` indicates a partition column, and the value false indicates a non-partition column. The default value
+    is false. Changing this parameter will create a new resource.
 
-        > When creating a partition table, ensure that at least one column in the table is a non-partition column.
-        """
-elif False:
-    TableColumnArgsDict: TypeAlias = Mapping[str, Any]
+    > When creating a partition table, ensure that at least one column in the table is a non-partition column.
+    """
 
 @pulumi.input_type
 class TableColumnArgs:
@@ -1721,94 +1897,91 @@ class TableColumnArgs:
         pulumi.set(self, "is_partition", value)
 
 
-if not MYPY:
-    class TemplateSparkBodyArgsDict(TypedDict):
-        app_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the package that is of the JAR or pyFile type.
-        """
-        app_parameters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Input parameters of the main class, that is application parameters.
-        """
-        auto_recovery: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to enable the retry function.
-        """
-        configurations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        The configuration items of the DLI spark.
-        """
-        dependent_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateSparkBodyDependentPackageArgsDict']]]]
-        """
-        The list of package resource objects.
-        """
-        driver_cores: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of CPU cores of the Spark application driver.
-        """
-        driver_memory: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Driver memory of the Spark application, for example, 2 GB and 2048 MB.
-        """
-        executor_cores: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of CPU cores of each Executor in the Spark application.
-        """
-        executor_memory: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Executor memory of the Spark application, for example, 2 GB and 2048 MB.
-        """
-        files: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Name of the package that is of the file type and has been uploaded to the DLI resource management system.
-        """
-        jars: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Name of the package that is of the JAR type and has been uploaded to the DLI resource management system.
-        """
-        main_class: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Java/Spark main class of the template.
-        """
-        max_retry_times: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum retry times.
-        """
-        modules: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Name of the dependent system resource module.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The spark job name.
-        """
-        num_executors: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of Executors in a Spark application.
-        """
-        obs_bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OBS bucket for storing the Spark jobs.
-        """
-        python_files: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Name of the package that is of the PyFile type and has been uploaded to the DLI resource management system.
-        """
-        queue_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DLI queue name.
-        """
-        resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateSparkBodyResourceArgsDict']]]]
-        """
-        The list of resource objects.
-        """
-        specification: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Compute resource type. Currently, resource types A, B, and C are available.
-        """
-elif False:
-    TemplateSparkBodyArgsDict: TypeAlias = Mapping[str, Any]
+class TemplateSparkBodyArgsDict(TypedDict):
+    app_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the package that is of the JAR or pyFile type.
+    """
+    app_parameters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Input parameters of the main class, that is application parameters.
+    """
+    auto_recovery: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to enable the retry function.
+    """
+    configurations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The configuration items of the DLI spark.
+    """
+    dependent_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateSparkBodyDependentPackageArgsDict']]]]
+    """
+    The list of package resource objects.
+    """
+    driver_cores: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of CPU cores of the Spark application driver.
+    """
+    driver_memory: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Driver memory of the Spark application, for example, 2 GB and 2048 MB.
+    """
+    executor_cores: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of CPU cores of each Executor in the Spark application.
+    """
+    executor_memory: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Executor memory of the Spark application, for example, 2 GB and 2048 MB.
+    """
+    files: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Name of the package that is of the file type and has been uploaded to the DLI resource management system.
+    """
+    jars: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Name of the package that is of the JAR type and has been uploaded to the DLI resource management system.
+    """
+    main_class: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Java/Spark main class of the template.
+    """
+    max_retry_times: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum retry times.
+    """
+    modules: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Name of the dependent system resource module.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The spark job name.
+    """
+    num_executors: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of Executors in a Spark application.
+    """
+    obs_bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OBS bucket for storing the Spark jobs.
+    """
+    python_files: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Name of the package that is of the PyFile type and has been uploaded to the DLI resource management system.
+    """
+    queue_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DLI queue name.
+    """
+    resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateSparkBodyResourceArgsDict']]]]
+    """
+    The list of resource objects.
+    """
+    specification: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Compute resource type. Currently, resource types A, B, and C are available.
+    """
 
 @pulumi.input_type
 class TemplateSparkBodyArgs:
@@ -2153,18 +2326,15 @@ class TemplateSparkBodyArgs:
         pulumi.set(self, "specification", value)
 
 
-if not MYPY:
-    class TemplateSparkBodyDependentPackageArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        User group name.
-        """
-        resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateSparkBodyDependentPackageResourceArgsDict']]]]
-        """
-        User group resource.
-        """
-elif False:
-    TemplateSparkBodyDependentPackageArgsDict: TypeAlias = Mapping[str, Any]
+class TemplateSparkBodyDependentPackageArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    User group name.
+    """
+    resources: NotRequired[pulumi.Input[Sequence[pulumi.Input['TemplateSparkBodyDependentPackageResourceArgsDict']]]]
+    """
+    User group resource.
+    """
 
 @pulumi.input_type
 class TemplateSparkBodyDependentPackageArgs:
@@ -2205,18 +2375,15 @@ class TemplateSparkBodyDependentPackageArgs:
         pulumi.set(self, "resources", value)
 
 
-if not MYPY:
-    class TemplateSparkBodyDependentPackageResourceArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Resource name.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Resource type.
-        """
-elif False:
-    TemplateSparkBodyDependentPackageResourceArgsDict: TypeAlias = Mapping[str, Any]
+class TemplateSparkBodyDependentPackageResourceArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Resource name.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Resource type.
+    """
 
 @pulumi.input_type
 class TemplateSparkBodyDependentPackageResourceArgs:
@@ -2257,18 +2424,15 @@ class TemplateSparkBodyDependentPackageResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class TemplateSparkBodyResourceArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Resource name.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Resource type.
-        """
-elif False:
-    TemplateSparkBodyResourceArgsDict: TypeAlias = Mapping[str, Any]
+class TemplateSparkBodyResourceArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Resource name.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Resource type.
+    """
 
 @pulumi.input_type
 class TemplateSparkBodyResourceArgs:

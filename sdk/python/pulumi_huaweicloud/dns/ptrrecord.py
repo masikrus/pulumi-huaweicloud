@@ -28,6 +28,7 @@ class PtrrecordArgs:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Ptrrecord resource.
+
         :param pulumi.Input[_builtins.str] floatingip_id: Specifies the ID of the FloatingIP/EIP.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the PTR record.
@@ -160,6 +161,7 @@ class _PtrrecordState:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Ptrrecord resources.
+
         :param pulumi.Input[_builtins.str] address: The address of the FloatingIP/EIP.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the PTR record.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the PTR record.  
@@ -336,19 +338,16 @@ class Ptrrecord(pulumi.CustomResource):
 
         The PTR record resource can be imported using `id` (consists of the region and the EIP ID (`floatingip_id`)), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/ptrrecord:Ptrrecord test <id>
         ```
 
         You can also use `region` and `floatingip_id` instead of `id`, separated by a colon (:), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/ptrrecord:Ptrrecord test <region>:<floatingip_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -399,19 +398,16 @@ class Ptrrecord(pulumi.CustomResource):
 
         The PTR record resource can be imported using `id` (consists of the region and the EIP ID (`floatingip_id`)), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/ptrrecord:Ptrrecord test <id>
         ```
 
         You can also use `region` and `floatingip_id` instead of `id`, separated by a colon (:), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/ptrrecord:Ptrrecord test <region>:<floatingip_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PtrrecordArgs args: The arguments to use to populate this resource's properties.

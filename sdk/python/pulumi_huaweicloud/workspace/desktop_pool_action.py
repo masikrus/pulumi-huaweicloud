@@ -26,6 +26,7 @@ class DesktopPoolActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DesktopPoolAction resource.
+
         :param pulumi.Input[_builtins.str] op_type: Specifies the type of desktop pool operation.  
                The valid values are as follows:
                + **os-start**
@@ -128,6 +129,7 @@ class _DesktopPoolActionState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DesktopPoolAction resources.
+
         :param pulumi.Input[_builtins.str] op_type: Specifies the type of desktop pool operation.  
                The valid values are as follows:
                + **os-start**
@@ -277,6 +279,7 @@ class DesktopPoolAction(pulumi.CustomResource):
             type=action_type)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] op_type: Specifies the type of desktop pool operation.  
@@ -321,6 +324,7 @@ class DesktopPoolAction(pulumi.CustomResource):
             op_type=desktop_pool_op_type,
             type=action_type)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DesktopPoolActionArgs args: The arguments to use to populate this resource's properties.

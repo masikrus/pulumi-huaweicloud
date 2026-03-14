@@ -29,6 +29,7 @@ class AppServerGroupScalingPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppServerGroupScalingPolicy resource.
+
         :param pulumi.Input[_builtins.int] max_scaling_amount: Specifies the maximum number of instances that can be scaled out.
                The valid value is range from `1` to `100`.
         :param pulumi.Input['AppServerGroupScalingPolicyScalingPolicyBySessionArgs'] scaling_policy_by_session: Specifies the session-based scaling policy configuration.
@@ -36,7 +37,8 @@ class AppServerGroupScalingPolicyArgs:
                
                <a name="workspace_scaling_policy_by_session_object"></a>
                The `scaling_policy_by_session` block supports:
-        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to which the scaling policy belongs.
+        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to which the scaling
+               policy belongs.
         :param pulumi.Input[_builtins.int] single_expansion_count: Specifies the number of instances to scale out in a single scaling operation.
                The valid value is range from `1` to `10`.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the scaling policy is located.
@@ -84,7 +86,8 @@ class AppServerGroupScalingPolicyArgs:
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the ID of the server group to which the scaling policy belongs.
+        Specifies the ID of the server group to which the scaling
+        policy belongs.
         """
         return pulumi.get(self, "server_group_id")
 
@@ -140,6 +143,7 @@ class _AppServerGroupScalingPolicyState:
                  single_expansion_count: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AppServerGroupScalingPolicy resources.
+
         :param pulumi.Input[_builtins.bool] enable: Whether the scaling policy is enabled.
         :param pulumi.Input[_builtins.int] max_scaling_amount: Specifies the maximum number of instances that can be scaled out.
                The valid value is range from `1` to `100`.
@@ -150,7 +154,8 @@ class _AppServerGroupScalingPolicyState:
                
                <a name="workspace_scaling_policy_by_session_object"></a>
                The `scaling_policy_by_session` block supports:
-        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to which the scaling policy belongs.
+        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to which the scaling
+               policy belongs.
         :param pulumi.Input[_builtins.int] single_expansion_count: Specifies the number of instances to scale out in a single scaling operation.
                The valid value is range from `1` to `10`.
         """
@@ -236,7 +241,8 @@ class _AppServerGroupScalingPolicyState:
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of the server group to which the scaling policy belongs.
+        Specifies the ID of the server group to which the scaling
+        policy belongs.
         """
         return pulumi.get(self, "server_group_id")
 
@@ -298,11 +304,10 @@ class AppServerGroupScalingPolicy(pulumi.CustomResource):
 
         The APP server group scaling policy can be imported using the server group ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appServerGroupScalingPolicy:AppServerGroupScalingPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -315,7 +320,8 @@ class AppServerGroupScalingPolicy(pulumi.CustomResource):
                
                <a name="workspace_scaling_policy_by_session_object"></a>
                The `scaling_policy_by_session` block supports:
-        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to which the scaling policy belongs.
+        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to which the scaling
+               policy belongs.
         :param pulumi.Input[_builtins.int] single_expansion_count: Specifies the number of instances to scale out in a single scaling operation.
                The valid value is range from `1` to `10`.
         """
@@ -352,11 +358,10 @@ class AppServerGroupScalingPolicy(pulumi.CustomResource):
 
         The APP server group scaling policy can be imported using the server group ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appServerGroupScalingPolicy:AppServerGroupScalingPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppServerGroupScalingPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -437,7 +442,8 @@ class AppServerGroupScalingPolicy(pulumi.CustomResource):
                
                <a name="workspace_scaling_policy_by_session_object"></a>
                The `scaling_policy_by_session` block supports:
-        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to which the scaling policy belongs.
+        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to which the scaling
+               policy belongs.
         :param pulumi.Input[_builtins.int] single_expansion_count: Specifies the number of instances to scale out in a single scaling operation.
                The valid value is range from `1` to `10`.
         """
@@ -501,7 +507,8 @@ class AppServerGroupScalingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the ID of the server group to which the scaling policy belongs.
+        Specifies the ID of the server group to which the scaling
+        policy belongs.
         """
         return pulumi.get(self, "server_group_id")
 

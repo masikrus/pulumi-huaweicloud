@@ -29,6 +29,7 @@ class SecurityPermissionSetArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityPermissionSet resource.
+
         :param pulumi.Input[_builtins.str] manager_id: Specifies the manager ID of the permission set. The manager can choose from
                member management under the workspace. The manager ID cancontain
                `1` to `128` characters.
@@ -189,6 +190,7 @@ class _SecurityPermissionSetState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityPermissionSet resources.
+
         :param pulumi.Input[_builtins.str] created_at: The create time of the permission set.
         :param pulumi.Input[_builtins.str] created_by: The creator of the permission set.
         :param pulumi.Input[_builtins.str] datasource_type: The data source type managed by permission sets.
@@ -481,11 +483,10 @@ class SecurityPermissionSet(pulumi.CustomResource):
 
         The DataArts Security permission set can be imported using the `workspace_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/securityPermissionSet:SecurityPermissionSet test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -543,11 +544,10 @@ class SecurityPermissionSet(pulumi.CustomResource):
 
         The DataArts Security permission set can be imported using the `workspace_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/securityPermissionSet:SecurityPermissionSet test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecurityPermissionSetArgs args: The arguments to use to populate this resource's properties.

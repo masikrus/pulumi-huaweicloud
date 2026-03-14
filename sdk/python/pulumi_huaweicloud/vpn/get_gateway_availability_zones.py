@@ -103,7 +103,7 @@ def get_gateway_availability_zones(attachment_type: Optional[_builtins.str] = No
 
     config = pulumi.Config()
     flavor = config.require_object("flavor")
-    test = huaweicloud.vpn.get_gateway_availability_zones(flavor=flavor)
+    test = huaweicloud.Vpn.get_gateway_availability_zones(flavor=flavor)
     ```
 
 
@@ -119,7 +119,7 @@ def get_gateway_availability_zones(attachment_type: Optional[_builtins.str] = No
     __args__['flavor'] = flavor
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getGatewayAvailabilityZones:getGatewayAvailabilityZones', __args__, opts=opts, typ=GetGatewayAvailabilityZonesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getGatewayAvailabilityZones:getGatewayAvailabilityZones', __args__, opts=opts, typ=GetGatewayAvailabilityZonesResult).value
 
     return AwaitableGetGatewayAvailabilityZonesResult(
         attachment_type=pulumi.get(__ret__, 'attachment_type'),
@@ -142,7 +142,7 @@ def get_gateway_availability_zones_output(attachment_type: Optional[pulumi.Input
 
     config = pulumi.Config()
     flavor = config.require_object("flavor")
-    test = huaweicloud.vpn.get_gateway_availability_zones(flavor=flavor)
+    test = huaweicloud.Vpn.get_gateway_availability_zones(flavor=flavor)
     ```
 
 
@@ -158,7 +158,7 @@ def get_gateway_availability_zones_output(attachment_type: Optional[pulumi.Input
     __args__['flavor'] = flavor
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getGatewayAvailabilityZones:getGatewayAvailabilityZones', __args__, opts=opts, typ=GetGatewayAvailabilityZonesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getGatewayAvailabilityZones:getGatewayAvailabilityZones', __args__, opts=opts, typ=GetGatewayAvailabilityZonesResult)
     return __ret__.apply(lambda __response__: GetGatewayAvailabilityZonesResult(
         attachment_type=pulumi.get(__response__, 'attachment_type'),
         flavor=pulumi.get(__response__, 'flavor'),

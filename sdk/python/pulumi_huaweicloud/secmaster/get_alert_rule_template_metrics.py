@@ -93,7 +93,7 @@ def get_alert_rule_template_metrics(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    example = huaweicloud.secmaster.get_alert_rule_template_metrics(workspace_id=workspace_id)
+    example = huaweicloud.Secmaster.get_alert_rule_template_metrics(workspace_id=workspace_id)
     ```
 
 
@@ -105,7 +105,7 @@ def get_alert_rule_template_metrics(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getAlertRuleTemplateMetrics:getAlertRuleTemplateMetrics', __args__, opts=opts, typ=GetAlertRuleTemplateMetricsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getAlertRuleTemplateMetrics:getAlertRuleTemplateMetrics', __args__, opts=opts, typ=GetAlertRuleTemplateMetricsResult).value
 
     return AwaitableGetAlertRuleTemplateMetricsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -126,7 +126,7 @@ def get_alert_rule_template_metrics_output(region: Optional[pulumi.Input[Optiona
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    example = huaweicloud.secmaster.get_alert_rule_template_metrics(workspace_id=workspace_id)
+    example = huaweicloud.Secmaster.get_alert_rule_template_metrics(workspace_id=workspace_id)
     ```
 
 
@@ -138,7 +138,7 @@ def get_alert_rule_template_metrics_output(region: Optional[pulumi.Input[Optiona
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getAlertRuleTemplateMetrics:getAlertRuleTemplateMetrics', __args__, opts=opts, typ=GetAlertRuleTemplateMetricsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getAlertRuleTemplateMetrics:getAlertRuleTemplateMetrics', __args__, opts=opts, typ=GetAlertRuleTemplateMetricsResult)
     return __ret__.apply(lambda __response__: GetAlertRuleTemplateMetricsResult(
         id=pulumi.get(__response__, 'id'),
         metrics_attribute=pulumi.get(__response__, 'metrics_attribute'),

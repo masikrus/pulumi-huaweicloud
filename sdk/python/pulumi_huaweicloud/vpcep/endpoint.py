@@ -36,6 +36,7 @@ class EndpointArgs:
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Endpoint resource.
+
         :param pulumi.Input[_builtins.str] service_id: Specifies the ID of the VPC endpoint service.
                The VPC endpoint service could be private interface service, public interface service or gateway service.
                + For private interface service, the value of `service_id` can be obtained through resource `Vpcep.Service`
@@ -397,6 +398,7 @@ class _EndpointState:
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Endpoint resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the VPC endpoint. The value can contain
                characters such as letters and digits, but cannot contain less than signs (<) and great than signs (>).
                
@@ -978,39 +980,17 @@ class Endpoint(pulumi.CustomResource):
 
         VPC endpoint can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpcep/endpoint:Endpoint test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enable_dns`.
 
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpcep_endpoint" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enable_dns,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1233,39 +1213,17 @@ class Endpoint(pulumi.CustomResource):
 
         VPC endpoint can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpcep/endpoint:Endpoint test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enable_dns`.
 
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpcep_endpoint" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enable_dns,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param EndpointArgs args: The arguments to use to populate this resource's properties.

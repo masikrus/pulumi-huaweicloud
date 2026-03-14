@@ -165,7 +165,7 @@ def get_build_tasks(build_status: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_build_tasks(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_build_tasks(project_id=codearts_project_id)
     ```
 
 
@@ -191,7 +191,7 @@ def get_build_tasks(build_status: Optional[_builtins.str] = None,
     __args__['sortField'] = sort_field
     __args__['sortOrder'] = sort_order
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getBuildTasks:getBuildTasks', __args__, opts=opts, typ=GetBuildTasksResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getBuildTasks:getBuildTasks', __args__, opts=opts, typ=GetBuildTasksResult).value
 
     return AwaitableGetBuildTasksResult(
         build_status=pulumi.get(__ret__, 'build_status'),
@@ -226,7 +226,7 @@ def get_build_tasks_output(build_status: Optional[pulumi.Input[Optional[_builtin
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_build_tasks(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_build_tasks(project_id=codearts_project_id)
     ```
 
 
@@ -252,7 +252,7 @@ def get_build_tasks_output(build_status: Optional[pulumi.Input[Optional[_builtin
     __args__['sortField'] = sort_field
     __args__['sortOrder'] = sort_order
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getBuildTasks:getBuildTasks', __args__, opts=opts, typ=GetBuildTasksResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getBuildTasks:getBuildTasks', __args__, opts=opts, typ=GetBuildTasksResult)
     return __ret__.apply(lambda __response__: GetBuildTasksResult(
         build_status=pulumi.get(__response__, 'build_status'),
         by_group=pulumi.get(__response__, 'by_group'),

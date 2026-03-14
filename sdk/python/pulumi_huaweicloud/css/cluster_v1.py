@@ -28,6 +28,7 @@ class ClusterV1Args:
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  client_node_config: Optional[pulumi.Input['ClusterV1ClientNodeConfigArgs']] = None,
                  cold_node_config: Optional[pulumi.Input['ClusterV1ColdNodeConfigArgs']] = None,
+                 disk_encryption: Optional[pulumi.Input['ClusterV1DiskEncryptionArgs']] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_type: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -51,6 +52,7 @@ class ClusterV1Args:
                  vpcep_endpoint: Optional[pulumi.Input['ClusterV1VpcepEndpointArgs']] = None):
         """
         The set of arguments for constructing a ClusterV1 resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: schema: Required
         :param pulumi.Input['ClusterV1EssNodeConfigArgs'] ess_node_config: schema: Required
         :param pulumi.Input[_builtins.str] security_group_id: schema: Required
@@ -70,6 +72,8 @@ class ClusterV1Args:
             pulumi.set(__self__, "client_node_config", client_node_config)
         if cold_node_config is not None:
             pulumi.set(__self__, "cold_node_config", cold_node_config)
+        if disk_encryption is not None:
+            pulumi.set(__self__, "disk_encryption", disk_encryption)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if engine_type is not None:
@@ -184,6 +188,15 @@ class ClusterV1Args:
     @cold_node_config.setter
     def cold_node_config(self, value: Optional[pulumi.Input['ClusterV1ColdNodeConfigArgs']]):
         pulumi.set(self, "cold_node_config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryption")
+    def disk_encryption(self) -> Optional[pulumi.Input['ClusterV1DiskEncryptionArgs']]:
+        return pulumi.get(self, "disk_encryption")
+
+    @disk_encryption.setter
+    def disk_encryption(self, value: Optional[pulumi.Input['ClusterV1DiskEncryptionArgs']]):
+        pulumi.set(self, "disk_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
@@ -403,6 +416,7 @@ class _ClusterV1State:
                  created: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  disk_encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
+                 disk_encryption: Optional[pulumi.Input['ClusterV1DiskEncryptionArgs']] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -434,6 +448,7 @@ class _ClusterV1State:
                  vpcep_ip: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClusterV1 resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: schema: Required
         :param pulumi.Input[_builtins.str] created: schema: Deprecated; use created_at instead
         :param pulumi.Input['ClusterV1EssNodeConfigArgs'] ess_node_config: schema: Required
@@ -463,6 +478,8 @@ class _ClusterV1State:
             pulumi.set(__self__, "created_at", created_at)
         if disk_encrypted is not None:
             pulumi.set(__self__, "disk_encrypted", disk_encrypted)
+        if disk_encryption is not None:
+            pulumi.set(__self__, "disk_encryption", disk_encryption)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if endpoint is not None:
@@ -632,6 +649,15 @@ class _ClusterV1State:
     @disk_encrypted.setter
     def disk_encrypted(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "disk_encrypted", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryption")
+    def disk_encryption(self) -> Optional[pulumi.Input['ClusterV1DiskEncryptionArgs']]:
+        return pulumi.get(self, "disk_encryption")
+
+    @disk_encryption.setter
+    def disk_encryption(self, value: Optional[pulumi.Input['ClusterV1DiskEncryptionArgs']]):
+        pulumi.set(self, "disk_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
@@ -921,6 +947,7 @@ class ClusterV1(pulumi.CustomResource):
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  client_node_config: Optional[pulumi.Input[Union['ClusterV1ClientNodeConfigArgs', 'ClusterV1ClientNodeConfigArgsDict']]] = None,
                  cold_node_config: Optional[pulumi.Input[Union['ClusterV1ColdNodeConfigArgs', 'ClusterV1ColdNodeConfigArgsDict']]] = None,
+                 disk_encryption: Optional[pulumi.Input[Union['ClusterV1DiskEncryptionArgs', 'ClusterV1DiskEncryptionArgsDict']]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_type: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -946,6 +973,7 @@ class ClusterV1(pulumi.CustomResource):
                  __props__=None):
         """
         Create a ClusterV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] availability_zone: schema: Required
@@ -962,6 +990,7 @@ class ClusterV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ClusterV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ClusterV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -983,6 +1012,7 @@ class ClusterV1(pulumi.CustomResource):
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  client_node_config: Optional[pulumi.Input[Union['ClusterV1ClientNodeConfigArgs', 'ClusterV1ClientNodeConfigArgsDict']]] = None,
                  cold_node_config: Optional[pulumi.Input[Union['ClusterV1ColdNodeConfigArgs', 'ClusterV1ColdNodeConfigArgsDict']]] = None,
+                 disk_encryption: Optional[pulumi.Input[Union['ClusterV1DiskEncryptionArgs', 'ClusterV1DiskEncryptionArgsDict']]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_type: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1020,6 +1050,7 @@ class ClusterV1(pulumi.CustomResource):
             __props__.__dict__["charging_mode"] = charging_mode
             __props__.__dict__["client_node_config"] = client_node_config
             __props__.__dict__["cold_node_config"] = cold_node_config
+            __props__.__dict__["disk_encryption"] = disk_encryption
             __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["engine_type"] = engine_type
             if engine_version is None and not opts.urn:
@@ -1079,6 +1110,7 @@ class ClusterV1(pulumi.CustomResource):
             created: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             disk_encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
+            disk_encryption: Optional[pulumi.Input[Union['ClusterV1DiskEncryptionArgs', 'ClusterV1DiskEncryptionArgsDict']]] = None,
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             endpoint: Optional[pulumi.Input[_builtins.str]] = None,
             engine_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1137,6 +1169,7 @@ class ClusterV1(pulumi.CustomResource):
         __props__.__dict__["created"] = created
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["disk_encrypted"] = disk_encrypted
+        __props__.__dict__["disk_encryption"] = disk_encryption
         __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["engine_type"] = engine_type
@@ -1228,6 +1261,11 @@ class ClusterV1(pulumi.CustomResource):
     @pulumi.getter(name="diskEncrypted")
     def disk_encrypted(self) -> pulumi.Output[_builtins.bool]:
         return pulumi.get(self, "disk_encrypted")
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryption")
+    def disk_encryption(self) -> pulumi.Output['outputs.ClusterV1DiskEncryption']:
+        return pulumi.get(self, "disk_encryption")
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")

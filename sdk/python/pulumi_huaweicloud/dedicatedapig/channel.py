@@ -34,6 +34,7 @@ class ChannelArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Channel resource.
+
         :param pulumi.Input[_builtins.int] balance_strategy: Specifies the distribution algorithm.  
                The valid values are as follows:
                + **1**: Weighted round robin (WRR).
@@ -273,6 +274,7 @@ class _ChannelState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Channel resources.
+
         :param pulumi.Input[_builtins.int] balance_strategy: Specifies the distribution algorithm.  
                The valid values are as follows:
                + **1**: Weighted round robin (WRR).
@@ -582,7 +584,7 @@ class Channel(pulumi.CustomResource):
             members=[{
                 "id": entry["value"]["id"],
                 "weight": entry["value"]["weight"],
-            } for entry in [{"key": k, "value": v} for k, v in backend_servers]],
+            } for entry in [{"key": k, "value": v} for k, v in backend_servers.items()]],
             instance_id=instance_id,
             name=channel_name,
             port=8080)
@@ -604,15 +606,64 @@ class Channel(pulumi.CustomResource):
                 "name": value["name"],
                 "description": value["description"],
                 "weight": value["weight"],
-            } for entry in [{"key": k, "value": v} for k, v in backend_server_groups]],
+            } for entry in [{"key": k, "value": v} for k, v in backend_server_groups.items()]],
             members=[{
                 "group_name": value["group_name"],
                 "id": value["id"],
                 "weight": value["weight"],
-            } for entry in [{"key": k, "value": v} for k, v in backend_servers]],
+            } for entry in [{"key": k, "value": v} for k, v in backend_servers.items()]],
             instance_id=instance_id,
             name=channel_name,
             port=8080)
+        ```
+
+        ### Create a channel of type microservice
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        channel_name = config.require_object("channelName")
+        cluster_id = config.require_object("clusterId")
+        stateless_workload_name = config.require_object("statelessWorkloadName")
+        member_groups_config = config.require_object("memberGroupsConfig")
+        test = huaweicloud.dedicatedapig.Channel("test",
+            member_groups=[{
+                "name": entry["value"]["name"],
+                "weight": entry["value"]["weight"],
+                "microservice_port": entry["value"]["microservice_port"],
+                "microservice_labels": entry["value"]["microservice_labels"],
+            } for entry in [{"key": k, "value": v} for k, v in member_groups_config.items()]],
+            instance_id=instance_id,
+            name=channel_name,
+            port=80,
+            balance_strategy=1,
+            member_type="ip",
+            type="microservice",
+            health_check={
+                "protocol": "TCP",
+                "threshold_normal": 2,
+                "threshold_abnormal": 2,
+                "interval": 5,
+                "timeout": 2,
+                "port": 65530,
+                "path": "/",
+                "method": "GET",
+                "http_codes": "200,201,208-209",
+                "enable_client_ssl": False,
+                "status": 1,
+            },
+            microservice={
+                "cce_config": {
+                    "cluster_id": cluster_id,
+                    "namespace": "default",
+                    "workload_type": "deployment",
+                    "label_key": "app",
+                    "label_value": stateless_workload_name,
+                },
+            })
         ```
 
         ### Create a channel of type reference
@@ -656,11 +707,10 @@ class Channel(pulumi.CustomResource):
 
         Channels can be imported using their `id` and the ID of the related dedicated instance, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/channel:Channel test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -731,7 +781,7 @@ class Channel(pulumi.CustomResource):
             members=[{
                 "id": entry["value"]["id"],
                 "weight": entry["value"]["weight"],
-            } for entry in [{"key": k, "value": v} for k, v in backend_servers]],
+            } for entry in [{"key": k, "value": v} for k, v in backend_servers.items()]],
             instance_id=instance_id,
             name=channel_name,
             port=8080)
@@ -753,15 +803,64 @@ class Channel(pulumi.CustomResource):
                 "name": value["name"],
                 "description": value["description"],
                 "weight": value["weight"],
-            } for entry in [{"key": k, "value": v} for k, v in backend_server_groups]],
+            } for entry in [{"key": k, "value": v} for k, v in backend_server_groups.items()]],
             members=[{
                 "group_name": value["group_name"],
                 "id": value["id"],
                 "weight": value["weight"],
-            } for entry in [{"key": k, "value": v} for k, v in backend_servers]],
+            } for entry in [{"key": k, "value": v} for k, v in backend_servers.items()]],
             instance_id=instance_id,
             name=channel_name,
             port=8080)
+        ```
+
+        ### Create a channel of type microservice
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        channel_name = config.require_object("channelName")
+        cluster_id = config.require_object("clusterId")
+        stateless_workload_name = config.require_object("statelessWorkloadName")
+        member_groups_config = config.require_object("memberGroupsConfig")
+        test = huaweicloud.dedicatedapig.Channel("test",
+            member_groups=[{
+                "name": entry["value"]["name"],
+                "weight": entry["value"]["weight"],
+                "microservice_port": entry["value"]["microservice_port"],
+                "microservice_labels": entry["value"]["microservice_labels"],
+            } for entry in [{"key": k, "value": v} for k, v in member_groups_config.items()]],
+            instance_id=instance_id,
+            name=channel_name,
+            port=80,
+            balance_strategy=1,
+            member_type="ip",
+            type="microservice",
+            health_check={
+                "protocol": "TCP",
+                "threshold_normal": 2,
+                "threshold_abnormal": 2,
+                "interval": 5,
+                "timeout": 2,
+                "port": 65530,
+                "path": "/",
+                "method": "GET",
+                "http_codes": "200,201,208-209",
+                "enable_client_ssl": False,
+                "status": 1,
+            },
+            microservice={
+                "cce_config": {
+                    "cluster_id": cluster_id,
+                    "namespace": "default",
+                    "workload_type": "deployment",
+                    "label_key": "app",
+                    "label_value": stateless_workload_name,
+                },
+            })
         ```
 
         ### Create a channel of type reference
@@ -805,11 +904,10 @@ class Channel(pulumi.CustomResource):
 
         Channels can be imported using their `id` and the ID of the related dedicated instance, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/channel:Channel test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ChannelArgs args: The arguments to use to populate this resource's properties.

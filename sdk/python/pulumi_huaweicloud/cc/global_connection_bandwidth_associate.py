@@ -26,6 +26,7 @@ class GlobalConnectionBandwidthAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GlobalConnectionBandwidthAssociate resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['GlobalConnectionBandwidthAssociateGcbBindingResourceArgs']]] gcb_binding_resources: The resources to associate with the global connection bandwidth.
                The gcb_binding_resources structure is documented below.
         :param pulumi.Input[_builtins.str] gcb_id: The global connection bandwidth ID.
@@ -94,6 +95,7 @@ class _GlobalConnectionBandwidthAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GlobalConnectionBandwidthAssociate resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['GlobalConnectionBandwidthAssociateGcbBindingResourceArgs']]] gcb_binding_resources: The resources to associate with the global connection bandwidth.
                The gcb_binding_resources structure is documented below.
         :param pulumi.Input[_builtins.str] gcb_id: The global connection bandwidth ID.
@@ -193,11 +195,10 @@ class GlobalConnectionBandwidthAssociate(pulumi.CustomResource):
 
         The global connection bandwidth associate resource can be imported using the global connection bandwidth ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/globalConnectionBandwidthAssociate:GlobalConnectionBandwidthAssociate test <gcb_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -245,11 +246,10 @@ class GlobalConnectionBandwidthAssociate(pulumi.CustomResource):
 
         The global connection bandwidth associate resource can be imported using the global connection bandwidth ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/globalConnectionBandwidthAssociate:GlobalConnectionBandwidthAssociate test <gcb_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GlobalConnectionBandwidthAssociateArgs args: The arguments to use to populate this resource's properties.

@@ -60,6 +60,7 @@ class ComponentV3Args:
                  workload_content: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ComponentV3 resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID to which the component belongs.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID where the component is deployed.  
@@ -750,6 +751,7 @@ class _ComponentV3State:
                  workload_content: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ComponentV3 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ComponentV3AffinityArgs']]] affinities: Specifies the affinity configuration of the component.  
                The affinity structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ComponentV3AntiAffinityArgs']]] anti_affinities: Specifies the anti-affinity configuration of the component.  
@@ -758,15 +760,15 @@ class _ComponentV3State:
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] build: Specifies the build configuration of the component, in JSON format.  
                For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__en-us_topic_0220056060_table7559740).
-        :param pulumi.Input[_builtins.str] build_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'build'.
+        :param pulumi.Input[_builtins.str] build_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'build'.
         :param pulumi.Input[_builtins.str] command: Specifies the command list of the probe.  
                This parameter is only available when the `type` is set to `command`.
                
                <a name="servicestage_v3_component_external_accesses"></a>
                The `external_accesses` block supports:
-        :param pulumi.Input[_builtins.str] command_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'command'.
+        :param pulumi.Input[_builtins.str] command_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'command'.
         :param pulumi.Input[_builtins.str] config_mode: Specifies the configuration mode of the component.
                The valid values are as follows:
                + **yaml**
@@ -821,8 +823,8 @@ class _ComponentV3State:
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] source: Specifies the source configuration of the component, in JSON format.  
                For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__en-us_topic_0220056058_ref28944532).
-        :param pulumi.Input[_builtins.str] source_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'source'.
+        :param pulumi.Input[_builtins.str] source_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'source'.
         :param pulumi.Input[_builtins.str] status: The status of the component.
                + **RUNNING**
                + **PENDING**
@@ -835,11 +837,11 @@ class _ComponentV3State:
         :param pulumi.Input[_builtins.str] timezone: Specifies the time zone in which the component runs, e.g. **Asia/Shanghai**.
         :param pulumi.Input[_builtins.str] tomcat_opts: Specifies the configuration of the tomcat server, in JSON format.  
                For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table2836191954317).
-        :param pulumi.Input[_builtins.str] tomcat_opts_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'tomcat_opts'.
+        :param pulumi.Input[_builtins.str] tomcat_opts_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'tomcat_opts'.
         :param pulumi.Input[_builtins.str] update_strategy: Specifies the configuration of the update strategy, in JSON format.
-        :param pulumi.Input[_builtins.str] update_strategy_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'update_strategy'.
+        :param pulumi.Input[_builtins.str] update_strategy_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'update_strategy'.
         :param pulumi.Input[_builtins.str] updated_at: The latest update time of the component, in RFC3339 format.
         :param pulumi.Input[_builtins.str] version: Specifies the stack version.  
                Changing this will create a new resource.
@@ -995,8 +997,8 @@ class _ComponentV3State:
     @pulumi.getter(name="buildOrigin")
     def build_origin(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'build'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'build'.
         """
         return pulumi.get(self, "build_origin")
 
@@ -1024,8 +1026,8 @@ class _ComponentV3State:
     @pulumi.getter(name="commandOrigin")
     def command_origin(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'command'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'command'.
         """
         return pulumi.get(self, "command_origin")
 
@@ -1375,8 +1377,8 @@ class _ComponentV3State:
     @pulumi.getter(name="sourceOrigin")
     def source_origin(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'source'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'source'.
         """
         return pulumi.get(self, "source_origin")
 
@@ -1455,8 +1457,8 @@ class _ComponentV3State:
     @pulumi.getter(name="tomcatOptsOrigin")
     def tomcat_opts_origin(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'tomcat_opts'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'tomcat_opts'.
         """
         return pulumi.get(self, "tomcat_opts_origin")
 
@@ -1480,8 +1482,8 @@ class _ComponentV3State:
     @pulumi.getter(name="updateStrategyOrigin")
     def update_strategy_origin(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'update_strategy'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'update_strategy'.
         """
         return pulumi.get(self, "update_strategy_origin")
 
@@ -1737,41 +1739,17 @@ class ComponentV3(pulumi.CustomResource):
 
         Components can be imported using `application_id` and `id` separated by a slash e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/componentV3:ComponentV3 test <application_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to attributes missing from the API
-
         response, security or some other reason.
-
         The missing attribute is `workload_content`, `tags`.
-
         It is generally recommended running `pulumi preview` after importing resource.
-
         You can decide if changes should be applied to resource, or the definition should be updated to align with the resource.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_servicestagev3_component" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              workload_content, tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2027,41 +2005,17 @@ class ComponentV3(pulumi.CustomResource):
 
         Components can be imported using `application_id` and `id` separated by a slash e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/componentV3:ComponentV3 test <application_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to attributes missing from the API
-
         response, security or some other reason.
-
         The missing attribute is `workload_content`, `tags`.
-
         It is generally recommended running `pulumi preview` after importing resource.
-
         You can decide if changes should be applied to resource, or the definition should be updated to align with the resource.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_servicestagev3_component" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              workload_content, tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ComponentV3Args args: The arguments to use to populate this resource's properties.
@@ -2251,15 +2205,15 @@ class ComponentV3(pulumi.CustomResource):
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] build: Specifies the build configuration of the component, in JSON format.  
                For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__en-us_topic_0220056060_table7559740).
-        :param pulumi.Input[_builtins.str] build_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'build'.
+        :param pulumi.Input[_builtins.str] build_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'build'.
         :param pulumi.Input[_builtins.str] command: Specifies the command list of the probe.  
                This parameter is only available when the `type` is set to `command`.
                
                <a name="servicestage_v3_component_external_accesses"></a>
                The `external_accesses` block supports:
-        :param pulumi.Input[_builtins.str] command_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'command'.
+        :param pulumi.Input[_builtins.str] command_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'command'.
         :param pulumi.Input[_builtins.str] config_mode: Specifies the configuration mode of the component.
                The valid values are as follows:
                + **yaml**
@@ -2314,8 +2268,8 @@ class ComponentV3(pulumi.CustomResource):
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] source: Specifies the source configuration of the component, in JSON format.  
                For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__en-us_topic_0220056058_ref28944532).
-        :param pulumi.Input[_builtins.str] source_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'source'.
+        :param pulumi.Input[_builtins.str] source_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'source'.
         :param pulumi.Input[_builtins.str] status: The status of the component.
                + **RUNNING**
                + **PENDING**
@@ -2328,11 +2282,11 @@ class ComponentV3(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] timezone: Specifies the time zone in which the component runs, e.g. **Asia/Shanghai**.
         :param pulumi.Input[_builtins.str] tomcat_opts: Specifies the configuration of the tomcat server, in JSON format.  
                For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0076.html#servicestage_06_0076__table2836191954317).
-        :param pulumi.Input[_builtins.str] tomcat_opts_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'tomcat_opts'.
+        :param pulumi.Input[_builtins.str] tomcat_opts_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'tomcat_opts'.
         :param pulumi.Input[_builtins.str] update_strategy: Specifies the configuration of the update strategy, in JSON format.
-        :param pulumi.Input[_builtins.str] update_strategy_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'update_strategy'.
+        :param pulumi.Input[_builtins.str] update_strategy_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'update_strategy'.
         :param pulumi.Input[_builtins.str] updated_at: The latest update time of the component, in RFC3339 format.
         :param pulumi.Input[_builtins.str] version: Specifies the stack version.  
                Changing this will create a new resource.
@@ -2432,8 +2386,8 @@ class ComponentV3(pulumi.CustomResource):
     @pulumi.getter(name="buildOrigin")
     def build_origin(self) -> pulumi.Output[_builtins.str]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'build'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'build'.
         """
         return pulumi.get(self, "build_origin")
 
@@ -2453,8 +2407,8 @@ class ComponentV3(pulumi.CustomResource):
     @pulumi.getter(name="commandOrigin")
     def command_origin(self) -> pulumi.Output[_builtins.str]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'command'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'command'.
         """
         return pulumi.get(self, "command_origin")
 
@@ -2696,8 +2650,8 @@ class ComponentV3(pulumi.CustomResource):
     @pulumi.getter(name="sourceOrigin")
     def source_origin(self) -> pulumi.Output[_builtins.str]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'source'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'source'.
         """
         return pulumi.get(self, "source_origin")
 
@@ -2752,8 +2706,8 @@ class ComponentV3(pulumi.CustomResource):
     @pulumi.getter(name="tomcatOptsOrigin")
     def tomcat_opts_origin(self) -> pulumi.Output[_builtins.str]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'tomcat_opts'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'tomcat_opts'.
         """
         return pulumi.get(self, "tomcat_opts_origin")
 
@@ -2769,8 +2723,8 @@ class ComponentV3(pulumi.CustomResource):
     @pulumi.getter(name="updateStrategyOrigin")
     def update_strategy_origin(self) -> pulumi.Output[_builtins.str]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'update_strategy'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'update_strategy'.
         """
         return pulumi.get(self, "update_strategy_origin")
 

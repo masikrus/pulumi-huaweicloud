@@ -30,6 +30,7 @@ class LinkArgs:
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Link resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the id of CDM cluster which this link belongs to.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Specifies the link configuration parameters. Each type of the data source to be connected
@@ -257,6 +258,7 @@ class _LinkState:
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Link resources.
+
         :param pulumi.Input[_builtins.str] access_key: Specifies access key for accessing the data sources.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the id of CDM cluster which this link belongs to.
                Changing this parameter will create a new resource.
@@ -495,6 +497,42 @@ class Link(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Link to OBS
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        obs_name = config.require_object("obsName")
+        obs_link_name = config.require_object("obsLinkName")
+        cdm_cluster_id = config.require_object("cdmClusterId")
+        access_key = config.require_object("accessKey")
+        secret_key = config.require_object("secretKey")
+        bucket = huaweicloud.obs.Bucket("bucket",
+            bucket_value=obs_name,
+            acl="private",
+            force_destroy=True)
+        obs_link = huaweicloud.cdm.Link("obsLink",
+            name=obs_link_name,
+            connector="obs-connector",
+            cluster_id=cdm_cluster_id,
+            config={
+                "storageType": "OBS",
+                "server": std.index.trimprefix(input=bucket.bucket_domain_name,
+                    prefix=bucket.bucket_value.apply(lambda bucket_value: f"{bucket_value}."))["result"],
+                "port": "443",
+                "properties": json.dumps({
+                    "connectionTimeout": "10000",
+                    "socketTimeout": "20000",
+                }),
+            },
+            access_key=access_key,
+            secret_key=secret_key)
+        ```
+
         ### Link to MySql
 
         ```python
@@ -524,42 +562,18 @@ class Link(pulumi.CustomResource):
         ## Import
 
         The link can be imported by `id`, It is composed of the ID of CDM cluster and the name of job, separated by a slash.
-
          For example,
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cdm/link:Link test b11b407c-e604-4e8d-8bc4-92398320b847/linkName
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`, `secret_key` and `config`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cdm_link" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, secret_key, config,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -624,6 +638,42 @@ class Link(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Link to OBS
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        obs_name = config.require_object("obsName")
+        obs_link_name = config.require_object("obsLinkName")
+        cdm_cluster_id = config.require_object("cdmClusterId")
+        access_key = config.require_object("accessKey")
+        secret_key = config.require_object("secretKey")
+        bucket = huaweicloud.obs.Bucket("bucket",
+            bucket_value=obs_name,
+            acl="private",
+            force_destroy=True)
+        obs_link = huaweicloud.cdm.Link("obsLink",
+            name=obs_link_name,
+            connector="obs-connector",
+            cluster_id=cdm_cluster_id,
+            config={
+                "storageType": "OBS",
+                "server": std.index.trimprefix(input=bucket.bucket_domain_name,
+                    prefix=bucket.bucket_value.apply(lambda bucket_value: f"{bucket_value}."))["result"],
+                "port": "443",
+                "properties": json.dumps({
+                    "connectionTimeout": "10000",
+                    "socketTimeout": "20000",
+                }),
+            },
+            access_key=access_key,
+            secret_key=secret_key)
+        ```
+
         ### Link to MySql
 
         ```python
@@ -653,42 +703,18 @@ class Link(pulumi.CustomResource):
         ## Import
 
         The link can be imported by `id`, It is composed of the ID of CDM cluster and the name of job, separated by a slash.
-
          For example,
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cdm/link:Link test b11b407c-e604-4e8d-8bc4-92398320b847/linkName
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`, `secret_key` and `config`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cdm_link" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, secret_key, config,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param LinkArgs args: The arguments to use to populate this resource's properties.

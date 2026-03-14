@@ -97,7 +97,7 @@ def get_assignment_package_results(assignment_package_id: Optional[_builtins.str
 
     config = pulumi.Config()
     assignment_package_id = config.require_object("assignmentPackageId")
-    basic = huaweicloud.rms.get_assignment_package_results(assignment_package_id=assignment_package_id)
+    basic = huaweicloud.Rms.get_assignment_package_results(assignment_package_id=assignment_package_id)
     ```
 
 
@@ -108,7 +108,7 @@ def get_assignment_package_results(assignment_package_id: Optional[_builtins.str
     __args__['assignmentPackageId'] = assignment_package_id
     __args__['policyAssignmentName'] = policy_assignment_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getAssignmentPackageResults:getAssignmentPackageResults', __args__, opts=opts, typ=GetAssignmentPackageResultsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getAssignmentPackageResults:getAssignmentPackageResults', __args__, opts=opts, typ=GetAssignmentPackageResultsResult).value
 
     return AwaitableGetAssignmentPackageResultsResult(
         assignment_package_id=pulumi.get(__ret__, 'assignment_package_id'),
@@ -129,7 +129,7 @@ def get_assignment_package_results_output(assignment_package_id: Optional[pulumi
 
     config = pulumi.Config()
     assignment_package_id = config.require_object("assignmentPackageId")
-    basic = huaweicloud.rms.get_assignment_package_results(assignment_package_id=assignment_package_id)
+    basic = huaweicloud.Rms.get_assignment_package_results(assignment_package_id=assignment_package_id)
     ```
 
 
@@ -140,7 +140,7 @@ def get_assignment_package_results_output(assignment_package_id: Optional[pulumi
     __args__['assignmentPackageId'] = assignment_package_id
     __args__['policyAssignmentName'] = policy_assignment_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getAssignmentPackageResults:getAssignmentPackageResults', __args__, opts=opts, typ=GetAssignmentPackageResultsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getAssignmentPackageResults:getAssignmentPackageResults', __args__, opts=opts, typ=GetAssignmentPackageResultsResult)
     return __ret__.apply(lambda __response__: GetAssignmentPackageResultsResult(
         assignment_package_id=pulumi.get(__response__, 'assignment_package_id'),
         id=pulumi.get(__response__, 'id'),

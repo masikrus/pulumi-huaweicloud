@@ -30,6 +30,7 @@ class AccountArgs:
                  schemas: Optional[pulumi.Input[Sequence[pulumi.Input['AccountSchemaArgs']]]] = None):
         """
         The set of arguments for constructing a Account resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] password: Specifies the DDM account password.
@@ -162,6 +163,7 @@ class _AccountState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Account resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the DDM account.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this parameter will create a new resource.
@@ -299,7 +301,7 @@ class _AccountState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("huaweicloud:ddm/account:Account")
+@pulumi.type_token("huaweicloud:Ddm/account:Account")
 class Account(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -344,11 +346,10 @@ class Account(pulumi.CustomResource):
 
         The DDM account can be imported using the instance ID and account name separated by a slash, e.g.:
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ddm/account:Account test 0a8f1c6baa124e99853719d9257324dfin09/account_name
+        $ pulumi import huaweicloud:Ddm/account:Account test 0a8f1c6baa124e99853719d9257324dfin09/account_name
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -404,11 +405,10 @@ class Account(pulumi.CustomResource):
 
         The DDM account can be imported using the instance ID and account name separated by a slash, e.g.:
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ddm/account:Account test 0a8f1c6baa124e99853719d9257324dfin09/account_name
+        $ pulumi import huaweicloud:Ddm/account:Account test 0a8f1c6baa124e99853719d9257324dfin09/account_name
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccountArgs args: The arguments to use to populate this resource's properties.
@@ -458,7 +458,7 @@ class Account(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Account, __self__).__init__(
-            'huaweicloud:ddm/account:Account',
+            'huaweicloud:Ddm/account:Account',
             resource_name,
             __props__,
             opts)

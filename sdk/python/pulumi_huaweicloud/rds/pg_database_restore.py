@@ -29,6 +29,7 @@ class PgDatabaseRestoreArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgDatabaseRestore resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['PgDatabaseRestoreDatabaseArgs']]] databases: Specifies databases to restore.  
                The databases structure is documented below.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS PostgreSQL instance.
@@ -138,6 +139,7 @@ class _PgDatabaseRestoreState:
                  restore_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PgDatabaseRestore resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['PgDatabaseRestoreDatabaseArgs']]] databases: Specifies databases to restore.  
                The databases structure is documented below.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS PostgreSQL instance.
@@ -272,6 +274,7 @@ class PgDatabaseRestore(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['PgDatabaseRestoreDatabaseArgs', 'PgDatabaseRestoreDatabaseArgsDict']]]] databases: Specifies databases to restore.  
@@ -311,6 +314,7 @@ class PgDatabaseRestore(pulumi.CustomResource):
                 "new_name": "database_name_update",
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PgDatabaseRestoreArgs args: The arguments to use to populate this resource's properties.

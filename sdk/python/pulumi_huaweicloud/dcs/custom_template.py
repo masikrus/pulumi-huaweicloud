@@ -29,6 +29,7 @@ class CustomTemplateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomTemplate resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['CustomTemplateParamArgs']]] params: Specifies the list of the template params.
                The params structure is documented below.
         :param pulumi.Input[_builtins.str] source_type: Specifies the type of the source template. Value options:
@@ -159,6 +160,7 @@ class _CustomTemplateState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomTemplate resources.
+
         :param pulumi.Input[_builtins.str] cache_mode: Indicates the DCS instance type. The value can be **single**, **ha**, **cluster**, **proxy**,
                **ha_rw_split**.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the custom template is created.
@@ -397,43 +399,38 @@ class CustomTemplate(pulumi.CustomResource):
         """
         Manages a DCS custom template resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        source_template_id = config.require_object("sourceTemplateId")
+        test = huaweicloud.dcs.CustomTemplate("test",
+            template_id=source_template_id,
+            name="template_name",
+            type="sys",
+            params=[{
+                "param_name": "timeout",
+                "param_value": "100",
+            }])
+        ```
+
         ## Import
 
         The dcs custom template can be imported using the `id`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dcs/customTemplate:CustomTemplate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template_id`, `source_type`, `params`. It
-
         is generally recommended running `pulumi preview` after importing a custom template. You can then decide if changes
-
         should be applied to the custom template, or the resource definition should be updated to align with the DCS custom
-
         template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_custom_template" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_id, source_type, params,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -464,43 +461,38 @@ class CustomTemplate(pulumi.CustomResource):
         """
         Manages a DCS custom template resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        source_template_id = config.require_object("sourceTemplateId")
+        test = huaweicloud.dcs.CustomTemplate("test",
+            template_id=source_template_id,
+            name="template_name",
+            type="sys",
+            params=[{
+                "param_name": "timeout",
+                "param_value": "100",
+            }])
+        ```
+
         ## Import
 
         The dcs custom template can be imported using the `id`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dcs/customTemplate:CustomTemplate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template_id`, `source_type`, `params`. It
-
         is generally recommended running `pulumi preview` after importing a custom template. You can then decide if changes
-
         should be applied to the custom template, or the resource definition should be updated to align with the DCS custom
-
         template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_custom_template" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_id, source_type, params,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CustomTemplateArgs args: The arguments to use to populate this resource's properties.

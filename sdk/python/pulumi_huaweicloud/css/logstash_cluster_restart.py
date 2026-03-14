@@ -23,6 +23,7 @@ class LogstashClusterRestartArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogstashClusterRestart resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS logstash cluster.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -68,6 +69,7 @@ class _LogstashClusterRestartState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstashClusterRestart resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS logstash cluster.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -130,6 +132,7 @@ class LogstashClusterRestart(pulumi.CustomResource):
         test = huaweicloud.css.LogstashClusterRestart("test", cluster_id=cluster_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS logstash cluster.
@@ -157,6 +160,7 @@ class LogstashClusterRestart(pulumi.CustomResource):
         cluster_id = config.require_object("clusterId")
         test = huaweicloud.css.LogstashClusterRestart("test", cluster_id=cluster_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogstashClusterRestartArgs args: The arguments to use to populate this resource's properties.

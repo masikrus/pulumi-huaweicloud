@@ -73,6 +73,10 @@ __all__ = [
     'GetNetworkAclsNetworkAclAssociatedSubnetResult',
     'GetNetworkAclsNetworkAclEgressRuleResult',
     'GetNetworkAclsNetworkAclIngressRuleResult',
+    'GetNetworkInterfaceTagsTagResult',
+    'GetNetworkInterfacesByTagsMatchResult',
+    'GetNetworkInterfacesByTagsResourceResult',
+    'GetNetworkInterfacesByTagsTagResult',
     'GetNetworkInterfacesPortResult',
     'GetNetworkInterfacesPortAllowedAddressPairResult',
     'GetNetworkInterfacesPortBindingVifDetailResult',
@@ -92,9 +96,11 @@ __all__ = [
     'GetSecgroupsByTagsTagResult',
     'GetSecgroupsSecurityGroupResult',
     'GetSubNetworkInterfacesSubNetworkInterfaceResult',
+    'GetSubnetCidrReservationsReservationResult',
     'GetSubnetIpAvailabilitiesNetworkIpAvailabilityResult',
     'GetSubnetIpAvailabilitiesNetworkIpAvailabilitySubnetIpAvailabilityResult',
     'GetSubnetPrivateIpsPrivateIpResult',
+    'GetSubnetTagsTagResult',
     'GetSubnetV2AllocationPoolResult',
     'GetSubnetV2HostRouteResult',
     'GetSubnetsByTagsMatchResult',
@@ -712,10 +718,10 @@ class NetworkAclEgressRule(dict):
                or an IP protocol number (0–255). The value **any** indicates all protocols.
         :param _builtins.str description: Specifies the network ACL rule description. The value can contain no more
                than 255 characters. The value cannot contain angle brackets (< or >).
-        :param _builtins.str destination_ip_address: Specifies the destination IP address or CIDR block of a network ACL rule.
-               The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
-        :param _builtins.str destination_ip_address_group_id: Specifies the destination IP address group ID of a network ACL rule.
-               The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        :param _builtins.str destination_ip_address: Specifies the destination IP address or CIDR block of a network ACL
+               rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        :param _builtins.str destination_ip_address_group_id: Specifies the destination IP address group ID of a network ACL
+               rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         :param _builtins.str destination_port: Specifies the destination ports of a network ACL rule.
                You can specify a single port or a port range. Separate every two entries with a comma.
                
@@ -792,8 +798,8 @@ class NetworkAclEgressRule(dict):
     @pulumi.getter(name="destinationIpAddress")
     def destination_ip_address(self) -> Optional[_builtins.str]:
         """
-        Specifies the destination IP address or CIDR block of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        Specifies the destination IP address or CIDR block of a network ACL
+        rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         """
         return pulumi.get(self, "destination_ip_address")
 
@@ -801,8 +807,8 @@ class NetworkAclEgressRule(dict):
     @pulumi.getter(name="destinationIpAddressGroupId")
     def destination_ip_address_group_id(self) -> Optional[_builtins.str]:
         """
-        Specifies the destination IP address group ID of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        Specifies the destination IP address group ID of a network ACL
+        rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         """
         return pulumi.get(self, "destination_ip_address_group_id")
 
@@ -917,10 +923,10 @@ class NetworkAclIngressRule(dict):
                or an IP protocol number (0–255). The value **any** indicates all protocols.
         :param _builtins.str description: Specifies the network ACL rule description. The value can contain no more
                than 255 characters. The value cannot contain angle brackets (< or >).
-        :param _builtins.str destination_ip_address: Specifies the destination IP address or CIDR block of a network ACL rule.
-               The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
-        :param _builtins.str destination_ip_address_group_id: Specifies the destination IP address group ID of a network ACL rule.
-               The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        :param _builtins.str destination_ip_address: Specifies the destination IP address or CIDR block of a network ACL
+               rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        :param _builtins.str destination_ip_address_group_id: Specifies the destination IP address group ID of a network ACL
+               rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         :param _builtins.str destination_port: Specifies the destination ports of a network ACL rule.
                You can specify a single port or a port range. Separate every two entries with a comma.
                
@@ -997,8 +1003,8 @@ class NetworkAclIngressRule(dict):
     @pulumi.getter(name="destinationIpAddress")
     def destination_ip_address(self) -> Optional[_builtins.str]:
         """
-        Specifies the destination IP address or CIDR block of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        Specifies the destination IP address or CIDR block of a network ACL
+        rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         """
         return pulumi.get(self, "destination_ip_address")
 
@@ -1006,8 +1012,8 @@ class NetworkAclIngressRule(dict):
     @pulumi.getter(name="destinationIpAddressGroupId")
     def destination_ip_address_group_id(self) -> Optional[_builtins.str]:
         """
-        Specifies the destination IP address group ID of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        Specifies the destination IP address group ID of a network ACL
+        rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         """
         return pulumi.get(self, "destination_ip_address_group_id")
 
@@ -1431,7 +1437,7 @@ class RouteTableRoute(dict):
                + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
                + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
                + If the route type is **vip**, the value is a virtual IP address.
-               + If the route type is **nat**, the value is a VPN gateway ID.
+               + If the route type is **nat**, the value is a NAT gateway ID.
                + If the route type is **peering**, the value is a VPC peering connection ID.
                + If the route type is **vpn**, the value is a VPN gateway ID.
                + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -1467,7 +1473,7 @@ class RouteTableRoute(dict):
         + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
         + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
         + If the route type is **vip**, the value is a virtual IP address.
-        + If the route type is **nat**, the value is a VPN gateway ID.
+        + If the route type is **nat**, the value is a NAT gateway ID.
         + If the route type is **peering**, the value is a VPC peering connection ID.
         + If the route type is **vpn**, the value is a VPN gateway ID.
         + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -4842,6 +4848,152 @@ class GetNetworkAclsNetworkAclIngressRuleResult(dict):
 
 
 @pulumi.output_type
+class GetNetworkInterfaceTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The tag key.
+        :param Sequence[_builtins.str] values: The tag values.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The tag values.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetNetworkInterfacesByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the match. The value can be: **resource_name**.
+        :param _builtins.str value: Specifies the value of the match.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the match. The value can be: **resource_name**.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the match.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetNetworkInterfacesByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_detail: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 tags: Mapping[str, _builtins.str]):
+        """
+        :param _builtins.str resource_detail: The detail of the network interface.
+        :param _builtins.str resource_id: The ID of the network interface.
+        :param _builtins.str resource_name: The name of the network interface.
+        :param Mapping[str, _builtins.str] tags: Specifies the tags to filter to resources.
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_detail", resource_detail)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetail")
+    def resource_detail(self) -> _builtins.str:
+        """
+        The detail of the network interface.
+        """
+        return pulumi.get(self, "resource_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The ID of the network interface.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The name of the network interface.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, _builtins.str]:
+        """
+        Specifies the tags to filter to resources.
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetNetworkInterfacesByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the match. The value can be: **resource_name**.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               
+               <a name="matches"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the match. The value can be: **resource_name**.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+
+        <a name="matches"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetNetworkInterfacesPortResult(dict):
     def __init__(__self__, *,
                  allowed_address_pairs: Sequence['outputs.GetNetworkInterfacesPortAllowedAddressPairResult'],
@@ -6286,6 +6438,127 @@ class GetSubNetworkInterfacesSubNetworkInterfaceResult(dict):
 
 
 @pulumi.output_type
+class GetSubnetCidrReservationsReservationResult(dict):
+    def __init__(__self__, *,
+                 cidr: _builtins.str,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 ip_version: _builtins.int,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 subnet_id: _builtins.str,
+                 updated_at: _builtins.str,
+                 vpc_id: _builtins.str):
+        """
+        :param _builtins.str cidr: Specifies the CIDRs of the subnet reservations. Multiple CIDRs supported for filtering.
+        :param _builtins.str created_at: Indicates the creation time of the CIDR reservation.
+        :param _builtins.str description: Specifies the Descriptions of the subnet CIDR reservations.
+               Multiple descriptions supported for filtering.
+        :param _builtins.str id: Indicates the ID of the subnet CIDR reservation.
+        :param _builtins.int ip_version: Specifies the IP versions of the subnets. Multiple versions supported for filtering.
+        :param _builtins.str name: Specifies the Names of the subnet CIDR reservations. Multiple names supported for filtering.
+        :param _builtins.str project_id: Indicates the project ID to which the CIDR reservation belongs.
+        :param _builtins.str subnet_id: Specifies the IDs of the subnets containing the CIDR reservations.
+               Multiple IDs supported for filtering.
+        :param _builtins.str updated_at: Indicates the last update time of the CIDR reservation.
+        :param _builtins.str vpc_id: Indicates the ID of the VPC containing the subnet.
+        """
+        pulumi.set(__self__, "cidr", cidr)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_version", ip_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def cidr(self) -> _builtins.str:
+        """
+        Specifies the CIDRs of the subnet reservations. Multiple CIDRs supported for filtering.
+        """
+        return pulumi.get(self, "cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the creation time of the CIDR reservation.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Specifies the Descriptions of the subnet CIDR reservations.
+        Multiple descriptions supported for filtering.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the subnet CIDR reservation.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> _builtins.int:
+        """
+        Specifies the IP versions of the subnets. Multiple versions supported for filtering.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the Names of the subnet CIDR reservations. Multiple names supported for filtering.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the project ID to which the CIDR reservation belongs.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> _builtins.str:
+        """
+        Specifies the IDs of the subnets containing the CIDR reservations.
+        Multiple IDs supported for filtering.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the last update time of the CIDR reservation.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the VPC containing the subnet.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
 class GetSubnetIpAvailabilitiesNetworkIpAvailabilityResult(dict):
     def __init__(__self__, *,
                  network_id: _builtins.str,
@@ -6492,6 +6765,35 @@ class GetSubnetPrivateIpsPrivateIpResult(dict):
         Specifies the ID of the subnet that the private IP address belongs to.
         """
         return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class GetSubnetTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The tag key.
+        :param Sequence[_builtins.str] values: The tag values.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The tag values.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type

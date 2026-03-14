@@ -35,7 +35,9 @@ from .get_internet_gateways import *
 from .get_network_acl_tags import *
 from .get_network_acls import *
 from .get_network_acls_by_tags import *
+from .get_network_interface_tags import *
 from .get_network_interfaces import *
+from .get_network_interfaces_by_tags import *
 from .get_network_v2 import *
 from .get_peering_connection import *
 from .get_peering_connection_v2 import *
@@ -56,10 +58,12 @@ from .get_secgroups import *
 from .get_secgroups_by_tags import *
 from .get_sub_network_interfaces import *
 from .get_subnet import *
+from .get_subnet_cidr_reservations import *
 from .get_subnet_ids import *
 from .get_subnet_ids_v1 import *
 from .get_subnet_ip_availabilities import *
 from .get_subnet_private_ips import *
+from .get_subnet_tags import *
 from .get_subnet_v1 import *
 from .get_subnet_v2 import *
 from .get_subnets import *

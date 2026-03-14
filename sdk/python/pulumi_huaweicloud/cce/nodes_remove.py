@@ -27,6 +27,7 @@ class NodesRemoveArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NodesRemove resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[Sequence[pulumi.Input['NodesRemoveNodeArgs']]] nodes: Specifies the list of nodes to remove form the cluster.
                The nodes structure is documented below.
@@ -103,6 +104,7 @@ class _NodesRemoveState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NodesRemove resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[Sequence[pulumi.Input['NodesRemoveNodeArgs']]] nodes: Specifies the list of nodes to remove form the cluster.
                The nodes structure is documented below.
@@ -212,6 +214,7 @@ class NodesRemove(pulumi.CustomResource):
 
         > Deleting nodes remove resource is not supported, it will only be removed from the state.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
@@ -257,6 +260,7 @@ class NodesRemove(pulumi.CustomResource):
         ```
 
         > Deleting nodes remove resource is not supported, it will only be removed from the state.
+
 
         :param str resource_name: The name of the resource.
         :param NodesRemoveArgs args: The arguments to use to populate this resource's properties.

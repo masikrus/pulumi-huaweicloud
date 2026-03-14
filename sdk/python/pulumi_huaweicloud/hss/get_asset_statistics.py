@@ -243,7 +243,7 @@ def get_asset_statistics(category: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_asset_statistics()
+    test = huaweicloud.Hss.get_asset_statistics()
     ```
 
 
@@ -265,7 +265,7 @@ def get_asset_statistics(category: Optional[_builtins.str] = None,
     __args__['hostId'] = host_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAssetStatistics:getAssetStatistics', __args__, opts=opts, typ=GetAssetStatisticsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAssetStatistics:getAssetStatistics', __args__, opts=opts, typ=GetAssetStatisticsResult).value
 
     return AwaitableGetAssetStatisticsResult(
         account_num=pulumi.get(__ret__, 'account_num'),
@@ -299,7 +299,7 @@ def get_asset_statistics_output(category: Optional[pulumi.Input[Optional[_builti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_asset_statistics()
+    test = huaweicloud.Hss.get_asset_statistics()
     ```
 
 
@@ -321,7 +321,7 @@ def get_asset_statistics_output(category: Optional[pulumi.Input[Optional[_builti
     __args__['hostId'] = host_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAssetStatistics:getAssetStatistics', __args__, opts=opts, typ=GetAssetStatisticsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAssetStatistics:getAssetStatistics', __args__, opts=opts, typ=GetAssetStatisticsResult)
     return __ret__.apply(lambda __response__: GetAssetStatisticsResult(
         account_num=pulumi.get(__response__, 'account_num'),
         app_num=pulumi.get(__response__, 'app_num'),

@@ -25,6 +25,7 @@ class BasicArgs:
                  topic_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Basic resource.
+
         :param pulumi.Input[_builtins.str] eip_id: Specifies the ID of an EIP. Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] traffic_threshold: Specifies the traffic cleaning threshold in Mbps.
                The value can be 10, 30, 50, 70, 100, 120, 150, 200, 250, 300, 1000 Mbps.
@@ -103,6 +104,7 @@ class _BasicState:
                  traffic_threshold: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Basic resources.
+
         :param pulumi.Input[_builtins.str] eip_id: Specifies the ID of an EIP. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] public_ip: The public address of the EIP.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to manage the Cloud Native Anti-DDos Basic resource.
@@ -236,11 +238,10 @@ class Basic(pulumi.CustomResource):
 
         Cloud Native Anti-DDos Basic resources can be imported using `eip_id`. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AntiDDos/basic:Basic antiddos_1 c5256d47-8f9e-4ae7-9943-6e77e3d8bd2d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -281,11 +282,10 @@ class Basic(pulumi.CustomResource):
 
         Cloud Native Anti-DDos Basic resources can be imported using `eip_id`. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AntiDDos/basic:Basic antiddos_1 c5256d47-8f9e-4ae7-9943-6e77e3d8bd2d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BasicArgs args: The arguments to use to populate this resource's properties.

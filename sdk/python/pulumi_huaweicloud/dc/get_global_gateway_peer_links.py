@@ -147,7 +147,7 @@ def get_global_gateway_peer_links(fields: Optional[Sequence[_builtins.str]] = No
 
     config = pulumi.Config()
     global_dc_gateway_id = config.require_object("globalDcGatewayId")
-    test = huaweicloud.dc.get_global_gateway_peer_links(global_dc_gateway_id=global_dc_gateway_id)
+    test = huaweicloud.Dc.get_global_gateway_peer_links(global_dc_gateway_id=global_dc_gateway_id)
     ```
 
 
@@ -170,7 +170,7 @@ def get_global_gateway_peer_links(fields: Optional[Sequence[_builtins.str]] = No
     __args__['sortDir'] = sort_dir
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getGlobalGatewayPeerLinks:getGlobalGatewayPeerLinks', __args__, opts=opts, typ=GetGlobalGatewayPeerLinksResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getGlobalGatewayPeerLinks:getGlobalGatewayPeerLinks', __args__, opts=opts, typ=GetGlobalGatewayPeerLinksResult).value
 
     return AwaitableGetGlobalGatewayPeerLinksResult(
         fields=pulumi.get(__ret__, 'fields'),
@@ -201,7 +201,7 @@ def get_global_gateway_peer_links_output(fields: Optional[pulumi.Input[Optional[
 
     config = pulumi.Config()
     global_dc_gateway_id = config.require_object("globalDcGatewayId")
-    test = huaweicloud.dc.get_global_gateway_peer_links(global_dc_gateway_id=global_dc_gateway_id)
+    test = huaweicloud.Dc.get_global_gateway_peer_links(global_dc_gateway_id=global_dc_gateway_id)
     ```
 
 
@@ -224,7 +224,7 @@ def get_global_gateway_peer_links_output(fields: Optional[pulumi.Input[Optional[
     __args__['sortDir'] = sort_dir
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getGlobalGatewayPeerLinks:getGlobalGatewayPeerLinks', __args__, opts=opts, typ=GetGlobalGatewayPeerLinksResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getGlobalGatewayPeerLinks:getGlobalGatewayPeerLinks', __args__, opts=opts, typ=GetGlobalGatewayPeerLinksResult)
     return __ret__.apply(lambda __response__: GetGlobalGatewayPeerLinksResult(
         fields=pulumi.get(__response__, 'fields'),
         global_dc_gateway_id=pulumi.get(__response__, 'global_dc_gateway_id'),

@@ -23,6 +23,7 @@ class MysqlScheduledTaskCancelArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlScheduledTaskCancel resource.
+
         :param pulumi.Input[_builtins.str] job_id: Specifies the task ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -74,6 +75,7 @@ class _MysqlScheduledTaskCancelState:
                  start_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlScheduledTaskCancel resources.
+
         :param pulumi.Input[_builtins.str] create_time: Indicates the task creation time in the **yyyy-mm-ddThh:mm:ssZ** format.
         :param pulumi.Input[_builtins.str] datastore_type: Indicates the database type.
         :param pulumi.Input[_builtins.str] end_time: Indicates the task end time in the **yyyy-mm-ddThh:mm:ssZ** format.
@@ -286,6 +288,7 @@ class MysqlScheduledTaskCancel(pulumi.CustomResource):
         test = huaweicloud.gaussdb.MysqlScheduledTaskCancel("test", job_id=job_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] job_id: Specifies the task ID. Changing this parameter will create a new resource.
@@ -315,6 +318,7 @@ class MysqlScheduledTaskCancel(pulumi.CustomResource):
         job_id = config.require_object("jobId")
         test = huaweicloud.gaussdb.MysqlScheduledTaskCancel("test", job_id=job_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlScheduledTaskCancelArgs args: The arguments to use to populate this resource's properties.

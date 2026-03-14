@@ -80,7 +80,8 @@ class GetLogsResult:
     @pulumi.getter
     def logs(self) -> Sequence['outputs.GetLogsLogResult']:
         """
-        The list of Logs.
+        The list of logs that matched filter parameters.
+        The logs structure is documented below.
         """
         return pulumi.get(self, "logs")
 
@@ -113,7 +114,7 @@ def get_logs(domain_name: Optional[_builtins.str] = None,
              start_time: Optional[_builtins.int] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLogsResult:
     """
-    Use this datasource to get the list of CDN logs.
+    Use this datasource to get the list of CDN logs within HuaweiCloud.
 
     ## Example Usage
 
@@ -130,9 +131,10 @@ def get_logs(domain_name: Optional[_builtins.str] = None,
     :param _builtins.str domain_name: Specifies the domain name to which the logs belong.
     :param _builtins.int end_time: Specifies the end time for querying logs (excluding the end time point).
            The value is the millisecond timestamp of the hour. The maximum time span between the start time and
-           end time is 30 days.
+           end time is `30` days.
            If this parameter is left empty, the start time plus one day is used by default.
-    :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which the domain name belongs.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the resource
+           belongs.
            This parameter is valid only when the enterprise project function is enabled.
            The value **all** indicates all enterprise projects.
            This parameter is mandatory when you use an IAM user to call this API.
@@ -161,7 +163,7 @@ def get_logs_output(domain_name: Optional[pulumi.Input[_builtins.str]] = None,
                     start_time: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLogsResult]:
     """
-    Use this datasource to get the list of CDN logs.
+    Use this datasource to get the list of CDN logs within HuaweiCloud.
 
     ## Example Usage
 
@@ -178,9 +180,10 @@ def get_logs_output(domain_name: Optional[pulumi.Input[_builtins.str]] = None,
     :param _builtins.str domain_name: Specifies the domain name to which the logs belong.
     :param _builtins.int end_time: Specifies the end time for querying logs (excluding the end time point).
            The value is the millisecond timestamp of the hour. The maximum time span between the start time and
-           end time is 30 days.
+           end time is `30` days.
            If this parameter is left empty, the start time plus one day is used by default.
-    :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which the domain name belongs.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the resource
+           belongs.
            This parameter is valid only when the enterprise project function is enabled.
            The value **all** indicates all enterprise projects.
            This parameter is mandatory when you use an IAM user to call this API.

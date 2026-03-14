@@ -32,6 +32,7 @@ class RouterV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RouterV2 resource.
+
         :param pulumi.Input[_builtins.bool] admin_state_up: Administrative up/down status for the router
                (must be "true" or "false" if provided). Changing this updates the
                `admin_state_up` of an existing router.
@@ -206,6 +207,7 @@ class _RouterV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering RouterV2 resources.
+
         :param pulumi.Input[_builtins.bool] admin_state_up: Administrative up/down status for the router
                (must be "true" or "false" if provided). Changing this updates the
                `admin_state_up` of an existing router.
@@ -403,11 +405,10 @@ class RouterV2(pulumi.CustomResource):
 
         Routers can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/routerV2:RouterV2 router_1 014395cd-89fc-4c9b-96b7-13d1ee79dad2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -458,11 +459,10 @@ class RouterV2(pulumi.CustomResource):
 
         Routers can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/routerV2:RouterV2 router_1 014395cd-89fc-4c9b-96b7-13d1ee79dad2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RouterV2Args args: The arguments to use to populate this resource's properties.

@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'ApprovalConnection',
@@ -21,9 +22,17 @@ __all__ = [
     'GetEndpointsEndpointResult',
     'GetPublicServicesServiceResult',
     'GetQuotasQuotaResult',
+    'GetResourcesByTagsMatchResult',
+    'GetResourcesByTagsNotTagResult',
+    'GetResourcesByTagsNotTagsAnyResult',
+    'GetResourcesByTagsResourceResult',
+    'GetResourcesByTagsResourceTagResult',
+    'GetResourcesByTagsTagResult',
+    'GetResourcesByTagsTagsAnyResult',
     'GetServiceConnectionsConnectionResult',
     'GetServicePermissionsPermissionResult',
     'GetServicesEndpointServiceResult',
+    'GetTagsTagResult',
 ]
 
 @pulumi.output_type
@@ -590,6 +599,297 @@ class GetQuotasQuotaResult(dict):
 
 
 @pulumi.output_type
+class GetResourcesByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param _builtins.str value: Specifies the matches value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the matches value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourcesByTagsNotTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the tag values.
+               Each tag value contains a maximum of `255` characters.
+               The tag value can be an empty array but cannot be left blank. If values are left blank,
+               it indicates querying any value.
+               Values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the tag values.
+        Each tag value contains a maximum of `255` characters.
+        The tag value can be an empty array but cannot be left blank. If values are left blank,
+        it indicates querying any value.
+        Values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourcesByTagsNotTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the tag values.
+               Each tag value contains a maximum of `255` characters.
+               The tag value can be an empty array but cannot be left blank. If values are left blank,
+               it indicates querying any value.
+               Values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the tag values.
+        Each tag value contains a maximum of `255` characters.
+        The tag value can be an empty array but cannot be left blank. If values are left blank,
+        it indicates querying any value.
+        Values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourcesByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_detail: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 tags: Sequence['outputs.GetResourcesByTagsResourceTagResult']):
+        """
+        :param _builtins.str resource_id: The resource ID.
+        :param _builtins.str resource_name: The resource name. If the resource does not have a name, the ID is returned.
+        :param Sequence['GetResourcesByTagsResourceTagArgs'] tags: Specifies the tags are included.
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_detail", resource_detail)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetail")
+    def resource_detail(self) -> _builtins.str:
+        return pulumi.get(self, "resource_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The resource name. If the resource does not have a name, the ID is returned.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetResourcesByTagsResourceTagResult']:
+        """
+        Specifies the tags are included.
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetResourcesByTagsResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param _builtins.str value: Specifies the matches value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the matches value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourcesByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the tag values.
+               Each tag value contains a maximum of `255` characters.
+               The tag value can be an empty array but cannot be left blank. If values are left blank,
+               it indicates querying any value.
+               Values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the tag values.
+        Each tag value contains a maximum of `255` characters.
+        The tag value can be an empty array but cannot be left blank. If values are left blank,
+        it indicates querying any value.
+        Values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourcesByTagsTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the tag values.
+               Each tag value contains a maximum of `255` characters.
+               The tag value can be an empty array but cannot be left blank. If values are left blank,
+               it indicates querying any value.
+               Values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the tag values.
+        Each tag value contains a maximum of `255` characters.
+        The tag value can be an empty array but cannot be left blank. If values are left blank,
+        it indicates querying any value.
+        Values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetServiceConnectionsConnectionResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -910,5 +1210,34 @@ class GetServicesEndpointServiceResult(dict):
         The ID of the VPC to which the backend resource of the VPC endpoint service belongs.
         """
         return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The key of the resource tag.
+        :param Sequence[_builtins.str] values: All values corresponding to the key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        All values corresponding to the key.
+        """
+        return pulumi.get(self, "values")
 
 

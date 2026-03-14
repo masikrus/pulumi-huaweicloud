@@ -17,6 +17,10 @@ from .. import _utilities
 __all__ = [
     'MessagePublishMessageAttributeArgs',
     'MessagePublishMessageAttributeArgsDict',
+    'NotifyPolicyPollingArgs',
+    'NotifyPolicyPollingArgsDict',
+    'NotifyPolicyPollingSubscriptionArgs',
+    'NotifyPolicyPollingSubscriptionArgsDict',
     'SubscriptionExtensionArgs',
     'SubscriptionExtensionArgsDict',
     'SubscriptionFilterPolicyArgs',
@@ -27,38 +31,45 @@ __all__ = [
     'SubscriptionV2ExtensionArgsDict',
     'SubscriptionV2FilterPolicyArgs',
     'SubscriptionV2FilterPolicyArgsDict',
+    'TopicSubscriberFilterPolicyArgs',
+    'TopicSubscriberFilterPolicyArgsDict',
+    'GetResourcesByTagsMatchArgs',
+    'GetResourcesByTagsMatchArgsDict',
+    'GetResourcesByTagsNotTagArgs',
+    'GetResourcesByTagsNotTagArgsDict',
+    'GetResourcesByTagsNotTagsAnyArgs',
+    'GetResourcesByTagsNotTagsAnyArgsDict',
+    'GetResourcesByTagsTagArgs',
+    'GetResourcesByTagsTagArgsDict',
+    'GetResourcesByTagsTagsAnyArgs',
+    'GetResourcesByTagsTagsAnyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class MessagePublishMessageAttributeArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the property name.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the property type.
-        The value can be **STRING**, **STRING_ARRAY** or **PROTOCOL**.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the property value.
-        This parameter is valid only when the `type` set to **STRING**. The attribute value can only contain Chinese
-        and English, numbers, and underscores, and the length is **1** to **32** characters.
-        """
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the property values.
-        This parameter is valid when the `type` set to **STRING_ARRAY** or **PROTOCOL**.
-        + When the `type` is **STRING_ARRAY**, the `values` is a string array, the array length is
-        **1** to **10**, the element content in the array cannot be repeated, each string in the array can only contain
-        Chinese and English, numbers, and underscores, and length is **1** to **32** characters.
-        + When the `type` is **PROTOCOL**, the `values` is a string array of supported protocol types.
-        """
-elif False:
-    MessagePublishMessageAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class MessagePublishMessageAttributeArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the property name.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the property type.
+    The value can be **STRING**, **STRING_ARRAY** or **PROTOCOL**.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the property value.
+    This parameter is valid only when the `type` set to **STRING**. The attribute value can only contain Chinese
+    and English, numbers, and underscores, and the length is **1** to **32** characters.
+    """
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the property values.
+    This parameter is valid when the `type` set to **STRING_ARRAY** or **PROTOCOL**.
+    + When the `type` is **STRING_ARRAY**, the `values` is a string array, the array length is
+    **1** to **10**, the element content in the array cannot be repeated, each string in the array can only contain
+    Chinese and English, numbers, and underscores, and length is **1** to **32** characters.
+    + When the `type` is **PROTOCOL**, the `values` is a string array of supported protocol types.
+    """
 
 @pulumi.input_type
 class MessagePublishMessageAttributeArgs:
@@ -145,56 +156,221 @@ class MessagePublishMessageAttributeArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class SubscriptionExtensionArgsDict(TypedDict):
-        client_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the client ID. This field is the tenant ID field in
-        the WeLink subscription and is obtained by the tenant from WeLink. This field is mandatory when `protocol`
-        is set to **welink**. Changing this parameter will create a new resource.
-        """
-        client_secret: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the client secret. This field is the client secret
-        field obtained by the tenant from WeLink. This field is mandatory when `protocol` is set to **welink**.
-        Changing this parameter will create a new resource.
-        """
-        header: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the HTTP/HTTPS headers to be added to the requests when the
-        message is delivered via HTTP/HTTPS. This field is used when `protocol` is set to **http** or **https**.
-        The following requirements apply to the header keys and values:
-        + Header keys must:
-        - Contain only letters, numbers, and hyphens (`[A-Za-z0-9-]`)
-        - Not end with a hyphen
-        - Not contain consecutive hyphens
-        - Start with "x-" (e.g., "x-abc-cba", "x-abc")
-        - Not start with "x-smn"
-        - Be case-insensitive (e.g., "X-Custom" and "x-custom" are considered the same)
-        - Not be duplicated
-        + Maximum of 10 key-value pairs allowed
-        + Total length of all keys and values combined must not exceed 1024 characters
-        + Values must only contain ASCII characters (no Chinese or other Unicode characters, spaces are allowed)
+class NotifyPolicyPollingArgsDict(TypedDict):
+    order: pulumi.Input[_builtins.int]
+    """
+    Specifies the sequence number of the subscription endpoint being polled.
+    """
+    subscription_urns: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the URN list of subscription endpoints.
+    """
+    subscriptions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NotifyPolicyPollingSubscriptionArgsDict']]]]
+    """
+    Indicates the URN list of subscription endpoints.
+    The subscriptions structure is documented below.
+    """
 
-        Changing this parameter will create a new resource.
+@pulumi.input_type
+class NotifyPolicyPollingArgs:
+    def __init__(__self__, *,
+                 order: pulumi.Input[_builtins.int],
+                 subscription_urns: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input['NotifyPolicyPollingSubscriptionArgs']]]] = None):
         """
-        keyword: NotRequired[pulumi.Input[_builtins.str]]
+        :param pulumi.Input[_builtins.int] order: Specifies the sequence number of the subscription endpoint being polled.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscription_urns: Specifies the URN list of subscription endpoints.
+        :param pulumi.Input[Sequence[pulumi.Input['NotifyPolicyPollingSubscriptionArgs']]] subscriptions: Indicates the URN list of subscription endpoints.
+               The subscriptions structure is documented below.
         """
-        Specifies the keyword. When `protocol` is set to **feishu**,
-        either `keyword` or `sign_secret` must be specified. When you use `keywords` to configure a security policy
-        for the Lark or DingTalk chatbot on SMN, the keywords must have one of the keywords configured on the Lark
-        or DingTalk client. Changing this parameter will create a new resource.
+        pulumi.set(__self__, "order", order)
+        pulumi.set(__self__, "subscription_urns", subscription_urns)
+        if subscriptions is not None:
+            pulumi.set(__self__, "subscriptions", subscriptions)
+
+    @_builtins.property
+    @pulumi.getter
+    def order(self) -> pulumi.Input[_builtins.int]:
         """
-        sign_secret: NotRequired[pulumi.Input[_builtins.str]]
+        Specifies the sequence number of the subscription endpoint being polled.
         """
-        Specifies the key including signature. When `protocol` is set
-        to **feishu** or **dingding**, this field or `keyword` must be specified. The key configurations must be
-        the same as those on the Lark or DingTalk client. For example, if only key is configured on the Lark client,
-        enter the key field obtained from the Lark client. If only keyword is configured on the Lark client, skip this field.
-        Changing this parameter will create a new resource.
+        return pulumi.get(self, "order")
+
+    @order.setter
+    def order(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "order", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionUrns")
+    def subscription_urns(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-elif False:
-    SubscriptionExtensionArgsDict: TypeAlias = Mapping[str, Any]
+        Specifies the URN list of subscription endpoints.
+        """
+        return pulumi.get(self, "subscription_urns")
+
+    @subscription_urns.setter
+    def subscription_urns(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "subscription_urns", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subscriptions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotifyPolicyPollingSubscriptionArgs']]]]:
+        """
+        Indicates the URN list of subscription endpoints.
+        The subscriptions structure is documented below.
+        """
+        return pulumi.get(self, "subscriptions")
+
+    @subscriptions.setter
+    def subscriptions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotifyPolicyPollingSubscriptionArgs']]]]):
+        pulumi.set(self, "subscriptions", value)
+
+
+class NotifyPolicyPollingSubscriptionArgsDict(TypedDict):
+    endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the URN list of subscription endpoints.
+    """
+    remark: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the remark.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the subscription status. The value can be:
+    + **0**: indicates the subscription has not been confirmed.
+    + **1**: indicates that the subscription has been confirmed.
+    + **3**: indicates that the subscription has been canceled.
+    """
+    subscription_urn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the sequence number of the subscription endpoint being polled.
+    """
+
+@pulumi.input_type
+class NotifyPolicyPollingSubscriptionArgs:
+    def __init__(__self__, *,
+                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+                 remark: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.int]] = None,
+                 subscription_urn: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] endpoint: Indicates the URN list of subscription endpoints.
+        :param pulumi.Input[_builtins.str] remark: Indicates the remark.
+        :param pulumi.Input[_builtins.int] status: Indicates the subscription status. The value can be:
+               + **0**: indicates the subscription has not been confirmed.
+               + **1**: indicates that the subscription has been confirmed.
+               + **3**: indicates that the subscription has been canceled.
+        :param pulumi.Input[_builtins.str] subscription_urn: Indicates the sequence number of the subscription endpoint being polled.
+        """
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if remark is not None:
+            pulumi.set(__self__, "remark", remark)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if subscription_urn is not None:
+            pulumi.set(__self__, "subscription_urn", subscription_urn)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the URN list of subscription endpoints.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def remark(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the remark.
+        """
+        return pulumi.get(self, "remark")
+
+    @remark.setter
+    def remark(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remark", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Indicates the subscription status. The value can be:
+        + **0**: indicates the subscription has not been confirmed.
+        + **1**: indicates that the subscription has been confirmed.
+        + **3**: indicates that the subscription has been canceled.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionUrn")
+    def subscription_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the sequence number of the subscription endpoint being polled.
+        """
+        return pulumi.get(self, "subscription_urn")
+
+    @subscription_urn.setter
+    def subscription_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subscription_urn", value)
+
+
+class SubscriptionExtensionArgsDict(TypedDict):
+    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the client ID. This field is the tenant ID field in
+    the WeLink subscription and is obtained by the tenant from WeLink. This field is mandatory when `protocol`
+    is set to **welink**. Changing this parameter will create a new resource.
+    """
+    client_secret: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the client secret. This field is the client secret
+    field obtained by the tenant from WeLink. This field is mandatory when `protocol` is set to **welink**.
+    Changing this parameter will create a new resource.
+    """
+    header: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the HTTP/HTTPS headers to be added to the requests when the
+    message is delivered via HTTP/HTTPS. This field is used when `protocol` is set to **http** or **https**.
+    The following requirements apply to the header keys and values:
+    + Header keys must:
+    - Contain only letters, numbers, and hyphens (`[A-Za-z0-9-]`)
+    - Not end with a hyphen
+    - Not contain consecutive hyphens
+    - Start with "x-" (e.g., "x-abc-cba", "x-abc")
+    - Not start with "x-smn"
+    - Be case-insensitive (e.g., "X-Custom" and "x-custom" are considered the same)
+    - Not be duplicated
+    + Maximum of 10 key-value pairs allowed
+    + Total length of all keys and values combined must not exceed 1024 characters
+    + Values must only contain ASCII characters (no Chinese or other Unicode characters, spaces are allowed)
+
+    Changing this parameter will create a new resource.
+    """
+    keyword: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the keyword. When `protocol` is set to **feishu**,
+    either `keyword` or `sign_secret` must be specified. When you use `keywords` to configure a security policy
+    for the Lark or DingTalk chatbot on SMN, the keywords must have one of the keywords configured on the Lark
+    or DingTalk client. Changing this parameter will create a new resource.
+    """
+    sign_secret: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key including signature. When `protocol` is set
+    to **feishu** or **dingding**, this field or `keyword` must be specified. The key configurations must be
+    the same as those on the Lark or DingTalk client. For example, if only key is configured on the Lark client,
+    enter the key field obtained from the Lark client. If only keyword is configured on the Lark client, skip this field.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class SubscriptionExtensionArgs:
@@ -335,18 +511,15 @@ class SubscriptionExtensionArgs:
         pulumi.set(self, "sign_secret", value)
 
 
-if not MYPY:
-    class SubscriptionFilterPolicyArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The filter policy name.
-        """
-        string_equals: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The string array for exact match.
-        """
-elif False:
-    SubscriptionFilterPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class SubscriptionFilterPolicyArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The filter policy name.
+    """
+    string_equals: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The string array for exact match.
+    """
 
 @pulumi.input_type
 class SubscriptionFilterPolicyArgs:
@@ -387,22 +560,19 @@ class SubscriptionFilterPolicyArgs:
         pulumi.set(self, "string_equals", value)
 
 
-if not MYPY:
-    class SubscriptionFilterPolicyFilterPolicyArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the filter policy name. The policy name must be unique.
-        + It can contain `1` to `32` characters, including lowercase letters, digits, and underscores (_).
-        + It cannot start or end with an underscore, nor contain consecutive underscores. It cannot start with **smn**.
-        """
-        string_equals: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the string array for exact match. The array can contain `1`
-        to `10` strings. The array content must be unique. The string cannot be **null** or an empty string "".
-        A string can contain `1` to `32` characters, including letters, digits, and underscores (_).
-        """
-elif False:
-    SubscriptionFilterPolicyFilterPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class SubscriptionFilterPolicyFilterPolicyArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the filter policy name. The policy name must be unique.
+    + It can contain `1` to `32` characters, including lowercase letters, digits, and underscores (_).
+    + It cannot start or end with an underscore, nor contain consecutive underscores. It cannot start with **smn**.
+    """
+    string_equals: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the string array for exact match. The array can contain `1`
+    to `10` strings. The array content must be unique. The string cannot be **null** or an empty string "".
+    A string can contain `1` to `32` characters, including letters, digits, and underscores (_).
+    """
 
 @pulumi.input_type
 class SubscriptionFilterPolicyFilterPolicyArgs:
@@ -449,15 +619,12 @@ class SubscriptionFilterPolicyFilterPolicyArgs:
         pulumi.set(self, "string_equals", value)
 
 
-if not MYPY:
-    class SubscriptionV2ExtensionArgsDict(TypedDict):
-        client_id: NotRequired[pulumi.Input[_builtins.str]]
-        client_secret: NotRequired[pulumi.Input[_builtins.str]]
-        header: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        keyword: NotRequired[pulumi.Input[_builtins.str]]
-        sign_secret: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    SubscriptionV2ExtensionArgsDict: TypeAlias = Mapping[str, Any]
+class SubscriptionV2ExtensionArgsDict(TypedDict):
+    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    client_secret: NotRequired[pulumi.Input[_builtins.str]]
+    header: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    keyword: NotRequired[pulumi.Input[_builtins.str]]
+    sign_secret: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class SubscriptionV2ExtensionArgs:
@@ -524,18 +691,15 @@ class SubscriptionV2ExtensionArgs:
         pulumi.set(self, "sign_secret", value)
 
 
-if not MYPY:
-    class SubscriptionV2FilterPolicyArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The filter policy name. The policy name must be unique.
-        """
-        string_equals: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The string array for exact match.
-        """
-elif False:
-    SubscriptionV2FilterPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class SubscriptionV2FilterPolicyArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The filter policy name. The policy name must be unique.
+    """
+    string_equals: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The string array for exact match.
+    """
 
 @pulumi.input_type
 class SubscriptionV2FilterPolicyArgs:
@@ -574,5 +738,436 @@ class SubscriptionV2FilterPolicyArgs:
     @string_equals.setter
     def string_equals(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "string_equals", value)
+
+
+class TopicSubscriberFilterPolicyArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the filter policy name.
+    """
+    string_equals: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the string array for exact match.
+    """
+
+@pulumi.input_type
+class TopicSubscriberFilterPolicyArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 string_equals: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Indicates the filter policy name.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] string_equals: Indicates the string array for exact match.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if string_equals is not None:
+            pulumi.set(__self__, "string_equals", string_equals)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the filter policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="stringEquals")
+    def string_equals(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Indicates the string array for exact match.
+        """
+        return pulumi.get(self, "string_equals")
+
+    @string_equals.setter
+    def string_equals(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "string_equals", value)
+
+
+class GetResourcesByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key.
+    + The key must be unique, and the value is used for matching.
+    + The key field is a fixed dictionary value.
+    + key cannot be left blank.
+    """
+    value: _builtins.str
+    """
+    Specifies the tag value.
+    + It can contain a maximum of 255 Unicode characters.
+    + This field cannot be left blank.
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param _builtins.str value: Specifies the tag value.
+               + It can contain a maximum of 255 Unicode characters.
+               + This field cannot be left blank.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the tag value.
+        + It can contain a maximum of 255 Unicode characters.
+        + This field cannot be left blank.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetResourcesByTagsNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key.
+    + The key must be unique, and the value is used for matching.
+    + The key field is a fixed dictionary value.
+    + key cannot be left blank.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    + Each tag contains a maximum of 10 values.
+    + Values of the same tag must be unique.
+    + It can contain a maximum of 255 Unicode characters.
+    + If this parameter is left blank, any value can be used.
+    + All values of a tag key are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsNotTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               + Each tag contains a maximum of 10 values.
+               + Values of the same tag must be unique.
+               + It can contain a maximum of 255 Unicode characters.
+               + If this parameter is left blank, any value can be used.
+               + All values of a tag key are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        + Each tag contains a maximum of 10 values.
+        + Values of the same tag must be unique.
+        + It can contain a maximum of 255 Unicode characters.
+        + If this parameter is left blank, any value can be used.
+        + All values of a tag key are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetResourcesByTagsNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key.
+    + The key must be unique, and the value is used for matching.
+    + The key field is a fixed dictionary value.
+    + key cannot be left blank.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    + Each tag contains a maximum of 10 values.
+    + Values of the same tag must be unique.
+    + It can contain a maximum of 255 Unicode characters.
+    + If this parameter is left blank, any value can be used.
+    + All values of a tag key are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsNotTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               + Each tag contains a maximum of 10 values.
+               + Values of the same tag must be unique.
+               + It can contain a maximum of 255 Unicode characters.
+               + If this parameter is left blank, any value can be used.
+               + All values of a tag key are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        + Each tag contains a maximum of 10 values.
+        + Values of the same tag must be unique.
+        + It can contain a maximum of 255 Unicode characters.
+        + If this parameter is left blank, any value can be used.
+        + All values of a tag key are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetResourcesByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key.
+    + The key must be unique, and the value is used for matching.
+    + The key field is a fixed dictionary value.
+    + key cannot be left blank.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    + Each tag contains a maximum of 10 values.
+    + Values of the same tag must be unique.
+    + It can contain a maximum of 255 Unicode characters.
+    + If this parameter is left blank, any value can be used.
+    + All values of a tag key are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               + Each tag contains a maximum of 10 values.
+               + Values of the same tag must be unique.
+               + It can contain a maximum of 255 Unicode characters.
+               + If this parameter is left blank, any value can be used.
+               + All values of a tag key are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        + Each tag contains a maximum of 10 values.
+        + Values of the same tag must be unique.
+        + It can contain a maximum of 255 Unicode characters.
+        + If this parameter is left blank, any value can be used.
+        + All values of a tag key are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetResourcesByTagsTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key.
+    + The key must be unique, and the value is used for matching.
+    + The key field is a fixed dictionary value.
+    + key cannot be left blank.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    + Each tag contains a maximum of 10 values.
+    + Values of the same tag must be unique.
+    + It can contain a maximum of 255 Unicode characters.
+    + If this parameter is left blank, any value can be used.
+    + All values of a tag key are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               + Each tag contains a maximum of 10 values.
+               + Values of the same tag must be unique.
+               + It can contain a maximum of 255 Unicode characters.
+               + If this parameter is left blank, any value can be used.
+               + All values of a tag key are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        + Each tag contains a maximum of 10 values.
+        + Values of the same tag must be unique.
+        + It can contain a maximum of 255 Unicode characters.
+        + If this parameter is left blank, any value can be used.
+        + All values of a tag key are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
 
 

@@ -83,8 +83,8 @@ def get_organizational_units(parent_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    org = huaweicloud.organizations.get_organization()
-    test = huaweicloud.organizations.get_organizational_units(parent_id=org.root_id)
+    org = huaweicloud.Organizations.get_organization()
+    test = huaweicloud.Organizations.get_organizational_units(parent_id=org.root_id)
     ```
 
 
@@ -93,7 +93,7 @@ def get_organizational_units(parent_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['parentId'] = parent_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getOrganizationalUnits:getOrganizationalUnits', __args__, opts=opts, typ=GetOrganizationalUnitsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getOrganizationalUnits:getOrganizationalUnits', __args__, opts=opts, typ=GetOrganizationalUnitsResult).value
 
     return AwaitableGetOrganizationalUnitsResult(
         childrens=pulumi.get(__ret__, 'childrens'),
@@ -110,8 +110,8 @@ def get_organizational_units_output(parent_id: Optional[pulumi.Input[_builtins.s
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    org = huaweicloud.organizations.get_organization()
-    test = huaweicloud.organizations.get_organizational_units(parent_id=org.root_id)
+    org = huaweicloud.Organizations.get_organization()
+    test = huaweicloud.Organizations.get_organizational_units(parent_id=org.root_id)
     ```
 
 
@@ -120,7 +120,7 @@ def get_organizational_units_output(parent_id: Optional[pulumi.Input[_builtins.s
     __args__ = dict()
     __args__['parentId'] = parent_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getOrganizationalUnits:getOrganizationalUnits', __args__, opts=opts, typ=GetOrganizationalUnitsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getOrganizationalUnits:getOrganizationalUnits', __args__, opts=opts, typ=GetOrganizationalUnitsResult)
     return __ret__.apply(lambda __response__: GetOrganizationalUnitsResult(
         childrens=pulumi.get(__response__, 'childrens'),
         id=pulumi.get(__response__, 'id'),

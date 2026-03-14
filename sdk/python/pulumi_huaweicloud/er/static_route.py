@@ -26,6 +26,7 @@ class StaticRouteArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StaticRoute resource.
+
         :param pulumi.Input[_builtins.str] destination: Specifies the destination of the static route.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] route_table_id: Specifies the ID of the route table to which the static route
@@ -130,6 +131,7 @@ class _StaticRouteState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StaticRoute resources.
+
         :param pulumi.Input[_builtins.str] attachment_id: Specifies the ID of the corresponding attachment.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the static route.
         :param pulumi.Input[_builtins.str] destination: Specifies the destination of the static route.  
@@ -334,11 +336,10 @@ class StaticRoute(pulumi.CustomResource):
 
         Static routes can be imported using the related `route_table_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/staticRoute:StaticRoute test <route_table_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -401,11 +402,10 @@ class StaticRoute(pulumi.CustomResource):
 
         Static routes can be imported using the related `route_table_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/staticRoute:StaticRoute test <route_table_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StaticRouteArgs args: The arguments to use to populate this resource's properties.

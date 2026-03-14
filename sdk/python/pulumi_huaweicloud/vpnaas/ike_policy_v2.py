@@ -34,6 +34,7 @@ class IkePolicyV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a IkePolicyV2 resource.
+
         :param pulumi.Input[_builtins.str] auth_algorithm: The authentication hash algorithm. Valid values are md5, sha1, sha2-256, sha2-384,
                sha2-512. Default is sha1. Changing this updates the algorithm of the existing policy.
         :param pulumi.Input[_builtins.str] description: The human-readable description for the policy. Changing this updates the description of the
@@ -234,6 +235,7 @@ class _IkePolicyV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering IkePolicyV2 resources.
+
         :param pulumi.Input[_builtins.str] auth_algorithm: The authentication hash algorithm. Valid values are md5, sha1, sha2-256, sha2-384,
                sha2-512. Default is sha1. Changing this updates the algorithm of the existing policy.
         :param pulumi.Input[_builtins.str] description: The human-readable description for the policy. Changing this updates the description of the
@@ -418,7 +420,7 @@ class _IkePolicyV2State:
         pulumi.set(self, "value_specs", value)
 
 
-@pulumi.type_token("huaweicloud:vpnaas/ikePolicyV2:IkePolicyV2")
+@pulumi.type_token("huaweicloud:Vpnaas/ikePolicyV2:IkePolicyV2")
 class IkePolicyV2(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -452,11 +454,10 @@ class IkePolicyV2(pulumi.CustomResource):
 
         Services can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpnaas/ikePolicyV2:IkePolicyV2 policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
+        $ pulumi import huaweicloud:Vpnaas/ikePolicyV2:IkePolicyV2 policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -501,11 +502,10 @@ class IkePolicyV2(pulumi.CustomResource):
 
         Services can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpnaas/ikePolicyV2:IkePolicyV2 policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
+        $ pulumi import huaweicloud:Vpnaas/ikePolicyV2:IkePolicyV2 policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IkePolicyV2Args args: The arguments to use to populate this resource's properties.
@@ -554,7 +554,7 @@ class IkePolicyV2(pulumi.CustomResource):
             __props__.__dict__["tenant_id"] = tenant_id
             __props__.__dict__["value_specs"] = value_specs
         super(IkePolicyV2, __self__).__init__(
-            'huaweicloud:vpnaas/ikePolicyV2:IkePolicyV2',
+            'huaweicloud:Vpnaas/ikePolicyV2:IkePolicyV2',
             resource_name,
             __props__,
             opts)

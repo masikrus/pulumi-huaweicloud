@@ -82,7 +82,7 @@ def get_servers(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.vpn.get_servers()
+    test = huaweicloud.Vpn.get_servers()
     ```
 
 
@@ -92,7 +92,7 @@ def get_servers(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getServers:getServers', __args__, opts=opts, typ=GetServersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getServers:getServers', __args__, opts=opts, typ=GetServersResult).value
 
     return AwaitableGetServersResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_servers_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] =
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.vpn.get_servers()
+    test = huaweicloud.Vpn.get_servers()
     ```
 
 
@@ -119,7 +119,7 @@ def get_servers_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] =
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getServers:getServers', __args__, opts=opts, typ=GetServersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getServers:getServers', __args__, opts=opts, typ=GetServersResult)
     return __ret__.apply(lambda __response__: GetServersResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

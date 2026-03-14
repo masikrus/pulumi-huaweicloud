@@ -156,7 +156,7 @@ def get_metric_results(cache: Optional[_builtins.str] = None,
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     metric_ids = config.require_object("metricIds")
-    test = huaweicloud.secmaster.get_metric_results(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_metric_results(workspace_id=workspace_id,
         metric_ids=metric_ids)
     ```
 
@@ -186,7 +186,7 @@ def get_metric_results(cache: Optional[_builtins.str] = None,
     __args__['timespan'] = timespan
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getMetricResults:getMetricResults', __args__, opts=opts, typ=GetMetricResultsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getMetricResults:getMetricResults', __args__, opts=opts, typ=GetMetricResultsResult).value
 
     return AwaitableGetMetricResultsResult(
         cache=pulumi.get(__ret__, 'cache'),
@@ -220,7 +220,7 @@ def get_metric_results_output(cache: Optional[pulumi.Input[Optional[_builtins.st
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     metric_ids = config.require_object("metricIds")
-    test = huaweicloud.secmaster.get_metric_results(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_metric_results(workspace_id=workspace_id,
         metric_ids=metric_ids)
     ```
 
@@ -250,7 +250,7 @@ def get_metric_results_output(cache: Optional[pulumi.Input[Optional[_builtins.st
     __args__['timespan'] = timespan
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getMetricResults:getMetricResults', __args__, opts=opts, typ=GetMetricResultsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getMetricResults:getMetricResults', __args__, opts=opts, typ=GetMetricResultsResult)
     return __ret__.apply(lambda __response__: GetMetricResultsResult(
         cache=pulumi.get(__response__, 'cache'),
         field_ids=pulumi.get(__response__, 'field_ids'),

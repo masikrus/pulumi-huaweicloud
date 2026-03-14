@@ -213,7 +213,7 @@ def get_antivirus_available_hosts(enterprise_project_id: Optional[_builtins.str]
     config = pulumi.Config()
     scan_type = config.require_object("scanType")
     start_type = config.require_object("startType")
-    test = huaweicloud.hss.get_antivirus_available_hosts(scan_type=scan_type,
+    test = huaweicloud.Hss.get_antivirus_available_hosts(scan_type=scan_type,
         start_type=start_type)
     ```
 
@@ -256,7 +256,7 @@ def get_antivirus_available_hosts(enterprise_project_id: Optional[_builtins.str]
     __args__['scanType'] = scan_type
     __args__['startType'] = start_type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAntivirusAvailableHosts:getAntivirusAvailableHosts', __args__, opts=opts, typ=GetAntivirusAvailableHostsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAntivirusAvailableHosts:getAntivirusAvailableHosts', __args__, opts=opts, typ=GetAntivirusAvailableHostsResult).value
 
     return AwaitableGetAntivirusAvailableHostsResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -297,7 +297,7 @@ def get_antivirus_available_hosts_output(enterprise_project_id: Optional[pulumi.
     config = pulumi.Config()
     scan_type = config.require_object("scanType")
     start_type = config.require_object("startType")
-    test = huaweicloud.hss.get_antivirus_available_hosts(scan_type=scan_type,
+    test = huaweicloud.Hss.get_antivirus_available_hosts(scan_type=scan_type,
         start_type=start_type)
     ```
 
@@ -340,7 +340,7 @@ def get_antivirus_available_hosts_output(enterprise_project_id: Optional[pulumi.
     __args__['scanType'] = scan_type
     __args__['startType'] = start_type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAntivirusAvailableHosts:getAntivirusAvailableHosts', __args__, opts=opts, typ=GetAntivirusAvailableHostsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAntivirusAvailableHosts:getAntivirusAvailableHosts', __args__, opts=opts, typ=GetAntivirusAvailableHostsResult)
     return __ret__.apply(lambda __response__: GetAntivirusAvailableHostsResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

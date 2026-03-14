@@ -29,6 +29,7 @@ class CheckpointCopyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CheckpointCopy resource.
+
         :param pulumi.Input[_builtins.str] destination_project_id: Specifies the ID of the destination project to which the
                backup is to be copied.
         :param pulumi.Input[_builtins.str] destination_region: Specifies the ID of the destination region to which the backup
@@ -169,6 +170,7 @@ class _CheckpointCopyState:
                  vault_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CheckpointCopy resources.
+
         :param pulumi.Input[_builtins.bool] auto_trigger: Specifies whether to automatically trigger the replication.
         :param pulumi.Input[_builtins.str] destination_project_id: Specifies the ID of the destination project to which the
                backup is to be copied.
@@ -344,6 +346,7 @@ class CheckpointCopy(pulumi.CustomResource):
             auto_trigger=auto_trigger)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] auto_trigger: Specifies whether to automatically trigger the replication.
@@ -394,6 +397,7 @@ class CheckpointCopy(pulumi.CustomResource):
             enable_acceleration=False,
             auto_trigger=auto_trigger)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CheckpointCopyArgs args: The arguments to use to populate this resource's properties.

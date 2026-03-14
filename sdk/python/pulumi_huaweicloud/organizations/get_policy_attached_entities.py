@@ -82,7 +82,7 @@ def get_policy_attached_entities(policy_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['policyId'] = policy_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getPolicyAttachedEntities:getPolicyAttachedEntities', __args__, opts=opts, typ=GetPolicyAttachedEntitiesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getPolicyAttachedEntities:getPolicyAttachedEntities', __args__, opts=opts, typ=GetPolicyAttachedEntitiesResult).value
 
     return AwaitableGetPolicyAttachedEntitiesResult(
         attached_entities=pulumi.get(__ret__, 'attached_entities'),
@@ -99,7 +99,7 @@ def get_policy_attached_entities_output(policy_id: Optional[pulumi.Input[_builti
     __args__ = dict()
     __args__['policyId'] = policy_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getPolicyAttachedEntities:getPolicyAttachedEntities', __args__, opts=opts, typ=GetPolicyAttachedEntitiesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getPolicyAttachedEntities:getPolicyAttachedEntities', __args__, opts=opts, typ=GetPolicyAttachedEntitiesResult)
     return __ret__.apply(lambda __response__: GetPolicyAttachedEntitiesResult(
         attached_entities=pulumi.get(__response__, 'attached_entities'),
         id=pulumi.get(__response__, 'id'),

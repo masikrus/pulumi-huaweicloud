@@ -32,6 +32,7 @@ class RestoreArgs:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Restore resource.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the disk backup ID.
         :param pulumi.Input['RestoreDetailsArgs'] details: Specifies the restoration details.
                
@@ -201,6 +202,7 @@ class _RestoreState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Restore resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the disk backup ID.
         :param pulumi.Input['RestoreDetailsArgs'] details: Specifies the restoration details.
                
@@ -434,6 +436,7 @@ class Restore(pulumi.CustomResource):
             power_on=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the disk backup ID.
@@ -522,6 +525,7 @@ class Restore(pulumi.CustomResource):
             resource_id=workspace_resource_id,
             power_on=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RestoreArgs args: The arguments to use to populate this resource's properties.

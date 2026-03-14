@@ -28,6 +28,7 @@ class BucketReplicationArgs:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['BucketReplicationRuleArgs']]]] = None):
         """
         The set of arguments for constructing a BucketReplication resource.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency applied to the cross-region replication.
                
                > **NOTE:** The IAM agency is a cloud service agency of OBS. Which must has the **OBS Administrator** permission.
@@ -143,6 +144,7 @@ class _BucketReplicationState:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['BucketReplicationRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering BucketReplication resources.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency applied to the cross-region replication.
                
                > **NOTE:** The IAM agency is a cloud service agency of OBS. Which must has the **OBS Administrator** permission.
@@ -319,11 +321,10 @@ class BucketReplication(pulumi.CustomResource):
 
         The obs bucket cross-region replication can be imported using the `bucket`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketReplication:BucketReplication test <bucket-name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -410,11 +411,10 @@ class BucketReplication(pulumi.CustomResource):
 
         The obs bucket cross-region replication can be imported using the `bucket`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketReplication:BucketReplication test <bucket-name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BucketReplicationArgs args: The arguments to use to populate this resource's properties.

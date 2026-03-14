@@ -29,12 +29,14 @@ class SnapshotV3Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnapshotV3 resource.
+
         :param pulumi.Input[_builtins.str] volume_id: Specifies the ID of the source cloud disk for the snapshot.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the snapshot. Supports a maximum of `85` characters.
         :param pulumi.Input[_builtins.bool] force: Specifies the flag for forcibly creating a snapshot. Defaults to **false**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'metadata'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata_origin: The script configuration value of this change is also the original value used for
+               					comparison with the new value next time the change is made. The corresponding parameter name is
+               					'metadata'.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the snapshot. Supports a maximum of `64` characters.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -116,8 +118,9 @@ class SnapshotV3Args:
     @pulumi.getter(name="metadataOrigin")
     def metadata_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'metadata'.
+        The script configuration value of this change is also the original value used for
+        					comparison with the new value next time the change is made. The corresponding parameter name is
+        					'metadata'.
         """
         return pulumi.get(self, "metadata_origin")
 
@@ -168,12 +171,14 @@ class _SnapshotV3State:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnapshotV3 resources.
+
         :param pulumi.Input[_builtins.str] created_at: The time when the snapshot was created.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the snapshot. Supports a maximum of `85` characters.
         :param pulumi.Input[_builtins.bool] force: Specifies the flag for forcibly creating a snapshot. Defaults to **false**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'metadata'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata_origin: The script configuration value of this change is also the original value used for
+               					comparison with the new value next time the change is made. The corresponding parameter name is
+               					'metadata'.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the snapshot. Supports a maximum of `64` characters.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -278,8 +283,9 @@ class _SnapshotV3State:
     @pulumi.getter(name="metadataOrigin")
     def metadata_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'metadata'.
+        The script configuration value of this change is also the original value used for
+        					comparison with the new value next time the change is made. The corresponding parameter name is
+        					'metadata'.
         """
         return pulumi.get(self, "metadata_origin")
 
@@ -407,47 +413,25 @@ class SnapshotV3(pulumi.CustomResource):
 
         The EVS v3 snapshot can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/snapshotV3:SnapshotV3 test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `metadata`, `force`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the resource. Also, you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_evsv3_snapshot" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              metadata, force,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the snapshot. Supports a maximum of `85` characters.
         :param pulumi.Input[_builtins.bool] force: Specifies the flag for forcibly creating a snapshot. Defaults to **false**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'metadata'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata_origin: The script configuration value of this change is also the original value used for
+               					comparison with the new value next time the change is made. The corresponding parameter name is
+               					'metadata'.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the snapshot. Supports a maximum of `64` characters.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -480,39 +464,16 @@ class SnapshotV3(pulumi.CustomResource):
 
         The EVS v3 snapshot can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/snapshotV3:SnapshotV3 test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `metadata`, `force`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the resource. Also, you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_evsv3_snapshot" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              metadata, force,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param SnapshotV3Args args: The arguments to use to populate this resource's properties.
@@ -593,8 +554,9 @@ class SnapshotV3(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: Specifies the description of the snapshot. Supports a maximum of `85` characters.
         :param pulumi.Input[_builtins.bool] force: Specifies the flag for forcibly creating a snapshot. Defaults to **false**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'metadata'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata_origin: The script configuration value of this change is also the original value used for
+               					comparison with the new value next time the change is made. The corresponding parameter name is
+               					'metadata'.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the snapshot. Supports a maximum of `64` characters.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -672,8 +634,9 @@ class SnapshotV3(pulumi.CustomResource):
     @pulumi.getter(name="metadataOrigin")
     def metadata_origin(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'metadata'.
+        The script configuration value of this change is also the original value used for
+        					comparison with the new value next time the change is made. The corresponding parameter name is
+        					'metadata'.
         """
         return pulumi.get(self, "metadata_origin")
 

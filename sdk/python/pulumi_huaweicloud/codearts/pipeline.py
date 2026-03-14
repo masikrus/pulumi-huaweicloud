@@ -43,6 +43,7 @@ class PipelineArgs:
                  variables: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineVariableArgs']]]] = None):
         """
         The set of arguments for constructing a Pipeline resource.
+
         :param pulumi.Input[_builtins.str] definition: Specifies the pipeline definition JSON.
         :param pulumi.Input[_builtins.bool] is_publish: Specifies whether it is a change-triggered pipeline. Defaults to **false**.
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
@@ -397,6 +398,7 @@ class _PipelineState:
                  webhook_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pipeline resources.
+
         :param pulumi.Input[_builtins.bool] banned: Specifies whether the pipeline is banned. Defaults to **false**.
         :param pulumi.Input[_builtins.str] component_id: Specifies the microservice ID.
         :param pulumi.Input['PipelineConcurrencyControlArgs'] concurrency_control: Specifies the pipeline concurrency control information.
@@ -885,7 +887,7 @@ class _PipelineState:
         pulumi.set(self, "webhook_url", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipeline:Pipeline")
+@pulumi.type_token("huaweicloud:Codearts/pipeline:Pipeline")
 class Pipeline(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -1027,11 +1029,10 @@ class Pipeline(pulumi.CustomResource):
 
         The pipeline can be imported using `project_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipeline:Pipeline test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipeline:Pipeline test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1187,11 +1188,10 @@ class Pipeline(pulumi.CustomResource):
 
         The pipeline can be imported using `project_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipeline:Pipeline test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipeline:Pipeline test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelineArgs args: The arguments to use to populate this resource's properties.
@@ -1275,7 +1275,7 @@ class Pipeline(pulumi.CustomResource):
             __props__.__dict__["webhook_iam_authentication"] = None
             __props__.__dict__["webhook_url"] = None
         super(Pipeline, __self__).__init__(
-            'huaweicloud:codearts/pipeline:Pipeline',
+            'huaweicloud:Codearts/pipeline:Pipeline',
             resource_name,
             __props__,
             opts)

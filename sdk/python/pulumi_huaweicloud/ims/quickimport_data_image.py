@@ -31,6 +31,7 @@ class QuickimportDataImageArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a QuickimportDataImage resource.
+
         :param pulumi.Input[_builtins.str] image_url: Specifies the address of the external image file in the OBS bucket,
                the format is **OBS bucket name:image file name**.
                
@@ -270,6 +271,7 @@ class _QuickimportDataImageState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering QuickimportDataImage resources.
+
         :param pulumi.Input[_builtins.str] __account_code: The charging identifier for the image.
         :param pulumi.Input[_builtins.str] __backup_id: The backup ID. If the image is not created by backup, the value is empty.
         :param pulumi.Input[_builtins.str] __data_origin: The image source. If the image is a public image, value is empty.
@@ -1353,39 +1355,16 @@ class QuickimportDataImage(pulumi.CustomResource):
 
         The IMS quick import data image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/quickimportDataImage:QuickimportDataImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `image_url`, `type`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ims_quickimport_data_image" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              image_url, type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1447,39 +1426,16 @@ class QuickimportDataImage(pulumi.CustomResource):
 
         The IMS quick import data image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/quickimportDataImage:QuickimportDataImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `image_url`, `type`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ims_quickimport_data_image" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              image_url, type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param QuickimportDataImageArgs args: The arguments to use to populate this resource's properties.

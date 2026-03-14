@@ -25,6 +25,7 @@ class AttachmentAccepterArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AttachmentAccepter resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type.  
                The valid values are as follows:
                + **accept**
@@ -104,6 +105,7 @@ class _AttachmentAccepterState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AttachmentAccepter resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type.  
                The valid values are as follows:
                + **accept**
@@ -209,6 +211,7 @@ class AttachmentAccepter(pulumi.CustomResource):
             action="accept")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action type.  
@@ -247,6 +250,7 @@ class AttachmentAccepter(pulumi.CustomResource):
             attachment_id=attachment_id,
             action="accept")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AttachmentAccepterArgs args: The arguments to use to populate this resource's properties.

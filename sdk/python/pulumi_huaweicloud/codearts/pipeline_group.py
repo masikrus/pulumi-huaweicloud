@@ -26,6 +26,7 @@ class PipelineGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PipelineGroup resource.
+
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
         :param pulumi.Input[_builtins.str] name: Specifies the group name.
         :param pulumi.Input[_builtins.str] parent_id: Specifies the group parent ID.
@@ -120,6 +121,7 @@ class _PipelineGroupState:
                  updater: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelineGroup resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] childrens: Indicates the child group name list.
         :param pulumi.Input[_builtins.int] create_time: Indicates the create time.
         :param pulumi.Input[_builtins.str] creator: Indicates the creator ID.
@@ -303,7 +305,7 @@ class _PipelineGroupState:
         pulumi.set(self, "updater", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineGroup:PipelineGroup")
+@pulumi.type_token("huaweicloud:Codearts/pipelineGroup:PipelineGroup")
 class PipelineGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -336,11 +338,10 @@ class PipelineGroup(pulumi.CustomResource):
 
         The group can be imported using `project_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineGroup:PipelineGroup test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineGroup:PipelineGroup test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -378,11 +379,10 @@ class PipelineGroup(pulumi.CustomResource):
 
         The group can be imported using `project_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineGroup:PipelineGroup test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineGroup:PipelineGroup test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelineGroupArgs args: The arguments to use to populate this resource's properties.
@@ -428,7 +428,7 @@ class PipelineGroup(pulumi.CustomResource):
             __props__.__dict__["update_time"] = None
             __props__.__dict__["updater"] = None
         super(PipelineGroup, __self__).__init__(
-            'huaweicloud:codearts/pipelineGroup:PipelineGroup',
+            'huaweicloud:Codearts/pipelineGroup:PipelineGroup',
             resource_name,
             __props__,
             opts)

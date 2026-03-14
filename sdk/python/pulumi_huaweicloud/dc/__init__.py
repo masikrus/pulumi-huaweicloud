@@ -18,6 +18,7 @@ from .get_hosted_connects import *
 from .get_quotas import *
 from .get_resources_by_tags import *
 from .get_tags import *
+from .get_vif_peer_detections import *
 from .get_virtual_gateways import *
 from .get_virtual_interface_switchover_records import *
 from .get_virtual_interfaces import *
@@ -25,6 +26,7 @@ from .global_gateway import *
 from .global_gateway_peer_link import *
 from .global_gateway_route_table import *
 from .hosted_connect import *
+from .vif_peer_detection import *
 from .virtual_gateway import *
 from .virtual_interface import *
 from .virtual_interface_accepter import *

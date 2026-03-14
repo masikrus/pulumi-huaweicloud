@@ -19,18 +19,13 @@ __all__ = [
     'VolumeV2AttachmentArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class VolumeV2AttachmentArgsDict(TypedDict):
-        device: NotRequired[pulumi.Input[_builtins.str]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies a resource ID in UUID format.
-        """
-        instance_id: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    VolumeV2AttachmentArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeV2AttachmentArgsDict(TypedDict):
+    device: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a resource ID in UUID format.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class VolumeV2AttachmentArgs:

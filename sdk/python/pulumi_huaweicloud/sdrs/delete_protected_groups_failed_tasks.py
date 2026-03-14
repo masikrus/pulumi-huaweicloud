@@ -80,7 +80,7 @@ class _DeleteProtectedGroupsFailedTasksState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/deleteProtectedGroupsFailedTasks:DeleteProtectedGroupsFailedTasks")
+@pulumi.type_token("huaweicloud:Sdrs/deleteProtectedGroupsFailedTasks:DeleteProtectedGroupsFailedTasks")
 class DeleteProtectedGroupsFailedTasks(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -91,6 +91,7 @@ class DeleteProtectedGroupsFailedTasks(pulumi.CustomResource):
                  __props__=None):
         """
         Create a DeleteProtectedGroupsFailedTasks resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -102,6 +103,7 @@ class DeleteProtectedGroupsFailedTasks(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a DeleteProtectedGroupsFailedTasks resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param DeleteProtectedGroupsFailedTasksArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -131,7 +133,7 @@ class DeleteProtectedGroupsFailedTasks(pulumi.CustomResource):
             __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["region"] = region
         super(DeleteProtectedGroupsFailedTasks, __self__).__init__(
-            'huaweicloud:sdrs/deleteProtectedGroupsFailedTasks:DeleteProtectedGroupsFailedTasks',
+            'huaweicloud:Sdrs/deleteProtectedGroupsFailedTasks:DeleteProtectedGroupsFailedTasks',
             resource_name,
             __props__,
             opts)

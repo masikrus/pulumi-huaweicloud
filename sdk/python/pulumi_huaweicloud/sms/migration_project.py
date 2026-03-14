@@ -33,6 +33,7 @@ class MigrationProjectArgs:
                  start_target_server: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a MigrationProject resource.
+
         :param pulumi.Input[_builtins.bool] exist_server: Specifies whether the server already exists.
         :param pulumi.Input[_builtins.str] region: Specifies the region name.
         :param pulumi.Input[_builtins.bool] syncing: Specifies whether to continue syncing after the first copy or sync.
@@ -240,6 +241,7 @@ class _MigrationProjectState:
                  use_public_ip: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering MigrationProject resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the migration project description.
         :param pulumi.Input[_builtins.str] enterprise_project: Specifies the name of the enterprise project. Defaults to **default**.
         :param pulumi.Input[_builtins.bool] exist_server: Specifies whether the server already exists.
@@ -480,11 +482,10 @@ class MigrationProject(pulumi.CustomResource):
 
         SMS migration projects can be imported by `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sms/migrationProject:MigrationProject demo <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -539,11 +540,10 @@ class MigrationProject(pulumi.CustomResource):
 
         SMS migration projects can be imported by `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sms/migrationProject:MigrationProject demo <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MigrationProjectArgs args: The arguments to use to populate this resource's properties.

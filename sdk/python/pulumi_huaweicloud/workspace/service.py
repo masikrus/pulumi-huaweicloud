@@ -35,6 +35,7 @@ class ServiceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Service resource.
+
         :param pulumi.Input[_builtins.str] access_mode: Specifies the access mode of Workspace service.
                The valid values are as follows:
                + **INTERNET**: internet access.
@@ -313,6 +314,7 @@ class _ServiceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Service resources.
+
         :param pulumi.Input[_builtins.str] access_mode: Specifies the access mode of Workspace service.
                The valid values are as follows:
                + **INTERNET**: internet access.
@@ -736,19 +738,16 @@ class Service(pulumi.CustomResource):
 
         Service can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/service:Service test <id>
         ```
 
         'NA' or other characters can be used to instead of the `id`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/service:Service test NA
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -840,19 +839,16 @@ class Service(pulumi.CustomResource):
 
         Service can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/service:Service test <id>
         ```
 
         'NA' or other characters can be used to instead of the `id`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/service:Service test NA
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceArgs args: The arguments to use to populate this resource's properties.

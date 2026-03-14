@@ -109,16 +109,11 @@ __all__ = [
     'TranscodingTemplateArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ChannelEncoderSettingArgsDict(TypedDict):
-        template_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the transcoding template ID.
-        """
-elif False:
-    ChannelEncoderSettingArgsDict: TypeAlias = Mapping[str, Any]
+class ChannelEncoderSettingArgsDict(TypedDict):
+    template_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the transcoding template ID.
+    """
 
 @pulumi.input_type
 class ChannelEncoderSettingArgs:
@@ -143,18 +138,15 @@ class ChannelEncoderSettingArgs:
         pulumi.set(self, "template_id", value)
 
 
-if not MYPY:
-    class ChannelEncoderSettingsExpandArgsDict(TypedDict):
-        audio_descriptions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEncoderSettingsExpandAudioDescriptionArgsDict']]]]
-        """
-        Specifies the description of the audio output configuration.
-        The audio_descriptions structure is documented below.
+class ChannelEncoderSettingsExpandArgsDict(TypedDict):
+    audio_descriptions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEncoderSettingsExpandAudioDescriptionArgsDict']]]]
+    """
+    Specifies the description of the audio output configuration.
+    The audio_descriptions structure is documented below.
 
-        <a name="LiveChannel_AudioDescriptions"></a>
-        The `audio_descriptions` block supports:
-        """
-elif False:
-    ChannelEncoderSettingsExpandArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_AudioDescriptions"></a>
+    The `audio_descriptions` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEncoderSettingsExpandArgs:
@@ -187,41 +179,38 @@ class ChannelEncoderSettingsExpandArgs:
         pulumi.set(self, "audio_descriptions", value)
 
 
-if not MYPY:
-    class ChannelEncoderSettingsExpandAudioDescriptionArgsDict(TypedDict):
-        audio_selector_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the audio selector name.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the audio output configuration. Only uppercase and lowercase letters,
-        numbers, hyphens (-), and underscores (_) are supported.
-        Different audio output configuration names for the same channel are not allowed to be duplicated.
-        """
-        language_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the language code. The value could be `2` or `3` lowercase letters.
-        """
-        language_code_control: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the language code control configuration.
-        The settings here will not change the actual language of the audio, but only the language in which the audio is
-        displayed externally. Valid values are:
-        + **FOLLOW_INPUT**: If the output audio corresponding to the selected audio selector has a language, it will be
-        consistent with it, otherwise it will be backed up by the language code and stream name configured here.
-        The current option is recommended and is the default value.
-        + **USE_CONFIGURED**: Users can customize the language and stream name of the output audio based on actual conditions.
-        """
-        stream_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the stream name.
+class ChannelEncoderSettingsExpandAudioDescriptionArgsDict(TypedDict):
+    audio_selector_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the audio selector name.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the audio output configuration. Only uppercase and lowercase letters,
+    numbers, hyphens (-), and underscores (_) are supported.
+    Different audio output configuration names for the same channel are not allowed to be duplicated.
+    """
+    language_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the language code. The value could be `2` or `3` lowercase letters.
+    """
+    language_code_control: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the language code control configuration.
+    The settings here will not change the actual language of the audio, but only the language in which the audio is
+    displayed externally. Valid values are:
+    + **FOLLOW_INPUT**: If the output audio corresponding to the selected audio selector has a language, it will be
+    consistent with it, otherwise it will be backed up by the language code and stream name configured here.
+    The current option is recommended and is the default value.
+    + **USE_CONFIGURED**: Users can customize the language and stream name of the output audio based on actual conditions.
+    """
+    stream_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the stream name.
 
-        <a name="LiveChannel_EncoderSettings"></a>
-        The `encoder_settings` block supports:
-        """
-elif False:
-    ChannelEncoderSettingsExpandAudioDescriptionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettings"></a>
+    The `encoder_settings` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEncoderSettingsExpandAudioDescriptionArgs:
@@ -330,28 +319,25 @@ class ChannelEncoderSettingsExpandAudioDescriptionArgs:
         pulumi.set(self, "stream_name", value)
 
 
-if not MYPY:
-    class ChannelEndpointArgsDict(TypedDict):
-        dash_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageArgsDict']]]]
-        """
-        Specifies the DASH packaging information.
-        The dash_package structure is documented below.
-        """
-        hls_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageArgsDict']]]]
-        """
-        Specifies the HLS packaging information.
-        The hls_package structure is documented below.
-        """
-        mss_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageArgsDict']]]]
-        """
-        Specifies the MSS packaging information.
-        The mss_package structure is documented below.
+class ChannelEndpointArgsDict(TypedDict):
+    dash_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageArgsDict']]]]
+    """
+    Specifies the DASH packaging information.
+    The dash_package structure is documented below.
+    """
+    hls_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageArgsDict']]]]
+    """
+    Specifies the HLS packaging information.
+    The hls_package structure is documented below.
+    """
+    mss_packages: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageArgsDict']]]]
+    """
+    Specifies the MSS packaging information.
+    The mss_package structure is documented below.
 
-        <a name="LiveChannel_HlsPackage"></a>
-        The `hls_package` block supports:
-        """
-elif False:
-    ChannelEndpointArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_HlsPackage"></a>
+    The `hls_package` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointArgs:
@@ -420,54 +406,51 @@ class ChannelEndpointArgs:
         pulumi.set(self, "mss_packages", value)
 
 
-if not MYPY:
-    class ChannelEndpointDashPackageArgsDict(TypedDict):
-        segment_duration_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the duration of the channel output segment. The unit is second.
-        Value ranges from `1` to `10`.
+class ChannelEndpointDashPackageArgsDict(TypedDict):
+    segment_duration_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the duration of the channel output segment. The unit is second.
+    Value ranges from `1` to `10`.
 
-        > Modifying the segment duration will affect the time-shift and playback services of the recorded content, so please
-        modify with caution!
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the DRM address of the key.
-        """
-        ad_marker: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the advertising marker. The DASH value is **xml+bin**.
+    > Modifying the segment duration will affect the time-shift and playback services of the recorded content, so please
+    modify with caution!
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the DRM address of the key.
+    """
+    ad_marker: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the advertising marker. The DASH value is **xml+bin**.
 
-        <a name="LiveChannel_MssPackage"></a>
-        The `mss_package` block supports:
-        """
-        encryption: NotRequired[pulumi.Input['ChannelEndpointDashPackageEncryptionArgsDict']]
-        """
-        Specifies the encrypted information.
-        The encryption structure is documented below.
-        """
-        playlist_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the window length of the channel live broadcast return shard.
-        The value is the output segment duration multiplied by the number of segments. There are at least three returned segments.
-        The unit is second. Value ranges from `0` to `86,400`.
-        """
-        request_args: NotRequired[pulumi.Input['ChannelEndpointDashPackageRequestArgsArgsDict']]
-        """
-        Specifies the play related configuration.
-        The request_args structure is documented below.
+    <a name="LiveChannel_MssPackage"></a>
+    The `mss_package` block supports:
+    """
+    encryption: NotRequired[pulumi.Input['ChannelEndpointDashPackageEncryptionArgsDict']]
+    """
+    Specifies the encrypted information.
+    The encryption structure is documented below.
+    """
+    playlist_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the window length of the channel live broadcast return shard.
+    The value is the output segment duration multiplied by the number of segments. There are at least three returned segments.
+    The unit is second. Value ranges from `0` to `86,400`.
+    """
+    request_args: NotRequired[pulumi.Input['ChannelEndpointDashPackageRequestArgsArgsDict']]
+    """
+    Specifies the play related configuration.
+    The request_args structure is documented below.
 
-        <a name="LiveChannel_StreamSelection"></a>
-        The `stream_selection` block supports:
-        """
-        stream_selections: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageStreamSelectionArgsDict']]]]
-        """
-        Specifies the stream selection. Filter out the specified range of streams from
-        the full stream.
-        The stream_selection structure is documented below.
-        """
-elif False:
-    ChannelEndpointDashPackageArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_StreamSelection"></a>
+    The `stream_selection` block supports:
+    """
+    stream_selections: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageStreamSelectionArgsDict']]]]
+    """
+    Specifies the stream selection. Filter out the specified range of streams from
+    the full stream.
+    The stream_selection structure is documented below.
+    """
 
 @pulumi.input_type
 class ChannelEndpointDashPackageArgs:
@@ -618,63 +601,60 @@ class ChannelEndpointDashPackageArgs:
         pulumi.set(self, "stream_selections", value)
 
 
-if not MYPY:
-    class ChannelEndpointDashPackageEncryptionArgsDict(TypedDict):
-        request_mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the request mode. Valid values are:
-        + **direct_http**: HTTP(S) direct access to DRM.
-        + **functiongraph_proxy**: FunctionGraph proxy access to DRM.
-        """
-        resource_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the customer-generated DRM content ID.
-        """
-        speke_version: pulumi.Input[_builtins.str]
-        """
-        Specifies the DRM spec version number. Currently, only supports **1.0**.
-        """
-        system_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the system ID enumeration values. Valid values are **FairPlay** (HLS),
-        **Widevine** (DASH), **PlayReady** (DASH), and **PlayReady** (MSS).
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the DRM address of the key.
-        """
-        encryption_method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Internal; Specifies the encryption method.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageEncryptionHttpHeaderArgsDict']]]]
-        """
-        Specifies the authentication information that needs to be added to the DRM request header.
-        Supports up to `5` configurations. Only the **direct_http** request mode supports configuring this field.
-        The http_headers structure is documented below.
-        """
-        key_rotation_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        schema: Internal; Specifies the key rotation interval seconds.
-        """
-        level: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the level. Valid values are:
-        + **content**: One channel corresponds to one key.
-        + **profile**: One code rate corresponds to one key.
+class ChannelEndpointDashPackageEncryptionArgsDict(TypedDict):
+    request_mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the request mode. Valid values are:
+    + **direct_http**: HTTP(S) direct access to DRM.
+    + **functiongraph_proxy**: FunctionGraph proxy access to DRM.
+    """
+    resource_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the customer-generated DRM content ID.
+    """
+    speke_version: pulumi.Input[_builtins.str]
+    """
+    Specifies the DRM spec version number. Currently, only supports **1.0**.
+    """
+    system_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the system ID enumeration values. Valid values are **FairPlay** (HLS),
+    **Widevine** (DASH), **PlayReady** (DASH), and **PlayReady** (MSS).
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the DRM address of the key.
+    """
+    encryption_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Internal; Specifies the encryption method.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageEncryptionHttpHeaderArgsDict']]]]
+    """
+    Specifies the authentication information that needs to be added to the DRM request header.
+    Supports up to `5` configurations. Only the **direct_http** request mode supports configuring this field.
+    The http_headers structure is documented below.
+    """
+    key_rotation_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    schema: Internal; Specifies the key rotation interval seconds.
+    """
+    level: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the level. Valid values are:
+    + **content**: One channel corresponds to one key.
+    + **profile**: One code rate corresponds to one key.
 
-        Defaults to **content**.
-        """
-        urn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the URN of the function graph. The **functiongraph_proxy** request mode requires
-        the function graph's urn to be provided.
+    Defaults to **content**.
+    """
+    urn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the URN of the function graph. The **functiongraph_proxy** request mode requires
+    the function graph's urn to be provided.
 
-        <a name="LiveChannel_HttpHeader"></a>
-        The `http_headers` block supports:
-        """
-elif False:
-    ChannelEndpointDashPackageEncryptionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_HttpHeader"></a>
+    The `http_headers` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointDashPackageEncryptionArgs:
@@ -864,21 +844,18 @@ class ChannelEndpointDashPackageEncryptionArgs:
         pulumi.set(self, "urn", value)
 
 
-if not MYPY:
-    class ChannelEndpointDashPackageEncryptionHttpHeaderArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key field name in the request header.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value corresponding to the key in the request header.
+class ChannelEndpointDashPackageEncryptionHttpHeaderArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key field name in the request header.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value corresponding to the key in the request header.
 
-        <a name="LiveChannel_RequestArgs"></a>
-        The `request_args` block supports:
-        """
-elif False:
-    ChannelEndpointDashPackageEncryptionHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_RequestArgs"></a>
+    The `request_args` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointDashPackageEncryptionHttpHeaderArgs:
@@ -923,28 +900,25 @@ class ChannelEndpointDashPackageEncryptionHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ChannelEndpointDashPackageRequestArgsArgsDict(TypedDict):
-        lives: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageRequestArgsLifeArgsDict']]]]
-        """
-        Specifies the live broadcast configuration.
-        The live structure is documented below.
+class ChannelEndpointDashPackageRequestArgsArgsDict(TypedDict):
+    lives: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageRequestArgsLifeArgsDict']]]]
+    """
+    Specifies the live broadcast configuration.
+    The live structure is documented below.
 
-        <a name="LiveChannel_RequestArgsRecord"></a>
-        The `record` block supports:
-        """
-        records: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageRequestArgsRecordArgsDict']]]]
-        """
-        Specifies the recording and playback related configuration.
-        The record structure is documented below.
-        """
-        timeshifts: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageRequestArgsTimeshiftArgsDict']]]]
-        """
-        Specifies the time-shift playback configuration.
-        The timeshift structure is documented below.
-        """
-elif False:
-    ChannelEndpointDashPackageRequestArgsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_RequestArgsRecord"></a>
+    The `record` block supports:
+    """
+    records: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageRequestArgsRecordArgsDict']]]]
+    """
+    Specifies the recording and playback related configuration.
+    The record structure is documented below.
+    """
+    timeshifts: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointDashPackageRequestArgsTimeshiftArgsDict']]]]
+    """
+    Specifies the time-shift playback configuration.
+    The timeshift structure is documented below.
+    """
 
 @pulumi.input_type
 class ChannelEndpointDashPackageRequestArgsArgs:
@@ -1013,21 +987,18 @@ class ChannelEndpointDashPackageRequestArgsArgs:
         pulumi.set(self, "timeshifts", value)
 
 
-if not MYPY:
-    class ChannelEndpointDashPackageRequestArgsLifeArgsDict(TypedDict):
-        delay: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the delay field.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit.
+class ChannelEndpointDashPackageRequestArgsLifeArgsDict(TypedDict):
+    delay: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the delay field.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit.
 
-        <a name="LiveChannel_EncoderSettingsExpand"></a>
-        The `encoder_settings_expand` block supports:
-        """
-elif False:
-    ChannelEndpointDashPackageRequestArgsLifeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettingsExpand"></a>
+    The `encoder_settings_expand` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointDashPackageRequestArgsLifeArgs:
@@ -1074,29 +1045,26 @@ class ChannelEndpointDashPackageRequestArgsLifeArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ChannelEndpointDashPackageRequestArgsRecordArgsDict(TypedDict):
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the end time.
-        """
-        format: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the format.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the start time.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit.
+class ChannelEndpointDashPackageRequestArgsRecordArgsDict(TypedDict):
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the end time.
+    """
+    format: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the format.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the start time.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit.
 
-        <a name="LiveChannel_EncoderSettingsExpand"></a>
-        The `encoder_settings_expand` block supports:
-        """
-elif False:
-    ChannelEndpointDashPackageRequestArgsRecordArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettingsExpand"></a>
+    The `encoder_settings_expand` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointDashPackageRequestArgsRecordArgs:
@@ -1175,21 +1143,18 @@ class ChannelEndpointDashPackageRequestArgsRecordArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ChannelEndpointDashPackageRequestArgsTimeshiftArgsDict(TypedDict):
-        back_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time shift duration field name.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit.
+class ChannelEndpointDashPackageRequestArgsTimeshiftArgsDict(TypedDict):
+    back_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time shift duration field name.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit.
 
-        <a name="LiveChannel_EncoderSettingsExpand"></a>
-        The `encoder_settings_expand` block supports:
-        """
-elif False:
-    ChannelEndpointDashPackageRequestArgsTimeshiftArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettingsExpand"></a>
+    The `encoder_settings_expand` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointDashPackageRequestArgsTimeshiftArgs:
@@ -1236,25 +1201,22 @@ class ChannelEndpointDashPackageRequestArgsTimeshiftArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ChannelEndpointDashPackageStreamSelectionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the key field name in the request header.
-        """
-        max_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
-        """
-        min_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
+class ChannelEndpointDashPackageStreamSelectionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key field name in the request header.
+    """
+    max_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
+    """
+    min_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
 
-        <a name="LiveChannel_Encryption"></a>
-        The `encryption` block supports:
-        """
-elif False:
-    ChannelEndpointDashPackageStreamSelectionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_Encryption"></a>
+    The `encryption` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointDashPackageStreamSelectionArgs:
@@ -1317,58 +1279,55 @@ class ChannelEndpointDashPackageStreamSelectionArgs:
         pulumi.set(self, "min_bandwidth", value)
 
 
-if not MYPY:
-    class ChannelEndpointHlsPackageArgsDict(TypedDict):
-        segment_duration_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the duration of the channel output segment. The unit is second.
-        Value ranges from `1` to `10`.
+class ChannelEndpointHlsPackageArgsDict(TypedDict):
+    segment_duration_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the duration of the channel output segment. The unit is second.
+    Value ranges from `1` to `10`.
 
-        > Modifying the segment duration will affect the time-shift and playback services of the recorded content, so please
-        modify with caution!
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the DRM address of the key.
-        """
-        ad_markers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the advertising marker. The DASH value is **xml+bin**.
+    > Modifying the segment duration will affect the time-shift and playback services of the recorded content, so please
+    modify with caution!
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the DRM address of the key.
+    """
+    ad_markers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the advertising marker. The DASH value is **xml+bin**.
 
-        <a name="LiveChannel_MssPackage"></a>
-        The `mss_package` block supports:
-        """
-        encryption: NotRequired[pulumi.Input['ChannelEndpointHlsPackageEncryptionArgsDict']]
-        """
-        Specifies the encrypted information.
-        The encryption structure is documented below.
-        """
-        hls_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the HLS version.
-        """
-        playlist_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the window length of the channel live broadcast return shard.
-        The value is the output segment duration multiplied by the number of segments. There are at least three returned segments.
-        The unit is second. Value ranges from `0` to `86,400`.
-        """
-        request_args: NotRequired[pulumi.Input['ChannelEndpointHlsPackageRequestArgsArgsDict']]
-        """
-        Specifies the play related configuration.
-        The request_args structure is documented below.
+    <a name="LiveChannel_MssPackage"></a>
+    The `mss_package` block supports:
+    """
+    encryption: NotRequired[pulumi.Input['ChannelEndpointHlsPackageEncryptionArgsDict']]
+    """
+    Specifies the encrypted information.
+    The encryption structure is documented below.
+    """
+    hls_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the HLS version.
+    """
+    playlist_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the window length of the channel live broadcast return shard.
+    The value is the output segment duration multiplied by the number of segments. There are at least three returned segments.
+    The unit is second. Value ranges from `0` to `86,400`.
+    """
+    request_args: NotRequired[pulumi.Input['ChannelEndpointHlsPackageRequestArgsArgsDict']]
+    """
+    Specifies the play related configuration.
+    The request_args structure is documented below.
 
-        <a name="LiveChannel_StreamSelection"></a>
-        The `stream_selection` block supports:
-        """
-        stream_selections: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageStreamSelectionArgsDict']]]]
-        """
-        Specifies the stream selection. Filter out the specified range of streams from
-        the full stream.
-        The stream_selection structure is documented below.
-        """
-elif False:
-    ChannelEndpointHlsPackageArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_StreamSelection"></a>
+    The `stream_selection` block supports:
+    """
+    stream_selections: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageStreamSelectionArgsDict']]]]
+    """
+    Specifies the stream selection. Filter out the specified range of streams from
+    the full stream.
+    The stream_selection structure is documented below.
+    """
 
 @pulumi.input_type
 class ChannelEndpointHlsPackageArgs:
@@ -1535,63 +1494,60 @@ class ChannelEndpointHlsPackageArgs:
         pulumi.set(self, "stream_selections", value)
 
 
-if not MYPY:
-    class ChannelEndpointHlsPackageEncryptionArgsDict(TypedDict):
-        request_mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the request mode. Valid values are:
-        + **direct_http**: HTTP(S) direct access to DRM.
-        + **functiongraph_proxy**: FunctionGraph proxy access to DRM.
-        """
-        resource_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the customer-generated DRM content ID.
-        """
-        speke_version: pulumi.Input[_builtins.str]
-        """
-        Specifies the DRM spec version number. Currently, only supports **1.0**.
-        """
-        system_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the system ID enumeration values. Valid values are **FairPlay** (HLS),
-        **Widevine** (DASH), **PlayReady** (DASH), and **PlayReady** (MSS).
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the DRM address of the key.
-        """
-        encryption_method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Internal; Specifies the encryption method.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageEncryptionHttpHeaderArgsDict']]]]
-        """
-        Specifies the authentication information that needs to be added to the DRM request header.
-        Supports up to `5` configurations. Only the **direct_http** request mode supports configuring this field.
-        The http_headers structure is documented below.
-        """
-        key_rotation_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        schema: Internal; Specifies the key rotation interval seconds.
-        """
-        level: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the level. Valid values are:
-        + **content**: One channel corresponds to one key.
-        + **profile**: One code rate corresponds to one key.
+class ChannelEndpointHlsPackageEncryptionArgsDict(TypedDict):
+    request_mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the request mode. Valid values are:
+    + **direct_http**: HTTP(S) direct access to DRM.
+    + **functiongraph_proxy**: FunctionGraph proxy access to DRM.
+    """
+    resource_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the customer-generated DRM content ID.
+    """
+    speke_version: pulumi.Input[_builtins.str]
+    """
+    Specifies the DRM spec version number. Currently, only supports **1.0**.
+    """
+    system_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the system ID enumeration values. Valid values are **FairPlay** (HLS),
+    **Widevine** (DASH), **PlayReady** (DASH), and **PlayReady** (MSS).
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the DRM address of the key.
+    """
+    encryption_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Internal; Specifies the encryption method.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageEncryptionHttpHeaderArgsDict']]]]
+    """
+    Specifies the authentication information that needs to be added to the DRM request header.
+    Supports up to `5` configurations. Only the **direct_http** request mode supports configuring this field.
+    The http_headers structure is documented below.
+    """
+    key_rotation_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    schema: Internal; Specifies the key rotation interval seconds.
+    """
+    level: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the level. Valid values are:
+    + **content**: One channel corresponds to one key.
+    + **profile**: One code rate corresponds to one key.
 
-        Defaults to **content**.
-        """
-        urn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the URN of the function graph. The **functiongraph_proxy** request mode requires
-        the function graph's urn to be provided.
+    Defaults to **content**.
+    """
+    urn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the URN of the function graph. The **functiongraph_proxy** request mode requires
+    the function graph's urn to be provided.
 
-        <a name="LiveChannel_HttpHeader"></a>
-        The `http_headers` block supports:
-        """
-elif False:
-    ChannelEndpointHlsPackageEncryptionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_HttpHeader"></a>
+    The `http_headers` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointHlsPackageEncryptionArgs:
@@ -1781,21 +1737,18 @@ class ChannelEndpointHlsPackageEncryptionArgs:
         pulumi.set(self, "urn", value)
 
 
-if not MYPY:
-    class ChannelEndpointHlsPackageEncryptionHttpHeaderArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key field name in the request header.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value corresponding to the key in the request header.
+class ChannelEndpointHlsPackageEncryptionHttpHeaderArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key field name in the request header.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value corresponding to the key in the request header.
 
-        <a name="LiveChannel_RequestArgs"></a>
-        The `request_args` block supports:
-        """
-elif False:
-    ChannelEndpointHlsPackageEncryptionHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_RequestArgs"></a>
+    The `request_args` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointHlsPackageEncryptionHttpHeaderArgs:
@@ -1840,28 +1793,25 @@ class ChannelEndpointHlsPackageEncryptionHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ChannelEndpointHlsPackageRequestArgsArgsDict(TypedDict):
-        lives: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageRequestArgsLifeArgsDict']]]]
-        """
-        Specifies the live broadcast configuration.
-        The live structure is documented below.
+class ChannelEndpointHlsPackageRequestArgsArgsDict(TypedDict):
+    lives: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageRequestArgsLifeArgsDict']]]]
+    """
+    Specifies the live broadcast configuration.
+    The live structure is documented below.
 
-        <a name="LiveChannel_RequestArgsRecord"></a>
-        The `record` block supports:
-        """
-        records: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageRequestArgsRecordArgsDict']]]]
-        """
-        Specifies the recording and playback related configuration.
-        The record structure is documented below.
-        """
-        timeshifts: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageRequestArgsTimeshiftArgsDict']]]]
-        """
-        Specifies the time-shift playback configuration.
-        The timeshift structure is documented below.
-        """
-elif False:
-    ChannelEndpointHlsPackageRequestArgsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_RequestArgsRecord"></a>
+    The `record` block supports:
+    """
+    records: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageRequestArgsRecordArgsDict']]]]
+    """
+    Specifies the recording and playback related configuration.
+    The record structure is documented below.
+    """
+    timeshifts: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointHlsPackageRequestArgsTimeshiftArgsDict']]]]
+    """
+    Specifies the time-shift playback configuration.
+    The timeshift structure is documented below.
+    """
 
 @pulumi.input_type
 class ChannelEndpointHlsPackageRequestArgsArgs:
@@ -1930,21 +1880,18 @@ class ChannelEndpointHlsPackageRequestArgsArgs:
         pulumi.set(self, "timeshifts", value)
 
 
-if not MYPY:
-    class ChannelEndpointHlsPackageRequestArgsLifeArgsDict(TypedDict):
-        delay: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the delay field.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit.
+class ChannelEndpointHlsPackageRequestArgsLifeArgsDict(TypedDict):
+    delay: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the delay field.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit.
 
-        <a name="LiveChannel_EncoderSettingsExpand"></a>
-        The `encoder_settings_expand` block supports:
-        """
-elif False:
-    ChannelEndpointHlsPackageRequestArgsLifeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettingsExpand"></a>
+    The `encoder_settings_expand` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointHlsPackageRequestArgsLifeArgs:
@@ -1991,29 +1938,26 @@ class ChannelEndpointHlsPackageRequestArgsLifeArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ChannelEndpointHlsPackageRequestArgsRecordArgsDict(TypedDict):
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the end time.
-        """
-        format: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the format.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the start time.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit.
+class ChannelEndpointHlsPackageRequestArgsRecordArgsDict(TypedDict):
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the end time.
+    """
+    format: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the format.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the start time.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit.
 
-        <a name="LiveChannel_EncoderSettingsExpand"></a>
-        The `encoder_settings_expand` block supports:
-        """
-elif False:
-    ChannelEndpointHlsPackageRequestArgsRecordArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettingsExpand"></a>
+    The `encoder_settings_expand` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointHlsPackageRequestArgsRecordArgs:
@@ -2092,21 +2036,18 @@ class ChannelEndpointHlsPackageRequestArgsRecordArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ChannelEndpointHlsPackageRequestArgsTimeshiftArgsDict(TypedDict):
-        back_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time shift duration field name.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit.
+class ChannelEndpointHlsPackageRequestArgsTimeshiftArgsDict(TypedDict):
+    back_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time shift duration field name.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit.
 
-        <a name="LiveChannel_EncoderSettingsExpand"></a>
-        The `encoder_settings_expand` block supports:
-        """
-elif False:
-    ChannelEndpointHlsPackageRequestArgsTimeshiftArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettingsExpand"></a>
+    The `encoder_settings_expand` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointHlsPackageRequestArgsTimeshiftArgs:
@@ -2153,25 +2094,22 @@ class ChannelEndpointHlsPackageRequestArgsTimeshiftArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ChannelEndpointHlsPackageStreamSelectionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the key field name in the request header.
-        """
-        max_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
-        """
-        min_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
+class ChannelEndpointHlsPackageStreamSelectionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key field name in the request header.
+    """
+    max_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
+    """
+    min_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
 
-        <a name="LiveChannel_Encryption"></a>
-        The `encryption` block supports:
-        """
-elif False:
-    ChannelEndpointHlsPackageStreamSelectionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_Encryption"></a>
+    The `encryption` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointHlsPackageStreamSelectionArgs:
@@ -2234,51 +2172,48 @@ class ChannelEndpointHlsPackageStreamSelectionArgs:
         pulumi.set(self, "min_bandwidth", value)
 
 
-if not MYPY:
-    class ChannelEndpointMssPackageArgsDict(TypedDict):
-        segment_duration_seconds: pulumi.Input[_builtins.int]
-        """
-        Specifies the duration of the channel output segment. The unit is second.
-        Value ranges from `1` to `10`.
+class ChannelEndpointMssPackageArgsDict(TypedDict):
+    segment_duration_seconds: pulumi.Input[_builtins.int]
+    """
+    Specifies the duration of the channel output segment. The unit is second.
+    Value ranges from `1` to `10`.
 
-        > Modifying the segment duration will affect the time-shift and playback services of the recorded content, so please
-        modify with caution!
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the DRM address of the key.
-        """
-        delay_segment: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the delayed playback time. The unit is second.
-        """
-        encryption: NotRequired[pulumi.Input['ChannelEndpointMssPackageEncryptionArgsDict']]
-        """
-        Specifies the encrypted information.
-        The encryption structure is documented below.
-        """
-        playlist_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the window length of the channel live broadcast return shard.
-        The value is the output segment duration multiplied by the number of segments. There are at least three returned segments.
-        The unit is second. Value ranges from `0` to `86,400`.
-        """
-        request_args: NotRequired[pulumi.Input['ChannelEndpointMssPackageRequestArgsArgsDict']]
-        """
-        Specifies the play related configuration.
-        The request_args structure is documented below.
+    > Modifying the segment duration will affect the time-shift and playback services of the recorded content, so please
+    modify with caution!
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the DRM address of the key.
+    """
+    delay_segment: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the delayed playback time. The unit is second.
+    """
+    encryption: NotRequired[pulumi.Input['ChannelEndpointMssPackageEncryptionArgsDict']]
+    """
+    Specifies the encrypted information.
+    The encryption structure is documented below.
+    """
+    playlist_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the window length of the channel live broadcast return shard.
+    The value is the output segment duration multiplied by the number of segments. There are at least three returned segments.
+    The unit is second. Value ranges from `0` to `86,400`.
+    """
+    request_args: NotRequired[pulumi.Input['ChannelEndpointMssPackageRequestArgsArgsDict']]
+    """
+    Specifies the play related configuration.
+    The request_args structure is documented below.
 
-        <a name="LiveChannel_StreamSelection"></a>
-        The `stream_selection` block supports:
-        """
-        stream_selections: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageStreamSelectionArgsDict']]]]
-        """
-        Specifies the stream selection. Filter out the specified range of streams from
-        the full stream.
-        The stream_selection structure is documented below.
-        """
-elif False:
-    ChannelEndpointMssPackageArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_StreamSelection"></a>
+    The `stream_selection` block supports:
+    """
+    stream_selections: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageStreamSelectionArgsDict']]]]
+    """
+    Specifies the stream selection. Filter out the specified range of streams from
+    the full stream.
+    The stream_selection structure is documented below.
+    """
 
 @pulumi.input_type
 class ChannelEndpointMssPackageArgs:
@@ -2423,63 +2358,60 @@ class ChannelEndpointMssPackageArgs:
         pulumi.set(self, "stream_selections", value)
 
 
-if not MYPY:
-    class ChannelEndpointMssPackageEncryptionArgsDict(TypedDict):
-        request_mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the request mode. Valid values are:
-        + **direct_http**: HTTP(S) direct access to DRM.
-        + **functiongraph_proxy**: FunctionGraph proxy access to DRM.
-        """
-        resource_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the customer-generated DRM content ID.
-        """
-        speke_version: pulumi.Input[_builtins.str]
-        """
-        Specifies the DRM spec version number. Currently, only supports **1.0**.
-        """
-        system_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the system ID enumeration values. Valid values are **FairPlay** (HLS),
-        **Widevine** (DASH), **PlayReady** (DASH), and **PlayReady** (MSS).
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the DRM address of the key.
-        """
-        encryption_method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Internal; Specifies the encryption method.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageEncryptionHttpHeaderArgsDict']]]]
-        """
-        Specifies the authentication information that needs to be added to the DRM request header.
-        Supports up to `5` configurations. Only the **direct_http** request mode supports configuring this field.
-        The http_headers structure is documented below.
-        """
-        key_rotation_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        schema: Internal; Specifies the key rotation interval seconds.
-        """
-        level: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the level. Valid values are:
-        + **content**: One channel corresponds to one key.
-        + **profile**: One code rate corresponds to one key.
+class ChannelEndpointMssPackageEncryptionArgsDict(TypedDict):
+    request_mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the request mode. Valid values are:
+    + **direct_http**: HTTP(S) direct access to DRM.
+    + **functiongraph_proxy**: FunctionGraph proxy access to DRM.
+    """
+    resource_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the customer-generated DRM content ID.
+    """
+    speke_version: pulumi.Input[_builtins.str]
+    """
+    Specifies the DRM spec version number. Currently, only supports **1.0**.
+    """
+    system_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the system ID enumeration values. Valid values are **FairPlay** (HLS),
+    **Widevine** (DASH), **PlayReady** (DASH), and **PlayReady** (MSS).
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the DRM address of the key.
+    """
+    encryption_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Internal; Specifies the encryption method.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageEncryptionHttpHeaderArgsDict']]]]
+    """
+    Specifies the authentication information that needs to be added to the DRM request header.
+    Supports up to `5` configurations. Only the **direct_http** request mode supports configuring this field.
+    The http_headers structure is documented below.
+    """
+    key_rotation_interval_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    schema: Internal; Specifies the key rotation interval seconds.
+    """
+    level: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the level. Valid values are:
+    + **content**: One channel corresponds to one key.
+    + **profile**: One code rate corresponds to one key.
 
-        Defaults to **content**.
-        """
-        urn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the URN of the function graph. The **functiongraph_proxy** request mode requires
-        the function graph's urn to be provided.
+    Defaults to **content**.
+    """
+    urn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the URN of the function graph. The **functiongraph_proxy** request mode requires
+    the function graph's urn to be provided.
 
-        <a name="LiveChannel_HttpHeader"></a>
-        The `http_headers` block supports:
-        """
-elif False:
-    ChannelEndpointMssPackageEncryptionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_HttpHeader"></a>
+    The `http_headers` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointMssPackageEncryptionArgs:
@@ -2669,21 +2601,18 @@ class ChannelEndpointMssPackageEncryptionArgs:
         pulumi.set(self, "urn", value)
 
 
-if not MYPY:
-    class ChannelEndpointMssPackageEncryptionHttpHeaderArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key field name in the request header.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value corresponding to the key in the request header.
+class ChannelEndpointMssPackageEncryptionHttpHeaderArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key field name in the request header.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value corresponding to the key in the request header.
 
-        <a name="LiveChannel_RequestArgs"></a>
-        The `request_args` block supports:
-        """
-elif False:
-    ChannelEndpointMssPackageEncryptionHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_RequestArgs"></a>
+    The `request_args` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointMssPackageEncryptionHttpHeaderArgs:
@@ -2728,28 +2657,25 @@ class ChannelEndpointMssPackageEncryptionHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ChannelEndpointMssPackageRequestArgsArgsDict(TypedDict):
-        lives: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageRequestArgsLifeArgsDict']]]]
-        """
-        Specifies the live broadcast configuration.
-        The live structure is documented below.
+class ChannelEndpointMssPackageRequestArgsArgsDict(TypedDict):
+    lives: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageRequestArgsLifeArgsDict']]]]
+    """
+    Specifies the live broadcast configuration.
+    The live structure is documented below.
 
-        <a name="LiveChannel_RequestArgsRecord"></a>
-        The `record` block supports:
-        """
-        records: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageRequestArgsRecordArgsDict']]]]
-        """
-        Specifies the recording and playback related configuration.
-        The record structure is documented below.
-        """
-        timeshifts: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageRequestArgsTimeshiftArgsDict']]]]
-        """
-        Specifies the time-shift playback configuration.
-        The timeshift structure is documented below.
-        """
-elif False:
-    ChannelEndpointMssPackageRequestArgsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_RequestArgsRecord"></a>
+    The `record` block supports:
+    """
+    records: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageRequestArgsRecordArgsDict']]]]
+    """
+    Specifies the recording and playback related configuration.
+    The record structure is documented below.
+    """
+    timeshifts: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelEndpointMssPackageRequestArgsTimeshiftArgsDict']]]]
+    """
+    Specifies the time-shift playback configuration.
+    The timeshift structure is documented below.
+    """
 
 @pulumi.input_type
 class ChannelEndpointMssPackageRequestArgsArgs:
@@ -2818,21 +2744,18 @@ class ChannelEndpointMssPackageRequestArgsArgs:
         pulumi.set(self, "timeshifts", value)
 
 
-if not MYPY:
-    class ChannelEndpointMssPackageRequestArgsLifeArgsDict(TypedDict):
-        delay: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the delay field.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit.
+class ChannelEndpointMssPackageRequestArgsLifeArgsDict(TypedDict):
+    delay: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the delay field.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit.
 
-        <a name="LiveChannel_EncoderSettingsExpand"></a>
-        The `encoder_settings_expand` block supports:
-        """
-elif False:
-    ChannelEndpointMssPackageRequestArgsLifeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettingsExpand"></a>
+    The `encoder_settings_expand` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointMssPackageRequestArgsLifeArgs:
@@ -2879,29 +2802,26 @@ class ChannelEndpointMssPackageRequestArgsLifeArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ChannelEndpointMssPackageRequestArgsRecordArgsDict(TypedDict):
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the end time.
-        """
-        format: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the format.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the start time.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit.
+class ChannelEndpointMssPackageRequestArgsRecordArgsDict(TypedDict):
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the end time.
+    """
+    format: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the format.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the start time.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit.
 
-        <a name="LiveChannel_EncoderSettingsExpand"></a>
-        The `encoder_settings_expand` block supports:
-        """
-elif False:
-    ChannelEndpointMssPackageRequestArgsRecordArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettingsExpand"></a>
+    The `encoder_settings_expand` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointMssPackageRequestArgsRecordArgs:
@@ -2980,21 +2900,18 @@ class ChannelEndpointMssPackageRequestArgsRecordArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ChannelEndpointMssPackageRequestArgsTimeshiftArgsDict(TypedDict):
-        back_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time shift duration field name.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit.
+class ChannelEndpointMssPackageRequestArgsTimeshiftArgsDict(TypedDict):
+    back_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time shift duration field name.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit.
 
-        <a name="LiveChannel_EncoderSettingsExpand"></a>
-        The `encoder_settings_expand` block supports:
-        """
-elif False:
-    ChannelEndpointMssPackageRequestArgsTimeshiftArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_EncoderSettingsExpand"></a>
+    The `encoder_settings_expand` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointMssPackageRequestArgsTimeshiftArgs:
@@ -3041,25 +2958,22 @@ class ChannelEndpointMssPackageRequestArgsTimeshiftArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ChannelEndpointMssPackageStreamSelectionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the key field name in the request header.
-        """
-        max_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
-        """
-        min_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
+class ChannelEndpointMssPackageStreamSelectionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key field name in the request header.
+    """
+    max_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
+    """
+    min_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum code rate. The unit is bps. Value ranges from `0` to `104,857,600`.
 
-        <a name="LiveChannel_Encryption"></a>
-        The `encryption` block supports:
-        """
-elif False:
-    ChannelEndpointMssPackageStreamSelectionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_Encryption"></a>
+    The `encryption` block supports:
+    """
 
 @pulumi.input_type
 class ChannelEndpointMssPackageStreamSelectionArgs:
@@ -3122,85 +3036,82 @@ class ChannelEndpointMssPackageStreamSelectionArgs:
         pulumi.set(self, "min_bandwidth", value)
 
 
-if not MYPY:
-    class ChannelInputArgsDict(TypedDict):
-        input_protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the channel input protocol. Valid values are:
-        + **FLV_PULL**.
-        + **RTMP_PUSH**.
-        + **HLS_PULL**.
-        + **SRT_PULL**.
-        + **SRT_PUSH**.
+class ChannelInputArgsDict(TypedDict):
+    input_protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the channel input protocol. Valid values are:
+    + **FLV_PULL**.
+    + **RTMP_PUSH**.
+    + **HLS_PULL**.
+    + **SRT_PULL**.
+    + **SRT_PUSH**.
 
-        Changing this parameter will create a new resource.
-        """
-        ad_triggers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the ad trigger configuration list. Valid Values are:
-        + **Splice insert**.
-        + **Provider advertisement**.
-        + **Distributor advertisement**.
-        + **Provider placement opportunity**.
-        + **Distributor placement opportunity**.
-        """
-        audio_selectors: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelInputAudioSelectorArgsDict']]]]
-        """
-        Specifies the audio selector configuration. Set up to `8` audio selectors.
-        The audio_selectors structure is documented below.
+    Changing this parameter will create a new resource.
+    """
+    ad_triggers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the ad trigger configuration list. Valid Values are:
+    + **Splice insert**.
+    + **Provider advertisement**.
+    + **Distributor advertisement**.
+    + **Provider placement opportunity**.
+    + **Distributor placement opportunity**.
+    """
+    audio_selectors: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelInputAudioSelectorArgsDict']]]]
+    """
+    Specifies the audio selector configuration. Set up to `8` audio selectors.
+    The audio_selectors structure is documented below.
 
-        <a name="LiveChannel_Sources"></a>
-        The `sources` block supports:
-        """
-        failover_conditions: NotRequired[pulumi.Input['ChannelInputFailoverConditionsArgsDict']]
-        """
-        Specifies the configuration of switching between primary and backup audio
-        and video stream URLs.
-        The failover_conditions structure is documented below.
-        """
-        ip_port_mode: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the IP port mode.
+    <a name="LiveChannel_Sources"></a>
+    The `sources` block supports:
+    """
+    failover_conditions: NotRequired[pulumi.Input['ChannelInputFailoverConditionsArgsDict']]
+    """
+    Specifies the configuration of switching between primary and backup audio
+    and video stream URLs.
+    The failover_conditions structure is documented below.
+    """
+    ip_port_mode: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the IP port mode.
 
-        > When the stream push protocol is **SRT_PUSH** and streams are pushed to the origin server, set this parameter
-        to **true**.
-        """
-        ip_whitelist: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IP whitelist when protocol is **SRT_PUSH**.
-        """
-        max_bandwidth_limit: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum bandwidth that needs to be configured when the inbound
-        protocol is **HLS_PULL**. The unit is **bps**.
+    > When the stream push protocol is **SRT_PUSH** and streams are pushed to the origin server, set this parameter
+    to **true**.
+    """
+    ip_whitelist: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP whitelist when protocol is **SRT_PUSH**.
+    """
+    max_bandwidth_limit: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum bandwidth that needs to be configured when the inbound
+    protocol is **HLS_PULL**. The unit is **bps**.
 
-        > In the streaming URL provided by the user, the bandwidth parameter "BANDWIDTH" will be carried for audio and video
-        with different bit rates.<br/>1. If the maximum bandwidth is configured here, when the media live broadcast service
-        pulls the stream from the URL, it will select the audio and video stream with a smaller bandwidth and the highest bit
-        rate and push it to the source station.<br/>2. If the maximum bandwidth is not configured here, when the media live
-        broadcast service pulls the stream from the URL, it will select the audio and video stream with the highest "BANDWIDTH"
-        by default and push the stream to the source station.
-        """
-        scte35_source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the advertisement scte35 signal source. This configuration is only
-        supported for **HLS_PULL** channels, and currently only supports **SEGMENTS**.
-        """
-        secondary_sources: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelInputSecondarySourceArgsDict']]]]
-        """
-        Specifies the prepared stream array. If this parameter is configured, ensure
-        that the number of channels, codec, and resolution of the primary and standby input streams are the same.
-        This field does not need to be configured when the stream input protocol is **RTMP_PUSH**.
-        The secondary_sources structure is documented below.
-        """
-        sources: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelInputSourceArgsDict']]]]
-        """
-        Specifies the channel main source stream information. This parameter is optional
-        when the stream input protocol is **RTMP_PUSH** or **SRT_PUSH**. In other cases, this parameter is mandatory.
-        The sources structure is documented below.
-        """
-elif False:
-    ChannelInputArgsDict: TypeAlias = Mapping[str, Any]
+    > In the streaming URL provided by the user, the bandwidth parameter "BANDWIDTH" will be carried for audio and video
+    with different bit rates.<br/>1. If the maximum bandwidth is configured here, when the media live broadcast service
+    pulls the stream from the URL, it will select the audio and video stream with a smaller bandwidth and the highest bit
+    rate and push it to the source station.<br/>2. If the maximum bandwidth is not configured here, when the media live
+    broadcast service pulls the stream from the URL, it will select the audio and video stream with the highest "BANDWIDTH"
+    by default and push the stream to the source station.
+    """
+    scte35_source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the advertisement scte35 signal source. This configuration is only
+    supported for **HLS_PULL** channels, and currently only supports **SEGMENTS**.
+    """
+    secondary_sources: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelInputSecondarySourceArgsDict']]]]
+    """
+    Specifies the prepared stream array. If this parameter is configured, ensure
+    that the number of channels, codec, and resolution of the primary and standby input streams are the same.
+    This field does not need to be configured when the stream input protocol is **RTMP_PUSH**.
+    The secondary_sources structure is documented below.
+    """
+    sources: NotRequired[pulumi.Input[Sequence[pulumi.Input['ChannelInputSourceArgsDict']]]]
+    """
+    Specifies the channel main source stream information. This parameter is optional
+    when the stream input protocol is **RTMP_PUSH** or **SRT_PUSH**. In other cases, this parameter is mandatory.
+    The sources structure is documented below.
+    """
 
 @pulumi.input_type
 class ChannelInputArgs:
@@ -3438,24 +3349,21 @@ class ChannelInputArgs:
         pulumi.set(self, "sources", value)
 
 
-if not MYPY:
-    class ChannelInputAudioSelectorArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the audio output configuration. Only uppercase and lowercase letters,
-        numbers, hyphens (-), and underscores (_) are supported.
-        Different audio output configuration names for the same channel are not allowed to be duplicated.
-        """
-        selector_settings: NotRequired[pulumi.Input['ChannelInputAudioSelectorSelectorSettingsArgsDict']]
-        """
-        Specifies the audio selector configuration.
-        The selector_settings structure is documented below.
+class ChannelInputAudioSelectorArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the audio output configuration. Only uppercase and lowercase letters,
+    numbers, hyphens (-), and underscores (_) are supported.
+    Different audio output configuration names for the same channel are not allowed to be duplicated.
+    """
+    selector_settings: NotRequired[pulumi.Input['ChannelInputAudioSelectorSelectorSettingsArgsDict']]
+    """
+    Specifies the audio selector configuration.
+    The selector_settings structure is documented below.
 
-        <a name="LiveChannel_SelectorSettings"></a>
-        The `selector_settings` block supports:
-        """
-elif False:
-    ChannelInputAudioSelectorArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_SelectorSettings"></a>
+    The `selector_settings` block supports:
+    """
 
 @pulumi.input_type
 class ChannelInputAudioSelectorArgs:
@@ -3507,28 +3415,25 @@ class ChannelInputAudioSelectorArgs:
         pulumi.set(self, "selector_settings", value)
 
 
-if not MYPY:
-    class ChannelInputAudioSelectorSelectorSettingsArgsDict(TypedDict):
-        audio_hls_selection: NotRequired[pulumi.Input['ChannelInputAudioSelectorSelectorSettingsAudioHlsSelectionArgsDict']]
-        """
-        Specifies the HLS selector configuration.
-        The audio_hls_selection structure is documented below.
+class ChannelInputAudioSelectorSelectorSettingsArgsDict(TypedDict):
+    audio_hls_selection: NotRequired[pulumi.Input['ChannelInputAudioSelectorSelectorSettingsAudioHlsSelectionArgsDict']]
+    """
+    Specifies the HLS selector configuration.
+    The audio_hls_selection structure is documented below.
 
-        <a name="LiveChannel_AudioLanguageSelection"></a>
-        The `audio_language_selection` block supports:
-        """
-        audio_language_selection: NotRequired[pulumi.Input['ChannelInputAudioSelectorSelectorSettingsAudioLanguageSelectionArgsDict']]
-        """
-        Specifies the language selector configuration.
-        The audio_language_selection structure is documented below.
-        """
-        audio_pid_selection: NotRequired[pulumi.Input['ChannelInputAudioSelectorSelectorSettingsAudioPidSelectionArgsDict']]
-        """
-        Specifies the PID selector configuration.
-        The audio_pid_selection structure is documented below.
-        """
-elif False:
-    ChannelInputAudioSelectorSelectorSettingsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_AudioLanguageSelection"></a>
+    The `audio_language_selection` block supports:
+    """
+    audio_language_selection: NotRequired[pulumi.Input['ChannelInputAudioSelectorSelectorSettingsAudioLanguageSelectionArgsDict']]
+    """
+    Specifies the language selector configuration.
+    The audio_language_selection structure is documented below.
+    """
+    audio_pid_selection: NotRequired[pulumi.Input['ChannelInputAudioSelectorSelectorSettingsAudioPidSelectionArgsDict']]
+    """
+    Specifies the PID selector configuration.
+    The audio_pid_selection structure is documented below.
+    """
 
 @pulumi.input_type
 class ChannelInputAudioSelectorSelectorSettingsArgs:
@@ -3597,23 +3502,20 @@ class ChannelInputAudioSelectorSelectorSettingsArgs:
         pulumi.set(self, "audio_pid_selection", value)
 
 
-if not MYPY:
-    class ChannelInputAudioSelectorSelectorSettingsAudioHlsSelectionArgsDict(TypedDict):
-        group_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the HLS audio selector gid.
+class ChannelInputAudioSelectorSelectorSettingsAudioHlsSelectionArgsDict(TypedDict):
+    group_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the HLS audio selector gid.
 
-        <a name="LiveChannel_RecordSettings"></a>
-        The `record_settings` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the audio output configuration. Only uppercase and lowercase letters,
-        numbers, hyphens (-), and underscores (_) are supported.
-        Different audio output configuration names for the same channel are not allowed to be duplicated.
-        """
-elif False:
-    ChannelInputAudioSelectorSelectorSettingsAudioHlsSelectionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_RecordSettings"></a>
+    The `record_settings` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the audio output configuration. Only uppercase and lowercase letters,
+    numbers, hyphens (-), and underscores (_) are supported.
+    Different audio output configuration names for the same channel are not allowed to be duplicated.
+    """
 
 @pulumi.input_type
 class ChannelInputAudioSelectorSelectorSettingsAudioHlsSelectionArgs:
@@ -3662,26 +3564,23 @@ class ChannelInputAudioSelectorSelectorSettingsAudioHlsSelectionArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ChannelInputAudioSelectorSelectorSettingsAudioLanguageSelectionArgsDict(TypedDict):
-        language_code: pulumi.Input[_builtins.str]
-        """
-        Specifies the language code. The value could be `2` or `3` lowercase letters.
-        """
-        language_selection_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the language output strategy. Valid values are:
-        + **LOOSE**: Loose matching. For example, "eng" will prioritize matching tracks with English as the language in the
-        source stream. If no match is found, the track with the smallest PID will be selected.
-        + **STRICT**: Strict matching. For example, "eng" will strictly match the audio track in the source stream whose
-        language is English. If no match is found, the media live broadcast service will automatically fill in a silent
-        segment. When the terminal uses this audio selector to play the video, it will be played silently.
+class ChannelInputAudioSelectorSelectorSettingsAudioLanguageSelectionArgsDict(TypedDict):
+    language_code: pulumi.Input[_builtins.str]
+    """
+    Specifies the language code. The value could be `2` or `3` lowercase letters.
+    """
+    language_selection_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the language output strategy. Valid values are:
+    + **LOOSE**: Loose matching. For example, "eng" will prioritize matching tracks with English as the language in the
+    source stream. If no match is found, the track with the smallest PID will be selected.
+    + **STRICT**: Strict matching. For example, "eng" will strictly match the audio track in the source stream whose
+    language is English. If no match is found, the media live broadcast service will automatically fill in a silent
+    segment. When the terminal uses this audio selector to play the video, it will be played silently.
 
-        <a name="LiveChannel_AudioPidSelection"></a>
-        The `audio_pid_selection` block supports:
-        """
-elif False:
-    ChannelInputAudioSelectorSelectorSettingsAudioLanguageSelectionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_AudioPidSelection"></a>
+    The `audio_pid_selection` block supports:
+    """
 
 @pulumi.input_type
 class ChannelInputAudioSelectorSelectorSettingsAudioLanguageSelectionArgs:
@@ -3737,17 +3636,14 @@ class ChannelInputAudioSelectorSelectorSettingsAudioLanguageSelectionArgs:
         pulumi.set(self, "language_selection_policy", value)
 
 
-if not MYPY:
-    class ChannelInputAudioSelectorSelectorSettingsAudioPidSelectionArgsDict(TypedDict):
-        pid: pulumi.Input[_builtins.int]
-        """
-        Specifies the value of PID.
+class ChannelInputAudioSelectorSelectorSettingsAudioPidSelectionArgsDict(TypedDict):
+    pid: pulumi.Input[_builtins.int]
+    """
+    Specifies the value of PID.
 
-        <a name="LiveChannel_AudioHlsSelection"></a>
-        The `audio_hls_selection` block supports:
-        """
-elif False:
-    ChannelInputAudioSelectorSelectorSettingsAudioPidSelectionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_AudioHlsSelection"></a>
+    The `audio_hls_selection` block supports:
+    """
 
 @pulumi.input_type
 class ChannelInputAudioSelectorSelectorSettingsAudioPidSelectionArgs:
@@ -3777,29 +3673,26 @@ class ChannelInputAudioSelectorSelectorSettingsAudioPidSelectionArgs:
         pulumi.set(self, "pid", value)
 
 
-if not MYPY:
-    class ChannelInputFailoverConditionsArgsDict(TypedDict):
-        input_loss_threshold_msec: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the duration threshold of inflow stop.
-        When this threshold is reached, the active/standby switchover is automatically triggered. The unit is millisecond.
-        Value ranges from `0` to `3,600,000`. Defaults to `2,000` ms.
-        """
-        input_preference: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the input preference type. Valid values are:
-        + **PRIMARY**: The main incoming URL is the first priority.
-        + **EQUAL**: Equal switching between primary and backup URLs.
+class ChannelInputFailoverConditionsArgsDict(TypedDict):
+    input_loss_threshold_msec: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the duration threshold of inflow stop.
+    When this threshold is reached, the active/standby switchover is automatically triggered. The unit is millisecond.
+    Value ranges from `0` to `3,600,000`. Defaults to `2,000` ms.
+    """
+    input_preference: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the input preference type. Valid values are:
+    + **PRIMARY**: The main incoming URL is the first priority.
+    + **EQUAL**: Equal switching between primary and backup URLs.
 
-        Defaults to **EQUAL**.
+    Defaults to **EQUAL**.
 
-        > If equal switching is used and the backup URL is used, it will not automatically switch to the primary URL.
+    > If equal switching is used and the backup URL is used, it will not automatically switch to the primary URL.
 
-        <a name="LiveChannel_AudioSelectors"></a>
-        The `audio_selectors` block supports:
-        """
-elif False:
-    ChannelInputFailoverConditionsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_AudioSelectors"></a>
+    The `audio_selectors` block supports:
+    """
 
 @pulumi.input_type
 class ChannelInputFailoverConditionsArgs:
@@ -3862,50 +3755,47 @@ class ChannelInputFailoverConditionsArgs:
         pulumi.set(self, "input_preference", value)
 
 
-if not MYPY:
-    class ChannelInputSecondarySourceArgsDict(TypedDict):
-        backup_urls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of backup stream addresses.
-        """
-        bitrate: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the bitrate. This parameter is required when live transcoding is not required.
-        The unit is **bps**. Value ranges from `0` to `104,857,600`.
-        """
-        bitrate_for3u8: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to use bitrate to fix the bitrate. Defaults to **false**.
-        """
-        height: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the resolution corresponds to the high value. Value ranges from `0` to `2,160`.
-        """
-        latency: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the streaming delay when the channel type is **SRT_PULL**.
+class ChannelInputSecondarySourceArgsDict(TypedDict):
+    backup_urls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of backup stream addresses.
+    """
+    bitrate: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the bitrate. This parameter is required when live transcoding is not required.
+    The unit is **bps**. Value ranges from `0` to `104,857,600`.
+    """
+    bitrate_for3u8: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to use bitrate to fix the bitrate. Defaults to **false**.
+    """
+    height: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the resolution corresponds to the high value. Value ranges from `0` to `2,160`.
+    """
+    latency: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the streaming delay when the channel type is **SRT_PULL**.
 
-        <a name="LiveChannel_FailoverConditions"></a>
-        The `failover_conditions` block supports:
-        """
-        passphrase: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the encrypted information when the protocol is **SRT_PUSH**.
-        """
-        stream_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the stream ID of the stream pull address when the channel type is **SRT_PULL**.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DRM address of the key.
-        """
-        width: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the resolution corresponds to the width value. Value ranges from `0` to `4,096`.
-        """
-elif False:
-    ChannelInputSecondarySourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_FailoverConditions"></a>
+    The `failover_conditions` block supports:
+    """
+    passphrase: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encrypted information when the protocol is **SRT_PUSH**.
+    """
+    stream_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the stream ID of the stream pull address when the channel type is **SRT_PULL**.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DRM address of the key.
+    """
+    width: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the resolution corresponds to the width value. Value ranges from `0` to `4,096`.
+    """
 
 @pulumi.input_type
 class ChannelInputSecondarySourceArgs:
@@ -4066,54 +3956,51 @@ class ChannelInputSecondarySourceArgs:
         pulumi.set(self, "width", value)
 
 
-if not MYPY:
-    class ChannelInputSourceArgsDict(TypedDict):
-        backup_urls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of backup stream addresses.
-        """
-        bitrate: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the bitrate. This parameter is required when live transcoding is not required.
-        The unit is **bps**. Value ranges from `0` to `104,857,600`.
-        """
-        bitrate_for3u8: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to use bitrate to fix the bitrate. Defaults to **false**.
-        """
-        enable_snapshot: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to use this stream to take screenshots.
-        """
-        height: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the resolution corresponds to the high value. Value ranges from `0` to `2,160`.
-        """
-        latency: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the streaming delay when the channel type is **SRT_PULL**.
+class ChannelInputSourceArgsDict(TypedDict):
+    backup_urls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of backup stream addresses.
+    """
+    bitrate: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the bitrate. This parameter is required when live transcoding is not required.
+    The unit is **bps**. Value ranges from `0` to `104,857,600`.
+    """
+    bitrate_for3u8: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to use bitrate to fix the bitrate. Defaults to **false**.
+    """
+    enable_snapshot: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to use this stream to take screenshots.
+    """
+    height: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the resolution corresponds to the high value. Value ranges from `0` to `2,160`.
+    """
+    latency: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the streaming delay when the channel type is **SRT_PULL**.
 
-        <a name="LiveChannel_FailoverConditions"></a>
-        The `failover_conditions` block supports:
-        """
-        passphrase: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the encrypted information when the protocol is **SRT_PUSH**.
-        """
-        stream_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the stream ID of the stream pull address when the channel type is **SRT_PULL**.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DRM address of the key.
-        """
-        width: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the resolution corresponds to the width value. Value ranges from `0` to `4,096`.
-        """
-elif False:
-    ChannelInputSourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_FailoverConditions"></a>
+    The `failover_conditions` block supports:
+    """
+    passphrase: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encrypted information when the protocol is **SRT_PUSH**.
+    """
+    stream_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the stream ID of the stream pull address when the channel type is **SRT_PULL**.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DRM address of the key.
+    """
+    width: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the resolution corresponds to the width value. Value ranges from `0` to `4,096`.
+    """
 
 @pulumi.input_type
 class ChannelInputSourceArgs:
@@ -4290,19 +4177,16 @@ class ChannelInputSourceArgs:
         pulumi.set(self, "width", value)
 
 
-if not MYPY:
-    class ChannelRecordSettingsArgsDict(TypedDict):
-        rollingbuffer_duration: pulumi.Input[_builtins.int]
-        """
-        Specifies the maximum playback recording time. During this time period,
-        the recording will continue. The unit is second.
-        When the value is `0`, it means that recording is not supported. The maximum supported recording period is `14` days.
+class ChannelRecordSettingsArgsDict(TypedDict):
+    rollingbuffer_duration: pulumi.Input[_builtins.int]
+    """
+    Specifies the maximum playback recording time. During this time period,
+    the recording will continue. The unit is second.
+    When the value is `0`, it means that recording is not supported. The maximum supported recording period is `14` days.
 
-        <a name="LiveChannel_Endpoints"></a>
-        The `endpoints` block supports:
-        """
-elif False:
-    ChannelRecordSettingsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LiveChannel_Endpoints"></a>
+    The `endpoints` block supports:
+    """
 
 @pulumi.input_type
 class ChannelRecordSettingsArgs:
@@ -4336,27 +4220,24 @@ class ChannelRecordSettingsArgs:
         pulumi.set(self, "rollingbuffer_duration", value)
 
 
-if not MYPY:
-    class HlsConfigurationApplicationArgsDict(TypedDict):
-        hls_fragment: pulumi.Input[_builtins.int]
-        """
-        Specifies the HLS slice duration in seconds.
-        """
-        hls_min_frags: pulumi.Input[_builtins.int]
-        """
-        Specifies the minimum number of ts shards in each M3U8 file.
-        """
-        hls_ts_count: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of ts slices in each M3U8 file.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the application name.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    HlsConfigurationApplicationArgsDict: TypeAlias = Mapping[str, Any]
+class HlsConfigurationApplicationArgsDict(TypedDict):
+    hls_fragment: pulumi.Input[_builtins.int]
+    """
+    Specifies the HLS slice duration in seconds.
+    """
+    hls_min_frags: pulumi.Input[_builtins.int]
+    """
+    Specifies the minimum number of ts shards in each M3U8 file.
+    """
+    hls_ts_count: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of ts slices in each M3U8 file.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the application name.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class HlsConfigurationApplicationArgs:
@@ -4427,38 +4308,35 @@ class HlsConfigurationApplicationArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class HttpsCertificateGmCertificateArgsDict(TypedDict):
-        cert_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SCM certificate ID.
-        """
-        cert_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SCM certificate name.
-        """
-        enc_certificate: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Chinese (SM) encryption certificate body
-        """
-        enc_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Chinese (SM) encryption private key
-        """
-        sign_certificate: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Chinese (SM) signature certificate body
-        """
-        sign_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Chinese (SM) signature private key
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the certificate source.
-        """
-elif False:
-    HttpsCertificateGmCertificateArgsDict: TypeAlias = Mapping[str, Any]
+class HttpsCertificateGmCertificateArgsDict(TypedDict):
+    cert_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SCM certificate ID.
+    """
+    cert_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SCM certificate name.
+    """
+    enc_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Chinese (SM) encryption certificate body
+    """
+    enc_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Chinese (SM) encryption private key
+    """
+    sign_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Chinese (SM) signature certificate body
+    """
+    sign_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Chinese (SM) signature private key
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the certificate source.
+    """
 
 @pulumi.input_type
 class HttpsCertificateGmCertificateArgs:
@@ -4579,30 +4457,27 @@ class HttpsCertificateGmCertificateArgs:
         pulumi.set(self, "source", value)
 
 
-if not MYPY:
-    class HttpsCertificateTlsCertificateArgsDict(TypedDict):
-        cert_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SCM certificate ID.
-        """
-        cert_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SCM certificate name.
-        """
-        certificate: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the certificate body.
-        """
-        certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the private key.
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the certificate source.
-        """
-elif False:
-    HttpsCertificateTlsCertificateArgsDict: TypeAlias = Mapping[str, Any]
+class HttpsCertificateTlsCertificateArgsDict(TypedDict):
+    cert_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SCM certificate ID.
+    """
+    cert_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SCM certificate name.
+    """
+    certificate: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the certificate body.
+    """
+    certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the private key.
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the certificate source.
+    """
 
 @pulumi.input_type
 class HttpsCertificateTlsCertificateArgs:
@@ -4691,27 +4566,24 @@ class HttpsCertificateTlsCertificateArgs:
         pulumi.set(self, "source", value)
 
 
-if not MYPY:
-    class RecordingFlvArgsDict(TypedDict):
-        recording_length: pulumi.Input[_builtins.int]
-        """
-        Specifies the recording length. Value range: `15` ~ `180`, unit: `minute`.
-        A stream exceeding the recording length will generate a new recording.
-        """
-        file_naming: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the path and file name prefix of a recording file. The default value is
-        `Record/{publish_domain}/{app}/{record_type}/{record_format}/{stream}_{file_start_time}/{file_start_time}`.
-        """
-        max_stream_pause_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the interval threshold for combining recording chunks. If the
-        stream pause length exceeds the value of this parameter, a new recording is generated.
-        Value range: `0` ~ `300`, unit: `second`. Defaults to `0`.
-        If the value is set to `0`, a new file will be generated once the stream is interrupted.
-        """
-elif False:
-    RecordingFlvArgsDict: TypeAlias = Mapping[str, Any]
+class RecordingFlvArgsDict(TypedDict):
+    recording_length: pulumi.Input[_builtins.int]
+    """
+    Specifies the recording length. Value range: `15` ~ `180`, unit: `minute`.
+    A stream exceeding the recording length will generate a new recording.
+    """
+    file_naming: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path and file name prefix of a recording file. The default value is
+    `Record/{publish_domain}/{app}/{record_type}/{record_format}/{stream}_{file_start_time}/{file_start_time}`.
+    """
+    max_stream_pause_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the interval threshold for combining recording chunks. If the
+    stream pause length exceeds the value of this parameter, a new recording is generated.
+    Value range: `0` ~ `300`, unit: `second`. Defaults to `0`.
+    If the value is set to `0`, a new file will be generated once the stream is interrupted.
+    """
 
 @pulumi.input_type
 class RecordingFlvArgs:
@@ -4777,37 +4649,34 @@ class RecordingFlvArgs:
         pulumi.set(self, "max_stream_pause_length", value)
 
 
-if not MYPY:
-    class RecordingHlsArgsDict(TypedDict):
-        recording_length: pulumi.Input[_builtins.int]
-        """
-        Specifies the recording length. Value range: `15` ~ `180`, unit: `minute`.
-        A stream exceeding the recording length will generate a new recording.
-        """
-        file_naming: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the path and file name prefix of a recording file. The default value is
-        `Record/{publish_domain}/{app}/{record_type}/{record_format}/{stream}_{file_start_time}/{file_start_time}`.
-        """
-        max_stream_pause_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the interval threshold for combining recording chunks. If the
-        stream pause length exceeds the value of this parameter, a new recording is generated.
-        Value range: `0` ~ `300`, unit: `second`. Defaults to `0`.
-        If the value is set to `0`, a new file will be generated once the stream is interrupted.
-        """
-        record_slice_duration: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the TS slice duration for HLS recording.
-        Value range: `2` ~ `60`, unit: `second`. Defaults to `10`.
-        """
-        ts_file_naming: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies TS file name prefix.
-        The default value is `{file_start_time_unix}_{file_end_time_unix}_{ts_sequence_number}`.
-        """
-elif False:
-    RecordingHlsArgsDict: TypeAlias = Mapping[str, Any]
+class RecordingHlsArgsDict(TypedDict):
+    recording_length: pulumi.Input[_builtins.int]
+    """
+    Specifies the recording length. Value range: `15` ~ `180`, unit: `minute`.
+    A stream exceeding the recording length will generate a new recording.
+    """
+    file_naming: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path and file name prefix of a recording file. The default value is
+    `Record/{publish_domain}/{app}/{record_type}/{record_format}/{stream}_{file_start_time}/{file_start_time}`.
+    """
+    max_stream_pause_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the interval threshold for combining recording chunks. If the
+    stream pause length exceeds the value of this parameter, a new recording is generated.
+    Value range: `0` ~ `300`, unit: `second`. Defaults to `0`.
+    If the value is set to `0`, a new file will be generated once the stream is interrupted.
+    """
+    record_slice_duration: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the TS slice duration for HLS recording.
+    Value range: `2` ~ `60`, unit: `second`. Defaults to `10`.
+    """
+    ts_file_naming: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies TS file name prefix.
+    The default value is `{file_start_time_unix}_{file_end_time_unix}_{ts_sequence_number}`.
+    """
 
 @pulumi.input_type
 class RecordingHlsArgs:
@@ -4909,27 +4778,24 @@ class RecordingHlsArgs:
         pulumi.set(self, "ts_file_naming", value)
 
 
-if not MYPY:
-    class RecordingMp4ArgsDict(TypedDict):
-        recording_length: pulumi.Input[_builtins.int]
-        """
-        Specifies the recording length. Value range: `15` ~ `180`, unit: `minute`.
-        A stream exceeding the recording length will generate a new recording.
-        """
-        file_naming: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the path and file name prefix of a recording file. The default value is
-        `Record/{publish_domain}/{app}/{record_type}/{record_format}/{stream}_{file_start_time}/{file_start_time}`.
-        """
-        max_stream_pause_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the interval threshold for combining recording chunks. If the
-        stream pause length exceeds the value of this parameter, a new recording is generated.
-        Value range: `0` ~ `300`, unit: `second`. Defaults to `0`.
-        If the value is set to `0`, a new file will be generated once the stream is interrupted.
-        """
-elif False:
-    RecordingMp4ArgsDict: TypeAlias = Mapping[str, Any]
+class RecordingMp4ArgsDict(TypedDict):
+    recording_length: pulumi.Input[_builtins.int]
+    """
+    Specifies the recording length. Value range: `15` ~ `180`, unit: `minute`.
+    A stream exceeding the recording length will generate a new recording.
+    """
+    file_naming: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path and file name prefix of a recording file. The default value is
+    `Record/{publish_domain}/{app}/{record_type}/{record_format}/{stream}_{file_start_time}/{file_start_time}`.
+    """
+    max_stream_pause_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the interval threshold for combining recording chunks. If the
+    stream pause length exceeds the value of this parameter, a new recording is generated.
+    Value range: `0` ~ `300`, unit: `second`. Defaults to `0`.
+    If the value is set to `0`, a new file will be generated once the stream is interrupted.
+    """
 
 @pulumi.input_type
 class RecordingMp4Args:
@@ -4995,25 +4861,22 @@ class RecordingMp4Args:
         pulumi.set(self, "max_stream_pause_length", value)
 
 
-if not MYPY:
-    class RecordingObsArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        Specifies OBS bucket.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region of OBS.
-        """
-        object: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies OBS object path. If omitted, recordings will be saved to the root directory.
+class RecordingObsArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    Specifies OBS bucket.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region of OBS.
+    """
+    object: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies OBS object path. If omitted, recordings will be saved to the root directory.
 
-        <a name="recording_HLS"></a>
-        The `hls` block supports:
-        """
-elif False:
-    RecordingObsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="recording_HLS"></a>
+    The `hls` block supports:
+    """
 
 @pulumi.input_type
 class RecordingObsArgs:
@@ -5074,80 +4937,77 @@ class RecordingObsArgs:
         pulumi.set(self, "object", value)
 
 
-if not MYPY:
-    class TranscodingTemplateArgsDict(TypedDict):
-        bitrate: pulumi.Input[_builtins.int]
-        """
-        Specifies the bitrate of a transcoded video, in kbit/s. Value range: `40` ~ `30,000`.
-        """
-        height: pulumi.Input[_builtins.int]
-        """
-        Specifies video height (unit: pixel).
-        + **When the video encoding is H264**, value range: `32` ~ `2,160` and must be a multiple of `2`.
-        + **When the video encoding is H265**, value range: `240` ~ `2,160` and must be a multiple of `4`.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the template name. The name can contain a maximum of 64 characters, and only
-        contains letters, digits and hyphens (-).
-        """
-        width: pulumi.Input[_builtins.int]
-        """
-        Specifies video width (unit: pixel).
-        + **When the video encoding is H264**, value range: `32` ~ `3,840` and must be a multiple of `2`.
-        + **When the video encoding is H265**, value range: `320` ~ `3,840` and must be a multiple of `4`.
-        """
-        bitrate_adaptive: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the adaptive bitrate.
-        The valid values are as follows:
-        + **off**: Disable rate adaptation and output the target rate according to the set rate.
-        + **minimum**: Output the target bitrate based on the minimum value of the set bitrate and source file bitrate.
-        + **adaptive**: Adaptive output of target bitrate based on source file bitrate.
+class TranscodingTemplateArgsDict(TypedDict):
+    bitrate: pulumi.Input[_builtins.int]
+    """
+    Specifies the bitrate of a transcoded video, in kbit/s. Value range: `40` ~ `30,000`.
+    """
+    height: pulumi.Input[_builtins.int]
+    """
+    Specifies video height (unit: pixel).
+    + **When the video encoding is H264**, value range: `32` ~ `2,160` and must be a multiple of `2`.
+    + **When the video encoding is H265**, value range: `240` ~ `2,160` and must be a multiple of `4`.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the template name. The name can contain a maximum of 64 characters, and only
+    contains letters, digits and hyphens (-).
+    """
+    width: pulumi.Input[_builtins.int]
+    """
+    Specifies video width (unit: pixel).
+    + **When the video encoding is H264**, value range: `32` ~ `3,840` and must be a multiple of `2`.
+    + **When the video encoding is H265**, value range: `320` ~ `3,840` and must be a multiple of `4`.
+    """
+    bitrate_adaptive: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the adaptive bitrate.
+    The valid values are as follows:
+    + **off**: Disable rate adaptation and output the target rate according to the set rate.
+    + **minimum**: Output the target bitrate based on the minimum value of the set bitrate and source file bitrate.
+    + **adaptive**: Adaptive output of target bitrate based on source file bitrate.
 
-        Defaults to **off**.
-        """
-        frame_rate: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the frame rate of the transcoded video, in fps. Value range: `0` ~ `30`.
-        Value `0` indicates that the frame rate remains unchanged.
-        """
-        gop: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the interval time for I-frames, in seconds.
-        The value ranges from `0` to `10`, includes `0` and `10`. Defaults to `2`.
+    Defaults to **off**.
+    """
+    frame_rate: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the frame rate of the transcoded video, in fps. Value range: `0` ~ `30`.
+    Value `0` indicates that the frame rate remains unchanged.
+    """
+    gop: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the interval time for I-frames, in seconds.
+    The value ranges from `0` to `10`, includes `0` and `10`. Defaults to `2`.
 
-        > When `gop` is not `0`, the i-frame interval is set with the `gop` parameter, and the `i_frame_interval` field does
-        not take effect.
-        """
-        i_frame_interval: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the maximum I-frame interval in frames.
-        The value ranges from `0` to `500`, includes `0` and `500`. Defaults to `50`.
+    > When `gop` is not `0`, the i-frame interval is set with the `gop` parameter, and the `i_frame_interval` field does
+    not take effect.
+    """
+    i_frame_interval: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the maximum I-frame interval in frames.
+    The value ranges from `0` to `500`, includes `0` and `500`. Defaults to `50`.
 
-        > If you want to set the i-frame interval through `i_frame_interval`, please set the `gop` to `0` or do not pass the
-        `gop` parameter.
-        """
-        i_frame_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the encoding output I-frame strategy.
-        The valid values are as follows:
-        + **auto**: I-frame output according to the set `gop` duration.
-        + **strictSync**: The encoded output I-frame is completely consistent with the source, and the `gop` parameter is
-        invalid after setting this value.
+    > If you want to set the i-frame interval through `i_frame_interval`, please set the `gop` to `0` or do not pass the
+    `gop` parameter.
+    """
+    i_frame_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encoding output I-frame strategy.
+    The valid values are as follows:
+    + **auto**: I-frame output according to the set `gop` duration.
+    + **strictSync**: The encoded output I-frame is completely consistent with the source, and the `gop` parameter is
+    invalid after setting this value.
 
-        Defaults to **auto**.
+    Defaults to **auto**.
 
-        > In multi bitrate scenarios, it is recommended to enable I-frame random source to ensure alignment of multi bitrate
-        I-frames.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the protocol type supported for transcoding output.
-        The valid value is **RTMP**. Defaults to **RTMP**.
-        """
-elif False:
-    TranscodingTemplateArgsDict: TypeAlias = Mapping[str, Any]
+    > In multi bitrate scenarios, it is recommended to enable I-frame random source to ensure alignment of multi bitrate
+    I-frames.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol type supported for transcoding output.
+    The valid value is **RTMP**. Defaults to **RTMP**.
+    """
 
 @pulumi.input_type
 class TranscodingTemplateArgs:

@@ -26,6 +26,7 @@ class TurboColdDataEvictionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TurboColdDataEviction resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type.
                Currently, only **config_gc_time** is supported.
         :param pulumi.Input[_builtins.int] gc_time: Specifies the cold data eviction duration, in hour.
@@ -113,6 +114,7 @@ class _TurboColdDataEvictionState:
                  share_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TurboColdDataEviction resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type.
                Currently, only **config_gc_time** is supported.
         :param pulumi.Input[_builtins.int] gc_time: Specifies the cold data eviction duration, in hour.
@@ -229,6 +231,7 @@ class TurboColdDataEviction(pulumi.CustomResource):
             gc_time=gc_time)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the operation type.
@@ -268,6 +271,7 @@ class TurboColdDataEviction(pulumi.CustomResource):
             action=action,
             gc_time=gc_time)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TurboColdDataEvictionArgs args: The arguments to use to populate this resource's properties.

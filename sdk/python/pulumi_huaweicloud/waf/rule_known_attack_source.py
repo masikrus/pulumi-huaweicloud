@@ -27,6 +27,7 @@ class RuleKnownAttackSourceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RuleKnownAttackSource resource.
+
         :param pulumi.Input[_builtins.int] block_time: Specifies the blocking time in seconds.
                + If the prefix of `block_type` is **long**, the value ranges from `301` to `1,800`.
                + If the prefix of `block_type` is **short**, the value ranges from `1` to `300`.
@@ -164,6 +165,7 @@ class _RuleKnownAttackSourceState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RuleKnownAttackSource resources.
+
         :param pulumi.Input[_builtins.int] block_time: Specifies the blocking time in seconds.
                + If the prefix of `block_type` is **long**, the value ranges from `301` to `1,800`.
                + If the prefix of `block_type` is **short**, the value ranges from `1` to `300`.
@@ -335,19 +337,16 @@ class RuleKnownAttackSource(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleKnownAttackSource:RuleKnownAttackSource test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleKnownAttackSource:RuleKnownAttackSource test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -411,19 +410,16 @@ class RuleKnownAttackSource(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleKnownAttackSource:RuleKnownAttackSource test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleKnownAttackSource:RuleKnownAttackSource test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleKnownAttackSourceArgs args: The arguments to use to populate this resource's properties.

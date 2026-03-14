@@ -23,6 +23,7 @@ class PolicyAttachArgs:
                  policy_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a PolicyAttach resource.
+
         :param pulumi.Input[_builtins.str] entity_id: Specifies the unique ID of the root, OU, or account.
                
                Changing this parameter will create a new resource.
@@ -71,6 +72,7 @@ class _PolicyAttachState:
                  policy_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PolicyAttach resources.
+
         :param pulumi.Input[_builtins.str] entity_id: Specifies the unique ID of the root, OU, or account.
                
                Changing this parameter will create a new resource.
@@ -142,7 +144,7 @@ class _PolicyAttachState:
         pulumi.set(self, "policy_id", value)
 
 
-@pulumi.type_token("huaweicloud:organizations/policyAttach:PolicyAttach")
+@pulumi.type_token("huaweicloud:Organizations/policyAttach:PolicyAttach")
 class PolicyAttach(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -172,11 +174,10 @@ class PolicyAttach(pulumi.CustomResource):
 
         The organizations policy attach can be imported using the `policy_id` and `entity_id` separated by a slash, e.g.:
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/policyAttach:PolicyAttach test <policy_id>/<entity_id>
+        $ pulumi import huaweicloud:Organizations/policyAttach:PolicyAttach test <policy_id>/<entity_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -214,11 +215,10 @@ class PolicyAttach(pulumi.CustomResource):
 
         The organizations policy attach can be imported using the `policy_id` and `entity_id` separated by a slash, e.g.:
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/policyAttach:PolicyAttach test <policy_id>/<entity_id>
+        $ pulumi import huaweicloud:Organizations/policyAttach:PolicyAttach test <policy_id>/<entity_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyAttachArgs args: The arguments to use to populate this resource's properties.
@@ -255,7 +255,7 @@ class PolicyAttach(pulumi.CustomResource):
             __props__.__dict__["entity_name"] = None
             __props__.__dict__["entity_type"] = None
         super(PolicyAttach, __self__).__init__(
-            'huaweicloud:organizations/policyAttach:PolicyAttach',
+            'huaweicloud:Organizations/policyAttach:PolicyAttach',
             resource_name,
             __props__,
             opts)

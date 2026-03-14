@@ -37,45 +37,40 @@ __all__ = [
     'GetTurbosByTagsTagArgsDict',
 ]
 
-MYPY = False
+class FileSystemAccessRuleArgsDict(TypedDict):
+    access_level: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the access level of the shared file system. Possible values are *ro* (
+    read-only)
+    and *rw* (read-write). The default value is *rw* (read/write). Changing this will create a new access rule.
+    """
+    access_rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The UUID of the share access rule.
+    """
+    access_to: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value that defines the access rule. The value contains 1 to 255
+    characters. Changing this will create a new access rule. The value varies according to the scenario:
+    + Set the VPC ID in VPC authorization scenarios.
+    + Set this parameter in IP address authorization scenario:
+    - For an NFS shared file system, the value in the format of *VPC_ID#IP_address#priority#user_permission*.
+    For example, 0157b53f-4974-4e80-91c9-098532bcaf00#2.2.2.2/16#100#all_squash,root_squash.
+    - For a CIFS shared file system, the value in the format of *VPC_ID#IP_address#priority*.
+    For example, 0157b53f-4974-4e80-91c9-098532bcaf00#2.2.2.2/16#0.
 
-if not MYPY:
-    class FileSystemAccessRuleArgsDict(TypedDict):
-        access_level: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the access level of the shared file system. Possible values are *ro* (
-        read-only)
-        and *rw* (read-write). The default value is *rw* (read/write). Changing this will create a new access rule.
-        """
-        access_rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The UUID of the share access rule.
-        """
-        access_to: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value that defines the access rule. The value contains 1 to 255
-        characters. Changing this will create a new access rule. The value varies according to the scenario:
-        + Set the VPC ID in VPC authorization scenarios.
-        + Set this parameter in IP address authorization scenario:
-        - For an NFS shared file system, the value in the format of *VPC_ID#IP_address#priority#user_permission*.
-        For example, 0157b53f-4974-4e80-91c9-098532bcaf00#2.2.2.2/16#100#all_squash,root_squash.
-        - For a CIFS shared file system, the value in the format of *VPC_ID#IP_address#priority*.
-        For example, 0157b53f-4974-4e80-91c9-098532bcaf00#2.2.2.2/16#0.
-
-        > **NOTE:** If you want to create more access rules, please using
-        huaweicloud_sfs_access_rule.
-        """
-        access_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the share access rule. The default value is *cert*. Changing
-        this will create a new access rule.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the share access rule.
-        """
-elif False:
-    FileSystemAccessRuleArgsDict: TypeAlias = Mapping[str, Any]
+    > **NOTE:** If you want to create more access rules, please using
+    huaweicloud_sfs_access_rule.
+    """
+    access_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the share access rule. The default value is *cert*. Changing
+    this will create a new access rule.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the share access rule.
+    """
 
 @pulumi.input_type
 class FileSystemAccessRuleArgs:
@@ -190,15 +185,12 @@ class FileSystemAccessRuleArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class FileSystemV2AccessRuleArgsDict(TypedDict):
-        access_level: NotRequired[pulumi.Input[_builtins.str]]
-        access_rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        access_to: NotRequired[pulumi.Input[_builtins.str]]
-        access_type: NotRequired[pulumi.Input[_builtins.str]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    FileSystemV2AccessRuleArgsDict: TypeAlias = Mapping[str, Any]
+class FileSystemV2AccessRuleArgsDict(TypedDict):
+    access_level: NotRequired[pulumi.Input[_builtins.str]]
+    access_rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    access_to: NotRequired[pulumi.Input[_builtins.str]]
+    access_type: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class FileSystemV2AccessRuleArgs:
@@ -265,30 +257,27 @@ class FileSystemV2AccessRuleArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class TurboDuTaskDirUsageArgsDict(TypedDict):
-        file_counts: NotRequired[pulumi.Input[Sequence[pulumi.Input['TurboDuTaskDirUsageFileCountArgsDict']]]]
-        """
-        The total number of files in the directory.
-        The file_count structure is documented below.
-        """
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The error messages.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the full path to a legal directory in the file system.
-        The length of a single level directory is not allowed to exceed `255`, and the length of the full path is not allowed
-        to exceed `4,096`.
-        Changing this creates a new resource.
-        """
-        used_capacity: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The used capacity, in byte.
-        """
-elif False:
-    TurboDuTaskDirUsageArgsDict: TypeAlias = Mapping[str, Any]
+class TurboDuTaskDirUsageArgsDict(TypedDict):
+    file_counts: NotRequired[pulumi.Input[Sequence[pulumi.Input['TurboDuTaskDirUsageFileCountArgsDict']]]]
+    """
+    The total number of files in the directory.
+    The file_count structure is documented below.
+    """
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The error messages.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the full path to a legal directory in the file system.
+    The length of a single level directory is not allowed to exceed `255`, and the length of the full path is not allowed
+    to exceed `4,096`.
+    Changing this creates a new resource.
+    """
+    used_capacity: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The used capacity, in byte.
+    """
 
 @pulumi.input_type
 class TurboDuTaskDirUsageArgs:
@@ -369,38 +358,35 @@ class TurboDuTaskDirUsageArgs:
         pulumi.set(self, "used_capacity", value)
 
 
-if not MYPY:
-    class TurboDuTaskDirUsageFileCountArgsDict(TypedDict):
-        block: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of block devices.
-        """
-        char: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of character devices.
-        """
-        dir: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of directories.
-        """
-        pipe: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of pipe files.
-        """
-        regular: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of common files.
-        """
-        socket: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of sockets.
-        """
-        symlink: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of symbolic links.
-        """
-elif False:
-    TurboDuTaskDirUsageFileCountArgsDict: TypeAlias = Mapping[str, Any]
+class TurboDuTaskDirUsageFileCountArgsDict(TypedDict):
+    block: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of block devices.
+    """
+    char: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of character devices.
+    """
+    dir: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of directories.
+    """
+    pipe: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of pipe files.
+    """
+    regular: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of common files.
+    """
+    socket: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of sockets.
+    """
+    symlink: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of symbolic links.
+    """
 
 @pulumi.input_type
 class TurboDuTaskDirUsageFileCountArgs:
@@ -521,37 +507,34 @@ class TurboDuTaskDirUsageFileCountArgs:
         pulumi.set(self, "symlink", value)
 
 
-if not MYPY:
-    class TurboObsTargetObsArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the OBS bucket.
+class TurboObsTargetObsArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the OBS bucket.
 
-        > Before configuring OBS linkage, please configure bucket policies on the access control page of the OBS bucket and
-        set bucket policies for sub users who need to access the OBS bucket: current bucket, all objects in the bucket,
-        all operations.
-        """
-        endpoint: pulumi.Input[_builtins.str]
-        """
-        Specifies the domain name of the region where the OBS bucket belongs.
-        """
-        attributes: NotRequired[pulumi.Input['TurboObsTargetObsAttributesArgsDict']]
-        """
-        Specifies the attributes of the storage backend.
-        The paramater is not supported for the file systems which are created on or before June 30, 2024 and not upgraded.
-        Please submit a service ticket if you need it. [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html)
-        The attributes structure is documented below.
+    > Before configuring OBS linkage, please configure bucket policies on the access control page of the OBS bucket and
+    set bucket policies for sub users who need to access the OBS bucket: current bucket, all objects in the bucket,
+    all operations.
+    """
+    endpoint: pulumi.Input[_builtins.str]
+    """
+    Specifies the domain name of the region where the OBS bucket belongs.
+    """
+    attributes: NotRequired[pulumi.Input['TurboObsTargetObsAttributesArgsDict']]
+    """
+    Specifies the attributes of the storage backend.
+    The paramater is not supported for the file systems which are created on or before June 30, 2024 and not upgraded.
+    Please submit a service ticket if you need it. [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html)
+    The attributes structure is documented below.
 
-        <a name="obs_policy"></a>
-        The `policy` block supports:
-        """
-        policy: NotRequired[pulumi.Input['TurboObsTargetObsPolicyArgsDict']]
-        """
-        Specifies the auto synchronization policy of the storage backend.
-        The policy structure is documented below.
-        """
-elif False:
-    TurboObsTargetObsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="obs_policy"></a>
+    The `policy` block supports:
+    """
+    policy: NotRequired[pulumi.Input['TurboObsTargetObsPolicyArgsDict']]
+    """
+    Specifies the auto synchronization policy of the storage backend.
+    The policy structure is documented below.
+    """
 
 @pulumi.input_type
 class TurboObsTargetObsArgs:
@@ -644,32 +627,29 @@ class TurboObsTargetObsArgs:
         pulumi.set(self, "policy", value)
 
 
-if not MYPY:
-    class TurboObsTargetObsAttributesArgsDict(TypedDict):
-        dir_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the permissions on the imported directory.
-        The valid value ranges from `0` to `777`.
+class TurboObsTargetObsAttributesArgsDict(TypedDict):
+    dir_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the permissions on the imported directory.
+    The valid value ranges from `0` to `777`.
 
-        > For more details about the fields, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-sfsturbo/CreateBackendTarget.html).
-        """
-        file_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the permissions on the imported file.
-        The valid value ranges from `0` to `777`.
-        """
-        gid: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the ID of the user group to which the imported object belongs.
-        Default value is `0`. The valid value ranges from `0` to `4,294,967,294`.
-        """
-        uid: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the ID of the user who owns the imported object. Default value is `0`.
-        The valid value ranges from `0` to `4,294,967,294`.
-        """
-elif False:
-    TurboObsTargetObsAttributesArgsDict: TypeAlias = Mapping[str, Any]
+    > For more details about the fields, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-sfsturbo/CreateBackendTarget.html).
+    """
+    file_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the permissions on the imported file.
+    The valid value ranges from `0` to `777`.
+    """
+    gid: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the ID of the user group to which the imported object belongs.
+    Default value is `0`. The valid value ranges from `0` to `4,294,967,294`.
+    """
+    uid: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the ID of the user who owns the imported object. Default value is `0`.
+    The valid value ranges from `0` to `4,294,967,294`.
+    """
 
 @pulumi.input_type
 class TurboObsTargetObsAttributesArgs:
@@ -754,19 +734,16 @@ class TurboObsTargetObsAttributesArgs:
         pulumi.set(self, "uid", value)
 
 
-if not MYPY:
-    class TurboObsTargetObsPolicyArgsDict(TypedDict):
-        auto_export_policy: NotRequired[pulumi.Input['TurboObsTargetObsPolicyAutoExportPolicyArgsDict']]
-        """
-        Specifies the auto export policy of the storage backend.
-        If enabled, all update made on the file system will be automatically exported to the OBS bucket.
-        The auto_export_policy structure is documented below.
+class TurboObsTargetObsPolicyArgsDict(TypedDict):
+    auto_export_policy: NotRequired[pulumi.Input['TurboObsTargetObsPolicyAutoExportPolicyArgsDict']]
+    """
+    Specifies the auto export policy of the storage backend.
+    If enabled, all update made on the file system will be automatically exported to the OBS bucket.
+    The auto_export_policy structure is documented below.
 
-        <a name="obs_export_policy"></a>
-        The `attributes` block supports:
-        """
-elif False:
-    TurboObsTargetObsPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="obs_export_policy"></a>
+    The `attributes` block supports:
+    """
 
 @pulumi.input_type
 class TurboObsTargetObsPolicyArgs:
@@ -801,33 +778,30 @@ class TurboObsTargetObsPolicyArgs:
         pulumi.set(self, "auto_export_policy", value)
 
 
-if not MYPY:
-    class TurboObsTargetObsPolicyAutoExportPolicyArgsDict(TypedDict):
-        events: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the type of the data automatically exported to the OBS bucket.
-        The valid values are as follows:
-        + **NEW**: Indicate add new data. Files created and then modified in the SFS Turbo interworking directory. Any data
-        or metadata modifications made will be automatically synchronized to the OBS bucket.
-        + **CHANGED**: Indicate modify data. Files previously imported from the OBS bucket and then modified in the SFS Turbo
-        interworking directory. Any data or metadata modifications made will be automatically synchronized to the OBS bucket.
-        + **DELETED**: Indicate delete data. Files deleted from the SFS Turbo interworking directory. Deletions will be
-        automatically synchronized to the OBS bucket, and only such files that were previously exported to the bucket will be
-        deleted.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the prefix to be matched in the storage backend.
-        """
-        suffix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the suffix to be matched in the storage backend.
+class TurboObsTargetObsPolicyAutoExportPolicyArgsDict(TypedDict):
+    events: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the type of the data automatically exported to the OBS bucket.
+    The valid values are as follows:
+    + **NEW**: Indicate add new data. Files created and then modified in the SFS Turbo interworking directory. Any data
+    or metadata modifications made will be automatically synchronized to the OBS bucket.
+    + **CHANGED**: Indicate modify data. Files previously imported from the OBS bucket and then modified in the SFS Turbo
+    interworking directory. Any data or metadata modifications made will be automatically synchronized to the OBS bucket.
+    + **DELETED**: Indicate delete data. Files deleted from the SFS Turbo interworking directory. Deletions will be
+    automatically synchronized to the OBS bucket, and only such files that were previously exported to the bucket will be
+    deleted.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prefix to be matched in the storage backend.
+    """
+    suffix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the suffix to be matched in the storage backend.
 
-        <a name="obs_attributes"></a>
-        The `auto_export_policy` block supports:
-        """
-elif False:
-    TurboObsTargetObsPolicyAutoExportPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="obs_attributes"></a>
+    The `auto_export_policy` block supports:
+    """
 
 @pulumi.input_type
 class TurboObsTargetObsPolicyAutoExportPolicyArgs:
@@ -906,21 +880,18 @@ class TurboObsTargetObsPolicyAutoExportPolicyArgs:
         pulumi.set(self, "suffix", value)
 
 
-if not MYPY:
-    class GetTurbosByTagsMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the matches.
-        Currently, only **resource_name** is supported.
-        """
-        value: _builtins.str
-        """
-        Specifies the value of the matches.
-        If the `value` ends with `*`, prefix search will be performed. e.g. `sfsturbo*` indicates all resources whose names
-        start with **sfsturbo** will be returned.
-        """
-elif False:
-    GetTurbosByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetTurbosByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the matches.
+    Currently, only **resource_name** is supported.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the matches.
+    If the `value` ends with `*`, prefix search will be performed. e.g. `sfsturbo*` indicates all resources whose names
+    start with **sfsturbo** will be returned.
+    """
 
 @pulumi.input_type
 class GetTurbosByTagsMatchArgs:
@@ -965,23 +936,20 @@ class GetTurbosByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetTurbosByTagsTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the matches.
-        Currently, only **resource_name** is supported.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values list of the tags.
-        Each value can contain a maximum of `255` characters. An empty list for values indicates any value.
+class GetTurbosByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the matches.
+    Currently, only **resource_name** is supported.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values list of the tags.
+    Each value can contain a maximum of `255` characters. An empty list for values indicates any value.
 
-        <a name="turbos_matches"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetTurbosByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="turbos_matches"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetTurbosByTagsTagArgs:

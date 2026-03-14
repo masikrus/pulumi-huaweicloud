@@ -39,6 +39,7 @@ class TaskProgressReportArgs:
                  total_mem_usage: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a TaskProgressReport resource.
+
         :param pulumi.Input[_builtins.str] process_trace: Specifies the detailed progress of the migration or synchronization.
         :param pulumi.Input[_builtins.int] progress: Specifies the progress of the subtask, the unit is percentage.
         :param pulumi.Input[_builtins.int] replicatesize: Specifies the amount of data that has been replicated in the subtask,
@@ -369,6 +370,7 @@ class _TaskProgressReportState:
                  totalsize: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering TaskProgressReport resources.
+
         :param pulumi.Input[_builtins.int] agent_cpu_usage: Specifies the CPU usage of the agent, the unit is percentage.
         :param pulumi.Input[_builtins.int] agent_disk_io: Specifies the disk I/O of the agent, the unit is MB/s.
         :param pulumi.Input[_builtins.int] agent_mem_usage: Specifies the memory usage of the agent, the unit is MB.
@@ -729,6 +731,7 @@ class TaskProgressReport(pulumi.CustomResource):
             process_trace="migrate details")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] agent_cpu_usage: Specifies the CPU usage of the agent, the unit is percentage.
@@ -798,6 +801,7 @@ class TaskProgressReport(pulumi.CustomResource):
             totalsize=100000,
             process_trace="migrate details")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TaskProgressReportArgs args: The arguments to use to populate this resource's properties.

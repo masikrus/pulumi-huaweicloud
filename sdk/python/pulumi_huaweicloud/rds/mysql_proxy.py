@@ -34,6 +34,7 @@ class MysqlProxyArgs:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlProxy resource.
+
         :param pulumi.Input[_builtins.str] flavor: Specifies the flavor of the proxy.
                + When the site supports the proxy in primary/standby mode, this parameter does not take effect.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS MySQL instance.
@@ -262,6 +263,7 @@ class _MysqlProxyState:
                  vcpus: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlProxy resources.
+
         :param pulumi.Input[_builtins.str] address: Indicates the read/write splitting address of the proxy.
         :param pulumi.Input[_builtins.bool] alt_flag: Indicates the ALT switch status.
         :param pulumi.Input[_builtins.str] connection_pool_type: Indicates the connection pool type. The value can be:
@@ -847,11 +849,10 @@ class MysqlProxy(pulumi.CustomResource):
 
         The RDS MySQL proxy can be imported using the `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/mysqlProxy:MysqlProxy test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -925,11 +926,10 @@ class MysqlProxy(pulumi.CustomResource):
 
         The RDS MySQL proxy can be imported using the `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/mysqlProxy:MysqlProxy test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlProxyArgs args: The arguments to use to populate this resource's properties.

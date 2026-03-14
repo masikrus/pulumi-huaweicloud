@@ -28,6 +28,7 @@ class EndpointGroupV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a EndpointGroupV2 resource.
+
         :param pulumi.Input[_builtins.str] description: The human-readable description for the group. Changing this updates the description of the
                existing group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] endpoints: List of endpoints of the same type, for the endpoint group. The values will depend on the
@@ -158,6 +159,7 @@ class _EndpointGroupV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering EndpointGroupV2 resources.
+
         :param pulumi.Input[_builtins.str] description: The human-readable description for the group. Changing this updates the description of the
                existing group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] endpoints: List of endpoints of the same type, for the endpoint group. The values will depend on the
@@ -276,7 +278,7 @@ class _EndpointGroupV2State:
         pulumi.set(self, "value_specs", value)
 
 
-@pulumi.type_token("huaweicloud:vpnaas/endpointGroupV2:EndpointGroupV2")
+@pulumi.type_token("huaweicloud:Vpnaas/endpointGroupV2:EndpointGroupV2")
 class EndpointGroupV2(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -312,11 +314,10 @@ class EndpointGroupV2(pulumi.CustomResource):
 
         Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpnaas/endpointGroupV2:EndpointGroupV2 group_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
+        $ pulumi import huaweicloud:Vpnaas/endpointGroupV2:EndpointGroupV2 group_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -360,11 +361,10 @@ class EndpointGroupV2(pulumi.CustomResource):
 
         Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpnaas/endpointGroupV2:EndpointGroupV2 group_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
+        $ pulumi import huaweicloud:Vpnaas/endpointGroupV2:EndpointGroupV2 group_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EndpointGroupV2Args args: The arguments to use to populate this resource's properties.
@@ -405,7 +405,7 @@ class EndpointGroupV2(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["value_specs"] = value_specs
         super(EndpointGroupV2, __self__).__init__(
-            'huaweicloud:vpnaas/endpointGroupV2:EndpointGroupV2',
+            'huaweicloud:Vpnaas/endpointGroupV2:EndpointGroupV2',
             resource_name,
             __props__,
             opts)

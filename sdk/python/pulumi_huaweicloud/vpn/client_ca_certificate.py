@@ -26,6 +26,7 @@ class ClientCaCertificateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClientCaCertificate resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the content of client CA certificate.
         :param pulumi.Input[_builtins.str] vpn_server_id: Specifies the VPN server ID.
         :param pulumi.Input[_builtins.str] name: Specifies the name of client CA certificate.
@@ -119,6 +120,7 @@ class _ClientCaCertificateState:
                  vpn_server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClientCaCertificate resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the content of client CA certificate.
         :param pulumi.Input[_builtins.str] created_at: The creation time.
         :param pulumi.Input[_builtins.str] expiration_time: The client CA certificate expiration time.
@@ -302,7 +304,7 @@ class _ClientCaCertificateState:
         pulumi.set(self, "vpn_server_id", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/clientCaCertificate:ClientCaCertificate")
+@pulumi.type_token("huaweicloud:Vpn/clientCaCertificate:ClientCaCertificate")
 class ClientCaCertificate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -337,39 +339,16 @@ class ClientCaCertificate(pulumi.CustomResource):
 
         The client CA certificate can be imported using `vpn_server_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/clientCaCertificate:ClientCaCertificate test <vpn_server_id>/<id>
+        $ pulumi import huaweicloud:Vpn/clientCaCertificate:ClientCaCertificate test <vpn_server_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute is `content`. It is generally recommended running
-
         `pulumi preview` after importing the resource. You can then decide if changes should be applied to the client CA
-
         certificate, or the resource definition should be updated to align with the client CA certificate.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_client_ca_certificate" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              content
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -409,39 +388,16 @@ class ClientCaCertificate(pulumi.CustomResource):
 
         The client CA certificate can be imported using `vpn_server_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/clientCaCertificate:ClientCaCertificate test <vpn_server_id>/<id>
+        $ pulumi import huaweicloud:Vpn/clientCaCertificate:ClientCaCertificate test <vpn_server_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute is `content`. It is generally recommended running
-
         `pulumi preview` after importing the resource. You can then decide if changes should be applied to the client CA
-
         certificate, or the resource definition should be updated to align with the client CA certificate.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_client_ca_certificate" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              content
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ClientCaCertificateArgs args: The arguments to use to populate this resource's properties.
@@ -491,7 +447,7 @@ class ClientCaCertificate(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["content"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(ClientCaCertificate, __self__).__init__(
-            'huaweicloud:vpn/clientCaCertificate:ClientCaCertificate',
+            'huaweicloud:Vpn/clientCaCertificate:ClientCaCertificate',
             resource_name,
             __props__,
             opts)

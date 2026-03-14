@@ -127,7 +127,7 @@ def get_cluster_asset_statistics(enterprise_project_id: Optional[_builtins.str] 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_cluster_asset_statistics(enterprise_project_id="0")
+    test = huaweicloud.Hss.get_cluster_asset_statistics(enterprise_project_id="0")
     ```
 
 
@@ -144,7 +144,7 @@ def get_cluster_asset_statistics(enterprise_project_id: Optional[_builtins.str] 
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getClusterAssetStatistics:getClusterAssetStatistics', __args__, opts=opts, typ=GetClusterAssetStatisticsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getClusterAssetStatistics:getClusterAssetStatistics', __args__, opts=opts, typ=GetClusterAssetStatisticsResult).value
 
     return AwaitableGetClusterAssetStatisticsResult(
         cluster_num=pulumi.get(__ret__, 'cluster_num'),
@@ -166,7 +166,7 @@ def get_cluster_asset_statistics_output(enterprise_project_id: Optional[pulumi.I
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_cluster_asset_statistics(enterprise_project_id="0")
+    test = huaweicloud.Hss.get_cluster_asset_statistics(enterprise_project_id="0")
     ```
 
 
@@ -183,7 +183,7 @@ def get_cluster_asset_statistics_output(enterprise_project_id: Optional[pulumi.I
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getClusterAssetStatistics:getClusterAssetStatistics', __args__, opts=opts, typ=GetClusterAssetStatisticsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getClusterAssetStatistics:getClusterAssetStatistics', __args__, opts=opts, typ=GetClusterAssetStatisticsResult)
     return __ret__.apply(lambda __response__: GetClusterAssetStatisticsResult(
         cluster_num=pulumi.get(__response__, 'cluster_num'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

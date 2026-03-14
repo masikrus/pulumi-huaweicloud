@@ -96,7 +96,7 @@ def get_engines(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ddm.get_engines(version="3.0.8.5")
+    test = huaweicloud.Ddm.get_engines(version="3.0.8.5")
     ```
 
 
@@ -108,7 +108,7 @@ def get_engines(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['version'] = version
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getEngines:getEngines', __args__, opts=opts, typ=GetEnginesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getEngines:getEngines', __args__, opts=opts, typ=GetEnginesResult).value
 
     return AwaitableGetEnginesResult(
         engines=pulumi.get(__ret__, 'engines'),
@@ -127,7 +127,7 @@ def get_engines_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] =
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ddm.get_engines(version="3.0.8.5")
+    test = huaweicloud.Ddm.get_engines(version="3.0.8.5")
     ```
 
 
@@ -139,7 +139,7 @@ def get_engines_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] =
     __args__['region'] = region
     __args__['version'] = version
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getEngines:getEngines', __args__, opts=opts, typ=GetEnginesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getEngines:getEngines', __args__, opts=opts, typ=GetEnginesResult)
     return __ret__.apply(lambda __response__: GetEnginesResult(
         engines=pulumi.get(__response__, 'engines'),
         id=pulumi.get(__response__, 'id'),

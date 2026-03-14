@@ -25,6 +25,7 @@ class GroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[_builtins.str] identity_store_id: Specifies the ID of the identity store.
                
                Changing this parameter will create a new resource.
@@ -108,6 +109,7 @@ class _GroupState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the group.
         :param pulumi.Input[_builtins.str] identity_store_id: Specifies the ID of the identity store.
@@ -211,7 +213,7 @@ class _GroupState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/group:Group")
+@pulumi.type_token("huaweicloud:Identitycenter/group:Group")
 class Group(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -231,7 +233,7 @@ class Group(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.Group("test",
             identity_store_id=system.identity_store_id,
             name="test_group")
@@ -241,11 +243,10 @@ class Group(pulumi.CustomResource):
 
         The Identity Center group can be imported using the `identity_store_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/group:Group test <identity_store_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/group:Group test <identity_store_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -274,7 +275,7 @@ class Group(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.Group("test",
             identity_store_id=system.identity_store_id,
             name="test_group")
@@ -284,11 +285,10 @@ class Group(pulumi.CustomResource):
 
         The Identity Center group can be imported using the `identity_store_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/group:Group test <identity_store_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/group:Group test <identity_store_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.
@@ -327,7 +327,7 @@ class Group(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(Group, __self__).__init__(
-            'huaweicloud:identitycenter/group:Group',
+            'huaweicloud:Identitycenter/group:Group',
             resource_name,
             __props__,
             opts)

@@ -29,6 +29,7 @@ class DeviceGroupArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeviceGroup resource.
+
         :param pulumi.Input[_builtins.str] space_id: Specifies the resource space ID to which the device group belongs.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of device group.
@@ -206,6 +207,7 @@ class _DeviceGroupState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeviceGroup resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of device group.
                The description contains a maximum of `64` characters. Only letters, Chinese characters, digits, hyphens (-),
                underscores (_) and the following special characters are allowed: `?'#().,&%@!`.
@@ -420,39 +422,16 @@ class DeviceGroup(pulumi.CustomResource):
 
         The device group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/deviceGroup:DeviceGroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `space_id`. It is generally
-
         recommended running `pulumi preview` after importing the resource. You can then decide if changes should be applied to
-
         the resource, or the resource definition should be updated to align with the group. Also, you can ignore changes as
-
         below.
 
-        hcl
-
-        resource "huaweicloud_iotda_device_group" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              space_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -526,39 +505,16 @@ class DeviceGroup(pulumi.CustomResource):
 
         The device group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/deviceGroup:DeviceGroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `space_id`. It is generally
-
         recommended running `pulumi preview` after importing the resource. You can then decide if changes should be applied to
-
         the resource, or the resource definition should be updated to align with the group. Also, you can ignore changes as
-
         below.
 
-        hcl
-
-        resource "huaweicloud_iotda_device_group" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              space_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DeviceGroupArgs args: The arguments to use to populate this resource's properties.

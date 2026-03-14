@@ -30,6 +30,7 @@ class FlowLogArgs:
                  traffic_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FlowLog resource.
+
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the LTS log group ID.
                Changing this creates a new VPC flow log.
         :param pulumi.Input[_builtins.str] log_stream_id: Specifies the LTS log stream ID.
@@ -213,6 +214,7 @@ class _FlowLogState:
                  traffic_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FlowLog resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies description about the VPC flow log.
                The value can contain no more than 255 characters and cannot contain angle brackets (< or >).
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether to enable the flow log function, the default value is *true*.
@@ -423,11 +425,10 @@ class FlowLog(pulumi.CustomResource):
 
         VPC flow logs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/flowLog:FlowLog flowlog1 41b9d73f-eb1c-4795-a100-59a99b062513
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -471,11 +472,10 @@ class FlowLog(pulumi.CustomResource):
 
         VPC flow logs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/flowLog:FlowLog flowlog1 41b9d73f-eb1c-4795-a100-59a99b062513
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FlowLogArgs args: The arguments to use to populate this resource's properties.

@@ -29,6 +29,7 @@ class RuntimeStackV3Args:
                  spec: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RuntimeStackV3 resource.
+
         :param pulumi.Input[_builtins.str] deploy_mode: Specifies the deploy mode of the runtime stack.
                The valid value is **virtualmachine**.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the runtime stack.
@@ -184,6 +185,7 @@ class _RuntimeStackV3State:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RuntimeStackV3 resources.
+
         :param pulumi.Input[_builtins.int] component_count: The number of components associated with the runtime stack.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the runtime stack, in RFC3339 format.
         :param pulumi.Input[_builtins.str] creator: The creator name of the runtime stack.
@@ -198,8 +200,8 @@ class _RuntimeStackV3State:
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] spec: Specifies the configuration of runtime stack, in JSON format.
                For the structure, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0229.html#servicestage_06_0229__table51321252171513).
-        :param pulumi.Input[_builtins.str] spec_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'spec'.
+        :param pulumi.Input[_builtins.str] spec_origin: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'spec'.
         :param pulumi.Input[_builtins.str] status: The current status of the runtime stack.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the runtime stack.
                The valid values are as follows:
@@ -353,8 +355,8 @@ class _RuntimeStackV3State:
     @pulumi.getter(name="specOrigin")
     def spec_origin(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'spec'.
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'spec'.
         """
         return pulumi.get(self, "spec_origin")
 
@@ -458,13 +460,20 @@ class RuntimeStackV3(pulumi.CustomResource):
 
         ## Import
 
-        ### Import a runtime stack using its ID
+        Runtime stacks can be imported using their `name` or `id`, e.g.
 
-        bash
+        ### Import a runtime stack using its name
+
+        ```sh
+        $ pulumi import huaweicloud:ServiceStage/runtimeStackV3:RuntimeStackV3 test <name>
+        ```
+
+        ### Import a runtime stack using its ID
 
         ```sh
         $ pulumi import huaweicloud:ServiceStage/runtimeStackV3:RuntimeStackV3 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -520,13 +529,20 @@ class RuntimeStackV3(pulumi.CustomResource):
 
         ## Import
 
-        ### Import a runtime stack using its ID
+        Runtime stacks can be imported using their `name` or `id`, e.g.
 
-        bash
+        ### Import a runtime stack using its name
+
+        ```sh
+        $ pulumi import huaweicloud:ServiceStage/runtimeStackV3:RuntimeStackV3 test <name>
+        ```
+
+        ### Import a runtime stack using its ID
 
         ```sh
         $ pulumi import huaweicloud:ServiceStage/runtimeStackV3:RuntimeStackV3 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuntimeStackV3Args args: The arguments to use to populate this resource's properties.
@@ -625,8 +641,8 @@ class RuntimeStackV3(pulumi.CustomResource):
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] spec: Specifies the configuration of runtime stack, in JSON format.
                For the structure, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-servicestage/servicestage_06_0229.html#servicestage_06_0229__table51321252171513).
-        :param pulumi.Input[_builtins.str] spec_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'spec'.
+        :param pulumi.Input[_builtins.str] spec_origin: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'spec'.
         :param pulumi.Input[_builtins.str] status: The current status of the runtime stack.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the runtime stack.
                The valid values are as follows:
@@ -735,8 +751,8 @@ class RuntimeStackV3(pulumi.CustomResource):
     @pulumi.getter(name="specOrigin")
     def spec_origin(self) -> pulumi.Output[_builtins.str]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'spec'.
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'spec'.
         """
         return pulumi.get(self, "spec_origin")
 

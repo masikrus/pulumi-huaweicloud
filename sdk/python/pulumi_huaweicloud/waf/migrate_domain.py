@@ -28,6 +28,7 @@ class MigrateDomainArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MigrateDomain resource.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the source enterprise project to which
                the domain belongs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] host_ids: Specifies the ID lsit of the domains.
@@ -152,6 +153,7 @@ class _MigrateDomainState:
                  target_enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MigrateDomain resources.
+
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the ID of the certificate under destination enterprise
                project.
                
@@ -309,6 +311,7 @@ class MigrateDomain(pulumi.CustomResource):
             host_ids=host_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the ID of the certificate under destination enterprise
@@ -356,6 +359,7 @@ class MigrateDomain(pulumi.CustomResource):
             policy_id=policy_id,
             host_ids=host_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MigrateDomainArgs args: The arguments to use to populate this resource's properties.

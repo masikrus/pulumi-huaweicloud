@@ -25,6 +25,7 @@ class DeviceCertificateArgs:
                  verify_content: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeviceCertificate resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the content of device CA certificate.
                Changing this parameter will create a new resource. Create a private CA certificate,
                please following [reference](https://support.huaweicloud.com/usermanual-iothub/iot_01_0104.html)
@@ -116,6 +117,7 @@ class _DeviceCertificateState:
                  verify_content: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeviceCertificate resources.
+
         :param pulumi.Input[_builtins.str] cn: The CN name of the device CA certificate.
         :param pulumi.Input[_builtins.str] content: Specifies the content of device CA certificate.
                Changing this parameter will create a new resource. Create a private CA certificate,
@@ -327,39 +329,16 @@ class DeviceCertificate(pulumi.CustomResource):
 
         Device CA certificates can be imported by `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/deviceCertificate:DeviceCertificate test 62b3cec5558d4b703f064534
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `content`, `space_id`, `verify_content`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the group. Also you can ignore
-
         changes as below.
 
-        hcl
-
-        resource "huaweicloud_iotda_device_certificate" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              content, space_id, verify_content
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -410,39 +389,16 @@ class DeviceCertificate(pulumi.CustomResource):
 
         Device CA certificates can be imported by `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/deviceCertificate:DeviceCertificate test 62b3cec5558d4b703f064534
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `content`, `space_id`, `verify_content`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the group. Also you can ignore
-
         changes as below.
 
-        hcl
-
-        resource "huaweicloud_iotda_device_certificate" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              content, space_id, verify_content
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DeviceCertificateArgs args: The arguments to use to populate this resource's properties.

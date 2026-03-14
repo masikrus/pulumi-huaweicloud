@@ -25,10 +25,12 @@ class ComponentActionArgs:
                  component_id: pulumi.Input[_builtins.str],
                  environment_id: pulumi.Input[_builtins.str],
                  metadata: pulumi.Input['ComponentActionMetadataArgs'],
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  spec: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ComponentAction resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application where the component is located.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] component_id: Specifies the ID of the component to be operated.  
@@ -38,22 +40,28 @@ class ComponentActionArgs:
                Changing this will create a new resource.
         :param pulumi.Input['ComponentActionMetadataArgs'] metadata: Specifies the metadata of this action request.  
                The metadata structure is documented below.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               component belongs.
+               If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
+               
+               <a name="component_action_metadata"></a>
+               The `metadata` block supports:
         :param pulumi.Input[_builtins.str] region: Specifies the region where the component to be operated is located.
                If omitted, the provider-level region will be used.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] spec: Specifies the specification detail of the action, in JSON format.  
                Please following [reference documentation](https://support.huaweicloud.com/api-cae/ExecuteAction.html#ExecuteAction__request_ActionOnComponentSpec).
                
-               > If the `spec` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-               you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
-               
-               <a name="component_action_metadata"></a>
-               The `metadata` block supports:
+               > If the `spec` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+               you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         pulumi.set(__self__, "application_id", application_id)
         pulumi.set(__self__, "component_id", component_id)
         pulumi.set(__self__, "environment_id", environment_id)
         pulumi.set(__self__, "metadata", metadata)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if spec is not None:
@@ -113,6 +121,24 @@ class ComponentActionArgs:
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        component belongs.
+        If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+
+        <a name="component_action_metadata"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -133,11 +159,8 @@ class ComponentActionArgs:
         Specifies the specification detail of the action, in JSON format.  
         Please following [reference documentation](https://support.huaweicloud.com/api-cae/ExecuteAction.html#ExecuteAction__request_ActionOnComponentSpec).
 
-        > If the `spec` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-        you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
-
-        <a name="component_action_metadata"></a>
-        The `metadata` block supports:
+        > If the `spec` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+        you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         return pulumi.get(self, "spec")
 
@@ -151,16 +174,25 @@ class _ComponentActionState:
     def __init__(__self__, *,
                  application_id: Optional[pulumi.Input[_builtins.str]] = None,
                  component_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input['ComponentActionMetadataArgs']] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  spec: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ComponentAction resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application where the component is located.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] component_id: Specifies the ID of the component to be operated.  
                Changing this will create a new resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               component belongs.
+               If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
+               
+               <a name="component_action_metadata"></a>
+               The `metadata` block supports:
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment where the application
                is located.
                Changing this will create a new resource.
@@ -172,16 +204,15 @@ class _ComponentActionState:
         :param pulumi.Input[_builtins.str] spec: Specifies the specification detail of the action, in JSON format.  
                Please following [reference documentation](https://support.huaweicloud.com/api-cae/ExecuteAction.html#ExecuteAction__request_ActionOnComponentSpec).
                
-               > If the `spec` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-               you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
-               
-               <a name="component_action_metadata"></a>
-               The `metadata` block supports:
+               > If the `spec` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+               you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         if application_id is not None:
             pulumi.set(__self__, "application_id", application_id)
         if component_id is not None:
             pulumi.set(__self__, "component_id", component_id)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if metadata is not None:
@@ -216,6 +247,24 @@ class _ComponentActionState:
     @component_id.setter
     def component_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "component_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        component belongs.
+        If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+
+        <a name="component_action_metadata"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -265,11 +314,8 @@ class _ComponentActionState:
         Specifies the specification detail of the action, in JSON format.  
         Please following [reference documentation](https://support.huaweicloud.com/api-cae/ExecuteAction.html#ExecuteAction__request_ActionOnComponentSpec).
 
-        > If the `spec` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-        you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
-
-        <a name="component_action_metadata"></a>
-        The `metadata` block supports:
+        > If the `spec` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+        you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         return pulumi.get(self, "spec")
 
@@ -278,7 +324,7 @@ class _ComponentActionState:
         pulumi.set(self, "spec", value)
 
 
-@pulumi.type_token("huaweicloud:cae/componentAction:ComponentAction")
+@pulumi.type_token("huaweicloud:Cae/componentAction:ComponentAction")
 class ComponentAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -286,6 +332,7 @@ class ComponentAction(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_id: Optional[pulumi.Input[_builtins.str]] = None,
                  component_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Union['ComponentActionMetadataArgs', 'ComponentActionMetadataArgsDict']]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -332,12 +379,20 @@ class ComponentAction(pulumi.CustomResource):
             }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application where the component is located.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] component_id: Specifies the ID of the component to be operated.  
                Changing this will create a new resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               component belongs.
+               If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
+               
+               <a name="component_action_metadata"></a>
+               The `metadata` block supports:
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment where the application
                is located.
                Changing this will create a new resource.
@@ -349,11 +404,8 @@ class ComponentAction(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] spec: Specifies the specification detail of the action, in JSON format.  
                Please following [reference documentation](https://support.huaweicloud.com/api-cae/ExecuteAction.html#ExecuteAction__request_ActionOnComponentSpec).
                
-               > If the `spec` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-               you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
-               
-               <a name="component_action_metadata"></a>
-               The `metadata` block supports:
+               > If the `spec` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+               you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         ...
     @overload
@@ -402,6 +454,7 @@ class ComponentAction(pulumi.CustomResource):
             }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ComponentActionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -419,6 +472,7 @@ class ComponentAction(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_id: Optional[pulumi.Input[_builtins.str]] = None,
                  component_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Union['ComponentActionMetadataArgs', 'ComponentActionMetadataArgsDict']]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -438,6 +492,7 @@ class ComponentAction(pulumi.CustomResource):
             if component_id is None and not opts.urn:
                 raise TypeError("Missing required property 'component_id'")
             __props__.__dict__["component_id"] = component_id
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if environment_id is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_id'")
             __props__.__dict__["environment_id"] = environment_id
@@ -447,7 +502,7 @@ class ComponentAction(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["spec"] = spec
         super(ComponentAction, __self__).__init__(
-            'huaweicloud:cae/componentAction:ComponentAction',
+            'huaweicloud:Cae/componentAction:ComponentAction',
             resource_name,
             __props__,
             opts)
@@ -458,6 +513,7 @@ class ComponentAction(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             application_id: Optional[pulumi.Input[_builtins.str]] = None,
             component_id: Optional[pulumi.Input[_builtins.str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             environment_id: Optional[pulumi.Input[_builtins.str]] = None,
             metadata: Optional[pulumi.Input[Union['ComponentActionMetadataArgs', 'ComponentActionMetadataArgsDict']]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -473,6 +529,13 @@ class ComponentAction(pulumi.CustomResource):
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] component_id: Specifies the ID of the component to be operated.  
                Changing this will create a new resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               component belongs.
+               If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
+               
+               <a name="component_action_metadata"></a>
+               The `metadata` block supports:
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment where the application
                is located.
                Changing this will create a new resource.
@@ -484,11 +547,8 @@ class ComponentAction(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] spec: Specifies the specification detail of the action, in JSON format.  
                Please following [reference documentation](https://support.huaweicloud.com/api-cae/ExecuteAction.html#ExecuteAction__request_ActionOnComponentSpec).
                
-               > If the `spec` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-               you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
-               
-               <a name="component_action_metadata"></a>
-               The `metadata` block supports:
+               > If the `spec` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+               you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -496,6 +556,7 @@ class ComponentAction(pulumi.CustomResource):
 
         __props__.__dict__["application_id"] = application_id
         __props__.__dict__["component_id"] = component_id
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["region"] = region
@@ -519,6 +580,20 @@ class ComponentAction(pulumi.CustomResource):
         Changing this will create a new resource.
         """
         return pulumi.get(self, "component_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        component belongs.
+        If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+
+        <a name="component_action_metadata"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -556,11 +631,8 @@ class ComponentAction(pulumi.CustomResource):
         Specifies the specification detail of the action, in JSON format.  
         Please following [reference documentation](https://support.huaweicloud.com/api-cae/ExecuteAction.html#ExecuteAction__request_ActionOnComponentSpec).
 
-        > If the `spec` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-        you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
-
-        <a name="component_action_metadata"></a>
-        The `metadata` block supports:
+        > If the `spec` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+        you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         return pulumi.get(self, "spec")
 

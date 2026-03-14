@@ -24,6 +24,7 @@ class ParameterTemplateApplyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ParameterTemplateApply resource.
+
         :param pulumi.Input[_builtins.str] configuration_id: Specifies the parameter template ID.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] entity_ids: Specifies the entity IDs.
@@ -94,6 +95,7 @@ class _ParameterTemplateApplyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ParameterTemplateApply resources.
+
         :param pulumi.Input[_builtins.str] configuration_id: Specifies the parameter template ID.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] entity_ids: Specifies the entity IDs.
@@ -187,6 +189,7 @@ class ParameterTemplateApply(pulumi.CustomResource):
             entity_ids=entity_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] configuration_id: Specifies the parameter template ID.
@@ -225,6 +228,7 @@ class ParameterTemplateApply(pulumi.CustomResource):
             configuration_id=configuration_id,
             entity_ids=entity_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ParameterTemplateApplyArgs args: The arguments to use to populate this resource's properties.

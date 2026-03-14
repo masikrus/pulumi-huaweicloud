@@ -25,7 +25,11 @@ class AppPolicyTemplateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppPolicyTemplate resource.
-        :param pulumi.Input[_builtins.str] policies: The policies configuration in JSON format.
+
+        :param pulumi.Input[_builtins.str] policies: Specifies the policies configuration in JSON format.  
+               The policies configuration should be a valid JSON string containing all the policy settings.
+               You can use the `jsonencode()` function in Terraform to convert a map to JSON string.
+               For policy configuration items, please refer to the [documentation](https://support.huaweicloud.com/api-workspace/CreatePolicyTemplate.html#CreatePolicyTemplate__request_Policies).
         :param pulumi.Input[_builtins.str] description: Specifies the description of the policy template.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the policy template.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the policy template is located.  
@@ -44,7 +48,10 @@ class AppPolicyTemplateArgs:
     @pulumi.getter
     def policies(self) -> pulumi.Input[_builtins.str]:
         """
-        The policies configuration in JSON format.
+        Specifies the policies configuration in JSON format.  
+        The policies configuration should be a valid JSON string containing all the policy settings.
+        You can use the `jsonencode()` function in Terraform to convert a map to JSON string.
+        For policy configuration items, please refer to the [documentation](https://support.huaweicloud.com/api-workspace/CreatePolicyTemplate.html#CreatePolicyTemplate__request_Policies).
         """
         return pulumi.get(self, "policies")
 
@@ -102,10 +109,14 @@ class _AppPolicyTemplateState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppPolicyTemplate resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the policy template, in RFC3339 format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the policy template.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the policy template.
-        :param pulumi.Input[_builtins.str] policies: The policies configuration in JSON format.
+        :param pulumi.Input[_builtins.str] policies: Specifies the policies configuration in JSON format.  
+               The policies configuration should be a valid JSON string containing all the policy settings.
+               You can use the `jsonencode()` function in Terraform to convert a map to JSON string.
+               For policy configuration items, please refer to the [documentation](https://support.huaweicloud.com/api-workspace/CreatePolicyTemplate.html#CreatePolicyTemplate__request_Policies).
         :param pulumi.Input[_builtins.str] region: Specifies the region where the policy template is located.  
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -164,7 +175,10 @@ class _AppPolicyTemplateState:
     @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The policies configuration in JSON format.
+        Specifies the policies configuration in JSON format.  
+        The policies configuration should be a valid JSON string containing all the policy settings.
+        You can use the `jsonencode()` function in Terraform to convert a map to JSON string.
+        For policy configuration items, please refer to the [documentation](https://support.huaweicloud.com/api-workspace/CreatePolicyTemplate.html#CreatePolicyTemplate__request_Policies).
         """
         return pulumi.get(self, "policies")
 
@@ -1021,11 +1035,15 @@ class AppPolicyTemplate(pulumi.CustomResource):
             }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the policy template.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the policy template.
-        :param pulumi.Input[_builtins.str] policies: The policies configuration in JSON format.
+        :param pulumi.Input[_builtins.str] policies: Specifies the policies configuration in JSON format.  
+               The policies configuration should be a valid JSON string containing all the policy settings.
+               You can use the `jsonencode()` function in Terraform to convert a map to JSON string.
+               For policy configuration items, please refer to the [documentation](https://support.huaweicloud.com/api-workspace/CreatePolicyTemplate.html#CreatePolicyTemplate__request_Policies).
         :param pulumi.Input[_builtins.str] region: Specifies the region where the policy template is located.  
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -1847,6 +1865,7 @@ class AppPolicyTemplate(pulumi.CustomResource):
             }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param AppPolicyTemplateArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1909,7 +1928,10 @@ class AppPolicyTemplate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: The creation time of the policy template, in RFC3339 format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the policy template.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the policy template.
-        :param pulumi.Input[_builtins.str] policies: The policies configuration in JSON format.
+        :param pulumi.Input[_builtins.str] policies: Specifies the policies configuration in JSON format.  
+               The policies configuration should be a valid JSON string containing all the policy settings.
+               You can use the `jsonencode()` function in Terraform to convert a map to JSON string.
+               For policy configuration items, please refer to the [documentation](https://support.huaweicloud.com/api-workspace/CreatePolicyTemplate.html#CreatePolicyTemplate__request_Policies).
         :param pulumi.Input[_builtins.str] region: Specifies the region where the policy template is located.  
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -1955,7 +1977,10 @@ class AppPolicyTemplate(pulumi.CustomResource):
     @pulumi.getter
     def policies(self) -> pulumi.Output[_builtins.str]:
         """
-        The policies configuration in JSON format.
+        Specifies the policies configuration in JSON format.  
+        The policies configuration should be a valid JSON string containing all the policy settings.
+        You can use the `jsonencode()` function in Terraform to convert a map to JSON string.
+        For policy configuration items, please refer to the [documentation](https://support.huaweicloud.com/api-workspace/CreatePolicyTemplate.html#CreatePolicyTemplate__request_Policies).
         """
         return pulumi.get(self, "policies")
 

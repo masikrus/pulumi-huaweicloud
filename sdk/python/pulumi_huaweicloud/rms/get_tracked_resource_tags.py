@@ -96,7 +96,7 @@ def get_tracked_resource_tags(key: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_tracked_resource_tags()
+    test = huaweicloud.Rms.get_tracked_resource_tags()
     ```
 
 
@@ -107,7 +107,7 @@ def get_tracked_resource_tags(key: Optional[_builtins.str] = None,
     __args__['key'] = key
     __args__['resourceDeleted'] = resource_deleted
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getTrackedResourceTags:getTrackedResourceTags', __args__, opts=opts, typ=GetTrackedResourceTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getTrackedResourceTags:getTrackedResourceTags', __args__, opts=opts, typ=GetTrackedResourceTagsResult).value
 
     return AwaitableGetTrackedResourceTagsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -126,7 +126,7 @@ def get_tracked_resource_tags_output(key: Optional[pulumi.Input[Optional[_builti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_tracked_resource_tags()
+    test = huaweicloud.Rms.get_tracked_resource_tags()
     ```
 
 
@@ -137,7 +137,7 @@ def get_tracked_resource_tags_output(key: Optional[pulumi.Input[Optional[_builti
     __args__['key'] = key
     __args__['resourceDeleted'] = resource_deleted
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getTrackedResourceTags:getTrackedResourceTags', __args__, opts=opts, typ=GetTrackedResourceTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getTrackedResourceTags:getTrackedResourceTags', __args__, opts=opts, typ=GetTrackedResourceTagsResult)
     return __ret__.apply(lambda __response__: GetTrackedResourceTagsResult(
         id=pulumi.get(__response__, 'id'),
         key=pulumi.get(__response__, 'key'),

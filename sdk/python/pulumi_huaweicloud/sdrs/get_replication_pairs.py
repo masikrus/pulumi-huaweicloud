@@ -172,7 +172,7 @@ def get_replication_pairs(availability_zone: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_replication_pairs()
+    test = huaweicloud.Sdrs.get_replication_pairs()
     ```
 
 
@@ -216,7 +216,7 @@ def get_replication_pairs(availability_zone: Optional[_builtins.str] = None,
     __args__['serverGroupIds'] = server_group_ids
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:sdrs/getReplicationPairs:getReplicationPairs', __args__, opts=opts, typ=GetReplicationPairsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Sdrs/getReplicationPairs:getReplicationPairs', __args__, opts=opts, typ=GetReplicationPairsResult).value
 
     return AwaitableGetReplicationPairsResult(
         availability_zone=pulumi.get(__ret__, 'availability_zone'),
@@ -249,7 +249,7 @@ def get_replication_pairs_output(availability_zone: Optional[pulumi.Input[Option
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_replication_pairs()
+    test = huaweicloud.Sdrs.get_replication_pairs()
     ```
 
 
@@ -293,7 +293,7 @@ def get_replication_pairs_output(availability_zone: Optional[pulumi.Input[Option
     __args__['serverGroupIds'] = server_group_ids
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:sdrs/getReplicationPairs:getReplicationPairs', __args__, opts=opts, typ=GetReplicationPairsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Sdrs/getReplicationPairs:getReplicationPairs', __args__, opts=opts, typ=GetReplicationPairsResult)
     return __ret__.apply(lambda __response__: GetReplicationPairsResult(
         availability_zone=pulumi.get(__response__, 'availability_zone'),
         id=pulumi.get(__response__, 'id'),

@@ -28,6 +28,7 @@ class AddonArgs:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Addon resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] template_name: Specifies the name of the add-on template.
@@ -130,6 +131,7 @@ class _AddonState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Addon resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Description of add-on instance.
@@ -293,11 +295,10 @@ class Addon(pulumi.CustomResource):
 
         CCE add-on can be imported using the cluster ID and add-on ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/addon:Addon my_addon <cluster_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -349,11 +350,10 @@ class Addon(pulumi.CustomResource):
 
         CCE add-on can be imported using the cluster ID and add-on ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/addon:Addon my_addon <cluster_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AddonArgs args: The arguments to use to populate this resource's properties.

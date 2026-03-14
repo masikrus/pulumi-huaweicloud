@@ -21,20 +21,15 @@ __all__ = [
     'GetResourceInstancesTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class GetResourceInstancesMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the field name, and must be unique. Currently, only **resource_name** is supported.
-        """
-        value: _builtins.str
-        """
-        Specifies the field value.
-        """
-elif False:
-    GetResourceInstancesMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourceInstancesMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the field name, and must be unique. Currently, only **resource_name** is supported.
+    """
+    value: _builtins.str
+    """
+    Specifies the field value.
+    """
 
 @pulumi.input_type
 class GetResourceInstancesMatchArgs:
@@ -73,21 +68,18 @@ class GetResourceInstancesMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetResourceInstancesTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the field name, and must be unique. Currently, only **resource_name** is supported.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of values of the tag.
+class GetResourceInstancesTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the field name, and must be unique. Currently, only **resource_name** is supported.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values of the tag.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetResourceInstancesTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetResourceInstancesTagArgs:

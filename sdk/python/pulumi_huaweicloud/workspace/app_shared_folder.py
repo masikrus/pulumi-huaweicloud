@@ -24,6 +24,7 @@ class AppSharedFolderArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppSharedFolder resource.
+
         :param pulumi.Input[_builtins.str] storage_id: Specifies the NAS storage ID to which the shared folder belongs.  
                Change this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the shared folder.  
@@ -91,6 +92,7 @@ class _AppSharedFolderState:
                  storage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppSharedFolder resources.
+
         :param pulumi.Input[_builtins.str] delimiter: The delimiter that the shared folder path used.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the shared folder.  
                The valid length is limited from `1` to `32`, only letters, digits, spaces, underscores (_) and hyphens (-) are
@@ -212,21 +214,17 @@ class AppSharedFolder(pulumi.CustomResource):
 
         Shared folders can be imported using their related `storage_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appSharedFolder:AppSharedFolder test <storage_id>/<id>
         ```
 
-        If the NAS storage ID or shared folder ID is unknow, its corresponding name can be used as an alternative to ID.
-
-        The NAS storage name can be obtained through the console or data source (`huaweicloud_workspace_app_nas_storages`).
-
-        bash
+        If the NAS storage ID or shared folder ID is unknow, its corresponding name can be used as an alternative to ID.\\
+        The NAS storage name can be obtained through the console or data source (`workspace_get_app_nas_storages`).
 
         ```sh
         $ pulumi import huaweicloud:Workspace/appSharedFolder:AppSharedFolder test <storage_name>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -266,21 +264,17 @@ class AppSharedFolder(pulumi.CustomResource):
 
         Shared folders can be imported using their related `storage_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appSharedFolder:AppSharedFolder test <storage_id>/<id>
         ```
 
-        If the NAS storage ID or shared folder ID is unknow, its corresponding name can be used as an alternative to ID.
-
-        The NAS storage name can be obtained through the console or data source (`huaweicloud_workspace_app_nas_storages`).
-
-        bash
+        If the NAS storage ID or shared folder ID is unknow, its corresponding name can be used as an alternative to ID.\\
+        The NAS storage name can be obtained through the console or data source (`workspace_get_app_nas_storages`).
 
         ```sh
         $ pulumi import huaweicloud:Workspace/appSharedFolder:AppSharedFolder test <storage_name>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppSharedFolderArgs args: The arguments to use to populate this resource's properties.

@@ -8,6 +8,9 @@ import typing
 # Export this package's modules as members:
 from .cluster import *
 from .cluster2 import *
+from .cluster_component_batch_add import *
+from .cluster_node_batch_expand import *
+from .cluster_node_batch_shrink import *
 from .cluster_v1 import *
 from .data_connection import *
 from .get_clusters import *

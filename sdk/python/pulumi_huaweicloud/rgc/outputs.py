@@ -13,9 +13,58 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'AccountBlueprint',
+    'AccountEnrollBlueprint',
+    'LandingZoneLoggingConfiguration',
+    'LandingZoneLoggingConfigurationAccessLoggingBucket',
+    'LandingZoneLoggingConfigurationLoggingBucket',
+    'LandingZoneOrganizationStructure',
+    'LandingZoneOrganizationStructureAccount',
+    'LandingZoneRegionConfigurationList',
+    'GetAccountControlsControlSummaryResult',
+    'GetAccountEnabledControlControlDetailResult',
+    'GetAccountEnabledControlRegionResult',
+    'GetAccountsManagedAccountResult',
+    'GetAccountsManagedAccountRegionResult',
+    'GetBestPracticeDetailsDetailResult',
+    'GetBestPracticeOverviewComplianceAuditResult',
+    'GetBestPracticeOverviewDataBoundaryResult',
+    'GetBestPracticeOverviewFinancialGovernanceResult',
+    'GetBestPracticeOverviewIdentityPermissionResult',
+    'GetBestPracticeOverviewNetworkPlanningResult',
+    'GetBestPracticeOverviewOmMonitorResult',
+    'GetBestPracticeOverviewOrganizationAccountResult',
+    'GetBestPracticeOverviewSecurityManagementResult',
+    'GetConfigRuleCompliancesConfigRuleComplianceResult',
+    'GetControlDetailArtifactResult',
+    'GetControlDetailArtifactContentResult',
+    'GetControlViolationsControlViolationResult',
+    'GetControlsControlResult',
+    'GetDriftDetailsDriftDetailResult',
+    'GetEnabledControlsEnabledControlResult',
+    'GetExternalConfigRuleCompliancesConfigRuleComplianceResult',
+    'GetLandingZoneConfigurationCommonConfigurationResult',
+    'GetLandingZoneConfigurationLoggingConfigurationResult',
+    'GetLandingZoneConfigurationLoggingConfigurationAccessLoggingBucketResult',
+    'GetLandingZoneConfigurationLoggingConfigurationLoggingBucketResult',
+    'GetLandingZoneConfigurationOrganizationStructureResult',
+    'GetLandingZoneConfigurationOrganizationStructureAccountResult',
+    'GetLandingZoneConfigurationRegionResult',
+    'GetLandingZoneIdentityCenterGroupResult',
+    'GetLandingZoneIdentityCenterPermissionSetResult',
+    'GetOperationPercentageDetailResult',
+    'GetOrganizationalUnitAccountsManagedAccountResult',
+    'GetOrganizationalUnitAccountsManagedAccountRegionResult',
+    'GetOrganizationalUnitControlsControlSummaryResult',
+    'GetOrganizationalUnitEnabledControlControlResult',
+    'GetOrganizationalUnitEnabledControlRegionResult',
+    'GetOrganizationalUnitsManagedOrganizationalUnitResult',
+    'GetPredefinedTemplatesTemplateResult',
+    'GetTemplateDeployParamsVariableResult',
+    'GetTemplateDeployParamsVariableValidationResult',
 ]
 
 @pulumi.output_type
@@ -92,5 +141,3386 @@ class AccountBlueprint(dict):
         Specifies the variables of the blueprint.
         """
         return pulumi.get(self, "variables")
+
+
+@pulumi.output_type
+class AccountEnrollBlueprint(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "blueprintProductId":
+            suggest = "blueprint_product_id"
+        elif key == "blueprintProductVersion":
+            suggest = "blueprint_product_version"
+        elif key == "isBlueprintHasMultiAccountResource":
+            suggest = "is_blueprint_has_multi_account_resource"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AccountEnrollBlueprint. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AccountEnrollBlueprint.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AccountEnrollBlueprint.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 blueprint_product_id: Optional[_builtins.str] = None,
+                 blueprint_product_version: Optional[_builtins.str] = None,
+                 is_blueprint_has_multi_account_resource: Optional[_builtins.bool] = None,
+                 variables: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str blueprint_product_id: Specifies the ID of the blueprint.
+        :param _builtins.str blueprint_product_version: Specifies the version of the blueprint.
+        :param _builtins.bool is_blueprint_has_multi_account_resource: Specifies whether the blueprint has multi-account resources.
+        :param _builtins.str variables: Specifies the variables of the blueprint.
+        """
+        if blueprint_product_id is not None:
+            pulumi.set(__self__, "blueprint_product_id", blueprint_product_id)
+        if blueprint_product_version is not None:
+            pulumi.set(__self__, "blueprint_product_version", blueprint_product_version)
+        if is_blueprint_has_multi_account_resource is not None:
+            pulumi.set(__self__, "is_blueprint_has_multi_account_resource", is_blueprint_has_multi_account_resource)
+        if variables is not None:
+            pulumi.set(__self__, "variables", variables)
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintProductId")
+    def blueprint_product_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the blueprint.
+        """
+        return pulumi.get(self, "blueprint_product_id")
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintProductVersion")
+    def blueprint_product_version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the version of the blueprint.
+        """
+        return pulumi.get(self, "blueprint_product_version")
+
+    @_builtins.property
+    @pulumi.getter(name="isBlueprintHasMultiAccountResource")
+    def is_blueprint_has_multi_account_resource(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the blueprint has multi-account resources.
+        """
+        return pulumi.get(self, "is_blueprint_has_multi_account_resource")
+
+    @_builtins.property
+    @pulumi.getter
+    def variables(self) -> Optional[_builtins.str]:
+        """
+        Specifies the variables of the blueprint.
+        """
+        return pulumi.get(self, "variables")
+
+
+@pulumi.output_type
+class LandingZoneLoggingConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessLoggingBucket":
+            suggest = "access_logging_bucket"
+        elif key == "loggingBucket":
+            suggest = "logging_bucket"
+        elif key == "loggingBucketName":
+            suggest = "logging_bucket_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LandingZoneLoggingConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LandingZoneLoggingConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LandingZoneLoggingConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access_logging_bucket: 'outputs.LandingZoneLoggingConfigurationAccessLoggingBucket',
+                 logging_bucket: 'outputs.LandingZoneLoggingConfigurationLoggingBucket',
+                 logging_bucket_name: Optional[_builtins.str] = None):
+        """
+        :param 'LandingZoneLoggingConfigurationAccessLoggingBucketArgs' access_logging_bucket: Specifies the access logging bucket structure.
+               
+               The access_logging_bucket structure is documented below.
+               
+               <a name="logging_bucket"></a>
+               The `logging_bucket` and  access_logging_bucket block supports:
+        :param 'LandingZoneLoggingConfigurationLoggingBucketArgs' logging_bucket: Specifies the logging bucket structure.
+               
+               The logging_bucket structure is documented below.
+        :param _builtins.str logging_bucket_name: Specifies the name of logging bucket, set this field means
+               using existed bucket, RGC will not create bucket in setup landing zone progress.
+        """
+        pulumi.set(__self__, "access_logging_bucket", access_logging_bucket)
+        pulumi.set(__self__, "logging_bucket", logging_bucket)
+        if logging_bucket_name is not None:
+            pulumi.set(__self__, "logging_bucket_name", logging_bucket_name)
+
+    @_builtins.property
+    @pulumi.getter(name="accessLoggingBucket")
+    def access_logging_bucket(self) -> 'outputs.LandingZoneLoggingConfigurationAccessLoggingBucket':
+        """
+        Specifies the access logging bucket structure.
+
+        The access_logging_bucket structure is documented below.
+
+        <a name="logging_bucket"></a>
+        The `logging_bucket` and  access_logging_bucket block supports:
+        """
+        return pulumi.get(self, "access_logging_bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="loggingBucket")
+    def logging_bucket(self) -> 'outputs.LandingZoneLoggingConfigurationLoggingBucket':
+        """
+        Specifies the logging bucket structure.
+
+        The logging_bucket structure is documented below.
+        """
+        return pulumi.get(self, "logging_bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="loggingBucketName")
+    def logging_bucket_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of logging bucket, set this field means
+        using existed bucket, RGC will not create bucket in setup landing zone progress.
+        """
+        return pulumi.get(self, "logging_bucket_name")
+
+
+@pulumi.output_type
+class LandingZoneLoggingConfigurationAccessLoggingBucket(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "retentionDays":
+            suggest = "retention_days"
+        elif key == "enableMultiAz":
+            suggest = "enable_multi_az"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LandingZoneLoggingConfigurationAccessLoggingBucket. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LandingZoneLoggingConfigurationAccessLoggingBucket.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LandingZoneLoggingConfigurationAccessLoggingBucket.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 retention_days: _builtins.int,
+                 enable_multi_az: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.int retention_days: Specifies retention days of access logging bucket.
+        :param _builtins.bool enable_multi_az: Specifies multi-az storage access of access logging bucket,
+               default value is false.
+        """
+        pulumi.set(__self__, "retention_days", retention_days)
+        if enable_multi_az is not None:
+            pulumi.set(__self__, "enable_multi_az", enable_multi_az)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        Specifies retention days of access logging bucket.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @_builtins.property
+    @pulumi.getter(name="enableMultiAz")
+    def enable_multi_az(self) -> Optional[_builtins.bool]:
+        """
+        Specifies multi-az storage access of access logging bucket,
+        default value is false.
+        """
+        return pulumi.get(self, "enable_multi_az")
+
+
+@pulumi.output_type
+class LandingZoneLoggingConfigurationLoggingBucket(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "retentionDays":
+            suggest = "retention_days"
+        elif key == "enableMultiAz":
+            suggest = "enable_multi_az"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LandingZoneLoggingConfigurationLoggingBucket. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LandingZoneLoggingConfigurationLoggingBucket.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LandingZoneLoggingConfigurationLoggingBucket.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 retention_days: _builtins.int,
+                 enable_multi_az: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.int retention_days: Specifies retention days of access logging bucket.
+        :param _builtins.bool enable_multi_az: Specifies multi-az storage access of access logging bucket,
+               default value is false.
+        """
+        pulumi.set(__self__, "retention_days", retention_days)
+        if enable_multi_az is not None:
+            pulumi.set(__self__, "enable_multi_az", enable_multi_az)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        Specifies retention days of access logging bucket.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @_builtins.property
+    @pulumi.getter(name="enableMultiAz")
+    def enable_multi_az(self) -> Optional[_builtins.bool]:
+        """
+        Specifies multi-az storage access of access logging bucket,
+        default value is false.
+        """
+        return pulumi.get(self, "enable_multi_az")
+
+
+@pulumi.output_type
+class LandingZoneOrganizationStructure(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "organizationalUnitType":
+            suggest = "organizational_unit_type"
+        elif key == "organizationalUnitName":
+            suggest = "organizational_unit_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LandingZoneOrganizationStructure. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LandingZoneOrganizationStructure.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LandingZoneOrganizationStructure.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 organizational_unit_type: _builtins.str,
+                 accounts: Optional[Sequence['outputs.LandingZoneOrganizationStructureAccount']] = None,
+                 organizational_unit_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str organizational_unit_type: Specifies the type of registered organizational unit,
+               only support CORE or CUSTOM.
+        :param Sequence['LandingZoneOrganizationStructureAccountArgs'] accounts: Specifies the account structure.
+               
+               The accounts structure is documented below.
+               
+               <a name="accounts"></a>
+               The `accounts` block supports:
+        :param _builtins.str organizational_unit_name: Specifies the name of created organizational unit,
+               leaving this field means that the organizational unit will not be created.
+        """
+        pulumi.set(__self__, "organizational_unit_type", organizational_unit_type)
+        if accounts is not None:
+            pulumi.set(__self__, "accounts", accounts)
+        if organizational_unit_name is not None:
+            pulumi.set(__self__, "organizational_unit_name", organizational_unit_name)
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitType")
+    def organizational_unit_type(self) -> _builtins.str:
+        """
+        Specifies the type of registered organizational unit,
+        only support CORE or CUSTOM.
+        """
+        return pulumi.get(self, "organizational_unit_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def accounts(self) -> Optional[Sequence['outputs.LandingZoneOrganizationStructureAccount']]:
+        """
+        Specifies the account structure.
+
+        The accounts structure is documented below.
+
+        <a name="accounts"></a>
+        The `accounts` block supports:
+        """
+        return pulumi.get(self, "accounts")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitName")
+    def organizational_unit_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of created organizational unit,
+        leaving this field means that the organizational unit will not be created.
+        """
+        return pulumi.get(self, "organizational_unit_name")
+
+
+@pulumi.output_type
+class LandingZoneOrganizationStructureAccount(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountName":
+            suggest = "account_name"
+        elif key == "accountType":
+            suggest = "account_type"
+        elif key == "accountEmail":
+            suggest = "account_email"
+        elif key == "accountId":
+            suggest = "account_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LandingZoneOrganizationStructureAccount. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LandingZoneOrganizationStructureAccount.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LandingZoneOrganizationStructureAccount.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account_name: _builtins.str,
+                 account_type: _builtins.str,
+                 account_email: Optional[_builtins.str] = None,
+                 account_id: Optional[_builtins.str] = None,
+                 phone: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str account_name: Specifies the name of created account or enrolled account.
+        :param _builtins.str account_type: Specifies the name of created account or enrolled account,
+               only support LOGGING or SECURITY.
+        :param _builtins.str account_email: Specifies the name of account, international account or security
+               account is required.
+        :param _builtins.str account_id: Specifies the id of enrolled account.
+        :param _builtins.str phone: Specifies the name of created account, domestic account is required.
+        """
+        pulumi.set(__self__, "account_name", account_name)
+        pulumi.set(__self__, "account_type", account_type)
+        if account_email is not None:
+            pulumi.set(__self__, "account_email", account_email)
+        if account_id is not None:
+            pulumi.set(__self__, "account_id", account_id)
+        if phone is not None:
+            pulumi.set(__self__, "phone", phone)
+
+    @_builtins.property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> _builtins.str:
+        """
+        Specifies the name of created account or enrolled account.
+        """
+        return pulumi.get(self, "account_name")
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> _builtins.str:
+        """
+        Specifies the name of created account or enrolled account,
+        only support LOGGING or SECURITY.
+        """
+        return pulumi.get(self, "account_type")
+
+    @_builtins.property
+    @pulumi.getter(name="accountEmail")
+    def account_email(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of account, international account or security
+        account is required.
+        """
+        return pulumi.get(self, "account_email")
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the id of enrolled account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def phone(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of created account, domestic account is required.
+        """
+        return pulumi.get(self, "phone")
+
+
+@pulumi.output_type
+class LandingZoneRegionConfigurationList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "regionConfigurationStatus":
+            suggest = "region_configuration_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LandingZoneRegionConfigurationList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LandingZoneRegionConfigurationList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LandingZoneRegionConfigurationList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 region: _builtins.str,
+                 region_configuration_status: _builtins.str):
+        """
+        :param _builtins.str region: Specifies the ID of enrolled region.
+        :param _builtins.str region_configuration_status: Specifies the status of enrolled region.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_configuration_status", region_configuration_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the ID of enrolled region.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionConfigurationStatus")
+    def region_configuration_status(self) -> _builtins.str:
+        """
+        Specifies the status of enrolled region.
+        """
+        return pulumi.get(self, "region_configuration_status")
+
+
+@pulumi.output_type
+class GetAccountControlsControlSummaryResult(dict):
+    def __init__(__self__, *,
+                 behavior: _builtins.str,
+                 control_identifier: _builtins.str,
+                 control_objective: _builtins.str,
+                 description: _builtins.str,
+                 guidance: _builtins.str,
+                 implementation: _builtins.str,
+                 manage_account_id: _builtins.str,
+                 name: _builtins.str,
+                 owner: _builtins.str,
+                 regional_preference: _builtins.str,
+                 service: _builtins.str,
+                 state: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str behavior: The type of control policy. It includes Proactive, Detective, and Preventive control policies.
+        :param _builtins.str control_identifier: The identifier of the control policy.
+        :param _builtins.str control_objective: The objective of the control policy.
+        :param _builtins.str description: The description information of the control policy.
+        :param _builtins.str guidance: The necessity of the control policy.
+        :param _builtins.str implementation: The service control policy (SCP) or configuration rule.
+        :param _builtins.str manage_account_id: The ID of the managed account.
+        :param _builtins.str name: The name of the control policy.
+        :param _builtins.str owner: The source of the managed account's creation. It includes CUSTOM and RGC.
+        :param _builtins.str regional_preference: The regional preference, which can be either regional or global.
+        :param _builtins.str service: The service to which the control policy belongs.
+        :param _builtins.str state: The enablement status of the control policy.
+        :param _builtins.str version: The current version number of the control policy.
+        """
+        pulumi.set(__self__, "behavior", behavior)
+        pulumi.set(__self__, "control_identifier", control_identifier)
+        pulumi.set(__self__, "control_objective", control_objective)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "guidance", guidance)
+        pulumi.set(__self__, "implementation", implementation)
+        pulumi.set(__self__, "manage_account_id", manage_account_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "regional_preference", regional_preference)
+        pulumi.set(__self__, "service", service)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def behavior(self) -> _builtins.str:
+        """
+        The type of control policy. It includes Proactive, Detective, and Preventive control policies.
+        """
+        return pulumi.get(self, "behavior")
+
+    @_builtins.property
+    @pulumi.getter(name="controlIdentifier")
+    def control_identifier(self) -> _builtins.str:
+        """
+        The identifier of the control policy.
+        """
+        return pulumi.get(self, "control_identifier")
+
+    @_builtins.property
+    @pulumi.getter(name="controlObjective")
+    def control_objective(self) -> _builtins.str:
+        """
+        The objective of the control policy.
+        """
+        return pulumi.get(self, "control_objective")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description information of the control policy.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def guidance(self) -> _builtins.str:
+        """
+        The necessity of the control policy.
+        """
+        return pulumi.get(self, "guidance")
+
+    @_builtins.property
+    @pulumi.getter
+    def implementation(self) -> _builtins.str:
+        """
+        The service control policy (SCP) or configuration rule.
+        """
+        return pulumi.get(self, "implementation")
+
+    @_builtins.property
+    @pulumi.getter(name="manageAccountId")
+    def manage_account_id(self) -> _builtins.str:
+        """
+        The ID of the managed account.
+        """
+        return pulumi.get(self, "manage_account_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the control policy.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def owner(self) -> _builtins.str:
+        """
+        The source of the managed account's creation. It includes CUSTOM and RGC.
+        """
+        return pulumi.get(self, "owner")
+
+    @_builtins.property
+    @pulumi.getter(name="regionalPreference")
+    def regional_preference(self) -> _builtins.str:
+        """
+        The regional preference, which can be either regional or global.
+        """
+        return pulumi.get(self, "regional_preference")
+
+    @_builtins.property
+    @pulumi.getter
+    def service(self) -> _builtins.str:
+        """
+        The service to which the control policy belongs.
+        """
+        return pulumi.get(self, "service")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        The enablement status of the control policy.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The current version number of the control policy.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetAccountEnabledControlControlDetailResult(dict):
+    def __init__(__self__, *,
+                 behavior: _builtins.str,
+                 control_identifier: _builtins.str,
+                 control_objective: _builtins.str,
+                 description: _builtins.str,
+                 manage_account_id: _builtins.str,
+                 name: _builtins.str,
+                 owner: _builtins.str,
+                 regional_preference: _builtins.str):
+        """
+        :param _builtins.str behavior: The type of the control policy. It can be **Proactive**, **Detective** or **Preventive**.
+        :param _builtins.str control_identifier: The identifier of the control.
+        :param _builtins.str control_objective: The objective of the control policy.
+        :param _builtins.str description: The description of the control policy.
+        :param _builtins.str manage_account_id: The ID of the management account.
+        :param _builtins.str name: The name of the control policy.
+        :param _builtins.str owner: The owner of the control policy.
+        :param _builtins.str regional_preference: The regional preference of the control.
+        """
+        pulumi.set(__self__, "behavior", behavior)
+        pulumi.set(__self__, "control_identifier", control_identifier)
+        pulumi.set(__self__, "control_objective", control_objective)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "manage_account_id", manage_account_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "regional_preference", regional_preference)
+
+    @_builtins.property
+    @pulumi.getter
+    def behavior(self) -> _builtins.str:
+        """
+        The type of the control policy. It can be **Proactive**, **Detective** or **Preventive**.
+        """
+        return pulumi.get(self, "behavior")
+
+    @_builtins.property
+    @pulumi.getter(name="controlIdentifier")
+    def control_identifier(self) -> _builtins.str:
+        """
+        The identifier of the control.
+        """
+        return pulumi.get(self, "control_identifier")
+
+    @_builtins.property
+    @pulumi.getter(name="controlObjective")
+    def control_objective(self) -> _builtins.str:
+        """
+        The objective of the control policy.
+        """
+        return pulumi.get(self, "control_objective")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the control policy.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="manageAccountId")
+    def manage_account_id(self) -> _builtins.str:
+        """
+        The ID of the management account.
+        """
+        return pulumi.get(self, "manage_account_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the control policy.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def owner(self) -> _builtins.str:
+        """
+        The owner of the control policy.
+        """
+        return pulumi.get(self, "owner")
+
+    @_builtins.property
+    @pulumi.getter(name="regionalPreference")
+    def regional_preference(self) -> _builtins.str:
+        """
+        The regional preference of the control.
+        """
+        return pulumi.get(self, "regional_preference")
+
+
+@pulumi.output_type
+class GetAccountEnabledControlRegionResult(dict):
+    def __init__(__self__, *,
+                 region: _builtins.str,
+                 region_configuration_status: _builtins.str):
+        """
+        :param _builtins.str region: Specifies the region in which to create the resource.
+               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param _builtins.str region_configuration_status: The status of the region.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_configuration_status", region_configuration_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to create the resource.
+        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionConfigurationStatus")
+    def region_configuration_status(self) -> _builtins.str:
+        """
+        The status of the region.
+        """
+        return pulumi.get(self, "region_configuration_status")
+
+
+@pulumi.output_type
+class GetAccountsManagedAccountResult(dict):
+    def __init__(__self__, *,
+                 account_id: _builtins.str,
+                 account_type: _builtins.str,
+                 blueprint_product_id: _builtins.str,
+                 blueprint_product_version: _builtins.str,
+                 blueprint_status: _builtins.str,
+                 created_at: _builtins.str,
+                 identity_store_user_name: _builtins.str,
+                 is_blueprint_has_multi_account_resource: _builtins.bool,
+                 landing_zone_version: _builtins.str,
+                 manage_account_id: _builtins.str,
+                 message: _builtins.str,
+                 owner: _builtins.str,
+                 parent_organizational_unit_id: _builtins.str,
+                 parent_organizational_unit_name: _builtins.str,
+                 regions: Sequence['outputs.GetAccountsManagedAccountRegionResult'],
+                 state: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str account_id: The managed account ID.
+        :param _builtins.str account_type: The managed account type.
+        :param _builtins.str blueprint_product_id: The blueprint ID.
+        :param _builtins.str blueprint_product_version: The blueprint version.
+        :param _builtins.str blueprint_status: The blueprint deployment status, including failure, completion, and in progress.
+        :param _builtins.str created_at: The time when the managed account is created in an OU.
+        :param _builtins.str identity_store_user_name: The Identity Center user name.
+        :param _builtins.bool is_blueprint_has_multi_account_resource: Whether the blueprint contains multi-account resources.
+        :param _builtins.str landing_zone_version: The Landing Zone version.
+        :param _builtins.str manage_account_id: The management account ID.
+        :param _builtins.str message: The error status description information.
+        :param _builtins.str owner: The source of the managed account creation, including CUSTOM and RGC.
+        :param _builtins.str parent_organizational_unit_id: The parent OU ID.
+        :param _builtins.str parent_organizational_unit_name: The parent OU name.
+        :param Sequence['GetAccountsManagedAccountRegionArgs'] regions: The region information.
+        :param _builtins.str state: The managed account status.
+        :param _builtins.str updated_at: The time when the managed account was last updated in an OU.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "account_type", account_type)
+        pulumi.set(__self__, "blueprint_product_id", blueprint_product_id)
+        pulumi.set(__self__, "blueprint_product_version", blueprint_product_version)
+        pulumi.set(__self__, "blueprint_status", blueprint_status)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "identity_store_user_name", identity_store_user_name)
+        pulumi.set(__self__, "is_blueprint_has_multi_account_resource", is_blueprint_has_multi_account_resource)
+        pulumi.set(__self__, "landing_zone_version", landing_zone_version)
+        pulumi.set(__self__, "manage_account_id", manage_account_id)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "parent_organizational_unit_id", parent_organizational_unit_id)
+        pulumi.set(__self__, "parent_organizational_unit_name", parent_organizational_unit_name)
+        pulumi.set(__self__, "regions", regions)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> _builtins.str:
+        """
+        The managed account ID.
+        """
+        return pulumi.get(self, "account_id")
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> _builtins.str:
+        """
+        The managed account type.
+        """
+        return pulumi.get(self, "account_type")
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintProductId")
+    def blueprint_product_id(self) -> _builtins.str:
+        """
+        The blueprint ID.
+        """
+        return pulumi.get(self, "blueprint_product_id")
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintProductVersion")
+    def blueprint_product_version(self) -> _builtins.str:
+        """
+        The blueprint version.
+        """
+        return pulumi.get(self, "blueprint_product_version")
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintStatus")
+    def blueprint_status(self) -> _builtins.str:
+        """
+        The blueprint deployment status, including failure, completion, and in progress.
+        """
+        return pulumi.get(self, "blueprint_status")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The time when the managed account is created in an OU.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="identityStoreUserName")
+    def identity_store_user_name(self) -> _builtins.str:
+        """
+        The Identity Center user name.
+        """
+        return pulumi.get(self, "identity_store_user_name")
+
+    @_builtins.property
+    @pulumi.getter(name="isBlueprintHasMultiAccountResource")
+    def is_blueprint_has_multi_account_resource(self) -> _builtins.bool:
+        """
+        Whether the blueprint contains multi-account resources.
+        """
+        return pulumi.get(self, "is_blueprint_has_multi_account_resource")
+
+    @_builtins.property
+    @pulumi.getter(name="landingZoneVersion")
+    def landing_zone_version(self) -> _builtins.str:
+        """
+        The Landing Zone version.
+        """
+        return pulumi.get(self, "landing_zone_version")
+
+    @_builtins.property
+    @pulumi.getter(name="manageAccountId")
+    def manage_account_id(self) -> _builtins.str:
+        """
+        The management account ID.
+        """
+        return pulumi.get(self, "manage_account_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> _builtins.str:
+        """
+        The error status description information.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter
+    def owner(self) -> _builtins.str:
+        """
+        The source of the managed account creation, including CUSTOM and RGC.
+        """
+        return pulumi.get(self, "owner")
+
+    @_builtins.property
+    @pulumi.getter(name="parentOrganizationalUnitId")
+    def parent_organizational_unit_id(self) -> _builtins.str:
+        """
+        The parent OU ID.
+        """
+        return pulumi.get(self, "parent_organizational_unit_id")
+
+    @_builtins.property
+    @pulumi.getter(name="parentOrganizationalUnitName")
+    def parent_organizational_unit_name(self) -> _builtins.str:
+        """
+        The parent OU name.
+        """
+        return pulumi.get(self, "parent_organizational_unit_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def regions(self) -> Sequence['outputs.GetAccountsManagedAccountRegionResult']:
+        """
+        The region information.
+        """
+        return pulumi.get(self, "regions")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        The managed account status.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The time when the managed account was last updated in an OU.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetAccountsManagedAccountRegionResult(dict):
+    def __init__(__self__, *,
+                 region: _builtins.str,
+                 region_status: _builtins.str):
+        """
+        :param _builtins.str region: Specifies the region in which to create the resource.
+               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param _builtins.str region_status: The region status, which can be available or unavailable.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_status", region_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to create the resource.
+        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionStatus")
+    def region_status(self) -> _builtins.str:
+        """
+        The region status, which can be available or unavailable.
+        """
+        return pulumi.get(self, "region_status")
+
+
+@pulumi.output_type
+class GetBestPracticeDetailsDetailResult(dict):
+    def __init__(__self__, *,
+                 check_item: _builtins.int,
+                 check_item_name: _builtins.str,
+                 result: _builtins.str,
+                 risk_description: _builtins.str,
+                 risk_level: _builtins.str,
+                 scene: _builtins.str):
+        """
+        :param _builtins.int check_item: The check item number associated with the best practice.
+        :param _builtins.str check_item_name: The name of the check item.
+        :param _builtins.str result: The result of the best practice check.
+        :param _builtins.str risk_description: A description of the risk associated with the best practice.
+        :param _builtins.str risk_level: The risk level associated with the best practice.
+        :param _builtins.str scene: The scene or context in which the best practice is applied.
+        """
+        pulumi.set(__self__, "check_item", check_item)
+        pulumi.set(__self__, "check_item_name", check_item_name)
+        pulumi.set(__self__, "result", result)
+        pulumi.set(__self__, "risk_description", risk_description)
+        pulumi.set(__self__, "risk_level", risk_level)
+        pulumi.set(__self__, "scene", scene)
+
+    @_builtins.property
+    @pulumi.getter(name="checkItem")
+    def check_item(self) -> _builtins.int:
+        """
+        The check item number associated with the best practice.
+        """
+        return pulumi.get(self, "check_item")
+
+    @_builtins.property
+    @pulumi.getter(name="checkItemName")
+    def check_item_name(self) -> _builtins.str:
+        """
+        The name of the check item.
+        """
+        return pulumi.get(self, "check_item_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def result(self) -> _builtins.str:
+        """
+        The result of the best practice check.
+        """
+        return pulumi.get(self, "result")
+
+    @_builtins.property
+    @pulumi.getter(name="riskDescription")
+    def risk_description(self) -> _builtins.str:
+        """
+        A description of the risk associated with the best practice.
+        """
+        return pulumi.get(self, "risk_description")
+
+    @_builtins.property
+    @pulumi.getter(name="riskLevel")
+    def risk_level(self) -> _builtins.str:
+        """
+        The risk level associated with the best practice.
+        """
+        return pulumi.get(self, "risk_level")
+
+    @_builtins.property
+    @pulumi.getter
+    def scene(self) -> _builtins.str:
+        """
+        The scene or context in which the best practice is applied.
+        """
+        return pulumi.get(self, "scene")
+
+
+@pulumi.output_type
+class GetBestPracticeOverviewComplianceAuditResult(dict):
+    def __init__(__self__, *,
+                 detection_count: _builtins.int,
+                 high_risk_count: _builtins.int,
+                 low_risk_count: _builtins.int,
+                 medium_risk_count: _builtins.int,
+                 risk_item_descriptions: Sequence[_builtins.str],
+                 score: _builtins.float):
+        """
+        :param _builtins.int detection_count: Number of detection items.
+        :param _builtins.int high_risk_count: Number of high-risk items.
+        :param _builtins.int low_risk_count: Number of low-risk items.
+        :param _builtins.int medium_risk_count: Number of medium-risk items.
+        :param Sequence[_builtins.str] risk_item_descriptions: Risk description.
+        :param _builtins.float score: Detection score.
+        """
+        pulumi.set(__self__, "detection_count", detection_count)
+        pulumi.set(__self__, "high_risk_count", high_risk_count)
+        pulumi.set(__self__, "low_risk_count", low_risk_count)
+        pulumi.set(__self__, "medium_risk_count", medium_risk_count)
+        pulumi.set(__self__, "risk_item_descriptions", risk_item_descriptions)
+        pulumi.set(__self__, "score", score)
+
+    @_builtins.property
+    @pulumi.getter(name="detectionCount")
+    def detection_count(self) -> _builtins.int:
+        """
+        Number of detection items.
+        """
+        return pulumi.get(self, "detection_count")
+
+    @_builtins.property
+    @pulumi.getter(name="highRiskCount")
+    def high_risk_count(self) -> _builtins.int:
+        """
+        Number of high-risk items.
+        """
+        return pulumi.get(self, "high_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRiskCount")
+    def low_risk_count(self) -> _builtins.int:
+        """
+        Number of low-risk items.
+        """
+        return pulumi.get(self, "low_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRiskCount")
+    def medium_risk_count(self) -> _builtins.int:
+        """
+        Number of medium-risk items.
+        """
+        return pulumi.get(self, "medium_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="riskItemDescriptions")
+    def risk_item_descriptions(self) -> Sequence[_builtins.str]:
+        """
+        Risk description.
+        """
+        return pulumi.get(self, "risk_item_descriptions")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.float:
+        """
+        Detection score.
+        """
+        return pulumi.get(self, "score")
+
+
+@pulumi.output_type
+class GetBestPracticeOverviewDataBoundaryResult(dict):
+    def __init__(__self__, *,
+                 detection_count: _builtins.int,
+                 high_risk_count: _builtins.int,
+                 low_risk_count: _builtins.int,
+                 medium_risk_count: _builtins.int,
+                 risk_item_descriptions: Sequence[_builtins.str],
+                 score: _builtins.float):
+        """
+        :param _builtins.int detection_count: Number of detection items.
+        :param _builtins.int high_risk_count: Number of high-risk items.
+        :param _builtins.int low_risk_count: Number of low-risk items.
+        :param _builtins.int medium_risk_count: Number of medium-risk items.
+        :param Sequence[_builtins.str] risk_item_descriptions: Risk description.
+        :param _builtins.float score: Detection score.
+        """
+        pulumi.set(__self__, "detection_count", detection_count)
+        pulumi.set(__self__, "high_risk_count", high_risk_count)
+        pulumi.set(__self__, "low_risk_count", low_risk_count)
+        pulumi.set(__self__, "medium_risk_count", medium_risk_count)
+        pulumi.set(__self__, "risk_item_descriptions", risk_item_descriptions)
+        pulumi.set(__self__, "score", score)
+
+    @_builtins.property
+    @pulumi.getter(name="detectionCount")
+    def detection_count(self) -> _builtins.int:
+        """
+        Number of detection items.
+        """
+        return pulumi.get(self, "detection_count")
+
+    @_builtins.property
+    @pulumi.getter(name="highRiskCount")
+    def high_risk_count(self) -> _builtins.int:
+        """
+        Number of high-risk items.
+        """
+        return pulumi.get(self, "high_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRiskCount")
+    def low_risk_count(self) -> _builtins.int:
+        """
+        Number of low-risk items.
+        """
+        return pulumi.get(self, "low_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRiskCount")
+    def medium_risk_count(self) -> _builtins.int:
+        """
+        Number of medium-risk items.
+        """
+        return pulumi.get(self, "medium_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="riskItemDescriptions")
+    def risk_item_descriptions(self) -> Sequence[_builtins.str]:
+        """
+        Risk description.
+        """
+        return pulumi.get(self, "risk_item_descriptions")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.float:
+        """
+        Detection score.
+        """
+        return pulumi.get(self, "score")
+
+
+@pulumi.output_type
+class GetBestPracticeOverviewFinancialGovernanceResult(dict):
+    def __init__(__self__, *,
+                 detection_count: _builtins.int,
+                 high_risk_count: _builtins.int,
+                 low_risk_count: _builtins.int,
+                 medium_risk_count: _builtins.int,
+                 risk_item_descriptions: Sequence[_builtins.str],
+                 score: _builtins.float):
+        """
+        :param _builtins.int detection_count: Number of detection items.
+        :param _builtins.int high_risk_count: Number of high-risk items.
+        :param _builtins.int low_risk_count: Number of low-risk items.
+        :param _builtins.int medium_risk_count: Number of medium-risk items.
+        :param Sequence[_builtins.str] risk_item_descriptions: Risk description.
+        :param _builtins.float score: Detection score.
+        """
+        pulumi.set(__self__, "detection_count", detection_count)
+        pulumi.set(__self__, "high_risk_count", high_risk_count)
+        pulumi.set(__self__, "low_risk_count", low_risk_count)
+        pulumi.set(__self__, "medium_risk_count", medium_risk_count)
+        pulumi.set(__self__, "risk_item_descriptions", risk_item_descriptions)
+        pulumi.set(__self__, "score", score)
+
+    @_builtins.property
+    @pulumi.getter(name="detectionCount")
+    def detection_count(self) -> _builtins.int:
+        """
+        Number of detection items.
+        """
+        return pulumi.get(self, "detection_count")
+
+    @_builtins.property
+    @pulumi.getter(name="highRiskCount")
+    def high_risk_count(self) -> _builtins.int:
+        """
+        Number of high-risk items.
+        """
+        return pulumi.get(self, "high_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRiskCount")
+    def low_risk_count(self) -> _builtins.int:
+        """
+        Number of low-risk items.
+        """
+        return pulumi.get(self, "low_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRiskCount")
+    def medium_risk_count(self) -> _builtins.int:
+        """
+        Number of medium-risk items.
+        """
+        return pulumi.get(self, "medium_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="riskItemDescriptions")
+    def risk_item_descriptions(self) -> Sequence[_builtins.str]:
+        """
+        Risk description.
+        """
+        return pulumi.get(self, "risk_item_descriptions")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.float:
+        """
+        Detection score.
+        """
+        return pulumi.get(self, "score")
+
+
+@pulumi.output_type
+class GetBestPracticeOverviewIdentityPermissionResult(dict):
+    def __init__(__self__, *,
+                 detection_count: _builtins.int,
+                 high_risk_count: _builtins.int,
+                 low_risk_count: _builtins.int,
+                 medium_risk_count: _builtins.int,
+                 risk_item_descriptions: Sequence[_builtins.str],
+                 score: _builtins.float):
+        """
+        :param _builtins.int detection_count: Number of detection items.
+        :param _builtins.int high_risk_count: Number of high-risk items.
+        :param _builtins.int low_risk_count: Number of low-risk items.
+        :param _builtins.int medium_risk_count: Number of medium-risk items.
+        :param Sequence[_builtins.str] risk_item_descriptions: Risk description.
+        :param _builtins.float score: Detection score.
+        """
+        pulumi.set(__self__, "detection_count", detection_count)
+        pulumi.set(__self__, "high_risk_count", high_risk_count)
+        pulumi.set(__self__, "low_risk_count", low_risk_count)
+        pulumi.set(__self__, "medium_risk_count", medium_risk_count)
+        pulumi.set(__self__, "risk_item_descriptions", risk_item_descriptions)
+        pulumi.set(__self__, "score", score)
+
+    @_builtins.property
+    @pulumi.getter(name="detectionCount")
+    def detection_count(self) -> _builtins.int:
+        """
+        Number of detection items.
+        """
+        return pulumi.get(self, "detection_count")
+
+    @_builtins.property
+    @pulumi.getter(name="highRiskCount")
+    def high_risk_count(self) -> _builtins.int:
+        """
+        Number of high-risk items.
+        """
+        return pulumi.get(self, "high_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRiskCount")
+    def low_risk_count(self) -> _builtins.int:
+        """
+        Number of low-risk items.
+        """
+        return pulumi.get(self, "low_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRiskCount")
+    def medium_risk_count(self) -> _builtins.int:
+        """
+        Number of medium-risk items.
+        """
+        return pulumi.get(self, "medium_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="riskItemDescriptions")
+    def risk_item_descriptions(self) -> Sequence[_builtins.str]:
+        """
+        Risk description.
+        """
+        return pulumi.get(self, "risk_item_descriptions")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.float:
+        """
+        Detection score.
+        """
+        return pulumi.get(self, "score")
+
+
+@pulumi.output_type
+class GetBestPracticeOverviewNetworkPlanningResult(dict):
+    def __init__(__self__, *,
+                 detection_count: _builtins.int,
+                 high_risk_count: _builtins.int,
+                 low_risk_count: _builtins.int,
+                 medium_risk_count: _builtins.int,
+                 risk_item_descriptions: Sequence[_builtins.str],
+                 score: _builtins.float):
+        """
+        :param _builtins.int detection_count: Number of detection items.
+        :param _builtins.int high_risk_count: Number of high-risk items.
+        :param _builtins.int low_risk_count: Number of low-risk items.
+        :param _builtins.int medium_risk_count: Number of medium-risk items.
+        :param Sequence[_builtins.str] risk_item_descriptions: Risk description.
+        :param _builtins.float score: Detection score.
+        """
+        pulumi.set(__self__, "detection_count", detection_count)
+        pulumi.set(__self__, "high_risk_count", high_risk_count)
+        pulumi.set(__self__, "low_risk_count", low_risk_count)
+        pulumi.set(__self__, "medium_risk_count", medium_risk_count)
+        pulumi.set(__self__, "risk_item_descriptions", risk_item_descriptions)
+        pulumi.set(__self__, "score", score)
+
+    @_builtins.property
+    @pulumi.getter(name="detectionCount")
+    def detection_count(self) -> _builtins.int:
+        """
+        Number of detection items.
+        """
+        return pulumi.get(self, "detection_count")
+
+    @_builtins.property
+    @pulumi.getter(name="highRiskCount")
+    def high_risk_count(self) -> _builtins.int:
+        """
+        Number of high-risk items.
+        """
+        return pulumi.get(self, "high_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRiskCount")
+    def low_risk_count(self) -> _builtins.int:
+        """
+        Number of low-risk items.
+        """
+        return pulumi.get(self, "low_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRiskCount")
+    def medium_risk_count(self) -> _builtins.int:
+        """
+        Number of medium-risk items.
+        """
+        return pulumi.get(self, "medium_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="riskItemDescriptions")
+    def risk_item_descriptions(self) -> Sequence[_builtins.str]:
+        """
+        Risk description.
+        """
+        return pulumi.get(self, "risk_item_descriptions")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.float:
+        """
+        Detection score.
+        """
+        return pulumi.get(self, "score")
+
+
+@pulumi.output_type
+class GetBestPracticeOverviewOmMonitorResult(dict):
+    def __init__(__self__, *,
+                 detection_count: _builtins.int,
+                 high_risk_count: _builtins.int,
+                 low_risk_count: _builtins.int,
+                 medium_risk_count: _builtins.int,
+                 risk_item_descriptions: Sequence[_builtins.str],
+                 score: _builtins.float):
+        """
+        :param _builtins.int detection_count: Number of detection items.
+        :param _builtins.int high_risk_count: Number of high-risk items.
+        :param _builtins.int low_risk_count: Number of low-risk items.
+        :param _builtins.int medium_risk_count: Number of medium-risk items.
+        :param Sequence[_builtins.str] risk_item_descriptions: Risk description.
+        :param _builtins.float score: Detection score.
+        """
+        pulumi.set(__self__, "detection_count", detection_count)
+        pulumi.set(__self__, "high_risk_count", high_risk_count)
+        pulumi.set(__self__, "low_risk_count", low_risk_count)
+        pulumi.set(__self__, "medium_risk_count", medium_risk_count)
+        pulumi.set(__self__, "risk_item_descriptions", risk_item_descriptions)
+        pulumi.set(__self__, "score", score)
+
+    @_builtins.property
+    @pulumi.getter(name="detectionCount")
+    def detection_count(self) -> _builtins.int:
+        """
+        Number of detection items.
+        """
+        return pulumi.get(self, "detection_count")
+
+    @_builtins.property
+    @pulumi.getter(name="highRiskCount")
+    def high_risk_count(self) -> _builtins.int:
+        """
+        Number of high-risk items.
+        """
+        return pulumi.get(self, "high_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRiskCount")
+    def low_risk_count(self) -> _builtins.int:
+        """
+        Number of low-risk items.
+        """
+        return pulumi.get(self, "low_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRiskCount")
+    def medium_risk_count(self) -> _builtins.int:
+        """
+        Number of medium-risk items.
+        """
+        return pulumi.get(self, "medium_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="riskItemDescriptions")
+    def risk_item_descriptions(self) -> Sequence[_builtins.str]:
+        """
+        Risk description.
+        """
+        return pulumi.get(self, "risk_item_descriptions")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.float:
+        """
+        Detection score.
+        """
+        return pulumi.get(self, "score")
+
+
+@pulumi.output_type
+class GetBestPracticeOverviewOrganizationAccountResult(dict):
+    def __init__(__self__, *,
+                 detection_count: _builtins.int,
+                 high_risk_count: _builtins.int,
+                 low_risk_count: _builtins.int,
+                 medium_risk_count: _builtins.int,
+                 risk_item_descriptions: Sequence[_builtins.str],
+                 score: _builtins.float):
+        """
+        :param _builtins.int detection_count: Number of detection items.
+        :param _builtins.int high_risk_count: Number of high-risk items.
+        :param _builtins.int low_risk_count: Number of low-risk items.
+        :param _builtins.int medium_risk_count: Number of medium-risk items.
+        :param Sequence[_builtins.str] risk_item_descriptions: Risk description.
+        :param _builtins.float score: Detection score.
+        """
+        pulumi.set(__self__, "detection_count", detection_count)
+        pulumi.set(__self__, "high_risk_count", high_risk_count)
+        pulumi.set(__self__, "low_risk_count", low_risk_count)
+        pulumi.set(__self__, "medium_risk_count", medium_risk_count)
+        pulumi.set(__self__, "risk_item_descriptions", risk_item_descriptions)
+        pulumi.set(__self__, "score", score)
+
+    @_builtins.property
+    @pulumi.getter(name="detectionCount")
+    def detection_count(self) -> _builtins.int:
+        """
+        Number of detection items.
+        """
+        return pulumi.get(self, "detection_count")
+
+    @_builtins.property
+    @pulumi.getter(name="highRiskCount")
+    def high_risk_count(self) -> _builtins.int:
+        """
+        Number of high-risk items.
+        """
+        return pulumi.get(self, "high_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRiskCount")
+    def low_risk_count(self) -> _builtins.int:
+        """
+        Number of low-risk items.
+        """
+        return pulumi.get(self, "low_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRiskCount")
+    def medium_risk_count(self) -> _builtins.int:
+        """
+        Number of medium-risk items.
+        """
+        return pulumi.get(self, "medium_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="riskItemDescriptions")
+    def risk_item_descriptions(self) -> Sequence[_builtins.str]:
+        """
+        Risk description.
+        """
+        return pulumi.get(self, "risk_item_descriptions")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.float:
+        """
+        Detection score.
+        """
+        return pulumi.get(self, "score")
+
+
+@pulumi.output_type
+class GetBestPracticeOverviewSecurityManagementResult(dict):
+    def __init__(__self__, *,
+                 detection_count: _builtins.int,
+                 high_risk_count: _builtins.int,
+                 low_risk_count: _builtins.int,
+                 medium_risk_count: _builtins.int,
+                 risk_item_descriptions: Sequence[_builtins.str],
+                 score: _builtins.float):
+        """
+        :param _builtins.int detection_count: Number of detection items.
+        :param _builtins.int high_risk_count: Number of high-risk items.
+        :param _builtins.int low_risk_count: Number of low-risk items.
+        :param _builtins.int medium_risk_count: Number of medium-risk items.
+        :param Sequence[_builtins.str] risk_item_descriptions: Risk description.
+        :param _builtins.float score: Detection score.
+        """
+        pulumi.set(__self__, "detection_count", detection_count)
+        pulumi.set(__self__, "high_risk_count", high_risk_count)
+        pulumi.set(__self__, "low_risk_count", low_risk_count)
+        pulumi.set(__self__, "medium_risk_count", medium_risk_count)
+        pulumi.set(__self__, "risk_item_descriptions", risk_item_descriptions)
+        pulumi.set(__self__, "score", score)
+
+    @_builtins.property
+    @pulumi.getter(name="detectionCount")
+    def detection_count(self) -> _builtins.int:
+        """
+        Number of detection items.
+        """
+        return pulumi.get(self, "detection_count")
+
+    @_builtins.property
+    @pulumi.getter(name="highRiskCount")
+    def high_risk_count(self) -> _builtins.int:
+        """
+        Number of high-risk items.
+        """
+        return pulumi.get(self, "high_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRiskCount")
+    def low_risk_count(self) -> _builtins.int:
+        """
+        Number of low-risk items.
+        """
+        return pulumi.get(self, "low_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRiskCount")
+    def medium_risk_count(self) -> _builtins.int:
+        """
+        Number of medium-risk items.
+        """
+        return pulumi.get(self, "medium_risk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="riskItemDescriptions")
+    def risk_item_descriptions(self) -> Sequence[_builtins.str]:
+        """
+        Risk description.
+        """
+        return pulumi.get(self, "risk_item_descriptions")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.float:
+        """
+        Detection score.
+        """
+        return pulumi.get(self, "score")
+
+
+@pulumi.output_type
+class GetConfigRuleCompliancesConfigRuleComplianceResult(dict):
+    def __init__(__self__, *,
+                 control_id: _builtins.str,
+                 region: _builtins.str,
+                 rule_name: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str control_id: The ID of the control associated with the config rule.
+        :param _builtins.str region: Specifies the region in which to create the resource.
+               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param _builtins.str rule_name: The name of the config rule.
+        :param _builtins.str status: The compliance status of the config rule.
+        """
+        pulumi.set(__self__, "control_id", control_id)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "rule_name", rule_name)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="controlId")
+    def control_id(self) -> _builtins.str:
+        """
+        The ID of the control associated with the config rule.
+        """
+        return pulumi.get(self, "control_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to create the resource.
+        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleName")
+    def rule_name(self) -> _builtins.str:
+        """
+        The name of the config rule.
+        """
+        return pulumi.get(self, "rule_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The compliance status of the config rule.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetControlDetailArtifactResult(dict):
+    def __init__(__self__, *,
+                 contents: Sequence['outputs.GetControlDetailArtifactContentResult'],
+                 type: _builtins.str):
+        """
+        :param Sequence['GetControlDetailArtifactContentArgs'] contents: Information about the content of the control policy.
+        :param _builtins.str type: The type of policy.
+        """
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Sequence['outputs.GetControlDetailArtifactContentResult']:
+        """
+        Information about the content of the control policy.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of policy.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetControlDetailArtifactContentResult(dict):
+    def __init__(__self__, *,
+                 ch: _builtins.str,
+                 en: _builtins.str):
+        """
+        :param _builtins.str ch: The Chinese content of the control policy.
+        :param _builtins.str en: The English content of the control policy.
+        """
+        pulumi.set(__self__, "ch", ch)
+        pulumi.set(__self__, "en", en)
+
+    @_builtins.property
+    @pulumi.getter
+    def ch(self) -> _builtins.str:
+        """
+        The Chinese content of the control policy.
+        """
+        return pulumi.get(self, "ch")
+
+    @_builtins.property
+    @pulumi.getter
+    def en(self) -> _builtins.str:
+        """
+        The English content of the control policy.
+        """
+        return pulumi.get(self, "en")
+
+
+@pulumi.output_type
+class GetControlViolationsControlViolationResult(dict):
+    def __init__(__self__, *,
+                 account_id: _builtins.str,
+                 control_id: _builtins.str,
+                 display_name: _builtins.str,
+                 name: _builtins.str,
+                 parent_organizational_unit_id: _builtins.str,
+                 parent_organizational_unit_name: _builtins.str,
+                 region: _builtins.str,
+                 resource: _builtins.str,
+                 resource_name: _builtins.str,
+                 resource_type: _builtins.str,
+                 service: _builtins.str):
+        """
+        :param _builtins.str account_id: The managed account iD。
+        :param _builtins.str control_id: The ID of control strategy.
+        :param _builtins.str display_name: The display name of control strategy.
+        :param _builtins.str name: The name of control strategy.
+        :param _builtins.str parent_organizational_unit_id: The ID of the parent organizational unit associated with the non-compliant control
+               strategy.
+        :param _builtins.str parent_organizational_unit_name: The name of the parent organizational unit associated with the non-compliant
+               control strategy.
+        :param _builtins.str region: Specifies the region in which to create the resource.
+               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param _builtins.str resource: The resource of the non-compliant control strategy.
+        :param _builtins.str resource_name: The resource name of the non-compliant control strategy.
+        :param _builtins.str resource_type: The resource type of the non-compliant control strategy.
+        :param _builtins.str service: The service associated with non-compliant control strategy.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "control_id", control_id)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "parent_organizational_unit_id", parent_organizational_unit_id)
+        pulumi.set(__self__, "parent_organizational_unit_name", parent_organizational_unit_name)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "resource", resource)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "service", service)
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> _builtins.str:
+        """
+        The managed account iD。
+        """
+        return pulumi.get(self, "account_id")
+
+    @_builtins.property
+    @pulumi.getter(name="controlId")
+    def control_id(self) -> _builtins.str:
+        """
+        The ID of control strategy.
+        """
+        return pulumi.get(self, "control_id")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name of control strategy.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of control strategy.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="parentOrganizationalUnitId")
+    def parent_organizational_unit_id(self) -> _builtins.str:
+        """
+        The ID of the parent organizational unit associated with the non-compliant control
+        strategy.
+        """
+        return pulumi.get(self, "parent_organizational_unit_id")
+
+    @_builtins.property
+    @pulumi.getter(name="parentOrganizationalUnitName")
+    def parent_organizational_unit_name(self) -> _builtins.str:
+        """
+        The name of the parent organizational unit associated with the non-compliant
+        control strategy.
+        """
+        return pulumi.get(self, "parent_organizational_unit_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to create the resource.
+        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def resource(self) -> _builtins.str:
+        """
+        The resource of the non-compliant control strategy.
+        """
+        return pulumi.get(self, "resource")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The resource name of the non-compliant control strategy.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type of the non-compliant control strategy.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def service(self) -> _builtins.str:
+        """
+        The service associated with non-compliant control strategy.
+        """
+        return pulumi.get(self, "service")
+
+
+@pulumi.output_type
+class GetControlsControlResult(dict):
+    def __init__(__self__, *,
+                 behavior: _builtins.str,
+                 control_objective: _builtins.str,
+                 description: _builtins.str,
+                 frameworks: Sequence[_builtins.str],
+                 guidance: _builtins.str,
+                 identifier: _builtins.str,
+                 implementation: _builtins.str,
+                 name: _builtins.str,
+                 owner: _builtins.str,
+                 release_date: _builtins.str,
+                 resources: Sequence[_builtins.str],
+                 service: _builtins.str,
+                 severity: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str behavior: The behavior of the control.
+        :param _builtins.str control_objective: The objective of the control.
+        :param _builtins.str description: The description of the control.
+        :param Sequence[_builtins.str] frameworks: The frameworks associated with the control.
+        :param _builtins.str guidance: The guidance of the control.
+        :param _builtins.str identifier: The identifier of the control.
+        :param _builtins.str implementation: The implementation of the control.
+        :param _builtins.str name: The name of the control.
+        :param _builtins.str owner: The owner of the control.
+        :param _builtins.str release_date: The release date of the control.
+        :param Sequence[_builtins.str] resources: The resources associated with the control.
+        :param _builtins.str service: The service associated with the control.
+        :param _builtins.str severity: The severity of the control.
+        :param _builtins.str version: The version of the control.
+        """
+        pulumi.set(__self__, "behavior", behavior)
+        pulumi.set(__self__, "control_objective", control_objective)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "frameworks", frameworks)
+        pulumi.set(__self__, "guidance", guidance)
+        pulumi.set(__self__, "identifier", identifier)
+        pulumi.set(__self__, "implementation", implementation)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "release_date", release_date)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "service", service)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def behavior(self) -> _builtins.str:
+        """
+        The behavior of the control.
+        """
+        return pulumi.get(self, "behavior")
+
+    @_builtins.property
+    @pulumi.getter(name="controlObjective")
+    def control_objective(self) -> _builtins.str:
+        """
+        The objective of the control.
+        """
+        return pulumi.get(self, "control_objective")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the control.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def frameworks(self) -> Sequence[_builtins.str]:
+        """
+        The frameworks associated with the control.
+        """
+        return pulumi.get(self, "frameworks")
+
+    @_builtins.property
+    @pulumi.getter
+    def guidance(self) -> _builtins.str:
+        """
+        The guidance of the control.
+        """
+        return pulumi.get(self, "guidance")
+
+    @_builtins.property
+    @pulumi.getter
+    def identifier(self) -> _builtins.str:
+        """
+        The identifier of the control.
+        """
+        return pulumi.get(self, "identifier")
+
+    @_builtins.property
+    @pulumi.getter
+    def implementation(self) -> _builtins.str:
+        """
+        The implementation of the control.
+        """
+        return pulumi.get(self, "implementation")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the control.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def owner(self) -> _builtins.str:
+        """
+        The owner of the control.
+        """
+        return pulumi.get(self, "owner")
+
+    @_builtins.property
+    @pulumi.getter(name="releaseDate")
+    def release_date(self) -> _builtins.str:
+        """
+        The release date of the control.
+        """
+        return pulumi.get(self, "release_date")
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence[_builtins.str]:
+        """
+        The resources associated with the control.
+        """
+        return pulumi.get(self, "resources")
+
+    @_builtins.property
+    @pulumi.getter
+    def service(self) -> _builtins.str:
+        """
+        The service associated with the control.
+        """
+        return pulumi.get(self, "service")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The severity of the control.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version of the control.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetDriftDetailsDriftDetailResult(dict):
+    def __init__(__self__, *,
+                 drift_message: _builtins.str,
+                 drift_target_id: _builtins.str,
+                 drift_target_type: _builtins.str,
+                 drift_type: _builtins.str,
+                 managed_account_id: _builtins.str,
+                 parent_organizational_unit_id: _builtins.str,
+                 solve_solution: _builtins.str):
+        """
+        :param _builtins.str drift_message: The drift message describing the drift.
+        :param _builtins.str drift_target_id: The ID of the account or OU where the drift occurred.
+        :param _builtins.str drift_target_type: The type of drift target, which can be `account`, `ou`, or `policy`.
+        :param _builtins.str drift_type: The type of drift.
+        :param _builtins.str managed_account_id: The ID of the managed account.
+        :param _builtins.str parent_organizational_unit_id: The ID of the parent organizational unit.
+        :param _builtins.str solve_solution: The solution to resolve the drift.
+        """
+        pulumi.set(__self__, "drift_message", drift_message)
+        pulumi.set(__self__, "drift_target_id", drift_target_id)
+        pulumi.set(__self__, "drift_target_type", drift_target_type)
+        pulumi.set(__self__, "drift_type", drift_type)
+        pulumi.set(__self__, "managed_account_id", managed_account_id)
+        pulumi.set(__self__, "parent_organizational_unit_id", parent_organizational_unit_id)
+        pulumi.set(__self__, "solve_solution", solve_solution)
+
+    @_builtins.property
+    @pulumi.getter(name="driftMessage")
+    def drift_message(self) -> _builtins.str:
+        """
+        The drift message describing the drift.
+        """
+        return pulumi.get(self, "drift_message")
+
+    @_builtins.property
+    @pulumi.getter(name="driftTargetId")
+    def drift_target_id(self) -> _builtins.str:
+        """
+        The ID of the account or OU where the drift occurred.
+        """
+        return pulumi.get(self, "drift_target_id")
+
+    @_builtins.property
+    @pulumi.getter(name="driftTargetType")
+    def drift_target_type(self) -> _builtins.str:
+        """
+        The type of drift target, which can be `account`, `ou`, or `policy`.
+        """
+        return pulumi.get(self, "drift_target_type")
+
+    @_builtins.property
+    @pulumi.getter(name="driftType")
+    def drift_type(self) -> _builtins.str:
+        """
+        The type of drift.
+        """
+        return pulumi.get(self, "drift_type")
+
+    @_builtins.property
+    @pulumi.getter(name="managedAccountId")
+    def managed_account_id(self) -> _builtins.str:
+        """
+        The ID of the managed account.
+        """
+        return pulumi.get(self, "managed_account_id")
+
+    @_builtins.property
+    @pulumi.getter(name="parentOrganizationalUnitId")
+    def parent_organizational_unit_id(self) -> _builtins.str:
+        """
+        The ID of the parent organizational unit.
+        """
+        return pulumi.get(self, "parent_organizational_unit_id")
+
+    @_builtins.property
+    @pulumi.getter(name="solveSolution")
+    def solve_solution(self) -> _builtins.str:
+        """
+        The solution to resolve the drift.
+        """
+        return pulumi.get(self, "solve_solution")
+
+
+@pulumi.output_type
+class GetEnabledControlsEnabledControlResult(dict):
+    def __init__(__self__, *,
+                 behavior: _builtins.str,
+                 control_identifier: _builtins.str,
+                 control_objective: _builtins.str,
+                 description: _builtins.str,
+                 manage_account_id: _builtins.str,
+                 name: _builtins.str,
+                 owner: _builtins.str,
+                 regional_preference: _builtins.str):
+        """
+        :param _builtins.str behavior: The behavior of the enabled control.
+        :param _builtins.str control_identifier: The identifier of the control.
+        :param _builtins.str control_objective: The objective of the enabled control.
+        :param _builtins.str description: The description of the enabled control.
+        :param _builtins.str manage_account_id: The ID of the management account.
+        :param _builtins.str name: The name of the control.
+        :param _builtins.str owner: The owner of the enabled control.
+        :param _builtins.str regional_preference: The regional preference of the enabled control.
+        """
+        pulumi.set(__self__, "behavior", behavior)
+        pulumi.set(__self__, "control_identifier", control_identifier)
+        pulumi.set(__self__, "control_objective", control_objective)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "manage_account_id", manage_account_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "regional_preference", regional_preference)
+
+    @_builtins.property
+    @pulumi.getter
+    def behavior(self) -> _builtins.str:
+        """
+        The behavior of the enabled control.
+        """
+        return pulumi.get(self, "behavior")
+
+    @_builtins.property
+    @pulumi.getter(name="controlIdentifier")
+    def control_identifier(self) -> _builtins.str:
+        """
+        The identifier of the control.
+        """
+        return pulumi.get(self, "control_identifier")
+
+    @_builtins.property
+    @pulumi.getter(name="controlObjective")
+    def control_objective(self) -> _builtins.str:
+        """
+        The objective of the enabled control.
+        """
+        return pulumi.get(self, "control_objective")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the enabled control.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="manageAccountId")
+    def manage_account_id(self) -> _builtins.str:
+        """
+        The ID of the management account.
+        """
+        return pulumi.get(self, "manage_account_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the control.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def owner(self) -> _builtins.str:
+        """
+        The owner of the enabled control.
+        """
+        return pulumi.get(self, "owner")
+
+    @_builtins.property
+    @pulumi.getter(name="regionalPreference")
+    def regional_preference(self) -> _builtins.str:
+        """
+        The regional preference of the enabled control.
+        """
+        return pulumi.get(self, "regional_preference")
+
+
+@pulumi.output_type
+class GetExternalConfigRuleCompliancesConfigRuleComplianceResult(dict):
+    def __init__(__self__, *,
+                 control_id: _builtins.str,
+                 rule_name: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str control_id: The ID of the control associated with the config rule.
+        :param _builtins.str rule_name: The name of the config rule.
+        :param _builtins.str status: The compliance status of the config rule.
+        """
+        pulumi.set(__self__, "control_id", control_id)
+        pulumi.set(__self__, "rule_name", rule_name)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="controlId")
+    def control_id(self) -> _builtins.str:
+        """
+        The ID of the control associated with the config rule.
+        """
+        return pulumi.get(self, "control_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleName")
+    def rule_name(self) -> _builtins.str:
+        """
+        The name of the config rule.
+        """
+        return pulumi.get(self, "rule_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The compliance status of the config rule.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetLandingZoneConfigurationCommonConfigurationResult(dict):
+    def __init__(__self__, *,
+                 cloud_trail_type: _builtins.bool,
+                 home_region: _builtins.str,
+                 identity_center_status: _builtins.str,
+                 organization_structure_type: _builtins.str):
+        """
+        :param _builtins.bool cloud_trail_type: Indicates whether the cloud trail type is enabled.
+        :param _builtins.str home_region: The home region of the landing zone.
+        :param _builtins.str identity_center_status: The status of the identity center.
+        :param _builtins.str organization_structure_type: The type of organization structure.
+        """
+        pulumi.set(__self__, "cloud_trail_type", cloud_trail_type)
+        pulumi.set(__self__, "home_region", home_region)
+        pulumi.set(__self__, "identity_center_status", identity_center_status)
+        pulumi.set(__self__, "organization_structure_type", organization_structure_type)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudTrailType")
+    def cloud_trail_type(self) -> _builtins.bool:
+        """
+        Indicates whether the cloud trail type is enabled.
+        """
+        return pulumi.get(self, "cloud_trail_type")
+
+    @_builtins.property
+    @pulumi.getter(name="homeRegion")
+    def home_region(self) -> _builtins.str:
+        """
+        The home region of the landing zone.
+        """
+        return pulumi.get(self, "home_region")
+
+    @_builtins.property
+    @pulumi.getter(name="identityCenterStatus")
+    def identity_center_status(self) -> _builtins.str:
+        """
+        The status of the identity center.
+        """
+        return pulumi.get(self, "identity_center_status")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationStructureType")
+    def organization_structure_type(self) -> _builtins.str:
+        """
+        The type of organization structure.
+        """
+        return pulumi.get(self, "organization_structure_type")
+
+
+@pulumi.output_type
+class GetLandingZoneConfigurationLoggingConfigurationResult(dict):
+    def __init__(__self__, *,
+                 access_logging_buckets: Sequence['outputs.GetLandingZoneConfigurationLoggingConfigurationAccessLoggingBucketResult'],
+                 logging_bucket_name: _builtins.str,
+                 logging_buckets: Sequence['outputs.GetLandingZoneConfigurationLoggingConfigurationLoggingBucketResult']):
+        """
+        :param Sequence['GetLandingZoneConfigurationLoggingConfigurationAccessLoggingBucketArgs'] access_logging_buckets: Configuration details for the access logging bucket.
+        :param _builtins.str logging_bucket_name: The name of the logging bucket.
+        :param Sequence['GetLandingZoneConfigurationLoggingConfigurationLoggingBucketArgs'] logging_buckets: Configuration details for the logging bucket.
+        """
+        pulumi.set(__self__, "access_logging_buckets", access_logging_buckets)
+        pulumi.set(__self__, "logging_bucket_name", logging_bucket_name)
+        pulumi.set(__self__, "logging_buckets", logging_buckets)
+
+    @_builtins.property
+    @pulumi.getter(name="accessLoggingBuckets")
+    def access_logging_buckets(self) -> Sequence['outputs.GetLandingZoneConfigurationLoggingConfigurationAccessLoggingBucketResult']:
+        """
+        Configuration details for the access logging bucket.
+        """
+        return pulumi.get(self, "access_logging_buckets")
+
+    @_builtins.property
+    @pulumi.getter(name="loggingBucketName")
+    def logging_bucket_name(self) -> _builtins.str:
+        """
+        The name of the logging bucket.
+        """
+        return pulumi.get(self, "logging_bucket_name")
+
+    @_builtins.property
+    @pulumi.getter(name="loggingBuckets")
+    def logging_buckets(self) -> Sequence['outputs.GetLandingZoneConfigurationLoggingConfigurationLoggingBucketResult']:
+        """
+        Configuration details for the logging bucket.
+        """
+        return pulumi.get(self, "logging_buckets")
+
+
+@pulumi.output_type
+class GetLandingZoneConfigurationLoggingConfigurationAccessLoggingBucketResult(dict):
+    def __init__(__self__, *,
+                 enable_multi_az: _builtins.bool,
+                 retention_days: _builtins.int):
+        """
+        :param _builtins.bool enable_multi_az: Whether multi-AZ is enabled for the logging bucket.
+        :param _builtins.int retention_days: The number of days to retain logs for logging bucket.
+        """
+        pulumi.set(__self__, "enable_multi_az", enable_multi_az)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter(name="enableMultiAz")
+    def enable_multi_az(self) -> _builtins.bool:
+        """
+        Whether multi-AZ is enabled for the logging bucket.
+        """
+        return pulumi.get(self, "enable_multi_az")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        The number of days to retain logs for logging bucket.
+        """
+        return pulumi.get(self, "retention_days")
+
+
+@pulumi.output_type
+class GetLandingZoneConfigurationLoggingConfigurationLoggingBucketResult(dict):
+    def __init__(__self__, *,
+                 enable_multi_az: _builtins.bool,
+                 retention_days: _builtins.int):
+        """
+        :param _builtins.bool enable_multi_az: Whether multi-AZ is enabled for the logging bucket.
+        :param _builtins.int retention_days: The number of days to retain logs for logging bucket.
+        """
+        pulumi.set(__self__, "enable_multi_az", enable_multi_az)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter(name="enableMultiAz")
+    def enable_multi_az(self) -> _builtins.bool:
+        """
+        Whether multi-AZ is enabled for the logging bucket.
+        """
+        return pulumi.get(self, "enable_multi_az")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        The number of days to retain logs for logging bucket.
+        """
+        return pulumi.get(self, "retention_days")
+
+
+@pulumi.output_type
+class GetLandingZoneConfigurationOrganizationStructureResult(dict):
+    def __init__(__self__, *,
+                 accounts: Sequence['outputs.GetLandingZoneConfigurationOrganizationStructureAccountResult'],
+                 organizational_unit_name: _builtins.str,
+                 organizational_unit_type: _builtins.str):
+        """
+        :param Sequence['GetLandingZoneConfigurationOrganizationStructureAccountArgs'] accounts: A list of accounts within the organizational unit.
+        :param _builtins.str organizational_unit_name: The name of the organizational unit.
+        :param _builtins.str organizational_unit_type: The type of organizational unit.
+        """
+        pulumi.set(__self__, "accounts", accounts)
+        pulumi.set(__self__, "organizational_unit_name", organizational_unit_name)
+        pulumi.set(__self__, "organizational_unit_type", organizational_unit_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def accounts(self) -> Sequence['outputs.GetLandingZoneConfigurationOrganizationStructureAccountResult']:
+        """
+        A list of accounts within the organizational unit.
+        """
+        return pulumi.get(self, "accounts")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitName")
+    def organizational_unit_name(self) -> _builtins.str:
+        """
+        The name of the organizational unit.
+        """
+        return pulumi.get(self, "organizational_unit_name")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitType")
+    def organizational_unit_type(self) -> _builtins.str:
+        """
+        The type of organizational unit.
+        """
+        return pulumi.get(self, "organizational_unit_type")
+
+
+@pulumi.output_type
+class GetLandingZoneConfigurationOrganizationStructureAccountResult(dict):
+    def __init__(__self__, *,
+                 account_id: _builtins.str,
+                 account_type: _builtins.str):
+        """
+        :param _builtins.str account_id: The ID of the account.
+        :param _builtins.str account_type: The type of the account.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "account_type", account_type)
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> _builtins.str:
+        """
+        The ID of the account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> _builtins.str:
+        """
+        The type of the account.
+        """
+        return pulumi.get(self, "account_type")
+
+
+@pulumi.output_type
+class GetLandingZoneConfigurationRegionResult(dict):
+    def __init__(__self__, *,
+                 region: _builtins.str,
+                 region_configuration_status: _builtins.str):
+        """
+        :param _builtins.str region: Specifies the region in which to create the resource.
+               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param _builtins.str region_configuration_status: The configuration status of the regulated region.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_configuration_status", region_configuration_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to create the resource.
+        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionConfigurationStatus")
+    def region_configuration_status(self) -> _builtins.str:
+        """
+        The configuration status of the regulated region.
+        """
+        return pulumi.get(self, "region_configuration_status")
+
+
+@pulumi.output_type
+class GetLandingZoneIdentityCenterGroupResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 group_id: _builtins.str,
+                 group_name: _builtins.str):
+        """
+        :param _builtins.str description: The description of the group.
+        :param _builtins.str group_id: The ID of the group.
+        :param _builtins.str group_name: The name of the group.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "group_name", group_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the group.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        The ID of the group.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        The name of the group.
+        """
+        return pulumi.get(self, "group_name")
+
+
+@pulumi.output_type
+class GetLandingZoneIdentityCenterPermissionSetResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 permission_set_id: _builtins.str,
+                 permission_set_name: _builtins.str):
+        """
+        :param _builtins.str description: The description of the group.
+        :param _builtins.str permission_set_id: The ID of the permission set.
+        :param _builtins.str permission_set_name: The name of the permission set.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "permission_set_id", permission_set_id)
+        pulumi.set(__self__, "permission_set_name", permission_set_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the group.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionSetId")
+    def permission_set_id(self) -> _builtins.str:
+        """
+        The ID of the permission set.
+        """
+        return pulumi.get(self, "permission_set_id")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionSetName")
+    def permission_set_name(self) -> _builtins.str:
+        """
+        The name of the permission set.
+        """
+        return pulumi.get(self, "permission_set_name")
+
+
+@pulumi.output_type
+class GetOperationPercentageDetailResult(dict):
+    def __init__(__self__, *,
+                 percentage_name: _builtins.str,
+                 percentage_status: _builtins.str):
+        """
+        :param _builtins.str percentage_name: The name of the percentage detail.
+        :param _builtins.str percentage_status: The status of the percentage detail.
+        """
+        pulumi.set(__self__, "percentage_name", percentage_name)
+        pulumi.set(__self__, "percentage_status", percentage_status)
+
+    @_builtins.property
+    @pulumi.getter(name="percentageName")
+    def percentage_name(self) -> _builtins.str:
+        """
+        The name of the percentage detail.
+        """
+        return pulumi.get(self, "percentage_name")
+
+    @_builtins.property
+    @pulumi.getter(name="percentageStatus")
+    def percentage_status(self) -> _builtins.str:
+        """
+        The status of the percentage detail.
+        """
+        return pulumi.get(self, "percentage_status")
+
+
+@pulumi.output_type
+class GetOrganizationalUnitAccountsManagedAccountResult(dict):
+    def __init__(__self__, *,
+                 account_id: _builtins.str,
+                 account_name: _builtins.str,
+                 account_type: _builtins.str,
+                 blueprint_product_id: _builtins.str,
+                 blueprint_product_version: _builtins.str,
+                 blueprint_status: _builtins.str,
+                 created_at: _builtins.str,
+                 identity_store_user_name: _builtins.str,
+                 is_blueprint_has_multi_account_resource: _builtins.bool,
+                 landing_zone_version: _builtins.str,
+                 manage_account_id: _builtins.str,
+                 message: _builtins.str,
+                 owner: _builtins.str,
+                 parent_organizational_unit_id: _builtins.str,
+                 parent_organizational_unit_name: _builtins.str,
+                 regions: Sequence['outputs.GetOrganizationalUnitAccountsManagedAccountRegionResult'],
+                 state: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str account_id: The ID of the managed account.
+        :param _builtins.str account_name: The name of the managed account.
+        :param _builtins.str account_type: The type of the managed account.
+        :param _builtins.str blueprint_product_id: The ID of the blueprint product.
+        :param _builtins.str blueprint_product_version: The version of the blueprint product.
+        :param _builtins.str blueprint_status: The status of the blueprint.
+        :param _builtins.str created_at: The timestamp when the account was created.
+        :param _builtins.str identity_store_user_name: The username from the identity store.
+        :param _builtins.bool is_blueprint_has_multi_account_resource: Indicates whether the blueprint has multi-account resources.
+        :param _builtins.str landing_zone_version: The version of the landing zone.
+        :param _builtins.str manage_account_id: The ID of the managing account.
+        :param _builtins.str message: A message associated with the managed account.
+        :param _builtins.str owner: The owner of the managed account.
+        :param _builtins.str parent_organizational_unit_id: The ID of the parent organizational unit.
+        :param _builtins.str parent_organizational_unit_name: The name of the parent organizational unit.
+        :param Sequence['GetOrganizationalUnitAccountsManagedAccountRegionArgs'] regions: A list of regions associated with the account.
+        :param _builtins.str state: The state of the managed account.
+        :param _builtins.str updated_at: The timestamp when the account was last updated.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "account_name", account_name)
+        pulumi.set(__self__, "account_type", account_type)
+        pulumi.set(__self__, "blueprint_product_id", blueprint_product_id)
+        pulumi.set(__self__, "blueprint_product_version", blueprint_product_version)
+        pulumi.set(__self__, "blueprint_status", blueprint_status)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "identity_store_user_name", identity_store_user_name)
+        pulumi.set(__self__, "is_blueprint_has_multi_account_resource", is_blueprint_has_multi_account_resource)
+        pulumi.set(__self__, "landing_zone_version", landing_zone_version)
+        pulumi.set(__self__, "manage_account_id", manage_account_id)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "parent_organizational_unit_id", parent_organizational_unit_id)
+        pulumi.set(__self__, "parent_organizational_unit_name", parent_organizational_unit_name)
+        pulumi.set(__self__, "regions", regions)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> _builtins.str:
+        """
+        The ID of the managed account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @_builtins.property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> _builtins.str:
+        """
+        The name of the managed account.
+        """
+        return pulumi.get(self, "account_name")
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> _builtins.str:
+        """
+        The type of the managed account.
+        """
+        return pulumi.get(self, "account_type")
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintProductId")
+    def blueprint_product_id(self) -> _builtins.str:
+        """
+        The ID of the blueprint product.
+        """
+        return pulumi.get(self, "blueprint_product_id")
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintProductVersion")
+    def blueprint_product_version(self) -> _builtins.str:
+        """
+        The version of the blueprint product.
+        """
+        return pulumi.get(self, "blueprint_product_version")
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintStatus")
+    def blueprint_status(self) -> _builtins.str:
+        """
+        The status of the blueprint.
+        """
+        return pulumi.get(self, "blueprint_status")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The timestamp when the account was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="identityStoreUserName")
+    def identity_store_user_name(self) -> _builtins.str:
+        """
+        The username from the identity store.
+        """
+        return pulumi.get(self, "identity_store_user_name")
+
+    @_builtins.property
+    @pulumi.getter(name="isBlueprintHasMultiAccountResource")
+    def is_blueprint_has_multi_account_resource(self) -> _builtins.bool:
+        """
+        Indicates whether the blueprint has multi-account resources.
+        """
+        return pulumi.get(self, "is_blueprint_has_multi_account_resource")
+
+    @_builtins.property
+    @pulumi.getter(name="landingZoneVersion")
+    def landing_zone_version(self) -> _builtins.str:
+        """
+        The version of the landing zone.
+        """
+        return pulumi.get(self, "landing_zone_version")
+
+    @_builtins.property
+    @pulumi.getter(name="manageAccountId")
+    def manage_account_id(self) -> _builtins.str:
+        """
+        The ID of the managing account.
+        """
+        return pulumi.get(self, "manage_account_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> _builtins.str:
+        """
+        A message associated with the managed account.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter
+    def owner(self) -> _builtins.str:
+        """
+        The owner of the managed account.
+        """
+        return pulumi.get(self, "owner")
+
+    @_builtins.property
+    @pulumi.getter(name="parentOrganizationalUnitId")
+    def parent_organizational_unit_id(self) -> _builtins.str:
+        """
+        The ID of the parent organizational unit.
+        """
+        return pulumi.get(self, "parent_organizational_unit_id")
+
+    @_builtins.property
+    @pulumi.getter(name="parentOrganizationalUnitName")
+    def parent_organizational_unit_name(self) -> _builtins.str:
+        """
+        The name of the parent organizational unit.
+        """
+        return pulumi.get(self, "parent_organizational_unit_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def regions(self) -> Sequence['outputs.GetOrganizationalUnitAccountsManagedAccountRegionResult']:
+        """
+        A list of regions associated with the account.
+        """
+        return pulumi.get(self, "regions")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        The state of the managed account.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The timestamp when the account was last updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetOrganizationalUnitAccountsManagedAccountRegionResult(dict):
+    def __init__(__self__, *,
+                 region: _builtins.str,
+                 region_status: _builtins.str):
+        """
+        :param _builtins.str region: Specifies the region in which to create the resource.
+               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param _builtins.str region_status: The status of the region.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_status", region_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to create the resource.
+        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionStatus")
+    def region_status(self) -> _builtins.str:
+        """
+        The status of the region.
+        """
+        return pulumi.get(self, "region_status")
+
+
+@pulumi.output_type
+class GetOrganizationalUnitControlsControlSummaryResult(dict):
+    def __init__(__self__, *,
+                 behavior: _builtins.str,
+                 control_identifier: _builtins.str,
+                 control_objective: _builtins.str,
+                 description: _builtins.str,
+                 guidance: _builtins.str,
+                 implementation: _builtins.str,
+                 manage_account_id: _builtins.str,
+                 name: _builtins.str,
+                 owner: _builtins.str,
+                 regional_preference: _builtins.str,
+                 service: _builtins.str,
+                 state: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str behavior: The behavior of the control.
+        :param _builtins.str control_identifier: The identifier of the control.
+        :param _builtins.str control_objective: The objective of the control.
+        :param _builtins.str description: The description of the control.
+        :param _builtins.str guidance: The guidance for the control.
+        :param _builtins.str implementation: The implementation details of the control.
+        :param _builtins.str manage_account_id: The ID of the manage account.
+        :param _builtins.str name: The name of the control.
+        :param _builtins.str owner: The owner of the control.
+        :param _builtins.str regional_preference: The regional preference of the control.
+        :param _builtins.str service: The service associated with the control.
+        :param _builtins.str state: The state of the control.
+        :param _builtins.str version: The version of the control.
+        """
+        pulumi.set(__self__, "behavior", behavior)
+        pulumi.set(__self__, "control_identifier", control_identifier)
+        pulumi.set(__self__, "control_objective", control_objective)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "guidance", guidance)
+        pulumi.set(__self__, "implementation", implementation)
+        pulumi.set(__self__, "manage_account_id", manage_account_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "regional_preference", regional_preference)
+        pulumi.set(__self__, "service", service)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def behavior(self) -> _builtins.str:
+        """
+        The behavior of the control.
+        """
+        return pulumi.get(self, "behavior")
+
+    @_builtins.property
+    @pulumi.getter(name="controlIdentifier")
+    def control_identifier(self) -> _builtins.str:
+        """
+        The identifier of the control.
+        """
+        return pulumi.get(self, "control_identifier")
+
+    @_builtins.property
+    @pulumi.getter(name="controlObjective")
+    def control_objective(self) -> _builtins.str:
+        """
+        The objective of the control.
+        """
+        return pulumi.get(self, "control_objective")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the control.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def guidance(self) -> _builtins.str:
+        """
+        The guidance for the control.
+        """
+        return pulumi.get(self, "guidance")
+
+    @_builtins.property
+    @pulumi.getter
+    def implementation(self) -> _builtins.str:
+        """
+        The implementation details of the control.
+        """
+        return pulumi.get(self, "implementation")
+
+    @_builtins.property
+    @pulumi.getter(name="manageAccountId")
+    def manage_account_id(self) -> _builtins.str:
+        """
+        The ID of the manage account.
+        """
+        return pulumi.get(self, "manage_account_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the control.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def owner(self) -> _builtins.str:
+        """
+        The owner of the control.
+        """
+        return pulumi.get(self, "owner")
+
+    @_builtins.property
+    @pulumi.getter(name="regionalPreference")
+    def regional_preference(self) -> _builtins.str:
+        """
+        The regional preference of the control.
+        """
+        return pulumi.get(self, "regional_preference")
+
+    @_builtins.property
+    @pulumi.getter
+    def service(self) -> _builtins.str:
+        """
+        The service associated with the control.
+        """
+        return pulumi.get(self, "service")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        The state of the control.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version of the control.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetOrganizationalUnitEnabledControlControlResult(dict):
+    def __init__(__self__, *,
+                 behavior: _builtins.str,
+                 control_identifier: _builtins.str,
+                 control_objective: _builtins.str,
+                 description: _builtins.str,
+                 manage_account_id: _builtins.str,
+                 name: _builtins.str,
+                 owner: _builtins.str,
+                 regional_preference: _builtins.str):
+        """
+        :param _builtins.str behavior: The type of control policy. It includes Proactive, Detective, and Preventive control policies.
+        :param _builtins.str control_identifier: The identifier of the control policy.
+        :param _builtins.str control_objective: The objective of the control policy.
+        :param _builtins.str description: The description information of the control policy.
+        :param _builtins.str manage_account_id: The ID of the managed account.
+        :param _builtins.str name: The name of the control policy.
+        :param _builtins.str owner: The source of the managed account's creation. It includes CUSTOM and RGC.
+        :param _builtins.str regional_preference: The regional preference, which can be either regional or global.
+        """
+        pulumi.set(__self__, "behavior", behavior)
+        pulumi.set(__self__, "control_identifier", control_identifier)
+        pulumi.set(__self__, "control_objective", control_objective)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "manage_account_id", manage_account_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner", owner)
+        pulumi.set(__self__, "regional_preference", regional_preference)
+
+    @_builtins.property
+    @pulumi.getter
+    def behavior(self) -> _builtins.str:
+        """
+        The type of control policy. It includes Proactive, Detective, and Preventive control policies.
+        """
+        return pulumi.get(self, "behavior")
+
+    @_builtins.property
+    @pulumi.getter(name="controlIdentifier")
+    def control_identifier(self) -> _builtins.str:
+        """
+        The identifier of the control policy.
+        """
+        return pulumi.get(self, "control_identifier")
+
+    @_builtins.property
+    @pulumi.getter(name="controlObjective")
+    def control_objective(self) -> _builtins.str:
+        """
+        The objective of the control policy.
+        """
+        return pulumi.get(self, "control_objective")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description information of the control policy.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="manageAccountId")
+    def manage_account_id(self) -> _builtins.str:
+        """
+        The ID of the managed account.
+        """
+        return pulumi.get(self, "manage_account_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the control policy.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def owner(self) -> _builtins.str:
+        """
+        The source of the managed account's creation. It includes CUSTOM and RGC.
+        """
+        return pulumi.get(self, "owner")
+
+    @_builtins.property
+    @pulumi.getter(name="regionalPreference")
+    def regional_preference(self) -> _builtins.str:
+        """
+        The regional preference, which can be either regional or global.
+        """
+        return pulumi.get(self, "regional_preference")
+
+
+@pulumi.output_type
+class GetOrganizationalUnitEnabledControlRegionResult(dict):
+    def __init__(__self__, *,
+                 region: _builtins.str,
+                 region_configuration_status: _builtins.str):
+        """
+        :param _builtins.str region: Specifies the region in which to create the resource.
+               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param _builtins.str region_configuration_status: The status of the region.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_configuration_status", region_configuration_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to create the resource.
+        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionConfigurationStatus")
+    def region_configuration_status(self) -> _builtins.str:
+        """
+        The status of the region.
+        """
+        return pulumi.get(self, "region_configuration_status")
+
+
+@pulumi.output_type
+class GetOrganizationalUnitsManagedOrganizationalUnitResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 landing_zone_version: _builtins.str,
+                 manage_account_id: _builtins.str,
+                 organizational_unit_id: _builtins.str,
+                 organizational_unit_name: _builtins.str,
+                 organizational_unit_status: _builtins.str,
+                 organizational_unit_type: _builtins.str,
+                 parent_organizational_unit_id: _builtins.str,
+                 parent_organizational_unit_name: _builtins.str):
+        """
+        :param _builtins.str created_at: The time when the organizational unit was created.
+        :param _builtins.str landing_zone_version: The version of the Landing Zone.
+        :param _builtins.str manage_account_id: The ID of the management account.
+        :param _builtins.str organizational_unit_id: The ID of the organizational unit.
+        :param _builtins.str organizational_unit_name: The name of the organizational unit.
+        :param _builtins.str organizational_unit_status: The status of the organizational unit.
+        :param _builtins.str organizational_unit_type: The type of the organizational unit. Possible values are `CORE`, `CUSTOM`, and `ROOT`.
+        :param _builtins.str parent_organizational_unit_id: The ID of the parent organizational unit.
+        :param _builtins.str parent_organizational_unit_name: The name of the parent organizational unit.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "landing_zone_version", landing_zone_version)
+        pulumi.set(__self__, "manage_account_id", manage_account_id)
+        pulumi.set(__self__, "organizational_unit_id", organizational_unit_id)
+        pulumi.set(__self__, "organizational_unit_name", organizational_unit_name)
+        pulumi.set(__self__, "organizational_unit_status", organizational_unit_status)
+        pulumi.set(__self__, "organizational_unit_type", organizational_unit_type)
+        pulumi.set(__self__, "parent_organizational_unit_id", parent_organizational_unit_id)
+        pulumi.set(__self__, "parent_organizational_unit_name", parent_organizational_unit_name)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The time when the organizational unit was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="landingZoneVersion")
+    def landing_zone_version(self) -> _builtins.str:
+        """
+        The version of the Landing Zone.
+        """
+        return pulumi.get(self, "landing_zone_version")
+
+    @_builtins.property
+    @pulumi.getter(name="manageAccountId")
+    def manage_account_id(self) -> _builtins.str:
+        """
+        The ID of the management account.
+        """
+        return pulumi.get(self, "manage_account_id")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitId")
+    def organizational_unit_id(self) -> _builtins.str:
+        """
+        The ID of the organizational unit.
+        """
+        return pulumi.get(self, "organizational_unit_id")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitName")
+    def organizational_unit_name(self) -> _builtins.str:
+        """
+        The name of the organizational unit.
+        """
+        return pulumi.get(self, "organizational_unit_name")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitStatus")
+    def organizational_unit_status(self) -> _builtins.str:
+        """
+        The status of the organizational unit.
+        """
+        return pulumi.get(self, "organizational_unit_status")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitType")
+    def organizational_unit_type(self) -> _builtins.str:
+        """
+        The type of the organizational unit. Possible values are `CORE`, `CUSTOM`, and `ROOT`.
+        """
+        return pulumi.get(self, "organizational_unit_type")
+
+    @_builtins.property
+    @pulumi.getter(name="parentOrganizationalUnitId")
+    def parent_organizational_unit_id(self) -> _builtins.str:
+        """
+        The ID of the parent organizational unit.
+        """
+        return pulumi.get(self, "parent_organizational_unit_id")
+
+    @_builtins.property
+    @pulumi.getter(name="parentOrganizationalUnitName")
+    def parent_organizational_unit_name(self) -> _builtins.str:
+        """
+        The name of the parent organizational unit.
+        """
+        return pulumi.get(self, "parent_organizational_unit_name")
+
+
+@pulumi.output_type
+class GetPredefinedTemplatesTemplateResult(dict):
+    def __init__(__self__, *,
+                 template_category: _builtins.str,
+                 template_description: _builtins.str,
+                 template_name: _builtins.str):
+        """
+        :param _builtins.str template_category: The category of the predefined template.
+        :param _builtins.str template_description: The description of the predefined template.
+        :param _builtins.str template_name: The name of the predefined template.
+        """
+        pulumi.set(__self__, "template_category", template_category)
+        pulumi.set(__self__, "template_description", template_description)
+        pulumi.set(__self__, "template_name", template_name)
+
+    @_builtins.property
+    @pulumi.getter(name="templateCategory")
+    def template_category(self) -> _builtins.str:
+        """
+        The category of the predefined template.
+        """
+        return pulumi.get(self, "template_category")
+
+    @_builtins.property
+    @pulumi.getter(name="templateDescription")
+    def template_description(self) -> _builtins.str:
+        """
+        The description of the predefined template.
+        """
+        return pulumi.get(self, "template_description")
+
+    @_builtins.property
+    @pulumi.getter(name="templateName")
+    def template_name(self) -> _builtins.str:
+        """
+        The name of the predefined template.
+        """
+        return pulumi.get(self, "template_name")
+
+
+@pulumi.output_type
+class GetTemplateDeployParamsVariableResult(dict):
+    def __init__(__self__, *,
+                 default: _builtins.str,
+                 description: _builtins.str,
+                 name: _builtins.str,
+                 nullable: _builtins.bool,
+                 sensitive: _builtins.bool,
+                 type: _builtins.str,
+                 validations: Sequence['outputs.GetTemplateDeployParamsVariableValidationResult']):
+        """
+        :param _builtins.str default: The default value of the variable.
+        :param _builtins.str description: The description of the variable.
+        :param _builtins.str name: The name of the variable.
+        :param _builtins.bool nullable: Whether the variable can be null.
+        :param _builtins.bool sensitive: Whether the variable is a sensitive field.
+        :param _builtins.str type: The type of the variable.
+        :param Sequence['GetTemplateDeployParamsVariableValidationArgs'] validations: Information about the validation rules for the variable list.
+        """
+        pulumi.set(__self__, "default", default)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nullable", nullable)
+        pulumi.set(__self__, "sensitive", sensitive)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "validations", validations)
+
+    @_builtins.property
+    @pulumi.getter
+    def default(self) -> _builtins.str:
+        """
+        The default value of the variable.
+        """
+        return pulumi.get(self, "default")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the variable.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the variable.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def nullable(self) -> _builtins.bool:
+        """
+        Whether the variable can be null.
+        """
+        return pulumi.get(self, "nullable")
+
+    @_builtins.property
+    @pulumi.getter
+    def sensitive(self) -> _builtins.bool:
+        """
+        Whether the variable is a sensitive field.
+        """
+        return pulumi.get(self, "sensitive")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the variable.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def validations(self) -> Sequence['outputs.GetTemplateDeployParamsVariableValidationResult']:
+        """
+        Information about the validation rules for the variable list.
+        """
+        return pulumi.get(self, "validations")
+
+
+@pulumi.output_type
+class GetTemplateDeployParamsVariableValidationResult(dict):
+    def __init__(__self__, *,
+                 condition: _builtins.str,
+                 error_message: _builtins.str):
+        """
+        :param _builtins.str condition: The validation expression.
+        :param _builtins.str error_message: The error message if the validation fails.
+        """
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "error_message", error_message)
+
+    @_builtins.property
+    @pulumi.getter
+    def condition(self) -> _builtins.str:
+        """
+        The validation expression.
+        """
+        return pulumi.get(self, "condition")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> _builtins.str:
+        """
+        The error message if the validation fails.
+        """
+        return pulumi.get(self, "error_message")
 
 

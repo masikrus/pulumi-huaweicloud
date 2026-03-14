@@ -27,10 +27,13 @@ class GetAppPublishableAppsResult:
     """
     A collection of values returned by getAppPublishableApps.
     """
-    def __init__(__self__, app_group_id=None, apps=None, group_images=None, id=None, region=None):
+    def __init__(__self__, app_group_id=None, applications=None, apps=None, group_images=None, id=None, region=None):
         if app_group_id and not isinstance(app_group_id, str):
             raise TypeError("Expected argument 'app_group_id' to be a str")
         pulumi.set(__self__, "app_group_id", app_group_id)
+        if applications and not isinstance(applications, list):
+            raise TypeError("Expected argument 'applications' to be a list")
+        pulumi.set(__self__, "applications", applications)
         if apps and not isinstance(apps, list):
             raise TypeError("Expected argument 'apps' to be a list")
         pulumi.set(__self__, "apps", apps)
@@ -51,18 +54,17 @@ class GetAppPublishableAppsResult:
 
     @_builtins.property
     @pulumi.getter
+    def applications(self) -> Sequence['outputs.GetAppPublishableAppsApplicationResult']:
+        return pulumi.get(self, "applications")
+
+    @_builtins.property
+    @pulumi.getter
     def apps(self) -> Sequence['outputs.GetAppPublishableAppsAppResult']:
-        """
-        The list of the publishable applications.
-        """
         return pulumi.get(self, "apps")
 
     @_builtins.property
     @pulumi.getter(name="groupImages")
     def group_images(self) -> Sequence[_builtins.str]:
-        """
-        The list of image IDs under the server group.
-        """
         return pulumi.get(self, "group_images")
 
     @_builtins.property
@@ -86,6 +88,7 @@ class AwaitableGetAppPublishableAppsResult(GetAppPublishableAppsResult):
             yield self
         return GetAppPublishableAppsResult(
             app_group_id=self.app_group_id,
+            applications=self.applications,
             apps=self.apps,
             group_images=self.group_images,
             id=self.id,
@@ -96,12 +99,7 @@ def get_app_publishable_apps(app_group_id: Optional[_builtins.str] = None,
                              region: Optional[_builtins.str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAppPublishableAppsResult:
     """
-    Use this data source to get the list of the publishable applications under specified APP group within HuaweiCloud.
-
-
-    :param _builtins.str app_group_id: Specifies the ID of the application group.
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['appGroupId'] = app_group_id
@@ -111,6 +109,7 @@ def get_app_publishable_apps(app_group_id: Optional[_builtins.str] = None,
 
     return AwaitableGetAppPublishableAppsResult(
         app_group_id=pulumi.get(__ret__, 'app_group_id'),
+        applications=pulumi.get(__ret__, 'applications'),
         apps=pulumi.get(__ret__, 'apps'),
         group_images=pulumi.get(__ret__, 'group_images'),
         id=pulumi.get(__ret__, 'id'),
@@ -119,12 +118,7 @@ def get_app_publishable_apps_output(app_group_id: Optional[pulumi.Input[_builtin
                                     region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAppPublishableAppsResult]:
     """
-    Use this data source to get the list of the publishable applications under specified APP group within HuaweiCloud.
-
-
-    :param _builtins.str app_group_id: Specifies the ID of the application group.
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['appGroupId'] = app_group_id
@@ -133,6 +127,7 @@ def get_app_publishable_apps_output(app_group_id: Optional[pulumi.Input[_builtin
     __ret__ = pulumi.runtime.invoke_output('huaweicloud:Workspace/getAppPublishableApps:getAppPublishableApps', __args__, opts=opts, typ=GetAppPublishableAppsResult)
     return __ret__.apply(lambda __response__: GetAppPublishableAppsResult(
         app_group_id=pulumi.get(__response__, 'app_group_id'),
+        applications=pulumi.get(__response__, 'applications'),
         apps=pulumi.get(__response__, 'apps'),
         group_images=pulumi.get(__response__, 'group_images'),
         id=pulumi.get(__response__, 'id'),

@@ -25,6 +25,7 @@ class AlarmNotificationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlarmNotification resource.
+
         :param pulumi.Input[_builtins.str] alarm_topic_id: Specifies the alarm topic ID.
                
                Changing this will create new resource.
@@ -100,6 +101,7 @@ class _AlarmNotificationState:
                  topic_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlarmNotification resources.
+
         :param pulumi.Input[_builtins.str] alarm_topic_id: Specifies the alarm topic ID.
                
                Changing this will create new resource.
@@ -169,7 +171,7 @@ class _AlarmNotificationState:
         pulumi.set(self, "topic_urn", value)
 
 
-@pulumi.type_token("huaweicloud:dsc/alarmNotification:AlarmNotification")
+@pulumi.type_token("huaweicloud:Dsc/alarmNotification:AlarmNotification")
 class AlarmNotification(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -202,37 +204,15 @@ class AlarmNotification(pulumi.CustomResource):
 
         DSC alarm notification resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dsc/alarmNotification:AlarmNotification test <id>
+        $ pulumi import huaweicloud:Dsc/alarmNotification:AlarmNotification test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `status`. It is generally recommended running `pulumi preview` after
-
         importing the resource. You can then decide if changes should be applied to the resource, or the resource
-
         definition should be updated to align with the cloud. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dsc_alarm_notification" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              status,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -272,37 +252,15 @@ class AlarmNotification(pulumi.CustomResource):
 
         DSC alarm notification resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dsc/alarmNotification:AlarmNotification test <id>
+        $ pulumi import huaweicloud:Dsc/alarmNotification:AlarmNotification test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `status`. It is generally recommended running `pulumi preview` after
-
         importing the resource. You can then decide if changes should be applied to the resource, or the resource
-
         definition should be updated to align with the cloud. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dsc_alarm_notification" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              status,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AlarmNotificationArgs args: The arguments to use to populate this resource's properties.
@@ -343,7 +301,7 @@ class AlarmNotification(pulumi.CustomResource):
                 raise TypeError("Missing required property 'topic_urn'")
             __props__.__dict__["topic_urn"] = topic_urn
         super(AlarmNotification, __self__).__init__(
-            'huaweicloud:dsc/alarmNotification:AlarmNotification',
+            'huaweicloud:Dsc/alarmNotification:AlarmNotification',
             resource_name,
             __props__,
             opts)

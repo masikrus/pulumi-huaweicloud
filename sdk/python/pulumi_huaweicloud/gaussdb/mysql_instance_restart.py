@@ -25,6 +25,7 @@ class MysqlInstanceRestartArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlInstanceRestart resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.bool] delay: Specifies whether the instance/node will be rebooted with a delay. Value options:
@@ -116,6 +117,7 @@ class _MysqlInstanceRestartState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlInstanceRestart resources.
+
         :param pulumi.Input[_builtins.bool] delay: Specifies whether the instance/node will be rebooted with a delay. Value options:
                + **true**: The instance/node will be rebooted during the specified maintenance window.
                + **false(default)**: The instance/node will be rebooted immediately.
@@ -240,6 +242,7 @@ class MysqlInstanceRestart(pulumi.CustomResource):
             node_id=node_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delay: Specifies whether the instance/node will be rebooted with a delay. Value options:
@@ -292,6 +295,7 @@ class MysqlInstanceRestart(pulumi.CustomResource):
             instance_id=instance_id,
             node_id=node_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlInstanceRestartArgs args: The arguments to use to populate this resource's properties.

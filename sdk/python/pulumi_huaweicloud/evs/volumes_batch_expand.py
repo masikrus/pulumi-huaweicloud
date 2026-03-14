@@ -27,6 +27,7 @@ class VolumesBatchExpandArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VolumesBatchExpand resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['VolumesBatchExpandVolumeArgs']]] volumes: Specifies the to-be-expanded volume list.
                The volumes structure is documented below.
         :param pulumi.Input[_builtins.bool] is_auto_pay: Specifies whether to pay immediately. This parameter is valid only
@@ -110,6 +111,7 @@ class _VolumesBatchExpandState:
                  volumes: Optional[pulumi.Input[Sequence[pulumi.Input['VolumesBatchExpandVolumeArgs']]]] = None):
         """
         Input properties used for looking up and filtering VolumesBatchExpand resources.
+
         :param pulumi.Input[_builtins.bool] is_auto_pay: Specifies whether to pay immediately. This parameter is valid only
                when the disk in prepaid mode. Defaults to **false**. Possible values are:
                + **true**: An order is immediately paid from the account balance.
@@ -226,6 +228,7 @@ class VolumesBatchExpand(pulumi.CustomResource):
             is_auto_pay=is_auto_pay)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] is_auto_pay: Specifies whether to pay immediately. This parameter is valid only
@@ -275,6 +278,7 @@ class VolumesBatchExpand(pulumi.CustomResource):
             }],
             is_auto_pay=is_auto_pay)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VolumesBatchExpandArgs args: The arguments to use to populate this resource's properties.

@@ -15,6 +15,8 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'ConnectionFlavorArgs',
+    'ConnectionFlavorArgsDict',
     'ConnectionKafkaDetailArgs',
     'ConnectionKafkaDetailArgsDict',
     'EventBatchActionEventArgs',
@@ -35,59 +37,181 @@ __all__ = [
     'EventSubscriptionSourceArgsDict',
     'EventSubscriptionTargetArgs',
     'EventSubscriptionTargetArgsDict',
+    'EventSubscriptionTargetApigwDetailArgs',
+    'EventSubscriptionTargetApigwDetailArgsDict',
+    'EventSubscriptionTargetApigwDetailInvocationHttpParametersArgs',
+    'EventSubscriptionTargetApigwDetailInvocationHttpParametersArgsDict',
+    'EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgs',
+    'EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgsDict',
+    'EventSubscriptionTargetDeadLetterQueueArgs',
+    'EventSubscriptionTargetDeadLetterQueueArgsDict',
+    'EventSubscriptionTargetEgDetailArgs',
+    'EventSubscriptionTargetEgDetailArgsDict',
+    'EventSubscriptionTargetKafkaDetailArgs',
+    'EventSubscriptionTargetKafkaDetailArgsDict',
+    'EventSubscriptionTargetKafkaDetailKeyTransformArgs',
+    'EventSubscriptionTargetKafkaDetailKeyTransformArgsDict',
+    'EventSubscriptionTargetKeyTransformArgs',
+    'EventSubscriptionTargetKeyTransformArgsDict',
+    'EventSubscriptionTargetSmnDetailArgs',
+    'EventSubscriptionTargetSmnDetailArgsDict',
+    'EventSubscriptionTargetSmnDetailKeyTransformArgs',
+    'EventSubscriptionTargetSmnDetailKeyTransformArgsDict',
 ]
 
-MYPY = False
+class ConnectionFlavorArgsDict(TypedDict):
+    bandwidth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth type of the kafka instance.
+    """
+    concurrency: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The concurrency number of the kafka instance.
+    """
+    concurrency_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The concurrency type of the kafka instance.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the connection.
+    The value can contain no more than 128 characters, including letters, digits, underscores (_), hyphens (-),
+    and periods (.), and must start with a character or letter.
 
-if not MYPY:
-    class ConnectionKafkaDetailArgsDict(TypedDict):
-        connect_address: pulumi.Input[_builtins.str]
+    Changing this parameter will create a new resource.
+    """
+
+@pulumi.input_type
+class ConnectionFlavorArgs:
+    def __init__(__self__, *,
+                 bandwidth_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 concurrency: Optional[pulumi.Input[_builtins.int]] = None,
+                 concurrency_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Specifies the IP address of the kafka instance.
+        :param pulumi.Input[_builtins.str] bandwidth_type: The bandwidth type of the kafka instance.
+        :param pulumi.Input[_builtins.int] concurrency: The concurrency number of the kafka instance.
+        :param pulumi.Input[_builtins.str] concurrency_type: The concurrency type of the kafka instance.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the connection.
+               The value can contain no more than 128 characters, including letters, digits, underscores (_), hyphens (-),
+               and periods (.), and must start with a character or letter.
+               
+               Changing this parameter will create a new resource.
+        """
+        if bandwidth_type is not None:
+            pulumi.set(__self__, "bandwidth_type", bandwidth_type)
+        if concurrency is not None:
+            pulumi.set(__self__, "concurrency", concurrency)
+        if concurrency_type is not None:
+            pulumi.set(__self__, "concurrency_type", concurrency_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="bandwidthType")
+    def bandwidth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The bandwidth type of the kafka instance.
+        """
+        return pulumi.get(self, "bandwidth_type")
+
+    @bandwidth_type.setter
+    def bandwidth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bandwidth_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def concurrency(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The concurrency number of the kafka instance.
+        """
+        return pulumi.get(self, "concurrency")
+
+    @concurrency.setter
+    def concurrency(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "concurrency", value)
+
+    @_builtins.property
+    @pulumi.getter(name="concurrencyType")
+    def concurrency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The concurrency type of the kafka instance.
+        """
+        return pulumi.get(self, "concurrency_type")
+
+    @concurrency_type.setter
+    def concurrency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "concurrency_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of the connection.
+        The value can contain no more than 128 characters, including letters, digits, underscores (_), hyphens (-),
+        and periods (.), and must start with a character or letter.
 
         Changing this parameter will create a new resource.
         """
-        instance_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the kafka instance.
+        return pulumi.get(self, "name")
 
-        Changing this parameter will create a new resource.
-        """
-        acks: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of confirmation signals the prouder needs to receive
-        to consider the message sent successfully. The acks represents the availability of data backup.
-        The value can be:
-        + **0**: Indicates that the producer does not need to wait for any confirmation of received information,
-        the backup will be immediately added to the socket buffer and considered to have been sent.
-        There is no guarantee that the server has successfully received the data in this case,
-        and the retry configuration will not take effect and the feedback offset will always be set to -1.
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
 
-        + **1**: Indicates that at least waiting for the leader to successfully write the data to the local log,
-        but not waiting for all followers to successfully write the data. If the follower fails to successfully
-        backup the data and the leader cannot provide services at this time, the message will be lost.
 
-        + **all**: Indicates that the leader needs to wait for all backups in the ISR to be successfully written to the log.
-        As long as any backup survives, the data will not be lost.
+class ConnectionKafkaDetailArgsDict(TypedDict):
+    connect_address: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address of the kafka instance.
 
-        Defaults to **1**.
+    Changing this parameter will create a new resource.
+    """
+    instance_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the kafka instance.
 
-        Changing this parameter will create a new resource.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the password of the kafka instance.
+    Changing this parameter will create a new resource.
+    """
+    acks: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of confirmation signals the prouder needs to receive
+    to consider the message sent successfully. The acks represents the availability of data backup.
+    The value can be:
+    + **0**: Indicates that the producer does not need to wait for any confirmation of received information,
+    the backup will be immediately added to the socket buffer and considered to have been sent.
+    There is no guarantee that the server has successfully received the data in this case,
+    and the retry configuration will not take effect and the feedback offset will always be set to -1.
 
-        Changing this parameter will create a new resource.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the user name of the kafka instance.
+    + **1**: Indicates that at least waiting for the leader to successfully write the data to the local log,
+    but not waiting for all followers to successfully write the data. If the follower fails to successfully
+    backup the data and the leader cannot provide services at this time, the message will be lost.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ConnectionKafkaDetailArgsDict: TypeAlias = Mapping[str, Any]
+    + **all**: Indicates that the leader needs to wait for all backups in the ISR to be successfully written to the log.
+    As long as any backup survives, the data will not be lost.
+
+    Defaults to **1**.
+
+    Changing this parameter will create a new resource.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the password of the kafka instance.
+
+    Changing this parameter will create a new resource.
+    """
+    security_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security protocol of the kafka instance.
+
+    Changing this parameter will create a new resource.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user name of the kafka instance.
+
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ConnectionKafkaDetailArgs:
@@ -96,6 +220,7 @@ class ConnectionKafkaDetailArgs:
                  instance_id: pulumi.Input[_builtins.str],
                  acks: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 security_protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connect_address: Specifies the IP address of the kafka instance.
@@ -125,6 +250,9 @@ class ConnectionKafkaDetailArgs:
         :param pulumi.Input[_builtins.str] password: Specifies the password of the kafka instance.
                
                Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] security_protocol: Specifies the security protocol of the kafka instance.
+               
+               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] user_name: Specifies the user name of the kafka instance.
                
                Changing this parameter will create a new resource.
@@ -135,6 +263,8 @@ class ConnectionKafkaDetailArgs:
             pulumi.set(__self__, "acks", acks)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if security_protocol is not None:
+            pulumi.set(__self__, "security_protocol", security_protocol)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
 
@@ -210,6 +340,20 @@ class ConnectionKafkaDetailArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the security protocol of the kafka instance.
+
+        Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "security_protocol")
+
+    @security_protocol.setter
+    def security_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "security_protocol", value)
+
+    @_builtins.property
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -224,51 +368,48 @@ class ConnectionKafkaDetailArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class EventBatchActionEventArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the event.
-        """
-        source: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the event source.  
-        For the detail, please following [reference documentation](https://tools.ietf.org/html/rfc3986#section-4.1)
-        """
-        spec_version: pulumi.Input[_builtins.str]
-        """
-        Specifies the CloudEvents protocol version.  
-        The spec version must follow the pattern `major.minor`
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the event.
-        """
-        data: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the payload content of the event, in JSON format.  
-        The content of data must follow the data schema description.
-        """
-        data_content_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the content type of the event data.  
-        For the detail, please following [reference documentation](https://tools.ietf.org/html/rfc2046)
-        """
-        data_schema: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the URI of the event data schema.  
-        For the detail, please following [reference documentation](https://tools.ietf.org/html/rfc3986#section-4.3)
-        """
-        subject: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the subject of the event.
-        """
-        time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time when the event occurred, in UTC format.
-        """
-elif False:
-    EventBatchActionEventArgsDict: TypeAlias = Mapping[str, Any]
+class EventBatchActionEventArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the event.
+    """
+    source: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the event source.  
+    For the detail, please following [reference documentation](https://tools.ietf.org/html/rfc3986#section-4.1)
+    """
+    spec_version: pulumi.Input[_builtins.str]
+    """
+    Specifies the CloudEvents protocol version.  
+    The spec version must follow the pattern `major.minor`
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the event.
+    """
+    data: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the payload content of the event, in JSON format.  
+    The content of data must follow the data schema description.
+    """
+    data_content_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the content type of the event data.  
+    For the detail, please following [reference documentation](https://tools.ietf.org/html/rfc2046)
+    """
+    data_schema: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the URI of the event data schema.  
+    For the detail, please following [reference documentation](https://tools.ietf.org/html/rfc3986#section-4.3)
+    """
+    subject: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subject of the event.
+    """
+    time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time when the event occurred, in UTC format.
+    """
 
 @pulumi.input_type
 class EventBatchActionEventArgs:
@@ -427,22 +568,19 @@ class EventBatchActionEventArgs:
         pulumi.set(self, "time", value)
 
 
-if not MYPY:
-    class EventStreamOptionArgsDict(TypedDict):
-        batch_window: pulumi.Input['EventStreamOptionBatchWindowArgsDict']
-        """
-        Specifies the configuration of the batch push.
-        The transform structure is documented below.
+class EventStreamOptionArgsDict(TypedDict):
+    batch_window: pulumi.Input['EventStreamOptionBatchWindowArgsDict']
+    """
+    Specifies the configuration of the batch push.
+    The transform structure is documented below.
 
-        <a name="stream_option_batch_window"></a>
-        The `batch_window` block supports:
-        """
-        thread_num: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of concurrent threads.
-        """
-elif False:
-    EventStreamOptionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="stream_option_batch_window"></a>
+    The `batch_window` block supports:
+    """
+    thread_num: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of concurrent threads.
+    """
 
 @pulumi.input_type
 class EventStreamOptionArgs:
@@ -489,24 +627,21 @@ class EventStreamOptionArgs:
         pulumi.set(self, "thread_num", value)
 
 
-if not MYPY:
-    class EventStreamOptionBatchWindowArgsDict(TypedDict):
-        count: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of items pushed in batches.  
-        The valid value is range from `1` to `10,000`.
-        """
-        interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the interval of the batch push.  
-        The valid value is range from `1` to `15`.
-        """
-        time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of retries.
-        """
-elif False:
-    EventStreamOptionBatchWindowArgsDict: TypeAlias = Mapping[str, Any]
+class EventStreamOptionBatchWindowArgsDict(TypedDict):
+    count: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of items pushed in batches.  
+    The valid value is range from `1` to `10,000`.
+    """
+    interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the interval of the batch push.  
+    The valid value is range from `1` to `15`.
+    """
+    time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of retries.
+    """
 
 @pulumi.input_type
 class EventStreamOptionBatchWindowArgs:
@@ -566,22 +701,19 @@ class EventStreamOptionBatchWindowArgs:
         pulumi.set(self, "time", value)
 
 
-if not MYPY:
-    class EventStreamRuleConfigArgsDict(TypedDict):
-        transform: pulumi.Input['EventStreamRuleConfigTransformArgsDict']
-        """
-        Specifies the configuration detail of the transform rule.  
-        The transform structure is documented below.
-        """
-        filter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the configuration detail of the filter rule, in JSON format.
+class EventStreamRuleConfigArgsDict(TypedDict):
+    transform: pulumi.Input['EventStreamRuleConfigTransformArgsDict']
+    """
+    Specifies the configuration detail of the transform rule.  
+    The transform structure is documented below.
+    """
+    filter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the configuration detail of the filter rule, in JSON format.
 
-        <a name="stream_rule_config_transform"></a>
-        The `transform` block supports:
-        """
-elif False:
-    EventStreamRuleConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="stream_rule_config_transform"></a>
+    The `transform` block supports:
+    """
 
 @pulumi.input_type
 class EventStreamRuleConfigArgs:
@@ -629,38 +761,35 @@ class EventStreamRuleConfigArgs:
         pulumi.set(self, "filter", value)
 
 
-if not MYPY:
-    class EventStreamRuleConfigTransformArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of transform rule.  
-        The valid values are as follows:
-        + **ORIGINAL**
-        + **CONSTANT**
-        + **VARIABLE**
-        """
-        template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the template definition of the rule content.  
-        It's only valid for variable type rules and supports references to defined variables.
-        The string length does not exceed `2,048` characters.
+class EventStreamRuleConfigTransformArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of transform rule.  
+    The valid values are as follows:
+    + **ORIGINAL**
+    + **CONSTANT**
+    + **VARIABLE**
+    """
+    template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the template definition of the rule content.  
+    It's only valid for variable type rules and supports references to defined variables.
+    The string length does not exceed `2,048` characters.
 
-        <a name="stream_option"></a>
-        The `option` block supports:
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the rule content definition.
-        + When the constant type rule is used, the field is a constant content definition
-        + when the variable type rule is used, it is a variable definition, and the content must be a JSON object string.
-        - A maximum of `100` variables are supported, and nested structure definitions are not supported.
-        - Variable names are composed of letters, numbers, dots, underscores, and dashes. They must start with a letter or
-        number and cannot start with `HC.`, and the length should not exceed `64` characters.
-        - variable value Expressions support constants or JsonPath expressions, and the string length does not exceed
-        `1,024` characters.
-        """
-elif False:
-    EventStreamRuleConfigTransformArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="stream_option"></a>
+    The `option` block supports:
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the rule content definition.
+    + When the constant type rule is used, the field is a constant content definition
+    + when the variable type rule is used, it is a variable definition, and the content must be a JSON object string.
+    - A maximum of `100` variables are supported, and nested structure definitions are not supported.
+    - Variable names are composed of letters, numbers, dots, underscores, and dashes. They must start with a letter or
+    number and cannot start with `HC.`, and the length should not exceed `64` characters.
+    - variable value Expressions support constants or JsonPath expressions, and the string length does not exceed
+    `1,024` characters.
+    """
 
 @pulumi.input_type
 class EventStreamRuleConfigTransformArgs:
@@ -748,31 +877,28 @@ class EventStreamRuleConfigTransformArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class EventStreamSinkArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the event target type.  
-        The valid values are as follows:
-        + **HC.FunctionGraph**
-        + **HC.Kafka**
-        """
-        functiongraph: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event target configuration detail for FunctionGraph type, in JSON
-        format.
-        """
-        kafka: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event target configuration detail for DMS Kafka type, in JSON format.
+class EventStreamSinkArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the event target type.  
+    The valid values are as follows:
+    + **HC.FunctionGraph**
+    + **HC.Kafka**
+    """
+    functiongraph: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event target configuration detail for FunctionGraph type, in JSON
+    format.
+    """
+    kafka: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event target configuration detail for DMS Kafka type, in JSON format.
 
-        > Exactly one of `functiongraph` and `kafka` must be provided.
+    > Exactly one of `functiongraph` and `kafka` must be provided.
 
-        <a name="stream_rule_config"></a>
-        The `rule_config` block supports:
-        """
-elif False:
-    EventStreamSinkArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="stream_rule_config"></a>
+    The `rule_config` block supports:
+    """
 
 @pulumi.input_type
 class EventStreamSinkArgs:
@@ -846,46 +972,43 @@ class EventStreamSinkArgs:
         pulumi.set(self, "kafka", value)
 
 
-if not MYPY:
-    class EventStreamSourceArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the event target type.  
-        The valid values are as follows:
-        + **HC.FunctionGraph**
-        + **HC.Kafka**
-        """
-        community_rocketmq: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event source configuration detail for community RocketMQ type,
-        in JSON format.
-        """
-        dms_rocketmq: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event source configuration detail for DMS RocketMQ type, in JSON
-        format.
+class EventStreamSourceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the event target type.  
+    The valid values are as follows:
+    + **HC.FunctionGraph**
+    + **HC.Kafka**
+    """
+    community_rocketmq: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event source configuration detail for community RocketMQ type,
+    in JSON format.
+    """
+    dms_rocketmq: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event source configuration detail for DMS RocketMQ type, in JSON
+    format.
 
-        > Exactly one of `kafka`, `mobile_rocketmq`, `community_rocketmq` and `dms_rocketmq` must be provided.
+    > Exactly one of `kafka`, `mobile_rocketmq`, `community_rocketmq` and `dms_rocketmq` must be provided.
 
-        <a name="stream_sink"></a>
-        The `targets` block supports:
-        """
-        kafka: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event target configuration detail for DMS Kafka type, in JSON format.
+    <a name="stream_sink"></a>
+    The `targets` block supports:
+    """
+    kafka: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event target configuration detail for DMS Kafka type, in JSON format.
 
-        > Exactly one of `functiongraph` and `kafka` must be provided.
+    > Exactly one of `functiongraph` and `kafka` must be provided.
 
-        <a name="stream_rule_config"></a>
-        The `rule_config` block supports:
-        """
-        mobile_rocketmq: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event source configuration detail for mobile RocketMQ type, in
-        JSON format.
-        """
-elif False:
-    EventStreamSourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="stream_rule_config"></a>
+    The `rule_config` block supports:
+    """
+    mobile_rocketmq: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event source configuration detail for mobile RocketMQ type, in
+    JSON format.
+    """
 
 @pulumi.input_type
 class EventStreamSourceArgs:
@@ -1005,60 +1128,57 @@ class EventStreamSourceArgs:
         pulumi.set(self, "mobile_rocketmq", value)
 
 
-if not MYPY:
-    class EventSubscriptionSourceArgsDict(TypedDict):
-        filter_rule: pulumi.Input[_builtins.str]
-        """
-        Specifies the filter rule of the event source, in JSON format.
-        The valid length is limited from `1` to `2,048`.
+class EventSubscriptionSourceArgsDict(TypedDict):
+    filter_rule: pulumi.Input[_builtins.str]
+    """
+    Specifies the filter rule of the event source, in JSON format.
+    The valid length is limited from `1` to `2,048`.
 
-        > The JSON result (`detail` and `filter_rule`) returned by the EG service may be different from the definition of the
-        resource created (especially the official event source). Changes can be handled by `lifecycle.ignore_changes` or
-        manual synchronization.
+    > The JSON result (`detail` and `filter_rule`) returned by the EG service may be different from the definition of the
+    resource created (especially the official event source). Changes can be handled by `lifecycle.ignore_changes` or
+    manual synchronization.
 
-        <a name="subscription_targets"></a>
-        The `targets` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the event target.
-        The valid length is limited from `1` to `128`.
-        """
-        provider_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the provider type of the event target.
-        The valid values are as follows:
-        + **CUSTOM**
-        + **OFFICIAL**
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The (UTC) creation time of the event target, in RFC3339 format.
-        """
-        detail: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the configuration detail of the event target, in JSON format.
-        The valid length is limited from `1` to `1,024`.
-        """
-        detail_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name (key) of the target detail configuration.
-        The valid values are as follows:
-        + **detail**: Custom event targets and FunctionGraph event targets are used.
-        + **smn_detail**: SMN event targets are used.
-        + **kafka_detail**: DMS kafka event targets are used.
-        + **eg_detail**: EG event targets are used.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom ID of the event target, in UUID format.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The (UTC) update time of the event target, in RFC3339 format.
-        """
-elif False:
-    EventSubscriptionSourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="subscription_targets"></a>
+    The `targets` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the event target.
+    The valid length is limited from `1` to `128`.
+    """
+    provider_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the provider type of the event target.
+    The valid values are as follows:
+    + **CUSTOM**
+    + **OFFICIAL**
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The (UTC) creation time of the event target, in RFC3339 format.
+    """
+    detail: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the configuration detail of the event target, in JSON format.
+    The valid length is limited from `1` to `1,024`.
+    """
+    detail_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name (key) of the target detail configuration.
+    The valid values are as follows:
+    + **detail**: Custom event targets and FunctionGraph event targets are used.
+    + **smn_detail**: SMN event targets are used.
+    + **kafka_detail**: DMS kafka event targets are used.
+    + **eg_detail**: EG event targets are used.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom ID of the event target, in UUID format.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The (UTC) update time of the event target, in RFC3339 format.
+    """
 
 @pulumi.input_type
 class EventSubscriptionSourceArgs:
@@ -1228,64 +1348,61 @@ class EventSubscriptionSourceArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class EventSubscriptionTargetArgsDict(TypedDict):
-        detail: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration detail of the event target, in JSON format.
-        The valid length is limited from `1` to `1,024`.
-        """
-        detail_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name (key) of the target detail configuration.
-        The valid values are as follows:
-        + **detail**: Custom event targets and FunctionGraph event targets are used.
-        + **smn_detail**: SMN event targets are used.
-        + **kafka_detail**: DMS kafka event targets are used.
-        + **eg_detail**: EG event targets are used.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the event target.
-        The valid length is limited from `1` to `128`.
-        """
-        provider_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the provider type of the event target.
-        The valid values are as follows:
-        + **CUSTOM**
-        + **OFFICIAL**
-        """
-        transform: pulumi.Input[_builtins.str]
-        """
-        Specifies the transform configuration of the event target, in JSON format.
-        """
-        connection_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the connection ID of the EG event target.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The (UTC) creation time of the event target, in RFC3339 format.
-        """
-        dead_letter_queue: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the specified queue to which failure events sent, in JSON format.
+class EventSubscriptionTargetArgsDict(TypedDict):
+    detail: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration detail of the event target, in JSON format.
+    The valid length is limited from `1` to `1,024`.
+    """
+    detail_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name (key) of the target detail configuration.
+    The valid values are as follows:
+    + **detail**: Custom event targets and FunctionGraph event targets are used.
+    + **smn_detail**: SMN event targets are used.
+    + **kafka_detail**: DMS kafka event targets are used.
+    + **eg_detail**: EG event targets are used.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the event target.
+    The valid length is limited from `1` to `128`.
+    """
+    provider_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the provider type of the event target.
+    The valid values are as follows:
+    + **CUSTOM**
+    + **OFFICIAL**
+    """
+    transform: pulumi.Input[_builtins.str]
+    """
+    Specifies the transform configuration of the event target, in JSON format.
+    """
+    connection_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the connection ID of the EG event target.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The (UTC) creation time of the event target, in RFC3339 format.
+    """
+    dead_letter_queue: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the specified queue to which failure events sent, in JSON format.
 
-        > The JSON result (`detail`, `transform`and `dead_letter_queue`) returned by the EG service may be different from the
-        definition of the resource created (especially the official event target). Changes can be handled by
-        `lifecycle.ignore_changes` or manual synchronization.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom ID of the event target, in UUID format.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The (UTC) update time of the event target, in RFC3339 format.
-        """
-elif False:
-    EventSubscriptionTargetArgsDict: TypeAlias = Mapping[str, Any]
+    > The JSON result (`detail`, `transform`and `dead_letter_queue`) returned by the EG service may be different from the
+    definition of the resource created (especially the official event target). Changes can be handled by
+    `lifecycle.ignore_changes` or manual synchronization.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom ID of the event target, in UUID format.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The (UTC) update time of the event target, in RFC3339 format.
+    """
 
 @pulumi.input_type
 class EventSubscriptionTargetArgs:
@@ -1475,5 +1592,779 @@ class EventSubscriptionTargetArgs:
     @updated_at.setter
     def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
+
+
+class EventSubscriptionTargetApigwDetailArgsDict(TypedDict):
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the URL of the APIGW endpoint.
+    """
+    invocation_http_parameters: NotRequired[pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersArgsDict']]
+    """
+    Specifies the HTTP parameters for the APIGW invocation.  
+    The invocation_http_parameters structure is documented below.
+
+    <a name="eg_target_apigw_parameters"></a>
+    The `invocation_http_parameters` block supports:
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetApigwDetailArgs:
+    def __init__(__self__, *,
+                 url: pulumi.Input[_builtins.str],
+                 invocation_http_parameters: Optional[pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] url: Specifies the URL of the APIGW endpoint.
+        :param pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersArgs'] invocation_http_parameters: Specifies the HTTP parameters for the APIGW invocation.  
+               The invocation_http_parameters structure is documented below.
+               
+               <a name="eg_target_apigw_parameters"></a>
+               The `invocation_http_parameters` block supports:
+        """
+        pulumi.set(__self__, "url", url)
+        if invocation_http_parameters is not None:
+            pulumi.set(__self__, "invocation_http_parameters", invocation_http_parameters)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the URL of the APIGW endpoint.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="invocationHttpParameters")
+    def invocation_http_parameters(self) -> Optional[pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersArgs']]:
+        """
+        Specifies the HTTP parameters for the APIGW invocation.  
+        The invocation_http_parameters structure is documented below.
+
+        <a name="eg_target_apigw_parameters"></a>
+        The `invocation_http_parameters` block supports:
+        """
+        return pulumi.get(self, "invocation_http_parameters")
+
+    @invocation_http_parameters.setter
+    def invocation_http_parameters(self, value: Optional[pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersArgs']]):
+        pulumi.set(self, "invocation_http_parameters", value)
+
+
+class EventSubscriptionTargetApigwDetailInvocationHttpParametersArgsDict(TypedDict):
+    header_parameters: NotRequired[pulumi.Input[Sequence[pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgsDict']]]]
+    """
+    Specifies the header parameters for the HTTP request.  
+    The header_parameters structure is documented below.
+
+    <a name="eg_target_apigw_header_parameter"></a>
+    The `header_parameters` block supports:
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetApigwDetailInvocationHttpParametersArgs:
+    def __init__(__self__, *,
+                 header_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgs']]] header_parameters: Specifies the header parameters for the HTTP request.  
+               The header_parameters structure is documented below.
+               
+               <a name="eg_target_apigw_header_parameter"></a>
+               The `header_parameters` block supports:
+        """
+        if header_parameters is not None:
+            pulumi.set(__self__, "header_parameters", header_parameters)
+
+    @_builtins.property
+    @pulumi.getter(name="headerParameters")
+    def header_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgs']]]]:
+        """
+        Specifies the header parameters for the HTTP request.  
+        The header_parameters structure is documented below.
+
+        <a name="eg_target_apigw_header_parameter"></a>
+        The `header_parameters` block supports:
+        """
+        return pulumi.get(self, "header_parameters")
+
+    @header_parameters.setter
+    def header_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgs']]]]):
+        pulumi.set(self, "header_parameters", value)
+
+
+class EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgsDict(TypedDict):
+    is_value_secret: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the header parameter value is secret.
+
+    <a name="eg_target_dead_letter_queue"></a>
+    The `dead_letter_queue` block supports:
+    """
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key of the header parameter.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the header parameter.
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetApigwDetailInvocationHttpParametersHeaderParameterArgs:
+    def __init__(__self__, *,
+                 is_value_secret: Optional[pulumi.Input[_builtins.bool]] = None,
+                 key: Optional[pulumi.Input[_builtins.str]] = None,
+                 value: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] is_value_secret: Specifies whether the header parameter value is secret.
+               
+               <a name="eg_target_dead_letter_queue"></a>
+               The `dead_letter_queue` block supports:
+        :param pulumi.Input[_builtins.str] key: Specifies the key of the header parameter.
+        :param pulumi.Input[_builtins.str] value: Specifies the value of the header parameter.
+        """
+        if is_value_secret is not None:
+            pulumi.set(__self__, "is_value_secret", is_value_secret)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isValueSecret")
+    def is_value_secret(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the header parameter value is secret.
+
+        <a name="eg_target_dead_letter_queue"></a>
+        The `dead_letter_queue` block supports:
+        """
+        return pulumi.get(self, "is_value_secret")
+
+    @is_value_secret.setter
+    def is_value_secret(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_value_secret", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the key of the header parameter.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the value of the header parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+
+class EventSubscriptionTargetDeadLetterQueueArgsDict(TypedDict):
+    connection_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the connection ID of the dead letter queue.
+    """
+    instance_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance ID of the dead letter queue.
+    """
+    topic: pulumi.Input[_builtins.str]
+    """
+    Specifies The topic name of the dead letter queue.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of dead letter queue.
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetDeadLetterQueueArgs:
+    def __init__(__self__, *,
+                 connection_id: pulumi.Input[_builtins.str],
+                 instance_id: pulumi.Input[_builtins.str],
+                 topic: pulumi.Input[_builtins.str],
+                 type: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] connection_id: Specifies the connection ID of the dead letter queue.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID of the dead letter queue.
+        :param pulumi.Input[_builtins.str] topic: Specifies The topic name of the dead letter queue.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of dead letter queue.
+        """
+        pulumi.set(__self__, "connection_id", connection_id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "topic", topic)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the connection ID of the dead letter queue.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @connection_id.setter
+    def connection_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "connection_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the instance ID of the dead letter queue.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def topic(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies The topic name of the dead letter queue.
+        """
+        return pulumi.get(self, "topic")
+
+    @topic.setter
+    def topic(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "topic", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the type of dead letter queue.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+
+class EventSubscriptionTargetEgDetailArgsDict(TypedDict):
+    agency_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the agency name for cross-account access.
+    """
+    target_channel_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the target channel ID of the EG channel.
+    """
+    target_project_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the target project ID of the EG channel.
+    """
+    target_region: pulumi.Input[_builtins.str]
+    """
+    Specifies the target region of the EG channel.
+    """
+    cross_account: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this is a cross-account EG channel target.
+
+    <a name="eg_target_apigw_detail"></a>
+    The `apigw_detail` block supports:
+    """
+    cross_region: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this is a cross-region EG channel target.
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetEgDetailArgs:
+    def __init__(__self__, *,
+                 agency_name: pulumi.Input[_builtins.str],
+                 target_channel_id: pulumi.Input[_builtins.str],
+                 target_project_id: pulumi.Input[_builtins.str],
+                 target_region: pulumi.Input[_builtins.str],
+                 cross_account: Optional[pulumi.Input[_builtins.bool]] = None,
+                 cross_region: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name for cross-account access.
+        :param pulumi.Input[_builtins.str] target_channel_id: Specifies the target channel ID of the EG channel.
+        :param pulumi.Input[_builtins.str] target_project_id: Specifies the target project ID of the EG channel.
+        :param pulumi.Input[_builtins.str] target_region: Specifies the target region of the EG channel.
+        :param pulumi.Input[_builtins.bool] cross_account: Specifies whether this is a cross-account EG channel target.
+               
+               <a name="eg_target_apigw_detail"></a>
+               The `apigw_detail` block supports:
+        :param pulumi.Input[_builtins.bool] cross_region: Specifies whether this is a cross-region EG channel target.
+        """
+        pulumi.set(__self__, "agency_name", agency_name)
+        pulumi.set(__self__, "target_channel_id", target_channel_id)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+        pulumi.set(__self__, "target_region", target_region)
+        if cross_account is not None:
+            pulumi.set(__self__, "cross_account", cross_account)
+        if cross_region is not None:
+            pulumi.set(__self__, "cross_region", cross_region)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the agency name for cross-account access.
+        """
+        return pulumi.get(self, "agency_name")
+
+    @agency_name.setter
+    def agency_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "agency_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetChannelId")
+    def target_channel_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the target channel ID of the EG channel.
+        """
+        return pulumi.get(self, "target_channel_id")
+
+    @target_channel_id.setter
+    def target_channel_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "target_channel_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the target project ID of the EG channel.
+        """
+        return pulumi.get(self, "target_project_id")
+
+    @target_project_id.setter
+    def target_project_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "target_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetRegion")
+    def target_region(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the target region of the EG channel.
+        """
+        return pulumi.get(self, "target_region")
+
+    @target_region.setter
+    def target_region(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "target_region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="crossAccount")
+    def cross_account(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether this is a cross-account EG channel target.
+
+        <a name="eg_target_apigw_detail"></a>
+        The `apigw_detail` block supports:
+        """
+        return pulumi.get(self, "cross_account")
+
+    @cross_account.setter
+    def cross_account(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "cross_account", value)
+
+    @_builtins.property
+    @pulumi.getter(name="crossRegion")
+    def cross_region(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether this is a cross-region EG channel target.
+        """
+        return pulumi.get(self, "cross_region")
+
+    @cross_region.setter
+    def cross_region(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "cross_region", value)
+
+
+class EventSubscriptionTargetKafkaDetailArgsDict(TypedDict):
+    topic: pulumi.Input[_builtins.str]
+    """
+    Specifies The topic name of the dead letter queue.
+    """
+    key_transform: NotRequired[pulumi.Input['EventSubscriptionTargetKafkaDetailKeyTransformArgsDict']]
+    """
+    Specifies the subject transform configuration of the Kafka
+    messages.
+    The key_transform structure is documented below.
+
+    <a name="eg_target_eg_detail"></a>
+    The `eg_detail` block supports:
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetKafkaDetailArgs:
+    def __init__(__self__, *,
+                 topic: pulumi.Input[_builtins.str],
+                 key_transform: Optional[pulumi.Input['EventSubscriptionTargetKafkaDetailKeyTransformArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] topic: Specifies The topic name of the dead letter queue.
+        :param pulumi.Input['EventSubscriptionTargetKafkaDetailKeyTransformArgs'] key_transform: Specifies the subject transform configuration of the Kafka
+               messages.
+               The key_transform structure is documented below.
+               
+               <a name="eg_target_eg_detail"></a>
+               The `eg_detail` block supports:
+        """
+        pulumi.set(__self__, "topic", topic)
+        if key_transform is not None:
+            pulumi.set(__self__, "key_transform", key_transform)
+
+    @_builtins.property
+    @pulumi.getter
+    def topic(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies The topic name of the dead letter queue.
+        """
+        return pulumi.get(self, "topic")
+
+    @topic.setter
+    def topic(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "topic", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyTransform")
+    def key_transform(self) -> Optional[pulumi.Input['EventSubscriptionTargetKafkaDetailKeyTransformArgs']]:
+        """
+        Specifies the subject transform configuration of the Kafka
+        messages.
+        The key_transform structure is documented below.
+
+        <a name="eg_target_eg_detail"></a>
+        The `eg_detail` block supports:
+        """
+        return pulumi.get(self, "key_transform")
+
+    @key_transform.setter
+    def key_transform(self, value: Optional[pulumi.Input['EventSubscriptionTargetKafkaDetailKeyTransformArgs']]):
+        pulumi.set(self, "key_transform", value)
+
+
+class EventSubscriptionTargetKafkaDetailKeyTransformArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of dead letter queue.
+    """
+    template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the template definition for VARIABLE type transform rules.
+
+    <a name="eg_target_kafka_detail"></a>
+    The `kafka_detail` block supports:
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the header parameter.
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetKafkaDetailKeyTransformArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 template: Optional[pulumi.Input[_builtins.str]] = None,
+                 value: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: Specifies the type of dead letter queue.
+        :param pulumi.Input[_builtins.str] template: Specifies the template definition for VARIABLE type transform rules.
+               
+               <a name="eg_target_kafka_detail"></a>
+               The `kafka_detail` block supports:
+        :param pulumi.Input[_builtins.str] value: Specifies the value of the header parameter.
+        """
+        pulumi.set(__self__, "type", type)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the type of dead letter queue.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the template definition for VARIABLE type transform rules.
+
+        <a name="eg_target_kafka_detail"></a>
+        The `kafka_detail` block supports:
+        """
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "template", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the value of the header parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+
+class EventSubscriptionTargetKeyTransformArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of dead letter queue.
+    """
+    template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the template definition for VARIABLE type transform rules.
+
+    <a name="eg_target_kafka_detail"></a>
+    The `kafka_detail` block supports:
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the header parameter.
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetKeyTransformArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 template: Optional[pulumi.Input[_builtins.str]] = None,
+                 value: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: Specifies the type of dead letter queue.
+        :param pulumi.Input[_builtins.str] template: Specifies the template definition for VARIABLE type transform rules.
+               
+               <a name="eg_target_kafka_detail"></a>
+               The `kafka_detail` block supports:
+        :param pulumi.Input[_builtins.str] value: Specifies the value of the header parameter.
+        """
+        pulumi.set(__self__, "type", type)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the type of dead letter queue.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the template definition for VARIABLE type transform rules.
+
+        <a name="eg_target_kafka_detail"></a>
+        The `kafka_detail` block supports:
+        """
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "template", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the value of the header parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+
+class EventSubscriptionTargetSmnDetailArgsDict(TypedDict):
+    agency_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the agency name for cross-account access.
+    """
+    urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the URN of the SMN topic.
+    """
+    key_transform: NotRequired[pulumi.Input['EventSubscriptionTargetSmnDetailKeyTransformArgsDict']]
+    """
+    Specifies the subject transform configuration of the Kafka
+    messages.
+    The key_transform structure is documented below.
+
+    <a name="eg_target_eg_detail"></a>
+    The `eg_detail` block supports:
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetSmnDetailArgs:
+    def __init__(__self__, *,
+                 agency_name: pulumi.Input[_builtins.str],
+                 urn: pulumi.Input[_builtins.str],
+                 key_transform: Optional[pulumi.Input['EventSubscriptionTargetSmnDetailKeyTransformArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name for cross-account access.
+        :param pulumi.Input[_builtins.str] urn: Specifies the URN of the SMN topic.
+        :param pulumi.Input['EventSubscriptionTargetSmnDetailKeyTransformArgs'] key_transform: Specifies the subject transform configuration of the Kafka
+               messages.
+               The key_transform structure is documented below.
+               
+               <a name="eg_target_eg_detail"></a>
+               The `eg_detail` block supports:
+        """
+        pulumi.set(__self__, "agency_name", agency_name)
+        pulumi.set(__self__, "urn", urn)
+        if key_transform is not None:
+            pulumi.set(__self__, "key_transform", key_transform)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the agency name for cross-account access.
+        """
+        return pulumi.get(self, "agency_name")
+
+    @agency_name.setter
+    def agency_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "agency_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def urn(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the URN of the SMN topic.
+        """
+        return pulumi.get(self, "urn")
+
+    @urn.setter
+    def urn(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "urn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyTransform")
+    def key_transform(self) -> Optional[pulumi.Input['EventSubscriptionTargetSmnDetailKeyTransformArgs']]:
+        """
+        Specifies the subject transform configuration of the Kafka
+        messages.
+        The key_transform structure is documented below.
+
+        <a name="eg_target_eg_detail"></a>
+        The `eg_detail` block supports:
+        """
+        return pulumi.get(self, "key_transform")
+
+    @key_transform.setter
+    def key_transform(self, value: Optional[pulumi.Input['EventSubscriptionTargetSmnDetailKeyTransformArgs']]):
+        pulumi.set(self, "key_transform", value)
+
+
+class EventSubscriptionTargetSmnDetailKeyTransformArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of dead letter queue.
+    """
+    template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the template definition for VARIABLE type transform rules.
+
+    <a name="eg_target_kafka_detail"></a>
+    The `kafka_detail` block supports:
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the header parameter.
+    """
+
+@pulumi.input_type
+class EventSubscriptionTargetSmnDetailKeyTransformArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 template: Optional[pulumi.Input[_builtins.str]] = None,
+                 value: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: Specifies the type of dead letter queue.
+        :param pulumi.Input[_builtins.str] template: Specifies the template definition for VARIABLE type transform rules.
+               
+               <a name="eg_target_kafka_detail"></a>
+               The `kafka_detail` block supports:
+        :param pulumi.Input[_builtins.str] value: Specifies the value of the header parameter.
+        """
+        pulumi.set(__self__, "type", type)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the type of dead letter queue.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the template definition for VARIABLE type transform rules.
+
+        <a name="eg_target_kafka_detail"></a>
+        The `kafka_detail` block supports:
+        """
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "template", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the value of the header parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value", value)
 
 

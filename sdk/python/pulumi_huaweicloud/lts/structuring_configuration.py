@@ -32,6 +32,7 @@ class StructuringConfigurationArgs:
                  template_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StructuringConfiguration resource.
+
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the log group ID.
         :param pulumi.Input[_builtins.str] log_stream_id: Specifies the log stream ID.
         :param pulumi.Input[_builtins.str] template_name: Specifies the template name.
@@ -177,6 +178,7 @@ class _StructuringConfigurationState:
                  template_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StructuringConfiguration resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['StructuringConfigurationDemoFieldArgs']]] demo_fields: Specifies the example field array.
         :param pulumi.Input[_builtins.str] demo_log: The sample log event.
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the log group ID.
@@ -344,6 +346,7 @@ class StructuringConfiguration(pulumi.CustomResource):
                  __props__=None):
         """
         Create a StructuringConfiguration resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['StructuringConfigurationDemoFieldArgs', 'StructuringConfigurationDemoFieldArgsDict']]]] demo_fields: Specifies the example field array.
@@ -363,6 +366,7 @@ class StructuringConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a StructuringConfiguration resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param StructuringConfigurationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -26,6 +26,7 @@ class AdminAssignmentArgs:
                  app_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AdminAssignment resource.
+
         :param pulumi.Input[_builtins.str] account: Specifies the user account to be assigned the administrator role.
                The value can contain `1` to `64` characters.
                Changing this parameter will create a new resource.
@@ -133,6 +134,7 @@ class _AdminAssignmentState:
                  app_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AdminAssignment resources.
+
         :param pulumi.Input[_builtins.str] account: Specifies the user account to be assigned the administrator role.
                The value can contain `1` to `64` characters.
                Changing this parameter will create a new resource.
@@ -270,21 +272,18 @@ class AdminAssignment(pulumi.CustomResource):
 
         Import an administrator assignment and authenticated by account.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Meeting/adminAssignment:AdminAssignment test <id>/<account_name>/<account_password>
         ```
 
         Import an administrator assignment and authenticated by `APP ID`/`APP Key`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Meeting/adminAssignment:AdminAssignment test <id>/<app_id>/<app_key>/<corp_id>/<user_id>
         ```
 
         For this resource, the `corp_id` and `user_id` are never used, you can omit them but the slashes cannot be missing.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -337,21 +336,18 @@ class AdminAssignment(pulumi.CustomResource):
 
         Import an administrator assignment and authenticated by account.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Meeting/adminAssignment:AdminAssignment test <id>/<account_name>/<account_password>
         ```
 
         Import an administrator assignment and authenticated by `APP ID`/`APP Key`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Meeting/adminAssignment:AdminAssignment test <id>/<app_id>/<app_key>/<corp_id>/<user_id>
         ```
 
         For this resource, the `corp_id` and `user_id` are never used, you can omit them but the slashes cannot be missing.
+
 
         :param str resource_name: The name of the resource.
         :param AdminAssignmentArgs args: The arguments to use to populate this resource's properties.

@@ -21,21 +21,16 @@ __all__ = [
     'PeeringConnectV1TargetVpcInfoArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class PeeringConnectTargetVpcInfoArgsDict(TypedDict):
-        vpc_id: pulumi.Input[_builtins.str]
-        """
-        The VPC ID. Changing this parameter will create a new resource.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The project ID to which target vpc belongs. Changing this parameter will
-        create a new resource.
-        """
-elif False:
-    PeeringConnectTargetVpcInfoArgsDict: TypeAlias = Mapping[str, Any]
+class PeeringConnectTargetVpcInfoArgsDict(TypedDict):
+    vpc_id: pulumi.Input[_builtins.str]
+    """
+    The VPC ID. Changing this parameter will create a new resource.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The project ID to which target vpc belongs. Changing this parameter will
+    create a new resource.
+    """
 
 @pulumi.input_type
 class PeeringConnectTargetVpcInfoArgs:
@@ -77,12 +72,9 @@ class PeeringConnectTargetVpcInfoArgs:
         pulumi.set(self, "project_id", value)
 
 
-if not MYPY:
-    class PeeringConnectV1TargetVpcInfoArgsDict(TypedDict):
-        vpc_id: pulumi.Input[_builtins.str]
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PeeringConnectV1TargetVpcInfoArgsDict: TypeAlias = Mapping[str, Any]
+class PeeringConnectV1TargetVpcInfoArgsDict(TypedDict):
+    vpc_id: pulumi.Input[_builtins.str]
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PeeringConnectV1TargetVpcInfoArgs:

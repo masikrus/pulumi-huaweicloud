@@ -27,33 +27,28 @@ __all__ = [
     'GetResourceTagsFilterTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class NotificationFilterArgsDict(TypedDict):
-        condition: pulumi.Input[_builtins.str]
-        """
-        Specifies the relationship between multiple rules. The valid values are as follows:
-        + **AND**: Effective after all filtering conditions are met.
-        + **OR**: Effective when any one of the conditions is met.
-        """
-        rules: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies an array of filtering rules. It consists of three parts,
-        the first part is the **key**, the second part is the **rule**, and the third part is the **value**,
-        the format is: **key != value**.
-        + The **key** can be: **api_version**, **code**, **trace_rating**, **trace_type**, **resource_id** and
-        **resource_name**.
-        When the key is **api_version**, the value needs to follow the regular constraint: **^ (a-zA-Z0-9_ -.) {1,64}$**.
-        When the key is **code**, the length range of value is from `1` to `256`.
-        When the key is **trace_rating**, the value can be **normal**, **warning** or **incident**.
-        When the key is **trace_type**, the value can be **ConsoleAction**, **ApiCall** or **SystemAction**.
-        When the key is **resource_id**, the length range of value is from `1` to `350`.
-        When the key is **resource_name**, the length range of value is from `1` to `256`.
-        + The **rule** can be: **!=** or **=**.
-        """
-elif False:
-    NotificationFilterArgsDict: TypeAlias = Mapping[str, Any]
+class NotificationFilterArgsDict(TypedDict):
+    condition: pulumi.Input[_builtins.str]
+    """
+    Specifies the relationship between multiple rules. The valid values are as follows:
+    + **AND**: Effective after all filtering conditions are met.
+    + **OR**: Effective when any one of the conditions is met.
+    """
+    rules: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies an array of filtering rules. It consists of three parts,
+    the first part is the **key**, the second part is the **rule**, and the third part is the **value**,
+    the format is: **key != value**.
+    + The **key** can be: **api_version**, **code**, **trace_rating**, **trace_type**, **resource_id** and
+    **resource_name**.
+    When the key is **api_version**, the value needs to follow the regular constraint: **^ (a-zA-Z0-9_ -.) {1,64}$**.
+    When the key is **code**, the length range of value is from `1` to `256`.
+    When the key is **trace_rating**, the value can be **normal**, **warning** or **incident**.
+    When the key is **trace_type**, the value can be **ConsoleAction**, **ApiCall** or **SystemAction**.
+    When the key is **resource_id**, the length range of value is from `1` to `350`.
+    When the key is **resource_name**, the length range of value is from `1` to `256`.
+    + The **rule** can be: **!=** or **=**.
+    """
 
 @pulumi.input_type
 class NotificationFilterArgs:
@@ -118,25 +113,22 @@ class NotificationFilterArgs:
         pulumi.set(self, "rules", value)
 
 
-if not MYPY:
-    class NotificationOperationArgsDict(TypedDict):
-        resource: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource type.
-        """
-        service: pulumi.Input[_builtins.str]
-        """
-        Specifies the cloud service.
-        """
-        trace_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies an array of trace names.
+class NotificationOperationArgsDict(TypedDict):
+    resource: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource type.
+    """
+    service: pulumi.Input[_builtins.str]
+    """
+    Specifies the cloud service.
+    """
+    trace_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies an array of trace names.
 
-        <a name="CTS_Notification_OperationUsers"></a>
-        The `operation_users` block supports:
-        """
-elif False:
-    NotificationOperationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="CTS_Notification_OperationUsers"></a>
+    The `operation_users` block supports:
+    """
 
 @pulumi.input_type
 class NotificationOperationArgs:
@@ -196,21 +188,18 @@ class NotificationOperationArgs:
         pulumi.set(self, "trace_names", value)
 
 
-if not MYPY:
-    class NotificationOperationUserArgsDict(TypedDict):
-        group: pulumi.Input[_builtins.str]
-        """
-        Specifies the IAM user group name.
-        """
-        users: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies an array of IAM users in the group.
+class NotificationOperationUserArgsDict(TypedDict):
+    group: pulumi.Input[_builtins.str]
+    """
+    Specifies the IAM user group name.
+    """
+    users: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies an array of IAM users in the group.
 
-        <a name="CTS_Notification_Filter"></a>
-        The `filter` block supports:
-        """
-elif False:
-    NotificationOperationUserArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="CTS_Notification_Filter"></a>
+    The `filter` block supports:
+    """
 
 @pulumi.input_type
 class NotificationOperationUserArgs:
@@ -255,19 +244,16 @@ class NotificationOperationUserArgs:
         pulumi.set(self, "users", value)
 
 
-if not MYPY:
-    class GetResourceTagsFilterMatchArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the match key.  
-        The valid values is **resource_name**.
-        """
-        value: NotRequired[_builtins.str]
-        """
-        Specifies the match value.
-        """
-elif False:
-    GetResourceTagsFilterMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourceTagsFilterMatchArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the match key.  
+    The valid values is **resource_name**.
+    """
+    value: NotRequired[_builtins.str]
+    """
+    Specifies the match value.
+    """
 
 @pulumi.input_type
 class GetResourceTagsFilterMatchArgs:
@@ -310,22 +296,19 @@ class GetResourceTagsFilterMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetResourceTagsFilterTagArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the match key.  
-        The valid values is **resource_name**.
-        """
-        values: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the tag values.
+class GetResourceTagsFilterTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the match key.  
+    The valid values is **resource_name**.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the tag values.
 
-        <a name="cts_filter_resource_matches_arg"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetResourceTagsFilterTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="cts_filter_resource_matches_arg"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetResourceTagsFilterTagArgs:

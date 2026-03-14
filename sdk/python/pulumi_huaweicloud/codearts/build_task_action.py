@@ -30,6 +30,7 @@ class BuildTaskActionArgs:
                  scm: Optional[pulumi.Input['BuildTaskActionScmArgs']] = None):
         """
         The set of arguments for constructing a BuildTaskAction resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action. Value can be **execute** and **stop**.
         :param pulumi.Input[_builtins.str] job_id: Specifies the build task ID.
         :param pulumi.Input[_builtins.str] build_no: Specifies the build task number, start from 1.
@@ -161,6 +162,7 @@ class _BuildTaskActionState:
                  scm: Optional[pulumi.Input['BuildTaskActionScmArgs']] = None):
         """
         Input properties used for looking up and filtering BuildTaskAction resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action. Value can be **execute** and **stop**.
         :param pulumi.Input[_builtins.str] build_no: Specifies the build task number, start from 1.
                Only valid when `action` is **stop**.
@@ -296,7 +298,7 @@ class _BuildTaskActionState:
         pulumi.set(self, "scm", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/buildTaskAction:BuildTaskAction")
+@pulumi.type_token("huaweicloud:Codearts/buildTaskAction:BuildTaskAction")
 class BuildTaskAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -342,6 +344,7 @@ class BuildTaskAction(pulumi.CustomResource):
             action="stop",
             build_no=build_no)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -399,6 +402,7 @@ class BuildTaskAction(pulumi.CustomResource):
             build_no=build_no)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param BuildTaskActionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -443,7 +447,7 @@ class BuildTaskAction(pulumi.CustomResource):
             __props__.__dict__["scm"] = scm
             __props__.__dict__["daily_build_number"] = None
         super(BuildTaskAction, __self__).__init__(
-            'huaweicloud:codearts/buildTaskAction:BuildTaskAction',
+            'huaweicloud:Codearts/buildTaskAction:BuildTaskAction',
             resource_name,
             __props__,
             opts)

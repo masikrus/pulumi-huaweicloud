@@ -122,7 +122,7 @@ def get_instance_ecs_quota(availability_zone: Optional[_builtins.str] = None,
     config = pulumi.Config()
     resource_spec_code = config.require_object("resourceSpecCode")
     availability_zone = config.require_object("availabilityZone")
-    test = huaweicloud.cbh.get_instance_ecs_quota(availability_zone=availability_zone,
+    test = huaweicloud.Cbh.get_instance_ecs_quota(availability_zone=availability_zone,
         resource_spec_code=resource_spec_code)
     ```
 
@@ -143,7 +143,7 @@ def get_instance_ecs_quota(availability_zone: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['resourceSpecCode'] = resource_spec_code
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cbh/getInstanceEcsQuota:getInstanceEcsQuota', __args__, opts=opts, typ=GetInstanceEcsQuotaResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cbh/getInstanceEcsQuota:getInstanceEcsQuota', __args__, opts=opts, typ=GetInstanceEcsQuotaResult).value
 
     return AwaitableGetInstanceEcsQuotaResult(
         availability_zone=pulumi.get(__ret__, 'availability_zone'),
@@ -168,7 +168,7 @@ def get_instance_ecs_quota_output(availability_zone: Optional[pulumi.Input[_buil
     config = pulumi.Config()
     resource_spec_code = config.require_object("resourceSpecCode")
     availability_zone = config.require_object("availabilityZone")
-    test = huaweicloud.cbh.get_instance_ecs_quota(availability_zone=availability_zone,
+    test = huaweicloud.Cbh.get_instance_ecs_quota(availability_zone=availability_zone,
         resource_spec_code=resource_spec_code)
     ```
 
@@ -189,7 +189,7 @@ def get_instance_ecs_quota_output(availability_zone: Optional[pulumi.Input[_buil
     __args__['region'] = region
     __args__['resourceSpecCode'] = resource_spec_code
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cbh/getInstanceEcsQuota:getInstanceEcsQuota', __args__, opts=opts, typ=GetInstanceEcsQuotaResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cbh/getInstanceEcsQuota:getInstanceEcsQuota', __args__, opts=opts, typ=GetInstanceEcsQuotaResult)
     return __ret__.apply(lambda __response__: GetInstanceEcsQuotaResult(
         availability_zone=pulumi.get(__response__, 'availability_zone'),
         id=pulumi.get(__response__, 'id'),

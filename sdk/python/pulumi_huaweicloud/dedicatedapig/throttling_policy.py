@@ -36,6 +36,7 @@ class ThrottlingPolicyArgs:
                  user_throttles: Optional[pulumi.Input[Sequence[pulumi.Input['ThrottlingPolicyUserThrottleArgs']]]] = None):
         """
         The set of arguments for constructing a ThrottlingPolicy resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the throttling
                policy belongs.
                Changing this will create a new resource.
@@ -304,6 +305,7 @@ class _ThrottlingPolicyState:
                  user_throttles: Optional[pulumi.Input[Sequence[pulumi.Input['ThrottlingPolicyUserThrottleArgs']]]] = None):
         """
         Input properties used for looking up and filtering ThrottlingPolicy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ThrottlingPolicyAppThrottleArgs']]] app_throttles: Specifies the array of one or more special throttling policies for APP limit.
                The object structure is documented below.
                
@@ -650,6 +652,7 @@ class ThrottlingPolicy(pulumi.CustomResource):
         $ pulumi import huaweicloud:DedicatedApig/throttlingPolicy:ThrottlingPolicy test <instance_id>/<name>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ThrottlingPolicyAppThrottleArgs', 'ThrottlingPolicyAppThrottleArgsDict']]]] app_throttles: Specifies the array of one or more special throttling policies for APP limit.
@@ -757,6 +760,7 @@ class ThrottlingPolicy(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/throttlingPolicy:ThrottlingPolicy test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ThrottlingPolicyArgs args: The arguments to use to populate this resource's properties.

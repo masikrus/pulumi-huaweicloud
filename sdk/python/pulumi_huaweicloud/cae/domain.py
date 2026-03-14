@@ -20,22 +20,33 @@ __all__ = ['DomainArgs', 'Domain']
 class DomainArgs:
     def __init__(__self__, *,
                  environment_id: pulumi.Input[_builtins.str],
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Domain resource.
+
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               domain name belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+               only valid for enterprise users.
         :param pulumi.Input[_builtins.str] name: Specifies the domain name to be associated with the CAE environment.
                Changing this creates a new resource.
                The maximum length of the domain name is `254` characters.
-               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
+               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+               characters.
                Only letters, digits, and hyphens (-) allowed, and must start with a letter or a digit.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
         """
         pulumi.set(__self__, "environment_id", environment_id)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region is not None:
@@ -55,13 +66,31 @@ class DomainArgs:
         pulumi.set(self, "environment_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        domain name belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+        only valid for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the domain name to be associated with the CAE environment.
         Changing this creates a new resource.
         The maximum length of the domain name is `254` characters.
-        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
+        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+        characters.
         Only letters, digits, and hyphens (-) allowed, and must start with a letter or a digit.
         """
         return pulumi.get(self, "name")
@@ -89,18 +118,27 @@ class DomainArgs:
 class _DomainState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Domain resources.
+
         :param pulumi.Input[_builtins.str] created_at: The time when the domain name is associated, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               domain name belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+               only valid for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the domain name to be associated with the CAE environment.
                Changing this creates a new resource.
                The maximum length of the domain name is `254` characters.
-               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
+               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+               characters.
                Only letters, digits, and hyphens (-) allowed, and must start with a letter or a digit.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
@@ -108,6 +146,8 @@ class _DomainState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if name is not None:
@@ -126,6 +166,23 @@ class _DomainState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        domain name belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+        only valid for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -147,7 +204,8 @@ class _DomainState:
         Specifies the domain name to be associated with the CAE environment.
         Changing this creates a new resource.
         The maximum length of the domain name is `254` characters.
-        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
+        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+        characters.
         Only letters, digits, and hyphens (-) allowed, and must start with a letter or a digit.
         """
         return pulumi.get(self, "name")
@@ -171,12 +229,13 @@ class _DomainState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:cae/domain:Domain")
+@pulumi.type_token("huaweicloud:Cae/domain:Domain")
 class Domain(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -202,20 +261,33 @@ class Domain(pulumi.CustomResource):
 
         The resource can be imported using `environment_id` and `name`, separated by a slash (/), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/domain:Domain test <environment_id>/<name>
+        ```
+
+        For the domain with the non-default enterprise project ID, its enterprise project ID need to be specified
+        additionanlly when importing. All fields are separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/domain:Domain test <environment_id>/<name>
+        $ pulumi import huaweicloud:Cae/domain:Domain test <environment_id>/<name>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               domain name belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+               only valid for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the domain name to be associated with the CAE environment.
                Changing this creates a new resource.
                The maximum length of the domain name is `254` characters.
-               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
+               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+               characters.
                Only letters, digits, and hyphens (-) allowed, and must start with a letter or a digit.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
@@ -248,11 +320,17 @@ class Domain(pulumi.CustomResource):
 
         The resource can be imported using `environment_id` and `name`, separated by a slash (/), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/domain:Domain test <environment_id>/<name>
+        ```
+
+        For the domain with the non-default enterprise project ID, its enterprise project ID need to be specified
+        additionanlly when importing. All fields are separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/domain:Domain test <environment_id>/<name>
+        $ pulumi import huaweicloud:Cae/domain:Domain test <environment_id>/<name>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainArgs args: The arguments to use to populate this resource's properties.
@@ -269,6 +347,7 @@ class Domain(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -281,6 +360,7 @@ class Domain(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DomainArgs.__new__(DomainArgs)
 
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if environment_id is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_id'")
             __props__.__dict__["environment_id"] = environment_id
@@ -288,7 +368,7 @@ class Domain(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["created_at"] = None
         super(Domain, __self__).__init__(
-            'huaweicloud:cae/domain:Domain',
+            'huaweicloud:Cae/domain:Domain',
             resource_name,
             __props__,
             opts)
@@ -298,6 +378,7 @@ class Domain(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             environment_id: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None) -> 'Domain':
@@ -309,12 +390,19 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: The time when the domain name is associated, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               domain name belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+               only valid for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the domain name to be associated with the CAE environment.
                Changing this creates a new resource.
                The maximum length of the domain name is `254` characters.
-               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
+               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+               characters.
                Only letters, digits, and hyphens (-) allowed, and must start with a letter or a digit.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
@@ -325,6 +413,7 @@ class Domain(pulumi.CustomResource):
         __props__ = _DomainState.__new__(_DomainState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
@@ -337,6 +426,19 @@ class Domain(pulumi.CustomResource):
         The time when the domain name is associated, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        domain name belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+        only valid for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -354,7 +456,8 @@ class Domain(pulumi.CustomResource):
         Specifies the domain name to be associated with the CAE environment.
         Changing this creates a new resource.
         The maximum length of the domain name is `254` characters.
-        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
+        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+        characters.
         Only letters, digits, and hyphens (-) allowed, and must start with a letter or a digit.
         """
         return pulumi.get(self, "name")

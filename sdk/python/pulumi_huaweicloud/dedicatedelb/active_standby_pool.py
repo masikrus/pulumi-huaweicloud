@@ -38,6 +38,7 @@ class ActiveStandbyPoolArgs:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ActiveStandbyPool resource.
+
         :param pulumi.Input['ActiveStandbyPoolHealthmonitorArgs'] healthmonitor: Specifies the health check configured for the active-standby pool.
                The healthmonitor structure is documented below. Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['ActiveStandbyPoolMemberArgs']]] members: Specifies the members in the active-standby pool.
@@ -404,6 +405,7 @@ class _ActiveStandbyPoolState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ActiveStandbyPool resources.
+
         :param pulumi.Input[_builtins.bool] any_port_enable: Specifies whether to enable forward to same port for active-standby
                pool. If this option is enabled, the listener routes the requests to the backend server over the same port as the
                frontend port. Value options:
@@ -865,11 +867,10 @@ class ActiveStandbyPool(pulumi.CustomResource):
 
         ELB active-standby pool can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/activeStandbyPool:ActiveStandbyPool test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1000,11 +1001,10 @@ class ActiveStandbyPool(pulumi.CustomResource):
 
         ELB active-standby pool can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/activeStandbyPool:ActiveStandbyPool test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ActiveStandbyPoolArgs args: The arguments to use to populate this resource's properties.

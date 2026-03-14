@@ -94,7 +94,7 @@ def get_audit_data_masking_rules(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_audit_data_masking_rules(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_audit_data_masking_rules(instance_id=instance_id)
     ```
 
 
@@ -106,7 +106,7 @@ def get_audit_data_masking_rules(instance_id: Optional[_builtins.str] = None,
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dbss/getAuditDataMaskingRules:getAuditDataMaskingRules', __args__, opts=opts, typ=GetAuditDataMaskingRulesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dbss/getAuditDataMaskingRules:getAuditDataMaskingRules', __args__, opts=opts, typ=GetAuditDataMaskingRulesResult).value
 
     return AwaitableGetAuditDataMaskingRulesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -127,7 +127,7 @@ def get_audit_data_masking_rules_output(instance_id: Optional[pulumi.Input[_buil
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_audit_data_masking_rules(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_audit_data_masking_rules(instance_id=instance_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_audit_data_masking_rules_output(instance_id: Optional[pulumi.Input[_buil
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dbss/getAuditDataMaskingRules:getAuditDataMaskingRules', __args__, opts=opts, typ=GetAuditDataMaskingRulesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dbss/getAuditDataMaskingRules:getAuditDataMaskingRules', __args__, opts=opts, typ=GetAuditDataMaskingRulesResult)
     return __ret__.apply(lambda __response__: GetAuditDataMaskingRulesResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

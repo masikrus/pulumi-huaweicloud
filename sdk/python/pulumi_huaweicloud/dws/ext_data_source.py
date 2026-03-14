@@ -31,6 +31,7 @@ class ExtDataSourceArgs:
                  user_pwd: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ExtDataSource resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: The DWS cluster ID to which the external data source belongs.
                The cluster **type** must be **ANALYSIS**.
                
@@ -252,6 +253,7 @@ class _ExtDataSourceState:
                  user_pwd: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ExtDataSource resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: The DWS cluster ID to which the external data source belongs.
                The cluster **type** must be **ANALYSIS**.
                
@@ -583,39 +585,16 @@ class ExtDataSource(pulumi.CustomResource):
 
         The dws external data source can be imported using `cluster_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/extDataSource:ExtDataSource test <cluster_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `user_pwd`, `reboot`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_ext_data_source" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              user_pwd,reboot
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -711,39 +690,16 @@ class ExtDataSource(pulumi.CustomResource):
 
         The dws external data source can be imported using `cluster_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/extDataSource:ExtDataSource test <cluster_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `user_pwd`, `reboot`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_ext_data_source" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              user_pwd,reboot
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ExtDataSourceArgs args: The arguments to use to populate this resource's properties.

@@ -30,6 +30,7 @@ class DeployGroupArgs:
                  resource_pool_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployGroup resource.
+
         :param pulumi.Input[_builtins.str] os_type: Specifies the operating system. Valid values are **windows** and **linux**.
                
                Changing this parameter will create a new resource.
@@ -195,6 +196,7 @@ class _DeployGroupState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployGroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: The permission create time.
         :param pulumi.Input[Sequence[pulumi.Input['DeployGroupCreatedByArgs']]] created_bies: The creator information.
                The object structure is documented below.
@@ -426,7 +428,7 @@ class _DeployGroupState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployGroup:DeployGroup")
+@pulumi.type_token("huaweicloud:Codearts/deployGroup:DeployGroup")
 class DeployGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -480,11 +482,10 @@ class DeployGroup(pulumi.CustomResource):
 
         The CodeArts deploy group resource can be imported using the `project_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployGroup:DeployGroup test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployGroup:DeployGroup test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -563,11 +564,10 @@ class DeployGroup(pulumi.CustomResource):
 
         The CodeArts deploy group resource can be imported using the `project_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployGroup:DeployGroup test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployGroup:DeployGroup test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeployGroupArgs args: The arguments to use to populate this resource's properties.
@@ -617,7 +617,7 @@ class DeployGroup(pulumi.CustomResource):
             __props__.__dict__["permissions"] = None
             __props__.__dict__["updated_at"] = None
         super(DeployGroup, __self__).__init__(
-            'huaweicloud:codearts/deployGroup:DeployGroup',
+            'huaweicloud:Codearts/deployGroup:DeployGroup',
             resource_name,
             __props__,
             opts)

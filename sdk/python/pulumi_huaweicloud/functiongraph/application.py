@@ -29,6 +29,7 @@ class ApplicationArgs:
                  template_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Application resource.
+
         :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name used by the application.  
                Changing this parameter will create a new resource.
                
@@ -161,6 +162,7 @@ class _ApplicationState:
                  template_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Application resources.
+
         :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name used by the application.  
                Changing this parameter will create a new resource.
                
@@ -366,41 +368,17 @@ class Application(pulumi.CustomResource):
 
         Application can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/application:Application test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response.
-
         The missing attributes include: `template_id`, `agency_name`, `params`.
-
         It is generally recommended running `pulumi preview` after importing the application.
-
         You can then decide if changes should be applied to the application, or the resource definition should be updated to
-
         align with the application. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_fgs_application" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_id, agency_name,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -440,41 +418,17 @@ class Application(pulumi.CustomResource):
 
         Application can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/application:Application test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response.
-
         The missing attributes include: `template_id`, `agency_name`, `params`.
-
         It is generally recommended running `pulumi preview` after importing the application.
-
         You can then decide if changes should be applied to the application, or the resource definition should be updated to
-
         align with the application. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_fgs_application" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_id, agency_name,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ApplicationArgs args: The arguments to use to populate this resource's properties.

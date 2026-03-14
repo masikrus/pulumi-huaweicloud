@@ -121,7 +121,7 @@ def get_encode_servers(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_encode_servers()
+    test = huaweicloud.Cph.get_encode_servers()
     ```
 
 
@@ -143,7 +143,7 @@ def get_encode_servers(region: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cph/getEncodeServers:getEncodeServers', __args__, opts=opts, typ=GetEncodeServersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cph/getEncodeServers:getEncodeServers', __args__, opts=opts, typ=GetEncodeServersResult).value
 
     return AwaitableGetEncodeServersResult(
         encode_servers=pulumi.get(__ret__, 'encode_servers'),
@@ -166,7 +166,7 @@ def get_encode_servers_output(region: Optional[pulumi.Input[Optional[_builtins.s
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_encode_servers()
+    test = huaweicloud.Cph.get_encode_servers()
     ```
 
 
@@ -188,7 +188,7 @@ def get_encode_servers_output(region: Optional[pulumi.Input[Optional[_builtins.s
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cph/getEncodeServers:getEncodeServers', __args__, opts=opts, typ=GetEncodeServersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cph/getEncodeServers:getEncodeServers', __args__, opts=opts, typ=GetEncodeServersResult)
     return __ret__.apply(lambda __response__: GetEncodeServersResult(
         encode_servers=pulumi.get(__response__, 'encode_servers'),
         id=pulumi.get(__response__, 'id'),

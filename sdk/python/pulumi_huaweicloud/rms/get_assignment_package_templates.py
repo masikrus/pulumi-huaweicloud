@@ -99,7 +99,7 @@ def get_assignment_package_templates(description: Optional[_builtins.str] = None
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_assignment_package_templates(template_key="test_template_key.json",
+    test = huaweicloud.Rms.get_assignment_package_templates(template_key="test_template_key.json",
         description="test_template_description")
     ```
 
@@ -111,7 +111,7 @@ def get_assignment_package_templates(description: Optional[_builtins.str] = None
     __args__['description'] = description
     __args__['templateKey'] = template_key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getAssignmentPackageTemplates:getAssignmentPackageTemplates', __args__, opts=opts, typ=GetAssignmentPackageTemplatesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getAssignmentPackageTemplates:getAssignmentPackageTemplates', __args__, opts=opts, typ=GetAssignmentPackageTemplatesResult).value
 
     return AwaitableGetAssignmentPackageTemplatesResult(
         description=pulumi.get(__ret__, 'description'),
@@ -130,7 +130,7 @@ def get_assignment_package_templates_output(description: Optional[pulumi.Input[O
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_assignment_package_templates(template_key="test_template_key.json",
+    test = huaweicloud.Rms.get_assignment_package_templates(template_key="test_template_key.json",
         description="test_template_description")
     ```
 
@@ -142,7 +142,7 @@ def get_assignment_package_templates_output(description: Optional[pulumi.Input[O
     __args__['description'] = description
     __args__['templateKey'] = template_key
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getAssignmentPackageTemplates:getAssignmentPackageTemplates', __args__, opts=opts, typ=GetAssignmentPackageTemplatesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getAssignmentPackageTemplates:getAssignmentPackageTemplates', __args__, opts=opts, typ=GetAssignmentPackageTemplatesResult)
     return __ret__.apply(lambda __response__: GetAssignmentPackageTemplatesResult(
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),

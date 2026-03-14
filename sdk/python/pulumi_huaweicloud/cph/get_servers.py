@@ -167,7 +167,7 @@ def get_servers(create_since: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_servers()
+    test = huaweicloud.Cph.get_servers()
     ```
 
 
@@ -201,7 +201,7 @@ def get_servers(create_since: Optional[_builtins.str] = None,
     __args__['serverName'] = server_name
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cph/getServers:getServers', __args__, opts=opts, typ=GetServersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cph/getServers:getServers', __args__, opts=opts, typ=GetServersResult).value
 
     return AwaitableGetServersResult(
         create_since=pulumi.get(__ret__, 'create_since'),
@@ -232,7 +232,7 @@ def get_servers_output(create_since: Optional[pulumi.Input[Optional[_builtins.st
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_servers()
+    test = huaweicloud.Cph.get_servers()
     ```
 
 
@@ -266,7 +266,7 @@ def get_servers_output(create_since: Optional[pulumi.Input[Optional[_builtins.st
     __args__['serverName'] = server_name
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cph/getServers:getServers', __args__, opts=opts, typ=GetServersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cph/getServers:getServers', __args__, opts=opts, typ=GetServersResult)
     return __ret__.apply(lambda __response__: GetServersResult(
         create_since=pulumi.get(__response__, 'create_since'),
         create_until=pulumi.get(__response__, 'create_until'),

@@ -59,27 +59,22 @@ __all__ = [
     'ProtectionRuleSourceRegionListArgsDict',
 ]
 
-MYPY = False
+class AclRuleCustomServiceArgsDict(TypedDict):
+    dest_port: pulumi.Input[_builtins.str]
+    """
+    The destination port.
+    """
+    protocol: pulumi.Input[_builtins.int]
+    """
+    The protocol type.
+    """
+    source_port: pulumi.Input[_builtins.str]
+    """
+    The source port.
 
-if not MYPY:
-    class AclRuleCustomServiceArgsDict(TypedDict):
-        dest_port: pulumi.Input[_builtins.str]
-        """
-        The destination port.
-        """
-        protocol: pulumi.Input[_builtins.int]
-        """
-        The protocol type.
-        """
-        source_port: pulumi.Input[_builtins.str]
-        """
-        The source port.
-
-        <a name="CustomServiceGroups"></a>
-        The `custom_service_groups` block supports:
-        """
-elif False:
-    AclRuleCustomServiceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="CustomServiceGroups"></a>
+    The `custom_service_groups` block supports:
+    """
 
 @pulumi.input_type
 class AclRuleCustomServiceArgs:
@@ -139,21 +134,18 @@ class AclRuleCustomServiceArgs:
         pulumi.set(self, "source_port", value)
 
 
-if not MYPY:
-    class AclRuleCustomServiceGroupsArgsDict(TypedDict):
-        group_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        The IDs of the predefined service groups.
-        """
-        protocols: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
-        """
-        The protocols used in the predefined service groups.
+class AclRuleCustomServiceGroupsArgsDict(TypedDict):
+    group_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    The IDs of the predefined service groups.
+    """
+    protocols: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
+    """
+    The protocols used in the predefined service groups.
 
-        <a name="SourceRegionList"></a>
-        The `source_region_list` block supports:
-        """
-elif False:
-    AclRuleCustomServiceGroupsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="SourceRegionList"></a>
+    The `source_region_list` block supports:
+    """
 
 @pulumi.input_type
 class AclRuleCustomServiceGroupsArgs:
@@ -198,26 +190,23 @@ class AclRuleCustomServiceGroupsArgs:
         pulumi.set(self, "protocols", value)
 
 
-if not MYPY:
-    class AclRuleDestinationRegionListArgsDict(TypedDict):
-        region_id: pulumi.Input[_builtins.str]
-        """
-        The region ID.
-        """
-        region_type: pulumi.Input[_builtins.int]
-        """
-        The region type.
-        """
-        description_cn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Chinese description of the region.
-        """
-        description_en: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The English description of the region.
-        """
-elif False:
-    AclRuleDestinationRegionListArgsDict: TypeAlias = Mapping[str, Any]
+class AclRuleDestinationRegionListArgsDict(TypedDict):
+    region_id: pulumi.Input[_builtins.str]
+    """
+    The region ID.
+    """
+    region_type: pulumi.Input[_builtins.int]
+    """
+    The region type.
+    """
+    description_cn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Chinese description of the region.
+    """
+    description_en: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The English description of the region.
+    """
 
 @pulumi.input_type
 class AclRuleDestinationRegionListArgs:
@@ -288,21 +277,18 @@ class AclRuleDestinationRegionListArgs:
         pulumi.set(self, "description_en", value)
 
 
-if not MYPY:
-    class AclRulePredefinedServiceGroupsArgsDict(TypedDict):
-        group_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        The IDs of the predefined service groups.
-        """
-        protocols: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
-        """
-        The protocols used in the predefined service groups.
+class AclRulePredefinedServiceGroupsArgsDict(TypedDict):
+    group_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    The IDs of the predefined service groups.
+    """
+    protocols: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
+    """
+    The protocols used in the predefined service groups.
 
-        <a name="SourceRegionList"></a>
-        The `source_region_list` block supports:
-        """
-elif False:
-    AclRulePredefinedServiceGroupsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="SourceRegionList"></a>
+    The `source_region_list` block supports:
+    """
 
 @pulumi.input_type
 class AclRulePredefinedServiceGroupsArgs:
@@ -347,31 +333,28 @@ class AclRulePredefinedServiceGroupsArgs:
         pulumi.set(self, "protocols", value)
 
 
-if not MYPY:
-    class AclRuleSequenceArgsDict(TypedDict):
-        bottom: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Whether to pin on bottom.
-        The options are as follows:
-        + **0**: no;
-        + **1**: yes;
-        """
-        dest_rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the rule that the added rule will follow.
-        """
-        top: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Whether to pin on top.
-        The options are as follows:
-        + **0**: no;
-        + **1**: yes;
+class AclRuleSequenceArgsDict(TypedDict):
+    bottom: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Whether to pin on bottom.
+    The options are as follows:
+    + **0**: no;
+    + **1**: yes;
+    """
+    dest_rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the rule that the added rule will follow.
+    """
+    top: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Whether to pin on top.
+    The options are as follows:
+    + **0**: no;
+    + **1**: yes;
 
-        <a name="CustomServices"></a>
-        The `custom_services` block supports:
-        """
-elif False:
-    AclRuleSequenceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="CustomServices"></a>
+    The `custom_services` block supports:
+    """
 
 @pulumi.input_type
 class AclRuleSequenceArgs:
@@ -446,26 +429,23 @@ class AclRuleSequenceArgs:
         pulumi.set(self, "top", value)
 
 
-if not MYPY:
-    class AclRuleSourceRegionListArgsDict(TypedDict):
-        region_id: pulumi.Input[_builtins.str]
-        """
-        The region ID.
-        """
-        region_type: pulumi.Input[_builtins.int]
-        """
-        The region type.
-        """
-        description_cn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Chinese description of the region.
-        """
-        description_en: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The English description of the region.
-        """
-elif False:
-    AclRuleSourceRegionListArgsDict: TypeAlias = Mapping[str, Any]
+class AclRuleSourceRegionListArgsDict(TypedDict):
+    region_id: pulumi.Input[_builtins.str]
+    """
+    The region ID.
+    """
+    region_type: pulumi.Input[_builtins.int]
+    """
+    The region type.
+    """
+    description_cn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Chinese description of the region.
+    """
+    description_en: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The English description of the region.
+    """
 
 @pulumi.input_type
 class AclRuleSourceRegionListArgs:
@@ -536,26 +516,23 @@ class AclRuleSourceRegionListArgs:
         pulumi.set(self, "description_en", value)
 
 
-if not MYPY:
-    class AntiVirusScanProtocolConfigArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.int]
-        """
-        The anti virus action. The valid value can be **0** (observe) or **1** (block).
-        """
-        protocol_type: pulumi.Input[_builtins.int]
-        """
-        The protocol type.
-        The valid values are as follows:
-        + **0**: HTTP;
-        + **1**: SMTP;
-        + **2**: POP3;
-        + **3**: IMAP4;
-        + **4**: FTP;
-        + **5**: SMB;
-        + **6**: Malicious Access Control;
-        """
-elif False:
-    AntiVirusScanProtocolConfigArgsDict: TypeAlias = Mapping[str, Any]
+class AntiVirusScanProtocolConfigArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.int]
+    """
+    The anti virus action. The valid value can be **0** (observe) or **1** (block).
+    """
+    protocol_type: pulumi.Input[_builtins.int]
+    """
+    The protocol type.
+    The valid values are as follows:
+    + **0**: HTTP;
+    + **1**: SMTP;
+    + **2**: POP3;
+    + **3**: IMAP4;
+    + **4**: FTP;
+    + **5**: SMB;
+    + **6**: Malicious Access Control;
+    """
 
 @pulumi.input_type
 class AntiVirusScanProtocolConfigArgs:
@@ -610,24 +587,21 @@ class AntiVirusScanProtocolConfigArgs:
         pulumi.set(self, "protocol_type", value)
 
 
-if not MYPY:
-    class CaptureTaskDestinationArgsDict(TypedDict):
-        address: pulumi.Input[_builtins.str]
-        """
-        Specifies the address.
-        """
-        address_type: pulumi.Input[_builtins.int]
-        """
-        Specifies the address type.
-        The valid values are:
-        + **0**: indicates IPv4;
-        + **1**: indicates IPv6.
+class CaptureTaskDestinationArgsDict(TypedDict):
+    address: pulumi.Input[_builtins.str]
+    """
+    Specifies the address.
+    """
+    address_type: pulumi.Input[_builtins.int]
+    """
+    Specifies the address type.
+    The valid values are:
+    + **0**: indicates IPv4;
+    + **1**: indicates IPv6.
 
-        <a name="Service"></a>
-        The `service` block supports:
-        """
-elif False:
-    CaptureTaskDestinationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Service"></a>
+    The `service` block supports:
+    """
 
 @pulumi.input_type
 class CaptureTaskDestinationArgs:
@@ -678,28 +652,25 @@ class CaptureTaskDestinationArgs:
         pulumi.set(self, "address_type", value)
 
 
-if not MYPY:
-    class CaptureTaskServiceArgsDict(TypedDict):
-        protocol: pulumi.Input[_builtins.int]
-        """
-        Specifies the protocol type.
-        The valid values are:
-        + **6**: indicates TCP;
-        + **17**: indicates UDP;
-        + **1**: indicates ICMP;
-        + **58**: indicates ICMPv6;
-        + **-1**: indicates any protocol.
-        """
-        dest_port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination port.
-        """
-        source_port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source port.
-        """
-elif False:
-    CaptureTaskServiceArgsDict: TypeAlias = Mapping[str, Any]
+class CaptureTaskServiceArgsDict(TypedDict):
+    protocol: pulumi.Input[_builtins.int]
+    """
+    Specifies the protocol type.
+    The valid values are:
+    + **6**: indicates TCP;
+    + **17**: indicates UDP;
+    + **1**: indicates ICMP;
+    + **58**: indicates ICMPv6;
+    + **-1**: indicates any protocol.
+    """
+    dest_port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination port.
+    """
+    source_port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source port.
+    """
 
 @pulumi.input_type
 class CaptureTaskServiceArgs:
@@ -767,24 +738,21 @@ class CaptureTaskServiceArgs:
         pulumi.set(self, "source_port", value)
 
 
-if not MYPY:
-    class CaptureTaskSourceArgsDict(TypedDict):
-        address: pulumi.Input[_builtins.str]
-        """
-        Specifies the address.
-        """
-        address_type: pulumi.Input[_builtins.int]
-        """
-        Specifies the address type.
-        The valid values are:
-        + **0**: indicates IPv4;
-        + **1**: indicates IPv6.
+class CaptureTaskSourceArgsDict(TypedDict):
+    address: pulumi.Input[_builtins.str]
+    """
+    Specifies the address.
+    """
+    address_type: pulumi.Input[_builtins.int]
+    """
+    Specifies the address type.
+    The valid values are:
+    + **0**: indicates IPv4;
+    + **1**: indicates IPv6.
 
-        <a name="Service"></a>
-        The `service` block supports:
-        """
-elif False:
-    CaptureTaskSourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Service"></a>
+    The `service` block supports:
+    """
 
 @pulumi.input_type
 class CaptureTaskSourceArgs:
@@ -835,26 +803,23 @@ class CaptureTaskSourceArgs:
         pulumi.set(self, "address_type", value)
 
 
-if not MYPY:
-    class DomainNameGroupDomainNameArgsDict(TypedDict):
-        domain_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the domain name.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description.
-        """
-        dns_ips: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DNS IP list.
-        """
-        domain_address_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The domain address ID.
-        """
-elif False:
-    DomainNameGroupDomainNameArgsDict: TypeAlias = Mapping[str, Any]
+class DomainNameGroupDomainNameArgsDict(TypedDict):
+    domain_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the domain name.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description.
+    """
+    dns_ips: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DNS IP list.
+    """
+    domain_address_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The domain address ID.
+    """
 
 @pulumi.input_type
 class DomainNameGroupDomainNameArgs:
@@ -926,24 +891,21 @@ class DomainNameGroupDomainNameArgs:
         pulumi.set(self, "domain_address_id", value)
 
 
-if not MYPY:
-    class EipProtectionProtectedEipArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The ID of the protected EIP.
-        """
-        public_ipv4: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IPv4 address of the protected EIP.
-        """
-        public_ipv6: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IPv6 address of the protected EIP.
+class EipProtectionProtectedEipArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The ID of the protected EIP.
+    """
+    public_ipv4: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IPv4 address of the protected EIP.
+    """
+    public_ipv6: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IPv6 address of the protected EIP.
 
-        > At least one of `public_ipv4` and `public_ipv6` must be set.
-        """
-elif False:
-    EipProtectionProtectedEipArgsDict: TypeAlias = Mapping[str, Any]
+    > At least one of `public_ipv4` and `public_ipv6` must be set.
+    """
 
 @pulumi.input_type
 class EipProtectionProtectedEipArgs:
@@ -1003,79 +965,76 @@ class EipProtectionProtectedEipArgs:
         pulumi.set(self, "public_ipv6", value)
 
 
-if not MYPY:
-    class FirewallFlavorArgsDict(TypedDict):
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the version of the firewall.
-        When the charging_mode is **prePaid**: the value can be **Standard** and **Prefessional**.
-        When the charging_mode is **postPaid**: the value can be **Prefessional**.
-        Changing this parameter will create a new resource.
-        """
-        bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The bandwidth of the firewall.
-        """
-        default_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The default bandwidth of the firewall.
-        """
-        default_eip_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The default EIP number of the firewall.
-        """
-        default_log_storage: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The default log storage of the firewall.
-        """
-        default_vpc_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The default VPC number of the firewall.
-        """
-        eip_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The EIP number of the firewall.
-        """
-        extend_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the extend bandwidth of the firewall.
-        Only works when the charging_mode is **prePaid**.
-        Changing this parameter will create a new resource.
-        """
-        extend_eip_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the extend EIP number of the firewall.
-        Only works when the charging_mode is **prePaid**.
-        Changing this parameter will create a new resource.
-        """
-        extend_vpc_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the extend VPC number of the firewall.
-        Only works when the charging_mode is **prePaid**.
-        Changing this parameter will create a new resource.
-        """
-        log_storage: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The log storage of the firewall.
-        """
-        total_rule_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The total rule count of the firewall.
-        """
-        used_rule_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The used rule count of the firewall.
-        """
-        vpc_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The VPC bandwidth of the firewall.
-        """
-        vpc_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The VPC number of the firewall.
-        """
-elif False:
-    FirewallFlavorArgsDict: TypeAlias = Mapping[str, Any]
+class FirewallFlavorArgsDict(TypedDict):
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the version of the firewall.
+    When the charging_mode is **prePaid**: the value can be **Standard** and **Prefessional**.
+    When the charging_mode is **postPaid**: the value can be **Prefessional**.
+    Changing this parameter will create a new resource.
+    """
+    bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The bandwidth of the firewall.
+    """
+    default_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The default bandwidth of the firewall.
+    """
+    default_eip_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The default EIP number of the firewall.
+    """
+    default_log_storage: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The default log storage of the firewall.
+    """
+    default_vpc_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The default VPC number of the firewall.
+    """
+    eip_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The EIP number of the firewall.
+    """
+    extend_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the extend bandwidth of the firewall.
+    Only works when the charging_mode is **prePaid**.
+    Changing this parameter will create a new resource.
+    """
+    extend_eip_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the extend EIP number of the firewall.
+    Only works when the charging_mode is **prePaid**.
+    Changing this parameter will create a new resource.
+    """
+    extend_vpc_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the extend VPC number of the firewall.
+    Only works when the charging_mode is **prePaid**.
+    Changing this parameter will create a new resource.
+    """
+    log_storage: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The log storage of the firewall.
+    """
+    total_rule_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The total rule count of the firewall.
+    """
+    used_rule_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The used rule count of the firewall.
+    """
+    vpc_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The VPC bandwidth of the firewall.
+    """
+    vpc_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The VPC number of the firewall.
+    """
 
 @pulumi.input_type
 class FirewallFlavorArgs:
@@ -1341,23 +1300,20 @@ class FirewallFlavorArgs:
         pulumi.set(self, "vpc_count", value)
 
 
-if not MYPY:
-    class FirewallProtectObjectArgsDict(TypedDict):
-        object_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protected object ID.
-        """
-        object_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protected object name.
-        """
-        type: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The object type.
-        The options are as follows: 0: north-south; 1: east-west.
-        """
-elif False:
-    FirewallProtectObjectArgsDict: TypeAlias = Mapping[str, Any]
+class FirewallProtectObjectArgsDict(TypedDict):
+    object_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protected object ID.
+    """
+    object_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protected object name.
+    """
+    type: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The object type.
+    The options are as follows: 0: north-south; 1: east-west.
+    """
 
 @pulumi.input_type
 class FirewallProtectObjectArgs:
@@ -1416,54 +1372,51 @@ class FirewallProtectObjectArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ProtectionRuleDestinationArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.int]
-        """
-        The Source type.
-        """
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address.
-        """
-        address_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The address group list.
-        """
-        address_set_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the associated IP address group.
-        """
-        address_set_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address group name.
-        """
-        address_type: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The address type.
-        """
-        domain_address_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the domain name address.
-        """
-        domain_set_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the domain group.
-        """
-        domain_set_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of domain group.
-        """
-        ip_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The IP address list.
-        """
-        region_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProtectionRuleDestinationRegionListArgsDict']]]]
-        """
-        The region list.
-        """
-elif False:
-    ProtectionRuleDestinationArgsDict: TypeAlias = Mapping[str, Any]
+class ProtectionRuleDestinationArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.int]
+    """
+    The Source type.
+    """
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address.
+    """
+    address_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The address group list.
+    """
+    address_set_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the associated IP address group.
+    """
+    address_set_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address group name.
+    """
+    address_type: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The address type.
+    """
+    domain_address_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the domain name address.
+    """
+    domain_set_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the domain group.
+    """
+    domain_set_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of domain group.
+    """
+    ip_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The IP address list.
+    """
+    region_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProtectionRuleDestinationRegionListArgsDict']]]]
+    """
+    The region list.
+    """
 
 @pulumi.input_type
 class ProtectionRuleDestinationArgs:
@@ -1647,26 +1600,23 @@ class ProtectionRuleDestinationArgs:
         pulumi.set(self, "region_lists", value)
 
 
-if not MYPY:
-    class ProtectionRuleDestinationRegionListArgsDict(TypedDict):
-        region_id: pulumi.Input[_builtins.str]
-        """
-        The region ID.
-        """
-        region_type: pulumi.Input[_builtins.int]
-        """
-        The region type.
-        """
-        description_cn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Chinese description of the region.
-        """
-        description_en: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The English description of the region.
-        """
-elif False:
-    ProtectionRuleDestinationRegionListArgsDict: TypeAlias = Mapping[str, Any]
+class ProtectionRuleDestinationRegionListArgsDict(TypedDict):
+    region_id: pulumi.Input[_builtins.str]
+    """
+    The region ID.
+    """
+    region_type: pulumi.Input[_builtins.int]
+    """
+    The region type.
+    """
+    description_cn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Chinese description of the region.
+    """
+    description_en: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The English description of the region.
+    """
 
 @pulumi.input_type
 class ProtectionRuleDestinationRegionListArgs:
@@ -1737,18 +1687,15 @@ class ProtectionRuleDestinationRegionListArgs:
         pulumi.set(self, "description_en", value)
 
 
-if not MYPY:
-    class ProtectionRuleSequenceArgsDict(TypedDict):
-        dest_rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the rule that the added rule will follow.
-        """
-        top: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Whether to pin on top.
-        """
-elif False:
-    ProtectionRuleSequenceArgsDict: TypeAlias = Mapping[str, Any]
+class ProtectionRuleSequenceArgsDict(TypedDict):
+    dest_rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the rule that the added rule will follow.
+    """
+    top: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Whether to pin on top.
+    """
 
 @pulumi.input_type
 class ProtectionRuleSequenceArgs:
@@ -1789,42 +1736,39 @@ class ProtectionRuleSequenceArgs:
         pulumi.set(self, "top", value)
 
 
-if not MYPY:
-    class ProtectionRuleServiceArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.int]
-        """
-        The service input type.
-        """
-        custom_services: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProtectionRuleServiceCustomServiceArgsDict']]]]
-        """
-        The custom service.
-        """
-        dest_port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The destination port.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The protocol type.
-        """
-        service_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The service group list.
-        """
-        service_set_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The service group ID.
-        """
-        service_set_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The service group name.
-        """
-        source_port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The source port.
-        """
-elif False:
-    ProtectionRuleServiceArgsDict: TypeAlias = Mapping[str, Any]
+class ProtectionRuleServiceArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.int]
+    """
+    The service input type.
+    """
+    custom_services: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProtectionRuleServiceCustomServiceArgsDict']]]]
+    """
+    The custom service.
+    """
+    dest_port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The destination port.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The protocol type.
+    """
+    service_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The service group list.
+    """
+    service_set_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The service group ID.
+    """
+    service_set_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The service group name.
+    """
+    source_port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The source port.
+    """
 
 @pulumi.input_type
 class ProtectionRuleServiceArgs:
@@ -1960,22 +1904,19 @@ class ProtectionRuleServiceArgs:
         pulumi.set(self, "source_port", value)
 
 
-if not MYPY:
-    class ProtectionRuleServiceCustomServiceArgsDict(TypedDict):
-        dest_port: pulumi.Input[_builtins.str]
-        """
-        The destination port.
-        """
-        protocol: pulumi.Input[_builtins.int]
-        """
-        The protocol type.
-        """
-        source_port: pulumi.Input[_builtins.str]
-        """
-        The source port.
-        """
-elif False:
-    ProtectionRuleServiceCustomServiceArgsDict: TypeAlias = Mapping[str, Any]
+class ProtectionRuleServiceCustomServiceArgsDict(TypedDict):
+    dest_port: pulumi.Input[_builtins.str]
+    """
+    The destination port.
+    """
+    protocol: pulumi.Input[_builtins.int]
+    """
+    The protocol type.
+    """
+    source_port: pulumi.Input[_builtins.str]
+    """
+    The source port.
+    """
 
 @pulumi.input_type
 class ProtectionRuleServiceCustomServiceArgs:
@@ -2029,54 +1970,51 @@ class ProtectionRuleServiceCustomServiceArgs:
         pulumi.set(self, "source_port", value)
 
 
-if not MYPY:
-    class ProtectionRuleSourceArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.int]
-        """
-        The Source type.
-        """
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address.
-        """
-        address_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The address group list.
-        """
-        address_set_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the associated IP address group.
-        """
-        address_set_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address group name.
-        """
-        address_type: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The address type.
-        """
-        domain_address_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the domain name address.
-        """
-        domain_set_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the domain group.
-        """
-        domain_set_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of domain group.
-        """
-        ip_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The IP address list.
-        """
-        region_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProtectionRuleSourceRegionListArgsDict']]]]
-        """
-        The region list.
-        """
-elif False:
-    ProtectionRuleSourceArgsDict: TypeAlias = Mapping[str, Any]
+class ProtectionRuleSourceArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.int]
+    """
+    The Source type.
+    """
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address.
+    """
+    address_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The address group list.
+    """
+    address_set_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the associated IP address group.
+    """
+    address_set_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address group name.
+    """
+    address_type: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The address type.
+    """
+    domain_address_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the domain name address.
+    """
+    domain_set_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the domain group.
+    """
+    domain_set_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of domain group.
+    """
+    ip_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The IP address list.
+    """
+    region_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProtectionRuleSourceRegionListArgsDict']]]]
+    """
+    The region list.
+    """
 
 @pulumi.input_type
 class ProtectionRuleSourceArgs:
@@ -2260,26 +2198,23 @@ class ProtectionRuleSourceArgs:
         pulumi.set(self, "region_lists", value)
 
 
-if not MYPY:
-    class ProtectionRuleSourceRegionListArgsDict(TypedDict):
-        region_id: pulumi.Input[_builtins.str]
-        """
-        The region ID.
-        """
-        region_type: pulumi.Input[_builtins.int]
-        """
-        The region type.
-        """
-        description_cn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Chinese description of the region.
-        """
-        description_en: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The English description of the region.
-        """
-elif False:
-    ProtectionRuleSourceRegionListArgsDict: TypeAlias = Mapping[str, Any]
+class ProtectionRuleSourceRegionListArgsDict(TypedDict):
+    region_id: pulumi.Input[_builtins.str]
+    """
+    The region ID.
+    """
+    region_type: pulumi.Input[_builtins.int]
+    """
+    The region type.
+    """
+    description_cn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Chinese description of the region.
+    """
+    description_en: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The English description of the region.
+    """
 
 @pulumi.input_type
 class ProtectionRuleSourceRegionListArgs:

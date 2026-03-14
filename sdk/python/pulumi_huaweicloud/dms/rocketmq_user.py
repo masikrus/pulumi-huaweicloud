@@ -33,6 +33,7 @@ class RocketmqUserArgs:
                  white_remote_address: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RocketmqUser resource.
+
         :param pulumi.Input[_builtins.str] access_key: Specifies the name of the user, which starts with a letter, consists of 7
                to 64 characters and can contain only letters, digits, hyphens (-), and underscores (_).
                Changing this parameter will create a new resource.
@@ -236,6 +237,7 @@ class _RocketmqUserState:
                  white_remote_address: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RocketmqUser resources.
+
         :param pulumi.Input[_builtins.str] access_key: Specifies the name of the user, which starts with a letter, consists of 7
                to 64 characters and can contain only letters, digits, hyphens (-), and underscores (_).
                Changing this parameter will create a new resource.
@@ -477,11 +479,10 @@ class RocketmqUser(pulumi.CustomResource):
 
         The rocketmq user can be imported using the rocketMQ `instance_id` and user `access_key` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqUser:RocketmqUser test <instance_id>/<access_key>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -554,11 +555,10 @@ class RocketmqUser(pulumi.CustomResource):
 
         The rocketmq user can be imported using the rocketMQ `instance_id` and user `access_key` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqUser:RocketmqUser test <instance_id>/<access_key>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RocketmqUserArgs args: The arguments to use to populate this resource's properties.

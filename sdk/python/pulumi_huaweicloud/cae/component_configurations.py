@@ -28,6 +28,7 @@ class ComponentConfigurationsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ComponentConfigurations resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application where the components are
                located.
                Changing this parameter will create a new resource.
@@ -134,6 +135,7 @@ class _ComponentConfigurationsState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ComponentConfigurations resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application where the components are
                located.
                Changing this parameter will create a new resource.
@@ -234,7 +236,7 @@ class _ComponentConfigurationsState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:cae/componentConfigurations:ComponentConfigurations")
+@pulumi.type_token("huaweicloud:Cae/componentConfigurations:ComponentConfigurations")
 class ComponentConfigurations(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -303,11 +305,10 @@ class ComponentConfigurations(pulumi.CustomResource):
 
         The resource can be imported using `environment_id`, `application_id` and `component_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cae/componentConfigurations:ComponentConfigurations test <environment_id>/<application_id>/<component_id>
+        $ pulumi import huaweicloud:Cae/componentConfigurations:ComponentConfigurations test <environment_id>/<application_id>/<component_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -391,11 +392,10 @@ class ComponentConfigurations(pulumi.CustomResource):
 
         The resource can be imported using `environment_id`, `application_id` and `component_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cae/componentConfigurations:ComponentConfigurations test <environment_id>/<application_id>/<component_id>
+        $ pulumi import huaweicloud:Cae/componentConfigurations:ComponentConfigurations test <environment_id>/<application_id>/<component_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ComponentConfigurationsArgs args: The arguments to use to populate this resource's properties.
@@ -440,7 +440,7 @@ class ComponentConfigurations(pulumi.CustomResource):
             __props__.__dict__["items"] = items
             __props__.__dict__["region"] = region
         super(ComponentConfigurations, __self__).__init__(
-            'huaweicloud:cae/componentConfigurations:ComponentConfigurations',
+            'huaweicloud:Cae/componentConfigurations:ComponentConfigurations',
             resource_name,
             __props__,
             opts)

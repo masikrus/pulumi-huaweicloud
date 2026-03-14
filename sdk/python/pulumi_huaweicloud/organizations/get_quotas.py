@@ -72,12 +72,12 @@ def get_quotas(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetQuota
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_quotas()
+    test = huaweicloud.Organizations.get_quotas()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult).value
 
     return AwaitableGetQuotasResult(
         id=pulumi.get(__ret__, 'id'),
@@ -92,12 +92,12 @@ def get_quotas_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOu
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_quotas()
+    test = huaweicloud.Organizations.get_quotas()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult)
     return __ret__.apply(lambda __response__: GetQuotasResult(
         id=pulumi.get(__response__, 'id'),
         quotas=pulumi.get(__response__, 'quotas')))

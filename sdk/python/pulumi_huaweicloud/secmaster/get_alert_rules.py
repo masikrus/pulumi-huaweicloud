@@ -157,7 +157,7 @@ def get_alert_rules(name: Optional[_builtins.str] = None,
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     rule_id = config.require_object("ruleId")
-    test = huaweicloud.secmaster.get_alert_rules(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_alert_rules(workspace_id=workspace_id,
         rule_id=rule_id)
     ```
 
@@ -181,7 +181,7 @@ def get_alert_rules(name: Optional[_builtins.str] = None,
     __args__['statuses'] = statuses
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getAlertRules:getAlertRules', __args__, opts=opts, typ=GetAlertRulesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getAlertRules:getAlertRules', __args__, opts=opts, typ=GetAlertRulesResult).value
 
     return AwaitableGetAlertRulesResult(
         alert_rules=pulumi.get(__ret__, 'alert_rules'),
@@ -213,7 +213,7 @@ def get_alert_rules_output(name: Optional[pulumi.Input[Optional[_builtins.str]]]
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     rule_id = config.require_object("ruleId")
-    test = huaweicloud.secmaster.get_alert_rules(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_alert_rules(workspace_id=workspace_id,
         rule_id=rule_id)
     ```
 
@@ -237,7 +237,7 @@ def get_alert_rules_output(name: Optional[pulumi.Input[Optional[_builtins.str]]]
     __args__['statuses'] = statuses
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getAlertRules:getAlertRules', __args__, opts=opts, typ=GetAlertRulesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getAlertRules:getAlertRules', __args__, opts=opts, typ=GetAlertRulesResult)
     return __ret__.apply(lambda __response__: GetAlertRulesResult(
         alert_rules=pulumi.get(__response__, 'alert_rules'),
         id=pulumi.get(__response__, 'id'),

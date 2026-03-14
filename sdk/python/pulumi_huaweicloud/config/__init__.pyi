@@ -30,7 +30,9 @@ agencyName: Optional[str]
 The name of agency
 """
 
-assumeRole: Optional[str]
+assumeRoleWithOidc: Optional[str]
+
+assumeRoles: Optional[str]
 
 authUrl: Optional[str]
 """
@@ -85,6 +87,11 @@ The custom endpoints used to override the default endpoint URL.
 enterpriseProjectId: Optional[str]
 """
 enterprise project id
+"""
+
+ignoreTags: Optional[str]
+"""
+The ignored tag keys of resources managed by this provider.
 """
 
 insecure: Optional[bool]

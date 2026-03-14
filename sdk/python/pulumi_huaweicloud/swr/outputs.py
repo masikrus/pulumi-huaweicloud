@@ -21,19 +21,24 @@ __all__ = [
     'ImageRetentionPolicyTagSelector',
     'OrganizationPermissionsSelfPermission',
     'OrganizationPermissionsUser',
+    'TemporaryLoginCommandAuth',
     'GetDomainResourceReportsReportResult',
+    'GetImageAutoSyncJobsJobResult',
     'GetImageRetentionHistoriesRecordResult',
     'GetImageRetentionPoliciesRetentionPolicyResult',
     'GetImageRetentionPoliciesRetentionPolicyRuleResult',
     'GetImageRetentionPoliciesRetentionPolicyRuleTagSelectorResult',
     'GetImageTagsImageTagResult',
+    'GetImageTagsV3TagResult',
     'GetImageTriggersTriggerResult',
     'GetImageTriggersTriggerHistoryResult',
     'GetOrganizationsOrganizationResult',
     'GetQuotasQuotaResult',
     'GetRepositoriesRepositoryResult',
+    'GetRepositoriesV3RepoResult',
     'GetSharedAccountsSharedAccountResult',
     'GetSharedRepositoriesRepositoryResult',
+    'GetSharedRepositoriesV3RepoResult',
 ]
 
 @pulumi.output_type
@@ -322,6 +327,37 @@ class OrganizationPermissionsUser(dict):
 
 
 @pulumi.output_type
+class TemporaryLoginCommandAuth(dict):
+    def __init__(__self__, *,
+                 auth: Optional[_builtins.str] = None,
+                 key: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str auth: Indicates the base64-encoded authentication information.
+        :param _builtins.str key: Indicates the authentication information key.
+        """
+        if auth is not None:
+            pulumi.set(__self__, "auth", auth)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+
+    @_builtins.property
+    @pulumi.getter
+    def auth(self) -> Optional[_builtins.str]:
+        """
+        Indicates the base64-encoded authentication information.
+        """
+        return pulumi.get(self, "auth")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Indicates the authentication information key.
+        """
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
 class GetDomainResourceReportsReportResult(dict):
     def __init__(__self__, *,
                  date: _builtins.str,
@@ -348,6 +384,151 @@ class GetDomainResourceReportsReportResult(dict):
         The value of the domain resource report.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetImageAutoSyncJobsJobResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 id: _builtins.int,
+                 organization: _builtins.str,
+                 override: _builtins.bool,
+                 remote_organization: _builtins.str,
+                 remote_region_id: _builtins.str,
+                 repo_name: _builtins.str,
+                 status: _builtins.str,
+                 sync_operator_id: _builtins.str,
+                 sync_operator_name: _builtins.str,
+                 tag: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the time when the job was created. It is the UTC standard time.
+        :param _builtins.int id: Indicates the job ID.
+        :param _builtins.str organization: Specifies the organization name. Enter 1 to 64 characters, starting with a
+               lowercase letter and ending with a lowercase letter or digit. Only lowercase letters, digits, periods (.),
+               underscores (_), and hyphens (-) are allowed. Periods, underscores, and hyphens cannot be placed next to each other.
+               A maximum of two consecutive underscores are allowed.
+        :param _builtins.bool override: Indicates whether to overwrite.
+        :param _builtins.str remote_organization: Indicates the target organization.
+        :param _builtins.str remote_region_id: Indicates the target region.
+        :param _builtins.str repo_name: Indicates the repository name.
+        :param _builtins.str status: Indicates the synchronization status.
+        :param _builtins.str sync_operator_id: Indicates the operator account ID.
+        :param _builtins.str sync_operator_name: Indicates the operator account name.
+        :param _builtins.str tag: Indicates the image tag.
+        :param _builtins.str updated_at: Indicates the time when the job was updated. It is the UTC standard time.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "organization", organization)
+        pulumi.set(__self__, "override", override)
+        pulumi.set(__self__, "remote_organization", remote_organization)
+        pulumi.set(__self__, "remote_region_id", remote_region_id)
+        pulumi.set(__self__, "repo_name", repo_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "sync_operator_id", sync_operator_id)
+        pulumi.set(__self__, "sync_operator_name", sync_operator_name)
+        pulumi.set(__self__, "tag", tag)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the time when the job was created. It is the UTC standard time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        Indicates the job ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def organization(self) -> _builtins.str:
+        """
+        Specifies the organization name. Enter 1 to 64 characters, starting with a
+        lowercase letter and ending with a lowercase letter or digit. Only lowercase letters, digits, periods (.),
+        underscores (_), and hyphens (-) are allowed. Periods, underscores, and hyphens cannot be placed next to each other.
+        A maximum of two consecutive underscores are allowed.
+        """
+        return pulumi.get(self, "organization")
+
+    @_builtins.property
+    @pulumi.getter
+    def override(self) -> _builtins.bool:
+        """
+        Indicates whether to overwrite.
+        """
+        return pulumi.get(self, "override")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteOrganization")
+    def remote_organization(self) -> _builtins.str:
+        """
+        Indicates the target organization.
+        """
+        return pulumi.get(self, "remote_organization")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteRegionId")
+    def remote_region_id(self) -> _builtins.str:
+        """
+        Indicates the target region.
+        """
+        return pulumi.get(self, "remote_region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="repoName")
+    def repo_name(self) -> _builtins.str:
+        """
+        Indicates the repository name.
+        """
+        return pulumi.get(self, "repo_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the synchronization status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="syncOperatorId")
+    def sync_operator_id(self) -> _builtins.str:
+        """
+        Indicates the operator account ID.
+        """
+        return pulumi.get(self, "sync_operator_id")
+
+    @_builtins.property
+    @pulumi.getter(name="syncOperatorName")
+    def sync_operator_name(self) -> _builtins.str:
+        """
+        Indicates the operator account name.
+        """
+        return pulumi.get(self, "sync_operator_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        Indicates the image tag.
+        """
+        return pulumi.get(self, "tag")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the time when the job was updated. It is the UTC standard time.
+        """
+        return pulumi.get(self, "updated_at")
 
 
 @pulumi.output_type
@@ -725,6 +906,167 @@ class GetImageTagsImageTagResult(dict):
         The update time of the image tag.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetImageTagsV3TagResult(dict):
+    def __init__(__self__, *,
+                 created: _builtins.str,
+                 digest: _builtins.str,
+                 id: _builtins.int,
+                 image_id: _builtins.str,
+                 internal_path: _builtins.str,
+                 is_trusted: _builtins.bool,
+                 manifest: _builtins.str,
+                 path: _builtins.str,
+                 repo_id: _builtins.int,
+                 schema: _builtins.int,
+                 size: _builtins.int,
+                 tag: _builtins.str,
+                 tag_type: _builtins.int,
+                 updated: _builtins.str):
+        """
+        :param _builtins.str created: Indicates the create time.
+        :param _builtins.str digest: Indicates the image digest.
+        :param _builtins.int id: Indicates the tag ID.
+        :param _builtins.str image_id: Indicates the image ID.
+        :param _builtins.str internal_path: Indicates the image internal pull path.
+        :param _builtins.bool is_trusted: Indicates whether the image is trusted.
+        :param _builtins.str manifest: Indicates the image manifest.
+        :param _builtins.str path: Indicates the image pull path.
+        :param _builtins.int repo_id: Indicates the repository ID.
+        :param _builtins.int schema: Indicates the docker schema.
+        :param _builtins.int size: Indicates the image size.
+        :param _builtins.str tag: Specifies the source tag.
+        :param _builtins.int tag_type: Indicates the tag type.
+        :param _builtins.str updated: Indicates the last update time.
+        """
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "digest", digest)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "internal_path", internal_path)
+        pulumi.set(__self__, "is_trusted", is_trusted)
+        pulumi.set(__self__, "manifest", manifest)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "repo_id", repo_id)
+        pulumi.set(__self__, "schema", schema)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "tag", tag)
+        pulumi.set(__self__, "tag_type", tag_type)
+        pulumi.set(__self__, "updated", updated)
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> _builtins.str:
+        """
+        Indicates the create time.
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter
+    def digest(self) -> _builtins.str:
+        """
+        Indicates the image digest.
+        """
+        return pulumi.get(self, "digest")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        Indicates the tag ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        Indicates the image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="internalPath")
+    def internal_path(self) -> _builtins.str:
+        """
+        Indicates the image internal pull path.
+        """
+        return pulumi.get(self, "internal_path")
+
+    @_builtins.property
+    @pulumi.getter(name="isTrusted")
+    def is_trusted(self) -> _builtins.bool:
+        """
+        Indicates whether the image is trusted.
+        """
+        return pulumi.get(self, "is_trusted")
+
+    @_builtins.property
+    @pulumi.getter
+    def manifest(self) -> _builtins.str:
+        """
+        Indicates the image manifest.
+        """
+        return pulumi.get(self, "manifest")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Indicates the image pull path.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter(name="repoId")
+    def repo_id(self) -> _builtins.int:
+        """
+        Indicates the repository ID.
+        """
+        return pulumi.get(self, "repo_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def schema(self) -> _builtins.int:
+        """
+        Indicates the docker schema.
+        """
+        return pulumi.get(self, "schema")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        Indicates the image size.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        Specifies the source tag.
+        """
+        return pulumi.get(self, "tag")
+
+    @_builtins.property
+    @pulumi.getter(name="tagType")
+    def tag_type(self) -> _builtins.int:
+        """
+        Indicates the tag type.
+        """
+        return pulumi.get(self, "tag_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> _builtins.str:
+        """
+        Indicates the last update time.
+        """
+        return pulumi.get(self, "updated")
 
 
 @pulumi.output_type
@@ -1248,6 +1590,167 @@ class GetRepositoriesRepositoryResult(dict):
 
 
 @pulumi.output_type
+class GetRepositoriesV3RepoResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.int,
+                 is_public: _builtins.bool,
+                 name: _builtins.str,
+                 num_download: _builtins.int,
+                 num_images: _builtins.int,
+                 organization: _builtins.str,
+                 size: _builtins.int,
+                 status: _builtins.bool,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str category: Specifies the repository type.
+               The value can be **app_server**, **linux**, **framework_app**, **database**, **lang**, **windows**, **arm**, or other.
+        :param _builtins.str created_at: Indicates the time when a repository was created. It is the UTC standard time.
+               Users need to calculate the offset based on the local time, for example, UTC+8:00 for the East 8th Time Zone.
+        :param _builtins.str description: Indicates the repository description.
+        :param _builtins.int id: Indicates the repository ID.
+        :param _builtins.bool is_public: Specifies whether a repository is public. Valid value is **true** and **false**.
+               Default to return all.
+        :param _builtins.str name: Specifies the image repository name. Enter 1 to 128 characters. It must start and end with
+               a lowercase letter or digit. Only lowercase letters, digits, periods (.), slashes (/), underscores (_), and hyphens (-)
+               are allowed. Periods, slashes, underscores, and hyphens cannot be placed next to each other. A maximum of two
+               consecutive underscores are allowed. Replace a slash (/) with a dollar sign ($) before you send the request.
+        :param _builtins.int num_download: Indicates the repository downloads.
+        :param _builtins.int num_images: Indicates the number of images in a repository.
+        :param _builtins.str organization: Specifies the organization name.
+               Enter 1 to 64 characters, starting with a lowercase letter and ending with a lowercase letter or digit.
+               Only lowercase letters, digits, periods (.), underscores (_), and hyphens (-) are allowed. Periods, underscores,
+               and hyphens cannot be placed next to each other. A maximum of two consecutive underscores are allowed.
+        :param _builtins.int size: Indicates the repository size.
+        :param _builtins.bool status: Indicates whether the image shared by others has expired.
+               This field is not returned when the repository information of the current user is obtained.
+        :param _builtins.str updated_at: Indicates the time when a repository was updated. It is the UTC standard time.
+               Users need to calculate the offset based on the local time, for example, UTC+8:00 for the East 8th Time Zone.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_public", is_public)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "num_download", num_download)
+        pulumi.set(__self__, "num_images", num_images)
+        pulumi.set(__self__, "organization", organization)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the repository type.
+        The value can be **app_server**, **linux**, **framework_app**, **database**, **lang**, **windows**, **arm**, or other.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the time when a repository was created. It is the UTC standard time.
+        Users need to calculate the offset based on the local time, for example, UTC+8:00 for the East 8th Time Zone.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the repository description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        Indicates the repository ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isPublic")
+    def is_public(self) -> _builtins.bool:
+        """
+        Specifies whether a repository is public. Valid value is **true** and **false**.
+        Default to return all.
+        """
+        return pulumi.get(self, "is_public")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the image repository name. Enter 1 to 128 characters. It must start and end with
+        a lowercase letter or digit. Only lowercase letters, digits, periods (.), slashes (/), underscores (_), and hyphens (-)
+        are allowed. Periods, slashes, underscores, and hyphens cannot be placed next to each other. A maximum of two
+        consecutive underscores are allowed. Replace a slash (/) with a dollar sign ($) before you send the request.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="numDownload")
+    def num_download(self) -> _builtins.int:
+        """
+        Indicates the repository downloads.
+        """
+        return pulumi.get(self, "num_download")
+
+    @_builtins.property
+    @pulumi.getter(name="numImages")
+    def num_images(self) -> _builtins.int:
+        """
+        Indicates the number of images in a repository.
+        """
+        return pulumi.get(self, "num_images")
+
+    @_builtins.property
+    @pulumi.getter
+    def organization(self) -> _builtins.str:
+        """
+        Specifies the organization name.
+        Enter 1 to 64 characters, starting with a lowercase letter and ending with a lowercase letter or digit.
+        Only lowercase letters, digits, periods (.), underscores (_), and hyphens (-) are allowed. Periods, underscores,
+        and hyphens cannot be placed next to each other. A maximum of two consecutive underscores are allowed.
+        """
+        return pulumi.get(self, "organization")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        Indicates the repository size.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.bool:
+        """
+        Indicates whether the image shared by others has expired.
+        This field is not returned when the repository information of the current user is obtained.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the time when a repository was updated. It is the UTC standard time.
+        Users need to calculate the offset based on the local time, for example, UTC+8:00 for the East 8th Time Zone.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
 class GetSharedAccountsSharedAccountResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -1543,6 +2046,163 @@ class GetSharedRepositoriesRepositoryResult(dict):
     def updated_at(self) -> _builtins.str:
         """
         The update time of the repository.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetSharedRepositoriesV3RepoResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.int,
+                 is_public: _builtins.bool,
+                 name: _builtins.str,
+                 num_download: _builtins.int,
+                 num_images: _builtins.int,
+                 organization: _builtins.str,
+                 size: _builtins.int,
+                 status: _builtins.bool,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str category: Indicates the repository type.
+        :param _builtins.str created_at: Indicates the time when a repository was created. It is the UTC standard time.
+        :param _builtins.str description: Indicates the repository description.
+        :param _builtins.int id: Indicates the repository ID.
+        :param _builtins.bool is_public: Indicates whether a repository is a public repository.
+        :param _builtins.str name: Specifies the image repository name. Enter 1 to 128 characters. It must start and end with
+               a lowercase letter or digit. Only lowercase letters, digits, periods (.), slashes (/), underscores (_), and hyphens (-)
+               are allowed. Periods, slashes, underscores, and hyphens cannot be placed next to each other. A maximum of two
+               consecutive underscores are allowed. Replace a slash (/) with a dollar sign ($) before you send the request.
+        :param _builtins.int num_download: Indicates the repository downloads.
+        :param _builtins.int num_images: Indicates the number of images in a repository.
+        :param _builtins.str organization: Specifies the organization name. Enter 1 to 64 characters, starting with a
+               lowercase letter and ending with a lowercase letter or digit. Only lowercase letters, digits, periods (.),
+               underscores (_), and hyphens (-) are allowed. Periods, underscores, and hyphens cannot be placed next to each other.
+               A maximum of two consecutive underscores are allowed.
+        :param _builtins.int size: Indicates the repository size.
+        :param _builtins.bool status: Specifies whether the sharing has expired.
+               The value can only be as follows:
+               + **false**: The sharing has expired.
+               + **true**: The sharing is valid.
+        :param _builtins.str updated_at: Indicates the time when a repository was updated. It is the UTC standard time.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_public", is_public)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "num_download", num_download)
+        pulumi.set(__self__, "num_images", num_images)
+        pulumi.set(__self__, "organization", organization)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Indicates the repository type.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the time when a repository was created. It is the UTC standard time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the repository description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        Indicates the repository ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isPublic")
+    def is_public(self) -> _builtins.bool:
+        """
+        Indicates whether a repository is a public repository.
+        """
+        return pulumi.get(self, "is_public")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the image repository name. Enter 1 to 128 characters. It must start and end with
+        a lowercase letter or digit. Only lowercase letters, digits, periods (.), slashes (/), underscores (_), and hyphens (-)
+        are allowed. Periods, slashes, underscores, and hyphens cannot be placed next to each other. A maximum of two
+        consecutive underscores are allowed. Replace a slash (/) with a dollar sign ($) before you send the request.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="numDownload")
+    def num_download(self) -> _builtins.int:
+        """
+        Indicates the repository downloads.
+        """
+        return pulumi.get(self, "num_download")
+
+    @_builtins.property
+    @pulumi.getter(name="numImages")
+    def num_images(self) -> _builtins.int:
+        """
+        Indicates the number of images in a repository.
+        """
+        return pulumi.get(self, "num_images")
+
+    @_builtins.property
+    @pulumi.getter
+    def organization(self) -> _builtins.str:
+        """
+        Specifies the organization name. Enter 1 to 64 characters, starting with a
+        lowercase letter and ending with a lowercase letter or digit. Only lowercase letters, digits, periods (.),
+        underscores (_), and hyphens (-) are allowed. Periods, underscores, and hyphens cannot be placed next to each other.
+        A maximum of two consecutive underscores are allowed.
+        """
+        return pulumi.get(self, "organization")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        Indicates the repository size.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.bool:
+        """
+        Specifies whether the sharing has expired.
+        The value can only be as follows:
+        + **false**: The sharing has expired.
+        + **true**: The sharing is valid.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the time when a repository was updated. It is the UTC standard time.
         """
         return pulumi.get(self, "updated_at")
 

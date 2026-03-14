@@ -34,6 +34,7 @@ class ElasticResourcePoolArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ElasticResourcePool resource.
+
         :param pulumi.Input[_builtins.int] max_cu: Specifies the maximum number of CUs for elastic resource pool scaling.
                The interval is `16`.
                + For standard edition, the valid value ranges from `64` to `32,000`.
@@ -313,6 +314,7 @@ class _ElasticResourcePoolState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ElasticResourcePool resources.
+
         :param pulumi.Input[_builtins.int] actual_cu: The current CU number of the elastic resource pool.
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether to enable auto-renew for the elastic resource pool.  
                Defaults to **false**.
@@ -735,39 +737,16 @@ class ElasticResourcePool(pulumi.CustomResource):
 
         Elastic resource pools can be imported by their `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/elasticResourcePool:ElasticResourcePool test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `tags`, `period`, `period_unit`
-
         and `auto_renew`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dli_elastic_resource_pool" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags, period, period_unit, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -888,39 +867,16 @@ class ElasticResourcePool(pulumi.CustomResource):
 
         Elastic resource pools can be imported by their `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/elasticResourcePool:ElasticResourcePool test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `tags`, `period`, `period_unit`
-
         and `auto_renew`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dli_elastic_resource_pool" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags, period, period_unit, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ElasticResourcePoolArgs args: The arguments to use to populate this resource's properties.

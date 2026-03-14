@@ -82,7 +82,7 @@ def get_instance_tags(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cbh.get_instance_tags()
+    test = huaweicloud.Cbh.get_instance_tags()
     ```
 
 
@@ -92,7 +92,7 @@ def get_instance_tags(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cbh/getInstanceTags:getInstanceTags', __args__, opts=opts, typ=GetInstanceTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cbh/getInstanceTags:getInstanceTags', __args__, opts=opts, typ=GetInstanceTagsResult).value
 
     return AwaitableGetInstanceTagsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_instance_tags_output(region: Optional[pulumi.Input[Optional[_builtins.st
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cbh.get_instance_tags()
+    test = huaweicloud.Cbh.get_instance_tags()
     ```
 
 
@@ -119,7 +119,7 @@ def get_instance_tags_output(region: Optional[pulumi.Input[Optional[_builtins.st
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cbh/getInstanceTags:getInstanceTags', __args__, opts=opts, typ=GetInstanceTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cbh/getInstanceTags:getInstanceTags', __args__, opts=opts, typ=GetInstanceTagsResult)
     return __ret__.apply(lambda __response__: GetInstanceTagsResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

@@ -24,6 +24,7 @@ class LogicalClusterRestartArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogicalClusterRestart resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID to which the logical cluster belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] logical_cluster_id: Specifies the ID of the logical cluster to be restarted.
@@ -86,6 +87,7 @@ class _LogicalClusterRestartState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogicalClusterRestart resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID to which the logical cluster belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] logical_cluster_id: Specifies the ID of the logical cluster to be restarted.
@@ -172,6 +174,7 @@ class LogicalClusterRestart(pulumi.CustomResource):
             logical_cluster_id=logical_cluster_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID to which the logical cluster belongs.
@@ -207,6 +210,7 @@ class LogicalClusterRestart(pulumi.CustomResource):
             cluster_id=dws_cluster_id,
             logical_cluster_id=logical_cluster_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogicalClusterRestartArgs args: The arguments to use to populate this resource's properties.

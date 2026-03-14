@@ -25,6 +25,7 @@ class CustomLineArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomLine resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_segments: Specifies the IP address range.  
                The start IP address is separated from the end IP address with a hyphen (-). The IP address ranges cannot overlap.
                If the start and end IP addresses are the same, there is only one IP address in the range. Set the value to
@@ -34,8 +35,7 @@ class CustomLineArgs:
         :param pulumi.Input[_builtins.str] name: Specifies the custom line name.  
                The value consists of `1` to `80` characters including Chinese characters, English letters, digits, hyphens (-),
                underscores (_) and dots (.). The name of each resolution line set by one account must be unique.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
-               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] region: The region where the custom line is located
         """
         pulumi.set(__self__, "ip_segments", ip_segments)
         if description is not None:
@@ -91,8 +91,7 @@ class CustomLineArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the resource.
-        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        The region where the custom line is located
         """
         return pulumi.get(self, "region")
 
@@ -111,6 +110,7 @@ class _CustomLineState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomLine resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the custom line description.  
                A maximum of `255` characters are allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_segments: Specifies the IP address range.  
@@ -120,8 +120,7 @@ class _CustomLineState:
         :param pulumi.Input[_builtins.str] name: Specifies the custom line name.  
                The value consists of `1` to `80` characters including Chinese characters, English letters, digits, hyphens (-),
                underscores (_) and dots (.). The name of each resolution line set by one account must be unique.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
-               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] region: The region where the custom line is located
         :param pulumi.Input[_builtins.str] status: The resource status.
         """
         if description is not None:
@@ -181,8 +180,7 @@ class _CustomLineState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the resource.
-        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        The region where the custom line is located
         """
         return pulumi.get(self, "region")
 
@@ -237,11 +235,10 @@ class CustomLine(pulumi.CustomResource):
 
         The DNS custom line can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/customLine:CustomLine test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -254,8 +251,7 @@ class CustomLine(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Specifies the custom line name.  
                The value consists of `1` to `80` characters including Chinese characters, English letters, digits, hyphens (-),
                underscores (_) and dots (.). The name of each resolution line set by one account must be unique.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
-               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] region: The region where the custom line is located
         """
         ...
     @overload
@@ -286,11 +282,10 @@ class CustomLine(pulumi.CustomResource):
 
         The DNS custom line can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/customLine:CustomLine test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomLineArgs args: The arguments to use to populate this resource's properties.
@@ -358,8 +353,7 @@ class CustomLine(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Specifies the custom line name.  
                The value consists of `1` to `80` characters including Chinese characters, English letters, digits, hyphens (-),
                underscores (_) and dots (.). The name of each resolution line set by one account must be unique.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
-               If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] region: The region where the custom line is located
         :param pulumi.Input[_builtins.str] status: The resource status.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -407,8 +401,7 @@ class CustomLine(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the region in which to create the resource.
-        If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
+        The region where the custom line is located
         """
         return pulumi.get(self, "region")
 

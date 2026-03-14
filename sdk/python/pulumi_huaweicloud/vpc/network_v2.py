@@ -30,6 +30,7 @@ class NetworkV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a NetworkV2 resource.
+
         :param pulumi.Input[_builtins.str] admin_state_up: The administrative state of the network. Acceptable values are "true" and "
                false". Changing this value updates the state of the existing network.
         :param pulumi.Input[_builtins.str] name: The name of the network. Changing this updates the name of the existing network.
@@ -158,6 +159,7 @@ class _NetworkV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering NetworkV2 resources.
+
         :param pulumi.Input[_builtins.str] admin_state_up: The administrative state of the network. Acceptable values are "true" and "
                false". Changing this value updates the state of the existing network.
         :param pulumi.Input[_builtins.str] name: The name of the network. Changing this updates the name of the existing network.
@@ -339,11 +341,10 @@ class NetworkV2(pulumi.CustomResource):
 
         Networks can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/networkV2:NetworkV2 network_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -415,11 +416,10 @@ class NetworkV2(pulumi.CustomResource):
 
         Networks can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/networkV2:NetworkV2 network_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NetworkV2Args args: The arguments to use to populate this resource's properties.

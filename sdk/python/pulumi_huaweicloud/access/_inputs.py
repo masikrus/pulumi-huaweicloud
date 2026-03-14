@@ -27,24 +27,19 @@ __all__ = [
     'AnalyzerStatusReasonArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AnalyzerArchiveRuleFilterArgsDict(TypedDict):
-        criterion: pulumi.Input['AnalyzerArchiveRuleFilterCriterionArgsDict']
-        """
-        Specifies the extend parameters of the mesh.
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the cluster informations in the mesh.
-        """
-        organization_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster informations in the mesh.
-        """
-elif False:
-    AnalyzerArchiveRuleFilterArgsDict: TypeAlias = Mapping[str, Any]
+class AnalyzerArchiveRuleFilterArgsDict(TypedDict):
+    criterion: pulumi.Input['AnalyzerArchiveRuleFilterCriterionArgsDict']
+    """
+    Specifies the extend parameters of the mesh.
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the cluster informations in the mesh.
+    """
+    organization_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster informations in the mesh.
+    """
 
 @pulumi.input_type
 class AnalyzerArchiveRuleFilterArgs:
@@ -99,26 +94,23 @@ class AnalyzerArchiveRuleFilterArgs:
         pulumi.set(self, "organization_id", value)
 
 
-if not MYPY:
-    class AnalyzerArchiveRuleFilterCriterionArgsDict(TypedDict):
-        contains: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the cluster informations in the mesh.
-        """
-        eqs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the cluster informations in the mesh.
-        """
-        exists: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster informations in the mesh.
-        """
-        neqs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the cluster informations in the mesh.
-        """
-elif False:
-    AnalyzerArchiveRuleFilterCriterionArgsDict: TypeAlias = Mapping[str, Any]
+class AnalyzerArchiveRuleFilterCriterionArgsDict(TypedDict):
+    contains: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the cluster informations in the mesh.
+    """
+    eqs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the cluster informations in the mesh.
+    """
+    exists: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster informations in the mesh.
+    """
+    neqs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the cluster informations in the mesh.
+    """
 
 @pulumi.input_type
 class AnalyzerArchiveRuleFilterCriterionArgs:
@@ -191,18 +183,15 @@ class AnalyzerArchiveRuleFilterCriterionArgs:
         pulumi.set(self, "neqs", value)
 
 
-if not MYPY:
-    class AnalyzerConfigurationArgsDict(TypedDict):
-        unused_access: NotRequired[pulumi.Input['AnalyzerConfigurationUnusedAccessArgsDict']]
-        """
-        Specifies the unused access.
-        The unused_access structure is documented below.
+class AnalyzerConfigurationArgsDict(TypedDict):
+    unused_access: NotRequired[pulumi.Input['AnalyzerConfigurationUnusedAccessArgsDict']]
+    """
+    Specifies the unused access.
+    The unused_access structure is documented below.
 
-        <a name="unused_access"></a>
-        The `unused_access` block supports:
-        """
-elif False:
-    AnalyzerConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="unused_access"></a>
+    The `unused_access` block supports:
+    """
 
 @pulumi.input_type
 class AnalyzerConfigurationArgs:
@@ -235,15 +224,12 @@ class AnalyzerConfigurationArgs:
         pulumi.set(self, "unused_access", value)
 
 
-if not MYPY:
-    class AnalyzerConfigurationUnusedAccessArgsDict(TypedDict):
-        unused_access_age: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the unused access age in days.
-        When the `type` is **account_unused_access** or **organization_unused_access**, the default value is 90.
-        """
-elif False:
-    AnalyzerConfigurationUnusedAccessArgsDict: TypeAlias = Mapping[str, Any]
+class AnalyzerConfigurationUnusedAccessArgsDict(TypedDict):
+    unused_access_age: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the unused access age in days.
+    When the `type` is **account_unused_access** or **organization_unused_access**, the default value is 90.
+    """
 
 @pulumi.input_type
 class AnalyzerConfigurationUnusedAccessArgs:
@@ -270,18 +256,15 @@ class AnalyzerConfigurationUnusedAccessArgs:
         pulumi.set(self, "unused_access_age", value)
 
 
-if not MYPY:
-    class AnalyzerStatusReasonArgsDict(TypedDict):
-        code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The code of the status reason.
-        """
-        details: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The details of the status reason.
-        """
-elif False:
-    AnalyzerStatusReasonArgsDict: TypeAlias = Mapping[str, Any]
+class AnalyzerStatusReasonArgsDict(TypedDict):
+    code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The code of the status reason.
+    """
+    details: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The details of the status reason.
+    """
 
 @pulumi.input_type
 class AnalyzerStatusReasonArgs:

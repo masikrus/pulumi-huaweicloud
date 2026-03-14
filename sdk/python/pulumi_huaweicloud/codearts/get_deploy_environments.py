@@ -118,7 +118,7 @@ def get_deploy_environments(application_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     project_id = config.require_object("projectId")
     application_id = config.require_object("applicationId")
-    test = huaweicloud.codearts.get_deploy_environments(project_id=project_id,
+    test = huaweicloud.Codearts.get_deploy_environments(project_id=project_id,
         application_id=application_id)
     ```
 
@@ -135,7 +135,7 @@ def get_deploy_environments(application_id: Optional[_builtins.str] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getDeployEnvironments:getDeployEnvironments', __args__, opts=opts, typ=GetDeployEnvironmentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getDeployEnvironments:getDeployEnvironments', __args__, opts=opts, typ=GetDeployEnvironmentsResult).value
 
     return AwaitableGetDeployEnvironmentsResult(
         application_id=pulumi.get(__ret__, 'application_id'),
@@ -161,7 +161,7 @@ def get_deploy_environments_output(application_id: Optional[pulumi.Input[_builti
     config = pulumi.Config()
     project_id = config.require_object("projectId")
     application_id = config.require_object("applicationId")
-    test = huaweicloud.codearts.get_deploy_environments(project_id=project_id,
+    test = huaweicloud.Codearts.get_deploy_environments(project_id=project_id,
         application_id=application_id)
     ```
 
@@ -178,7 +178,7 @@ def get_deploy_environments_output(application_id: Optional[pulumi.Input[_builti
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getDeployEnvironments:getDeployEnvironments', __args__, opts=opts, typ=GetDeployEnvironmentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getDeployEnvironments:getDeployEnvironments', __args__, opts=opts, typ=GetDeployEnvironmentsResult)
     return __ret__.apply(lambda __response__: GetDeployEnvironmentsResult(
         application_id=pulumi.get(__response__, 'application_id'),
         environments=pulumi.get(__response__, 'environments'),

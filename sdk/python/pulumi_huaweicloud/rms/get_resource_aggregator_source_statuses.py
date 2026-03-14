@@ -94,7 +94,7 @@ def get_resource_aggregator_source_statuses(aggregator_id: Optional[_builtins.st
 
     config = pulumi.Config()
     aggregator_id = config.require_object("aggregatorId")
-    test = huaweicloud.rms.get_resource_aggregator_source_statuses(aggregator_id=aggregator_id)
+    test = huaweicloud.Rms.get_resource_aggregator_source_statuses(aggregator_id=aggregator_id)
     ```
 
 
@@ -105,7 +105,7 @@ def get_resource_aggregator_source_statuses(aggregator_id: Optional[_builtins.st
     __args__['aggregatorId'] = aggregator_id
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceAggregatorSourceStatuses:getResourceAggregatorSourceStatuses', __args__, opts=opts, typ=GetResourceAggregatorSourceStatusesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceAggregatorSourceStatuses:getResourceAggregatorSourceStatuses', __args__, opts=opts, typ=GetResourceAggregatorSourceStatusesResult).value
 
     return AwaitableGetResourceAggregatorSourceStatusesResult(
         aggregated_source_statuses=pulumi.get(__ret__, 'aggregated_source_statuses'),
@@ -126,7 +126,7 @@ def get_resource_aggregator_source_statuses_output(aggregator_id: Optional[pulum
 
     config = pulumi.Config()
     aggregator_id = config.require_object("aggregatorId")
-    test = huaweicloud.rms.get_resource_aggregator_source_statuses(aggregator_id=aggregator_id)
+    test = huaweicloud.Rms.get_resource_aggregator_source_statuses(aggregator_id=aggregator_id)
     ```
 
 
@@ -137,7 +137,7 @@ def get_resource_aggregator_source_statuses_output(aggregator_id: Optional[pulum
     __args__['aggregatorId'] = aggregator_id
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceAggregatorSourceStatuses:getResourceAggregatorSourceStatuses', __args__, opts=opts, typ=GetResourceAggregatorSourceStatusesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceAggregatorSourceStatuses:getResourceAggregatorSourceStatuses', __args__, opts=opts, typ=GetResourceAggregatorSourceStatusesResult)
     return __ret__.apply(lambda __response__: GetResourceAggregatorSourceStatusesResult(
         aggregated_source_statuses=pulumi.get(__response__, 'aggregated_source_statuses'),
         aggregator_id=pulumi.get(__response__, 'aggregator_id'),

@@ -516,7 +516,7 @@ class _SiteConnectionState:
         pulumi.set(self, "vpnservice_id", value)
 
 
-@pulumi.type_token("huaweicloud:vpnaas/siteConnection:SiteConnection")
+@pulumi.type_token("huaweicloud:Vpnaas/siteConnection:SiteConnection")
 class SiteConnection(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -545,6 +545,7 @@ class SiteConnection(pulumi.CustomResource):
                  __props__=None):
         """
         Create a SiteConnection resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -556,6 +557,7 @@ class SiteConnection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a SiteConnection resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param SiteConnectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -633,7 +635,7 @@ class SiteConnection(pulumi.CustomResource):
                 raise TypeError("Missing required property 'vpnservice_id'")
             __props__.__dict__["vpnservice_id"] = vpnservice_id
         super(SiteConnection, __self__).__init__(
-            'huaweicloud:vpnaas/siteConnection:SiteConnection',
+            'huaweicloud:Vpnaas/siteConnection:SiteConnection',
             resource_name,
             __props__,
             opts)

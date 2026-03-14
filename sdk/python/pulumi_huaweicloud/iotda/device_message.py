@@ -34,6 +34,7 @@ class DeviceMessageArgs:
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeviceMessage resource.
+
         :param pulumi.Input[_builtins.str] device_id: Specifies the ID of the device to which the message is delivered.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] message: Specifies message content, supporting string and json formats.
@@ -302,6 +303,7 @@ class _DeviceMessageState:
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeviceMessage resources.
+
         :param pulumi.Input[_builtins.str] created_time: The creation time of the device message.
                The format is **yyyyMMdd'T'HHmmss'Z'**, e.g. **20151212T121212Z**.
         :param pulumi.Input[_builtins.str] device_id: Specifies the ID of the device to which the message is delivered.
@@ -680,6 +682,7 @@ class DeviceMessage(pulumi.CustomResource):
             message=message)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] device_id: Specifies the ID of the device to which the message is delivered.
@@ -774,6 +777,7 @@ class DeviceMessage(pulumi.CustomResource):
             device_id=device_id,
             message=message)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeviceMessageArgs args: The arguments to use to populate this resource's properties.

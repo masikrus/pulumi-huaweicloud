@@ -27,6 +27,7 @@ class DataserviceApiDebugArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataserviceApiDebug resource.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the catalog where the API is located.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the exclusive cluster ID.
@@ -149,6 +150,7 @@ class _DataserviceApiDebugState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataserviceApiDebug resources.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the catalog where the API is located.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the exclusive cluster ID.
@@ -376,6 +378,7 @@ class DataserviceApiDebug(pulumi.CustomResource):
             }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the catalog where the API is located.
@@ -428,6 +431,7 @@ class DataserviceApiDebug(pulumi.CustomResource):
                 "test_request_field": "{\\"foo\\": \\"bar\\"}",
             }))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataserviceApiDebugArgs args: The arguments to use to populate this resource's properties.

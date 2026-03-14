@@ -27,6 +27,7 @@ class TurboDirArgs:
                  uid: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a TurboDir resource.
+
         :param pulumi.Input[_builtins.str] path: Specifies the valid full path of SFS Turbo directory. The parameter
                starts with "/", otherwise the parameter is illegal. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] share_id: Specifies the SFS Turbo ID. Changing this will create a new resource.
@@ -143,6 +144,7 @@ class _TurboDirState:
                  uid: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering TurboDir resources.
+
         :param pulumi.Input[_builtins.int] gid: Specifies the group ID of the file directory. The minimum value is `0`,
                the value represents the ID of the super user `root`.
         :param pulumi.Input[_builtins.int] mode: Specifies the file directory permissions. The valid value ranges from `0` to `777`.
@@ -280,6 +282,7 @@ class TurboDir(pulumi.CustomResource):
             mode=777)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] gid: Specifies the group ID of the file directory. The minimum value is `0`,
@@ -318,6 +321,7 @@ class TurboDir(pulumi.CustomResource):
             share_id=share_id,
             mode=777)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TurboDirArgs args: The arguments to use to populate this resource's properties.

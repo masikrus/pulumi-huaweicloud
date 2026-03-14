@@ -35,6 +35,7 @@ class RemediationConfigurationArgs:
                  static_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['RemediationConfigurationStaticParameterArgs']]]] = None):
         """
         The set of arguments for constructing a RemediationConfiguration resource.
+
         :param pulumi.Input[_builtins.str] policy_assignment_id: Specifies the policy assignment ID.
         :param pulumi.Input['RemediationConfigurationResourceParameterArgs'] resource_parameter: Specifies the dynamic parameter of remediation.
                
@@ -266,6 +267,7 @@ class _RemediationConfigurationState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RemediationConfiguration resources.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the authorization type for remediation configurations.
                The valid value can be **agency** or **trustAgency**.
         :param pulumi.Input[_builtins.str] auth_value: Specifies the information of dependent service authorization.
@@ -526,7 +528,7 @@ class _RemediationConfigurationState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:rms/remediationConfiguration:RemediationConfiguration")
+@pulumi.type_token("huaweicloud:Rms/remediationConfiguration:RemediationConfiguration")
 class RemediationConfiguration(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -552,11 +554,10 @@ class RemediationConfiguration(pulumi.CustomResource):
 
         The RMS remediation configuration can be imported by using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/remediationConfiguration:RemediationConfiguration test <id>
+        $ pulumi import huaweicloud:Rms/remediationConfiguration:RemediationConfiguration test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -603,11 +604,10 @@ class RemediationConfiguration(pulumi.CustomResource):
 
         The RMS remediation configuration can be imported by using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/remediationConfiguration:RemediationConfiguration test <id>
+        $ pulumi import huaweicloud:Rms/remediationConfiguration:RemediationConfiguration test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RemediationConfigurationArgs args: The arguments to use to populate this resource's properties.
@@ -669,7 +669,7 @@ class RemediationConfiguration(pulumi.CustomResource):
             __props__.__dict__["created_by"] = None
             __props__.__dict__["updated_at"] = None
         super(RemediationConfiguration, __self__).__init__(
-            'huaweicloud:rms/remediationConfiguration:RemediationConfiguration',
+            'huaweicloud:Rms/remediationConfiguration:RemediationConfiguration',
             resource_name,
             __props__,
             opts)

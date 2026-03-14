@@ -30,6 +30,7 @@ class ArchitectureCodeTableArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureCodeTable resource.
+
         :param pulumi.Input[_builtins.str] code: Specifies the code of a field.
         :param pulumi.Input[_builtins.str] directory_id: Specifies the directory ID of the code table.
         :param pulumi.Input[Sequence[pulumi.Input['ArchitectureCodeTableFieldArgs']]] fields: Specifies the fields information of the code table.
@@ -157,6 +158,7 @@ class _ArchitectureCodeTableState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureCodeTable resources.
+
         :param pulumi.Input[_builtins.str] code: Specifies the code of a field.
         :param pulumi.Input[_builtins.str] created_at: The time when the code table was created.
         :param pulumi.Input[_builtins.str] created_by: The user who created the code table.
@@ -391,14 +393,12 @@ class ArchitectureCodeTable(pulumi.CustomResource):
         ## Import
 
         The DataArts Architecture code table resource can be imported using the `workspace_id` and `name`, separated by
-
         a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureCodeTable:ArchitectureCodeTable test <workspace_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -448,14 +448,12 @@ class ArchitectureCodeTable(pulumi.CustomResource):
         ## Import
 
         The DataArts Architecture code table resource can be imported using the `workspace_id` and `name`, separated by
-
         a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureCodeTable:ArchitectureCodeTable test <workspace_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureCodeTableArgs args: The arguments to use to populate this resource's properties.

@@ -30,6 +30,7 @@ class SecurityGroupRuleArgs:
                  remote_ip_prefix: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityGroupRule resource.
+
         :param pulumi.Input[_builtins.str] direction: Specifies the direction of the rule, valid values are **ingress** or
                **egress**. Changing this parameter creates a new security group rule resource.
         :param pulumi.Input[_builtins.str] protocol: Specifies the layer 4 protocol type, valid values are following. The valid
@@ -203,6 +204,7 @@ class _SecurityGroupRuleState:
                  security_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityGroupRule resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies a description of the security group rule. Changing this
                parameter creates a new security group rule resource.
         :param pulumi.Input[_builtins.str] direction: Specifies the direction of the rule, valid values are **ingress** or
@@ -384,6 +386,7 @@ class SecurityGroupRule(pulumi.CustomResource):
         """
         Manages a IEC security group rule resource within HuaweiCloud.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies a description of the security group rule. Changing this
@@ -416,6 +419,7 @@ class SecurityGroupRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a IEC security group rule resource within HuaweiCloud.
+
 
         :param str resource_name: The name of the resource.
         :param SecurityGroupRuleArgs args: The arguments to use to populate this resource's properties.

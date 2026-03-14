@@ -25,6 +25,7 @@ class DrillArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Drill resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of a protection group.
                
                Changing this parameter will create a new resource.
@@ -119,6 +120,7 @@ class _DrillState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Drill resources.
+
         :param pulumi.Input[_builtins.str] drill_vpc_id: Specifies the drill VPC ID.
                
                If specified, make sure the drill VPC CIDR block consistent with the VPC of the protection group, and make sure the
@@ -229,7 +231,7 @@ class _DrillState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/drill:Drill")
+@pulumi.type_token("huaweicloud:Sdrs/drill:Drill")
 class Drill(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -264,11 +266,10 @@ class Drill(pulumi.CustomResource):
 
         The SDRS DR drill can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/drill:Drill test <id>
+        $ pulumi import huaweicloud:Sdrs/drill:Drill test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -318,11 +319,10 @@ class Drill(pulumi.CustomResource):
 
         The SDRS DR drill can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/drill:Drill test <id>
+        $ pulumi import huaweicloud:Sdrs/drill:Drill test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DrillArgs args: The arguments to use to populate this resource's properties.
@@ -360,7 +360,7 @@ class Drill(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["status"] = None
         super(Drill, __self__).__init__(
-            'huaweicloud:sdrs/drill:Drill',
+            'huaweicloud:Sdrs/drill:Drill',
             resource_name,
             __props__,
             opts)

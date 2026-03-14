@@ -27,6 +27,7 @@ class LogstashPipelineArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogstashPipeline resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS logstash cluster.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] names: Specifies the configuration file names of the CSS logstash cluster pipeline.
@@ -120,6 +121,7 @@ class _LogstashPipelineState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstashPipeline resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS logstash cluster.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.bool] keep_alive: Specifies whether keep alive. The value can be **true** and **false**.
@@ -254,11 +256,10 @@ class LogstashPipeline(pulumi.CustomResource):
 
         The CSS logstash cluster pipeline can be imported using `cluster_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logstashPipeline:LogstashPipeline test <cluster_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -305,11 +306,10 @@ class LogstashPipeline(pulumi.CustomResource):
 
         The CSS logstash cluster pipeline can be imported using `cluster_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logstashPipeline:LogstashPipeline test <cluster_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogstashPipelineArgs args: The arguments to use to populate this resource's properties.

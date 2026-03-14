@@ -26,6 +26,7 @@ class EnvironmentAssociateV3Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvironmentAssociateV3 resource.
+
         :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID associated with the resources.  
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['EnvironmentAssociateV3ResourceArgs']]] resources: Specifies the information about the associated resources.
@@ -92,6 +93,7 @@ class _EnvironmentAssociateV3State:
                  resources: Optional[pulumi.Input[Sequence[pulumi.Input['EnvironmentAssociateV3ResourceArgs']]]] = None):
         """
         Input properties used for looking up and filtering EnvironmentAssociateV3 resources.
+
         :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID associated with the resources.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the environment and resources are located.  
@@ -190,11 +192,10 @@ class EnvironmentAssociateV3(pulumi.CustomResource):
 
         Associate resources can be imported using the `id` (`environment_id`), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/environmentAssociateV3:EnvironmentAssociateV3 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -242,11 +243,10 @@ class EnvironmentAssociateV3(pulumi.CustomResource):
 
         Associate resources can be imported using the `id` (`environment_id`), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/environmentAssociateV3:EnvironmentAssociateV3 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EnvironmentAssociateV3Args args: The arguments to use to populate this resource's properties.

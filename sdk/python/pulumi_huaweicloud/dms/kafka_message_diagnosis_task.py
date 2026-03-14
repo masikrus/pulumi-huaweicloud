@@ -27,6 +27,7 @@ class KafkaMessageDiagnosisTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KafkaMessageDiagnosisTask resource.
+
         :param pulumi.Input[_builtins.str] group_name: Specifies the group name.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the kafka instance ID.
@@ -111,6 +112,7 @@ class _KafkaMessageDiagnosisTaskState:
                  topic_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaMessageDiagnosisTask resources.
+
         :param pulumi.Input[_builtins.int] accumulated_partitions: Indicates the number of partitions where accumulated messages are found.
         :param pulumi.Input[_builtins.str] begin_time: Indicates the diagnosis task start time.
         :param pulumi.Input[Sequence[pulumi.Input['KafkaMessageDiagnosisTaskDiagnosisDimensionListArgs']]] diagnosis_dimension_lists: Indicates the diagnosis dimensions.
@@ -303,11 +305,10 @@ class KafkaMessageDiagnosisTask(pulumi.CustomResource):
 
         The kafka smart message diagnosis task can be imported using `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaMessageDiagnosisTask:KafkaMessageDiagnosisTask test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -350,11 +351,10 @@ class KafkaMessageDiagnosisTask(pulumi.CustomResource):
 
         The kafka smart message diagnosis task can be imported using `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaMessageDiagnosisTask:KafkaMessageDiagnosisTask test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaMessageDiagnosisTaskArgs args: The arguments to use to populate this resource's properties.

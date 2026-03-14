@@ -17,6 +17,18 @@ from .. import _utilities
 __all__ = [
     'AccessControlAttributeConfigurationAccessControlAttributeArgs',
     'AccessControlAttributeConfigurationAccessControlAttributeArgsDict',
+    'ApplicationInstanceActiveCertificateArgs',
+    'ApplicationInstanceActiveCertificateArgsDict',
+    'ApplicationInstanceIdentityProviderConfigArgs',
+    'ApplicationInstanceIdentityProviderConfigArgsDict',
+    'ApplicationInstanceSecurityConfigArgs',
+    'ApplicationInstanceSecurityConfigArgsDict',
+    'ApplicationInstanceServiceProviderConfigArgs',
+    'ApplicationInstanceServiceProviderConfigArgsDict',
+    'ApplicationInstanceServiceProviderConfigConsumerArgs',
+    'ApplicationInstanceServiceProviderConfigConsumerArgsDict',
+    'IdentityProviderIdpCertificateIdArgs',
+    'IdentityProviderIdpCertificateIdArgsDict',
     'SystemIdentityPolicyAttachmentAttachedPolicyArgs',
     'SystemIdentityPolicyAttachmentAttachedPolicyArgsDict',
     'SystemPolicyAttachmentAttachedPolicyArgs',
@@ -27,20 +39,15 @@ __all__ = [
     'UserEnterpriseArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AccessControlAttributeConfigurationAccessControlAttributeArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the attribute associated with the identity in your identity source.
-        """
-        values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the value used to map the specified attribute to the identity source.
-        """
-elif False:
-    AccessControlAttributeConfigurationAccessControlAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class AccessControlAttributeConfigurationAccessControlAttributeArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the attribute associated with the identity in your identity source.
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the value used to map the specified attribute to the identity source.
+    """
 
 @pulumi.input_type
 class AccessControlAttributeConfigurationAccessControlAttributeArgs:
@@ -79,18 +86,510 @@ class AccessControlAttributeConfigurationAccessControlAttributeArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class SystemIdentityPolicyAttachmentAttachedPolicyArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
+class ApplicationInstanceActiveCertificateArgsDict(TypedDict):
+    algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The algorithm of the application instance certificate.
+    """
+    certificate: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The certificate of the application instance.
+    """
+    certificate_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the application instance certificate.
+    """
+    expiry_date: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The expiry date of the application instance certificate.
+    """
+    issue_date: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The issue date of the application instance certificate.
+    """
+    key_size: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The key size of the application instance certificate.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the status of the application instance.
+    """
+
+@pulumi.input_type
+class ApplicationInstanceActiveCertificateArgs:
+    def __init__(__self__, *,
+                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 expiry_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 issue_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_size: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        The ID of an IAM system identity policy.
+        :param pulumi.Input[_builtins.str] algorithm: The algorithm of the application instance certificate.
+        :param pulumi.Input[_builtins.str] certificate: The certificate of the application instance.
+        :param pulumi.Input[_builtins.str] certificate_id: The ID of the application instance certificate.
+        :param pulumi.Input[_builtins.str] expiry_date: The expiry date of the application instance certificate.
+        :param pulumi.Input[_builtins.str] issue_date: The issue date of the application instance certificate.
+        :param pulumi.Input[_builtins.str] key_size: The key size of the application instance certificate.
+        :param pulumi.Input[_builtins.str] status: Specifies the status of the application instance.
         """
-        name: NotRequired[pulumi.Input[_builtins.str]]
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if certificate_id is not None:
+            pulumi.set(__self__, "certificate_id", certificate_id)
+        if expiry_date is not None:
+            pulumi.set(__self__, "expiry_date", expiry_date)
+        if issue_date is not None:
+            pulumi.set(__self__, "issue_date", issue_date)
+        if key_size is not None:
+            pulumi.set(__self__, "key_size", key_size)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of an IAM system identity policy.
+        The algorithm of the application instance certificate.
         """
-elif False:
-    SystemIdentityPolicyAttachmentAttachedPolicyArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The certificate of the application instance.
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "certificate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the application instance certificate.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @certificate_id.setter
+    def certificate_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "certificate_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expiryDate")
+    def expiry_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The expiry date of the application instance certificate.
+        """
+        return pulumi.get(self, "expiry_date")
+
+    @expiry_date.setter
+    def expiry_date(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "expiry_date", value)
+
+    @_builtins.property
+    @pulumi.getter(name="issueDate")
+    def issue_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The issue date of the application instance certificate.
+        """
+        return pulumi.get(self, "issue_date")
+
+    @issue_date.setter
+    def issue_date(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "issue_date", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keySize")
+    def key_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The key size of the application instance certificate.
+        """
+        return pulumi.get(self, "key_size")
+
+    @key_size.setter
+    def key_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the status of the application instance.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+
+class ApplicationInstanceIdentityProviderConfigArgsDict(TypedDict):
+    issuer_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The issuer url of the application instance.
+    """
+    metadata_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The metadata url of the application instance.
+    """
+    remote_login_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The remote login url of the application instance.
+    """
+    remote_logout_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The remote logout url of the application instance.
+    """
+
+@pulumi.input_type
+class ApplicationInstanceIdentityProviderConfigArgs:
+    def __init__(__self__, *,
+                 issuer_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_login_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 remote_logout_url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] issuer_url: The issuer url of the application instance.
+        :param pulumi.Input[_builtins.str] metadata_url: The metadata url of the application instance.
+        :param pulumi.Input[_builtins.str] remote_login_url: The remote login url of the application instance.
+        :param pulumi.Input[_builtins.str] remote_logout_url: The remote logout url of the application instance.
+        """
+        if issuer_url is not None:
+            pulumi.set(__self__, "issuer_url", issuer_url)
+        if metadata_url is not None:
+            pulumi.set(__self__, "metadata_url", metadata_url)
+        if remote_login_url is not None:
+            pulumi.set(__self__, "remote_login_url", remote_login_url)
+        if remote_logout_url is not None:
+            pulumi.set(__self__, "remote_logout_url", remote_logout_url)
+
+    @_builtins.property
+    @pulumi.getter(name="issuerUrl")
+    def issuer_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The issuer url of the application instance.
+        """
+        return pulumi.get(self, "issuer_url")
+
+    @issuer_url.setter
+    def issuer_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "issuer_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="metadataUrl")
+    def metadata_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The metadata url of the application instance.
+        """
+        return pulumi.get(self, "metadata_url")
+
+    @metadata_url.setter
+    def metadata_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "metadata_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteLoginUrl")
+    def remote_login_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The remote login url of the application instance.
+        """
+        return pulumi.get(self, "remote_login_url")
+
+    @remote_login_url.setter
+    def remote_login_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remote_login_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="remoteLogoutUrl")
+    def remote_logout_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The remote logout url of the application instance.
+        """
+        return pulumi.get(self, "remote_logout_url")
+
+    @remote_logout_url.setter
+    def remote_logout_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "remote_logout_url", value)
+
+
+class ApplicationInstanceSecurityConfigArgsDict(TypedDict):
+    ttl: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time to alive of the application instance certificate.
+
+    <a name="service_provider_config_struct"></a>
+    The `service_provider_config` block supports:
+    """
+
+@pulumi.input_type
+class ApplicationInstanceSecurityConfigArgs:
+    def __init__(__self__, *,
+                 ttl: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] ttl: Specifies the time to alive of the application instance certificate.
+               
+               <a name="service_provider_config_struct"></a>
+               The `service_provider_config` block supports:
+        """
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the time to alive of the application instance certificate.
+
+        <a name="service_provider_config_struct"></a>
+        The `service_provider_config` block supports:
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ttl", value)
+
+
+class ApplicationInstanceServiceProviderConfigArgsDict(TypedDict):
+    audience: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the audience of the application instance.
+    """
+    consumers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ApplicationInstanceServiceProviderConfigConsumerArgsDict']]]]
+    """
+    Specifies the consumers of the application instance.
+    The consumers structure is documented below.
+    """
+    require_request_signature: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the application instance requires request signature.
+    """
+    start_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the start url of the application instance.
+
+    <a name="consumers_struct"></a>
+    The `consumers` block supports:
+    """
+
+@pulumi.input_type
+class ApplicationInstanceServiceProviderConfigArgs:
+    def __init__(__self__, *,
+                 audience: Optional[pulumi.Input[_builtins.str]] = None,
+                 consumers: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationInstanceServiceProviderConfigConsumerArgs']]]] = None,
+                 require_request_signature: Optional[pulumi.Input[_builtins.bool]] = None,
+                 start_url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] audience: Specifies the audience of the application instance.
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationInstanceServiceProviderConfigConsumerArgs']]] consumers: Specifies the consumers of the application instance.
+               The consumers structure is documented below.
+        :param pulumi.Input[_builtins.bool] require_request_signature: Whether the application instance requires request signature.
+        :param pulumi.Input[_builtins.str] start_url: Specifies the start url of the application instance.
+               
+               <a name="consumers_struct"></a>
+               The `consumers` block supports:
+        """
+        if audience is not None:
+            pulumi.set(__self__, "audience", audience)
+        if consumers is not None:
+            pulumi.set(__self__, "consumers", consumers)
+        if require_request_signature is not None:
+            pulumi.set(__self__, "require_request_signature", require_request_signature)
+        if start_url is not None:
+            pulumi.set(__self__, "start_url", start_url)
+
+    @_builtins.property
+    @pulumi.getter
+    def audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the audience of the application instance.
+        """
+        return pulumi.get(self, "audience")
+
+    @audience.setter
+    def audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "audience", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def consumers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationInstanceServiceProviderConfigConsumerArgs']]]]:
+        """
+        Specifies the consumers of the application instance.
+        The consumers structure is documented below.
+        """
+        return pulumi.get(self, "consumers")
+
+    @consumers.setter
+    def consumers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationInstanceServiceProviderConfigConsumerArgs']]]]):
+        pulumi.set(self, "consumers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="requireRequestSignature")
+    def require_request_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the application instance requires request signature.
+        """
+        return pulumi.get(self, "require_request_signature")
+
+    @require_request_signature.setter
+    def require_request_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "require_request_signature", value)
+
+    @_builtins.property
+    @pulumi.getter(name="startUrl")
+    def start_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the start url of the application instance.
+
+        <a name="consumers_struct"></a>
+        The `consumers` block supports:
+        """
+        return pulumi.get(self, "start_url")
+
+    @start_url.setter
+    def start_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "start_url", value)
+
+
+class ApplicationInstanceServiceProviderConfigConsumerArgsDict(TypedDict):
+    binding: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the bind method of the application instance.
+    """
+    default_value: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether this consumer is a default one.
+    """
+    location: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the location url of the application instance.
+    """
+
+@pulumi.input_type
+class ApplicationInstanceServiceProviderConfigConsumerArgs:
+    def __init__(__self__, *,
+                 binding: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_value: Optional[pulumi.Input[_builtins.bool]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] binding: Specifies the bind method of the application instance.
+        :param pulumi.Input[_builtins.bool] default_value: Whether this consumer is a default one.
+        :param pulumi.Input[_builtins.str] location: Specifies the location url of the application instance.
+        """
+        if binding is not None:
+            pulumi.set(__self__, "binding", binding)
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+
+    @_builtins.property
+    @pulumi.getter
+    def binding(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the bind method of the application instance.
+        """
+        return pulumi.get(self, "binding")
+
+    @binding.setter
+    def binding(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "binding", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether this consumer is a default one.
+        """
+        return pulumi.get(self, "default_value")
+
+    @default_value.setter
+    def default_value(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "default_value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the location url of the application instance.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+
+class IdentityProviderIdpCertificateIdArgsDict(TypedDict):
+    certificate_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the identity provider certificate.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the identity provider.
+    """
+
+@pulumi.input_type
+class IdentityProviderIdpCertificateIdArgs:
+    def __init__(__self__, *,
+                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] certificate_id: The ID of the identity provider certificate.
+        :param pulumi.Input[_builtins.str] status: The status of the identity provider.
+        """
+        if certificate_id is not None:
+            pulumi.set(__self__, "certificate_id", certificate_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the identity provider certificate.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @certificate_id.setter
+    def certificate_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "certificate_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The status of the identity provider.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+
+class SystemIdentityPolicyAttachmentAttachedPolicyArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of an IAM system identity policy.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of an IAM system identity policy.
+    """
 
 @pulumi.input_type
 class SystemIdentityPolicyAttachmentAttachedPolicyArgs:
@@ -131,18 +630,15 @@ class SystemIdentityPolicyAttachmentAttachedPolicyArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class SystemPolicyAttachmentAttachedPolicyArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of an IAM system policy/role.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of an IAM system policy/role.
-        """
-elif False:
-    SystemPolicyAttachmentAttachedPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class SystemPolicyAttachmentAttachedPolicyArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of an IAM system policy/role.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of an IAM system policy/role.
+    """
 
 @pulumi.input_type
 class SystemPolicyAttachmentAttachedPolicyArgs:
@@ -183,37 +679,34 @@ class SystemPolicyAttachmentAttachedPolicyArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class UserAddressesArgsDict(TypedDict):
-        country: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the country of the user.
-        """
-        formatted: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies a string containing a formatted version of the address to be displayed.
-        """
-        locality: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the locality of the user.
-        """
-        postal_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the postal code of the user.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the region of the user.
-        """
-        street_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the street address of the user.
+class UserAddressesArgsDict(TypedDict):
+    country: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the country of the user.
+    """
+    formatted: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a string containing a formatted version of the address to be displayed.
+    """
+    locality: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the locality of the user.
+    """
+    postal_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the postal code of the user.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region of the user.
+    """
+    street_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the street address of the user.
 
-        <a name="enterprise_struct"></a>
-        The `enterprise` block supports:
-        """
-elif False:
-    UserAddressesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="enterprise_struct"></a>
+    The `enterprise` block supports:
+    """
 
 @pulumi.input_type
 class UserAddressesArgs:
@@ -324,34 +817,31 @@ class UserAddressesArgs:
         pulumi.set(self, "street_address", value)
 
 
-if not MYPY:
-    class UserEnterpriseArgsDict(TypedDict):
-        cost_center: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cost center of the enterprise.
-        """
-        department: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the department of the enterprise.
-        """
-        division: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the division of the enterprise.
-        """
-        employee_number: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the employee number of the enterprise.
-        """
-        manager: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the manager of the enterprise.
-        """
-        organization: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the organization of the enterprise.
-        """
-elif False:
-    UserEnterpriseArgsDict: TypeAlias = Mapping[str, Any]
+class UserEnterpriseArgsDict(TypedDict):
+    cost_center: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cost center of the enterprise.
+    """
+    department: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the department of the enterprise.
+    """
+    division: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the division of the enterprise.
+    """
+    employee_number: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the employee number of the enterprise.
+    """
+    manager: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the manager of the enterprise.
+    """
+    organization: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the organization of the enterprise.
+    """
 
 @pulumi.input_type
 class UserEnterpriseArgs:

@@ -151,7 +151,7 @@ def get_resource_shares(name: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     resource_owner = config.require_object("resourceOwner")
-    test = huaweicloud.ram.get_resource_shares(resource_owner=resource_owner)
+    test = huaweicloud.Ram.get_resource_shares(resource_owner=resource_owner)
     ```
 
 
@@ -179,7 +179,7 @@ def get_resource_shares(name: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['tagFilters'] = tag_filters
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ram/getResourceShares:getResourceShares', __args__, opts=opts, typ=GetResourceSharesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ram/getResourceShares:getResourceShares', __args__, opts=opts, typ=GetResourceSharesResult).value
 
     return AwaitableGetResourceSharesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -210,7 +210,7 @@ def get_resource_shares_output(name: Optional[pulumi.Input[Optional[_builtins.st
 
     config = pulumi.Config()
     resource_owner = config.require_object("resourceOwner")
-    test = huaweicloud.ram.get_resource_shares(resource_owner=resource_owner)
+    test = huaweicloud.Ram.get_resource_shares(resource_owner=resource_owner)
     ```
 
 
@@ -238,7 +238,7 @@ def get_resource_shares_output(name: Optional[pulumi.Input[Optional[_builtins.st
     __args__['status'] = status
     __args__['tagFilters'] = tag_filters
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ram/getResourceShares:getResourceShares', __args__, opts=opts, typ=GetResourceSharesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ram/getResourceShares:getResourceShares', __args__, opts=opts, typ=GetResourceSharesResult)
     return __ret__.apply(lambda __response__: GetResourceSharesResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

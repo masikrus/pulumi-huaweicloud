@@ -252,6 +252,7 @@ class _SubnetV1State:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SubnetV1 resources.
+
         :param pulumi.Input[_builtins.str] subnet_id: schema: Deprecated
         """
         if availability_zone is not None:
@@ -527,6 +528,7 @@ class SubnetV1(pulumi.CustomResource):
                  __props__=None):
         """
         Create a SubnetV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -538,6 +540,7 @@ class SubnetV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a SubnetV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param SubnetV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

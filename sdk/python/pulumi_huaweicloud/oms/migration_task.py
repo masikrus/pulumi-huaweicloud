@@ -42,6 +42,7 @@ class MigrationTaskArgs:
                  task_priority: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MigrationTask resource.
+
         :param pulumi.Input['MigrationTaskDestinationObjectArgs'] destination_object: Specifies the destination information. The object
                structure is documented below. Changing this creates a new resource.
         :param pulumi.Input['MigrationTaskSourceObjectArgs'] source_object: Specifies the source information. The object
@@ -503,6 +504,7 @@ class _MigrationTaskState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MigrationTask resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['MigrationTaskBandwidthPolicyArgs']]] bandwidth_policies: Specifies the traffic limit rules. Each element in the array
                corresponds to the maximum bandwidth of a time segment. A maximum of 5 time segments are allowed, and the time
                segments must not overlap. The object structure is  documented below.
@@ -1057,6 +1059,7 @@ class MigrationTask(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MigrationTaskBandwidthPolicyArgs', 'MigrationTaskBandwidthPolicyArgsDict']]]] bandwidth_policies: Specifies the traffic limit rules. Each element in the array
@@ -1209,6 +1212,7 @@ class MigrationTask(pulumi.CustomResource):
                 ],
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MigrationTaskArgs args: The arguments to use to populate this resource's properties.

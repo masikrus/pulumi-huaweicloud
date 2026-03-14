@@ -29,6 +29,7 @@ class DomainArgs:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Domain resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the type of domain name. The options are as follows:
                + **pull**: streaming domain name.
                + **push**: ingest domain name.
@@ -207,6 +208,7 @@ class _DomainState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Domain resources.
+
         :param pulumi.Input[_builtins.str] cname: CNAME record of the domain name.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
                Changing this parameter will create a new resource.
@@ -429,11 +431,10 @@ class Domain(pulumi.CustomResource):
 
         Domains can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/domain:Domain test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -500,11 +501,10 @@ class Domain(pulumi.CustomResource):
 
         Domains can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/domain:Domain test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainArgs args: The arguments to use to populate this resource's properties.

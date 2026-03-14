@@ -32,6 +32,7 @@ class ServerTemplateArgs:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServerTemplate resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone where the target server is located.
         :param pulumi.Input[_builtins.int] bandwidth_size: Specifies the bandwidth size in Mbit/s about the public IP address
                that will be used for migration.
@@ -234,6 +235,7 @@ class _ServerTemplateState:
                  vpc_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServerTemplate resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone where the target server is located.
         :param pulumi.Input[_builtins.int] bandwidth_size: Specifies the bandwidth size in Mbit/s about the public IP address
                that will be used for migration.
@@ -464,7 +466,7 @@ class ServerTemplate(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        demo = huaweicloud.get_availability_zones()
+        demo = huaweicloud.Index.get_availability_zones()
         demo_server_template = huaweicloud.sms.ServerTemplate("demo",
             name="demo",
             availability_zone=demo.names[0])
@@ -480,7 +482,7 @@ class ServerTemplate(pulumi.CustomResource):
         vpc_id = config.require_object("vpcId")
         subent_id = config.require_object("subentId")
         secgroup_id = config.require_object("secgroupId")
-        demo = huaweicloud.get_availability_zones()
+        demo = huaweicloud.Index.get_availability_zones()
         demo_server_template = huaweicloud.sms.ServerTemplate("demo",
             name="demo",
             availability_zone=demo.names[0],
@@ -496,6 +498,7 @@ class ServerTemplate(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:Sms/serverTemplate:ServerTemplate demo 4618ccaf-b4d7-43b9-b958-3df3b885126d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -537,7 +540,7 @@ class ServerTemplate(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        demo = huaweicloud.get_availability_zones()
+        demo = huaweicloud.Index.get_availability_zones()
         demo_server_template = huaweicloud.sms.ServerTemplate("demo",
             name="demo",
             availability_zone=demo.names[0])
@@ -553,7 +556,7 @@ class ServerTemplate(pulumi.CustomResource):
         vpc_id = config.require_object("vpcId")
         subent_id = config.require_object("subentId")
         secgroup_id = config.require_object("secgroupId")
-        demo = huaweicloud.get_availability_zones()
+        demo = huaweicloud.Index.get_availability_zones()
         demo_server_template = huaweicloud.sms.ServerTemplate("demo",
             name="demo",
             availability_zone=demo.names[0],
@@ -569,6 +572,7 @@ class ServerTemplate(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:Sms/serverTemplate:ServerTemplate demo 4618ccaf-b4d7-43b9-b958-3df3b885126d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServerTemplateArgs args: The arguments to use to populate this resource's properties.

@@ -28,6 +28,7 @@ class LtsConfigArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LtsConfig resource.
+
         :param pulumi.Input[_builtins.str] engine: Specifies the engine of the RDS instance.
                Value options: **mysql**, **postgresql**, **sqlserver**.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
@@ -145,6 +146,7 @@ class _LtsConfigState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LtsConfig resources.
+
         :param pulumi.Input[_builtins.str] engine: Specifies the engine of the RDS instance.
                Value options: **mysql**, **postgresql**, **sqlserver**.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
@@ -294,11 +296,10 @@ class LtsConfig(pulumi.CustomResource):
 
         The RDS LTS log can be imported using `instance_id` and `log_type` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/ltsConfig:LtsConfig test <instance_id>/<log_type>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -343,11 +344,10 @@ class LtsConfig(pulumi.CustomResource):
 
         The RDS LTS log can be imported using `instance_id` and `log_type` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/ltsConfig:LtsConfig test <instance_id>/<log_type>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LtsConfigArgs args: The arguments to use to populate this resource's properties.

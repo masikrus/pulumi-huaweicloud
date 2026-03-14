@@ -46,8 +46,9 @@ class TaskArgs:
                  vm_template_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Task resource.
-        :param pulumi.Input[_builtins.str] os_type: Specifies the OS type of the source server. The value can be **WINDOWS** and **LINUX**.
-               Changing this parameter will create a new resource.
+
+        :param pulumi.Input[_builtins.str] os_type: Specifies the OS type of the source server. The value can be **WINDOWS** and
+               **LINUX**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] source_server_id: Specifies the ID of the source server.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the migration task. Available values are
@@ -149,8 +150,8 @@ class TaskArgs:
     @pulumi.getter(name="osType")
     def os_type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the OS type of the source server. The value can be **WINDOWS** and **LINUX**.
-        Changing this parameter will create a new resource.
+        Specifies the OS type of the source server. The value can be **WINDOWS** and
+        **LINUX**. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "os_type")
 
@@ -485,6 +486,7 @@ class _TaskState:
                  vm_template_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Task resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation after the task is created.
                The value can be **start**, **stop** and **restart**.
         :param pulumi.Input[_builtins.bool] auto_start: Specifies whether to automatically start the migration. Defaults to **false**.
@@ -502,8 +504,8 @@ class _TaskState:
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.bool] need_migration_test: Specifies whether migration drilling is enabled. Defaults to
                **false**.
-        :param pulumi.Input[_builtins.str] os_type: Specifies the OS type of the source server. The value can be **WINDOWS** and **LINUX**.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] os_type: Specifies the OS type of the source server. The value can be **WINDOWS** and
+               **LINUX**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.float] over_speed_threshold: Specifies the overspeed threshold for stopping migration, the unit is percentage.
                
                <a name="configurations_struct"></a>
@@ -745,8 +747,8 @@ class _TaskState:
     @pulumi.getter(name="osType")
     def os_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the OS type of the source server. The value can be **WINDOWS** and **LINUX**.
-        Changing this parameter will create a new resource.
+        Specifies the OS type of the source server. The value can be **WINDOWS** and
+        **LINUX**. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "os_type")
 
@@ -1042,34 +1044,12 @@ class Task(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `action`, `auto_start`, `start_network_check`, `over_speed_threshold` and
-
         `is_need_consistency_check`.
-
         It is generally recommended running `pulumi preview` after importing a migration task.
-
         You can then decide if changes should be applied to the task, or the resource definition should be
-
         updated to align with the task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sms_task" "demo" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              syncing, action, auto_start, start_network_check, over_speed_threshold, is_need_consistency_check,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1087,8 +1067,8 @@ class Task(pulumi.CustomResource):
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.bool] need_migration_test: Specifies whether migration drilling is enabled. Defaults to
                **false**.
-        :param pulumi.Input[_builtins.str] os_type: Specifies the OS type of the source server. The value can be **WINDOWS** and **LINUX**.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] os_type: Specifies the OS type of the source server. The value can be **WINDOWS** and
+               **LINUX**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.float] over_speed_threshold: Specifies the overspeed threshold for stopping migration, the unit is percentage.
                
                <a name="configurations_struct"></a>
@@ -1163,34 +1143,12 @@ class Task(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `action`, `auto_start`, `start_network_check`, `over_speed_threshold` and
-
         `is_need_consistency_check`.
-
         It is generally recommended running `pulumi preview` after importing a migration task.
-
         You can then decide if changes should be applied to the task, or the resource definition should be
-
         updated to align with the task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sms_task" "demo" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              syncing, action, auto_start, start_network_check, over_speed_threshold, is_need_consistency_check,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param TaskArgs args: The arguments to use to populate this resource's properties.
@@ -1337,8 +1295,8 @@ class Task(pulumi.CustomResource):
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.bool] need_migration_test: Specifies whether migration drilling is enabled. Defaults to
                **false**.
-        :param pulumi.Input[_builtins.str] os_type: Specifies the OS type of the source server. The value can be **WINDOWS** and **LINUX**.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] os_type: Specifies the OS type of the source server. The value can be **WINDOWS** and
+               **LINUX**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.float] over_speed_threshold: Specifies the overspeed threshold for stopping migration, the unit is percentage.
                
                <a name="configurations_struct"></a>
@@ -1512,8 +1470,8 @@ class Task(pulumi.CustomResource):
     @pulumi.getter(name="osType")
     def os_type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the OS type of the source server. The value can be **WINDOWS** and **LINUX**.
-        Changing this parameter will create a new resource.
+        Specifies the OS type of the source server. The value can be **WINDOWS** and
+        **LINUX**. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "os_type")
 

@@ -106,7 +106,7 @@ def get_rasp_rules(enterprise_project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_rasp_rules()
+    test = huaweicloud.Hss.get_rasp_rules()
     ```
 
 
@@ -124,7 +124,7 @@ def get_rasp_rules(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['osType'] = os_type
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getRaspRules:getRaspRules', __args__, opts=opts, typ=GetRaspRulesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getRaspRules:getRaspRules', __args__, opts=opts, typ=GetRaspRulesResult).value
 
     return AwaitableGetRaspRulesResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -145,7 +145,7 @@ def get_rasp_rules_output(enterprise_project_id: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_rasp_rules()
+    test = huaweicloud.Hss.get_rasp_rules()
     ```
 
 
@@ -163,7 +163,7 @@ def get_rasp_rules_output(enterprise_project_id: Optional[pulumi.Input[Optional[
     __args__['osType'] = os_type
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getRaspRules:getRaspRules', __args__, opts=opts, typ=GetRaspRulesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getRaspRules:getRaspRules', __args__, opts=opts, typ=GetRaspRulesResult)
     return __ret__.apply(lambda __response__: GetRaspRulesResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

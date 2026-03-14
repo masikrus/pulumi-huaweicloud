@@ -176,7 +176,7 @@ def get_internet_bandwidths(access_site: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    all = huaweicloud.global.get_internet_bandwidths()
+    all = huaweicloud.Global.get_internet_bandwidths()
     ```
 
     ### Get specific global internet bandwidths
@@ -185,7 +185,7 @@ def get_internet_bandwidths(access_site: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_internet_bandwidths(access_site="cn-south-guangzhou")
+    test = huaweicloud.Global.get_internet_bandwidths(access_site="cn-south-guangzhou")
     ```
 
 
@@ -208,7 +208,7 @@ def get_internet_bandwidths(access_site: Optional[_builtins.str] = None,
     __args__['tags'] = tags
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:global/getInternetBandwidths:getInternetBandwidths', __args__, opts=opts, typ=GetInternetBandwidthsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Global/getInternetBandwidths:getInternetBandwidths', __args__, opts=opts, typ=GetInternetBandwidthsResult).value
 
     return AwaitableGetInternetBandwidthsResult(
         access_site=pulumi.get(__ret__, 'access_site'),
@@ -241,7 +241,7 @@ def get_internet_bandwidths_output(access_site: Optional[pulumi.Input[Optional[_
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    all = huaweicloud.global.get_internet_bandwidths()
+    all = huaweicloud.Global.get_internet_bandwidths()
     ```
 
     ### Get specific global internet bandwidths
@@ -250,7 +250,7 @@ def get_internet_bandwidths_output(access_site: Optional[pulumi.Input[Optional[_
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_internet_bandwidths(access_site="cn-south-guangzhou")
+    test = huaweicloud.Global.get_internet_bandwidths(access_site="cn-south-guangzhou")
     ```
 
 
@@ -273,7 +273,7 @@ def get_internet_bandwidths_output(access_site: Optional[pulumi.Input[Optional[_
     __args__['tags'] = tags
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:global/getInternetBandwidths:getInternetBandwidths', __args__, opts=opts, typ=GetInternetBandwidthsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Global/getInternetBandwidths:getInternetBandwidths', __args__, opts=opts, typ=GetInternetBandwidthsResult)
     return __ret__.apply(lambda __response__: GetInternetBandwidthsResult(
         access_site=pulumi.get(__response__, 'access_site'),
         bandwidth_id=pulumi.get(__response__, 'bandwidth_id'),

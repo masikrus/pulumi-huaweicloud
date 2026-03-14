@@ -23,6 +23,7 @@ class EnvironmentArgs:
     def __init__(__self__, *,
                  basic_resources: pulumi.Input[Sequence[pulumi.Input['EnvironmentBasicResourceArgs']]],
                  vpc_id: pulumi.Input[_builtins.str],
+                 deploy_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -30,9 +31,16 @@ class EnvironmentArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Environment resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['EnvironmentBasicResourceArgs']]] basic_resources: Specifies the basic resources.
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID to which the environment belongs.
+               Changing this will create a new resource.
+        :param pulumi.Input[_builtins.str] deploy_mode: Specifies the environment type. The valid values ars as follows:
+               + **virtualmachine**: Virtual machine type
+               + **container**: Kubernetes type
+               + **mixed**: Virtual machine and kubernetes type
+               
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the environment description.
                The description can contain a maximum of `128` characters.
@@ -51,6 +59,8 @@ class EnvironmentArgs:
         """
         pulumi.set(__self__, "basic_resources", basic_resources)
         pulumi.set(__self__, "vpc_id", vpc_id)
+        if deploy_mode is not None:
+            pulumi.set(__self__, "deploy_mode", deploy_mode)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enterprise_project_id is not None:
@@ -87,6 +97,23 @@ class EnvironmentArgs:
     @vpc_id.setter
     def vpc_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "vpc_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deployMode")
+    def deploy_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the environment type. The valid values ars as follows:
+        + **virtualmachine**: Virtual machine type
+        + **container**: Kubernetes type
+        + **mixed**: Virtual machine and kubernetes type
+
+        Changing this will create a new resource.
+        """
+        return pulumi.get(self, "deploy_mode")
+
+    @deploy_mode.setter
+    def deploy_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deploy_mode", value)
 
     @_builtins.property
     @pulumi.getter
@@ -162,6 +189,7 @@ class EnvironmentArgs:
 class _EnvironmentState:
     def __init__(__self__, *,
                  basic_resources: Optional[pulumi.Input[Sequence[pulumi.Input['EnvironmentBasicResourceArgs']]]] = None,
+                 deploy_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -170,8 +198,15 @@ class _EnvironmentState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Environment resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['EnvironmentBasicResourceArgs']]] basic_resources: Specifies the basic resources.
                The object structure is documented below.
+        :param pulumi.Input[_builtins.str] deploy_mode: Specifies the environment type. The valid values ars as follows:
+               + **virtualmachine**: Virtual machine type
+               + **container**: Kubernetes type
+               + **mixed**: Virtual machine and kubernetes type
+               
+               Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the environment description.
                The description can contain a maximum of `128` characters.
                
@@ -191,6 +226,8 @@ class _EnvironmentState:
         """
         if basic_resources is not None:
             pulumi.set(__self__, "basic_resources", basic_resources)
+        if deploy_mode is not None:
+            pulumi.set(__self__, "deploy_mode", deploy_mode)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enterprise_project_id is not None:
@@ -216,6 +253,23 @@ class _EnvironmentState:
     @basic_resources.setter
     def basic_resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EnvironmentBasicResourceArgs']]]]):
         pulumi.set(self, "basic_resources", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deployMode")
+    def deploy_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the environment type. The valid values ars as follows:
+        + **virtualmachine**: Virtual machine type
+        + **container**: Kubernetes type
+        + **mixed**: Virtual machine and kubernetes type
+
+        Changing this will create a new resource.
+        """
+        return pulumi.get(self, "deploy_mode")
+
+    @deploy_mode.setter
+    def deploy_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deploy_mode", value)
 
     @_builtins.property
     @pulumi.getter
@@ -307,6 +361,7 @@ class Environment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  basic_resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentBasicResourceArgs', 'EnvironmentBasicResourceArgsDict']]]]] = None,
+                 deploy_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -349,16 +404,21 @@ class Environment(pulumi.CustomResource):
 
         Environments can be imported using their `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/environment:Environment test 17383329-b686-47e4-8f70-0d8dcddb65e9
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentBasicResourceArgs', 'EnvironmentBasicResourceArgsDict']]]] basic_resources: Specifies the basic resources.
                The object structure is documented below.
+        :param pulumi.Input[_builtins.str] deploy_mode: Specifies the environment type. The valid values ars as follows:
+               + **virtualmachine**: Virtual machine type
+               + **container**: Kubernetes type
+               + **mixed**: Virtual machine and kubernetes type
+               
+               Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the environment description.
                The description can contain a maximum of `128` characters.
                
@@ -417,11 +477,10 @@ class Environment(pulumi.CustomResource):
 
         Environments can be imported using their `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/environment:Environment test 17383329-b686-47e4-8f70-0d8dcddb65e9
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EnvironmentArgs args: The arguments to use to populate this resource's properties.
@@ -439,6 +498,7 @@ class Environment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  basic_resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentBasicResourceArgs', 'EnvironmentBasicResourceArgsDict']]]]] = None,
+                 deploy_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -457,6 +517,7 @@ class Environment(pulumi.CustomResource):
             if basic_resources is None and not opts.urn:
                 raise TypeError("Missing required property 'basic_resources'")
             __props__.__dict__["basic_resources"] = basic_resources
+            __props__.__dict__["deploy_mode"] = deploy_mode
             __props__.__dict__["description"] = description
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["name"] = name
@@ -476,6 +537,7 @@ class Environment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             basic_resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentBasicResourceArgs', 'EnvironmentBasicResourceArgsDict']]]]] = None,
+            deploy_mode: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -491,6 +553,12 @@ class Environment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['EnvironmentBasicResourceArgs', 'EnvironmentBasicResourceArgsDict']]]] basic_resources: Specifies the basic resources.
                The object structure is documented below.
+        :param pulumi.Input[_builtins.str] deploy_mode: Specifies the environment type. The valid values ars as follows:
+               + **virtualmachine**: Virtual machine type
+               + **container**: Kubernetes type
+               + **mixed**: Virtual machine and kubernetes type
+               
+               Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the environment description.
                The description can contain a maximum of `128` characters.
                
@@ -513,6 +581,7 @@ class Environment(pulumi.CustomResource):
         __props__ = _EnvironmentState.__new__(_EnvironmentState)
 
         __props__.__dict__["basic_resources"] = basic_resources
+        __props__.__dict__["deploy_mode"] = deploy_mode
         __props__.__dict__["description"] = description
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["name"] = name
@@ -529,6 +598,19 @@ class Environment(pulumi.CustomResource):
         The object structure is documented below.
         """
         return pulumi.get(self, "basic_resources")
+
+    @_builtins.property
+    @pulumi.getter(name="deployMode")
+    def deploy_mode(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies the environment type. The valid values ars as follows:
+        + **virtualmachine**: Virtual machine type
+        + **container**: Kubernetes type
+        + **mixed**: Virtual machine and kubernetes type
+
+        Changing this will create a new resource.
+        """
+        return pulumi.get(self, "deploy_mode")
 
     @_builtins.property
     @pulumi.getter

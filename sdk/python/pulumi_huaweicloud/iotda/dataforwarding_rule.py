@@ -32,6 +32,7 @@ class DataforwardingRuleArgs:
                  where: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataforwardingRule resource.
+
         :param pulumi.Input[_builtins.str] trigger: Specifies the trigger event. The options are as follows:
                + **device:create**: Device added.
                + **device:delete**: Device deleted.
@@ -237,6 +238,7 @@ class _DataforwardingRuleState:
                  where: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataforwardingRule resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of data forwarding rule. The description contains
                a maximum of `256` characters.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether to enable the data forwarding rule. Defaults to **false**.
@@ -502,39 +504,16 @@ class DataforwardingRule(pulumi.CustomResource):
 
         Data forwarding rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/dataforwardingRule:DataforwardingRule test 10022532f4f94f26b01daa1e424853e1
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password` of `kafka_forwarding`. It is
-
         generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should be
-
         applied to the resource, or the resource definition should be updated to align with the group. Also you can ignore
-
         changes as below.
 
-        hcl
-
-        resource "huaweicloud_iotda_device_group" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              targets,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -638,39 +617,16 @@ class DataforwardingRule(pulumi.CustomResource):
 
         Data forwarding rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/dataforwardingRule:DataforwardingRule test 10022532f4f94f26b01daa1e424853e1
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password` of `kafka_forwarding`. It is
-
         generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should be
-
         applied to the resource, or the resource definition should be updated to align with the group. Also you can ignore
-
         changes as below.
 
-        hcl
-
-        resource "huaweicloud_iotda_device_group" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              targets,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DataforwardingRuleArgs args: The arguments to use to populate this resource's properties.

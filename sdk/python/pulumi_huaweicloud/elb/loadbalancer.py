@@ -39,6 +39,7 @@ class LoadbalancerArgs:
                  vip_address: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Loadbalancer resource.
+
         :param pulumi.Input[_builtins.str] vip_subnet_id: The **IPv4 subnet ID** of the subnet where the load balancer works.
                Changing this creates a new loadbalancer.
         :param pulumi.Input[_builtins.bool] admin_state_up: schema: Deprecated
@@ -374,6 +375,7 @@ class _LoadbalancerState:
                  vip_subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Loadbalancer resources.
+
         :param pulumi.Input[_builtins.bool] admin_state_up: schema: Deprecated
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.  
                Valid values are **true** and **false**. Defaults to **false**.
@@ -834,39 +836,16 @@ class Loadbalancer(pulumi.CustomResource):
 
         Load balancers can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/loadbalancer:Loadbalancer test 3e3632db-36c6-4b28-a92e-e72e6562daa6
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a loadbalancer.
-
         You can then decide if changes should be applied to the loadbalancer, or the resource definition should be updated to
-
         align with the loadbalancer. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lb_loadbalancer" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -949,39 +928,16 @@ class Loadbalancer(pulumi.CustomResource):
 
         Load balancers can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/loadbalancer:Loadbalancer test 3e3632db-36c6-4b28-a92e-e72e6562daa6
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a loadbalancer.
-
         You can then decide if changes should be applied to the loadbalancer, or the resource definition should be updated to
-
         align with the loadbalancer. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lb_loadbalancer" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerArgs args: The arguments to use to populate this resource's properties.

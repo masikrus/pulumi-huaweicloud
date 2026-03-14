@@ -32,6 +32,7 @@ class ClusterArgs:
                  rs_num: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Cluster resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone in which to create the cluster.
                Please following [reference](https://developer.huaweicloud.com/en-us/endpoint/?CloudTable) for the values.
                Changing this parameter will create a new resource.
@@ -244,6 +245,7 @@ class _ClusterState:
                  zookeeper_link: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone in which to create the cluster.
                Please following [reference](https://developer.huaweicloud.com/en-us/endpoint/?CloudTable) for the values.
                Changing this parameter will create a new resource.
@@ -583,41 +585,17 @@ class Cluster(pulumi.CustomResource):
 
         Clusters can be imported by their `id`. e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:CloudTable/cluster:Cluster test 4c2d38b6-6fb0-480c-8813-5f536b5ba6a4
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `availability_zone`, `network_id`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition should be updated to
-
         align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cloudtable_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              availability_zone, network_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -659,41 +637,17 @@ class Cluster(pulumi.CustomResource):
 
         Clusters can be imported by their `id`. e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:CloudTable/cluster:Cluster test 4c2d38b6-6fb0-480c-8813-5f536b5ba6a4
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `availability_zone`, `network_id`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition should be updated to
-
         align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cloudtable_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              availability_zone, network_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.

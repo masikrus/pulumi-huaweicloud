@@ -112,13 +112,13 @@ def get(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResult:
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    current = huaweicloud.account.get()
+    current = huaweicloud.Account.get()
     pulumi.export("currentAccountId", current.id)
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:account/get:get', __args__, opts=opts, typ=GetResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Account/get:get', __args__, opts=opts, typ=GetResult).value
 
     return AwaitableGetResult(
         current_project_id=pulumi.get(__ret__, 'current_project_id'),
@@ -141,13 +141,13 @@ def get_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOpt
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    current = huaweicloud.account.get()
+    current = huaweicloud.Account.get()
     pulumi.export("currentAccountId", current.id)
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:account/get:get', __args__, opts=opts, typ=GetResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Account/get:get', __args__, opts=opts, typ=GetResult)
     return __ret__.apply(lambda __response__: GetResult(
         current_project_id=pulumi.get(__response__, 'current_project_id'),
         id=pulumi.get(__response__, 'id'),

@@ -25,6 +25,7 @@ class SnapshotMetadataArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnapshotMetadata resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                
                > When updating the `metadata` parameter, all existing key-value pairs will be overwritten.
@@ -97,6 +98,7 @@ class _SnapshotMetadataState:
                  snapshot_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnapshotMetadata resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                
                > When updating the `metadata` parameter, all existing key-value pairs will be overwritten.
@@ -192,6 +194,7 @@ class SnapshotMetadata(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
@@ -225,6 +228,7 @@ class SnapshotMetadata(pulumi.CustomResource):
                 "key": "value",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotMetadataArgs args: The arguments to use to populate this resource's properties.

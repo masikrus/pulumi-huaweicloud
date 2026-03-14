@@ -29,6 +29,7 @@ class RuleGeolocationAccessControlArgs:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RuleGeolocationAccessControl resource.
+
         :param pulumi.Input[_builtins.int] action: Specifies the protective action of WAF geolocation access control rule.
                Valid values are as follows:
         :param pulumi.Input[_builtins.str] geolocation: Specifies the locations that can be configured in the geolocation access control
@@ -204,6 +205,7 @@ class _RuleGeolocationAccessControlState:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RuleGeolocationAccessControl resources.
+
         :param pulumi.Input[_builtins.int] action: Specifies the protective action of WAF geolocation access control rule.
                Valid values are as follows:
         :param pulumi.Input[_builtins.str] description: Specifies the description of WAF geolocation access control rule.
@@ -414,19 +416,16 @@ class RuleGeolocationAccessControl(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleGeolocationAccessControl:RuleGeolocationAccessControl test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleGeolocationAccessControl:RuleGeolocationAccessControl test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -496,19 +495,16 @@ class RuleGeolocationAccessControl(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleGeolocationAccessControl:RuleGeolocationAccessControl test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleGeolocationAccessControl:RuleGeolocationAccessControl test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleGeolocationAccessControlArgs args: The arguments to use to populate this resource's properties.

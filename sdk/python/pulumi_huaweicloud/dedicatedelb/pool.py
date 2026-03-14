@@ -24,6 +24,8 @@ class PoolArgs:
                  lb_method: pulumi.Input[_builtins.str],
                  protocol: pulumi.Input[_builtins.str],
                  any_port_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 az_affinity: Optional[pulumi.Input['PoolAzAffinityArgs']] = None,
+                 cascade_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -45,6 +47,7 @@ class PoolArgs:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Pool resource.
+
         :param pulumi.Input[_builtins.str] lb_method: Specifies the load balancing algorithm used by the load balancer to route requests
                to backend servers in the associated backend server group. Value options:
                + **ROUND_ROBIN**: weighted round-robin.
@@ -69,8 +72,17 @@ class PoolArgs:
                + If the listener's protocol is **TLS**, the value must be **TLS** or **TCP**.
                + If the value is **QUIC**, sticky session must be enabled with `type` set to **SOURCE_IP**.
                + If the value is **GRPC**, the value of `http2_enable` of the associated listener must be **true**.
-        :param pulumi.Input[_builtins.bool] any_port_enable: Specifies whether to enable transparent port transmission on the backend.
-               If enable, the port of the backend server will be same as the port of the listener.
+        :param pulumi.Input[_builtins.bool] any_port_enable: Specifies whether to enable transparent port transmission on the
+               backend. If enable, the port of the backend server will be same as the port of the listener.
+        :param pulumi.Input['PoolAzAffinityArgs'] az_affinity: Specifies how AZ affinity is configured for the backend server group.
+               The az_affinity structure is documented below.
+               
+               <a name="persistence"></a>
+               The `persistence` block supports:
+        :param pulumi.Input[_builtins.bool] cascade_delete: Specifies whether to delete its associated resources, including backend servers
+               and health checks. Defaults to **false**.
+               
+               > **NOTE:** The backend server group cannot be associated with a forwarding policy.
         :param pulumi.Input[_builtins.bool] connection_drain_enabled: Specifies whether to enable delayed logout. This parameter can be set to
                **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
                listener must be **TCP** or **UDP**. It will be triggered for the following scenes:
@@ -81,21 +93,20 @@ class PoolArgs:
                Value ranges from `10` to `4000`.
         :param pulumi.Input[_builtins.bool] deletion_protection_enable: Specifies whether to enable deletion protection.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the pool.
-        :param pulumi.Input[_builtins.str] ip_version: Specifies the IP address version supported by the backend server group.
-               The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
-        :param pulumi.Input[_builtins.str] listener_id: Specifies the ID of the listener with which the backend server group is
-               associated.
+        :param pulumi.Input[_builtins.str] ip_version: Specifies the IP address version supported by the backend server
+               group. The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP,
+               the value is **v4**.
+        :param pulumi.Input[_builtins.str] listener_id: Specifies the ID of the listener with which the backend server group
+               is associated.
                
                > **NOTE:** At least one of `loadbalancer_id`, `listener_id`, `type` must be specified.
-        :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of the load balancer with which the backend server
-               group is associated.
+        :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of the load balancer with which the backend
+               server group is associated.
         :param pulumi.Input[_builtins.int] minimum_healthy_member_count: Specifies the minimum healthy member count. When the number of online
-               members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
+               members in the health check is less than this number, the status of the pool is determined to be unhealthy.
+               Value options:
                + **0** (default value): Not take effect.
                + **1**: Take effect when all member offline.
-               
-               <a name="persistence"></a>
-               The `persistence` block supports:
         :param pulumi.Input[_builtins.str] name: Specifies the backend server group name.
         :param pulumi.Input['PoolPersistenceArgs'] persistence: Specifies the sticky session.
                The object structure is documented below.
@@ -136,6 +147,10 @@ class PoolArgs:
         pulumi.set(__self__, "protocol", protocol)
         if any_port_enable is not None:
             pulumi.set(__self__, "any_port_enable", any_port_enable)
+        if az_affinity is not None:
+            pulumi.set(__self__, "az_affinity", az_affinity)
+        if cascade_delete is not None:
+            pulumi.set(__self__, "cascade_delete", cascade_delete)
         if connection_drain_enabled is not None:
             pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         if connection_drain_timeout is not None:
@@ -225,14 +240,45 @@ class PoolArgs:
     @pulumi.getter(name="anyPortEnable")
     def any_port_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to enable transparent port transmission on the backend.
-        If enable, the port of the backend server will be same as the port of the listener.
+        Specifies whether to enable transparent port transmission on the
+        backend. If enable, the port of the backend server will be same as the port of the listener.
         """
         return pulumi.get(self, "any_port_enable")
 
     @any_port_enable.setter
     def any_port_enable(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "any_port_enable", value)
+
+    @_builtins.property
+    @pulumi.getter(name="azAffinity")
+    def az_affinity(self) -> Optional[pulumi.Input['PoolAzAffinityArgs']]:
+        """
+        Specifies how AZ affinity is configured for the backend server group.
+        The az_affinity structure is documented below.
+
+        <a name="persistence"></a>
+        The `persistence` block supports:
+        """
+        return pulumi.get(self, "az_affinity")
+
+    @az_affinity.setter
+    def az_affinity(self, value: Optional[pulumi.Input['PoolAzAffinityArgs']]):
+        pulumi.set(self, "az_affinity", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cascadeDelete")
+    def cascade_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to delete its associated resources, including backend servers
+        and health checks. Defaults to **false**.
+
+        > **NOTE:** The backend server group cannot be associated with a forwarding policy.
+        """
+        return pulumi.get(self, "cascade_delete")
+
+    @cascade_delete.setter
+    def cascade_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "cascade_delete", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionDrainEnabled")
@@ -301,8 +347,9 @@ class PoolArgs:
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the IP address version supported by the backend server group.
-        The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
+        Specifies the IP address version supported by the backend server
+        group. The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP,
+        the value is **v4**.
         """
         return pulumi.get(self, "ip_version")
 
@@ -314,8 +361,8 @@ class PoolArgs:
     @pulumi.getter(name="listenerId")
     def listener_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of the listener with which the backend server group is
-        associated.
+        Specifies the ID of the listener with which the backend server group
+        is associated.
 
         > **NOTE:** At least one of `loadbalancer_id`, `listener_id`, `type` must be specified.
         """
@@ -329,8 +376,8 @@ class PoolArgs:
     @pulumi.getter(name="loadbalancerId")
     def loadbalancer_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of the load balancer with which the backend server
-        group is associated.
+        Specifies the ID of the load balancer with which the backend
+        server group is associated.
         """
         return pulumi.get(self, "loadbalancer_id")
 
@@ -343,12 +390,10 @@ class PoolArgs:
     def minimum_healthy_member_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the minimum healthy member count. When the number of online
-        members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
+        members in the health check is less than this number, the status of the pool is determined to be unhealthy.
+        Value options:
         + **0** (default value): Not take effect.
         + **1**: Take effect when all member offline.
-
-        <a name="persistence"></a>
-        The `persistence` block supports:
         """
         return pulumi.get(self, "minimum_healthy_member_count")
 
@@ -506,6 +551,8 @@ class PoolArgs:
 class _PoolState:
     def __init__(__self__, *,
                  any_port_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 az_affinity: Optional[pulumi.Input['PoolAzAffinityArgs']] = None,
+                 cascade_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -533,8 +580,18 @@ class _PoolState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pool resources.
-        :param pulumi.Input[_builtins.bool] any_port_enable: Specifies whether to enable transparent port transmission on the backend.
-               If enable, the port of the backend server will be same as the port of the listener.
+
+        :param pulumi.Input[_builtins.bool] any_port_enable: Specifies whether to enable transparent port transmission on the
+               backend. If enable, the port of the backend server will be same as the port of the listener.
+        :param pulumi.Input['PoolAzAffinityArgs'] az_affinity: Specifies how AZ affinity is configured for the backend server group.
+               The az_affinity structure is documented below.
+               
+               <a name="persistence"></a>
+               The `persistence` block supports:
+        :param pulumi.Input[_builtins.bool] cascade_delete: Specifies whether to delete its associated resources, including backend servers
+               and health checks. Defaults to **false**.
+               
+               > **NOTE:** The backend server group cannot be associated with a forwarding policy.
         :param pulumi.Input[_builtins.bool] connection_drain_enabled: Specifies whether to enable delayed logout. This parameter can be set to
                **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
                listener must be **TCP** or **UDP**. It will be triggered for the following scenes:
@@ -547,8 +604,9 @@ class _PoolState:
         :param pulumi.Input[_builtins.bool] deletion_protection_enable: Specifies whether to enable deletion protection.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the pool.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project.
-        :param pulumi.Input[_builtins.str] ip_version: Specifies the IP address version supported by the backend server group.
-               The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
+        :param pulumi.Input[_builtins.str] ip_version: Specifies the IP address version supported by the backend server
+               group. The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP,
+               the value is **v4**.
         :param pulumi.Input[_builtins.str] lb_method: Specifies the load balancing algorithm used by the load balancer to route requests
                to backend servers in the associated backend server group. Value options:
                + **ROUND_ROBIN**: weighted round-robin.
@@ -561,19 +619,17 @@ class _PoolState:
                
                > **NOTE:** 1. If the value is **SOURCE_IP**, the weight parameter will not take effect for backend servers.
                <br/> 2. **QUIC_CID** is supported only when the protocol of the backend server group is **QUIC**.
-        :param pulumi.Input[_builtins.str] listener_id: Specifies the ID of the listener with which the backend server group is
-               associated.
+        :param pulumi.Input[_builtins.str] listener_id: Specifies the ID of the listener with which the backend server group
+               is associated.
                
                > **NOTE:** At least one of `loadbalancer_id`, `listener_id`, `type` must be specified.
-        :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of the load balancer with which the backend server
-               group is associated.
+        :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of the load balancer with which the backend
+               server group is associated.
         :param pulumi.Input[_builtins.int] minimum_healthy_member_count: Specifies the minimum healthy member count. When the number of online
-               members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
+               members in the health check is less than this number, the status of the pool is determined to be unhealthy.
+               Value options:
                + **0** (default value): Not take effect.
                + **1**: Take effect when all member offline.
-               
-               <a name="persistence"></a>
-               The `persistence` block supports:
         :param pulumi.Input[_builtins.str] monitor_id: The ID of the health check configured for the backend server group.
         :param pulumi.Input[_builtins.str] name: Specifies the backend server group name.
         :param pulumi.Input['PoolPersistenceArgs'] persistence: Specifies the sticky session.
@@ -626,6 +682,10 @@ class _PoolState:
         """
         if any_port_enable is not None:
             pulumi.set(__self__, "any_port_enable", any_port_enable)
+        if az_affinity is not None:
+            pulumi.set(__self__, "az_affinity", az_affinity)
+        if cascade_delete is not None:
+            pulumi.set(__self__, "cascade_delete", cascade_delete)
         if connection_drain_enabled is not None:
             pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         if connection_drain_timeout is not None:
@@ -681,14 +741,45 @@ class _PoolState:
     @pulumi.getter(name="anyPortEnable")
     def any_port_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to enable transparent port transmission on the backend.
-        If enable, the port of the backend server will be same as the port of the listener.
+        Specifies whether to enable transparent port transmission on the
+        backend. If enable, the port of the backend server will be same as the port of the listener.
         """
         return pulumi.get(self, "any_port_enable")
 
     @any_port_enable.setter
     def any_port_enable(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "any_port_enable", value)
+
+    @_builtins.property
+    @pulumi.getter(name="azAffinity")
+    def az_affinity(self) -> Optional[pulumi.Input['PoolAzAffinityArgs']]:
+        """
+        Specifies how AZ affinity is configured for the backend server group.
+        The az_affinity structure is documented below.
+
+        <a name="persistence"></a>
+        The `persistence` block supports:
+        """
+        return pulumi.get(self, "az_affinity")
+
+    @az_affinity.setter
+    def az_affinity(self, value: Optional[pulumi.Input['PoolAzAffinityArgs']]):
+        pulumi.set(self, "az_affinity", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cascadeDelete")
+    def cascade_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to delete its associated resources, including backend servers
+        and health checks. Defaults to **false**.
+
+        > **NOTE:** The backend server group cannot be associated with a forwarding policy.
+        """
+        return pulumi.get(self, "cascade_delete")
+
+    @cascade_delete.setter
+    def cascade_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "cascade_delete", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionDrainEnabled")
@@ -781,8 +872,9 @@ class _PoolState:
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the IP address version supported by the backend server group.
-        The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
+        Specifies the IP address version supported by the backend server
+        group. The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP,
+        the value is **v4**.
         """
         return pulumi.get(self, "ip_version")
 
@@ -817,8 +909,8 @@ class _PoolState:
     @pulumi.getter(name="listenerId")
     def listener_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of the listener with which the backend server group is
-        associated.
+        Specifies the ID of the listener with which the backend server group
+        is associated.
 
         > **NOTE:** At least one of `loadbalancer_id`, `listener_id`, `type` must be specified.
         """
@@ -832,8 +924,8 @@ class _PoolState:
     @pulumi.getter(name="loadbalancerId")
     def loadbalancer_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of the load balancer with which the backend server
-        group is associated.
+        Specifies the ID of the load balancer with which the backend
+        server group is associated.
         """
         return pulumi.get(self, "loadbalancer_id")
 
@@ -846,12 +938,10 @@ class _PoolState:
     def minimum_healthy_member_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the minimum healthy member count. When the number of online
-        members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
+        members in the health check is less than this number, the status of the pool is determined to be unhealthy.
+        Value options:
         + **0** (default value): Not take effect.
         + **1**: Take effect when all member offline.
-
-        <a name="persistence"></a>
-        The `persistence` block supports:
         """
         return pulumi.get(self, "minimum_healthy_member_count")
 
@@ -1059,6 +1149,8 @@ class Pool(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  any_port_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 az_affinity: Optional[pulumi.Input[Union['PoolAzAffinityArgs', 'PoolAzAffinityArgsDict']]] = None,
+                 cascade_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1160,44 +1252,30 @@ class Pool(pulumi.CustomResource):
 
         ELB pool can be imported using the pool `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/pool:Pool pool_1 <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `deletion_protection_enable`. It is
-
         generally recommended running **pulumi preview** after importing a pool. You can then decide if changes should be
-
         applied to the pool, or the resource definition should be updated to align with the pool. Also you can ignore changes
-
         as below.
 
-        hcl
-
-        resource "huaweicloud_elb_pool" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              deletion_protection_enable,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] any_port_enable: Specifies whether to enable transparent port transmission on the backend.
-               If enable, the port of the backend server will be same as the port of the listener.
+        :param pulumi.Input[_builtins.bool] any_port_enable: Specifies whether to enable transparent port transmission on the
+               backend. If enable, the port of the backend server will be same as the port of the listener.
+        :param pulumi.Input[Union['PoolAzAffinityArgs', 'PoolAzAffinityArgsDict']] az_affinity: Specifies how AZ affinity is configured for the backend server group.
+               The az_affinity structure is documented below.
+               
+               <a name="persistence"></a>
+               The `persistence` block supports:
+        :param pulumi.Input[_builtins.bool] cascade_delete: Specifies whether to delete its associated resources, including backend servers
+               and health checks. Defaults to **false**.
+               
+               > **NOTE:** The backend server group cannot be associated with a forwarding policy.
         :param pulumi.Input[_builtins.bool] connection_drain_enabled: Specifies whether to enable delayed logout. This parameter can be set to
                **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
                listener must be **TCP** or **UDP**. It will be triggered for the following scenes:
@@ -1208,8 +1286,9 @@ class Pool(pulumi.CustomResource):
                Value ranges from `10` to `4000`.
         :param pulumi.Input[_builtins.bool] deletion_protection_enable: Specifies whether to enable deletion protection.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the pool.
-        :param pulumi.Input[_builtins.str] ip_version: Specifies the IP address version supported by the backend server group.
-               The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
+        :param pulumi.Input[_builtins.str] ip_version: Specifies the IP address version supported by the backend server
+               group. The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP,
+               the value is **v4**.
         :param pulumi.Input[_builtins.str] lb_method: Specifies the load balancing algorithm used by the load balancer to route requests
                to backend servers in the associated backend server group. Value options:
                + **ROUND_ROBIN**: weighted round-robin.
@@ -1222,19 +1301,17 @@ class Pool(pulumi.CustomResource):
                
                > **NOTE:** 1. If the value is **SOURCE_IP**, the weight parameter will not take effect for backend servers.
                <br/> 2. **QUIC_CID** is supported only when the protocol of the backend server group is **QUIC**.
-        :param pulumi.Input[_builtins.str] listener_id: Specifies the ID of the listener with which the backend server group is
-               associated.
+        :param pulumi.Input[_builtins.str] listener_id: Specifies the ID of the listener with which the backend server group
+               is associated.
                
                > **NOTE:** At least one of `loadbalancer_id`, `listener_id`, `type` must be specified.
-        :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of the load balancer with which the backend server
-               group is associated.
+        :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of the load balancer with which the backend
+               server group is associated.
         :param pulumi.Input[_builtins.int] minimum_healthy_member_count: Specifies the minimum healthy member count. When the number of online
-               members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
+               members in the health check is less than this number, the status of the pool is determined to be unhealthy.
+               Value options:
                + **0** (default value): Not take effect.
                + **1**: Take effect when all member offline.
-               
-               <a name="persistence"></a>
-               The `persistence` block supports:
         :param pulumi.Input[_builtins.str] name: Specifies the backend server group name.
         :param pulumi.Input[Union['PoolPersistenceArgs', 'PoolPersistenceArgsDict']] persistence: Specifies the sticky session.
                The object structure is documented below.
@@ -1368,39 +1445,16 @@ class Pool(pulumi.CustomResource):
 
         ELB pool can be imported using the pool `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/pool:Pool pool_1 <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `deletion_protection_enable`. It is
-
         generally recommended running **pulumi preview** after importing a pool. You can then decide if changes should be
-
         applied to the pool, or the resource definition should be updated to align with the pool. Also you can ignore changes
-
         as below.
 
-        hcl
-
-        resource "huaweicloud_elb_pool" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              deletion_protection_enable,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PoolArgs args: The arguments to use to populate this resource's properties.
@@ -1418,6 +1472,8 @@ class Pool(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  any_port_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 az_affinity: Optional[pulumi.Input[Union['PoolAzAffinityArgs', 'PoolAzAffinityArgsDict']]] = None,
+                 cascade_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1449,6 +1505,8 @@ class Pool(pulumi.CustomResource):
             __props__ = PoolArgs.__new__(PoolArgs)
 
             __props__.__dict__["any_port_enable"] = any_port_enable
+            __props__.__dict__["az_affinity"] = az_affinity
+            __props__.__dict__["cascade_delete"] = cascade_delete
             __props__.__dict__["connection_drain_enabled"] = connection_drain_enabled
             __props__.__dict__["connection_drain_timeout"] = connection_drain_timeout
             __props__.__dict__["deletion_protection_enable"] = deletion_protection_enable
@@ -1489,6 +1547,8 @@ class Pool(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             any_port_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+            az_affinity: Optional[pulumi.Input[Union['PoolAzAffinityArgs', 'PoolAzAffinityArgsDict']]] = None,
+            cascade_delete: Optional[pulumi.Input[_builtins.bool]] = None,
             connection_drain_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             connection_drain_timeout: Optional[pulumi.Input[_builtins.int]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1521,8 +1581,17 @@ class Pool(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] any_port_enable: Specifies whether to enable transparent port transmission on the backend.
-               If enable, the port of the backend server will be same as the port of the listener.
+        :param pulumi.Input[_builtins.bool] any_port_enable: Specifies whether to enable transparent port transmission on the
+               backend. If enable, the port of the backend server will be same as the port of the listener.
+        :param pulumi.Input[Union['PoolAzAffinityArgs', 'PoolAzAffinityArgsDict']] az_affinity: Specifies how AZ affinity is configured for the backend server group.
+               The az_affinity structure is documented below.
+               
+               <a name="persistence"></a>
+               The `persistence` block supports:
+        :param pulumi.Input[_builtins.bool] cascade_delete: Specifies whether to delete its associated resources, including backend servers
+               and health checks. Defaults to **false**.
+               
+               > **NOTE:** The backend server group cannot be associated with a forwarding policy.
         :param pulumi.Input[_builtins.bool] connection_drain_enabled: Specifies whether to enable delayed logout. This parameter can be set to
                **true** when the `protocol` is set to **TCP**, **UDP** or **QUIC**, and the value of `protocol` of the associated
                listener must be **TCP** or **UDP**. It will be triggered for the following scenes:
@@ -1535,8 +1604,9 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] deletion_protection_enable: Specifies whether to enable deletion protection.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the pool.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project.
-        :param pulumi.Input[_builtins.str] ip_version: Specifies the IP address version supported by the backend server group.
-               The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
+        :param pulumi.Input[_builtins.str] ip_version: Specifies the IP address version supported by the backend server
+               group. The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP,
+               the value is **v4**.
         :param pulumi.Input[_builtins.str] lb_method: Specifies the load balancing algorithm used by the load balancer to route requests
                to backend servers in the associated backend server group. Value options:
                + **ROUND_ROBIN**: weighted round-robin.
@@ -1549,19 +1619,17 @@ class Pool(pulumi.CustomResource):
                
                > **NOTE:** 1. If the value is **SOURCE_IP**, the weight parameter will not take effect for backend servers.
                <br/> 2. **QUIC_CID** is supported only when the protocol of the backend server group is **QUIC**.
-        :param pulumi.Input[_builtins.str] listener_id: Specifies the ID of the listener with which the backend server group is
-               associated.
+        :param pulumi.Input[_builtins.str] listener_id: Specifies the ID of the listener with which the backend server group
+               is associated.
                
                > **NOTE:** At least one of `loadbalancer_id`, `listener_id`, `type` must be specified.
-        :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of the load balancer with which the backend server
-               group is associated.
+        :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of the load balancer with which the backend
+               server group is associated.
         :param pulumi.Input[_builtins.int] minimum_healthy_member_count: Specifies the minimum healthy member count. When the number of online
-               members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
+               members in the health check is less than this number, the status of the pool is determined to be unhealthy.
+               Value options:
                + **0** (default value): Not take effect.
                + **1**: Take effect when all member offline.
-               
-               <a name="persistence"></a>
-               The `persistence` block supports:
         :param pulumi.Input[_builtins.str] monitor_id: The ID of the health check configured for the backend server group.
         :param pulumi.Input[_builtins.str] name: Specifies the backend server group name.
         :param pulumi.Input[Union['PoolPersistenceArgs', 'PoolPersistenceArgsDict']] persistence: Specifies the sticky session.
@@ -1617,6 +1685,8 @@ class Pool(pulumi.CustomResource):
         __props__ = _PoolState.__new__(_PoolState)
 
         __props__.__dict__["any_port_enable"] = any_port_enable
+        __props__.__dict__["az_affinity"] = az_affinity
+        __props__.__dict__["cascade_delete"] = cascade_delete
         __props__.__dict__["connection_drain_enabled"] = connection_drain_enabled
         __props__.__dict__["connection_drain_timeout"] = connection_drain_timeout
         __props__.__dict__["created_at"] = created_at
@@ -1648,10 +1718,33 @@ class Pool(pulumi.CustomResource):
     @pulumi.getter(name="anyPortEnable")
     def any_port_enable(self) -> pulumi.Output[_builtins.bool]:
         """
-        Specifies whether to enable transparent port transmission on the backend.
-        If enable, the port of the backend server will be same as the port of the listener.
+        Specifies whether to enable transparent port transmission on the
+        backend. If enable, the port of the backend server will be same as the port of the listener.
         """
         return pulumi.get(self, "any_port_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="azAffinity")
+    def az_affinity(self) -> pulumi.Output['outputs.PoolAzAffinity']:
+        """
+        Specifies how AZ affinity is configured for the backend server group.
+        The az_affinity structure is documented below.
+
+        <a name="persistence"></a>
+        The `persistence` block supports:
+        """
+        return pulumi.get(self, "az_affinity")
+
+    @_builtins.property
+    @pulumi.getter(name="cascadeDelete")
+    def cascade_delete(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies whether to delete its associated resources, including backend servers
+        and health checks. Defaults to **false**.
+
+        > **NOTE:** The backend server group cannot be associated with a forwarding policy.
+        """
+        return pulumi.get(self, "cascade_delete")
 
     @_builtins.property
     @pulumi.getter(name="connectionDrainEnabled")
@@ -1716,8 +1809,9 @@ class Pool(pulumi.CustomResource):
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the IP address version supported by the backend server group.
-        The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP, the value is **v4**.
+        Specifies the IP address version supported by the backend server
+        group. The value can be **dualstack**, **v6**, or **v4**. If the protocol of the backend server group is HTTP,
+        the value is **v4**.
         """
         return pulumi.get(self, "ip_version")
 
@@ -1744,8 +1838,8 @@ class Pool(pulumi.CustomResource):
     @pulumi.getter(name="listenerId")
     def listener_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the ID of the listener with which the backend server group is
-        associated.
+        Specifies the ID of the listener with which the backend server group
+        is associated.
 
         > **NOTE:** At least one of `loadbalancer_id`, `listener_id`, `type` must be specified.
         """
@@ -1755,8 +1849,8 @@ class Pool(pulumi.CustomResource):
     @pulumi.getter(name="loadbalancerId")
     def loadbalancer_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the ID of the load balancer with which the backend server
-        group is associated.
+        Specifies the ID of the load balancer with which the backend
+        server group is associated.
         """
         return pulumi.get(self, "loadbalancer_id")
 
@@ -1765,12 +1859,10 @@ class Pool(pulumi.CustomResource):
     def minimum_healthy_member_count(self) -> pulumi.Output[_builtins.int]:
         """
         Specifies the minimum healthy member count. When the number of online
-        members in the health check is less than this number, the status of the pool is determined to be unhealthy. Value options:
+        members in the health check is less than this number, the status of the pool is determined to be unhealthy.
+        Value options:
         + **0** (default value): Not take effect.
         + **1**: Take effect when all member offline.
-
-        <a name="persistence"></a>
-        The `persistence` block supports:
         """
         return pulumi.get(self, "minimum_healthy_member_count")
 

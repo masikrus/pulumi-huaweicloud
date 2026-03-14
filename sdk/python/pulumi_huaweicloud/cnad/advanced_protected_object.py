@@ -25,6 +25,7 @@ class AdvancedProtectedObjectArgs:
                  protected_objects: pulumi.Input[Sequence[pulumi.Input['AdvancedProtectedObjectProtectedObjectArgs']]]):
         """
         The set of arguments for constructing a AdvancedProtectedObject resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the CNAD advanced instance ID in which to bind protected
                objects. You can find it through data source `cnad_get_advanced_instances`.
                
@@ -77,6 +78,7 @@ class _AdvancedProtectedObjectState:
                  protected_objects: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedProtectedObjectProtectedObjectArgs']]]] = None):
         """
         Input properties used for looking up and filtering AdvancedProtectedObject resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the CNAD advanced instance ID in which to bind protected
                objects. You can find it through data source `cnad_get_advanced_instances`.
                
@@ -124,7 +126,7 @@ class _AdvancedProtectedObjectState:
         pulumi.set(self, "protected_objects", value)
 
 
-@pulumi.type_token("huaweicloud:cnad/advancedProtectedObject:AdvancedProtectedObject")
+@pulumi.type_token("huaweicloud:Cnad/advancedProtectedObject:AdvancedProtectedObject")
 class AdvancedProtectedObject(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -160,11 +162,10 @@ class AdvancedProtectedObject(pulumi.CustomResource):
 
         The CNAD advanced protected object can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedProtectedObject:AdvancedProtectedObject test <id>
+        $ pulumi import huaweicloud:Cnad/advancedProtectedObject:AdvancedProtectedObject test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -211,11 +212,10 @@ class AdvancedProtectedObject(pulumi.CustomResource):
 
         The CNAD advanced protected object can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedProtectedObject:AdvancedProtectedObject test <id>
+        $ pulumi import huaweicloud:Cnad/advancedProtectedObject:AdvancedProtectedObject test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AdvancedProtectedObjectArgs args: The arguments to use to populate this resource's properties.
@@ -250,7 +250,7 @@ class AdvancedProtectedObject(pulumi.CustomResource):
                 raise TypeError("Missing required property 'protected_objects'")
             __props__.__dict__["protected_objects"] = protected_objects
         super(AdvancedProtectedObject, __self__).__init__(
-            'huaweicloud:cnad/advancedProtectedObject:AdvancedProtectedObject',
+            'huaweicloud:Cnad/advancedProtectedObject:AdvancedProtectedObject',
             resource_name,
             __props__,
             opts)

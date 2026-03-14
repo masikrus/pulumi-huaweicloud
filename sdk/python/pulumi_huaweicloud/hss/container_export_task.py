@@ -39,6 +39,7 @@ class ContainerExportTaskArgs:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ContainerExportTask resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]] export_headers: Specifies the header information list for exporting container
                data. The type of this field is an `Array<Array<string>>`. Please refer to Example Usage for the format of valid values.
                Valid key values and their corresponding table header names (table header names can be customized): **container_id**,
@@ -377,6 +378,7 @@ class _ContainerExportTaskState:
                  task_status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ContainerExportTask resources.
+
         :param pulumi.Input[_builtins.str] cluster_container: Specifies whether the container is in a cluster. The valid
                values are:
                + **true**: Only containers in a cluster are exported.
@@ -765,7 +767,7 @@ class _ContainerExportTaskState:
         pulumi.set(self, "task_status", value)
 
 
-@pulumi.type_token("huaweicloud:hss/containerExportTask:ContainerExportTask")
+@pulumi.type_token("huaweicloud:Hss/containerExportTask:ContainerExportTask")
 class ContainerExportTask(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -815,6 +817,7 @@ class ContainerExportTask(pulumi.CustomResource):
             ],
         ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -905,6 +908,7 @@ class ContainerExportTask(pulumi.CustomResource):
         ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ContainerExportTaskArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -969,7 +973,7 @@ class ContainerExportTask(pulumi.CustomResource):
             __props__.__dict__["task_name"] = None
             __props__.__dict__["task_status"] = None
         super(ContainerExportTask, __self__).__init__(
-            'huaweicloud:hss/containerExportTask:ContainerExportTask',
+            'huaweicloud:Hss/containerExportTask:ContainerExportTask',
             resource_name,
             __props__,
             opts)

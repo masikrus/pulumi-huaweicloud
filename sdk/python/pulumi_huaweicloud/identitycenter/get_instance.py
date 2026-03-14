@@ -95,12 +95,12 @@ def get_instance(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIns
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    system = huaweicloud.identitycenter.get_instance()
+    system = huaweicloud.Identitycenter.get_instance()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:identitycenter/getInstance:getInstance', __args__, opts=opts, typ=GetInstanceResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Identitycenter/getInstance:getInstance', __args__, opts=opts, typ=GetInstanceResult).value
 
     return AwaitableGetInstanceResult(
         alias=pulumi.get(__ret__, 'alias'),
@@ -117,12 +117,12 @@ def get_instance_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.Invoke
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    system = huaweicloud.identitycenter.get_instance()
+    system = huaweicloud.Identitycenter.get_instance()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:identitycenter/getInstance:getInstance', __args__, opts=opts, typ=GetInstanceResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Identitycenter/getInstance:getInstance', __args__, opts=opts, typ=GetInstanceResult)
     return __ret__.apply(lambda __response__: GetInstanceResult(
         alias=pulumi.get(__response__, 'alias'),
         id=pulumi.get(__response__, 'id'),

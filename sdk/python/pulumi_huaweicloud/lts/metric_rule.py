@@ -35,6 +35,7 @@ class MetricRuleArgs:
                  report: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a MetricRule resource.
+
         :param pulumi.Input['MetricRuleAggregatorArgs'] aggregator: Specifies the configuration of log statistics mode.
                The aggregator structure is documented below.
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the log group ID to which the log metric rule belongs.
@@ -263,6 +264,7 @@ class _MetricRuleState:
                  window_size: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MetricRule resources.
+
         :param pulumi.Input['MetricRuleAggregatorArgs'] aggregator: Specifies the configuration of log statistics mode.
                The aggregator structure is documented below.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the log metric rule, in RFC3339 format.
@@ -558,9 +560,9 @@ class MetricRule(pulumi.CustomResource):
                         "type": entry["value"]["type"],
                         "key": entry["value"]["key"],
                         "value": entry["value"]["value"],
-                    } for entry in [{"key": k, "value": v} for k, v in entry["value"]["filters"]]],
+                    } for entry in [{"key": k, "value": v} for k, v in entry["value"]["filters"].items()]],
                     "type": entry["value"]["type"],
-                } for entry in [{"key": k, "value": v} for k, v in log_filters]],
+                } for entry in [{"key": k, "value": v} for k, v in log_filters.items()]],
                 "type": "and",
             })
         ```
@@ -569,11 +571,10 @@ class MetricRule(pulumi.CustomResource):
 
         The log metric rule resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/metricRule:MetricRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -657,9 +658,9 @@ class MetricRule(pulumi.CustomResource):
                         "type": entry["value"]["type"],
                         "key": entry["value"]["key"],
                         "value": entry["value"]["value"],
-                    } for entry in [{"key": k, "value": v} for k, v in entry["value"]["filters"]]],
+                    } for entry in [{"key": k, "value": v} for k, v in entry["value"]["filters"].items()]],
                     "type": entry["value"]["type"],
-                } for entry in [{"key": k, "value": v} for k, v in log_filters]],
+                } for entry in [{"key": k, "value": v} for k, v in log_filters.items()]],
                 "type": "and",
             })
         ```
@@ -668,11 +669,10 @@ class MetricRule(pulumi.CustomResource):
 
         The log metric rule resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/metricRule:MetricRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MetricRuleArgs args: The arguments to use to populate this resource's properties.

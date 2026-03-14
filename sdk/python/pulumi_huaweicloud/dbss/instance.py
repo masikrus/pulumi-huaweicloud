@@ -40,6 +40,7 @@ class InstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone to which the instance belongs.
                Primary and secondary AZs are separated by commas. Example: **cn-north-4a,cn-north-4b**.
                
@@ -448,6 +449,7 @@ class _InstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies operation the DBSS instance status.
                The valid values are as follows:
                + **start**: Indicates enable the DBSS instance.
@@ -957,7 +959,7 @@ class _InstanceState:
         pulumi.set(self, "vpc_id", value)
 
 
-@pulumi.type_token("huaweicloud:dbss/instance:Instance")
+@pulumi.type_token("huaweicloud:Dbss/instance:Instance")
 class Instance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -1017,41 +1019,17 @@ class Instance(pulumi.CustomResource):
 
         The DBSS instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dbss/instance:Instance test <id>
+        $ pulumi import huaweicloud:Dbss/instance:Instance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `charging_mode`, `enterprise_project_id`, `flavor`, `period`,
-
         `period_unit`, `product_spec_desc`, `tags` and `action`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to align
-
         with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dbss_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, enterprise_project_id, flavor, period, period_unit, product_spec_desc, tags, action,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1163,41 +1141,17 @@ class Instance(pulumi.CustomResource):
 
         The DBSS instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dbss/instance:Instance test <id>
+        $ pulumi import huaweicloud:Dbss/instance:Instance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `charging_mode`, `enterprise_project_id`, `flavor`, `period`,
-
         `period_unit`, `product_spec_desc`, `tags` and `action`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to align
-
         with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dbss_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, enterprise_project_id, flavor, period, period_unit, product_spec_desc, tags, action,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -1287,7 +1241,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["port_id"] = None
             __props__.__dict__["status"] = None
         super(Instance, __self__).__init__(
-            'huaweicloud:dbss/instance:Instance',
+            'huaweicloud:Dbss/instance:Instance',
             resource_name,
             __props__,
             opts)

@@ -75,6 +75,7 @@ class ClusterArgs:
                  timezone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
+
         :param pulumi.Input[_builtins.str] container_network_type: Specifies the container network type.
                Changing this parameter will create a new cluster resource. Possible values:
                + **overlay_l2**: An overlay_l2 network built for containers by using Open vSwitch(OVS).
@@ -159,8 +160,8 @@ class ClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ClusterExtendParamArgs']]] extend_params: Specifies the extended parameter.
                The object structure is documented below.
                Changing this parameter will create a new cluster resource.
-        :param pulumi.Input[_builtins.bool] hibernate: Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster is
-               hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
+        :param pulumi.Input[_builtins.bool] hibernate: Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster
+               is hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
                deleted.
                
                <a name="cce_cluster_masters"></a>
@@ -790,8 +791,8 @@ class ClusterArgs:
     @pulumi.getter
     def hibernate(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster is
-        hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
+        Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster
+        is hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
         deleted.
 
         <a name="cce_cluster_masters"></a>
@@ -1088,6 +1089,7 @@ class _ClusterState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
+
         :param pulumi.Input[_builtins.str] alias: Specifies the display name of a cluster. The value of `alias` cannot be the same as the `name`
                and display names of other clusters.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: schema: Internal
@@ -1171,8 +1173,8 @@ class _ClusterState:
                + **cce.s2.xlarge**: large-scale HA cluster (up to 2000 nodes).
                
                > Changing the number of control nodes or reducing cluster flavor is not supported.
-        :param pulumi.Input[_builtins.bool] hibernate: Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster is
-               hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
+        :param pulumi.Input[_builtins.bool] hibernate: Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster
+               is hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
                deleted.
                
                <a name="cce_cluster_masters"></a>
@@ -1832,8 +1834,8 @@ class _ClusterState:
     @pulumi.getter
     def hibernate(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster is
-        hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
+        Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster
+        is hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
         deleted.
 
         <a name="cce_cluster_masters"></a>
@@ -2243,6 +2245,46 @@ class Cluster(pulumi.CustomResource):
             eip=myeip.address)
         ```
 
+        ### CCE Turbo Cluster
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        myvpc = huaweicloud.vpc.Vpc("myvpc",
+            name="vpc",
+            cidr="192.168.0.0/16")
+        mysubnet = huaweicloud.vpc.Subnet("mysubnet",
+            name="subnet",
+            cidr="192.168.0.0/24",
+            gateway_ip="192.168.0.1",
+            primary_dns="100.125.1.250",
+            secondary_dns="100.125.21.250",
+            vpc_id=myvpc.id)
+        eni_test1 = huaweicloud.vpc.Subnet("eni_test_1",
+            name="subnet-eni-1",
+            cidr="192.168.2.0/24",
+            gateway_ip="192.168.2.1",
+            vpc_id=test_huaweicloud_vpc["id"])
+        eni_test2 = huaweicloud.vpc.Subnet("eni_test_2",
+            name="subnet-eni-2",
+            cidr="192.168.3.0/24",
+            gateway_ip="192.168.3.1",
+            vpc_id=test_huaweicloud_vpc["id"])
+        test = huaweicloud.cce.Cluster("test",
+            name="cluster",
+            flavor_id="cce.s1.small",
+            vpc_id=myvpc.id,
+            subnet_id=mysubnet.id,
+            container_network_type="eni",
+            eni_subnet_id=std.index.join(separator=",",
+                input=[
+                    eni_test1.ipv4_subnet_id,
+                    eni_test2.ipv4_subnet_id,
+                ])["result"])
+        ```
+
         ### CCE HA Cluster
 
         ```python
@@ -2301,38 +2343,16 @@ class Cluster(pulumi.CustomResource):
         Cluster can be imported using the cluster ID, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Cce/cluster:Cluster  huaweicloud_cce_cluster.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+         $ pulumi import huaweicloud:Cce/cluster:Cluster cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `delete_efs`, `delete_eni`, `delete_evs`, `delete_net`, `delete_obs`, `delete_sfs` and `delete_all`. It is generally
-
         recommended running `pulumi preview` after importing an CCE cluster. You can then decide if changes should be applied to
-
         the cluster, or the resource definition should be updated to align with the cluster. Also you can ignore changes as
-
         below.
 
-        hcl
-
-        resource "huaweicloud_cce_cluster" "cluster_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_efs, delete_obs,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2416,8 +2436,8 @@ class Cluster(pulumi.CustomResource):
                + **cce.s2.xlarge**: large-scale HA cluster (up to 2000 nodes).
                
                > Changing the number of control nodes or reducing cluster flavor is not supported.
-        :param pulumi.Input[_builtins.bool] hibernate: Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster is
-               hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
+        :param pulumi.Input[_builtins.bool] hibernate: Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster
+               is hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
                deleted.
                
                <a name="cce_cluster_masters"></a>
@@ -2545,6 +2565,46 @@ class Cluster(pulumi.CustomResource):
             eip=myeip.address)
         ```
 
+        ### CCE Turbo Cluster
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        myvpc = huaweicloud.vpc.Vpc("myvpc",
+            name="vpc",
+            cidr="192.168.0.0/16")
+        mysubnet = huaweicloud.vpc.Subnet("mysubnet",
+            name="subnet",
+            cidr="192.168.0.0/24",
+            gateway_ip="192.168.0.1",
+            primary_dns="100.125.1.250",
+            secondary_dns="100.125.21.250",
+            vpc_id=myvpc.id)
+        eni_test1 = huaweicloud.vpc.Subnet("eni_test_1",
+            name="subnet-eni-1",
+            cidr="192.168.2.0/24",
+            gateway_ip="192.168.2.1",
+            vpc_id=test_huaweicloud_vpc["id"])
+        eni_test2 = huaweicloud.vpc.Subnet("eni_test_2",
+            name="subnet-eni-2",
+            cidr="192.168.3.0/24",
+            gateway_ip="192.168.3.1",
+            vpc_id=test_huaweicloud_vpc["id"])
+        test = huaweicloud.cce.Cluster("test",
+            name="cluster",
+            flavor_id="cce.s1.small",
+            vpc_id=myvpc.id,
+            subnet_id=mysubnet.id,
+            container_network_type="eni",
+            eni_subnet_id=std.index.join(separator=",",
+                input=[
+                    eni_test1.ipv4_subnet_id,
+                    eni_test2.ipv4_subnet_id,
+                ])["result"])
+        ```
+
         ### CCE HA Cluster
 
         ```python
@@ -2603,38 +2663,16 @@ class Cluster(pulumi.CustomResource):
         Cluster can be imported using the cluster ID, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Cce/cluster:Cluster  huaweicloud_cce_cluster.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+         $ pulumi import huaweicloud:Cce/cluster:Cluster cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `delete_efs`, `delete_eni`, `delete_evs`, `delete_net`, `delete_obs`, `delete_sfs` and `delete_all`. It is generally
-
         recommended running `pulumi preview` after importing an CCE cluster. You can then decide if changes should be applied to
-
         the cluster, or the resource definition should be updated to align with the cluster. Also you can ignore changes as
-
         below.
 
-        hcl
-
-        resource "huaweicloud_cce_cluster" "cluster_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_efs, delete_obs,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.
@@ -2934,8 +2972,8 @@ class Cluster(pulumi.CustomResource):
                + **cce.s2.xlarge**: large-scale HA cluster (up to 2000 nodes).
                
                > Changing the number of control nodes or reducing cluster flavor is not supported.
-        :param pulumi.Input[_builtins.bool] hibernate: Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster is
-               hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
+        :param pulumi.Input[_builtins.bool] hibernate: Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster
+               is hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
                deleted.
                
                <a name="cce_cluster_masters"></a>
@@ -3393,8 +3431,8 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def hibernate(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster is
-        hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
+        Specifies whether to hibernate the CCE cluster. Defaults to **false**. After a cluster
+        is hibernated, resources such as workloads cannot be created or managed in the cluster, and the cluster cannot be
         deleted.
 
         <a name="cce_cluster_masters"></a>

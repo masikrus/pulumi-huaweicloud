@@ -85,7 +85,7 @@ def get_advanced_query_schemas(type: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_advanced_query_schemas(type="aad.instances")
+    test = huaweicloud.Rms.get_advanced_query_schemas(type="aad.instances")
     ```
 
 
@@ -94,7 +94,7 @@ def get_advanced_query_schemas(type: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getAdvancedQuerySchemas:getAdvancedQuerySchemas', __args__, opts=opts, typ=GetAdvancedQuerySchemasResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getAdvancedQuerySchemas:getAdvancedQuerySchemas', __args__, opts=opts, typ=GetAdvancedQuerySchemasResult).value
 
     return AwaitableGetAdvancedQuerySchemasResult(
         id=pulumi.get(__ret__, 'id'),
@@ -111,7 +111,7 @@ def get_advanced_query_schemas_output(type: Optional[pulumi.Input[Optional[_buil
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_advanced_query_schemas(type="aad.instances")
+    test = huaweicloud.Rms.get_advanced_query_schemas(type="aad.instances")
     ```
 
 
@@ -120,7 +120,7 @@ def get_advanced_query_schemas_output(type: Optional[pulumi.Input[Optional[_buil
     __args__ = dict()
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getAdvancedQuerySchemas:getAdvancedQuerySchemas', __args__, opts=opts, typ=GetAdvancedQuerySchemasResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getAdvancedQuerySchemas:getAdvancedQuerySchemas', __args__, opts=opts, typ=GetAdvancedQuerySchemasResult)
     return __ret__.apply(lambda __response__: GetAdvancedQuerySchemasResult(
         id=pulumi.get(__response__, 'id'),
         schemas=pulumi.get(__response__, 'schemas'),

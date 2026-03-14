@@ -131,7 +131,7 @@ def get_incidents(condition: Optional[Union['GetIncidentsConditionArgs', 'GetInc
     workspace_id = config.require_object("workspaceId")
     from_date = config.require_object("fromDate")
     to_date = config.require_object("toDate")
-    test = huaweicloud.secmaster.get_incidents(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_incidents(workspace_id=workspace_id,
         from_date=from_date,
         to_date=to_date,
         condition={
@@ -166,7 +166,7 @@ def get_incidents(condition: Optional[Union['GetIncidentsConditionArgs', 'GetInc
     __args__['toDate'] = to_date
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getIncidents:getIncidents', __args__, opts=opts, typ=GetIncidentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getIncidents:getIncidents', __args__, opts=opts, typ=GetIncidentsResult).value
 
     return AwaitableGetIncidentsResult(
         condition=pulumi.get(__ret__, 'condition'),
@@ -195,7 +195,7 @@ def get_incidents_output(condition: Optional[pulumi.Input[Optional[Union['GetInc
     workspace_id = config.require_object("workspaceId")
     from_date = config.require_object("fromDate")
     to_date = config.require_object("toDate")
-    test = huaweicloud.secmaster.get_incidents(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_incidents(workspace_id=workspace_id,
         from_date=from_date,
         to_date=to_date,
         condition={
@@ -230,7 +230,7 @@ def get_incidents_output(condition: Optional[pulumi.Input[Optional[Union['GetInc
     __args__['toDate'] = to_date
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getIncidents:getIncidents', __args__, opts=opts, typ=GetIncidentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getIncidents:getIncidents', __args__, opts=opts, typ=GetIncidentsResult)
     return __ret__.apply(lambda __response__: GetIncidentsResult(
         condition=pulumi.get(__response__, 'condition'),
         from_date=pulumi.get(__response__, 'from_date'),

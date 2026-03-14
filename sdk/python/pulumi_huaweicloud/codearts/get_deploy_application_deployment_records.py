@@ -128,7 +128,7 @@ def get_deploy_application_deployment_records(end_date: Optional[_builtins.str] 
     task_id = config.require_object("taskId")
     start_date = config.require_object("startDate")
     end_date = config.require_object("endDate")
-    test = huaweicloud.codearts.get_deploy_application_deployment_records(project_id=project_id,
+    test = huaweicloud.Codearts.get_deploy_application_deployment_records(project_id=project_id,
         task_id=task_id,
         start_date=start_date,
         end_date=end_date)
@@ -149,7 +149,7 @@ def get_deploy_application_deployment_records(end_date: Optional[_builtins.str] 
     __args__['startDate'] = start_date
     __args__['taskId'] = task_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getDeployApplicationDeploymentRecords:getDeployApplicationDeploymentRecords', __args__, opts=opts, typ=GetDeployApplicationDeploymentRecordsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getDeployApplicationDeploymentRecords:getDeployApplicationDeploymentRecords', __args__, opts=opts, typ=GetDeployApplicationDeploymentRecordsResult).value
 
     return AwaitableGetDeployApplicationDeploymentRecordsResult(
         end_date=pulumi.get(__ret__, 'end_date'),
@@ -179,7 +179,7 @@ def get_deploy_application_deployment_records_output(end_date: Optional[pulumi.I
     task_id = config.require_object("taskId")
     start_date = config.require_object("startDate")
     end_date = config.require_object("endDate")
-    test = huaweicloud.codearts.get_deploy_application_deployment_records(project_id=project_id,
+    test = huaweicloud.Codearts.get_deploy_application_deployment_records(project_id=project_id,
         task_id=task_id,
         start_date=start_date,
         end_date=end_date)
@@ -200,7 +200,7 @@ def get_deploy_application_deployment_records_output(end_date: Optional[pulumi.I
     __args__['startDate'] = start_date
     __args__['taskId'] = task_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getDeployApplicationDeploymentRecords:getDeployApplicationDeploymentRecords', __args__, opts=opts, typ=GetDeployApplicationDeploymentRecordsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getDeployApplicationDeploymentRecords:getDeployApplicationDeploymentRecords', __args__, opts=opts, typ=GetDeployApplicationDeploymentRecordsResult)
     return __ret__.apply(lambda __response__: GetDeployApplicationDeploymentRecordsResult(
         end_date=pulumi.get(__response__, 'end_date'),
         id=pulumi.get(__response__, 'id'),

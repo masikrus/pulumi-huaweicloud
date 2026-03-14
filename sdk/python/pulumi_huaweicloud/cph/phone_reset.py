@@ -27,6 +27,7 @@ class PhoneResetArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PhoneReset resource.
+
         :param pulumi.Input['PhoneResetPhonesArgs'] phones: Specifies the CPH phones.
                The phones structure is documented below.
         :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the CPH phone.
@@ -106,6 +107,7 @@ class _PhoneResetState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PhoneReset resources.
+
         :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the CPH phone.
                
                <a name="phones_structure"></a>
@@ -177,7 +179,7 @@ class _PhoneResetState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:cph/phoneReset:PhoneReset")
+@pulumi.type_token("huaweicloud:Cph/phoneReset:PhoneReset")
 class PhoneReset(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -203,6 +205,7 @@ class PhoneReset(pulumi.CustomResource):
             "phone_id": phone_id,
         })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -237,6 +240,7 @@ class PhoneReset(pulumi.CustomResource):
             "phone_id": phone_id,
         })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PhoneResetArgs args: The arguments to use to populate this resource's properties.
@@ -273,7 +277,7 @@ class PhoneReset(pulumi.CustomResource):
             __props__.__dict__["phones"] = phones
             __props__.__dict__["region"] = region
         super(PhoneReset, __self__).__init__(
-            'huaweicloud:cph/phoneReset:PhoneReset',
+            'huaweicloud:Cph/phoneReset:PhoneReset',
             resource_name,
             __props__,
             opts)

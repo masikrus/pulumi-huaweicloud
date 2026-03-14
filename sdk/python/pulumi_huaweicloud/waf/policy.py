@@ -34,6 +34,7 @@ class PolicyArgs:
                  shiro_decryption_check: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Policy resource.
+
         :param pulumi.Input[_builtins.bool] deep_inspection: Specifies the deep inspection in basic web protection. Defaults to **false**.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of WAF policy.
                For enterprise users, if omitted, default enterprise project will be used.
@@ -257,6 +258,7 @@ class _PolicyState:
                  shiro_decryption_check: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['PolicyBindHostArgs']]] bind_hosts: The protection switches. The options object structure is documented below.
         :param pulumi.Input[_builtins.bool] deep_inspection: Specifies the deep inspection in basic web protection. Defaults to **false**.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of WAF policy.
@@ -539,19 +541,16 @@ class Policy(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/policy:Policy test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/policy:Policy test <id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -635,19 +634,16 @@ class Policy(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/policy:Policy test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/policy:Policy test <id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyArgs args: The arguments to use to populate this resource's properties.

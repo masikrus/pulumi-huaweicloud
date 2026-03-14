@@ -27,6 +27,7 @@ class CmdbEnvironmentArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CmdbEnvironment resource.
+
         :param pulumi.Input[_builtins.str] component_id: Specifies the component ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] os_type: Specifies the OS type. The value can be **WINDOWS** and **LINUX**.
                Changing this parameter will create a new resource.
@@ -139,6 +140,7 @@ class _CmdbEnvironmentState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CmdbEnvironment resources.
+
         :param pulumi.Input[_builtins.str] component_id: Specifies the component ID. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description about the environment.
@@ -321,11 +323,10 @@ class CmdbEnvironment(pulumi.CustomResource):
 
         The AOM environment can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/cmdbEnvironment:CmdbEnvironment test 4ee753f776114565863d260f1cc62695
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -369,11 +370,10 @@ class CmdbEnvironment(pulumi.CustomResource):
 
         The AOM environment can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/cmdbEnvironment:CmdbEnvironment test 4ee753f776114565863d260f1cc62695
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CmdbEnvironmentArgs args: The arguments to use to populate this resource's properties.

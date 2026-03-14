@@ -35,6 +35,7 @@ class ServiceDiscoveryRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceDiscoveryRule resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ServiceDiscoveryRuleDiscoveryRuleArgs']]] discovery_rules: Specifies the discovery rule. If the array contains multiple conditions, only the
                processes that meet all the conditions will be matched. If the value of `check_type` is **cmdLine**, set the value of
                `check_mode` to **contain**. `check_content` is in the format of ["xxx"], indicating that the process must contain
@@ -269,6 +270,7 @@ class _ServiceDiscoveryRuleState:
                  service_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceDiscoveryRule resources.
+
         :param pulumi.Input[_builtins.str] created_at: The rule create time.
         :param pulumi.Input[_builtins.str] description: Specifies the rule description.
                
@@ -582,11 +584,10 @@ class ServiceDiscoveryRule(pulumi.CustomResource):
 
         AOM service discovery rules can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/serviceDiscoveryRule:ServiceDiscoveryRule alarm_rule <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -672,11 +673,10 @@ class ServiceDiscoveryRule(pulumi.CustomResource):
 
         AOM service discovery rules can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/serviceDiscoveryRule:ServiceDiscoveryRule alarm_rule <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceDiscoveryRuleArgs args: The arguments to use to populate this resource's properties.

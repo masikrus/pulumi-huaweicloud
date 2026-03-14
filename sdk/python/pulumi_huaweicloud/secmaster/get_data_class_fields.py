@@ -144,7 +144,7 @@ def get_data_class_fields(data_class_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     data_class_id = config.require_object("dataClassId")
-    test = huaweicloud.secmaster.get_data_class_fields(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_data_class_fields(workspace_id=workspace_id,
         data_class_id=data_class_id)
     ```
 
@@ -165,7 +165,7 @@ def get_data_class_fields(data_class_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getDataClassFields:getDataClassFields', __args__, opts=opts, typ=GetDataClassFieldsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getDataClassFields:getDataClassFields', __args__, opts=opts, typ=GetDataClassFieldsResult).value
 
     return AwaitableGetDataClassFieldsResult(
         data_class_id=pulumi.get(__ret__, 'data_class_id'),
@@ -195,7 +195,7 @@ def get_data_class_fields_output(data_class_id: Optional[pulumi.Input[_builtins.
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     data_class_id = config.require_object("dataClassId")
-    test = huaweicloud.secmaster.get_data_class_fields(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_data_class_fields(workspace_id=workspace_id,
         data_class_id=data_class_id)
     ```
 
@@ -216,7 +216,7 @@ def get_data_class_fields_output(data_class_id: Optional[pulumi.Input[_builtins.
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getDataClassFields:getDataClassFields', __args__, opts=opts, typ=GetDataClassFieldsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getDataClassFields:getDataClassFields', __args__, opts=opts, typ=GetDataClassFieldsResult)
     return __ret__.apply(lambda __response__: GetDataClassFieldsResult(
         data_class_id=pulumi.get(__response__, 'data_class_id'),
         fields=pulumi.get(__response__, 'fields'),

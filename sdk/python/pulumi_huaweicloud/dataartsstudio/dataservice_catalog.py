@@ -27,6 +27,7 @@ class DataserviceCatalogArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataserviceCatalog resource.
+
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the catalog belongs.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the catalog.  
@@ -165,6 +166,7 @@ class _DataserviceCatalogState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataserviceCatalog resources.
+
         :param pulumi.Input[_builtins.int] api_total: The total number of APIs in the current catalog.
         :param pulumi.Input[_builtins.int] catalog_total: The total number of sub-catalogs in the current catalog.
         :param pulumi.Input[_builtins.str] create_user: The creator of the catalog.
@@ -445,53 +447,26 @@ class DataserviceCatalog(pulumi.CustomResource):
 
         The catalog can be imported using `workspace_id`, `dlm_type` and `id` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceCatalog:DataserviceCatalog test <workspace_id>/<dlm_type>/<id>
         ```
 
         Also, you can omit `dlm_type` and provide just `workspace_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceCatalog:DataserviceCatalog test <workspace_id>/<id>
         ```
 
-        ~> This way only supports importing the catalog of the **SHARED** type, but does not support the catalog imported for
-
+        > This way only supports importing the catalog of the **SHARED** type, but does not support the catalog imported for
            **EXCLUSIVE** type. If an error is reported, please carefully check the `dlm_type` value to which imported catalog
-
            you want.
 
         Note that the imported state may not be identical to your resource definition, because the attributes are missing in the
-
         API response. The missing attributes include: `parent_id`.
-
         It is generally recommended running `pulumi preview` after importing an resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_dataservice_catalog" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              parent_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -563,53 +538,26 @@ class DataserviceCatalog(pulumi.CustomResource):
 
         The catalog can be imported using `workspace_id`, `dlm_type` and `id` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceCatalog:DataserviceCatalog test <workspace_id>/<dlm_type>/<id>
         ```
 
         Also, you can omit `dlm_type` and provide just `workspace_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/dataserviceCatalog:DataserviceCatalog test <workspace_id>/<id>
         ```
 
-        ~> This way only supports importing the catalog of the **SHARED** type, but does not support the catalog imported for
-
+        > This way only supports importing the catalog of the **SHARED** type, but does not support the catalog imported for
            **EXCLUSIVE** type. If an error is reported, please carefully check the `dlm_type` value to which imported catalog
-
            you want.
 
         Note that the imported state may not be identical to your resource definition, because the attributes are missing in the
-
         API response. The missing attributes include: `parent_id`.
-
         It is generally recommended running `pulumi preview` after importing an resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_dataservice_catalog" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              parent_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DataserviceCatalogArgs args: The arguments to use to populate this resource's properties.

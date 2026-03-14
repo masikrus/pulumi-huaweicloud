@@ -26,6 +26,7 @@ class InstanceReadStrategyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceReadStrategy resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceReadStrategyReadWeightArgs']]] read_weights: Specifies the list of read weights of the primary DB instance
@@ -92,6 +93,7 @@ class _InstanceReadStrategyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceReadStrategy resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceReadStrategyReadWeightArgs']]] read_weights: Specifies the list of read weights of the primary DB instance
@@ -152,7 +154,7 @@ class _InstanceReadStrategyState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:ddm/instanceReadStrategy:InstanceReadStrategy")
+@pulumi.type_token("huaweicloud:Ddm/instanceReadStrategy:InstanceReadStrategy")
 class InstanceReadStrategy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -191,6 +193,7 @@ class InstanceReadStrategy(pulumi.CustomResource):
                 },
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -240,6 +243,7 @@ class InstanceReadStrategy(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param InstanceReadStrategyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -275,7 +279,7 @@ class InstanceReadStrategy(pulumi.CustomResource):
             __props__.__dict__["read_weights"] = read_weights
             __props__.__dict__["region"] = region
         super(InstanceReadStrategy, __self__).__init__(
-            'huaweicloud:ddm/instanceReadStrategy:InstanceReadStrategy',
+            'huaweicloud:Ddm/instanceReadStrategy:InstanceReadStrategy',
             resource_name,
             __props__,
             opts)

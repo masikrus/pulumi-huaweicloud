@@ -6,9 +6,13 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .access_policy import *
 from .addon import *
 from .autopilot_addon import *
+from .autopilot_chart import *
 from .autopilot_cluster import *
+from .autopilot_cluster_upgrade import *
+from .autopilot_release import *
 from .chart import *
 from .cluster import *
 from .cluster_certificate_revoke import *
@@ -18,21 +22,33 @@ from .cluster_upgrade import *
 from .cluster_v3 import *
 from .get_addon_template import *
 from .get_addons import *
+from .get_autopilot_access_policies import *
 from .get_autopilot_addon_templates import *
+from .get_autopilot_addons import *
+from .get_autopilot_charts import *
 from .get_autopilot_cluster_certificate import *
+from .get_autopilot_cluster_log_configs import *
+from .get_autopilot_cluster_upgrade_info import *
 from .get_autopilot_clusters import *
+from .get_autopilot_releases import *
+from .get_chart_values import *
 from .get_charts import *
 from .get_cluster import *
 from .get_cluster_certificates import *
+from .get_cluster_configuration_details import *
 from .get_cluster_configurations import *
 from .get_cluster_openid_jwks import *
 from .get_cluster_upgrade_info import *
 from .get_cluster_v3 import *
 from .get_clusters import *
+from .get_flavor_specifications import *
+from .get_image_caches import *
 from .get_node import *
 from .get_node_pool import *
 from .get_node_v3 import *
 from .get_nodes import *
+from .get_releases import *
+from .image_cache import *
 from .namespace import *
 from .node import *
 from .node_attach import *
@@ -44,5 +60,6 @@ from .node_v3 import *
 from .nodes_remove import *
 from .partition import *
 from .pvc import *
+from .release import *
 from ._inputs import *
 from . import outputs

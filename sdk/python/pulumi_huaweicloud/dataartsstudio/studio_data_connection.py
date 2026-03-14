@@ -29,6 +29,7 @@ class StudioDataConnectionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StudioDataConnection resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the data connection type.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the data connection belongs.
                Changing this will create a new resource.
@@ -192,6 +193,7 @@ class _StudioDataConnectionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StudioDataConnection resources.
+
         :param pulumi.Input[_builtins.str] agent_id: Specifies the agent ID.
         :param pulumi.Input[_builtins.str] agent_name: Specifies the agent name.  
                Required if the `agent_id` is specified.
@@ -433,11 +435,10 @@ class StudioDataConnection(pulumi.CustomResource):
 
         Data connections can be imported using related `workspace_id` and their `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/studioDataConnection:StudioDataConnection test <workspace_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -501,11 +502,10 @@ class StudioDataConnection(pulumi.CustomResource):
 
         Data connections can be imported using related `workspace_id` and their `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/studioDataConnection:StudioDataConnection test <workspace_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StudioDataConnectionArgs args: The arguments to use to populate this resource's properties.

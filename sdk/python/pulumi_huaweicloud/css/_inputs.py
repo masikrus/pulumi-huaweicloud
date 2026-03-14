@@ -25,6 +25,8 @@ __all__ = [
     'ClusterColdNodeConfigArgsDict',
     'ClusterColdNodeConfigVolumeArgs',
     'ClusterColdNodeConfigVolumeArgsDict',
+    'ClusterDiskEncryptionArgs',
+    'ClusterDiskEncryptionArgsDict',
     'ClusterEssNodeConfigArgs',
     'ClusterEssNodeConfigArgsDict',
     'ClusterEssNodeConfigVolumeArgs',
@@ -55,6 +57,8 @@ __all__ = [
     'ClusterV1ColdNodeConfigArgsDict',
     'ClusterV1ColdNodeConfigVolumeArgs',
     'ClusterV1ColdNodeConfigVolumeArgsDict',
+    'ClusterV1DiskEncryptionArgs',
+    'ClusterV1DiskEncryptionArgsDict',
     'ClusterV1EssNodeConfigArgs',
     'ClusterV1EssNodeConfigArgsDict',
     'ClusterV1EssNodeConfigVolumeArgs',
@@ -117,44 +121,42 @@ __all__ = [
     'ScanTaskTaskRiskArgsDict',
 ]
 
-MYPY = False
+class ClusterBackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the time when a snapshot is automatically created everyday. Snapshots can
+    only be created on the hour. The time format is the time followed by the time zone, specifically, **HH:mm z**. In the
+    format, **HH:mm** refers to the hour time and z refers to the time zone. For example, "00:00 GMT+08:00"
+    and "01:00 GMT+08:00".
+    """
+    agency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IAM agency used to access OBS.
 
-if not MYPY:
-    class ClusterBackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the time when a snapshot is automatically created everyday. Snapshots can
-        only be created on the hour. The time format is the time followed by the time zone, specifically, **HH:mm z**. In the
-        format, **HH:mm** refers to the hour time and z refers to the time zone. For example, "00:00 GMT+08:00"
-        and "01:00 GMT+08:00".
-        """
-        agency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IAM agency used to access OBS.
+    > **NOTE:**  If the `bucket`, `backup_path`, and `agency` parameters are empty at the same time, the system will
+    automatically create an OBS bucket and IAM agent, otherwise the configured parameter values will be used.
 
-        > **NOTE:**  If the `bucket`, `backup_path`, and `agency` parameters are empty at the same time, the system will
-        automatically create an OBS bucket and IAM agent, otherwise the configured parameter values will be used.
-        """
-        backup_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the storage path of the snapshot in the OBS bucket.
-        """
-        bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the OBS bucket used for index data backup. If there is snapshot data in an OBS
-        bucket, only the OBS bucket is used and cannot be changed.
-        """
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days to retain the generated snapshots. Snapshots are reserved
-        for seven days by default.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the prefix of the snapshot that is automatically created. Defaults to **snapshot**.
-        """
-elif False:
-    ClusterBackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="disk_encryption_struct"></a>
+    The `disk_encryption` block supports:
+    """
+    backup_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the storage path of the snapshot in the OBS bucket.
+    """
+    bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OBS bucket used for index data backup. If there is snapshot data in an OBS
+    bucket, only the OBS bucket is used and cannot be changed.
+    """
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days to retain the generated snapshots. Snapshots are reserved
+    for seven days by default.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prefix of the snapshot that is automatically created. Defaults to **snapshot**.
+    """
 
 @pulumi.input_type
 class ClusterBackupStrategyArgs:
@@ -174,6 +176,9 @@ class ClusterBackupStrategyArgs:
                
                > **NOTE:**  If the `bucket`, `backup_path`, and `agency` parameters are empty at the same time, the system will
                automatically create an OBS bucket and IAM agent, otherwise the configured parameter values will be used.
+               
+               <a name="disk_encryption_struct"></a>
+               The `disk_encryption` block supports:
         :param pulumi.Input[_builtins.str] backup_path: Specifies the storage path of the snapshot in the OBS bucket.
         :param pulumi.Input[_builtins.str] bucket: Specifies the OBS bucket used for index data backup. If there is snapshot data in an OBS
                bucket, only the OBS bucket is used and cannot be changed.
@@ -216,6 +221,9 @@ class ClusterBackupStrategyArgs:
 
         > **NOTE:**  If the `bucket`, `backup_path`, and `agency` parameters are empty at the same time, the system will
         automatically create an OBS bucket and IAM agent, otherwise the configured parameter values will be used.
+
+        <a name="disk_encryption_struct"></a>
+        The `disk_encryption` block supports:
         """
         return pulumi.get(self, "agency")
 
@@ -274,32 +282,29 @@ class ClusterBackupStrategyArgs:
         pulumi.set(self, "prefix", value)
 
 
-if not MYPY:
-    class ClusterClientNodeConfigArgsDict(TypedDict):
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the flavor name.
-        """
-        instance_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of cluster instances.
-        + When it is `master_node_config`, The value range is `3` to `10`.
-        + When it is `client_node_config`, The value range is `1` to `32`.
-        """
-        volume: pulumi.Input['ClusterClientNodeConfigVolumeArgsDict']
-        """
-        Specifies the information about the volume.
-        The volume structure is documented below.
-        """
-        shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the node IDs that needs to be scaled down.
+class ClusterClientNodeConfigArgsDict(TypedDict):
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the flavor name.
+    """
+    instance_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of cluster instances.
+    + When it is `master_node_config`, The value range is `3` to `10`.
+    + When it is `client_node_config`, The value range is `1` to `32`.
+    """
+    volume: pulumi.Input['ClusterClientNodeConfigVolumeArgsDict']
+    """
+    Specifies the information about the volume.
+    The volume structure is documented below.
+    """
+    shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the node IDs that needs to be scaled down.
 
-        <a name="Css_master_or_client_volume"></a>
-        The `volume` block supports:
-        """
-elif False:
-    ClusterClientNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_master_or_client_volume"></a>
+    The `volume` block supports:
+    """
 
 @pulumi.input_type
 class ClusterClientNodeConfigArgs:
@@ -381,24 +386,21 @@ class ClusterClientNodeConfigArgs:
         pulumi.set(self, "shrink_node_ids", value)
 
 
-if not MYPY:
-    class ClusterClientNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size in **GB**, which must be a multiple of `10`.
-        """
-        volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. Value options are as follows:
-        + **COMMON**: Common I/O. The SATA disk is used.
-        + **HIGH**: High I/O. The SAS disk is used.
-        + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
+class ClusterClientNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size in **GB**, which must be a multiple of `10`.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. Value options are as follows:
+    + **COMMON**: Common I/O. The SATA disk is used.
+    + **HIGH**: High I/O. The SAS disk is used.
+    + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
 
-        <a name="Css_public_access"></a>
-        The `public_access` block supports:
-        """
-elif False:
-    ClusterClientNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_public_access"></a>
+    The `public_access` block supports:
+    """
 
 @pulumi.input_type
 class ClusterClientNodeConfigVolumeArgs:
@@ -449,47 +451,44 @@ class ClusterClientNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterColdNodeConfigArgsDict(TypedDict):
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the flavor name.
-        """
-        instance_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of cluster instances.
-        + When it is `master_node_config`, The value range is `3` to `10`.
-        + When it is `client_node_config`, The value range is `1` to `32`.
-        """
-        shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the node IDs that needs to be scaled down.
+class ClusterColdNodeConfigArgsDict(TypedDict):
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the flavor name.
+    """
+    instance_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of cluster instances.
+    + When it is `master_node_config`, The value range is `3` to `10`.
+    + When it is `client_node_config`, The value range is `1` to `32`.
+    """
+    shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the node IDs that needs to be scaled down.
 
-        <a name="Css_master_or_client_volume"></a>
-        The `volume` block supports:
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the instance type.
-        The valid values are as follows:
-        + **ess**
-        + **chinese**
-        + **english**
-        + **arabic**
-        + **tools**
-        + **thai**
-        + **turkish**
-        + **portuguese**
-        + **chinese-english**
-        + **spanish**
-        """
-        volume: NotRequired[pulumi.Input['ClusterColdNodeConfigVolumeArgsDict']]
-        """
-        Specifies the information about the volume.
-        The volume structure is documented below.
-        """
-elif False:
-    ClusterColdNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_master_or_client_volume"></a>
+    The `volume` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance type.
+    The valid values are as follows:
+    + **ess**
+    + **chinese**
+    + **english**
+    + **arabic**
+    + **tools**
+    + **thai**
+    + **turkish**
+    + **portuguese**
+    + **chinese-english**
+    + **spanish**
+    """
+    volume: NotRequired[pulumi.Input['ClusterColdNodeConfigVolumeArgsDict']]
+    """
+    Specifies the information about the volume.
+    The volume structure is documented below.
+    """
 
 @pulumi.input_type
 class ClusterColdNodeConfigArgs:
@@ -610,24 +609,21 @@ class ClusterColdNodeConfigArgs:
         pulumi.set(self, "volume", value)
 
 
-if not MYPY:
-    class ClusterColdNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size in **GB**, which must be a multiple of `10`.
-        """
-        volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. Value options are as follows:
-        + **COMMON**: Common I/O. The SATA disk is used.
-        + **HIGH**: High I/O. The SAS disk is used.
-        + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
+class ClusterColdNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size in **GB**, which must be a multiple of `10`.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. Value options are as follows:
+    + **COMMON**: Common I/O. The SATA disk is used.
+    + **HIGH**: High I/O. The SAS disk is used.
+    + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
 
-        <a name="Css_public_access"></a>
-        The `public_access` block supports:
-        """
-elif False:
-    ClusterColdNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_public_access"></a>
+    The `public_access` block supports:
+    """
 
 @pulumi.input_type
 class ClusterColdNodeConfigVolumeArgs:
@@ -678,47 +674,126 @@ class ClusterColdNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterEssNodeConfigArgsDict(TypedDict):
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the flavor name.
-        """
-        instance_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of cluster instances.
-        + When it is `master_node_config`, The value range is `3` to `10`.
-        + When it is `client_node_config`, The value range is `1` to `32`.
-        """
-        shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the node IDs that needs to be scaled down.
+class ClusterDiskEncryptionArgsDict(TypedDict):
+    system_cmk_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the disk key ID. This parameter is valid only when
+    `system_encrypted` is set to **1**. If the KMS key used by the cluster is disabled, the cluster cannot be scaled or
+    upgraded, its node specifications or AZs cannot be changed, and its nodes cannot be replaced (by specifying the nodes
+    that need replacement). To solve this problem, you will have to create a new cluster and migrate your data to that new
+    cluster. Set a key that meets the following requirements:
+    + Cryptographic algorithm: **AES**.
+    + Key usage: **ENCRYPT_DECRYPT**.
+    """
+    system_encrypted: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether disk encryption is enabled. KMS is used to
+    encrypt the data disks of cluster nodes to ensure the security of stored data. Disk encryption and decryption do not
+    alter cluster management or O&M processes. However, they do increase the system's processing load, potentially affecting
+    the system's operational performance. Value options:
+    + **0**: Disable disk encryption.
+    + **1**: Enable disk encryption.
+    """
 
-        <a name="Css_master_or_client_volume"></a>
-        The `volume` block supports:
+@pulumi.input_type
+class ClusterDiskEncryptionArgs:
+    def __init__(__self__, *,
+                 system_cmk_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 system_encrypted: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        type: NotRequired[pulumi.Input[_builtins.str]]
+        :param pulumi.Input[_builtins.str] system_cmk_id: Specifies the disk key ID. This parameter is valid only when
+               `system_encrypted` is set to **1**. If the KMS key used by the cluster is disabled, the cluster cannot be scaled or
+               upgraded, its node specifications or AZs cannot be changed, and its nodes cannot be replaced (by specifying the nodes
+               that need replacement). To solve this problem, you will have to create a new cluster and migrate your data to that new
+               cluster. Set a key that meets the following requirements:
+               + Cryptographic algorithm: **AES**.
+               + Key usage: **ENCRYPT_DECRYPT**.
+        :param pulumi.Input[_builtins.str] system_encrypted: Specifies whether disk encryption is enabled. KMS is used to
+               encrypt the data disks of cluster nodes to ensure the security of stored data. Disk encryption and decryption do not
+               alter cluster management or O&M processes. However, they do increase the system's processing load, potentially affecting
+               the system's operational performance. Value options:
+               + **0**: Disable disk encryption.
+               + **1**: Enable disk encryption.
         """
-        Specifies the instance type.
-        The valid values are as follows:
-        + **ess**
-        + **chinese**
-        + **english**
-        + **arabic**
-        + **tools**
-        + **thai**
-        + **turkish**
-        + **portuguese**
-        + **chinese-english**
-        + **spanish**
+        if system_cmk_id is not None:
+            pulumi.set(__self__, "system_cmk_id", system_cmk_id)
+        if system_encrypted is not None:
+            pulumi.set(__self__, "system_encrypted", system_encrypted)
+
+    @_builtins.property
+    @pulumi.getter(name="systemCmkId")
+    def system_cmk_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        volume: NotRequired[pulumi.Input['ClusterEssNodeConfigVolumeArgsDict']]
+        Specifies the disk key ID. This parameter is valid only when
+        `system_encrypted` is set to **1**. If the KMS key used by the cluster is disabled, the cluster cannot be scaled or
+        upgraded, its node specifications or AZs cannot be changed, and its nodes cannot be replaced (by specifying the nodes
+        that need replacement). To solve this problem, you will have to create a new cluster and migrate your data to that new
+        cluster. Set a key that meets the following requirements:
+        + Cryptographic algorithm: **AES**.
+        + Key usage: **ENCRYPT_DECRYPT**.
         """
-        Specifies the information about the volume.
-        The volume structure is documented below.
+        return pulumi.get(self, "system_cmk_id")
+
+    @system_cmk_id.setter
+    def system_cmk_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "system_cmk_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="systemEncrypted")
+    def system_encrypted(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-elif False:
-    ClusterEssNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+        Specifies whether disk encryption is enabled. KMS is used to
+        encrypt the data disks of cluster nodes to ensure the security of stored data. Disk encryption and decryption do not
+        alter cluster management or O&M processes. However, they do increase the system's processing load, potentially affecting
+        the system's operational performance. Value options:
+        + **0**: Disable disk encryption.
+        + **1**: Enable disk encryption.
+        """
+        return pulumi.get(self, "system_encrypted")
+
+    @system_encrypted.setter
+    def system_encrypted(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "system_encrypted", value)
+
+
+class ClusterEssNodeConfigArgsDict(TypedDict):
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the flavor name.
+    """
+    instance_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of cluster instances.
+    + When it is `master_node_config`, The value range is `3` to `10`.
+    + When it is `client_node_config`, The value range is `1` to `32`.
+    """
+    shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the node IDs that needs to be scaled down.
+
+    <a name="Css_master_or_client_volume"></a>
+    The `volume` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance type.
+    The valid values are as follows:
+    + **ess**
+    + **chinese**
+    + **english**
+    + **arabic**
+    + **tools**
+    + **thai**
+    + **turkish**
+    + **portuguese**
+    + **chinese-english**
+    + **spanish**
+    """
+    volume: NotRequired[pulumi.Input['ClusterEssNodeConfigVolumeArgsDict']]
+    """
+    Specifies the information about the volume.
+    The volume structure is documented below.
+    """
 
 @pulumi.input_type
 class ClusterEssNodeConfigArgs:
@@ -839,24 +914,21 @@ class ClusterEssNodeConfigArgs:
         pulumi.set(self, "volume", value)
 
 
-if not MYPY:
-    class ClusterEssNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size in **GB**, which must be a multiple of `10`.
-        """
-        volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. Value options are as follows:
-        + **COMMON**: Common I/O. The SATA disk is used.
-        + **HIGH**: High I/O. The SAS disk is used.
-        + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
+class ClusterEssNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size in **GB**, which must be a multiple of `10`.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. Value options are as follows:
+    + **COMMON**: Common I/O. The SATA disk is used.
+    + **HIGH**: High I/O. The SAS disk is used.
+    + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
 
-        <a name="Css_public_access"></a>
-        The `public_access` block supports:
-        """
-elif False:
-    ClusterEssNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_public_access"></a>
+    The `public_access` block supports:
+    """
 
 @pulumi.input_type
 class ClusterEssNodeConfigVolumeArgs:
@@ -907,23 +979,20 @@ class ClusterEssNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterKibanaPublicAccessArgsDict(TypedDict):
-        bandwidth: pulumi.Input[_builtins.int]
-        """
-        Specifies the public network bandwidth.
-        """
-        whitelist_enabled: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether to enable the public network access control.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        whitelist: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the whitelist of access control. The whitelisted account id must be unique.
-        """
-elif False:
-    ClusterKibanaPublicAccessArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterKibanaPublicAccessArgsDict(TypedDict):
+    bandwidth: pulumi.Input[_builtins.int]
+    """
+    Specifies the public network bandwidth.
+    """
+    whitelist_enabled: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether to enable the public network access control.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    whitelist: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the whitelist of access control. The whitelisted account id must be unique.
+    """
 
 @pulumi.input_type
 class ClusterKibanaPublicAccessArgs:
@@ -990,32 +1059,29 @@ class ClusterKibanaPublicAccessArgs:
         pulumi.set(self, "whitelist", value)
 
 
-if not MYPY:
-    class ClusterMasterNodeConfigArgsDict(TypedDict):
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the flavor name.
-        """
-        instance_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of cluster instances.
-        + When it is `master_node_config`, The value range is `3` to `10`.
-        + When it is `client_node_config`, The value range is `1` to `32`.
-        """
-        volume: pulumi.Input['ClusterMasterNodeConfigVolumeArgsDict']
-        """
-        Specifies the information about the volume.
-        The volume structure is documented below.
-        """
-        shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the node IDs that needs to be scaled down.
+class ClusterMasterNodeConfigArgsDict(TypedDict):
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the flavor name.
+    """
+    instance_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of cluster instances.
+    + When it is `master_node_config`, The value range is `3` to `10`.
+    + When it is `client_node_config`, The value range is `1` to `32`.
+    """
+    volume: pulumi.Input['ClusterMasterNodeConfigVolumeArgsDict']
+    """
+    Specifies the information about the volume.
+    The volume structure is documented below.
+    """
+    shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the node IDs that needs to be scaled down.
 
-        <a name="Css_master_or_client_volume"></a>
-        The `volume` block supports:
-        """
-elif False:
-    ClusterMasterNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_master_or_client_volume"></a>
+    The `volume` block supports:
+    """
 
 @pulumi.input_type
 class ClusterMasterNodeConfigArgs:
@@ -1097,24 +1163,21 @@ class ClusterMasterNodeConfigArgs:
         pulumi.set(self, "shrink_node_ids", value)
 
 
-if not MYPY:
-    class ClusterMasterNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size in **GB**, which must be a multiple of `10`.
-        """
-        volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. Value options are as follows:
-        + **COMMON**: Common I/O. The SATA disk is used.
-        + **HIGH**: High I/O. The SAS disk is used.
-        + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
+class ClusterMasterNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size in **GB**, which must be a multiple of `10`.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. Value options are as follows:
+    + **COMMON**: Common I/O. The SATA disk is used.
+    + **HIGH**: High I/O. The SAS disk is used.
+    + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
 
-        <a name="Css_public_access"></a>
-        The `public_access` block supports:
-        """
-elif False:
-    ClusterMasterNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_public_access"></a>
+    The `public_access` block supports:
+    """
 
 @pulumi.input_type
 class ClusterMasterNodeConfigVolumeArgs:
@@ -1165,59 +1228,56 @@ class ClusterMasterNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterNodeArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the availability zone name.
-        Separate multiple AZs with commas (,), for example, az1,az2. AZs must be unique. The number of nodes must be greater
-        than or equal to the number of AZs. If the number of nodes is a multiple of the number of AZs, the nodes are evenly
-        distributed to each AZ. If the number of nodes is not a multiple of the number of AZs, the absolute difference
-        between node quantity in any two AZs is **1** at most.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance ID.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance IP address.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster name. It contains `4` to `32` characters.
-        Only letters, digits, hyphens (-), and underscores (_) are allowed. The value must start with a letter.
-        Changing this parameter will create a new resource.
-        """
-        resource_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The resource ID of this instance.
-        """
-        spec_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance specification code.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance status.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the instance type.
-        The valid values are as follows:
-        + **ess**
-        + **chinese**
-        + **english**
-        + **arabic**
-        + **tools**
-        + **thai**
-        + **turkish**
-        + **portuguese**
-        + **chinese-english**
-        + **spanish**
-        """
-elif False:
-    ClusterNodeArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterNodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the availability zone name.
+    Separate multiple AZs with commas (,), for example, az1,az2. AZs must be unique. The number of nodes must be greater
+    than or equal to the number of AZs. If the number of nodes is a multiple of the number of AZs, the nodes are evenly
+    distributed to each AZ. If the number of nodes is not a multiple of the number of AZs, the absolute difference
+    between node quantity in any two AZs is **1** at most.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance ID.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance IP address.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster name. It contains `4` to `32` characters.
+    Only letters, digits, hyphens (-), and underscores (_) are allowed. The value must start with a letter.
+    Changing this parameter will create a new resource.
+    """
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The resource ID of this instance.
+    """
+    spec_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance specification code.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance status.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance type.
+    The valid values are as follows:
+    + **ess**
+    + **chinese**
+    + **english**
+    + **arabic**
+    + **tools**
+    + **thai**
+    + **turkish**
+    + **portuguese**
+    + **chinese-english**
+    + **spanish**
+    """
 
 @pulumi.input_type
 class ClusterNodeArgs:
@@ -1388,28 +1448,25 @@ class ClusterNodeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ClusterNodeConfigArgsDict(TypedDict):
-        availability_zone: pulumi.Input[_builtins.str]
-        """
-        Specifies the availability zone name.
-        Separate multiple AZs with commas (,), for example, az1,az2. AZs must be unique. The number of nodes must be greater
-        than or equal to the number of AZs. If the number of nodes is a multiple of the number of AZs, the nodes are evenly
-        distributed to each AZ. If the number of nodes is not a multiple of the number of AZs, the absolute difference
-        between node quantity in any two AZs is **1** at most.
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the flavor name.
-        """
-        network_info: pulumi.Input['ClusterNodeConfigNetworkInfoArgsDict']
-        volume: pulumi.Input['ClusterNodeConfigVolumeArgsDict']
-        """
-        Specifies the information about the volume.
-        The volume structure is documented below.
-        """
-elif False:
-    ClusterNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterNodeConfigArgsDict(TypedDict):
+    availability_zone: pulumi.Input[_builtins.str]
+    """
+    Specifies the availability zone name.
+    Separate multiple AZs with commas (,), for example, az1,az2. AZs must be unique. The number of nodes must be greater
+    than or equal to the number of AZs. If the number of nodes is a multiple of the number of AZs, the nodes are evenly
+    distributed to each AZ. If the number of nodes is not a multiple of the number of AZs, the absolute difference
+    between node quantity in any two AZs is **1** at most.
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the flavor name.
+    """
+    network_info: pulumi.Input['ClusterNodeConfigNetworkInfoArgsDict']
+    volume: pulumi.Input['ClusterNodeConfigVolumeArgsDict']
+    """
+    Specifies the information about the volume.
+    The volume structure is documented below.
+    """
 
 @pulumi.input_type
 class ClusterNodeConfigArgs:
@@ -1484,24 +1541,21 @@ class ClusterNodeConfigArgs:
         pulumi.set(self, "volume", value)
 
 
-if not MYPY:
-    class ClusterNodeConfigNetworkInfoArgsDict(TypedDict):
-        security_group_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the security group ID.
-        """
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the Subnet ID.
-        Changing this parameter will create a new resource.
-        """
-        vpc_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the VPC ID.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ClusterNodeConfigNetworkInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterNodeConfigNetworkInfoArgsDict(TypedDict):
+    security_group_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the security group ID.
+    """
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the Subnet ID.
+    Changing this parameter will create a new resource.
+    """
+    vpc_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the VPC ID.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ClusterNodeConfigNetworkInfoArgs:
@@ -1559,24 +1613,21 @@ class ClusterNodeConfigNetworkInfoArgs:
         pulumi.set(self, "vpc_id", value)
 
 
-if not MYPY:
-    class ClusterNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size in **GB**, which must be a multiple of `10`.
-        """
-        volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. Value options are as follows:
-        + **COMMON**: Common I/O. The SATA disk is used.
-        + **HIGH**: High I/O. The SAS disk is used.
-        + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
+class ClusterNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size in **GB**, which must be a multiple of `10`.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. Value options are as follows:
+    + **COMMON**: Common I/O. The SATA disk is used.
+    + **HIGH**: High I/O. The SAS disk is used.
+    + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
 
-        <a name="Css_public_access"></a>
-        The `public_access` block supports:
-        """
-elif False:
-    ClusterNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_public_access"></a>
+    The `public_access` block supports:
+    """
 
 @pulumi.input_type
 class ClusterNodeConfigVolumeArgs:
@@ -1627,23 +1678,20 @@ class ClusterNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterPublicAccessArgsDict(TypedDict):
-        bandwidth: pulumi.Input[_builtins.int]
-        """
-        Specifies the public network bandwidth.
-        """
-        whitelist_enabled: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether to enable the public network access control.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        whitelist: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the whitelist of access control. The whitelisted account id must be unique.
-        """
-elif False:
-    ClusterPublicAccessArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterPublicAccessArgsDict(TypedDict):
+    bandwidth: pulumi.Input[_builtins.int]
+    """
+    Specifies the public network bandwidth.
+    """
+    whitelist_enabled: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether to enable the public network access control.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    whitelist: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the whitelist of access control. The whitelisted account id must be unique.
+    """
 
 @pulumi.input_type
 class ClusterPublicAccessArgs:
@@ -1710,16 +1758,13 @@ class ClusterPublicAccessArgs:
         pulumi.set(self, "whitelist", value)
 
 
-if not MYPY:
-    class ClusterV1BackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        agency: NotRequired[pulumi.Input[_builtins.str]]
-        backup_path: NotRequired[pulumi.Input[_builtins.str]]
-        bucket: NotRequired[pulumi.Input[_builtins.str]]
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV1BackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1BackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    agency: NotRequired[pulumi.Input[_builtins.str]]
+    backup_path: NotRequired[pulumi.Input[_builtins.str]]
+    bucket: NotRequired[pulumi.Input[_builtins.str]]
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV1BackupStrategyArgs:
@@ -1797,14 +1842,11 @@ class ClusterV1BackupStrategyArgs:
         pulumi.set(self, "prefix", value)
 
 
-if not MYPY:
-    class ClusterV1ClientNodeConfigArgsDict(TypedDict):
-        flavor: pulumi.Input[_builtins.str]
-        instance_number: pulumi.Input[_builtins.int]
-        volume: pulumi.Input['ClusterV1ClientNodeConfigVolumeArgsDict']
-        shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    ClusterV1ClientNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1ClientNodeConfigArgsDict(TypedDict):
+    flavor: pulumi.Input[_builtins.str]
+    instance_number: pulumi.Input[_builtins.int]
+    volume: pulumi.Input['ClusterV1ClientNodeConfigVolumeArgsDict']
+    shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class ClusterV1ClientNodeConfigArgs:
@@ -1856,12 +1898,9 @@ class ClusterV1ClientNodeConfigArgs:
         pulumi.set(self, "shrink_node_ids", value)
 
 
-if not MYPY:
-    class ClusterV1ClientNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        volume_type: pulumi.Input[_builtins.str]
-elif False:
-    ClusterV1ClientNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1ClientNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    volume_type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class ClusterV1ClientNodeConfigVolumeArgs:
@@ -1890,15 +1929,12 @@ class ClusterV1ClientNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterV1ColdNodeConfigArgsDict(TypedDict):
-        flavor: pulumi.Input[_builtins.str]
-        instance_number: pulumi.Input[_builtins.int]
-        shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        volume: NotRequired[pulumi.Input['ClusterV1ColdNodeConfigVolumeArgsDict']]
-elif False:
-    ClusterV1ColdNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1ColdNodeConfigArgsDict(TypedDict):
+    flavor: pulumi.Input[_builtins.str]
+    instance_number: pulumi.Input[_builtins.int]
+    shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    volume: NotRequired[pulumi.Input['ClusterV1ColdNodeConfigVolumeArgsDict']]
 
 @pulumi.input_type
 class ClusterV1ColdNodeConfigArgs:
@@ -1963,12 +1999,9 @@ class ClusterV1ColdNodeConfigArgs:
         pulumi.set(self, "volume", value)
 
 
-if not MYPY:
-    class ClusterV1ColdNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        volume_type: pulumi.Input[_builtins.str]
-elif False:
-    ClusterV1ColdNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1ColdNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    volume_type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class ClusterV1ColdNodeConfigVolumeArgs:
@@ -1997,15 +2030,45 @@ class ClusterV1ColdNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterV1EssNodeConfigArgsDict(TypedDict):
-        flavor: pulumi.Input[_builtins.str]
-        instance_number: pulumi.Input[_builtins.int]
-        shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        volume: NotRequired[pulumi.Input['ClusterV1EssNodeConfigVolumeArgsDict']]
-elif False:
-    ClusterV1EssNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1DiskEncryptionArgsDict(TypedDict):
+    system_cmk_id: NotRequired[pulumi.Input[_builtins.str]]
+    system_encrypted: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class ClusterV1DiskEncryptionArgs:
+    def __init__(__self__, *,
+                 system_cmk_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 system_encrypted: Optional[pulumi.Input[_builtins.str]] = None):
+        if system_cmk_id is not None:
+            pulumi.set(__self__, "system_cmk_id", system_cmk_id)
+        if system_encrypted is not None:
+            pulumi.set(__self__, "system_encrypted", system_encrypted)
+
+    @_builtins.property
+    @pulumi.getter(name="systemCmkId")
+    def system_cmk_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "system_cmk_id")
+
+    @system_cmk_id.setter
+    def system_cmk_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "system_cmk_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="systemEncrypted")
+    def system_encrypted(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "system_encrypted")
+
+    @system_encrypted.setter
+    def system_encrypted(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "system_encrypted", value)
+
+
+class ClusterV1EssNodeConfigArgsDict(TypedDict):
+    flavor: pulumi.Input[_builtins.str]
+    instance_number: pulumi.Input[_builtins.int]
+    shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    volume: NotRequired[pulumi.Input['ClusterV1EssNodeConfigVolumeArgsDict']]
 
 @pulumi.input_type
 class ClusterV1EssNodeConfigArgs:
@@ -2070,12 +2133,9 @@ class ClusterV1EssNodeConfigArgs:
         pulumi.set(self, "volume", value)
 
 
-if not MYPY:
-    class ClusterV1EssNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        volume_type: pulumi.Input[_builtins.str]
-elif False:
-    ClusterV1EssNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1EssNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    volume_type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class ClusterV1EssNodeConfigVolumeArgs:
@@ -2104,14 +2164,11 @@ class ClusterV1EssNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterV1KibanaPublicAccessArgsDict(TypedDict):
-        bandwidth: pulumi.Input[_builtins.int]
-        whitelist_enabled: pulumi.Input[_builtins.bool]
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        whitelist: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV1KibanaPublicAccessArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1KibanaPublicAccessArgsDict(TypedDict):
+    bandwidth: pulumi.Input[_builtins.int]
+    whitelist_enabled: pulumi.Input[_builtins.bool]
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    whitelist: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV1KibanaPublicAccessArgs:
@@ -2164,14 +2221,11 @@ class ClusterV1KibanaPublicAccessArgs:
         pulumi.set(self, "whitelist", value)
 
 
-if not MYPY:
-    class ClusterV1MasterNodeConfigArgsDict(TypedDict):
-        flavor: pulumi.Input[_builtins.str]
-        instance_number: pulumi.Input[_builtins.int]
-        volume: pulumi.Input['ClusterV1MasterNodeConfigVolumeArgsDict']
-        shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    ClusterV1MasterNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1MasterNodeConfigArgsDict(TypedDict):
+    flavor: pulumi.Input[_builtins.str]
+    instance_number: pulumi.Input[_builtins.int]
+    volume: pulumi.Input['ClusterV1MasterNodeConfigVolumeArgsDict']
+    shrink_node_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class ClusterV1MasterNodeConfigArgs:
@@ -2223,12 +2277,9 @@ class ClusterV1MasterNodeConfigArgs:
         pulumi.set(self, "shrink_node_ids", value)
 
 
-if not MYPY:
-    class ClusterV1MasterNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        volume_type: pulumi.Input[_builtins.str]
-elif False:
-    ClusterV1MasterNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1MasterNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    volume_type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class ClusterV1MasterNodeConfigVolumeArgs:
@@ -2257,18 +2308,15 @@ class ClusterV1MasterNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterV1NodeArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        resource_id: NotRequired[pulumi.Input[_builtins.str]]
-        spec_code: NotRequired[pulumi.Input[_builtins.str]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV1NodeArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1NodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    spec_code: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV1NodeArgs:
@@ -2371,14 +2419,11 @@ class ClusterV1NodeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ClusterV1NodeConfigArgsDict(TypedDict):
-        availability_zone: pulumi.Input[_builtins.str]
-        flavor: pulumi.Input[_builtins.str]
-        network_info: pulumi.Input['ClusterV1NodeConfigNetworkInfoArgsDict']
-        volume: pulumi.Input['ClusterV1NodeConfigVolumeArgsDict']
-elif False:
-    ClusterV1NodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1NodeConfigArgsDict(TypedDict):
+    availability_zone: pulumi.Input[_builtins.str]
+    flavor: pulumi.Input[_builtins.str]
+    network_info: pulumi.Input['ClusterV1NodeConfigNetworkInfoArgsDict']
+    volume: pulumi.Input['ClusterV1NodeConfigVolumeArgsDict']
 
 @pulumi.input_type
 class ClusterV1NodeConfigArgs:
@@ -2429,13 +2474,10 @@ class ClusterV1NodeConfigArgs:
         pulumi.set(self, "volume", value)
 
 
-if not MYPY:
-    class ClusterV1NodeConfigNetworkInfoArgsDict(TypedDict):
-        security_group_id: pulumi.Input[_builtins.str]
-        subnet_id: pulumi.Input[_builtins.str]
-        vpc_id: pulumi.Input[_builtins.str]
-elif False:
-    ClusterV1NodeConfigNetworkInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1NodeConfigNetworkInfoArgsDict(TypedDict):
+    security_group_id: pulumi.Input[_builtins.str]
+    subnet_id: pulumi.Input[_builtins.str]
+    vpc_id: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class ClusterV1NodeConfigNetworkInfoArgs:
@@ -2475,12 +2517,9 @@ class ClusterV1NodeConfigNetworkInfoArgs:
         pulumi.set(self, "vpc_id", value)
 
 
-if not MYPY:
-    class ClusterV1NodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        volume_type: pulumi.Input[_builtins.str]
-elif False:
-    ClusterV1NodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1NodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    volume_type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class ClusterV1NodeConfigVolumeArgs:
@@ -2509,14 +2548,11 @@ class ClusterV1NodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ClusterV1PublicAccessArgsDict(TypedDict):
-        bandwidth: pulumi.Input[_builtins.int]
-        whitelist_enabled: pulumi.Input[_builtins.bool]
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        whitelist: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV1PublicAccessArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1PublicAccessArgsDict(TypedDict):
+    bandwidth: pulumi.Input[_builtins.int]
+    whitelist_enabled: pulumi.Input[_builtins.bool]
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    whitelist: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV1PublicAccessArgs:
@@ -2569,12 +2605,9 @@ class ClusterV1PublicAccessArgs:
         pulumi.set(self, "whitelist", value)
 
 
-if not MYPY:
-    class ClusterV1VpcepEndpointArgsDict(TypedDict):
-        endpoint_with_dns_name: pulumi.Input[_builtins.bool]
-        whitelists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    ClusterV1VpcepEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1VpcepEndpointArgsDict(TypedDict):
+    endpoint_with_dns_name: pulumi.Input[_builtins.bool]
+    whitelists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class ClusterV1VpcepEndpointArgs:
@@ -2604,18 +2637,15 @@ class ClusterV1VpcepEndpointArgs:
         pulumi.set(self, "whitelists", value)
 
 
-if not MYPY:
-    class ClusterVpcepEndpointArgsDict(TypedDict):
-        endpoint_with_dns_name: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether to enable the private domain name.
-        """
-        whitelists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the whitelist of access control. The whitelisted account id must be unique.
-        """
-elif False:
-    ClusterVpcepEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterVpcepEndpointArgsDict(TypedDict):
+    endpoint_with_dns_name: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether to enable the private domain name.
+    """
+    whitelists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the whitelist of access control. The whitelisted account id must be unique.
+    """
 
 @pulumi.input_type
 class ClusterVpcepEndpointArgs:
@@ -2655,43 +2685,40 @@ class ClusterVpcepEndpointArgs:
         pulumi.set(self, "whitelists", value)
 
 
-if not MYPY:
-    class EsCoreUpgradeUpgradeDetailArgsDict(TypedDict):
-        agency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IAM agency used to access CSS.
-        """
-        datastores: NotRequired[pulumi.Input[Sequence[pulumi.Input['EsCoreUpgradeUpgradeDetailDatastoreArgsDict']]]]
-        """
-        The data store.
-        The datastore structure is documented below.
-        """
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The end time.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The job ID of the upgrade task.
-        """
-        retry_times: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The retry times.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The start time.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status.
-        """
-        total_nodes: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The all nodes.
-        """
-elif False:
-    EsCoreUpgradeUpgradeDetailArgsDict: TypeAlias = Mapping[str, Any]
+class EsCoreUpgradeUpgradeDetailArgsDict(TypedDict):
+    agency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IAM agency used to access CSS.
+    """
+    datastores: NotRequired[pulumi.Input[Sequence[pulumi.Input['EsCoreUpgradeUpgradeDetailDatastoreArgsDict']]]]
+    """
+    The data store.
+    The datastore structure is documented below.
+    """
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The end time.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The job ID of the upgrade task.
+    """
+    retry_times: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The retry times.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The start time.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status.
+    """
+    total_nodes: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The all nodes.
+    """
 
 @pulumi.input_type
 class EsCoreUpgradeUpgradeDetailArgs:
@@ -2830,18 +2857,15 @@ class EsCoreUpgradeUpgradeDetailArgs:
         pulumi.set(self, "total_nodes", value)
 
 
-if not MYPY:
-    class EsCoreUpgradeUpgradeDetailDatastoreArgsDict(TypedDict):
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the data store.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The version of the data store.
-        """
-elif False:
-    EsCoreUpgradeUpgradeDetailDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class EsCoreUpgradeUpgradeDetailDatastoreArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the data store.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The version of the data store.
+    """
 
 @pulumi.input_type
 class EsCoreUpgradeUpgradeDetailDatastoreArgs:
@@ -2882,23 +2906,20 @@ class EsCoreUpgradeUpgradeDetailDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class EsLoadbalancerConfigHealthMonitorArgsDict(TypedDict):
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address corresponding to the backend server.
-        """
-        protocol_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the front-end listening port of the listener.
-        Changing this creates a new resource.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The health status of the backend cloud server.
-        """
-elif False:
-    EsLoadbalancerConfigHealthMonitorArgsDict: TypeAlias = Mapping[str, Any]
+class EsLoadbalancerConfigHealthMonitorArgsDict(TypedDict):
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address corresponding to the backend server.
+    """
+    protocol_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the front-end listening port of the listener.
+    Changing this creates a new resource.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The health status of the backend cloud server.
+    """
 
 @pulumi.input_type
 class EsLoadbalancerConfigHealthMonitorArgs:
@@ -2957,32 +2978,29 @@ class EsLoadbalancerConfigHealthMonitorArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class EsLoadbalancerConfigListenerArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the access control group associated with the listener.
-        """
-        ip_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input['EsLoadbalancerConfigListenerIpGroupArgsDict']]]]
-        """
-        The ipgroup information in the listener object.
-        The ip_group structure is documented below.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The listener name.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The listening protocol of the listener.
-        """
-        protocol_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the front-end listening port of the listener.
-        Changing this creates a new resource.
-        """
-elif False:
-    EsLoadbalancerConfigListenerArgsDict: TypeAlias = Mapping[str, Any]
+class EsLoadbalancerConfigListenerArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the access control group associated with the listener.
+    """
+    ip_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input['EsLoadbalancerConfigListenerIpGroupArgsDict']]]]
+    """
+    The ipgroup information in the listener object.
+    The ip_group structure is documented below.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The listener name.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The listening protocol of the listener.
+    """
+    protocol_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the front-end listening port of the listener.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class EsLoadbalancerConfigListenerArgs:
@@ -3075,18 +3093,15 @@ class EsLoadbalancerConfigListenerArgs:
         pulumi.set(self, "protocol_port", value)
 
 
-if not MYPY:
-    class EsLoadbalancerConfigListenerIpGroupArgsDict(TypedDict):
-        enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The status of the access control group.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the access control group associated with the listener.
-        """
-elif False:
-    EsLoadbalancerConfigListenerIpGroupArgsDict: TypeAlias = Mapping[str, Any]
+class EsLoadbalancerConfigListenerIpGroupArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The status of the access control group.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the access control group associated with the listener.
+    """
 
 @pulumi.input_type
 class EsLoadbalancerConfigListenerIpGroupArgs:
@@ -3127,26 +3142,23 @@ class EsLoadbalancerConfigListenerIpGroupArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class EsLoadbalancerConfigLoadbalancerArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the access control group associated with the listener.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address corresponding to the backend server.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The listener name.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The elastic public IP address.
-        """
-elif False:
-    EsLoadbalancerConfigLoadbalancerArgsDict: TypeAlias = Mapping[str, Any]
+class EsLoadbalancerConfigLoadbalancerArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the access control group associated with the listener.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address corresponding to the backend server.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The listener name.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The elastic public IP address.
+    """
 
 @pulumi.input_type
 class EsLoadbalancerConfigLoadbalancerArgs:
@@ -3219,48 +3231,45 @@ class EsLoadbalancerConfigLoadbalancerArgs:
         pulumi.set(self, "public_ip", value)
 
 
-if not MYPY:
-    class LogstashClusterNodeArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the availability zone name.
-        Separate multiple AZs with commas (,), for example, az1,az2. AZs must be unique. The number of nodes must be greater
-        than or equal to the number of AZs. If the number of nodes is a multiple of the number of AZs, the nodes are evenly
-        distributed to each AZ. If the number of nodes is not a multiple of the number of AZs, the absolute difference
-        between node quantity in any two AZs is **1** at most.
-        Changing this parameter will create a new resource.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance ID.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance IP address.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster name. It contains `4` to `32` characters.
-        Only letters, digits, hyphens (-), and underscores (_) are allowed. The value must start with a letter.
-        """
-        resource_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The resource ID of this instance.
-        """
-        spec_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance specification code.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance status.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Node type.
-        """
-elif False:
-    LogstashClusterNodeArgsDict: TypeAlias = Mapping[str, Any]
+class LogstashClusterNodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the availability zone name.
+    Separate multiple AZs with commas (,), for example, az1,az2. AZs must be unique. The number of nodes must be greater
+    than or equal to the number of AZs. If the number of nodes is a multiple of the number of AZs, the nodes are evenly
+    distributed to each AZ. If the number of nodes is not a multiple of the number of AZs, the absolute difference
+    between node quantity in any two AZs is **1** at most.
+    Changing this parameter will create a new resource.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance ID.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance IP address.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster name. It contains `4` to `32` characters.
+    Only letters, digits, hyphens (-), and underscores (_) are allowed. The value must start with a letter.
+    """
+    resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The resource ID of this instance.
+    """
+    spec_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance specification code.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance status.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Node type.
+    """
 
 @pulumi.input_type
 class LogstashClusterNodeArgs:
@@ -3409,37 +3418,34 @@ class LogstashClusterNodeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class LogstashClusterNodeConfigArgsDict(TypedDict):
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the flavor name. The value options are as follows:
-        + **ess.spec-4u8g**: The value range of the flavor is `40` GB to `1,500` GB.
-        + **ess.spec-4u16g**: The value range of the flavor is `40` GB to `1,600` GB.
-        + **ess.spec-4u32g**: The value range of the flavor is `40` GB to `2,560` GB.
-        + **ess.spec-8u16g**: The value range of the flavor is `80` GB to `1,600` GB.
-        + **ess.spec-8u32g**: The value range of the flavor is `80` GB to `3,200` GB.
-        + **ess.spec-8u64g**: The value range of the flavor is `80` GB to `5,120` GB.
-        + **ess.spec-16u32g**: The value range of the flavor is `100` GB to `3,200` GB.
-        + **ess.spec-16u64g**: The value range of the flavor is `100` GB to `6,400` GB.
-        + **ess.spec-32u64g**: The value range of the flavor is `100` GB to `10,240` GB.
-        + **ess.spec-32u128g**: The value range of the flavor is `100` GB to `10,240` GB.
-        Changing this parameter will create a new resource.
-        """
-        instance_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of cluster instances. The value range is `1` to `32`.
-        """
-        volume: NotRequired[pulumi.Input['LogstashClusterNodeConfigVolumeArgsDict']]
-        """
-        Specifies the information about the volume.
-        The volume structure is documented below. Changing this parameter will create a new resource.
+class LogstashClusterNodeConfigArgsDict(TypedDict):
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the flavor name. The value options are as follows:
+    + **ess.spec-4u8g**: The value range of the flavor is `40` GB to `1,500` GB.
+    + **ess.spec-4u16g**: The value range of the flavor is `40` GB to `1,600` GB.
+    + **ess.spec-4u32g**: The value range of the flavor is `40` GB to `2,560` GB.
+    + **ess.spec-8u16g**: The value range of the flavor is `80` GB to `1,600` GB.
+    + **ess.spec-8u32g**: The value range of the flavor is `80` GB to `3,200` GB.
+    + **ess.spec-8u64g**: The value range of the flavor is `80` GB to `5,120` GB.
+    + **ess.spec-16u32g**: The value range of the flavor is `100` GB to `3,200` GB.
+    + **ess.spec-16u64g**: The value range of the flavor is `100` GB to `6,400` GB.
+    + **ess.spec-32u64g**: The value range of the flavor is `100` GB to `10,240` GB.
+    + **ess.spec-32u128g**: The value range of the flavor is `100` GB to `10,240` GB.
+    Changing this parameter will create a new resource.
+    """
+    instance_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of cluster instances. The value range is `1` to `32`.
+    """
+    volume: NotRequired[pulumi.Input['LogstashClusterNodeConfigVolumeArgsDict']]
+    """
+    Specifies the information about the volume.
+    The volume structure is documented below. Changing this parameter will create a new resource.
 
-        <a name="Css_volume"></a>
-        The `volume` block supports:
-        """
-elif False:
-    LogstashClusterNodeConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_volume"></a>
+    The `volume` block supports:
+    """
 
 @pulumi.input_type
 class LogstashClusterNodeConfigArgs:
@@ -3524,26 +3530,23 @@ class LogstashClusterNodeConfigArgs:
         pulumi.set(self, "volume", value)
 
 
-if not MYPY:
-    class LogstashClusterNodeConfigVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size in GB, which must be a multiple of `10`.
-        Changing this parameter will create a new resource.
-        """
-        volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. The value options are as follows:
-        + **HIGH**: High I/O. The SAS disk is used.
-        + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
-        + **ESSD**: Extreme speed I/O. The SATA disk is used.
-        Changing this parameter will create a new resource.
+class LogstashClusterNodeConfigVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size in GB, which must be a multiple of `10`.
+    Changing this parameter will create a new resource.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. The value options are as follows:
+    + **HIGH**: High I/O. The SAS disk is used.
+    + **ULTRAHIGH**: Ultra-high I/O. The solid-state drive (SSD) is used.
+    + **ESSD**: Extreme speed I/O. The SATA disk is used.
+    Changing this parameter will create a new resource.
 
-        <a name="Css_route"></a>
-        The `routes` block supports:
-        """
-elif False:
-    LogstashClusterNodeConfigVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Css_route"></a>
+    The `routes` block supports:
+    """
 
 @pulumi.input_type
 class LogstashClusterNodeConfigVolumeArgs:
@@ -3598,18 +3601,15 @@ class LogstashClusterNodeConfigVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class LogstashClusterRouteArgsDict(TypedDict):
-        ip_address: pulumi.Input[_builtins.str]
-        """
-        Specifies the route ip address.
-        """
-        ip_net_mask: pulumi.Input[_builtins.str]
-        """
-        Specifies the subnet mask of the route ip address.
-        """
-elif False:
-    LogstashClusterRouteArgsDict: TypeAlias = Mapping[str, Any]
+class LogstashClusterRouteArgsDict(TypedDict):
+    ip_address: pulumi.Input[_builtins.str]
+    """
+    Specifies the route ip address.
+    """
+    ip_net_mask: pulumi.Input[_builtins.str]
+    """
+    Specifies the subnet mask of the route ip address.
+    """
 
 @pulumi.input_type
 class LogstashClusterRouteArgs:
@@ -3648,42 +3648,39 @@ class LogstashClusterRouteArgs:
         pulumi.set(self, "ip_net_mask", value)
 
 
-if not MYPY:
-    class LogstashConfigurationSettingArgsDict(TypedDict):
-        queue_type: pulumi.Input[_builtins.str]
-        """
-        Specifies internal queue model for event buffering.
-        + **memory:** a traditional memory-based queue.
-        + **persisted:** a disk-based ACKed persistence queue.
-        """
-        batch_delay_ms: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum time in the unit of milliseconds for each event to be
-        waited for by pipeline scheduling.
-        """
-        batch_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of events a single worker thread will collect
-        from inputs before attempting to execute its **Filters** and **Outputs**. Larger values ​​are generally more
-        efficient but increase memory overhead. Default is `125`.
-        """
-        queue_check_point_writes: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of events to be written before forcing
-        a checkpoint when using a persistent queue, default is `1,024`.
-        """
-        queue_max_bytes_mb: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the total capacity of the persistent queue in megabytes (MB) when
-        using a persistent queue. Make sure the disk is larger than this value. The default value is `1,024`.
-        """
-        workers: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of worker threads in the **Filters** + **Outputs** stage of
-        the execution pipeline. The default value is the number of CPU cores.
-        """
-elif False:
-    LogstashConfigurationSettingArgsDict: TypeAlias = Mapping[str, Any]
+class LogstashConfigurationSettingArgsDict(TypedDict):
+    queue_type: pulumi.Input[_builtins.str]
+    """
+    Specifies internal queue model for event buffering.
+    + **memory:** a traditional memory-based queue.
+    + **persisted:** a disk-based ACKed persistence queue.
+    """
+    batch_delay_ms: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum time in the unit of milliseconds for each event to be
+    waited for by pipeline scheduling.
+    """
+    batch_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of events a single worker thread will collect
+    from inputs before attempting to execute its **Filters** and **Outputs**. Larger values ​​are generally more
+    efficient but increase memory overhead. Default is `125`.
+    """
+    queue_check_point_writes: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of events to be written before forcing
+    a checkpoint when using a persistent queue, default is `1,024`.
+    """
+    queue_max_bytes_mb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the total capacity of the persistent queue in megabytes (MB) when
+    using a persistent queue. Make sure the disk is larger than this value. The default value is `1,024`.
+    """
+    workers: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of worker threads in the **Filters** + **Outputs** stage of
+    the execution pipeline. The default value is the number of CPU cores.
+    """
 
 @pulumi.input_type
 class LogstashConfigurationSettingArgs:
@@ -3803,18 +3800,15 @@ class LogstashConfigurationSettingArgs:
         pulumi.set(self, "workers", value)
 
 
-if not MYPY:
-    class LogstashConnectivityAddressAndPortArgsDict(TypedDict):
-        address: pulumi.Input[_builtins.str]
-        """
-        Specifies the ip address.
-        """
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the port.
-        """
-elif False:
-    LogstashConnectivityAddressAndPortArgsDict: TypeAlias = Mapping[str, Any]
+class LogstashConnectivityAddressAndPortArgsDict(TypedDict):
+    address: pulumi.Input[_builtins.str]
+    """
+    Specifies the ip address.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the port.
+    """
 
 @pulumi.input_type
 class LogstashConnectivityAddressAndPortArgs:
@@ -3853,22 +3847,19 @@ class LogstashConnectivityAddressAndPortArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class LogstashConnectivityConnectivityResultArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ip address.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The connectivity test result.
-        """
-elif False:
-    LogstashConnectivityConnectivityResultArgsDict: TypeAlias = Mapping[str, Any]
+class LogstashConnectivityConnectivityResultArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ip address.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The connectivity test result.
+    """
 
 @pulumi.input_type
 class LogstashConnectivityConnectivityResultArgs:
@@ -3925,38 +3916,35 @@ class LogstashConnectivityConnectivityResultArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class LogstashPipelinePipelineArgsDict(TypedDict):
-        events: NotRequired[pulumi.Input[Sequence[pulumi.Input['LogstashPipelinePipelineEventArgsDict']]]]
-        """
-        The event of the CSS logstash cluster pipeline.
-        The events structure is documented below.
-        """
-        keep_alive: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether keep alive. The value can be **true** and **false**.
-        Defaults to **false**. During hot start, the value of keep alive of existing pipelines in the cluster needs to
-        be consistent.
-        Changing this creates a new resource.
+class LogstashPipelinePipelineArgsDict(TypedDict):
+    events: NotRequired[pulumi.Input[Sequence[pulumi.Input['LogstashPipelinePipelineEventArgsDict']]]]
+    """
+    The event of the CSS logstash cluster pipeline.
+    The events structure is documented below.
+    """
+    keep_alive: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether keep alive. The value can be **true** and **false**.
+    Defaults to **false**. During hot start, the value of keep alive of existing pipelines in the cluster needs to
+    be consistent.
+    Changing this creates a new resource.
 
-        > **NOTE:** Keepalive can be enabled for long-running services. Enabling it will configure a daemon process
-        on each node. If the Logstash service is faulty, the daemon process will rectify the fault and restart the
-        service. Do not enable it for short running services, or your migration tasks may fail due to lack of source data.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The configuration file name of the CSS logstash cluster.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the CSS logstash cluster pipeline.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The update time of the CSS logstash cluster pipeline.
-        """
-elif False:
-    LogstashPipelinePipelineArgsDict: TypeAlias = Mapping[str, Any]
+    > **NOTE:** Keepalive can be enabled for long-running services. Enabling it will configure a daemon process
+    on each node. If the Logstash service is faulty, the daemon process will rectify the fault and restart the
+    service. Do not enable it for short running services, or your migration tasks may fail due to lack of source data.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The configuration file name of the CSS logstash cluster.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the CSS logstash cluster pipeline.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The update time of the CSS logstash cluster pipeline.
+    """
 
 @pulumi.input_type
 class LogstashPipelinePipelineArgs:
@@ -4061,22 +4049,19 @@ class LogstashPipelinePipelineArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class LogstashPipelinePipelineEventArgsDict(TypedDict):
-        filtered: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of data to be filtered.
-        """
-        in_: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of received data that needs to be processed.
-        """
-        out: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of output data.
-        """
-elif False:
-    LogstashPipelinePipelineEventArgsDict: TypeAlias = Mapping[str, Any]
+class LogstashPipelinePipelineEventArgsDict(TypedDict):
+    filtered: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of data to be filtered.
+    """
+    in_: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of received data that needs to be processed.
+    """
+    out: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of output data.
+    """
 
 @pulumi.input_type
 class LogstashPipelinePipelineEventArgs:
@@ -4133,19 +4118,16 @@ class LogstashPipelinePipelineEventArgs:
         pulumi.set(self, "out", value)
 
 
-if not MYPY:
-    class ScanTaskAlarmArgsDict(TypedDict):
-        level: pulumi.Input[_builtins.str]
-        """
-        Specifies the level of alarm messages found by the cluster scan task.
-        The valid values are **high**, **medium**, **suggestion** and **noRisk**.
-        """
-        smn_topic: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the SMN topic.
-        """
-elif False:
-    ScanTaskAlarmArgsDict: TypeAlias = Mapping[str, Any]
+class ScanTaskAlarmArgsDict(TypedDict):
+    level: pulumi.Input[_builtins.str]
+    """
+    Specifies the level of alarm messages found by the cluster scan task.
+    The valid values are **high**, **medium**, **suggestion** and **noRisk**.
+    """
+    smn_topic: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the SMN topic.
+    """
 
 @pulumi.input_type
 class ScanTaskAlarmArgs:
@@ -4186,22 +4168,19 @@ class ScanTaskAlarmArgs:
         pulumi.set(self, "smn_topic", value)
 
 
-if not MYPY:
-    class ScanTaskSummaryArgsDict(TypedDict):
-        high_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of high-risk items found by the cluster scan task.
-        """
-        medium_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of medium-risk items found by the cluster scan task.
-        """
-        suggestion_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of suggestions found by the cluster scan task.
-        """
-elif False:
-    ScanTaskSummaryArgsDict: TypeAlias = Mapping[str, Any]
+class ScanTaskSummaryArgsDict(TypedDict):
+    high_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of high-risk items found by the cluster scan task.
+    """
+    medium_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of medium-risk items found by the cluster scan task.
+    """
+    suggestion_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of suggestions found by the cluster scan task.
+    """
 
 @pulumi.input_type
 class ScanTaskSummaryArgs:
@@ -4258,28 +4237,25 @@ class ScanTaskSummaryArgs:
         pulumi.set(self, "suggestion_num", value)
 
 
-if not MYPY:
-    class ScanTaskTaskRiskArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the cluster scan task.
-        Changing this creates a new resource.
-        """
-        level: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the level of alarm messages found by the cluster scan task.
-        The valid values are **high**, **medium**, **suggestion** and **noRisk**.
-        """
-        risk: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The risk item.
-        """
-        suggestion: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The suggestion on how to resolve this risk item.
-        """
-elif False:
-    ScanTaskTaskRiskArgsDict: TypeAlias = Mapping[str, Any]
+class ScanTaskTaskRiskArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the cluster scan task.
+    Changing this creates a new resource.
+    """
+    level: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the level of alarm messages found by the cluster scan task.
+    The valid values are **high**, **medium**, **suggestion** and **noRisk**.
+    """
+    risk: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The risk item.
+    """
+    suggestion: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The suggestion on how to resolve this risk item.
+    """
 
 @pulumi.input_type
 class ScanTaskTaskRiskArgs:

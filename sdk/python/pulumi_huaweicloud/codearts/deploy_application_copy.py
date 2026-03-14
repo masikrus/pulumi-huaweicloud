@@ -38,6 +38,7 @@ class DeployApplicationCopyArgs:
                  trigger_source: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployApplicationCopy resource.
+
         :param pulumi.Input[_builtins.str] source_app_id: Specifies the source application ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] artifact_source_system: Specifies the source information transferred by the pipeline.
@@ -369,6 +370,7 @@ class _DeployApplicationCopyState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployApplicationCopy resources.
+
         :param pulumi.Input[_builtins.str] artifact_source_system: Specifies the source information transferred by the pipeline.
                This field is only valid when `trigger_source` is set to **1**. Only **CloudArtifact** is supported.
         :param pulumi.Input[_builtins.str] artifact_type: Specifies the artifact type for the pipeline source.
@@ -909,7 +911,7 @@ class _DeployApplicationCopyState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployApplicationCopy:DeployApplicationCopy")
+@pulumi.type_token("huaweicloud:Codearts/deployApplicationCopy:DeployApplicationCopy")
 class DeployApplicationCopy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -986,49 +988,17 @@ class DeployApplicationCopy(pulumi.CustomResource):
 
         The CodeArts deploy application copy resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployApplicationCopy:DeployApplicationCopy test <id>
+        $ pulumi import huaweicloud:Codearts/deployApplicationCopy:DeployApplicationCopy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_app_id`, `is_draft`, `trigger_source`,
-
         `artifact_source_system`, `artifact_type`, `operation_list` and `group_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_deploy_application_copy" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_draft,
-            
-              trigger_source,
-            
-              artifact_source_system,
-            
-              artifact_type,
-            
-              operation_list,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1143,49 +1113,17 @@ class DeployApplicationCopy(pulumi.CustomResource):
 
         The CodeArts deploy application copy resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployApplicationCopy:DeployApplicationCopy test <id>
+        $ pulumi import huaweicloud:Codearts/deployApplicationCopy:DeployApplicationCopy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_app_id`, `is_draft`, `trigger_source`,
-
         `artifact_source_system`, `artifact_type`, `operation_list` and `group_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_deploy_application_copy" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_draft,
-            
-              trigger_source,
-            
-              artifact_source_system,
-            
-              artifact_type,
-            
-              operation_list,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DeployApplicationCopyArgs args: The arguments to use to populate this resource's properties.
@@ -1260,7 +1198,7 @@ class DeployApplicationCopy(pulumi.CustomResource):
             __props__.__dict__["task_name"] = None
             __props__.__dict__["updated_at"] = None
         super(DeployApplicationCopy, __self__).__init__(
-            'huaweicloud:codearts/deployApplicationCopy:DeployApplicationCopy',
+            'huaweicloud:Codearts/deployApplicationCopy:DeployApplicationCopy',
             resource_name,
             __props__,
             opts)

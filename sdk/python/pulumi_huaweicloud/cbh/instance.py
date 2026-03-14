@@ -41,6 +41,7 @@ class InstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone name.
                
                Changing this parameter will create a new resource.
@@ -466,6 +467,7 @@ class _InstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.int] attach_disk_size: Specifies the size of the additional data disk for the CBH instance.
                The unit is TB. It refers to the additional disk size added on top of the existing disk. And the sum of the built-in
                disk of the instance flavor and the additional disk cannot exceed **300TB**.
@@ -933,7 +935,7 @@ class _InstanceState:
         pulumi.set(self, "vpc_id", value)
 
 
-@pulumi.type_token("huaweicloud:cbh/instance:Instance")
+@pulumi.type_token("huaweicloud:Cbh/instance:Instance")
 class Instance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -994,41 +996,17 @@ class Instance(pulumi.CustomResource):
 
         The CBH instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cbh/instance:Instance test <id>
+        $ pulumi import huaweicloud:Cbh/instance:Instance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `charging_mode`, `period`, `period_unit`,
-
         `auto_renew`, `password`, `ipv6_enable`, `attach_disk_size`, `power_action`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated
-
         to align with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cbh_instance" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, period, period_unit, auto_renew, password, ipv6_enable, attach_disk_size, power_action,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1144,41 +1122,17 @@ class Instance(pulumi.CustomResource):
 
         The CBH instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cbh/instance:Instance test <id>
+        $ pulumi import huaweicloud:Cbh/instance:Instance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `charging_mode`, `period`, `period_unit`,
-
         `auto_renew`, `password`, `ipv6_enable`, `attach_disk_size`, `power_action`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated
-
         to align with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cbh_instance" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, period, period_unit, auto_renew, password, ipv6_enable, attach_disk_size, power_action,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -1269,7 +1223,7 @@ class Instance(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Instance, __self__).__init__(
-            'huaweicloud:cbh/instance:Instance',
+            'huaweicloud:Cbh/instance:Instance',
             resource_name,
             __props__,
             opts)

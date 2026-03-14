@@ -31,6 +31,7 @@ class NetworkInstanceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NetworkInstance resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cidrs: List of routes advertised by the VPC or virtual gateway.
         :param pulumi.Input[_builtins.str] cloud_connection_id: Cloud connection ID.
                
@@ -233,6 +234,7 @@ class _NetworkInstanceState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NetworkInstance resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cidrs: List of routes advertised by the VPC or virtual gateway.
         :param pulumi.Input[_builtins.str] cloud_connection_id: Cloud connection ID.
                
@@ -508,11 +510,10 @@ class NetworkInstance(pulumi.CustomResource):
 
         The network instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/networkInstance:NetworkInstance test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -585,11 +586,10 @@ class NetworkInstance(pulumi.CustomResource):
 
         The network instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/networkInstance:NetworkInstance test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NetworkInstanceArgs args: The arguments to use to populate this resource's properties.

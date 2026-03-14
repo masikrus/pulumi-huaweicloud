@@ -25,6 +25,7 @@ class ComponentRefreshV3Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ComponentRefreshV3 resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID to which the componnet belongs.
         :param pulumi.Input[_builtins.str] component_id: Specifies the ID of the component to be refreshed.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the component to be refreshed is located.  
@@ -95,6 +96,7 @@ class _ComponentRefreshV3State:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ComponentRefreshV3 resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID to which the componnet belongs.
         :param pulumi.Input[_builtins.str] component_id: Specifies the ID of the component to be refreshed.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the component to be refreshed is located.  
@@ -189,6 +191,7 @@ class ComponentRefreshV3(pulumi.CustomResource):
             component_id=component_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID to which the componnet belongs.
@@ -222,6 +225,7 @@ class ComponentRefreshV3(pulumi.CustomResource):
             application_id=application_id,
             component_id=component_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ComponentRefreshV3Args args: The arguments to use to populate this resource's properties.

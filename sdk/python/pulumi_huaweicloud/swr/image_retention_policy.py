@@ -29,6 +29,7 @@ class ImageRetentionPolicyArgs:
                  tag_selectors: Optional[pulumi.Input[Sequence[pulumi.Input['ImageRetentionPolicyTagSelectorArgs']]]] = None):
         """
         The set of arguments for constructing a ImageRetentionPolicy resource.
+
         :param pulumi.Input[_builtins.int] number: Specifies the number of retention.
                + If type is set to `date_rule`, it represents the number of retention days.
                + If type is set to `tag_rule`, it represents the retention number.
@@ -153,10 +154,12 @@ class _ImageRetentionPolicyState:
                  organization: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  repository: Optional[pulumi.Input[_builtins.str]] = None,
+                 retention_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tag_selectors: Optional[pulumi.Input[Sequence[pulumi.Input['ImageRetentionPolicyTagSelectorArgs']]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ImageRetentionPolicy resources.
+
         :param pulumi.Input[_builtins.int] number: Specifies the number of retention.
                + If type is set to `date_rule`, it represents the number of retention days.
                + If type is set to `tag_rule`, it represents the retention number.
@@ -168,6 +171,7 @@ class _ImageRetentionPolicyState:
         :param pulumi.Input[_builtins.str] repository: Specifies the name of the repository.
                
                Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] retention_id: The retention ID.
         :param pulumi.Input[Sequence[pulumi.Input['ImageRetentionPolicyTagSelectorArgs']]] tag_selectors: Specifies the image tags that are not counted in the retention policy
                The TagSelector structure is documented below.
                
@@ -186,6 +190,8 @@ class _ImageRetentionPolicyState:
             pulumi.set(__self__, "region", region)
         if repository is not None:
             pulumi.set(__self__, "repository", repository)
+        if retention_id is not None:
+            pulumi.set(__self__, "retention_id", retention_id)
         if tag_selectors is not None:
             pulumi.set(__self__, "tag_selectors", tag_selectors)
         if type is not None:
@@ -245,6 +251,18 @@ class _ImageRetentionPolicyState:
     @repository.setter
     def repository(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "repository", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionId")
+    def retention_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The retention ID.
+        """
+        return pulumi.get(self, "retention_id")
+
+    @retention_id.setter
+    def retention_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "retention_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tagSelectors")
@@ -323,14 +341,20 @@ class ImageRetentionPolicy(pulumi.CustomResource):
         ## Import
 
         The swr image retention policy can be imported using the organization name, repository name
+        and retention ID separated by slashes or commas, e.g.:
 
-        and retention id separated by a slash, e.g.:
-
-        bash
+        Only when repository name is with no slashes, can use slashes to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/imageRetentionPolicy:ImageRetentionPolicy test <organization_name>/<repository_name>/<retention_id>
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/imageRetentionPolicy:ImageRetentionPolicy test <organization_name>,<repository_name>,<retention_id>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -393,14 +417,20 @@ class ImageRetentionPolicy(pulumi.CustomResource):
         ## Import
 
         The swr image retention policy can be imported using the organization name, repository name
+        and retention ID separated by slashes or commas, e.g.:
 
-        and retention id separated by a slash, e.g.:
-
-        bash
+        Only when repository name is with no slashes, can use slashes to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/imageRetentionPolicy:ImageRetentionPolicy test <organization_name>/<repository_name>/<retention_id>
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/imageRetentionPolicy:ImageRetentionPolicy test <organization_name>,<repository_name>,<retention_id>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageRetentionPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -446,6 +476,7 @@ class ImageRetentionPolicy(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["retention_id"] = None
         super(ImageRetentionPolicy, __self__).__init__(
             'huaweicloud:Swr/imageRetentionPolicy:ImageRetentionPolicy',
             resource_name,
@@ -460,6 +491,7 @@ class ImageRetentionPolicy(pulumi.CustomResource):
             organization: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             repository: Optional[pulumi.Input[_builtins.str]] = None,
+            retention_id: Optional[pulumi.Input[_builtins.str]] = None,
             tag_selectors: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ImageRetentionPolicyTagSelectorArgs', 'ImageRetentionPolicyTagSelectorArgsDict']]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'ImageRetentionPolicy':
         """
@@ -480,6 +512,7 @@ class ImageRetentionPolicy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] repository: Specifies the name of the repository.
                
                Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] retention_id: The retention ID.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ImageRetentionPolicyTagSelectorArgs', 'ImageRetentionPolicyTagSelectorArgsDict']]]] tag_selectors: Specifies the image tags that are not counted in the retention policy
                The TagSelector structure is documented below.
                
@@ -498,6 +531,7 @@ class ImageRetentionPolicy(pulumi.CustomResource):
         __props__.__dict__["organization"] = organization
         __props__.__dict__["region"] = region
         __props__.__dict__["repository"] = repository
+        __props__.__dict__["retention_id"] = retention_id
         __props__.__dict__["tag_selectors"] = tag_selectors
         __props__.__dict__["type"] = type
         return ImageRetentionPolicy(resource_name, opts=opts, __props__=__props__)
@@ -540,6 +574,14 @@ class ImageRetentionPolicy(pulumi.CustomResource):
         Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "repository")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionId")
+    def retention_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The retention ID.
+        """
+        return pulumi.get(self, "retention_id")
 
     @_builtins.property
     @pulumi.getter(name="tagSelectors")

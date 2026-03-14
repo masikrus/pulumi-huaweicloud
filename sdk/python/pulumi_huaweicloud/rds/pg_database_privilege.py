@@ -28,6 +28,7 @@ class PgDatabasePrivilegeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgDatabasePrivilege resource.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the RDS instance ID.
         :param pulumi.Input[Sequence[pulumi.Input['PgDatabasePrivilegeUserArgs']]] users: Specifies the account that associated with the database.
@@ -119,6 +120,7 @@ class _PgDatabasePrivilegeState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['PgDatabasePrivilegeUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering PgDatabasePrivilege resources.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the RDS instance ID.
         :param pulumi.Input[_builtins.str] region: The region in which to create the RDS database privilege resource. If omitted,
@@ -248,6 +250,7 @@ class PgDatabasePrivilege(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
@@ -298,6 +301,7 @@ class PgDatabasePrivilege(pulumi.CustomResource):
                 },
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PgDatabasePrivilegeArgs args: The arguments to use to populate this resource's properties.

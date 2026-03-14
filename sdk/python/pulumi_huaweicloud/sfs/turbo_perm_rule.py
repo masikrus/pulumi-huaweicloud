@@ -26,6 +26,7 @@ class TurboPermRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TurboPermRule resource.
+
         :param pulumi.Input[_builtins.str] ip_cidr: Specifies the IP address or IP address range of the object to be authorized.
                Changing this will create a new SFS Turbo permission rule resource.
         :param pulumi.Input[_builtins.str] rw_type: Specifies the read/write permission of the object to be authorized.
@@ -124,6 +125,7 @@ class _TurboPermRuleState:
                  user_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TurboPermRule resources.
+
         :param pulumi.Input[_builtins.str] ip_cidr: Specifies the IP address or IP address range of the object to be authorized.
                Changing this will create a new SFS Turbo permission rule resource.
         :param pulumi.Input[_builtins.str] region: The region in which to create the SFS Turbo permission rule resource.
@@ -246,6 +248,7 @@ class TurboPermRule(pulumi.CustomResource):
             user_type="no_root_squash")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] ip_cidr: Specifies the IP address or IP address range of the object to be authorized.
@@ -284,6 +287,7 @@ class TurboPermRule(pulumi.CustomResource):
             rw_type="rw",
             user_type="no_root_squash")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TurboPermRuleArgs args: The arguments to use to populate this resource's properties.

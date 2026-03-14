@@ -108,7 +108,7 @@ def get_alert_rule_templates(region: Optional[_builtins.str] = None,
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     severity = config.require_object("severity")
-    test = huaweicloud.secmaster.get_alert_rule_templates(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_alert_rule_templates(workspace_id=workspace_id,
         severities=severity)
     ```
 
@@ -124,7 +124,7 @@ def get_alert_rule_templates(region: Optional[_builtins.str] = None,
     __args__['severities'] = severities
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getAlertRuleTemplates:getAlertRuleTemplates', __args__, opts=opts, typ=GetAlertRuleTemplatesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getAlertRuleTemplates:getAlertRuleTemplates', __args__, opts=opts, typ=GetAlertRuleTemplatesResult).value
 
     return AwaitableGetAlertRuleTemplatesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -148,7 +148,7 @@ def get_alert_rule_templates_output(region: Optional[pulumi.Input[Optional[_buil
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     severity = config.require_object("severity")
-    test = huaweicloud.secmaster.get_alert_rule_templates(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_alert_rule_templates(workspace_id=workspace_id,
         severities=severity)
     ```
 
@@ -164,7 +164,7 @@ def get_alert_rule_templates_output(region: Optional[pulumi.Input[Optional[_buil
     __args__['severities'] = severities
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getAlertRuleTemplates:getAlertRuleTemplates', __args__, opts=opts, typ=GetAlertRuleTemplatesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getAlertRuleTemplates:getAlertRuleTemplates', __args__, opts=opts, typ=GetAlertRuleTemplatesResult)
     return __ret__.apply(lambda __response__: GetAlertRuleTemplatesResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

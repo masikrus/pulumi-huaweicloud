@@ -32,6 +32,7 @@ class TaskNetworkCheckInfoReportArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TaskNetworkCheckInfoReport resource.
+
         :param pulumi.Input[_builtins.float] cpu_usage: Specifies the CPU usage.
         :param pulumi.Input[_builtins.str] evaluation_result: Specifies the network evaluation result.
         :param pulumi.Input[_builtins.float] loss_percentage: Specifies the packet loss rate.
@@ -204,6 +205,7 @@ class _TaskNetworkCheckInfoReportState:
                  task_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TaskNetworkCheckInfoReport resources.
+
         :param pulumi.Input[_builtins.float] cpu_usage: Specifies the CPU usage.
         :param pulumi.Input[_builtins.bool] destination_connectivity: Specifies the connectivity to the target server.
         :param pulumi.Input[_builtins.bool] domain_connectivity: Specifies the connectivity to domain names.
@@ -411,6 +413,7 @@ class TaskNetworkCheckInfoReport(pulumi.CustomResource):
             evaluation_result=evaluation_result)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.float] cpu_usage: Specifies the CPU usage.
@@ -454,6 +457,7 @@ class TaskNetworkCheckInfoReport(pulumi.CustomResource):
             mem_usage=20,
             evaluation_result=evaluation_result)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TaskNetworkCheckInfoReportArgs args: The arguments to use to populate this resource's properties.

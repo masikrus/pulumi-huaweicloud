@@ -154,7 +154,7 @@ def get_backup_v2(id: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['volumeId'] = volume_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vbs/getBackupV2:getBackupV2', __args__, opts=opts, typ=GetBackupV2Result).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vbs/getBackupV2:getBackupV2', __args__, opts=opts, typ=GetBackupV2Result).value
 
     return AwaitableGetBackupV2Result(
         availability_zone=pulumi.get(__ret__, 'availability_zone'),
@@ -186,7 +186,7 @@ def get_backup_v2_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     __args__['status'] = status
     __args__['volumeId'] = volume_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vbs/getBackupV2:getBackupV2', __args__, opts=opts, typ=GetBackupV2Result)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vbs/getBackupV2:getBackupV2', __args__, opts=opts, typ=GetBackupV2Result)
     return __ret__.apply(lambda __response__: GetBackupV2Result(
         availability_zone=pulumi.get(__response__, 'availability_zone'),
         container=pulumi.get(__response__, 'container'),

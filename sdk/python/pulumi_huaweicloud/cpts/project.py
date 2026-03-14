@@ -24,6 +24,7 @@ class ProjectArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Project resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the project, which can contain a maximum of
                `50` characters.
         :param pulumi.Input[_builtins.str] name: Specifies a name for the project, which can contain a maximum of `42` characters.
@@ -86,6 +87,7 @@ class _ProjectState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Project resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time, in UTC format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the project, which can contain a maximum of
                `50` characters.
@@ -196,11 +198,10 @@ class Project(pulumi.CustomResource):
 
         Projects can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cpts/project:Project test 1090
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -234,11 +235,10 @@ class Project(pulumi.CustomResource):
 
         Projects can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cpts/project:Project test 1090
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectArgs args: The arguments to use to populate this resource's properties.

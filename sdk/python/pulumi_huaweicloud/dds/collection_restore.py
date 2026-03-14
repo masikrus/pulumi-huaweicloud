@@ -26,6 +26,7 @@ class CollectionRestoreArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CollectionRestore resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['CollectionRestoreRestoreCollectionArgs']]] restore_collections: Specifies the restore informations.
@@ -96,6 +97,7 @@ class _CollectionRestoreState:
                  restore_collections: Optional[pulumi.Input[Sequence[pulumi.Input['CollectionRestoreRestoreCollectionArgs']]]] = None):
         """
         Input properties used for looking up and filtering CollectionRestore resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -215,6 +217,7 @@ class CollectionRestore(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -279,6 +282,7 @@ class CollectionRestore(pulumi.CustomResource):
                 }],
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CollectionRestoreArgs args: The arguments to use to populate this resource's properties.

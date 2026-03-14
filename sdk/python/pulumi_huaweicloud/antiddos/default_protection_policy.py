@@ -23,6 +23,7 @@ class DefaultProtectionPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DefaultProtectionPolicy resource.
+
         :param pulumi.Input[_builtins.int] traffic_threshold: Specifies the traffic cleaning threshold in Mbps.
                The value can be `10`, `30`, `50`, `70`, `100`, `120`, `150`, `200`, `250`, `300`, `1,000` Mbps.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -66,6 +67,7 @@ class _DefaultProtectionPolicyState:
                  traffic_threshold: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering DefaultProtectionPolicy resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this will create new resource.
         :param pulumi.Input[_builtins.int] traffic_threshold: Specifies the traffic cleaning threshold in Mbps.
@@ -130,11 +132,10 @@ class DefaultProtectionPolicy(pulumi.CustomResource):
 
         Cloud Native Anti-DDos default protection policy resource can be imported using `id`. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AntiDDos/defaultProtectionPolicy:DefaultProtectionPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -167,11 +168,10 @@ class DefaultProtectionPolicy(pulumi.CustomResource):
 
         Cloud Native Anti-DDos default protection policy resource can be imported using `id`. e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AntiDDos/defaultProtectionPolicy:DefaultProtectionPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DefaultProtectionPolicyArgs args: The arguments to use to populate this resource's properties.

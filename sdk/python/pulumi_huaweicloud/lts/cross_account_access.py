@@ -35,6 +35,7 @@ class CrossAccountAccessArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a CrossAccountAccess resource.
+
         :param pulumi.Input[_builtins.str] agency_domain_name: Specifies the name of the delegator account to verify
                the delegation. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] agency_name: Specifies the name of the agency created in IAM by the delegator.
@@ -286,6 +287,7 @@ class _CrossAccountAccessState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering CrossAccountAccess resources.
+
         :param pulumi.Input[_builtins.str] access_config_type: The log access configuration type.
         :param pulumi.Input[_builtins.str] agency_domain_name: Specifies the name of the delegator account to verify
                the delegation. Changing this creates a new resource.
@@ -623,6 +625,7 @@ class CrossAccountAccess(pulumi.CustomResource):
             log_group_id=log_group_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] agency_domain_name: Specifies the name of the delegator account to verify
@@ -704,6 +707,7 @@ class CrossAccountAccess(pulumi.CustomResource):
             log_group_name=log_group_name,
             log_group_id=log_group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CrossAccountAccessArgs args: The arguments to use to populate this resource's properties.

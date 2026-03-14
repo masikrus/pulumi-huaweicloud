@@ -36,6 +36,7 @@ class L7policyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a L7policy resource.
+
         :param pulumi.Input[_builtins.str] listener_id: The Listener on which the L7 Policy will be associated with. Changing
                this creates a new L7 Policy.
         :param pulumi.Input[_builtins.str] action: Whether requests are forwarded to another backend server group
@@ -49,8 +50,8 @@ class L7policyArgs:
                Defaults to **REDIRECT_TO_POOL**.
         :param pulumi.Input[_builtins.str] description: Human-readable description for the L7 Policy.
         :param pulumi.Input['L7policyFixedResponseConfigArgs'] fixed_response_config: The fixed configuration of the page to which the traffic is
-               redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled` of
-               the listener must be set to **true**.
+               redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled`
+               of the listener must be set to **true**.
                The fixed_response_config structure is documented below.
                
                <a name="redirect_pools_config_object"></a>
@@ -165,8 +166,8 @@ class L7policyArgs:
     def fixed_response_config(self) -> Optional[pulumi.Input['L7policyFixedResponseConfigArgs']]:
         """
         The fixed configuration of the page to which the traffic is
-        redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled` of
-        the listener must be set to **true**.
+        redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled`
+        of the listener must be set to **true**.
         The fixed_response_config structure is documented below.
 
         <a name="redirect_pools_config_object"></a>
@@ -333,6 +334,7 @@ class _L7policyState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering L7policy resources.
+
         :param pulumi.Input[_builtins.str] action: Whether requests are forwarded to another backend server group
                or redirected to an HTTPS listener. Changing this creates a new L7 Policy. The value ranges:
                + **REDIRECT_TO_POOL**: Requests are forwarded to the backend server group specified by `redirect_pool_id` or
@@ -346,8 +348,8 @@ class _L7policyState:
         :param pulumi.Input[_builtins.str] description: Human-readable description for the L7 Policy.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project.
         :param pulumi.Input['L7policyFixedResponseConfigArgs'] fixed_response_config: The fixed configuration of the page to which the traffic is
-               redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled` of
-               the listener must be set to **true**.
+               redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled`
+               of the listener must be set to **true**.
                The fixed_response_config structure is documented below.
                
                <a name="redirect_pools_config_object"></a>
@@ -486,8 +488,8 @@ class _L7policyState:
     def fixed_response_config(self) -> Optional[pulumi.Input['L7policyFixedResponseConfigArgs']]:
         """
         The fixed configuration of the page to which the traffic is
-        redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled` of
-        the listener must be set to **true**.
+        redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled`
+        of the listener must be set to **true**.
         The fixed_response_config structure is documented below.
 
         <a name="redirect_pools_config_object"></a>
@@ -786,11 +788,10 @@ class L7policy(pulumi.CustomResource):
 
         ELB policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/l7policy:L7policy policy_1 <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -805,8 +806,8 @@ class L7policy(pulumi.CustomResource):
                Defaults to **REDIRECT_TO_POOL**.
         :param pulumi.Input[_builtins.str] description: Human-readable description for the L7 Policy.
         :param pulumi.Input[Union['L7policyFixedResponseConfigArgs', 'L7policyFixedResponseConfigArgsDict']] fixed_response_config: The fixed configuration of the page to which the traffic is
-               redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled` of
-               the listener must be set to **true**.
+               redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled`
+               of the listener must be set to **true**.
                The fixed_response_config structure is documented below.
                
                <a name="redirect_pools_config_object"></a>
@@ -950,11 +951,10 @@ class L7policy(pulumi.CustomResource):
 
         ELB policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/l7policy:L7policy policy_1 <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param L7policyArgs args: The arguments to use to populate this resource's properties.
@@ -1059,8 +1059,8 @@ class L7policy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: Human-readable description for the L7 Policy.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project.
         :param pulumi.Input[Union['L7policyFixedResponseConfigArgs', 'L7policyFixedResponseConfigArgsDict']] fixed_response_config: The fixed configuration of the page to which the traffic is
-               redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled` of
-               the listener must be set to **true**.
+               redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled`
+               of the listener must be set to **true**.
                The fixed_response_config structure is documented below.
                
                <a name="redirect_pools_config_object"></a>
@@ -1171,8 +1171,8 @@ class L7policy(pulumi.CustomResource):
     def fixed_response_config(self) -> pulumi.Output['outputs.L7policyFixedResponseConfig']:
         """
         The fixed configuration of the page to which the traffic is
-        redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled` of
-        the listener must be set to **true**.
+        redirected. This parameter is mandatory when `action` is set to **FIXED_RESPONSE**. The `advanced_forwarding_enabled`
+        of the listener must be set to **true**.
         The fixed_response_config structure is documented below.
 
         <a name="redirect_pools_config_object"></a>

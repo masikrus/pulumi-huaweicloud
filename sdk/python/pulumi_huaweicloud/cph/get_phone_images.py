@@ -113,7 +113,7 @@ def get_phone_images(image_label: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    images = huaweicloud.cph.get_phone_images(is_public=1)
+    images = huaweicloud.Cph.get_phone_images(is_public=1)
     ```
 
 
@@ -131,7 +131,7 @@ def get_phone_images(image_label: Optional[_builtins.str] = None,
     __args__['isPublic'] = is_public
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cph/getPhoneImages:getPhoneImages', __args__, opts=opts, typ=GetPhoneImagesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cph/getPhoneImages:getPhoneImages', __args__, opts=opts, typ=GetPhoneImagesResult).value
 
     return AwaitableGetPhoneImagesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -152,7 +152,7 @@ def get_phone_images_output(image_label: Optional[pulumi.Input[Optional[_builtin
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    images = huaweicloud.cph.get_phone_images(is_public=1)
+    images = huaweicloud.Cph.get_phone_images(is_public=1)
     ```
 
 
@@ -170,7 +170,7 @@ def get_phone_images_output(image_label: Optional[pulumi.Input[Optional[_builtin
     __args__['isPublic'] = is_public
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cph/getPhoneImages:getPhoneImages', __args__, opts=opts, typ=GetPhoneImagesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cph/getPhoneImages:getPhoneImages', __args__, opts=opts, typ=GetPhoneImagesResult)
     return __ret__.apply(lambda __response__: GetPhoneImagesResult(
         id=pulumi.get(__response__, 'id'),
         image_label=pulumi.get(__response__, 'image_label'),

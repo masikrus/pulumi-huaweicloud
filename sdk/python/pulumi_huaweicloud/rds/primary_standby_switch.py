@@ -25,6 +25,7 @@ class PrimaryStandbySwitchArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrimaryStandbySwitch resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of instance.
         :param pulumi.Input[_builtins.bool] force: Specifies whether to perform a forcible primary/standby switchover.
                This parameter is valid only for the PostgreSQL DB engine.
@@ -96,6 +97,7 @@ class _PrimaryStandbySwitchState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrimaryStandbySwitch resources.
+
         :param pulumi.Input[_builtins.bool] force: Specifies whether to perform a forcible primary/standby switchover.
                This parameter is valid only for the PostgreSQL DB engine.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of instance.
@@ -184,6 +186,7 @@ class PrimaryStandbySwitch(pulumi.CustomResource):
         test = huaweicloud.rds.PrimaryStandbySwitch("test", instance_id=target_instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] force: Specifies whether to perform a forcible primary/standby switchover.
@@ -211,6 +214,7 @@ class PrimaryStandbySwitch(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.rds.PrimaryStandbySwitch("test", instance_id=target_instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrimaryStandbySwitchArgs args: The arguments to use to populate this resource's properties.

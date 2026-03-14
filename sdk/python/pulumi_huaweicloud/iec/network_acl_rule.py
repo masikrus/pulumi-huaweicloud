@@ -32,6 +32,7 @@ class NetworkAclRuleArgs:
                  source_port: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NetworkAclRule resource.
+
         :param pulumi.Input[_builtins.str] direction: Specifies the direction of the rule, valid values are **ingress** or **egress**.
                Changing this parameter creates a new iec network ACL rule resource.
         :param pulumi.Input[_builtins.str] network_acl_id: Specifies a unique id for the iec network ACL.
@@ -231,6 +232,7 @@ class _NetworkAclRuleState:
                  source_port: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NetworkAclRule resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action in the iec network ACL rule. Currently, the value can be **allow**
                or **deny**.
         :param pulumi.Input[_builtins.str] description: Specifies the description for the iec network ACL rule.
@@ -469,6 +471,7 @@ class NetworkAclRule(pulumi.CustomResource):
             enabled=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action in the iec network ACL rule. Currently, the value can be **allow**
@@ -517,6 +520,7 @@ class NetworkAclRule(pulumi.CustomResource):
             destination_port="445",
             enabled=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NetworkAclRuleArgs args: The arguments to use to populate this resource's properties.

@@ -33,6 +33,7 @@ class WatermarkTemplateArgs:
                  width: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WatermarkTemplate resource.
+
         :param pulumi.Input[_builtins.str] image_file: Specifies the image file name, e.g. './test.png'.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] image_type: Specifies the image file type. The valid values are **PNG**, **JPG**
@@ -271,6 +272,7 @@ class _WatermarkTemplateState:
                  width: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WatermarkTemplate resources.
+
         :param pulumi.Input[_builtins.str] height: Specifies height ratio of the watermark image relative to the output video.
                The value range is (0, 1). It supports 4 decimal places, e.g. 0.9999, the excess will be
                automatically discarded. Defaults to: **0.01**.
@@ -566,39 +568,16 @@ class WatermarkTemplate(pulumi.CustomResource):
 
         The template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vod/watermarkTemplate:WatermarkTemplate test 81ac58796e25842ee2e90a904aa8a719
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `image_file`.
-
         It is generally recommended running `pulumi preview` after importing a watermark template.
-
         You can then decide if changes should be applied to the watermark template, or the resource
-
         definition should be updated to align with the watermark template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vod_watermark_template" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              image_file,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -665,39 +644,16 @@ class WatermarkTemplate(pulumi.CustomResource):
 
         The template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vod/watermarkTemplate:WatermarkTemplate test 81ac58796e25842ee2e90a904aa8a719
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `image_file`.
-
         It is generally recommended running `pulumi preview` after importing a watermark template.
-
         You can then decide if changes should be applied to the watermark template, or the resource
-
         definition should be updated to align with the watermark template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vod_watermark_template" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              image_file,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param WatermarkTemplateArgs args: The arguments to use to populate this resource's properties.

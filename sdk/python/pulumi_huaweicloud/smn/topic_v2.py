@@ -30,6 +30,7 @@ class TopicV2Args:
                  users_publish_allowed: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TopicV2 resource.
+
         :param pulumi.Input[_builtins.str] access_policy: schema: Internal
         """
         if access_policy is not None:
@@ -154,6 +155,7 @@ class _TopicV2State:
                  users_publish_allowed: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TopicV2 resources.
+
         :param pulumi.Input[_builtins.str] access_policy: schema: Internal
         """
         if access_policy is not None:
@@ -322,6 +324,7 @@ class TopicV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a TopicV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_policy: schema: Internal
@@ -334,6 +337,7 @@ class TopicV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a TopicV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param TopicV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

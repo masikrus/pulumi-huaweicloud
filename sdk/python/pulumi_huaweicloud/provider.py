@@ -23,7 +23,8 @@ class ProviderArgs:
                  access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  agency_domain_name: Optional[pulumi.Input[_builtins.str]] = None,
                  agency_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 assume_role: Optional[pulumi.Input['ProviderAssumeRoleArgs']] = None,
+                 assume_role_with_oidc: Optional[pulumi.Input['ProviderAssumeRoleWithOidcArgs']] = None,
+                 assume_roles: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAssumeRoleArgs']]]] = None,
                  auth_url: Optional[pulumi.Input[_builtins.str]] = None,
                  cacert_file: Optional[pulumi.Input[_builtins.str]] = None,
                  cert: Optional[pulumi.Input[_builtins.str]] = None,
@@ -35,6 +36,7 @@ class ProviderArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.bool]] = None,
                  endpoints: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ignore_tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  insecure: Optional[pulumi.Input[_builtins.bool]] = None,
                  key: Optional[pulumi.Input[_builtins.str]] = None,
                  max_retries: Optional[pulumi.Input[_builtins.int]] = None,
@@ -57,6 +59,7 @@ class ProviderArgs:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the HuaweiCloud to use.
         :param pulumi.Input[_builtins.str] agency_domain_name: The name of domain who created the agency (Identity v3).
         :param pulumi.Input[_builtins.str] agency_name: The name of agency
@@ -71,6 +74,7 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.bool] enable_force_new: Whether to enable ForceNew
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] endpoints: The custom endpoints used to override the default endpoint URL.
         :param pulumi.Input[_builtins.str] enterprise_project_id: enterprise project id
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ignore_tags: The ignored tag keys of resources managed by this provider.
         :param pulumi.Input[_builtins.bool] insecure: Trust self-signed certificates.
         :param pulumi.Input[_builtins.str] key: A client private key to authenticate with.
         :param pulumi.Input[_builtins.int] max_retries: How many times HTTP connection should be retried until giving up.
@@ -98,8 +102,10 @@ class ProviderArgs:
             pulumi.set(__self__, "agency_domain_name", agency_domain_name)
         if agency_name is not None:
             pulumi.set(__self__, "agency_name", agency_name)
-        if assume_role is not None:
-            pulumi.set(__self__, "assume_role", assume_role)
+        if assume_role_with_oidc is not None:
+            pulumi.set(__self__, "assume_role_with_oidc", assume_role_with_oidc)
+        if assume_roles is not None:
+            pulumi.set(__self__, "assume_roles", assume_roles)
         if auth_url is not None:
             pulumi.set(__self__, "auth_url", auth_url)
         if cacert_file is not None:
@@ -122,6 +128,8 @@ class ProviderArgs:
             pulumi.set(__self__, "endpoints", endpoints)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if ignore_tags is not None:
+            pulumi.set(__self__, "ignore_tags", ignore_tags)
         if insecure is not None:
             pulumi.set(__self__, "insecure", insecure)
         if key is not None:
@@ -200,13 +208,22 @@ class ProviderArgs:
         pulumi.set(self, "agency_name", value)
 
     @_builtins.property
-    @pulumi.getter(name="assumeRole")
-    def assume_role(self) -> Optional[pulumi.Input['ProviderAssumeRoleArgs']]:
-        return pulumi.get(self, "assume_role")
+    @pulumi.getter(name="assumeRoleWithOidc")
+    def assume_role_with_oidc(self) -> Optional[pulumi.Input['ProviderAssumeRoleWithOidcArgs']]:
+        return pulumi.get(self, "assume_role_with_oidc")
 
-    @assume_role.setter
-    def assume_role(self, value: Optional[pulumi.Input['ProviderAssumeRoleArgs']]):
-        pulumi.set(self, "assume_role", value)
+    @assume_role_with_oidc.setter
+    def assume_role_with_oidc(self, value: Optional[pulumi.Input['ProviderAssumeRoleWithOidcArgs']]):
+        pulumi.set(self, "assume_role_with_oidc", value)
+
+    @_builtins.property
+    @pulumi.getter(name="assumeRoles")
+    def assume_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAssumeRoleArgs']]]]:
+        return pulumi.get(self, "assume_roles")
+
+    @assume_roles.setter
+    def assume_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAssumeRoleArgs']]]]):
+        pulumi.set(self, "assume_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="authUrl")
@@ -339,6 +356,18 @@ class ProviderArgs:
     @enterprise_project_id.setter
     def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ignoreTags")
+    def ignore_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The ignored tag keys of resources managed by this provider.
+        """
+        return pulumi.get(self, "ignore_tags")
+
+    @ignore_tags.setter
+    def ignore_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ignore_tags", value)
 
     @_builtins.property
     @pulumi.getter
@@ -590,7 +619,8 @@ class Provider(pulumi.ProviderResource):
                  access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  agency_domain_name: Optional[pulumi.Input[_builtins.str]] = None,
                  agency_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 assume_role: Optional[pulumi.Input[Union['ProviderAssumeRoleArgs', 'ProviderAssumeRoleArgsDict']]] = None,
+                 assume_role_with_oidc: Optional[pulumi.Input[Union['ProviderAssumeRoleWithOidcArgs', 'ProviderAssumeRoleWithOidcArgsDict']]] = None,
+                 assume_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAssumeRoleArgs', 'ProviderAssumeRoleArgsDict']]]]] = None,
                  auth_url: Optional[pulumi.Input[_builtins.str]] = None,
                  cacert_file: Optional[pulumi.Input[_builtins.str]] = None,
                  cert: Optional[pulumi.Input[_builtins.str]] = None,
@@ -602,6 +632,7 @@ class Provider(pulumi.ProviderResource):
                  enable_force_new: Optional[pulumi.Input[_builtins.bool]] = None,
                  endpoints: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ignore_tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  insecure: Optional[pulumi.Input[_builtins.bool]] = None,
                  key: Optional[pulumi.Input[_builtins.str]] = None,
                  max_retries: Optional[pulumi.Input[_builtins.int]] = None,
@@ -629,6 +660,7 @@ class Provider(pulumi.ProviderResource):
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The access key of the HuaweiCloud to use.
@@ -645,6 +677,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.bool] enable_force_new: Whether to enable ForceNew
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] endpoints: The custom endpoints used to override the default endpoint URL.
         :param pulumi.Input[_builtins.str] enterprise_project_id: enterprise project id
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ignore_tags: The ignored tag keys of resources managed by this provider.
         :param pulumi.Input[_builtins.bool] insecure: Trust self-signed certificates.
         :param pulumi.Input[_builtins.str] key: A client private key to authenticate with.
         :param pulumi.Input[_builtins.int] max_retries: How many times HTTP connection should be retried until giving up.
@@ -678,6 +711,7 @@ class Provider(pulumi.ProviderResource):
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 
+
         :param str resource_name: The name of the resource.
         :param ProviderArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -696,7 +730,8 @@ class Provider(pulumi.ProviderResource):
                  access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  agency_domain_name: Optional[pulumi.Input[_builtins.str]] = None,
                  agency_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 assume_role: Optional[pulumi.Input[Union['ProviderAssumeRoleArgs', 'ProviderAssumeRoleArgsDict']]] = None,
+                 assume_role_with_oidc: Optional[pulumi.Input[Union['ProviderAssumeRoleWithOidcArgs', 'ProviderAssumeRoleWithOidcArgsDict']]] = None,
+                 assume_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderAssumeRoleArgs', 'ProviderAssumeRoleArgsDict']]]]] = None,
                  auth_url: Optional[pulumi.Input[_builtins.str]] = None,
                  cacert_file: Optional[pulumi.Input[_builtins.str]] = None,
                  cert: Optional[pulumi.Input[_builtins.str]] = None,
@@ -708,6 +743,7 @@ class Provider(pulumi.ProviderResource):
                  enable_force_new: Optional[pulumi.Input[_builtins.bool]] = None,
                  endpoints: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ignore_tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  insecure: Optional[pulumi.Input[_builtins.bool]] = None,
                  key: Optional[pulumi.Input[_builtins.str]] = None,
                  max_retries: Optional[pulumi.Input[_builtins.int]] = None,
@@ -740,7 +776,8 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["access_key"] = access_key
             __props__.__dict__["agency_domain_name"] = agency_domain_name
             __props__.__dict__["agency_name"] = agency_name
-            __props__.__dict__["assume_role"] = pulumi.Output.from_input(assume_role).apply(pulumi.runtime.to_json) if assume_role is not None else None
+            __props__.__dict__["assume_role_with_oidc"] = pulumi.Output.from_input(assume_role_with_oidc).apply(pulumi.runtime.to_json) if assume_role_with_oidc is not None else None
+            __props__.__dict__["assume_roles"] = pulumi.Output.from_input(assume_roles).apply(pulumi.runtime.to_json) if assume_roles is not None else None
             __props__.__dict__["auth_url"] = auth_url
             __props__.__dict__["cacert_file"] = cacert_file
             __props__.__dict__["cert"] = cert
@@ -752,6 +789,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["enable_force_new"] = pulumi.Output.from_input(enable_force_new).apply(pulumi.runtime.to_json) if enable_force_new is not None else None
             __props__.__dict__["endpoints"] = pulumi.Output.from_input(endpoints).apply(pulumi.runtime.to_json) if endpoints is not None else None
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
+            __props__.__dict__["ignore_tags"] = pulumi.Output.from_input(ignore_tags).apply(pulumi.runtime.to_json) if ignore_tags is not None else None
             __props__.__dict__["insecure"] = pulumi.Output.from_input(insecure).apply(pulumi.runtime.to_json) if insecure is not None else None
             __props__.__dict__["key"] = key
             __props__.__dict__["max_retries"] = pulumi.Output.from_input(max_retries).apply(pulumi.runtime.to_json) if max_retries is not None else None

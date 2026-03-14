@@ -145,8 +145,8 @@ def get_flavors(code: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ddm.get_engines(version="3.0.8.5")
-    test_get_flavors = huaweicloud.ddm.get_flavors(engine_id=test.engines[0].id,
+    test = huaweicloud.Ddm.get_engines(version="3.0.8.5")
+    test_get_flavors = huaweicloud.Ddm.get_flavors(engine_id=test.engines[0].id,
         cpu_arch="X86")
     ```
 
@@ -167,7 +167,7 @@ def get_flavors(code: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['vcpus'] = vcpus
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getFlavors:getFlavors', __args__, opts=opts, typ=GetFlavorsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getFlavors:getFlavors', __args__, opts=opts, typ=GetFlavorsResult).value
 
     return AwaitableGetFlavorsResult(
         code=pulumi.get(__ret__, 'code'),
@@ -194,8 +194,8 @@ def get_flavors_output(code: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ddm.get_engines(version="3.0.8.5")
-    test_get_flavors = huaweicloud.ddm.get_flavors(engine_id=test.engines[0].id,
+    test = huaweicloud.Ddm.get_engines(version="3.0.8.5")
+    test_get_flavors = huaweicloud.Ddm.get_flavors(engine_id=test.engines[0].id,
         cpu_arch="X86")
     ```
 
@@ -216,7 +216,7 @@ def get_flavors_output(code: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     __args__['region'] = region
     __args__['vcpus'] = vcpus
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getFlavors:getFlavors', __args__, opts=opts, typ=GetFlavorsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getFlavors:getFlavors', __args__, opts=opts, typ=GetFlavorsResult)
     return __ret__.apply(lambda __response__: GetFlavorsResult(
         code=pulumi.get(__response__, 'code'),
         cpu_arch=pulumi.get(__response__, 'cpu_arch'),

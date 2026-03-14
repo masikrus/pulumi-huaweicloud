@@ -69,11 +69,12 @@ class InstanceArgs:
                  ssl_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
                  whitelist_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceWhitelistArgs']]]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.float] capacity: Specifies the cache capacity. Unit: GB.
                + **Redis4.0, Redis5.0 and Redis6.0**: Stand-alone and active/standby type instance values: `0.125`, `0.25`,
                `0.5`, `1`, `2`, `4`, `8`, `16`, `32` and `64`.
@@ -194,7 +195,8 @@ class InstanceArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the dcs instance.
         :param pulumi.Input[_builtins.str] template_id: The Parameter Template ID.
                Changing this creates a new instance resource.
-        :param pulumi.Input[_builtins.bool] transparent_client_ip_enable: Specifies whether client IP pass-through is enabled.
+        :param pulumi.Input[_builtins.str] transparent_client_ip_enable: Specifies whether client IP pass-through is enabled.
+               Value options: **true**, **false**.
         :param pulumi.Input[_builtins.bool] whitelist_enable: Enable or disable the IP address whitelists. Defaults to true.
                If the whitelist is disabled, all IP addresses connected to the VPC can access the instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceWhitelistArgs']]] whitelists: Specifies the IP addresses which can access the instance.
@@ -967,14 +969,15 @@ class InstanceArgs:
 
     @_builtins.property
     @pulumi.getter(name="transparentClientIpEnable")
-    def transparent_client_ip_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def transparent_client_ip_enable(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies whether client IP pass-through is enabled.
+        Value options: **true**, **false**.
         """
         return pulumi.get(self, "transparent_client_ip_enable")
 
     @transparent_client_ip_enable.setter
-    def transparent_client_ip_enable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def transparent_client_ip_enable(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "transparent_client_ip_enable", value)
 
     @_builtins.property
@@ -1075,7 +1078,7 @@ class _InstanceState:
                  subnet_name: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
                  used_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  user_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1085,6 +1088,7 @@ class _InstanceState:
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceWhitelistArgs']]]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] access_user: Specifies the username used for accessing a DCS Memcached instance.
                If the cache engine is *Redis*, you do not need to set this parameter.
                The username starts with a letter, consists of 1 to 64 characters, and supports only letters, digits, and
@@ -1233,7 +1237,8 @@ class _InstanceState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the dcs instance.
         :param pulumi.Input[_builtins.str] template_id: The Parameter Template ID.
                Changing this creates a new instance resource.
-        :param pulumi.Input[_builtins.bool] transparent_client_ip_enable: Specifies whether client IP pass-through is enabled.
+        :param pulumi.Input[_builtins.str] transparent_client_ip_enable: Specifies whether client IP pass-through is enabled.
+               Value options: **true**, **false**.
         :param pulumi.Input[_builtins.int] used_memory: Size of the used memory. Unit: MB.
         :param pulumi.Input[_builtins.str] vpc_id: The ID of VPC which the instance belongs to.
                Changing this creates a new instance resource.
@@ -2322,14 +2327,15 @@ class _InstanceState:
 
     @_builtins.property
     @pulumi.getter(name="transparentClientIpEnable")
-    def transparent_client_ip_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def transparent_client_ip_enable(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies whether client IP pass-through is enabled.
+        Value options: **true**, **false**.
         """
         return pulumi.get(self, "transparent_client_ip_enable")
 
     @transparent_client_ip_enable.setter
-    def transparent_client_ip_enable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def transparent_client_ip_enable(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "transparent_client_ip_enable", value)
 
     @_builtins.property
@@ -2469,7 +2475,7 @@ class Instance(pulumi.CustomResource):
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  whitelist_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceWhitelistArgs', 'InstanceWhitelistArgsDict']]]]] = None,
@@ -2577,43 +2583,18 @@ class Instance(pulumi.CustomResource):
 
         DCS instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/instance:Instance instance_1 80e373f9-872e-4046-aae9-ccd9ddc55511
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `password`, `auto_renew`, `period`, `period_unit`, `rename_commands`,
-
         `internal_version`, `save_days`, `backup_type`, `begin_at`, `period_type`, `backup_at`, `parameters`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_instance" "instance_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, rename_commands,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2735,7 +2716,8 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the dcs instance.
         :param pulumi.Input[_builtins.str] template_id: The Parameter Template ID.
                Changing this creates a new instance resource.
-        :param pulumi.Input[_builtins.bool] transparent_client_ip_enable: Specifies whether client IP pass-through is enabled.
+        :param pulumi.Input[_builtins.str] transparent_client_ip_enable: Specifies whether client IP pass-through is enabled.
+               Value options: **true**, **false**.
         :param pulumi.Input[_builtins.str] vpc_id: The ID of VPC which the instance belongs to.
                Changing this creates a new instance resource.
         :param pulumi.Input[_builtins.bool] whitelist_enable: Enable or disable the IP address whitelists. Defaults to true.
@@ -2852,43 +2834,18 @@ class Instance(pulumi.CustomResource):
 
         DCS instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/instance:Instance instance_1 80e373f9-872e-4046-aae9-ccd9ddc55511
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `password`, `auto_renew`, `period`, `period_unit`, `rename_commands`,
-
         `internal_version`, `save_days`, `backup_type`, `begin_at`, `period_type`, `backup_at`, `parameters`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_instance" "instance_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, rename_commands,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -2952,7 +2909,7 @@ class Instance(pulumi.CustomResource):
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  whitelist_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceWhitelistArgs', 'InstanceWhitelistArgsDict']]]]] = None,
@@ -3129,7 +3086,7 @@ class Instance(pulumi.CustomResource):
             subnet_name: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             template_id: Optional[pulumi.Input[_builtins.str]] = None,
-            transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+            transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
             used_memory: Optional[pulumi.Input[_builtins.int]] = None,
             user_id: Optional[pulumi.Input[_builtins.str]] = None,
             user_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -3292,7 +3249,8 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the dcs instance.
         :param pulumi.Input[_builtins.str] template_id: The Parameter Template ID.
                Changing this creates a new instance resource.
-        :param pulumi.Input[_builtins.bool] transparent_client_ip_enable: Specifies whether client IP pass-through is enabled.
+        :param pulumi.Input[_builtins.str] transparent_client_ip_enable: Specifies whether client IP pass-through is enabled.
+               Value options: **true**, **false**.
         :param pulumi.Input[_builtins.int] used_memory: Size of the used memory. Unit: MB.
         :param pulumi.Input[_builtins.str] vpc_id: The ID of VPC which the instance belongs to.
                Changing this creates a new instance resource.
@@ -3999,9 +3957,10 @@ class Instance(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="transparentClientIpEnable")
-    def transparent_client_ip_enable(self) -> pulumi.Output[_builtins.bool]:
+    def transparent_client_ip_enable(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies whether client IP pass-through is enabled.
+        Value options: **true**, **false**.
         """
         return pulumi.get(self, "transparent_client_ip_enable")
 

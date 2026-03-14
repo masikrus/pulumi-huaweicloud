@@ -31,6 +31,7 @@ class PipelinePermissionArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PipelinePermission resource.
+
         :param pulumi.Input[_builtins.str] pipeline_id: Specifies the pipeline ID.
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
         :param pulumi.Input[_builtins.bool] operation_authorize: Specifies whether the role has the permission to authorize.
@@ -209,6 +210,7 @@ class _PipelinePermissionState:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelinePermission resources.
+
         :param pulumi.Input[_builtins.bool] operation_authorize: Specifies whether the role has the permission to authorize.
                Default to **fasle**.
         :param pulumi.Input[_builtins.bool] operation_delete: Specifies whether the role has the permission to delete. Default to **fasle**.
@@ -402,7 +404,7 @@ class _PipelinePermissionState:
         pulumi.set(self, "user_name", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelinePermission:PipelinePermission")
+@pulumi.type_token("huaweicloud:Codearts/pipelinePermission:PipelinePermission")
 class PipelinePermission(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -466,13 +468,20 @@ class PipelinePermission(pulumi.CustomResource):
 
         ## Import
 
-        ### Import user permission
+        The pipeline permission can be imported using `project_id`, `pipeline_id`, `role_id` and `user_id`, e.g.
 
-        bash
+        ### Import role permission
 
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelinePermission:PipelinePermission test <project_id>/<pipeline_id>/user/<user_id>
+        $ pulumi import huaweicloud:Codearts/pipelinePermission:PipelinePermission test <project_id>/<pipeline_id>/role/<role_id>
         ```
+
+        ### Import user permission
+
+        ```sh
+        $ pulumi import huaweicloud:Codearts/pipelinePermission:PipelinePermission test <project_id>/<pipeline_id>/user/<user_id>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -545,13 +554,20 @@ class PipelinePermission(pulumi.CustomResource):
 
         ## Import
 
-        ### Import user permission
+        The pipeline permission can be imported using `project_id`, `pipeline_id`, `role_id` and `user_id`, e.g.
 
-        bash
+        ### Import role permission
 
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelinePermission:PipelinePermission test <project_id>/<pipeline_id>/user/<user_id>
+        $ pulumi import huaweicloud:Codearts/pipelinePermission:PipelinePermission test <project_id>/<pipeline_id>/role/<role_id>
         ```
+
+        ### Import user permission
+
+        ```sh
+        $ pulumi import huaweicloud:Codearts/pipelinePermission:PipelinePermission test <project_id>/<pipeline_id>/user/<user_id>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelinePermissionArgs args: The arguments to use to populate this resource's properties.
@@ -604,7 +620,7 @@ class PipelinePermission(pulumi.CustomResource):
             __props__.__dict__["role_name"] = None
             __props__.__dict__["user_name"] = None
         super(PipelinePermission, __self__).__init__(
-            'huaweicloud:codearts/pipelinePermission:PipelinePermission',
+            'huaweicloud:Codearts/pipelinePermission:PipelinePermission',
             resource_name,
             __props__,
             opts)

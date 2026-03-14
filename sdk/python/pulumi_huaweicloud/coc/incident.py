@@ -39,6 +39,7 @@ class IncidentArgs:
                  start_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Incident resource.
+
         :param pulumi.Input[_builtins.str] creator: Specifies the user ID of the creator.
         :param pulumi.Input[_builtins.str] incident_level: Specifies the incident level.
                For details, see [incident_level](https://support.huaweicloud.com/intl/en-us/api-coc/coc_api_04_03_001_006_01.html)
@@ -312,6 +313,7 @@ class _IncidentState:
                  warroom_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Incident resources.
+
         :param pulumi.Input[_builtins.str] assignee_role: Specifies the scheduling role.
                
                > Only one of `incident_assignee` and `assignee_scene` can be specified, and `assignee_scene` and `assignee_role` must
@@ -642,7 +644,7 @@ class _IncidentState:
         pulumi.set(self, "warroom_id", value)
 
 
-@pulumi.type_token("huaweicloud:coc/incident:Incident")
+@pulumi.type_token("huaweicloud:Coc/incident:Incident")
 class Incident(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -697,11 +699,10 @@ class Incident(pulumi.CustomResource):
 
         The COC incident can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/incident:Incident test <id>
+        $ pulumi import huaweicloud:Coc/incident:Incident test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -766,11 +767,10 @@ class Incident(pulumi.CustomResource):
 
         The COC incident can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/incident:Incident test <id>
+        $ pulumi import huaweicloud:Coc/incident:Incident test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IncidentArgs args: The arguments to use to populate this resource's properties.
@@ -846,7 +846,7 @@ class Incident(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["warroom_id"] = None
         super(Incident, __self__).__init__(
-            'huaweicloud:coc/incident:Incident',
+            'huaweicloud:Coc/incident:Incident',
             resource_name,
             __props__,
             opts)

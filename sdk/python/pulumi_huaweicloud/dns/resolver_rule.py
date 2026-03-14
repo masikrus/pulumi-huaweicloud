@@ -28,11 +28,12 @@ class ResolverRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ResolverRule resource.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name.  
                The maximum length of the domain name is `254` characters.
-               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
-               Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a hyphen.
-               Changing this parameter will create a new resource.
+               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+               characters. Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a
+               hyphen. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] endpoint_id: Specifies the ID of the DNS endpoint to which the resolver rule belongs.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['ResolverRuleIpAddressArgs']]] ip_addresses: Specifies the IP address list of the DNS resolver rule.  
@@ -60,9 +61,9 @@ class ResolverRuleArgs:
         """
         Specifies the domain name.  
         The maximum length of the domain name is `254` characters.
-        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
-        Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a hyphen.
-        Changing this parameter will create a new resource.
+        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+        characters. Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a
+        hyphen. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "domain_name")
 
@@ -142,12 +143,13 @@ class _ResolverRuleState:
                  vpcs: Optional[pulumi.Input[Sequence[pulumi.Input['ResolverRuleVpcArgs']]]] = None):
         """
         Input properties used for looking up and filtering ResolverRule resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the resolver rule.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name.  
                The maximum length of the domain name is `254` characters.
-               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
-               Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a hyphen.
-               Changing this parameter will create a new resource.
+               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+               characters. Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a
+               hyphen. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] endpoint_id: Specifies the ID of the DNS endpoint to which the resolver rule belongs.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['ResolverRuleIpAddressArgs']]] ip_addresses: Specifies the IP address list of the DNS resolver rule.  
@@ -205,9 +207,9 @@ class _ResolverRuleState:
         """
         Specifies the domain name.  
         The maximum length of the domain name is `254` characters.
-        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
-        Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a hyphen.
-        Changing this parameter will create a new resource.
+        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+        characters. Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a
+        hyphen. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "domain_name")
 
@@ -350,7 +352,7 @@ class ResolverRule(pulumi.CustomResource):
         test = huaweicloud.dns.ResolverRule("test",
             ip_addresses=[{
                 "ip": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in ip_address_list]],
+            } for entry in [{"key": k, "value": v} for k, v in ip_address_list.items()]],
             endpoint_id=endpoint_id,
             name=resolver_rule_name,
             domain_name=domain_name)
@@ -360,19 +362,18 @@ class ResolverRule(pulumi.CustomResource):
 
         The resolver rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/resolverRule:ResolverRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name.  
                The maximum length of the domain name is `254` characters.
-               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
-               Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a hyphen.
-               Changing this parameter will create a new resource.
+               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+               characters. Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a
+               hyphen. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] endpoint_id: Specifies the ID of the DNS endpoint to which the resolver rule belongs.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ResolverRuleIpAddressArgs', 'ResolverRuleIpAddressArgsDict']]]] ip_addresses: Specifies the IP address list of the DNS resolver rule.  
@@ -409,7 +410,7 @@ class ResolverRule(pulumi.CustomResource):
         test = huaweicloud.dns.ResolverRule("test",
             ip_addresses=[{
                 "ip": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in ip_address_list]],
+            } for entry in [{"key": k, "value": v} for k, v in ip_address_list.items()]],
             endpoint_id=endpoint_id,
             name=resolver_rule_name,
             domain_name=domain_name)
@@ -419,11 +420,10 @@ class ResolverRule(pulumi.CustomResource):
 
         The resolver rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/resolverRule:ResolverRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResolverRuleArgs args: The arguments to use to populate this resource's properties.
@@ -500,9 +500,9 @@ class ResolverRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: The creation time of the resolver rule.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name.  
                The maximum length of the domain name is `254` characters.
-               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
-               Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a hyphen.
-               Changing this parameter will create a new resource.
+               The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+               characters. Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a
+               hyphen. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] endpoint_id: Specifies the ID of the DNS endpoint to which the resolver rule belongs.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ResolverRuleIpAddressArgs', 'ResolverRuleIpAddressArgsDict']]]] ip_addresses: Specifies the IP address list of the DNS resolver rule.  
@@ -551,9 +551,9 @@ class ResolverRule(pulumi.CustomResource):
         """
         Specifies the domain name.  
         The maximum length of the domain name is `254` characters.
-        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63` characters.
-        Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a hyphen.
-        Changing this parameter will create a new resource.
+        The domain name consists of multiple strings separated by dots (.), and the maximum length of a single string is `63`
+        characters. Only Chinese and English characters, digits, and hyphens (-) allowed, and it cannot start or end with a
+        hyphen. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "domain_name")
 

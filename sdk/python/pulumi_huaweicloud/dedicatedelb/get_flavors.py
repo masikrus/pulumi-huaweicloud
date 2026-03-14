@@ -279,8 +279,6 @@ def get_flavors(bandwidth: Optional[_builtins.int] = None,
     :param _builtins.str type: Specifies the flavor type. Values options:
            + **L4**: indicates Layer-4 flavor.
            + **L7**: indicates Layer-7 flavor.
-           + **L4_elastic**: indicates minimum Layer-4 flavor for elastic scaling.
-           + **L7_elastic**: indicates minimum Layer-7 flavor for elastic scaling.
            + **L4_elastic_max**: indicates maximum Layer-4 flavor for elastic scaling.
            + **L7_elastic_max**: indicates maximum Layer-7 flavor for elastic scaling
     """
@@ -375,8 +373,6 @@ def get_flavors_output(bandwidth: Optional[pulumi.Input[Optional[_builtins.int]]
     :param _builtins.str type: Specifies the flavor type. Values options:
            + **L4**: indicates Layer-4 flavor.
            + **L7**: indicates Layer-7 flavor.
-           + **L4_elastic**: indicates minimum Layer-4 flavor for elastic scaling.
-           + **L7_elastic**: indicates minimum Layer-7 flavor for elastic scaling.
            + **L4_elastic_max**: indicates maximum Layer-4 flavor for elastic scaling.
            + **L7_elastic_max**: indicates maximum Layer-7 flavor for elastic scaling
     """

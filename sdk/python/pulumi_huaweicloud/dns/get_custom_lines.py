@@ -135,8 +135,6 @@ def get_custom_lines(ip: Optional[_builtins.str] = None,
     :param _builtins.str ip: Specifies the IP address used to query custom line which is in the IP address range.
     :param _builtins.str line_id: Specifies the ID of the custom line. Fuzzy search is supported.
     :param _builtins.str name: Specifies the name of the custom line. Fuzzy search is supported.
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
     :param _builtins.str status: Specifies the status of the custom line.  
            The valid values are as follows:
            + **ACTIVE**
@@ -183,8 +181,6 @@ def get_custom_lines_output(ip: Optional[pulumi.Input[Optional[_builtins.str]]] 
     :param _builtins.str ip: Specifies the IP address used to query custom line which is in the IP address range.
     :param _builtins.str line_id: Specifies the ID of the custom line. Fuzzy search is supported.
     :param _builtins.str name: Specifies the name of the custom line. Fuzzy search is supported.
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
     :param _builtins.str status: Specifies the status of the custom line.  
            The valid values are as follows:
            + **ACTIVE**

@@ -102,7 +102,7 @@ def get_application_views(code_lists: Optional[Sequence[_builtins.str]] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_application_views()
+    test = huaweicloud.Coc.get_application_views()
     ```
 
 
@@ -118,7 +118,7 @@ def get_application_views(code_lists: Optional[Sequence[_builtins.str]] = None,
     __args__['isCollection'] = is_collection
     __args__['nameLike'] = name_like
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getApplicationViews:getApplicationViews', __args__, opts=opts, typ=GetApplicationViewsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getApplicationViews:getApplicationViews', __args__, opts=opts, typ=GetApplicationViewsResult).value
 
     return AwaitableGetApplicationViewsResult(
         code_lists=pulumi.get(__ret__, 'code_lists'),
@@ -139,7 +139,7 @@ def get_application_views_output(code_lists: Optional[pulumi.Input[Optional[Sequ
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_application_views()
+    test = huaweicloud.Coc.get_application_views()
     ```
 
 
@@ -155,7 +155,7 @@ def get_application_views_output(code_lists: Optional[pulumi.Input[Optional[Sequ
     __args__['isCollection'] = is_collection
     __args__['nameLike'] = name_like
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getApplicationViews:getApplicationViews', __args__, opts=opts, typ=GetApplicationViewsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getApplicationViews:getApplicationViews', __args__, opts=opts, typ=GetApplicationViewsResult)
     return __ret__.apply(lambda __response__: GetApplicationViewsResult(
         code_lists=pulumi.get(__response__, 'code_lists'),
         datas=pulumi.get(__response__, 'datas'),

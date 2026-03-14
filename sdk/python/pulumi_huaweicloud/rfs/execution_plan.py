@@ -30,7 +30,9 @@ class ExecutionPlanArgs:
                  vars_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ExecutionPlan resource.
-        :param pulumi.Input[_builtins.str] stack_name: Specifies the name of the resource stack to which the execution plan belongs.
+
+        :param pulumi.Input[_builtins.str] stack_name: Specifies the name of the resource stack to which the execution plan
+               belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the execution plan.
                Changing this creates a new resource.
@@ -50,15 +52,15 @@ class ExecutionPlanArgs:
         :param pulumi.Input[_builtins.str] template_body: Specifies the HCL/JSON template content for deployment resources.
                Changing this creates a new resource.
                This parameter and `template_uri` are alternative and exactly one of them must be provided.
-        :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address where the HCL/JSON template archive (**.zip** file,
-               which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes
-               the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address where the HCL/JSON template archive
+               (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located,
+               which describes the target status of the deployment resources.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] vars_body: Specifies the variable content for deployment resources.
                Changing this creates a new resource.
                This parameter and `vars_uri` parameters cannot be set at the same time.
-        :param pulumi.Input[_builtins.str] vars_uri: Specifies the OBS address where the variable (**.tfvars**) file corresponding
-               to the HCL/JSON template located, which describes the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] vars_uri: Specifies the OBS address where the variable (**.tfvars**) file
+               corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
                Changing this creates a new resource.
         """
         pulumi.set(__self__, "stack_name", stack_name)
@@ -83,7 +85,8 @@ class ExecutionPlanArgs:
     @pulumi.getter(name="stackName")
     def stack_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the name of the resource stack to which the execution plan belongs.
+        Specifies the name of the resource stack to which the execution plan
+        belongs.
         Changing this creates a new resource.
         """
         return pulumi.get(self, "stack_name")
@@ -169,9 +172,9 @@ class ExecutionPlanArgs:
     @pulumi.getter(name="templateUri")
     def template_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the OBS address where the HCL/JSON template archive (**.zip** file,
-        which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes
-        the target status of the deployment resources.
+        Specifies the OBS address where the HCL/JSON template archive
+        (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located,
+        which describes the target status of the deployment resources.
         Changing this creates a new resource.
         """
         return pulumi.get(self, "template_uri")
@@ -198,8 +201,8 @@ class ExecutionPlanArgs:
     @pulumi.getter(name="varsUri")
     def vars_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the OBS address where the variable (**.tfvars**) file corresponding
-        to the HCL/JSON template located, which describes the target status of the deployment resources.
+        Specifies the OBS address where the variable (**.tfvars**) file
+        corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         Changing this creates a new resource.
         """
         return pulumi.get(self, "vars_uri")
@@ -223,6 +226,7 @@ class _ExecutionPlanState:
                  vars_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ExecutionPlan resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the execution plan.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the execution plan.
@@ -238,20 +242,21 @@ class _ExecutionPlanState:
                
                > To ensure the correctness of the stack resource being operated (there may be stacks with the same name), it is
                recommended to use `stack_id` for strong matching.
-        :param pulumi.Input[_builtins.str] stack_name: Specifies the name of the resource stack to which the execution plan belongs.
+        :param pulumi.Input[_builtins.str] stack_name: Specifies the name of the resource stack to which the execution plan
+               belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] template_body: Specifies the HCL/JSON template content for deployment resources.
                Changing this creates a new resource.
                This parameter and `template_uri` are alternative and exactly one of them must be provided.
-        :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address where the HCL/JSON template archive (**.zip** file,
-               which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes
-               the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address where the HCL/JSON template archive
+               (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located,
+               which describes the target status of the deployment resources.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] vars_body: Specifies the variable content for deployment resources.
                Changing this creates a new resource.
                This parameter and `vars_uri` parameters cannot be set at the same time.
-        :param pulumi.Input[_builtins.str] vars_uri: Specifies the OBS address where the variable (**.tfvars**) file corresponding
-               to the HCL/JSON template located, which describes the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] vars_uri: Specifies the OBS address where the variable (**.tfvars**) file
+               corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
                Changing this creates a new resource.
         """
         if description is not None:
@@ -336,7 +341,8 @@ class _ExecutionPlanState:
     @pulumi.getter(name="stackName")
     def stack_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the name of the resource stack to which the execution plan belongs.
+        Specifies the name of the resource stack to which the execution plan
+        belongs.
         Changing this creates a new resource.
         """
         return pulumi.get(self, "stack_name")
@@ -363,9 +369,9 @@ class _ExecutionPlanState:
     @pulumi.getter(name="templateUri")
     def template_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the OBS address where the HCL/JSON template archive (**.zip** file,
-        which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes
-        the target status of the deployment resources.
+        Specifies the OBS address where the HCL/JSON template archive
+        (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located,
+        which describes the target status of the deployment resources.
         Changing this creates a new resource.
         """
         return pulumi.get(self, "template_uri")
@@ -392,8 +398,8 @@ class _ExecutionPlanState:
     @pulumi.getter(name="varsUri")
     def vars_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the OBS address where the variable (**.tfvars**) file corresponding
-        to the HCL/JSON template located, which describes the target status of the deployment resources.
+        Specifies the OBS address where the variable (**.tfvars**) file
+        corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         Changing this creates a new resource.
         """
         return pulumi.get(self, "vars_uri")
@@ -403,7 +409,7 @@ class _ExecutionPlanState:
         pulumi.set(self, "vars_uri", value)
 
 
-@pulumi.type_token("huaweicloud:rfs/executionPlan:ExecutionPlan")
+@pulumi.type_token("huaweicloud:Rfs/executionPlan:ExecutionPlan")
 class ExecutionPlan(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -440,6 +446,7 @@ class ExecutionPlan(pulumi.CustomResource):
             vars_uri=vars_uri)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the execution plan.
@@ -457,20 +464,21 @@ class ExecutionPlan(pulumi.CustomResource):
                
                > To ensure the correctness of the stack resource being operated (there may be stacks with the same name), it is
                recommended to use `stack_id` for strong matching.
-        :param pulumi.Input[_builtins.str] stack_name: Specifies the name of the resource stack to which the execution plan belongs.
+        :param pulumi.Input[_builtins.str] stack_name: Specifies the name of the resource stack to which the execution plan
+               belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] template_body: Specifies the HCL/JSON template content for deployment resources.
                Changing this creates a new resource.
                This parameter and `template_uri` are alternative and exactly one of them must be provided.
-        :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address where the HCL/JSON template archive (**.zip** file,
-               which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes
-               the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address where the HCL/JSON template archive
+               (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located,
+               which describes the target status of the deployment resources.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] vars_body: Specifies the variable content for deployment resources.
                Changing this creates a new resource.
                This parameter and `vars_uri` parameters cannot be set at the same time.
-        :param pulumi.Input[_builtins.str] vars_uri: Specifies the OBS address where the variable (**.tfvars**) file corresponding
-               to the HCL/JSON template located, which describes the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] vars_uri: Specifies the OBS address where the variable (**.tfvars**) file
+               corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
                Changing this creates a new resource.
         """
         ...
@@ -499,6 +507,7 @@ class ExecutionPlan(pulumi.CustomResource):
             template_uri=template_uri,
             vars_uri=vars_uri)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ExecutionPlanArgs args: The arguments to use to populate this resource's properties.
@@ -545,7 +554,7 @@ class ExecutionPlan(pulumi.CustomResource):
             __props__.__dict__["vars_body"] = vars_body
             __props__.__dict__["vars_uri"] = vars_uri
         super(ExecutionPlan, __self__).__init__(
-            'huaweicloud:rfs/executionPlan:ExecutionPlan',
+            'huaweicloud:Rfs/executionPlan:ExecutionPlan',
             resource_name,
             __props__,
             opts)
@@ -585,20 +594,21 @@ class ExecutionPlan(pulumi.CustomResource):
                
                > To ensure the correctness of the stack resource being operated (there may be stacks with the same name), it is
                recommended to use `stack_id` for strong matching.
-        :param pulumi.Input[_builtins.str] stack_name: Specifies the name of the resource stack to which the execution plan belongs.
+        :param pulumi.Input[_builtins.str] stack_name: Specifies the name of the resource stack to which the execution plan
+               belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] template_body: Specifies the HCL/JSON template content for deployment resources.
                Changing this creates a new resource.
                This parameter and `template_uri` are alternative and exactly one of them must be provided.
-        :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address where the HCL/JSON template archive (**.zip** file,
-               which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes
-               the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address where the HCL/JSON template archive
+               (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located,
+               which describes the target status of the deployment resources.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] vars_body: Specifies the variable content for deployment resources.
                Changing this creates a new resource.
                This parameter and `vars_uri` parameters cannot be set at the same time.
-        :param pulumi.Input[_builtins.str] vars_uri: Specifies the OBS address where the variable (**.tfvars**) file corresponding
-               to the HCL/JSON template located, which describes the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] vars_uri: Specifies the OBS address where the variable (**.tfvars**) file
+               corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
                Changing this creates a new resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -663,7 +673,8 @@ class ExecutionPlan(pulumi.CustomResource):
     @pulumi.getter(name="stackName")
     def stack_name(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the name of the resource stack to which the execution plan belongs.
+        Specifies the name of the resource stack to which the execution plan
+        belongs.
         Changing this creates a new resource.
         """
         return pulumi.get(self, "stack_name")
@@ -682,9 +693,9 @@ class ExecutionPlan(pulumi.CustomResource):
     @pulumi.getter(name="templateUri")
     def template_uri(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the OBS address where the HCL/JSON template archive (**.zip** file,
-        which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes
-        the target status of the deployment resources.
+        Specifies the OBS address where the HCL/JSON template archive
+        (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located,
+        which describes the target status of the deployment resources.
         Changing this creates a new resource.
         """
         return pulumi.get(self, "template_uri")
@@ -703,8 +714,8 @@ class ExecutionPlan(pulumi.CustomResource):
     @pulumi.getter(name="varsUri")
     def vars_uri(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the OBS address where the variable (**.tfvars**) file corresponding
-        to the HCL/JSON template located, which describes the target status of the deployment resources.
+        Specifies the OBS address where the variable (**.tfvars**) file
+        corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         Changing this creates a new resource.
         """
         return pulumi.get(self, "vars_uri")

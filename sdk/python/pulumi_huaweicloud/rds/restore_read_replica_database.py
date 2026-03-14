@@ -27,6 +27,7 @@ class RestoreReadReplicaDatabaseArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RestoreReadReplicaDatabase resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['RestoreReadReplicaDatabaseDatabaseArgs']]] databases: Specifies the databases to be restored.
                The databases structure is documented below.
                
@@ -103,6 +104,7 @@ class _RestoreReadReplicaDatabaseState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RestoreReadReplicaDatabase resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['RestoreReadReplicaDatabaseDatabaseArgs']]] databases: Specifies the databases to be restored.
                The databases structure is documented below.
                
@@ -203,6 +205,7 @@ class RestoreReadReplicaDatabase(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RestoreReadReplicaDatabaseDatabaseArgs', 'RestoreReadReplicaDatabaseDatabaseArgsDict']]]] databases: Specifies the databases to be restored.
@@ -239,6 +242,7 @@ class RestoreReadReplicaDatabase(pulumi.CustomResource):
                 "new_name": "test_terraform",
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RestoreReadReplicaDatabaseArgs args: The arguments to use to populate this resource's properties.

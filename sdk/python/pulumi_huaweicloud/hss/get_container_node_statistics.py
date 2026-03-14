@@ -151,7 +151,7 @@ def get_container_node_statistics(enterprise_project_id: Optional[_builtins.str]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_node_statistics(enterprise_project_id="0")
+    test = huaweicloud.Hss.get_container_node_statistics(enterprise_project_id="0")
     ```
 
 
@@ -170,7 +170,7 @@ def get_container_node_statistics(enterprise_project_id: Optional[_builtins.str]
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getContainerNodeStatistics:getContainerNodeStatistics', __args__, opts=opts, typ=GetContainerNodeStatisticsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getContainerNodeStatistics:getContainerNodeStatistics', __args__, opts=opts, typ=GetContainerNodeStatisticsResult).value
 
     return AwaitableGetContainerNodeStatisticsResult(
         cluster_node_not_installed_num=pulumi.get(__ret__, 'cluster_node_not_installed_num'),
@@ -194,7 +194,7 @@ def get_container_node_statistics_output(enterprise_project_id: Optional[pulumi.
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_node_statistics(enterprise_project_id="0")
+    test = huaweicloud.Hss.get_container_node_statistics(enterprise_project_id="0")
     ```
 
 
@@ -213,7 +213,7 @@ def get_container_node_statistics_output(enterprise_project_id: Optional[pulumi.
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getContainerNodeStatistics:getContainerNodeStatistics', __args__, opts=opts, typ=GetContainerNodeStatisticsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getContainerNodeStatistics:getContainerNodeStatistics', __args__, opts=opts, typ=GetContainerNodeStatisticsResult)
     return __ret__.apply(lambda __response__: GetContainerNodeStatisticsResult(
         cluster_node_not_installed_num=pulumi.get(__response__, 'cluster_node_not_installed_num'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

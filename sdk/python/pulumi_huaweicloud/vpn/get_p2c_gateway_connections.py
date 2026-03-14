@@ -94,7 +94,7 @@ def get_p2c_gateway_connections(p2c_gateway_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     gateway_id = config.require_object("gatewayId")
-    test = huaweicloud.vpn.get_p2c_gateway_connections(p2c_gateway_id=gateway_id)
+    test = huaweicloud.Vpn.get_p2c_gateway_connections(p2c_gateway_id=gateway_id)
     ```
 
 
@@ -106,7 +106,7 @@ def get_p2c_gateway_connections(p2c_gateway_id: Optional[_builtins.str] = None,
     __args__['p2cGatewayId'] = p2c_gateway_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getP2cGatewayConnections:getP2cGatewayConnections', __args__, opts=opts, typ=GetP2cGatewayConnectionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getP2cGatewayConnections:getP2cGatewayConnections', __args__, opts=opts, typ=GetP2cGatewayConnectionsResult).value
 
     return AwaitableGetP2cGatewayConnectionsResult(
         connections=pulumi.get(__ret__, 'connections'),
@@ -127,7 +127,7 @@ def get_p2c_gateway_connections_output(p2c_gateway_id: Optional[pulumi.Input[_bu
 
     config = pulumi.Config()
     gateway_id = config.require_object("gatewayId")
-    test = huaweicloud.vpn.get_p2c_gateway_connections(p2c_gateway_id=gateway_id)
+    test = huaweicloud.Vpn.get_p2c_gateway_connections(p2c_gateway_id=gateway_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_p2c_gateway_connections_output(p2c_gateway_id: Optional[pulumi.Input[_bu
     __args__['p2cGatewayId'] = p2c_gateway_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getP2cGatewayConnections:getP2cGatewayConnections', __args__, opts=opts, typ=GetP2cGatewayConnectionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getP2cGatewayConnections:getP2cGatewayConnections', __args__, opts=opts, typ=GetP2cGatewayConnectionsResult)
     return __ret__.apply(lambda __response__: GetP2cGatewayConnectionsResult(
         connections=pulumi.get(__response__, 'connections'),
         id=pulumi.get(__response__, 'id'),

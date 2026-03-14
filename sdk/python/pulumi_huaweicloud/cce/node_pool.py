@@ -36,6 +36,7 @@ class NodePoolArgs:
                  extend_params: Optional[pulumi.Input['NodePoolExtendParamsArgs']] = None,
                  extension_scale_groups: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolExtensionScaleGroupArgs']]]] = None,
                  hostname_config: Optional[pulumi.Input['NodePoolHostnameConfigArgs']] = None,
+                 ignore_initial_node_count: Optional[pulumi.Input[_builtins.bool]] = None,
                  initialized_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
                  label_policy_on_existing_nodes: Optional[pulumi.Input[_builtins.str]] = None,
@@ -68,41 +69,51 @@ class NodePoolArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NodePool resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID.
         :param pulumi.Input[_builtins.int] initial_node_count: Specifies the initial number of expected nodes in the node pool.
                This parameter can be also used to manually scale the node count afterwards.
         :param pulumi.Input['NodePoolRootVolumeArgs'] root_volume: Specifies the configuration of the system disk.
-               The structure is described below.
-        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
+               The root_volume structure is documented below.
+        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the name of the available partition (AZ). Default value
                is random to create nodes in a random AZ in the node pool.
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the CCE node pool. Valid values are
                *prePaid* and *postPaid*, defaults to *postPaid*.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]] data_volumes: Specifies the configuration of the data disks.
-               The structure is described below.
+               The data_volumes structure is documented below.
         :param pulumi.Input[_builtins.str] ecs_group_id: Specifies the ECS group ID. If specified, the node will be created under
                the cloud server group.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the node pool.
                If updated, the new value will apply only to new nodes.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extend_param: schema: Deprecated; This parameter has been replaced by the 'extend_params' parameter.
-        :param pulumi.Input['NodePoolExtendParamsArgs'] extend_params: Specifies the extended parameters.
-               The object structure is documented below.
+        :param pulumi.Input['NodePoolExtendParamsArgs'] extend_params: Specifies the disk expansion parameters.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolExtensionScaleGroupArgs']]] extension_scale_groups: Specifies the configurations of extended scaling groups in the node pool.
-               The object structure is documented below.
+               The extension_scale_groups structure is documented below.
         :param pulumi.Input['NodePoolHostnameConfigArgs'] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
-               The object structure is documented below.
+               The hostname_config structure is documented below.
+        :param pulumi.Input[_builtins.bool] ignore_initial_node_count: Specifies whether to ignore the changes of `initial_node_count`,
+               defaults to **true**.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] initialized_conditions: Specifies the custom initialization flags.
         :param pulumi.Input[_builtins.str] key_pair: Specifies the key pair name when logging in to select the key pair mode.
                This parameter and `password` are alternative.
         :param pulumi.Input[_builtins.str] label_policy_on_existing_nodes: Specifies the label policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **refresh**.
+               The value can be: **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Specifies the tags of a Kubernetes node, key/value pair format.
-        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes allowed if auto scaling is enabled.
-        :param pulumi.Input[_builtins.int] max_pods: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
-        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes allowed if auto scaling is enabled.
-        :param pulumi.Input[_builtins.str] name: Specifies the node pool name.
+        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes that can be retained in the scaling group
+               during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+               than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
+        :param pulumi.Input[_builtins.int] max_pods: Specifies the maximum number of instances a node is allowed to create.
+        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
+               The value must be greater than **0**.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
         :param pulumi.Input[_builtins.str] os: Specifies the operating system of the node.
                The value can be **EulerOS 2.9** and **CentOS 7.6** e.g. For more details,
                please see [documentation](https://support.huaweicloud.com/intl/en-us/api-cce/node-os.html).
@@ -115,23 +126,25 @@ class NodePoolArgs:
                lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
                This parameter can be plain or salted and is alternative to `key_pair`.
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the CCE node pool. If `period_unit` is set to
-               *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-               is mandatory if `charging_mode` is set to *prePaid*.
+               *month*, the value ranges from 1 to 9. If `period_unit` is set to **year**, the value ranges from 1 to 3. This parameter
+               is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the CCE node pool.
-               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pod_security_groups: Specifies the list of security group IDs for the pod.
                Only supported in CCE Turbo clusters of v1.19 and above.
-        :param pulumi.Input[_builtins.str] postinstall: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
-        :param pulumi.Input[_builtins.str] preinstall: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        :param pulumi.Input[_builtins.str] postinstall: Specifies the script to be executed after installation.
+               The input value can be a Base64 encoded string or not.
+        :param pulumi.Input[_builtins.str] preinstall: Specifies the script to be executed before installation.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[_builtins.int] priority: Specifies the weight of the node pool.
                A node pool with a higher weight has a higher priority during scaling.
         :param pulumi.Input[_builtins.str] region: The region in which to create the CCE pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new CCE node pool resource.
-        :param pulumi.Input[_builtins.str] runtime: Specifies the runtime of the CCE node pool. Valid values are *docker* and
-               *containerd*.
+        :param pulumi.Input[_builtins.str] runtime: Specifies the runtime of the CCE node pool. Valid values are **docker**
+               and **containerd**.
         :param pulumi.Input[_builtins.int] scale_down_cooldown_time: Specifies the time interval between two scaling operations, in minutes.
-        :param pulumi.Input[_builtins.bool] scall_enable: Specifies whether to enable auto scaling.
-               If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
+        :param pulumi.Input[_builtins.bool] scall_enable: Specifies whether to enable auto-scaling.
+               If Autoscaler is enabled, install the autoscaler add-on to use the auto-scaling feature.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: Specifies the list of custom security group IDs for the node pool.
                If specified, the nodes will be put in these security groups. When specifying a security group, do not modify
                the rules of the port on which CCE running depends. For details, see
@@ -145,16 +158,34 @@ class NodePoolArgs:
                If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
                this parameter must be specified.
                If you want to store system components in the system disk, this parameter must be specified.
+               The storage structure is documented below.
+               
+               <a name="root_volume_struct"></a>
+               The `root_volume` block supports:
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the ID of the subnet to which the NIC belongs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subnet_lists: Specifies the ID list of the subnet to which the NIC belongs.
         :param pulumi.Input[_builtins.str] tag_policy_on_existing_nodes: Specifies the tag policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **ignore**.
+               The value can be: **ignore** and **refresh**, defaults to **ignore**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the tags of a VM node, key/value pair format.
         :param pulumi.Input[_builtins.str] taint_policy_on_existing_nodes: Specifies the taint policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **refresh**.
+               The value can be: **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolTaintArgs']]] taints: Specifies the taints configuration of the nodes to set anti-affinity.
-               The structure is described below.
-        :param pulumi.Input[_builtins.str] type: Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+               The taints structure is documented below.
+        :param pulumi.Input[_builtins.str] type: Specifies the hostname type of the kubernetes node.
+               The value can be:
+               + **privateIp**: The Kubernetes node is named after its IP address.
+               + **cceNodeName**: The Kubernetes node is named after the CCE node.
+               
+               If `hostname_config` not specified, the default value is **privateIp**.
+               
+               ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+               The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+               after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+               each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+               characters is a lowercase letter or a digit ranging from 0 to 9.
+               
+               <a name="extension_scale_groups_struct"></a>
+               The `extension_scale_groups` block supports:
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "flavor_id", flavor_id)
@@ -182,6 +213,8 @@ class NodePoolArgs:
             pulumi.set(__self__, "extension_scale_groups", extension_scale_groups)
         if hostname_config is not None:
             pulumi.set(__self__, "hostname_config", hostname_config)
+        if ignore_initial_node_count is not None:
+            pulumi.set(__self__, "ignore_initial_node_count", ignore_initial_node_count)
         if initialized_conditions is not None:
             pulumi.set(__self__, "initialized_conditions", initialized_conditions)
         if key_pair is not None:
@@ -285,7 +318,7 @@ class NodePoolArgs:
     def root_volume(self) -> pulumi.Input['NodePoolRootVolumeArgs']:
         """
         Specifies the configuration of the system disk.
-        The structure is described below.
+        The root_volume structure is documented below.
         """
         return pulumi.get(self, "root_volume")
 
@@ -297,7 +330,7 @@ class NodePoolArgs:
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies whether auto renew is enabled. Valid values are "true" and "false".
+        Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -336,7 +369,7 @@ class NodePoolArgs:
     def data_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]]]:
         """
         Specifies the configuration of the data disks.
-        The structure is described below.
+        The data_volumes structure is documented below.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -395,8 +428,7 @@ class NodePoolArgs:
     @pulumi.getter(name="extendParams")
     def extend_params(self) -> Optional[pulumi.Input['NodePoolExtendParamsArgs']]:
         """
-        Specifies the extended parameters.
-        The object structure is documented below.
+        Specifies the disk expansion parameters.
         """
         return pulumi.get(self, "extend_params")
 
@@ -409,7 +441,7 @@ class NodePoolArgs:
     def extension_scale_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolExtensionScaleGroupArgs']]]]:
         """
         Specifies the configurations of extended scaling groups in the node pool.
-        The object structure is documented below.
+        The extension_scale_groups structure is documented below.
         """
         return pulumi.get(self, "extension_scale_groups")
 
@@ -423,13 +455,26 @@ class NodePoolArgs:
         """
         Specifies the hostname config of the kubernetes node,
         which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
-        The object structure is documented below.
+        The hostname_config structure is documented below.
         """
         return pulumi.get(self, "hostname_config")
 
     @hostname_config.setter
     def hostname_config(self, value: Optional[pulumi.Input['NodePoolHostnameConfigArgs']]):
         pulumi.set(self, "hostname_config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ignoreInitialNodeCount")
+    def ignore_initial_node_count(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to ignore the changes of `initial_node_count`,
+        defaults to **true**.
+        """
+        return pulumi.get(self, "ignore_initial_node_count")
+
+    @ignore_initial_node_count.setter
+    def ignore_initial_node_count(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "ignore_initial_node_count", value)
 
     @_builtins.property
     @pulumi.getter(name="initializedConditions")
@@ -461,7 +506,7 @@ class NodePoolArgs:
     def label_policy_on_existing_nodes(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the label policy on existing nodes.
-        The value can be **ignore** and **refresh**, defaults to **refresh**.
+        The value can be: **ignore** and **refresh**, defaults to **refresh**.
         """
         return pulumi.get(self, "label_policy_on_existing_nodes")
 
@@ -485,7 +530,9 @@ class NodePoolArgs:
     @pulumi.getter(name="maxNodeCount")
     def max_node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the maximum number of nodes allowed if auto scaling is enabled.
+        Specifies the maximum number of nodes that can be retained in the scaling group
+        during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+        than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
         """
         return pulumi.get(self, "max_node_count")
 
@@ -497,7 +544,7 @@ class NodePoolArgs:
     @pulumi.getter(name="maxPods")
     def max_pods(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        Specifies the maximum number of instances a node is allowed to create.
         """
         return pulumi.get(self, "max_pods")
 
@@ -509,7 +556,8 @@ class NodePoolArgs:
     @pulumi.getter(name="minNodeCount")
     def min_node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the minimum number of nodes allowed if auto scaling is enabled.
+        Specifies the minimum number of nodes in the scaling group during auto scaling.
+        The value must be greater than **0**.
         """
         return pulumi.get(self, "min_node_count")
 
@@ -521,7 +569,12 @@ class NodePoolArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the node pool name.
+        Specifies the name of an extended scaling group.
+        The value cannot be default and can contain a maximum of 55 characters.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+
+        <a name="spec_struct"></a>
+        The `spec` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -578,8 +631,8 @@ class NodePoolArgs:
     def period(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the charging period of the CCE node pool. If `period_unit` is set to
-        *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-        is mandatory if `charging_mode` is set to *prePaid*.
+        *month*, the value ranges from 1 to 9. If `period_unit` is set to **year**, the value ranges from 1 to 3. This parameter
+        is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period")
 
@@ -592,7 +645,7 @@ class NodePoolArgs:
     def period_unit(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the charging period unit of the CCE node pool.
-        Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+        Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period_unit")
 
@@ -617,7 +670,8 @@ class NodePoolArgs:
     @pulumi.getter
     def postinstall(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        Specifies the script to be executed after installation.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "postinstall")
 
@@ -629,7 +683,8 @@ class NodePoolArgs:
     @pulumi.getter
     def preinstall(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        Specifies the script to be executed before installation.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "preinstall")
 
@@ -667,8 +722,8 @@ class NodePoolArgs:
     @pulumi.getter
     def runtime(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the runtime of the CCE node pool. Valid values are *docker* and
-        *containerd*.
+        Specifies the runtime of the CCE node pool. Valid values are **docker**
+        and **containerd**.
         """
         return pulumi.get(self, "runtime")
 
@@ -692,8 +747,8 @@ class NodePoolArgs:
     @pulumi.getter(name="scallEnable")
     def scall_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to enable auto scaling.
-        If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
+        Specifies whether to enable auto-scaling.
+        If Autoscaler is enabled, install the autoscaler add-on to use the auto-scaling feature.
         """
         return pulumi.get(self, "scall_enable")
 
@@ -729,6 +784,10 @@ class NodePoolArgs:
         If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
         this parameter must be specified.
         If you want to store system components in the system disk, this parameter must be specified.
+        The storage structure is documented below.
+
+        <a name="root_volume_struct"></a>
+        The `root_volume` block supports:
         """
         return pulumi.get(self, "storage")
 
@@ -765,7 +824,7 @@ class NodePoolArgs:
     def tag_policy_on_existing_nodes(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the tag policy on existing nodes.
-        The value can be **ignore** and **refresh**, defaults to **ignore**.
+        The value can be: **ignore** and **refresh**, defaults to **ignore**.
         """
         return pulumi.get(self, "tag_policy_on_existing_nodes")
 
@@ -790,7 +849,7 @@ class NodePoolArgs:
     def taint_policy_on_existing_nodes(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the taint policy on existing nodes.
-        The value can be **ignore** and **refresh**, defaults to **refresh**.
+        The value can be: **ignore** and **refresh**, defaults to **refresh**.
         """
         return pulumi.get(self, "taint_policy_on_existing_nodes")
 
@@ -803,7 +862,7 @@ class NodePoolArgs:
     def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTaintArgs']]]]:
         """
         Specifies the taints configuration of the nodes to set anti-affinity.
-        The structure is described below.
+        The taints structure is documented below.
         """
         return pulumi.get(self, "taints")
 
@@ -815,7 +874,21 @@ class NodePoolArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+        Specifies the hostname type of the kubernetes node.
+        The value can be:
+        + **privateIp**: The Kubernetes node is named after its IP address.
+        + **cceNodeName**: The Kubernetes node is named after the CCE node.
+
+        If `hostname_config` not specified, the default value is **privateIp**.
+
+        ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+        The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+        after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+        each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+        characters is a lowercase letter or a digit ranging from 0 to 9.
+
+        <a name="extension_scale_groups_struct"></a>
+        The `extension_scale_groups` block supports:
         """
         return pulumi.get(self, "type")
 
@@ -842,6 +915,7 @@ class _NodePoolState:
                  extension_scale_groups: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolExtensionScaleGroupArgs']]]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname_config: Optional[pulumi.Input['NodePoolHostnameConfigArgs']] = None,
+                 ignore_initial_node_count: Optional[pulumi.Input[_builtins.bool]] = None,
                  initial_node_count: Optional[pulumi.Input[_builtins.int]] = None,
                  initialized_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
@@ -877,7 +951,8 @@ class _NodePoolState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NodePool resources.
-        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
+
+        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the name of the available partition (AZ). Default value
                is random to create nodes in a random AZ in the node pool.
         :param pulumi.Input[_builtins.int] billing_mode: Billing mode of a node.
@@ -886,32 +961,41 @@ class _NodePoolState:
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[_builtins.int] current_node_count: The current number of the nodes.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]] data_volumes: Specifies the configuration of the data disks.
-               The structure is described below.
+               The data_volumes structure is documented below.
         :param pulumi.Input[_builtins.str] ecs_group_id: Specifies the ECS group ID. If specified, the node will be created under
                the cloud server group.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the node pool.
                If updated, the new value will apply only to new nodes.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extend_param: schema: Deprecated; This parameter has been replaced by the 'extend_params' parameter.
-        :param pulumi.Input['NodePoolExtendParamsArgs'] extend_params: Specifies the extended parameters.
-               The object structure is documented below.
+        :param pulumi.Input['NodePoolExtendParamsArgs'] extend_params: Specifies the disk expansion parameters.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolExtensionScaleGroupArgs']]] extension_scale_groups: Specifies the configurations of extended scaling groups in the node pool.
-               The object structure is documented below.
+               The extension_scale_groups structure is documented below.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID.
         :param pulumi.Input['NodePoolHostnameConfigArgs'] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
-               The object structure is documented below.
+               The hostname_config structure is documented below.
+        :param pulumi.Input[_builtins.bool] ignore_initial_node_count: Specifies whether to ignore the changes of `initial_node_count`,
+               defaults to **true**.
         :param pulumi.Input[_builtins.int] initial_node_count: Specifies the initial number of expected nodes in the node pool.
                This parameter can be also used to manually scale the node count afterwards.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] initialized_conditions: Specifies the custom initialization flags.
         :param pulumi.Input[_builtins.str] key_pair: Specifies the key pair name when logging in to select the key pair mode.
                This parameter and `password` are alternative.
         :param pulumi.Input[_builtins.str] label_policy_on_existing_nodes: Specifies the label policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **refresh**.
+               The value can be: **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Specifies the tags of a Kubernetes node, key/value pair format.
-        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes allowed if auto scaling is enabled.
-        :param pulumi.Input[_builtins.int] max_pods: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
-        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes allowed if auto scaling is enabled.
-        :param pulumi.Input[_builtins.str] name: Specifies the node pool name.
+        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes that can be retained in the scaling group
+               during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+               than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
+        :param pulumi.Input[_builtins.int] max_pods: Specifies the maximum number of instances a node is allowed to create.
+        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
+               The value must be greater than **0**.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
         :param pulumi.Input[_builtins.str] os: Specifies the operating system of the node.
                The value can be **EulerOS 2.9** and **CentOS 7.6** e.g. For more details,
                please see [documentation](https://support.huaweicloud.com/intl/en-us/api-cce/node-os.html).
@@ -924,25 +1008,27 @@ class _NodePoolState:
                lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
                This parameter can be plain or salted and is alternative to `key_pair`.
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the CCE node pool. If `period_unit` is set to
-               *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-               is mandatory if `charging_mode` is set to *prePaid*.
+               *month*, the value ranges from 1 to 9. If `period_unit` is set to **year**, the value ranges from 1 to 3. This parameter
+               is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the CCE node pool.
-               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pod_security_groups: Specifies the list of security group IDs for the pod.
                Only supported in CCE Turbo clusters of v1.19 and above.
-        :param pulumi.Input[_builtins.str] postinstall: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
-        :param pulumi.Input[_builtins.str] preinstall: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        :param pulumi.Input[_builtins.str] postinstall: Specifies the script to be executed after installation.
+               The input value can be a Base64 encoded string or not.
+        :param pulumi.Input[_builtins.str] preinstall: Specifies the script to be executed before installation.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[_builtins.int] priority: Specifies the weight of the node pool.
                A node pool with a higher weight has a higher priority during scaling.
         :param pulumi.Input[_builtins.str] region: The region in which to create the CCE pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new CCE node pool resource.
         :param pulumi.Input['NodePoolRootVolumeArgs'] root_volume: Specifies the configuration of the system disk.
-               The structure is described below.
-        :param pulumi.Input[_builtins.str] runtime: Specifies the runtime of the CCE node pool. Valid values are *docker* and
-               *containerd*.
+               The root_volume structure is documented below.
+        :param pulumi.Input[_builtins.str] runtime: Specifies the runtime of the CCE node pool. Valid values are **docker**
+               and **containerd**.
         :param pulumi.Input[_builtins.int] scale_down_cooldown_time: Specifies the time interval between two scaling operations, in minutes.
-        :param pulumi.Input[_builtins.bool] scall_enable: Specifies whether to enable auto scaling.
-               If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
+        :param pulumi.Input[_builtins.bool] scall_enable: Specifies whether to enable auto-scaling.
+               If Autoscaler is enabled, install the autoscaler add-on to use the auto-scaling feature.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: Specifies the list of custom security group IDs for the node pool.
                If specified, the nodes will be put in these security groups. When specifying a security group, do not modify
                the rules of the port on which CCE running depends. For details, see
@@ -957,16 +1043,34 @@ class _NodePoolState:
                If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
                this parameter must be specified.
                If you want to store system components in the system disk, this parameter must be specified.
+               The storage structure is documented below.
+               
+               <a name="root_volume_struct"></a>
+               The `root_volume` block supports:
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the ID of the subnet to which the NIC belongs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subnet_lists: Specifies the ID list of the subnet to which the NIC belongs.
         :param pulumi.Input[_builtins.str] tag_policy_on_existing_nodes: Specifies the tag policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **ignore**.
+               The value can be: **ignore** and **refresh**, defaults to **ignore**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the tags of a VM node, key/value pair format.
         :param pulumi.Input[_builtins.str] taint_policy_on_existing_nodes: Specifies the taint policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **refresh**.
+               The value can be: **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolTaintArgs']]] taints: Specifies the taints configuration of the nodes to set anti-affinity.
-               The structure is described below.
-        :param pulumi.Input[_builtins.str] type: Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+               The taints structure is documented below.
+        :param pulumi.Input[_builtins.str] type: Specifies the hostname type of the kubernetes node.
+               The value can be:
+               + **privateIp**: The Kubernetes node is named after its IP address.
+               + **cceNodeName**: The Kubernetes node is named after the CCE node.
+               
+               If `hostname_config` not specified, the default value is **privateIp**.
+               
+               ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+               The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+               after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+               each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+               characters is a lowercase letter or a digit ranging from 0 to 9.
+               
+               <a name="extension_scale_groups_struct"></a>
+               The `extension_scale_groups` block supports:
         """
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
@@ -998,6 +1102,8 @@ class _NodePoolState:
             pulumi.set(__self__, "flavor_id", flavor_id)
         if hostname_config is not None:
             pulumi.set(__self__, "hostname_config", hostname_config)
+        if ignore_initial_node_count is not None:
+            pulumi.set(__self__, "ignore_initial_node_count", ignore_initial_node_count)
         if initial_node_count is not None:
             pulumi.set(__self__, "initial_node_count", initial_node_count)
         if initialized_conditions is not None:
@@ -1069,7 +1175,7 @@ class _NodePoolState:
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies whether auto renew is enabled. Valid values are "true" and "false".
+        Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -1144,7 +1250,7 @@ class _NodePoolState:
     def data_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolDataVolumeArgs']]]]:
         """
         Specifies the configuration of the data disks.
-        The structure is described below.
+        The data_volumes structure is documented below.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -1203,8 +1309,7 @@ class _NodePoolState:
     @pulumi.getter(name="extendParams")
     def extend_params(self) -> Optional[pulumi.Input['NodePoolExtendParamsArgs']]:
         """
-        Specifies the extended parameters.
-        The object structure is documented below.
+        Specifies the disk expansion parameters.
         """
         return pulumi.get(self, "extend_params")
 
@@ -1217,7 +1322,7 @@ class _NodePoolState:
     def extension_scale_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolExtensionScaleGroupArgs']]]]:
         """
         Specifies the configurations of extended scaling groups in the node pool.
-        The object structure is documented below.
+        The extension_scale_groups structure is documented below.
         """
         return pulumi.get(self, "extension_scale_groups")
 
@@ -1243,13 +1348,26 @@ class _NodePoolState:
         """
         Specifies the hostname config of the kubernetes node,
         which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
-        The object structure is documented below.
+        The hostname_config structure is documented below.
         """
         return pulumi.get(self, "hostname_config")
 
     @hostname_config.setter
     def hostname_config(self, value: Optional[pulumi.Input['NodePoolHostnameConfigArgs']]):
         pulumi.set(self, "hostname_config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ignoreInitialNodeCount")
+    def ignore_initial_node_count(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to ignore the changes of `initial_node_count`,
+        defaults to **true**.
+        """
+        return pulumi.get(self, "ignore_initial_node_count")
+
+    @ignore_initial_node_count.setter
+    def ignore_initial_node_count(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "ignore_initial_node_count", value)
 
     @_builtins.property
     @pulumi.getter(name="initialNodeCount")
@@ -1294,7 +1412,7 @@ class _NodePoolState:
     def label_policy_on_existing_nodes(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the label policy on existing nodes.
-        The value can be **ignore** and **refresh**, defaults to **refresh**.
+        The value can be: **ignore** and **refresh**, defaults to **refresh**.
         """
         return pulumi.get(self, "label_policy_on_existing_nodes")
 
@@ -1318,7 +1436,9 @@ class _NodePoolState:
     @pulumi.getter(name="maxNodeCount")
     def max_node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the maximum number of nodes allowed if auto scaling is enabled.
+        Specifies the maximum number of nodes that can be retained in the scaling group
+        during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+        than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
         """
         return pulumi.get(self, "max_node_count")
 
@@ -1330,7 +1450,7 @@ class _NodePoolState:
     @pulumi.getter(name="maxPods")
     def max_pods(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        Specifies the maximum number of instances a node is allowed to create.
         """
         return pulumi.get(self, "max_pods")
 
@@ -1342,7 +1462,8 @@ class _NodePoolState:
     @pulumi.getter(name="minNodeCount")
     def min_node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the minimum number of nodes allowed if auto scaling is enabled.
+        Specifies the minimum number of nodes in the scaling group during auto scaling.
+        The value must be greater than **0**.
         """
         return pulumi.get(self, "min_node_count")
 
@@ -1354,7 +1475,12 @@ class _NodePoolState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the node pool name.
+        Specifies the name of an extended scaling group.
+        The value cannot be default and can contain a maximum of 55 characters.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+
+        <a name="spec_struct"></a>
+        The `spec` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -1411,8 +1537,8 @@ class _NodePoolState:
     def period(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the charging period of the CCE node pool. If `period_unit` is set to
-        *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-        is mandatory if `charging_mode` is set to *prePaid*.
+        *month*, the value ranges from 1 to 9. If `period_unit` is set to **year**, the value ranges from 1 to 3. This parameter
+        is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period")
 
@@ -1425,7 +1551,7 @@ class _NodePoolState:
     def period_unit(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the charging period unit of the CCE node pool.
-        Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+        Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period_unit")
 
@@ -1450,7 +1576,8 @@ class _NodePoolState:
     @pulumi.getter
     def postinstall(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        Specifies the script to be executed after installation.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "postinstall")
 
@@ -1462,7 +1589,8 @@ class _NodePoolState:
     @pulumi.getter
     def preinstall(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        Specifies the script to be executed before installation.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "preinstall")
 
@@ -1501,7 +1629,7 @@ class _NodePoolState:
     def root_volume(self) -> Optional[pulumi.Input['NodePoolRootVolumeArgs']]:
         """
         Specifies the configuration of the system disk.
-        The structure is described below.
+        The root_volume structure is documented below.
         """
         return pulumi.get(self, "root_volume")
 
@@ -1513,8 +1641,8 @@ class _NodePoolState:
     @pulumi.getter
     def runtime(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the runtime of the CCE node pool. Valid values are *docker* and
-        *containerd*.
+        Specifies the runtime of the CCE node pool. Valid values are **docker**
+        and **containerd**.
         """
         return pulumi.get(self, "runtime")
 
@@ -1538,8 +1666,8 @@ class _NodePoolState:
     @pulumi.getter(name="scallEnable")
     def scall_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to enable auto scaling.
-        If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
+        Specifies whether to enable auto-scaling.
+        If Autoscaler is enabled, install the autoscaler add-on to use the auto-scaling feature.
         """
         return pulumi.get(self, "scall_enable")
 
@@ -1587,6 +1715,10 @@ class _NodePoolState:
         If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
         this parameter must be specified.
         If you want to store system components in the system disk, this parameter must be specified.
+        The storage structure is documented below.
+
+        <a name="root_volume_struct"></a>
+        The `root_volume` block supports:
         """
         return pulumi.get(self, "storage")
 
@@ -1623,7 +1755,7 @@ class _NodePoolState:
     def tag_policy_on_existing_nodes(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the tag policy on existing nodes.
-        The value can be **ignore** and **refresh**, defaults to **ignore**.
+        The value can be: **ignore** and **refresh**, defaults to **ignore**.
         """
         return pulumi.get(self, "tag_policy_on_existing_nodes")
 
@@ -1648,7 +1780,7 @@ class _NodePoolState:
     def taint_policy_on_existing_nodes(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the taint policy on existing nodes.
-        The value can be **ignore** and **refresh**, defaults to **refresh**.
+        The value can be: **ignore** and **refresh**, defaults to **refresh**.
         """
         return pulumi.get(self, "taint_policy_on_existing_nodes")
 
@@ -1661,7 +1793,7 @@ class _NodePoolState:
     def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTaintArgs']]]]:
         """
         Specifies the taints configuration of the nodes to set anti-affinity.
-        The structure is described below.
+        The taints structure is documented below.
         """
         return pulumi.get(self, "taints")
 
@@ -1673,7 +1805,21 @@ class _NodePoolState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+        Specifies the hostname type of the kubernetes node.
+        The value can be:
+        + **privateIp**: The Kubernetes node is named after its IP address.
+        + **cceNodeName**: The Kubernetes node is named after the CCE node.
+
+        If `hostname_config` not specified, the default value is **privateIp**.
+
+        ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+        The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+        after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+        each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+        characters is a lowercase letter or a digit ranging from 0 to 9.
+
+        <a name="extension_scale_groups_struct"></a>
+        The `extension_scale_groups` block supports:
         """
         return pulumi.get(self, "type")
 
@@ -1701,6 +1847,7 @@ class NodePool(pulumi.CustomResource):
                  extension_scale_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolExtensionScaleGroupArgs', 'NodePoolExtensionScaleGroupArgsDict']]]]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname_config: Optional[pulumi.Input[Union['NodePoolHostnameConfigArgs', 'NodePoolHostnameConfigArgsDict']]] = None,
+                 ignore_initial_node_count: Optional[pulumi.Input[_builtins.bool]] = None,
                  initial_node_count: Optional[pulumi.Input[_builtins.int]] = None,
                  initialized_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1888,81 +2035,107 @@ class NodePool(pulumi.CustomResource):
             ])
         ```
 
+        ### Spot Node Pool
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        cluster_id = config.require_object("clusterId")
+        key_pair = config.require_object("keyPair")
+        availability_zone = config.require_object("availabilityZone")
+        node_pool = huaweicloud.cce.NodePool("node_pool",
+            cluster_id=cluster_id,
+            name="testpool",
+            os="EulerOS 2.5",
+            initial_node_count=2,
+            flavor_id="s3.large.4",
+            availability_zone=availability_zone,
+            key_pair=keypair,
+            scall_enable=True,
+            min_node_count=1,
+            max_node_count=10,
+            scale_down_cooldown_time=100,
+            priority=1,
+            type="vm",
+            root_volume={
+                "size": 40,
+                "volumetype": "SAS",
+            },
+            data_volumes=[{
+                "size": 100,
+                "volumetype": "SAS",
+            }],
+            extend_params={
+                "market_type": "spot",
+                "spot_price": "0.83",
+            })
+        ```
+
+        > From version v1.78.5, `initial_node_count` became a one-time argument, and only takes effect when creating a node pool.
+          If you want to update `initial_node_count`, please set `ignore_initial_node_count` to **false**.
+
         ## Import
 
         CCE node pool can be imported using the cluster ID and node pool ID separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cce/nodePool:NodePool my_node_pool <cluster_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
-        `password`, `extend_params`, `taints`, `initial_node_count` and `pod_security_groups`.
-
+        `password`, `extend_params`, `taints`, `ignore_initial_node_count` and `pod_security_groups`.
         It is generally recommended running `pulumi preview` after importing a node pool.
-
         You can then decide if changes should be applied to the node pool, or the resource
-
         definition should be updated to align with the node pool. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cce_node_pool" "my_node_pool" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, extend_params,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
+        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the name of the available partition (AZ). Default value
                is random to create nodes in a random AZ in the node pool.
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the CCE node pool. Valid values are
                *prePaid* and *postPaid*, defaults to *postPaid*.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolDataVolumeArgs', 'NodePoolDataVolumeArgsDict']]]] data_volumes: Specifies the configuration of the data disks.
-               The structure is described below.
+               The data_volumes structure is documented below.
         :param pulumi.Input[_builtins.str] ecs_group_id: Specifies the ECS group ID. If specified, the node will be created under
                the cloud server group.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the node pool.
                If updated, the new value will apply only to new nodes.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extend_param: schema: Deprecated; This parameter has been replaced by the 'extend_params' parameter.
-        :param pulumi.Input[Union['NodePoolExtendParamsArgs', 'NodePoolExtendParamsArgsDict']] extend_params: Specifies the extended parameters.
-               The object structure is documented below.
+        :param pulumi.Input[Union['NodePoolExtendParamsArgs', 'NodePoolExtendParamsArgsDict']] extend_params: Specifies the disk expansion parameters.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolExtensionScaleGroupArgs', 'NodePoolExtensionScaleGroupArgsDict']]]] extension_scale_groups: Specifies the configurations of extended scaling groups in the node pool.
-               The object structure is documented below.
+               The extension_scale_groups structure is documented below.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID.
         :param pulumi.Input[Union['NodePoolHostnameConfigArgs', 'NodePoolHostnameConfigArgsDict']] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
-               The object structure is documented below.
+               The hostname_config structure is documented below.
+        :param pulumi.Input[_builtins.bool] ignore_initial_node_count: Specifies whether to ignore the changes of `initial_node_count`,
+               defaults to **true**.
         :param pulumi.Input[_builtins.int] initial_node_count: Specifies the initial number of expected nodes in the node pool.
                This parameter can be also used to manually scale the node count afterwards.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] initialized_conditions: Specifies the custom initialization flags.
         :param pulumi.Input[_builtins.str] key_pair: Specifies the key pair name when logging in to select the key pair mode.
                This parameter and `password` are alternative.
         :param pulumi.Input[_builtins.str] label_policy_on_existing_nodes: Specifies the label policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **refresh**.
+               The value can be: **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Specifies the tags of a Kubernetes node, key/value pair format.
-        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes allowed if auto scaling is enabled.
-        :param pulumi.Input[_builtins.int] max_pods: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
-        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes allowed if auto scaling is enabled.
-        :param pulumi.Input[_builtins.str] name: Specifies the node pool name.
+        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes that can be retained in the scaling group
+               during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+               than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
+        :param pulumi.Input[_builtins.int] max_pods: Specifies the maximum number of instances a node is allowed to create.
+        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
+               The value must be greater than **0**.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
         :param pulumi.Input[_builtins.str] os: Specifies the operating system of the node.
                The value can be **EulerOS 2.9** and **CentOS 7.6** e.g. For more details,
                please see [documentation](https://support.huaweicloud.com/intl/en-us/api-cce/node-os.html).
@@ -1975,25 +2148,27 @@ class NodePool(pulumi.CustomResource):
                lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
                This parameter can be plain or salted and is alternative to `key_pair`.
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the CCE node pool. If `period_unit` is set to
-               *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-               is mandatory if `charging_mode` is set to *prePaid*.
+               *month*, the value ranges from 1 to 9. If `period_unit` is set to **year**, the value ranges from 1 to 3. This parameter
+               is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the CCE node pool.
-               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pod_security_groups: Specifies the list of security group IDs for the pod.
                Only supported in CCE Turbo clusters of v1.19 and above.
-        :param pulumi.Input[_builtins.str] postinstall: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
-        :param pulumi.Input[_builtins.str] preinstall: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        :param pulumi.Input[_builtins.str] postinstall: Specifies the script to be executed after installation.
+               The input value can be a Base64 encoded string or not.
+        :param pulumi.Input[_builtins.str] preinstall: Specifies the script to be executed before installation.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[_builtins.int] priority: Specifies the weight of the node pool.
                A node pool with a higher weight has a higher priority during scaling.
         :param pulumi.Input[_builtins.str] region: The region in which to create the CCE pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new CCE node pool resource.
         :param pulumi.Input[Union['NodePoolRootVolumeArgs', 'NodePoolRootVolumeArgsDict']] root_volume: Specifies the configuration of the system disk.
-               The structure is described below.
-        :param pulumi.Input[_builtins.str] runtime: Specifies the runtime of the CCE node pool. Valid values are *docker* and
-               *containerd*.
+               The root_volume structure is documented below.
+        :param pulumi.Input[_builtins.str] runtime: Specifies the runtime of the CCE node pool. Valid values are **docker**
+               and **containerd**.
         :param pulumi.Input[_builtins.int] scale_down_cooldown_time: Specifies the time interval between two scaling operations, in minutes.
-        :param pulumi.Input[_builtins.bool] scall_enable: Specifies whether to enable auto scaling.
-               If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
+        :param pulumi.Input[_builtins.bool] scall_enable: Specifies whether to enable auto-scaling.
+               If Autoscaler is enabled, install the autoscaler add-on to use the auto-scaling feature.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: Specifies the list of custom security group IDs for the node pool.
                If specified, the nodes will be put in these security groups. When specifying a security group, do not modify
                the rules of the port on which CCE running depends. For details, see
@@ -2007,16 +2182,34 @@ class NodePool(pulumi.CustomResource):
                If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
                this parameter must be specified.
                If you want to store system components in the system disk, this parameter must be specified.
+               The storage structure is documented below.
+               
+               <a name="root_volume_struct"></a>
+               The `root_volume` block supports:
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the ID of the subnet to which the NIC belongs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subnet_lists: Specifies the ID list of the subnet to which the NIC belongs.
         :param pulumi.Input[_builtins.str] tag_policy_on_existing_nodes: Specifies the tag policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **ignore**.
+               The value can be: **ignore** and **refresh**, defaults to **ignore**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the tags of a VM node, key/value pair format.
         :param pulumi.Input[_builtins.str] taint_policy_on_existing_nodes: Specifies the taint policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **refresh**.
+               The value can be: **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]] taints: Specifies the taints configuration of the nodes to set anti-affinity.
-               The structure is described below.
-        :param pulumi.Input[_builtins.str] type: Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+               The taints structure is documented below.
+        :param pulumi.Input[_builtins.str] type: Specifies the hostname type of the kubernetes node.
+               The value can be:
+               + **privateIp**: The Kubernetes node is named after its IP address.
+               + **cceNodeName**: The Kubernetes node is named after the CCE node.
+               
+               If `hostname_config` not specified, the default value is **privateIp**.
+               
+               ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+               The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+               after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+               each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+               characters is a lowercase letter or a digit ranging from 0 to 9.
+               
+               <a name="extension_scale_groups_struct"></a>
+               The `extension_scale_groups` block supports:
         """
         ...
     @overload
@@ -2178,45 +2371,62 @@ class NodePool(pulumi.CustomResource):
             ])
         ```
 
+        ### Spot Node Pool
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        cluster_id = config.require_object("clusterId")
+        key_pair = config.require_object("keyPair")
+        availability_zone = config.require_object("availabilityZone")
+        node_pool = huaweicloud.cce.NodePool("node_pool",
+            cluster_id=cluster_id,
+            name="testpool",
+            os="EulerOS 2.5",
+            initial_node_count=2,
+            flavor_id="s3.large.4",
+            availability_zone=availability_zone,
+            key_pair=keypair,
+            scall_enable=True,
+            min_node_count=1,
+            max_node_count=10,
+            scale_down_cooldown_time=100,
+            priority=1,
+            type="vm",
+            root_volume={
+                "size": 40,
+                "volumetype": "SAS",
+            },
+            data_volumes=[{
+                "size": 100,
+                "volumetype": "SAS",
+            }],
+            extend_params={
+                "market_type": "spot",
+                "spot_price": "0.83",
+            })
+        ```
+
+        > From version v1.78.5, `initial_node_count` became a one-time argument, and only takes effect when creating a node pool.
+          If you want to update `initial_node_count`, please set `ignore_initial_node_count` to **false**.
+
         ## Import
 
         CCE node pool can be imported using the cluster ID and node pool ID separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cce/nodePool:NodePool my_node_pool <cluster_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
-        `password`, `extend_params`, `taints`, `initial_node_count` and `pod_security_groups`.
-
+        `password`, `extend_params`, `taints`, `ignore_initial_node_count` and `pod_security_groups`.
         It is generally recommended running `pulumi preview` after importing a node pool.
-
         You can then decide if changes should be applied to the node pool, or the resource
-
         definition should be updated to align with the node pool. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cce_node_pool" "my_node_pool" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, extend_params,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param NodePoolArgs args: The arguments to use to populate this resource's properties.
@@ -2246,6 +2456,7 @@ class NodePool(pulumi.CustomResource):
                  extension_scale_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolExtensionScaleGroupArgs', 'NodePoolExtensionScaleGroupArgsDict']]]]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname_config: Optional[pulumi.Input[Union['NodePoolHostnameConfigArgs', 'NodePoolHostnameConfigArgsDict']]] = None,
+                 ignore_initial_node_count: Optional[pulumi.Input[_builtins.bool]] = None,
                  initial_node_count: Optional[pulumi.Input[_builtins.int]] = None,
                  initialized_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2304,6 +2515,7 @@ class NodePool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'flavor_id'")
             __props__.__dict__["flavor_id"] = flavor_id
             __props__.__dict__["hostname_config"] = hostname_config
+            __props__.__dict__["ignore_initial_node_count"] = ignore_initial_node_count
             if initial_node_count is None and not opts.urn:
                 raise TypeError("Missing required property 'initial_node_count'")
             __props__.__dict__["initial_node_count"] = initial_node_count
@@ -2370,6 +2582,7 @@ class NodePool(pulumi.CustomResource):
             extension_scale_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolExtensionScaleGroupArgs', 'NodePoolExtensionScaleGroupArgsDict']]]]] = None,
             flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
             hostname_config: Optional[pulumi.Input[Union['NodePoolHostnameConfigArgs', 'NodePoolHostnameConfigArgsDict']]] = None,
+            ignore_initial_node_count: Optional[pulumi.Input[_builtins.bool]] = None,
             initial_node_count: Optional[pulumi.Input[_builtins.int]] = None,
             initialized_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             key_pair: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2410,7 +2623,7 @@ class NodePool(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
+        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the name of the available partition (AZ). Default value
                is random to create nodes in a random AZ in the node pool.
         :param pulumi.Input[_builtins.int] billing_mode: Billing mode of a node.
@@ -2419,32 +2632,41 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[_builtins.int] current_node_count: The current number of the nodes.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolDataVolumeArgs', 'NodePoolDataVolumeArgsDict']]]] data_volumes: Specifies the configuration of the data disks.
-               The structure is described below.
+               The data_volumes structure is documented below.
         :param pulumi.Input[_builtins.str] ecs_group_id: Specifies the ECS group ID. If specified, the node will be created under
                the cloud server group.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the node pool.
                If updated, the new value will apply only to new nodes.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extend_param: schema: Deprecated; This parameter has been replaced by the 'extend_params' parameter.
-        :param pulumi.Input[Union['NodePoolExtendParamsArgs', 'NodePoolExtendParamsArgsDict']] extend_params: Specifies the extended parameters.
-               The object structure is documented below.
+        :param pulumi.Input[Union['NodePoolExtendParamsArgs', 'NodePoolExtendParamsArgsDict']] extend_params: Specifies the disk expansion parameters.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolExtensionScaleGroupArgs', 'NodePoolExtensionScaleGroupArgsDict']]]] extension_scale_groups: Specifies the configurations of extended scaling groups in the node pool.
-               The object structure is documented below.
+               The extension_scale_groups structure is documented below.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID.
         :param pulumi.Input[Union['NodePoolHostnameConfigArgs', 'NodePoolHostnameConfigArgsDict']] hostname_config: Specifies the hostname config of the kubernetes node,
                which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
-               The object structure is documented below.
+               The hostname_config structure is documented below.
+        :param pulumi.Input[_builtins.bool] ignore_initial_node_count: Specifies whether to ignore the changes of `initial_node_count`,
+               defaults to **true**.
         :param pulumi.Input[_builtins.int] initial_node_count: Specifies the initial number of expected nodes in the node pool.
                This parameter can be also used to manually scale the node count afterwards.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] initialized_conditions: Specifies the custom initialization flags.
         :param pulumi.Input[_builtins.str] key_pair: Specifies the key pair name when logging in to select the key pair mode.
                This parameter and `password` are alternative.
         :param pulumi.Input[_builtins.str] label_policy_on_existing_nodes: Specifies the label policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **refresh**.
+               The value can be: **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Specifies the tags of a Kubernetes node, key/value pair format.
-        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes allowed if auto scaling is enabled.
-        :param pulumi.Input[_builtins.int] max_pods: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
-        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes allowed if auto scaling is enabled.
-        :param pulumi.Input[_builtins.str] name: Specifies the node pool name.
+        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes that can be retained in the scaling group
+               during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+               than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
+        :param pulumi.Input[_builtins.int] max_pods: Specifies the maximum number of instances a node is allowed to create.
+        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
+               The value must be greater than **0**.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
         :param pulumi.Input[_builtins.str] os: Specifies the operating system of the node.
                The value can be **EulerOS 2.9** and **CentOS 7.6** e.g. For more details,
                please see [documentation](https://support.huaweicloud.com/intl/en-us/api-cce/node-os.html).
@@ -2457,25 +2679,27 @@ class NodePool(pulumi.CustomResource):
                lowercase letters, digits, special characters(!@$%^-_=+[{}]:,./?~#*).
                This parameter can be plain or salted and is alternative to `key_pair`.
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the CCE node pool. If `period_unit` is set to
-               *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-               is mandatory if `charging_mode` is set to *prePaid*.
+               *month*, the value ranges from 1 to 9. If `period_unit` is set to **year**, the value ranges from 1 to 3. This parameter
+               is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the CCE node pool.
-               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pod_security_groups: Specifies the list of security group IDs for the pod.
                Only supported in CCE Turbo clusters of v1.19 and above.
-        :param pulumi.Input[_builtins.str] postinstall: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
-        :param pulumi.Input[_builtins.str] preinstall: schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        :param pulumi.Input[_builtins.str] postinstall: Specifies the script to be executed after installation.
+               The input value can be a Base64 encoded string or not.
+        :param pulumi.Input[_builtins.str] preinstall: Specifies the script to be executed before installation.
+               The input value can be a Base64 encoded string or not.
         :param pulumi.Input[_builtins.int] priority: Specifies the weight of the node pool.
                A node pool with a higher weight has a higher priority during scaling.
         :param pulumi.Input[_builtins.str] region: The region in which to create the CCE pool resource. If omitted, the
                provider-level region will be used. Changing this creates a new CCE node pool resource.
         :param pulumi.Input[Union['NodePoolRootVolumeArgs', 'NodePoolRootVolumeArgsDict']] root_volume: Specifies the configuration of the system disk.
-               The structure is described below.
-        :param pulumi.Input[_builtins.str] runtime: Specifies the runtime of the CCE node pool. Valid values are *docker* and
-               *containerd*.
+               The root_volume structure is documented below.
+        :param pulumi.Input[_builtins.str] runtime: Specifies the runtime of the CCE node pool. Valid values are **docker**
+               and **containerd**.
         :param pulumi.Input[_builtins.int] scale_down_cooldown_time: Specifies the time interval between two scaling operations, in minutes.
-        :param pulumi.Input[_builtins.bool] scall_enable: Specifies whether to enable auto scaling.
-               If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
+        :param pulumi.Input[_builtins.bool] scall_enable: Specifies whether to enable auto-scaling.
+               If Autoscaler is enabled, install the autoscaler add-on to use the auto-scaling feature.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: Specifies the list of custom security group IDs for the node pool.
                If specified, the nodes will be put in these security groups. When specifying a security group, do not modify
                the rules of the port on which CCE running depends. For details, see
@@ -2490,16 +2714,34 @@ class NodePool(pulumi.CustomResource):
                If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
                this parameter must be specified.
                If you want to store system components in the system disk, this parameter must be specified.
+               The storage structure is documented below.
+               
+               <a name="root_volume_struct"></a>
+               The `root_volume` block supports:
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the ID of the subnet to which the NIC belongs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subnet_lists: Specifies the ID list of the subnet to which the NIC belongs.
         :param pulumi.Input[_builtins.str] tag_policy_on_existing_nodes: Specifies the tag policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **ignore**.
+               The value can be: **ignore** and **refresh**, defaults to **ignore**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the tags of a VM node, key/value pair format.
         :param pulumi.Input[_builtins.str] taint_policy_on_existing_nodes: Specifies the taint policy on existing nodes.
-               The value can be **ignore** and **refresh**, defaults to **refresh**.
+               The value can be: **ignore** and **refresh**, defaults to **refresh**.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]] taints: Specifies the taints configuration of the nodes to set anti-affinity.
-               The structure is described below.
-        :param pulumi.Input[_builtins.str] type: Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+               The taints structure is documented below.
+        :param pulumi.Input[_builtins.str] type: Specifies the hostname type of the kubernetes node.
+               The value can be:
+               + **privateIp**: The Kubernetes node is named after its IP address.
+               + **cceNodeName**: The Kubernetes node is named after the CCE node.
+               
+               If `hostname_config` not specified, the default value is **privateIp**.
+               
+               ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+               The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+               after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+               each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+               characters is a lowercase letter or a digit ranging from 0 to 9.
+               
+               <a name="extension_scale_groups_struct"></a>
+               The `extension_scale_groups` block supports:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -2520,6 +2762,7 @@ class NodePool(pulumi.CustomResource):
         __props__.__dict__["extension_scale_groups"] = extension_scale_groups
         __props__.__dict__["flavor_id"] = flavor_id
         __props__.__dict__["hostname_config"] = hostname_config
+        __props__.__dict__["ignore_initial_node_count"] = ignore_initial_node_count
         __props__.__dict__["initial_node_count"] = initial_node_count
         __props__.__dict__["initialized_conditions"] = initialized_conditions
         __props__.__dict__["key_pair"] = key_pair
@@ -2559,7 +2802,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies whether auto renew is enabled. Valid values are "true" and "false".
+        Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -2610,7 +2853,7 @@ class NodePool(pulumi.CustomResource):
     def data_volumes(self) -> pulumi.Output[Sequence['outputs.NodePoolDataVolume']]:
         """
         Specifies the configuration of the data disks.
-        The structure is described below.
+        The data_volumes structure is documented below.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -2649,8 +2892,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="extendParams")
     def extend_params(self) -> pulumi.Output['outputs.NodePoolExtendParams']:
         """
-        Specifies the extended parameters.
-        The object structure is documented below.
+        Specifies the disk expansion parameters.
         """
         return pulumi.get(self, "extend_params")
 
@@ -2659,7 +2901,7 @@ class NodePool(pulumi.CustomResource):
     def extension_scale_groups(self) -> pulumi.Output[Sequence['outputs.NodePoolExtensionScaleGroup']]:
         """
         Specifies the configurations of extended scaling groups in the node pool.
-        The object structure is documented below.
+        The extension_scale_groups structure is documented below.
         """
         return pulumi.get(self, "extension_scale_groups")
 
@@ -2677,9 +2919,18 @@ class NodePool(pulumi.CustomResource):
         """
         Specifies the hostname config of the kubernetes node,
         which is supported by clusters of v1.23.6-r0 to v1.25 or clusters of v1.25.2-r0 or later versions.
-        The object structure is documented below.
+        The hostname_config structure is documented below.
         """
         return pulumi.get(self, "hostname_config")
+
+    @_builtins.property
+    @pulumi.getter(name="ignoreInitialNodeCount")
+    def ignore_initial_node_count(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies whether to ignore the changes of `initial_node_count`,
+        defaults to **true**.
+        """
+        return pulumi.get(self, "ignore_initial_node_count")
 
     @_builtins.property
     @pulumi.getter(name="initialNodeCount")
@@ -2712,7 +2963,7 @@ class NodePool(pulumi.CustomResource):
     def label_policy_on_existing_nodes(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the label policy on existing nodes.
-        The value can be **ignore** and **refresh**, defaults to **refresh**.
+        The value can be: **ignore** and **refresh**, defaults to **refresh**.
         """
         return pulumi.get(self, "label_policy_on_existing_nodes")
 
@@ -2728,7 +2979,9 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="maxNodeCount")
     def max_node_count(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Specifies the maximum number of nodes allowed if auto scaling is enabled.
+        Specifies the maximum number of nodes that can be retained in the scaling group
+        during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+        than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
         """
         return pulumi.get(self, "max_node_count")
 
@@ -2736,7 +2989,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="maxPods")
     def max_pods(self) -> pulumi.Output[_builtins.int]:
         """
-        schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        Specifies the maximum number of instances a node is allowed to create.
         """
         return pulumi.get(self, "max_pods")
 
@@ -2744,7 +2997,8 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="minNodeCount")
     def min_node_count(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Specifies the minimum number of nodes allowed if auto scaling is enabled.
+        Specifies the minimum number of nodes in the scaling group during auto scaling.
+        The value must be greater than **0**.
         """
         return pulumi.get(self, "min_node_count")
 
@@ -2752,7 +3006,12 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the node pool name.
+        Specifies the name of an extended scaling group.
+        The value cannot be default and can contain a maximum of 55 characters.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+
+        <a name="spec_struct"></a>
+        The `spec` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -2793,8 +3052,8 @@ class NodePool(pulumi.CustomResource):
     def period(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
         Specifies the charging period of the CCE node pool. If `period_unit` is set to
-        *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter
-        is mandatory if `charging_mode` is set to *prePaid*.
+        *month*, the value ranges from 1 to 9. If `period_unit` is set to **year**, the value ranges from 1 to 3. This parameter
+        is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period")
 
@@ -2803,7 +3062,7 @@ class NodePool(pulumi.CustomResource):
     def period_unit(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Specifies the charging period unit of the CCE node pool.
-        Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+        Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period_unit")
 
@@ -2820,7 +3079,8 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter
     def postinstall(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        Specifies the script to be executed after installation.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "postinstall")
 
@@ -2828,7 +3088,8 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter
     def preinstall(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        schema: Deprecated; This parameter can be configured in the 'extend_params' parameter.
+        Specifies the script to be executed before installation.
+        The input value can be a Base64 encoded string or not.
         """
         return pulumi.get(self, "preinstall")
 
@@ -2855,7 +3116,7 @@ class NodePool(pulumi.CustomResource):
     def root_volume(self) -> pulumi.Output['outputs.NodePoolRootVolume']:
         """
         Specifies the configuration of the system disk.
-        The structure is described below.
+        The root_volume structure is documented below.
         """
         return pulumi.get(self, "root_volume")
 
@@ -2863,8 +3124,8 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter
     def runtime(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the runtime of the CCE node pool. Valid values are *docker* and
-        *containerd*.
+        Specifies the runtime of the CCE node pool. Valid values are **docker**
+        and **containerd**.
         """
         return pulumi.get(self, "runtime")
 
@@ -2880,8 +3141,8 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="scallEnable")
     def scall_enable(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Specifies whether to enable auto scaling.
-        If Autoscaler is enabled, install the autoscaler add-on to use the auto scaling feature.
+        Specifies whether to enable auto-scaling.
+        If Autoscaler is enabled, install the autoscaler add-on to use the auto-scaling feature.
         """
         return pulumi.get(self, "scall_enable")
 
@@ -2917,6 +3178,10 @@ class NodePool(pulumi.CustomResource):
         If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled),
         this parameter must be specified.
         If you want to store system components in the system disk, this parameter must be specified.
+        The storage structure is documented below.
+
+        <a name="root_volume_struct"></a>
+        The `root_volume` block supports:
         """
         return pulumi.get(self, "storage")
 
@@ -2941,7 +3206,7 @@ class NodePool(pulumi.CustomResource):
     def tag_policy_on_existing_nodes(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the tag policy on existing nodes.
-        The value can be **ignore** and **refresh**, defaults to **ignore**.
+        The value can be: **ignore** and **refresh**, defaults to **ignore**.
         """
         return pulumi.get(self, "tag_policy_on_existing_nodes")
 
@@ -2958,7 +3223,7 @@ class NodePool(pulumi.CustomResource):
     def taint_policy_on_existing_nodes(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the taint policy on existing nodes.
-        The value can be **ignore** and **refresh**, defaults to **refresh**.
+        The value can be: **ignore** and **refresh**, defaults to **refresh**.
         """
         return pulumi.get(self, "taint_policy_on_existing_nodes")
 
@@ -2967,7 +3232,7 @@ class NodePool(pulumi.CustomResource):
     def taints(self) -> pulumi.Output[Optional[Sequence['outputs.NodePoolTaint']]]:
         """
         Specifies the taints configuration of the nodes to set anti-affinity.
-        The structure is described below.
+        The taints structure is documented below.
         """
         return pulumi.get(self, "taints")
 
@@ -2975,7 +3240,21 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+        Specifies the hostname type of the kubernetes node.
+        The value can be:
+        + **privateIp**: The Kubernetes node is named after its IP address.
+        + **cceNodeName**: The Kubernetes node is named after the CCE node.
+
+        If `hostname_config` not specified, the default value is **privateIp**.
+
+        ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+        The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+        after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+        each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+        characters is a lowercase letter or a digit ranging from 0 to 9.
+
+        <a name="extension_scale_groups_struct"></a>
+        The `extension_scale_groups` block supports:
         """
         return pulumi.get(self, "type")
 

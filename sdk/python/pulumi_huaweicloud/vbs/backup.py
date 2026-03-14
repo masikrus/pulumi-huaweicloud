@@ -29,6 +29,7 @@ class BackupArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['BackupTagArgs']]]] = None):
         """
         The set of arguments for constructing a Backup resource.
+
         :param pulumi.Input[_builtins.str] volume_id: The id of the disk to be backed up. Changing the parameter creates a new
                backup.
         :param pulumi.Input[_builtins.str] description: The description of the vbs backup. Changing the parameter creates a new
@@ -149,6 +150,7 @@ class _BackupState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Backup resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: The AZ where the backup resides.
         :param pulumi.Input[_builtins.str] container: The container of the backup.
         :param pulumi.Input[_builtins.str] created_at: Backup creation time.
@@ -357,7 +359,7 @@ class _BackupState:
         pulumi.set(self, "volume_id", value)
 
 
-@pulumi.type_token("huaweicloud:vbs/backup:Backup")
+@pulumi.type_token("huaweicloud:Vbs/backup:Backup")
 class Backup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -407,8 +409,9 @@ class Backup(pulumi.CustomResource):
         VBS Backup can be imported using the `backup id`, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:vbs/backup:Backup  huaweicloud_vbs_backup.backup_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+         $ pulumi import huaweicloud:Vbs/backup:Backup backup_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -467,8 +470,9 @@ class Backup(pulumi.CustomResource):
         VBS Backup can be imported using the `backup id`, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:vbs/backup:Backup  huaweicloud_vbs_backup.backup_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+         $ pulumi import huaweicloud:Vbs/backup:Backup backup_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackupArgs args: The arguments to use to populate this resource's properties.
@@ -516,7 +520,7 @@ class Backup(pulumi.CustomResource):
             __props__.__dict__["size"] = None
             __props__.__dict__["status"] = None
         super(Backup, __self__).__init__(
-            'huaweicloud:vbs/backup:Backup',
+            'huaweicloud:Vbs/backup:Backup',
             resource_name,
             __props__,
             opts)

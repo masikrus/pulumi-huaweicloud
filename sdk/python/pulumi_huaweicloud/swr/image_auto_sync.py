@@ -27,6 +27,7 @@ class ImageAutoSyncArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ImageAutoSync resource.
+
         :param pulumi.Input[_builtins.str] organization: Specifies the name of the organization.
                
                Changing this parameter will create a new resource.
@@ -155,6 +156,7 @@ class _ImageAutoSyncState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ImageAutoSync resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time.
         :param pulumi.Input[_builtins.str] organization: Specifies the name of the organization.
                
@@ -339,14 +341,20 @@ class ImageAutoSync(pulumi.CustomResource):
         ## Import
 
         The SWR image auto sync can be imported using the organization name, repository name,
+        target region and target organization separated by slashes or commas, e.g.:
 
-        target region and target organization separated by a slash, e.g.:
-
-        bash
+        Only when repository name is with no slashes, can use slashes to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/imageAutoSync:ImageAutoSync test <organization_name>/<repository_name>/<target_region>/<target_organization>
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/imageAutoSync:ImageAutoSync test <organization_name>,<repository_name>,<target_region>,<target_organization>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -398,14 +406,20 @@ class ImageAutoSync(pulumi.CustomResource):
         ## Import
 
         The SWR image auto sync can be imported using the organization name, repository name,
+        target region and target organization separated by slashes or commas, e.g.:
 
-        target region and target organization separated by a slash, e.g.:
-
-        bash
+        Only when repository name is with no slashes, can use slashes to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/imageAutoSync:ImageAutoSync test <organization_name>/<repository_name>/<target_region>/<target_organization>
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/imageAutoSync:ImageAutoSync test <organization_name>,<repository_name>,<target_region>,<target_organization>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageAutoSyncArgs args: The arguments to use to populate this resource's properties.

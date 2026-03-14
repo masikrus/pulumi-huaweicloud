@@ -259,7 +259,7 @@ def get_subscription_resource(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_subscription_resource(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_subscription_resource(workspace_id=workspace_id,
         sku="FLOW_DATA_BANDWIDTH")
     ```
 
@@ -276,7 +276,7 @@ def get_subscription_resource(region: Optional[_builtins.str] = None,
     __args__['sku'] = sku
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getSubscriptionResource:getSubscriptionResource', __args__, opts=opts, typ=GetSubscriptionResourceResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getSubscriptionResource:getSubscriptionResource', __args__, opts=opts, typ=GetSubscriptionResourceResult).value
 
     return AwaitableGetSubscriptionResourceResult(
         create_time=pulumi.get(__ret__, 'create_time'),
@@ -312,7 +312,7 @@ def get_subscription_resource_output(region: Optional[pulumi.Input[Optional[_bui
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_subscription_resource(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_subscription_resource(workspace_id=workspace_id,
         sku="FLOW_DATA_BANDWIDTH")
     ```
 
@@ -329,7 +329,7 @@ def get_subscription_resource_output(region: Optional[pulumi.Input[Optional[_bui
     __args__['sku'] = sku
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getSubscriptionResource:getSubscriptionResource', __args__, opts=opts, typ=GetSubscriptionResourceResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getSubscriptionResource:getSubscriptionResource', __args__, opts=opts, typ=GetSubscriptionResourceResult)
     return __ret__.apply(lambda __response__: GetSubscriptionResourceResult(
         create_time=pulumi.get(__response__, 'create_time'),
         id=pulumi.get(__response__, 'id'),

@@ -27,6 +27,7 @@ class FlinkTemplateArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FlinkTemplate resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the flink template.
         :param pulumi.Input[_builtins.str] name: The name of the flink template.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -145,6 +146,7 @@ class _FlinkTemplateState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FlinkTemplate resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the flink template.
         :param pulumi.Input[_builtins.str] name: The name of the flink template.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -291,41 +293,29 @@ class FlinkTemplate(pulumi.CustomResource):
 
         The flink template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/flinkTemplate:FlinkTemplate test 1231
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `tags`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        bash
-
+        ```sh
         resource "huaweicloud_dli_flink_template" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               tags
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -375,41 +365,29 @@ class FlinkTemplate(pulumi.CustomResource):
 
         The flink template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/flinkTemplate:FlinkTemplate test 1231
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `tags`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        bash
-
+        ```sh
         resource "huaweicloud_dli_flink_template" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               tags
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param FlinkTemplateArgs args: The arguments to use to populate this resource's properties.

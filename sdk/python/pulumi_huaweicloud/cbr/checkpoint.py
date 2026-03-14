@@ -29,6 +29,7 @@ class CheckpointArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Checkpoint resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['CheckpointBackupArgs']]] backups: Specifies the backup resources configuration.
                The backups structure is documented below.
                Changing this will create a new resource.
@@ -159,6 +160,7 @@ class _CheckpointState:
                  vault_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Checkpoint resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['CheckpointBackupArgs']]] backups: Specifies the backup resources configuration.
                The backups structure is documented below.
                Changing this will create a new resource.
@@ -338,10 +340,11 @@ class Checkpoint(pulumi.CustomResource):
             backups=[{
                 "type": "OS::Nova::Server",
                 "resource_id": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in backup_resource_ids]],
+            } for entry in [{"key": k, "value": v} for k, v in backup_resource_ids.items()]],
             vault_id=vault_id,
             name=checkpoint_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -388,10 +391,11 @@ class Checkpoint(pulumi.CustomResource):
             backups=[{
                 "type": "OS::Nova::Server",
                 "resource_id": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in backup_resource_ids]],
+            } for entry in [{"key": k, "value": v} for k, v in backup_resource_ids.items()]],
             vault_id=vault_id,
             name=checkpoint_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CheckpointArgs args: The arguments to use to populate this resource's properties.

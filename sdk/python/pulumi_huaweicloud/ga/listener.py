@@ -30,6 +30,7 @@ class ListenerArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Listener resource.
+
         :param pulumi.Input[_builtins.str] accelerator_id: Specifies the ID of the global accelerator associated with the listener.
                
                Changing this parameter will create a new resource.
@@ -181,6 +182,7 @@ class _ListenerState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Listener resources.
+
         :param pulumi.Input[_builtins.str] accelerator_id: Specifies the ID of the global accelerator associated with the listener.
                
                Changing this parameter will create a new resource.
@@ -383,7 +385,7 @@ class _ListenerState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:ga/listener:Listener")
+@pulumi.type_token("huaweicloud:Ga/listener:Listener")
 class Listener(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -425,11 +427,10 @@ class Listener(pulumi.CustomResource):
 
         The listener can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/listener:Listener test <id>
+        $ pulumi import huaweicloud:Ga/listener:Listener test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -490,11 +491,10 @@ class Listener(pulumi.CustomResource):
 
         The listener can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/listener:Listener test <id>
+        $ pulumi import huaweicloud:Ga/listener:Listener test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ListenerArgs args: The arguments to use to populate this resource's properties.
@@ -545,7 +545,7 @@ class Listener(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Listener, __self__).__init__(
-            'huaweicloud:ga/listener:Listener',
+            'huaweicloud:Ga/listener:Listener',
             resource_name,
             __props__,
             opts)

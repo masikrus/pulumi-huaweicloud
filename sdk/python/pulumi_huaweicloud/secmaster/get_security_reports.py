@@ -125,7 +125,7 @@ def get_security_reports(region: Optional[_builtins.str] = None,
     workspace_id = config.require_object("workspaceId")
     report_period = config.require_object("reportPeriod")
     status = config.require_object("status")
-    test = huaweicloud.secmaster.get_security_reports(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_security_reports(workspace_id=workspace_id,
         report_period=report_period,
         status=status)
     ```
@@ -145,7 +145,7 @@ def get_security_reports(region: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getSecurityReports:getSecurityReports', __args__, opts=opts, typ=GetSecurityReportsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getSecurityReports:getSecurityReports', __args__, opts=opts, typ=GetSecurityReportsResult).value
 
     return AwaitableGetSecurityReportsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -172,7 +172,7 @@ def get_security_reports_output(region: Optional[pulumi.Input[Optional[_builtins
     workspace_id = config.require_object("workspaceId")
     report_period = config.require_object("reportPeriod")
     status = config.require_object("status")
-    test = huaweicloud.secmaster.get_security_reports(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_security_reports(workspace_id=workspace_id,
         report_period=report_period,
         status=status)
     ```
@@ -192,7 +192,7 @@ def get_security_reports_output(region: Optional[pulumi.Input[Optional[_builtins
     __args__['status'] = status
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getSecurityReports:getSecurityReports', __args__, opts=opts, typ=GetSecurityReportsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getSecurityReports:getSecurityReports', __args__, opts=opts, typ=GetSecurityReportsResult)
     return __ret__.apply(lambda __response__: GetSecurityReportsResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

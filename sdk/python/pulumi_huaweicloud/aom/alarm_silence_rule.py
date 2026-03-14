@@ -29,6 +29,7 @@ class AlarmSilenceRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlarmSilenceRule resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['AlarmSilenceRuleSilenceConditionArgs']]] silence_conditions: Specifies the silence conditions of the rule.
                Different silence conditions are parallel. A maximum of 10 silence conditions are allowed.
                The silence_conditions structure is documented below.
@@ -154,6 +155,7 @@ class _AlarmSilenceRuleState:
                  updated_at: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AlarmSilenceRule resources.
+
         :param pulumi.Input[_builtins.int] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description.
                
@@ -349,11 +351,10 @@ class AlarmSilenceRule(pulumi.CustomResource):
 
         The application operations management can be imported using the `id` (name), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmSilenceRule:AlarmSilenceRule test test_rule
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -418,11 +419,10 @@ class AlarmSilenceRule(pulumi.CustomResource):
 
         The application operations management can be imported using the `id` (name), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmSilenceRule:AlarmSilenceRule test test_rule
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlarmSilenceRuleArgs args: The arguments to use to populate this resource's properties.

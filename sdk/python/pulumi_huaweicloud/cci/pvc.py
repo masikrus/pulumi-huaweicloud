@@ -27,6 +27,7 @@ class PvcArgs:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Pvc resource.
+
         :param pulumi.Input[_builtins.str] namespace: Specifies the namespace to logically divide your cloud container instances
                into different group. Changing this will create a new PVC resource.
         :param pulumi.Input[_builtins.str] volume_id: Specifies the ID of the storage bound to the CCI Namespace. Changing this
@@ -151,6 +152,7 @@ class _PvcState:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pvc resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] access_modes: The access mode the volume should have.
         :param pulumi.Input[_builtins.str] creation_timestamp: The server time when PVC was created.
         :param pulumi.Input[_builtins.str] device_mount_path: Specifies the share path of the SFS storage bound to the CCI
@@ -416,11 +418,10 @@ class Pvc(pulumi.CustomResource):
 
         PVCs can be imported using the `namespace`, `volume_type` and `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cci/pvc:Pvc test <namespace>/<volume_type>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -527,11 +528,10 @@ class Pvc(pulumi.CustomResource):
 
         PVCs can be imported using the `namespace`, `volume_type` and `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cci/pvc:Pvc test <namespace>/<volume_type>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PvcArgs args: The arguments to use to populate this resource's properties.

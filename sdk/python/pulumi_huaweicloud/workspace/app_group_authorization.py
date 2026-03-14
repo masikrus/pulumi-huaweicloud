@@ -26,6 +26,7 @@ class AppGroupAuthorizationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppGroupAuthorization resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['AppGroupAuthorizationAccountArgs']]] accounts: Specifies the list of the accounts to be authorized. The maximum length is `50`.
                Changing this creates a new resource.
                The accounts structure is documented below.
@@ -102,6 +103,7 @@ class _AppGroupAuthorizationState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppGroupAuthorization resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['AppGroupAuthorizationAccountArgs']]] accounts: Specifies the list of the accounts to be authorized. The maximum length is `50`.
                Changing this creates a new resource.
                The accounts structure is documented below.
@@ -201,9 +203,10 @@ class AppGroupAuthorization(pulumi.CustomResource):
                 "id": entry["value"]["id"],
                 "account": entry["value"]["name"],
                 "type": "USER_GROUP",
-            } for entry in [{"key": k, "value": v} for k, v in user_groups]],
+            } for entry in [{"key": k, "value": v} for k, v in user_groups.items()]],
             app_group_id=app_group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -247,9 +250,10 @@ class AppGroupAuthorization(pulumi.CustomResource):
                 "id": entry["value"]["id"],
                 "account": entry["value"]["name"],
                 "type": "USER_GROUP",
-            } for entry in [{"key": k, "value": v} for k, v in user_groups]],
+            } for entry in [{"key": k, "value": v} for k, v in user_groups.items()]],
             app_group_id=app_group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppGroupAuthorizationArgs args: The arguments to use to populate this resource's properties.

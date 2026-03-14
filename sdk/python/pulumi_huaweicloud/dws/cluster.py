@@ -48,6 +48,7 @@ class ClusterArgs:
                  volume: Optional[pulumi.Input['ClusterVolumeArgs']] = None):
         """
         The set of arguments for constructing a Cluster resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: The availability zone in which to create the cluster instance.
                If there are multiple available zones, separate by commas, e.g. **cn-north-4a,cn-north-4b,cn-north-4g**.
                Currently, multi-AZ clusters only support selecting `3` AZs. Changing this parameter will create a new resource.
@@ -539,6 +540,7 @@ class _ClusterState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: The availability zone in which to create the cluster instance.
                If there are multiple available zones, separate by commas, e.g. **cn-north-4a,cn-north-4b,cn-north-4g**.
                Currently, multi-AZ clusters only support selecting `3` AZs. Changing this parameter will create a new resource.
@@ -1310,41 +1312,17 @@ class Cluster(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/cluster:Cluster test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `user_pwd`, `number_of_cn`, `kms_key_id`,
-
         `volume`, `dss_pool_id`, `logical_cluster_enable`, `lts_enable`, `force_backup`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_cluster" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              user_pwd, number_of_cn, kms_key_id, volume, dss_pool_id, logical_cluster_enable, lts_enable, `force_backup`,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1462,41 +1440,17 @@ class Cluster(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/cluster:Cluster test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `user_pwd`, `number_of_cn`, `kms_key_id`,
-
         `volume`, `dss_pool_id`, `logical_cluster_enable`, `lts_enable`, `force_backup`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_cluster" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              user_pwd, number_of_cn, kms_key_id, volume, dss_pool_id, logical_cluster_enable, lts_enable, `force_backup`,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.

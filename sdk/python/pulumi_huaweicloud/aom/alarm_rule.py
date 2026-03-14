@@ -40,6 +40,7 @@ class AlarmRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlarmRule resource.
+
         :param pulumi.Input[_builtins.str] comparison_operator: Specifies the comparison condition of alarm thresholds.
                The value can be **>**, **=**, **<**, **>=** or **<=**.
         :param pulumi.Input[Sequence[pulumi.Input['AlarmRuleDimensionArgs']]] dimensions: Specifies the list of metric dimensions. The structure is described below.
@@ -348,6 +349,7 @@ class _AlarmRuleState:
                  unit: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlarmRule resources.
+
         :param pulumi.Input[_builtins.bool] alarm_action_enabled: Specifies whether to enable the action to be triggered by an alarm.
                The default value is true. Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alarm_actions: Specifies the action triggered by an alarm. This is a list of strings.
@@ -740,11 +742,10 @@ class AlarmRule(pulumi.CustomResource):
 
         AOM alarm rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmRule:AlarmRule alarm_rule <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -820,11 +821,10 @@ class AlarmRule(pulumi.CustomResource):
 
         AOM alarm rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmRule:AlarmRule alarm_rule <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlarmRuleArgs args: The arguments to use to populate this resource's properties.

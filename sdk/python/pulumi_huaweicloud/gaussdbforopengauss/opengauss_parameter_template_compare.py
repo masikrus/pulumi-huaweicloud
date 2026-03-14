@@ -26,6 +26,7 @@ class OpengaussParameterTemplateCompareArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussParameterTemplateCompare resource.
+
         :param pulumi.Input[_builtins.str] source_id: Specifies the ID of the source parameter template to be compared. Changing
                this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] target_id: Specifies the ID of the destination parameter template to be compared.
@@ -87,6 +88,7 @@ class _OpengaussParameterTemplateCompareState:
                  target_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussParameterTemplateCompare resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['OpengaussParameterTemplateCompareDifferenceArgs']]] differences: Indicates the differences between parameters.
                The differences structure is documented below.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -185,6 +187,7 @@ class OpengaussParameterTemplateCompare(pulumi.CustomResource):
             target_id=target_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -216,6 +219,7 @@ class OpengaussParameterTemplateCompare(pulumi.CustomResource):
             source_id=source_id,
             target_id=target_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussParameterTemplateCompareArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class InstanceRestoreArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceRestore resource.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID used to restore the DCS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance to be restored.
@@ -106,6 +107,7 @@ class _InstanceRestoreState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceRestore resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID used to restore the DCS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the restoration record created.
@@ -255,6 +257,7 @@ class InstanceRestore(pulumi.CustomResource):
             description="test DCS restoration")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID used to restore the DCS instance.
@@ -293,6 +296,7 @@ class InstanceRestore(pulumi.CustomResource):
             backup_id=backup_id,
             description="test DCS restoration")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceRestoreArgs args: The arguments to use to populate this resource's properties.

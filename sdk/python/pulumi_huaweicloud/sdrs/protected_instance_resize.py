@@ -29,6 +29,7 @@ class ProtectedInstanceResizeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ProtectedInstanceResize resource.
+
         :param pulumi.Input[_builtins.str] protected_instance_id: Specifies the ID of the protected instance to resize.
                You can obtain this value by calling the datasource `sdrs_get_protected_instances`.
         :param pulumi.Input[_builtins.str] dr_dedicated_host_id: Specifies the new DeH ID for the DR site.
@@ -212,6 +213,7 @@ class _ProtectedInstanceResizeState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProtectedInstanceResize resources.
+
         :param pulumi.Input[_builtins.str] dr_dedicated_host_id: Specifies the new DeH ID for the DR site.
                
                > 1. If the DR site server is created on a DeH, this parameter must be specified when you modify the specifications of
@@ -383,7 +385,7 @@ class _ProtectedInstanceResizeState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/protectedInstanceResize:ProtectedInstanceResize")
+@pulumi.type_token("huaweicloud:Sdrs/protectedInstanceResize:ProtectedInstanceResize")
 class ProtectedInstanceResize(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -432,6 +434,7 @@ class ProtectedInstanceResize(pulumi.CustomResource):
             protected_instance_id=protected_instance_id,
             flavor_ref=flavor_ref)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -510,6 +513,7 @@ class ProtectedInstanceResize(pulumi.CustomResource):
             flavor_ref=flavor_ref)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ProtectedInstanceResizeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -553,7 +557,7 @@ class ProtectedInstanceResize(pulumi.CustomResource):
             __props__.__dict__["protected_instance_id"] = protected_instance_id
             __props__.__dict__["region"] = region
         super(ProtectedInstanceResize, __self__).__init__(
-            'huaweicloud:sdrs/protectedInstanceResize:ProtectedInstanceResize',
+            'huaweicloud:Sdrs/protectedInstanceResize:ProtectedInstanceResize',
             resource_name,
             __props__,
             opts)

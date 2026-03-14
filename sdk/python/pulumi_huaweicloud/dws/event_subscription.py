@@ -32,6 +32,7 @@ class EventSubscriptionArgs:
                  time_zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EventSubscription resource.
+
         :param pulumi.Input[_builtins.str] enable: Whether the event subscription is enabled.  
                The options are as follows:
                + **1**: open.
@@ -230,6 +231,7 @@ class _EventSubscriptionState:
                  time_zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EventSubscription resources.
+
         :param pulumi.Input[_builtins.str] category: The category of source event.  
                The valid values are **management**, **monitor**, **security** and **system alarm**.
         :param pulumi.Input[_builtins.str] enable: Whether the event subscription is enabled.  
@@ -462,11 +464,10 @@ class EventSubscription(pulumi.CustomResource):
 
         The DWS event subscription can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/eventSubscription:EventSubscription test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -525,11 +526,10 @@ class EventSubscription(pulumi.CustomResource):
 
         The DWS event subscription can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/eventSubscription:EventSubscription test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EventSubscriptionArgs args: The arguments to use to populate this resource's properties.

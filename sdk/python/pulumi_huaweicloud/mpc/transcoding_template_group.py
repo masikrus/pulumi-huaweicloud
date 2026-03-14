@@ -32,6 +32,7 @@ class TranscodingTemplateGroupArgs:
                  videos: Optional[pulumi.Input[Sequence[pulumi.Input['TranscodingTemplateGroupVideoArgs']]]] = None):
         """
         The set of arguments for constructing a TranscodingTemplateGroup resource.
+
         :param pulumi.Input[_builtins.int] output_format: Specifies the packaging type. Possible values are:
                + **1**: HLS
                + **2**: DASH
@@ -220,6 +221,7 @@ class _TranscodingTemplateGroupState:
                  videos: Optional[pulumi.Input[Sequence[pulumi.Input['TranscodingTemplateGroupVideoArgs']]]] = None):
         """
         Input properties used for looking up and filtering TranscodingTemplateGroup resources.
+
         :param pulumi.Input['TranscodingTemplateGroupAudioArgs'] audio: Specifies the audio parameters. The object structure is documented below.
         :param pulumi.Input[_builtins.int] dash_segment_duration: Specifies the dash segment duration, in second.  
                The valid value is range from `2` to `10`, and it is used only when `output_format` is set to `1` or `3`.
@@ -469,11 +471,10 @@ class TranscodingTemplateGroup(pulumi.CustomResource):
 
         MPC transcoding template groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Mpc/transcodingTemplateGroup:TranscodingTemplateGroup test 589e49809bb84447a759f6fa9aa19949
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -555,11 +556,10 @@ class TranscodingTemplateGroup(pulumi.CustomResource):
 
         MPC transcoding template groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Mpc/transcodingTemplateGroup:TranscodingTemplateGroup test 589e49809bb84447a759f6fa9aa19949
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TranscodingTemplateGroupArgs args: The arguments to use to populate this resource's properties.

@@ -19,18 +19,19 @@ __all__ = ['AliasArgs', 'Alias']
 @pulumi.input_type
 class AliasArgs:
     def __init__(__self__, *,
-                 alias: pulumi.Input[_builtins.str],
+                 alias_value: pulumi.Input[_builtins.str],
                  key_id: pulumi.Input[_builtins.str],
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Alias resource.
-        :param pulumi.Input[_builtins.str] alias: Specifies the alias of the key, it can only be prefixed with **alias/**.
+
+        :param pulumi.Input[_builtins.str] alias_value: Specifies the alias of the key, it can only be prefixed with **alias/**.
         :param pulumi.Input[_builtins.str] key_id: Specifies the key ID used to bind the alias.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
-        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "alias_value", alias_value)
         pulumi.set(__self__, "key_id", key_id)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
@@ -38,16 +39,16 @@ class AliasArgs:
             pulumi.set(__self__, "region", region)
 
     @_builtins.property
-    @pulumi.getter
-    def alias(self) -> pulumi.Input[_builtins.str]:
+    @pulumi.getter(name="AliasValue")
+    def alias_value(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the alias of the key, it can only be prefixed with **alias/**.
         """
-        return pulumi.get(self, "alias")
+        return pulumi.get(self, "alias_value")
 
-    @alias.setter
-    def alias(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "alias", value)
+    @alias_value.setter
+    def alias_value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "alias_value", value)
 
     @_builtins.property
     @pulumi.getter(name="keyId")
@@ -87,7 +88,7 @@ class AliasArgs:
 @pulumi.input_type
 class _AliasState:
     def __init__(__self__, *,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias_value: Optional[pulumi.Input[_builtins.str]] = None,
                  alias_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  create_time: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
@@ -96,7 +97,8 @@ class _AliasState:
                  update_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Alias resources.
-        :param pulumi.Input[_builtins.str] alias: Specifies the alias of the key, it can only be prefixed with **alias/**.
+
+        :param pulumi.Input[_builtins.str] alias_value: Specifies the alias of the key, it can only be prefixed with **alias/**.
         :param pulumi.Input[_builtins.str] alias_urn: The alias resource locator.
         :param pulumi.Input[_builtins.str] create_time: The creation time of the alias.
         :param pulumi.Input[_builtins.str] key_id: Specifies the key ID used to bind the alias.
@@ -104,8 +106,8 @@ class _AliasState:
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] update_time: The update time of the alias.
         """
-        if alias is not None:
-            pulumi.set(__self__, "alias", alias)
+        if alias_value is not None:
+            pulumi.set(__self__, "alias_value", alias_value)
         if alias_urn is not None:
             pulumi.set(__self__, "alias_urn", alias_urn)
         if create_time is not None:
@@ -120,16 +122,16 @@ class _AliasState:
             pulumi.set(__self__, "update_time", update_time)
 
     @_builtins.property
-    @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    @pulumi.getter(name="AliasValue")
+    def alias_value(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the alias of the key, it can only be prefixed with **alias/**.
         """
-        return pulumi.get(self, "alias")
+        return pulumi.get(self, "alias_value")
 
-    @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "alias", value)
+    @alias_value.setter
+    def alias_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "alias_value", value)
 
     @_builtins.property
     @pulumi.getter(name="aliasUrn")
@@ -208,7 +210,7 @@ class Alias(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias_value: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -227,22 +229,21 @@ class Alias(pulumi.CustomResource):
         alias = config.require_object("alias")
         test = huaweicloud.dew.Alias("test",
             key_id=key_id,
-            alias=alias)
+            alias_value=alias)
         ```
 
         ## Import
 
         The KMS alias can be imported using `key_id` and `alias`, separated by a question mark (?), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/alias:Alias test <key_id>?<alias>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] alias: Specifies the alias of the key, it can only be prefixed with **alias/**.
+        :param pulumi.Input[_builtins.str] alias_value: Specifies the alias of the key, it can only be prefixed with **alias/**.
         :param pulumi.Input[_builtins.str] key_id: Specifies the key ID used to bind the alias.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -267,18 +268,17 @@ class Alias(pulumi.CustomResource):
         alias = config.require_object("alias")
         test = huaweicloud.dew.Alias("test",
             key_id=key_id,
-            alias=alias)
+            alias_value=alias)
         ```
 
         ## Import
 
         The KMS alias can be imported using `key_id` and `alias`, separated by a question mark (?), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/alias:Alias test <key_id>?<alias>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AliasArgs args: The arguments to use to populate this resource's properties.
@@ -295,7 +295,7 @@ class Alias(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias_value: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -308,9 +308,9 @@ class Alias(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AliasArgs.__new__(AliasArgs)
 
-            if alias is None and not opts.urn:
-                raise TypeError("Missing required property 'alias'")
-            __props__.__dict__["alias"] = alias
+            if alias_value is None and not opts.urn:
+                raise TypeError("Missing required property 'alias_value'")
+            __props__.__dict__["alias_value"] = alias_value
             __props__.__dict__["enable_force_new"] = enable_force_new
             if key_id is None and not opts.urn:
                 raise TypeError("Missing required property 'key_id'")
@@ -329,7 +329,7 @@ class Alias(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alias: Optional[pulumi.Input[_builtins.str]] = None,
+            alias_value: Optional[pulumi.Input[_builtins.str]] = None,
             alias_urn: Optional[pulumi.Input[_builtins.str]] = None,
             create_time: Optional[pulumi.Input[_builtins.str]] = None,
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
@@ -343,7 +343,7 @@ class Alias(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] alias: Specifies the alias of the key, it can only be prefixed with **alias/**.
+        :param pulumi.Input[_builtins.str] alias_value: Specifies the alias of the key, it can only be prefixed with **alias/**.
         :param pulumi.Input[_builtins.str] alias_urn: The alias resource locator.
         :param pulumi.Input[_builtins.str] create_time: The creation time of the alias.
         :param pulumi.Input[_builtins.str] key_id: Specifies the key ID used to bind the alias.
@@ -355,7 +355,7 @@ class Alias(pulumi.CustomResource):
 
         __props__ = _AliasState.__new__(_AliasState)
 
-        __props__.__dict__["alias"] = alias
+        __props__.__dict__["alias_value"] = alias_value
         __props__.__dict__["alias_urn"] = alias_urn
         __props__.__dict__["create_time"] = create_time
         __props__.__dict__["enable_force_new"] = enable_force_new
@@ -365,12 +365,12 @@ class Alias(pulumi.CustomResource):
         return Alias(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter
-    def alias(self) -> pulumi.Output[_builtins.str]:
+    @pulumi.getter(name="AliasValue")
+    def alias_value(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the alias of the key, it can only be prefixed with **alias/**.
         """
-        return pulumi.get(self, "alias")
+        return pulumi.get(self, "alias_value")
 
     @_builtins.property
     @pulumi.getter(name="aliasUrn")

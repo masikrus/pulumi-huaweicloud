@@ -32,11 +32,11 @@ class ImageMetadataArgs:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ImageMetadata resource.
+
         :param pulumi.Input[_builtins.str] __os_version: Specifies the specific version of the operating system for the
                specified image. If omitted, the default setting is **Other Linux (64 bit)**, and there is no guarantee that this
                image will successfully create a virtual machine or that virtual machines created through this image will function
-               properly. For the range of values,
-               Please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
+               properly. For the range of values, please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
         :param pulumi.Input[_builtins.str] container_format: Specifies the container format.
                The default value is **bare**.
         :param pulumi.Input[_builtins.str] disk_format: Specifies image format.
@@ -51,7 +51,7 @@ class ImageMetadataArgs:
         :param pulumi.Input[_builtins.str] name: Specifies the name of the image metadata.
                If omitted, it defaults to empty, but creating a virtual opportunity using this image fails. The length ranges from
                `1` to `255` characters. Please refer to the document link for the description of the `name` parameter
-               [reference](https://https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
+               [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
         :param pulumi.Input[_builtins.bool] protected: Specifies whether the image is protected, and the protected image cannot
                be deleted. The default value is **false**.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -91,8 +91,7 @@ class ImageMetadataArgs:
         Specifies the specific version of the operating system for the
         specified image. If omitted, the default setting is **Other Linux (64 bit)**, and there is no guarantee that this
         image will successfully create a virtual machine or that virtual machines created through this image will function
-        properly. For the range of values,
-        Please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
+        properly. For the range of values, please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
         """
         return pulumi.get(self, "__os_version")
 
@@ -171,7 +170,7 @@ class ImageMetadataArgs:
         Specifies the name of the image metadata.
         If omitted, it defaults to empty, but creating a virtual opportunity using this image fails. The length ranges from
         `1` to `255` characters. Please refer to the document link for the description of the `name` parameter
-        [reference](https://https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
+        [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
         """
         return pulumi.get(self, "name")
 
@@ -297,6 +296,7 @@ class _ImageMetadataState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ImageMetadata resources.
+
         :param pulumi.Input[_builtins.str] __account_code: The charging identifier for the image.
         :param pulumi.Input[_builtins.str] __backup_id: The backup ID. If the image is not created by backup, the value is empty.
         :param pulumi.Input[_builtins.str] __data_origin: The image source. If the image is a public image, value is empty.
@@ -321,8 +321,7 @@ class _ImageMetadataState:
         :param pulumi.Input[_builtins.str] __os_version: Specifies the specific version of the operating system for the
                specified image. If omitted, the default setting is **Other Linux (64 bit)**, and there is no guarantee that this
                image will successfully create a virtual machine or that virtual machines created through this image will function
-               properly. For the range of values,
-               Please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
+               properly. For the range of values, please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
         :param pulumi.Input[_builtins.str] __platform: The classification of image platforms, includes **Windows**, **Ubuntu**, **Red Hat**, **SUSE**,
                **CentOS**, **Debian**, **OpenSUSE**, **Oracle Linux**, **Fedora**, **Other**, **CoreOS**, and **Euler OS**.
         :param pulumi.Input[_builtins.str] __productcode: The product ID of the market image.
@@ -386,7 +385,7 @@ class _ImageMetadataState:
         :param pulumi.Input[_builtins.str] name: Specifies the name of the image metadata.
                If omitted, it defaults to empty, but creating a virtual opportunity using this image fails. The length ranges from
                `1` to `255` characters. Please refer to the document link for the description of the `name` parameter
-               [reference](https://https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
+               [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
         :param pulumi.Input[_builtins.str] os_shutdown_timeout: The timeout duration for a graceful shutdown.
                The value is an integer ranging from `60` to `300`, in seconds. The default value is `60`.
         :param pulumi.Input[_builtins.bool] protected: Specifies whether the image is protected, and the protected image cannot
@@ -727,8 +726,7 @@ class _ImageMetadataState:
         Specifies the specific version of the operating system for the
         specified image. If omitted, the default setting is **Other Linux (64 bit)**, and there is no guarantee that this
         image will successfully create a virtual machine or that virtual machines created through this image will function
-        properly. For the range of values,
-        Please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
+        properly. For the range of values, please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
         """
         return pulumi.get(self, "__os_version")
 
@@ -1164,7 +1162,7 @@ class _ImageMetadataState:
         Specifies the name of the image metadata.
         If omitted, it defaults to empty, but creating a virtual opportunity using this image fails. The length ranges from
         `1` to `255` characters. Please refer to the document link for the description of the `name` parameter
-        [reference](https://https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
+        [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
         """
         return pulumi.get(self, "name")
 
@@ -1355,19 +1353,17 @@ class ImageMetadata(pulumi.CustomResource):
 
         The IMS image metadata resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/imageMetadata:ImageMetadata test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] __os_version: Specifies the specific version of the operating system for the
                specified image. If omitted, the default setting is **Other Linux (64 bit)**, and there is no guarantee that this
                image will successfully create a virtual machine or that virtual machines created through this image will function
-               properly. For the range of values,
-               Please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
+               properly. For the range of values, please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
         :param pulumi.Input[_builtins.str] container_format: Specifies the container format.
                The default value is **bare**.
         :param pulumi.Input[_builtins.str] disk_format: Specifies image format.
@@ -1382,7 +1378,7 @@ class ImageMetadata(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Specifies the name of the image metadata.
                If omitted, it defaults to empty, but creating a virtual opportunity using this image fails. The length ranges from
                `1` to `255` characters. Please refer to the document link for the description of the `name` parameter
-               [reference](https://https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
+               [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
         :param pulumi.Input[_builtins.bool] protected: Specifies whether the image is protected, and the protected image cannot
                be deleted. The default value is **false**.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -1427,11 +1423,10 @@ class ImageMetadata(pulumi.CustomResource):
 
         The IMS image metadata resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/imageMetadata:ImageMetadata test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageMetadataArgs args: The arguments to use to populate this resource's properties.
@@ -1629,8 +1624,7 @@ class ImageMetadata(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] __os_version: Specifies the specific version of the operating system for the
                specified image. If omitted, the default setting is **Other Linux (64 bit)**, and there is no guarantee that this
                image will successfully create a virtual machine or that virtual machines created through this image will function
-               properly. For the range of values,
-               Please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
+               properly. For the range of values, please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
         :param pulumi.Input[_builtins.str] __platform: The classification of image platforms, includes **Windows**, **Ubuntu**, **Red Hat**, **SUSE**,
                **CentOS**, **Debian**, **OpenSUSE**, **Oracle Linux**, **Fedora**, **Other**, **CoreOS**, and **Euler OS**.
         :param pulumi.Input[_builtins.str] __productcode: The product ID of the market image.
@@ -1694,7 +1688,7 @@ class ImageMetadata(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Specifies the name of the image metadata.
                If omitted, it defaults to empty, but creating a virtual opportunity using this image fails. The length ranges from
                `1` to `255` characters. Please refer to the document link for the description of the `name` parameter
-               [reference](https://https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
+               [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
         :param pulumi.Input[_builtins.str] os_shutdown_timeout: The timeout duration for a graceful shutdown.
                The value is an integer ranging from `60` to `300`, in seconds. The default value is `60`.
         :param pulumi.Input[_builtins.bool] protected: Specifies whether the image is protected, and the protected image cannot
@@ -1920,8 +1914,7 @@ class ImageMetadata(pulumi.CustomResource):
         Specifies the specific version of the operating system for the
         specified image. If omitted, the default setting is **Other Linux (64 bit)**, and there is no guarantee that this
         image will successfully create a virtual machine or that virtual machines created through this image will function
-        properly. For the range of values,
-        Please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
+        properly. For the range of values, please refer to the document link [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
         """
         return pulumi.get(self, "__os_version")
 
@@ -2221,7 +2214,7 @@ class ImageMetadata(pulumi.CustomResource):
         Specifies the name of the image metadata.
         If omitted, it defaults to empty, but creating a virtual opportunity using this image fails. The length ranges from
         `1` to `255` characters. Please refer to the document link for the description of the `name` parameter
-        [reference](https://https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
+        [reference](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0901.html#ims_03_0901__section61598810155254).
         """
         return pulumi.get(self, "name")
 

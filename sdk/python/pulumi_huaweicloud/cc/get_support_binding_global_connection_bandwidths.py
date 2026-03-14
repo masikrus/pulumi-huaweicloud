@@ -246,13 +246,15 @@ def get_support_binding_global_connection_bandwidths(admin_state: Optional[_buil
     :param _builtins.str gcb_id: Specifies the global connection bandwidth ID.
     :param _builtins.str local_area: Specifies the local access point.
            If the bandwidth type is set to **region**, all multi-city bandwidths that meet the filtering criteria are returned.
-           This field is not matched for filtering. For other types, this field is used to match **local_area** of the backbone bandwidth.
+           This field is not matched for filtering. For other types, this field is used to match **local_area** of the backbone
+           bandwidth.
     :param _builtins.str name: Specifies the global connection bandwidth name.
     :param _builtins.str region: Specifies the region in which to query the resource.
            If omitted, the provider-level region will be used.
     :param _builtins.str remote_area: Specifies the remote access point.
            If the bandwidth type is set to **region**, all multi-city bandwidths that meet the filtering criteria are returned.
-           This field is not matched for filtering. For other types, this field is used to match **remote_area** of the backbone bandwidth.
+           This field is not matched for filtering. For other types, this field is used to match **remote_area** of the backbone
+           bandwidth.
     :param _builtins.int size: Specifies the global connection bandwidth size.
     :param _builtins.str sla_level: Specifies the class of a global connection bandwidth.
            The valid values are as follows:
@@ -343,13 +345,15 @@ def get_support_binding_global_connection_bandwidths_output(admin_state: Optiona
     :param _builtins.str gcb_id: Specifies the global connection bandwidth ID.
     :param _builtins.str local_area: Specifies the local access point.
            If the bandwidth type is set to **region**, all multi-city bandwidths that meet the filtering criteria are returned.
-           This field is not matched for filtering. For other types, this field is used to match **local_area** of the backbone bandwidth.
+           This field is not matched for filtering. For other types, this field is used to match **local_area** of the backbone
+           bandwidth.
     :param _builtins.str name: Specifies the global connection bandwidth name.
     :param _builtins.str region: Specifies the region in which to query the resource.
            If omitted, the provider-level region will be used.
     :param _builtins.str remote_area: Specifies the remote access point.
            If the bandwidth type is set to **region**, all multi-city bandwidths that meet the filtering criteria are returned.
-           This field is not matched for filtering. For other types, this field is used to match **remote_area** of the backbone bandwidth.
+           This field is not matched for filtering. For other types, this field is used to match **remote_area** of the backbone
+           bandwidth.
     :param _builtins.int size: Specifies the global connection bandwidth size.
     :param _builtins.str sla_level: Specifies the class of a global connection bandwidth.
            The valid values are as follows:

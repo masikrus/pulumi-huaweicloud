@@ -29,6 +29,7 @@ class L7ruleArgs:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a L7rule resource.
+
         :param pulumi.Input[_builtins.str] compare_type: The comparison type for the L7 rule - can either be STARTS_WITH, EQUAL_TO or REGEX
         :param pulumi.Input[_builtins.str] l7policy_id: The ID of the L7 Policy to query. Changing this creates a new L7 Rule.
         :param pulumi.Input[_builtins.str] type: The L7 Rule type - can either be HOST_NAME or PATH. Changing this creates a new
@@ -164,6 +165,7 @@ class _L7ruleState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering L7rule resources.
+
         :param pulumi.Input[_builtins.str] compare_type: The comparison type for the L7 rule - can either be STARTS_WITH, EQUAL_TO or REGEX
         :param pulumi.Input[_builtins.str] key: The key to use for the comparison. For example, the name of the cookie to
                evaluate. Valid when `type` is set to COOKIE or HEADER. Changing this creates a new L7 Rule.
@@ -359,11 +361,10 @@ class L7rule(pulumi.CustomResource):
 
         Load Balancer L7 Rule can be imported using the L7 Policy ID and L7 Rule ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/l7rule:L7rule l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -423,11 +424,10 @@ class L7rule(pulumi.CustomResource):
 
         Load Balancer L7 Rule can be imported using the L7 Policy ID and L7 Rule ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/l7rule:L7rule l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e
         ```
+
 
         :param str resource_name: The name of the resource.
         :param L7ruleArgs args: The arguments to use to populate this resource's properties.

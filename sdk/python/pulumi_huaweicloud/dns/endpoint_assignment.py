@@ -27,6 +27,7 @@ class EndpointAssignmentArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EndpointAssignment resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['EndpointAssignmentAssignmentArgs']]] assignments: Specifies the list of the IP addresses of the endpoint.  
                The valid length of the `assignments` ranges from `2` to `6`.
                The assignments structure is documented below.
@@ -124,6 +125,7 @@ class _EndpointAssignmentState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EndpointAssignment resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['EndpointAssignmentAssignmentArgs']]] assignments: Specifies the list of the IP addresses of the endpoint.  
                The valid length of the `assignments` ranges from `2` to `6`.
                The assignments structure is documented below.
@@ -275,15 +277,34 @@ class EndpointAssignment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create an endpoint in the same subnet
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        endpoint_name = config.require_object("endpointName")
+        subnet_id = config.require_object("subnetId")
+        ip_addresses = config.require_object("ipAddresses")
+        test = huaweicloud.dns.EndpointAssignment("test",
+            assignments=[{
+                "subnet_id": subnet_id,
+                "ip_address": ip_addresses[entry["key"]],
+            } for entry in [{"key": k, "value": v} for k, v in std.index.range(limit=len(ip_addresses))["result"].items()]],
+            name=endpoint_name,
+            direction="inbound")
+        ```
+
         ## Import
 
         The DNS endpoint resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/endpointAssignment:EndpointAssignment test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -318,15 +339,34 @@ class EndpointAssignment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create an endpoint in the same subnet
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        endpoint_name = config.require_object("endpointName")
+        subnet_id = config.require_object("subnetId")
+        ip_addresses = config.require_object("ipAddresses")
+        test = huaweicloud.dns.EndpointAssignment("test",
+            assignments=[{
+                "subnet_id": subnet_id,
+                "ip_address": ip_addresses[entry["key"]],
+            } for entry in [{"key": k, "value": v} for k, v in std.index.range(limit=len(ip_addresses))["result"].items()]],
+            name=endpoint_name,
+            direction="inbound")
+        ```
+
         ## Import
 
         The DNS endpoint resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/endpointAssignment:EndpointAssignment test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EndpointAssignmentArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class DeployApplicationPermissionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployApplicationPermission resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_ids: Specifies the application IDs.
         :param pulumi.Input[_builtins.str] project_id: Specifies the project ID for CodeArts service.
                Changing this creates a new resource.
@@ -110,6 +111,7 @@ class _DeployApplicationPermissionState:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['DeployApplicationPermissionRoleArgs']]]] = None):
         """
         Input properties used for looking up and filtering DeployApplicationPermission resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_ids: Specifies the application IDs.
         :param pulumi.Input[_builtins.str] project_id: Specifies the project ID for CodeArts service.
                Changing this creates a new resource.
@@ -187,7 +189,7 @@ class _DeployApplicationPermissionState:
         pulumi.set(self, "roles", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployApplicationPermission:DeployApplicationPermission")
+@pulumi.type_token("huaweicloud:Codearts/deployApplicationPermission:DeployApplicationPermission")
 class DeployApplicationPermission(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -202,6 +204,33 @@ class DeployApplicationPermission(pulumi.CustomResource):
         Manages a CodeArts deploy application permission resource within HuaweiCloud.
 
         > Only when the applications using instance level permission, this resource is available.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        project_id = config.require_object("projectId")
+        application_ids = config.require_object("applicationIds")
+        role_id = config.require_object("roleId")
+        test = huaweicloud.codearts.DeployGroupPermission("test",
+            project_id=project_id,
+            application_ids=application_ids,
+            roles=[{
+                "roleId": role_id,
+                "canModify": True,
+                "canDisable": True,
+                "canDelete": True,
+                "canView": True,
+                "canExecute": True,
+                "canCopy": True,
+                "canManage": True,
+                "canCreateEnv": True,
+            }])
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -227,6 +256,33 @@ class DeployApplicationPermission(pulumi.CustomResource):
         Manages a CodeArts deploy application permission resource within HuaweiCloud.
 
         > Only when the applications using instance level permission, this resource is available.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        project_id = config.require_object("projectId")
+        application_ids = config.require_object("applicationIds")
+        role_id = config.require_object("roleId")
+        test = huaweicloud.codearts.DeployGroupPermission("test",
+            project_id=project_id,
+            application_ids=application_ids,
+            roles=[{
+                "roleId": role_id,
+                "canModify": True,
+                "canDisable": True,
+                "canDelete": True,
+                "canView": True,
+                "canExecute": True,
+                "canCopy": True,
+                "canManage": True,
+                "canCreateEnv": True,
+            }])
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param DeployApplicationPermissionArgs args: The arguments to use to populate this resource's properties.
@@ -267,7 +323,7 @@ class DeployApplicationPermission(pulumi.CustomResource):
                 raise TypeError("Missing required property 'roles'")
             __props__.__dict__["roles"] = roles
         super(DeployApplicationPermission, __self__).__init__(
-            'huaweicloud:codearts/deployApplicationPermission:DeployApplicationPermission',
+            'huaweicloud:Codearts/deployApplicationPermission:DeployApplicationPermission',
             resource_name,
             __props__,
             opts)

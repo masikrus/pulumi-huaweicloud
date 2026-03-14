@@ -46,15 +46,18 @@ class InstanceArgs:
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 policy: Optional[pulumi.Input['InstancePolicyArgs']] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
                  second_level_monitoring_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  slow_log_desensitization: Optional[pulumi.Input[_builtins.str]] = None,
                  ssl: Optional[pulumi.Input[_builtins.bool]] = None,
+                 switch_option: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone names separated by commas.
         :param pulumi.Input['InstanceDatastoreArgs'] datastore: Specifies database information. The structure is described below. Changing
                this creates a new instance.
@@ -113,6 +116,8 @@ class InstanceArgs:
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance.
                Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
                Changing this creates a new instance.
+        :param pulumi.Input['InstancePolicyArgs'] policy: Specifies the autoscaling policy information.
+               The policy structure is documented below.
         :param pulumi.Input[_builtins.int] port: Specifies the database access port. The valid values are range from `2100` to `9500` and
                `27017`, `27018`, `27019`. Defaults to `8635`.
         :param pulumi.Input[_builtins.str] region: Specifies the region of the DDS instance. Changing this creates a new
@@ -126,6 +131,16 @@ class InstanceArgs:
         :param pulumi.Input[_builtins.bool] ssl: Specifies whether to enable or disable SSL. Defaults to true.
                
                **NOTE:** The instance will be restarted in the background when switching SSL. Please operate with caution.
+        :param pulumi.Input[_builtins.str] switch_option: Specifies whether to enable autoscaling.
+               The valid values are as follows:
+               + **on** (Default value)
+               + **off**
+               
+               > 1. The parameters `policy` and `switch_option` are available on when you need to set volume auto enlarge policy,
+               and the `policy` is required.
+               <br/>2. For yearly/monthly instances, the system bills new storage space automatically by default. Autoscaling is
+               available only when your account balance is sufficient.
+               <br/>3. Replica set and cluster instances with read replicas do not support auto enlarge policy.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the DDS instance.
         """
         pulumi.set(__self__, "availability_zone", availability_zone)
@@ -174,6 +189,8 @@ class InstanceArgs:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if region is not None:
@@ -186,6 +203,8 @@ class InstanceArgs:
             pulumi.set(__self__, "slow_log_desensitization", slow_log_desensitization)
         if ssl is not None:
             pulumi.set(__self__, "ssl", ssl)
+        if switch_option is not None:
+            pulumi.set(__self__, "switch_option", switch_option)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -523,6 +542,19 @@ class InstanceArgs:
 
     @_builtins.property
     @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input['InstancePolicyArgs']]:
+        """
+        Specifies the autoscaling policy information.
+        The policy structure is documented below.
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input['InstancePolicyArgs']]):
+        pulumi.set(self, "policy", value)
+
+    @_builtins.property
+    @pulumi.getter
     def port(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the database access port. The valid values are range from `2100` to `9500` and
@@ -601,6 +633,27 @@ class InstanceArgs:
         pulumi.set(self, "ssl", value)
 
     @_builtins.property
+    @pulumi.getter(name="switchOption")
+    def switch_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether to enable autoscaling.
+        The valid values are as follows:
+        + **on** (Default value)
+        + **off**
+
+        > 1. The parameters `policy` and `switch_option` are available on when you need to set volume auto enlarge policy,
+        and the `policy` is required.
+        <br/>2. For yearly/monthly instances, the system bills new storage space automatically by default. Autoscaling is
+        available only when your account balance is sufficient.
+        <br/>3. Replica set and cluster instances with read replicas do not support auto enlarge policy.
+        """
+        return pulumi.get(self, "switch_option")
+
+    @switch_option.setter
+    def switch_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "switch_option", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
@@ -642,6 +695,7 @@ class _InstanceState:
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 policy: Optional[pulumi.Input['InstancePolicyArgs']] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -651,12 +705,14 @@ class _InstanceState:
                  ssl: Optional[pulumi.Input[_builtins.bool]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 switch_option: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  time_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled.
                Valid values are `true` and `false`, defaults to `false`.
                Changing this creates a new instance.
@@ -718,6 +774,8 @@ class _InstanceState:
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance.
                Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
                Changing this creates a new instance.
+        :param pulumi.Input['InstancePolicyArgs'] policy: Specifies the autoscaling policy information.
+               The policy structure is documented below.
         :param pulumi.Input[_builtins.int] port: Specifies the database access port. The valid values are range from `2100` to `9500` and
                `27017`, `27018`, `27019`. Defaults to `8635`.
         :param pulumi.Input[_builtins.str] region: Specifies the region of the DDS instance. Changing this creates a new
@@ -734,6 +792,16 @@ class _InstanceState:
                **NOTE:** The instance will be restarted in the background when switching SSL. Please operate with caution.
         :param pulumi.Input[_builtins.str] status: Indicates the node status.
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the subnet Network ID. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] switch_option: Specifies whether to enable autoscaling.
+               The valid values are as follows:
+               + **on** (Default value)
+               + **off**
+               
+               > 1. The parameters `policy` and `switch_option` are available on when you need to set volume auto enlarge policy,
+               and the `policy` is required.
+               <br/>2. For yearly/monthly instances, the system bills new storage space automatically by default. Autoscaling is
+               available only when your account balance is sufficient.
+               <br/>3. Replica set and cluster instances with read replicas do not support auto enlarge policy.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the DDS instance.
         :param pulumi.Input[_builtins.str] time_zone: Indicates the time zone.
         :param pulumi.Input[_builtins.str] updated_at: Indicates the update time.
@@ -794,6 +862,8 @@ class _InstanceState:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if region is not None:
@@ -812,6 +882,8 @@ class _InstanceState:
             pulumi.set(__self__, "status", status)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
+        if switch_option is not None:
+            pulumi.set(__self__, "switch_option", switch_option)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if time_zone is not None:
@@ -1169,6 +1241,19 @@ class _InstanceState:
 
     @_builtins.property
     @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input['InstancePolicyArgs']]:
+        """
+        Specifies the autoscaling policy information.
+        The policy structure is documented below.
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input['InstancePolicyArgs']]):
+        pulumi.set(self, "policy", value)
+
+    @_builtins.property
+    @pulumi.getter
     def port(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the database access port. The valid values are range from `2100` to `9500` and
@@ -1283,6 +1368,27 @@ class _InstanceState:
         pulumi.set(self, "subnet_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="switchOption")
+    def switch_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether to enable autoscaling.
+        The valid values are as follows:
+        + **on** (Default value)
+        + **off**
+
+        > 1. The parameters `policy` and `switch_option` are available on when you need to set volume auto enlarge policy,
+        and the `policy` is required.
+        <br/>2. For yearly/monthly instances, the system bills new storage space automatically by default. Autoscaling is
+        available only when your account balance is sufficient.
+        <br/>3. Replica set and cluster instances with read replicas do not support auto enlarge policy.
+        """
+        return pulumi.get(self, "switch_option")
+
+    @switch_option.setter
+    def switch_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "switch_option", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
@@ -1359,6 +1465,7 @@ class Instance(pulumi.CustomResource):
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 policy: Optional[pulumi.Input[Union['InstancePolicyArgs', 'InstancePolicyArgsDict']]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1367,6 +1474,7 @@ class Instance(pulumi.CustomResource):
                  slow_log_desensitization: Optional[pulumi.Input[_builtins.str]] = None,
                  ssl: Optional[pulumi.Input[_builtins.bool]] = None,
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 switch_option: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -1392,7 +1500,7 @@ class Instance(pulumi.CustomResource):
             },
             availability_zone="{{ availability_zone }}",
             vpc_id="{{ vpc_id }}",
-            subnet_id="{{ subnet_network_id }}}",
+            subnet_id="{{ subnet_network_id }}",
             security_group_id="{{ security_group_id }}",
             password=dds_password,
             mode="Sharding",
@@ -1442,7 +1550,7 @@ class Instance(pulumi.CustomResource):
             },
             availability_zone="{{ availability_zone }}",
             vpc_id="{{ vpc_id }}",
-            subnet_id="{{ subnet_network_id }}}",
+            subnet_id="{{ subnet_network_id }}",
             security_group_id="{{ security_group_id }}",
             password=dds_password,
             mode="ReplicaSet",
@@ -1464,34 +1572,12 @@ class Instance(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `password`, `availability_zone`, `flavor`, configuration.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dds_instance" "instance" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, availability_zone, flavor, configuration,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1550,6 +1636,8 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance.
                Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
                Changing this creates a new instance.
+        :param pulumi.Input[Union['InstancePolicyArgs', 'InstancePolicyArgsDict']] policy: Specifies the autoscaling policy information.
+               The policy structure is documented below.
         :param pulumi.Input[_builtins.int] port: Specifies the database access port. The valid values are range from `2100` to `9500` and
                `27017`, `27018`, `27019`. Defaults to `8635`.
         :param pulumi.Input[_builtins.str] region: Specifies the region of the DDS instance. Changing this creates a new
@@ -1565,6 +1653,16 @@ class Instance(pulumi.CustomResource):
                
                **NOTE:** The instance will be restarted in the background when switching SSL. Please operate with caution.
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the subnet Network ID. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] switch_option: Specifies whether to enable autoscaling.
+               The valid values are as follows:
+               + **on** (Default value)
+               + **off**
+               
+               > 1. The parameters `policy` and `switch_option` are available on when you need to set volume auto enlarge policy,
+               and the `policy` is required.
+               <br/>2. For yearly/monthly instances, the system bills new storage space automatically by default. Autoscaling is
+               available only when your account balance is sufficient.
+               <br/>3. Replica set and cluster instances with read replicas do not support auto enlarge policy.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the DDS instance.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID. Changing this creates a new instance.
         """
@@ -1596,7 +1694,7 @@ class Instance(pulumi.CustomResource):
             },
             availability_zone="{{ availability_zone }}",
             vpc_id="{{ vpc_id }}",
-            subnet_id="{{ subnet_network_id }}}",
+            subnet_id="{{ subnet_network_id }}",
             security_group_id="{{ security_group_id }}",
             password=dds_password,
             mode="Sharding",
@@ -1646,7 +1744,7 @@ class Instance(pulumi.CustomResource):
             },
             availability_zone="{{ availability_zone }}",
             vpc_id="{{ vpc_id }}",
-            subnet_id="{{ subnet_network_id }}}",
+            subnet_id="{{ subnet_network_id }}",
             security_group_id="{{ security_group_id }}",
             password=dds_password,
             mode="ReplicaSet",
@@ -1668,34 +1766,12 @@ class Instance(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `password`, `availability_zone`, `flavor`, configuration.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dds_instance" "instance" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, availability_zone, flavor, configuration,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -1734,6 +1810,7 @@ class Instance(pulumi.CustomResource):
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 policy: Optional[pulumi.Input[Union['InstancePolicyArgs', 'InstancePolicyArgsDict']]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1742,6 +1819,7 @@ class Instance(pulumi.CustomResource):
                  slow_log_desensitization: Optional[pulumi.Input[_builtins.str]] = None,
                  ssl: Optional[pulumi.Input[_builtins.bool]] = None,
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 switch_option: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -1783,6 +1861,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["period"] = period
             __props__.__dict__["period_unit"] = period_unit
+            __props__.__dict__["policy"] = policy
             __props__.__dict__["port"] = port
             __props__.__dict__["region"] = region
             __props__.__dict__["replica_set_name"] = replica_set_name
@@ -1795,6 +1874,7 @@ class Instance(pulumi.CustomResource):
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
+            __props__.__dict__["switch_option"] = switch_option
             __props__.__dict__["tags"] = tags
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
@@ -1844,6 +1924,7 @@ class Instance(pulumi.CustomResource):
             password: Optional[pulumi.Input[_builtins.str]] = None,
             period: Optional[pulumi.Input[_builtins.int]] = None,
             period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+            policy: Optional[pulumi.Input[Union['InstancePolicyArgs', 'InstancePolicyArgsDict']]] = None,
             port: Optional[pulumi.Input[_builtins.int]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1853,6 +1934,7 @@ class Instance(pulumi.CustomResource):
             ssl: Optional[pulumi.Input[_builtins.bool]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
             subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
+            switch_option: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             time_zone: Optional[pulumi.Input[_builtins.str]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1925,6 +2007,8 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance.
                Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
                Changing this creates a new instance.
+        :param pulumi.Input[Union['InstancePolicyArgs', 'InstancePolicyArgsDict']] policy: Specifies the autoscaling policy information.
+               The policy structure is documented below.
         :param pulumi.Input[_builtins.int] port: Specifies the database access port. The valid values are range from `2100` to `9500` and
                `27017`, `27018`, `27019`. Defaults to `8635`.
         :param pulumi.Input[_builtins.str] region: Specifies the region of the DDS instance. Changing this creates a new
@@ -1941,6 +2025,16 @@ class Instance(pulumi.CustomResource):
                **NOTE:** The instance will be restarted in the background when switching SSL. Please operate with caution.
         :param pulumi.Input[_builtins.str] status: Indicates the node status.
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the subnet Network ID. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] switch_option: Specifies whether to enable autoscaling.
+               The valid values are as follows:
+               + **on** (Default value)
+               + **off**
+               
+               > 1. The parameters `policy` and `switch_option` are available on when you need to set volume auto enlarge policy,
+               and the `policy` is required.
+               <br/>2. For yearly/monthly instances, the system bills new storage space automatically by default. Autoscaling is
+               available only when your account balance is sufficient.
+               <br/>3. Replica set and cluster instances with read replicas do not support auto enlarge policy.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the DDS instance.
         :param pulumi.Input[_builtins.str] time_zone: Indicates the time zone.
         :param pulumi.Input[_builtins.str] updated_at: Indicates the update time.
@@ -1976,6 +2070,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["password"] = password
         __props__.__dict__["period"] = period
         __props__.__dict__["period_unit"] = period_unit
+        __props__.__dict__["policy"] = policy
         __props__.__dict__["port"] = port
         __props__.__dict__["region"] = region
         __props__.__dict__["replica_set_name"] = replica_set_name
@@ -1985,6 +2080,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["ssl"] = ssl
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_id"] = subnet_id
+        __props__.__dict__["switch_option"] = switch_option
         __props__.__dict__["tags"] = tags
         __props__.__dict__["time_zone"] = time_zone
         __props__.__dict__["updated_at"] = updated_at
@@ -2235,6 +2331,15 @@ class Instance(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def policy(self) -> pulumi.Output[Optional['outputs.InstancePolicy']]:
+        """
+        Specifies the autoscaling policy information.
+        The policy structure is documented below.
+        """
+        return pulumi.get(self, "policy")
+
+    @_builtins.property
+    @pulumi.getter
     def port(self) -> pulumi.Output[_builtins.int]:
         """
         Specifies the database access port. The valid values are range from `2100` to `9500` and
@@ -2311,6 +2416,23 @@ class Instance(pulumi.CustomResource):
         Specifies the subnet Network ID. Changing this creates a new instance.
         """
         return pulumi.get(self, "subnet_id")
+
+    @_builtins.property
+    @pulumi.getter(name="switchOption")
+    def switch_option(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies whether to enable autoscaling.
+        The valid values are as follows:
+        + **on** (Default value)
+        + **off**
+
+        > 1. The parameters `policy` and `switch_option` are available on when you need to set volume auto enlarge policy,
+        and the `policy` is required.
+        <br/>2. For yearly/monthly instances, the system bills new storage space automatically by default. Autoscaling is
+        available only when your account balance is sufficient.
+        <br/>3. Replica set and cluster instances with read replicas do not support auto enlarge policy.
+        """
+        return pulumi.get(self, "switch_option")
 
     @_builtins.property
     @pulumi.getter

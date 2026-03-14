@@ -25,6 +25,7 @@ class AdvancedQueryArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AdvancedQuery resource.
+
         :param pulumi.Input[_builtins.str] expression: Specifies the advanced query expression. It contains 1 to 4096 characters.
         :param pulumi.Input[_builtins.str] description: Specifies the advanced query description. It contains 1 to 512 characters.
         :param pulumi.Input[_builtins.str] name: Specifies the advanced query name. It contains 1 to 64 characters.
@@ -106,6 +107,7 @@ class _AdvancedQueryState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AdvancedQuery resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the advanced query description. It contains 1 to 512 characters.
         :param pulumi.Input[_builtins.str] expression: Specifies the advanced query expression. It contains 1 to 4096 characters.
         :param pulumi.Input[_builtins.str] name: Specifies the advanced query name. It contains 1 to 64 characters.
@@ -179,7 +181,7 @@ class _AdvancedQueryState:
         pulumi.set(self, "type", value)
 
 
-@pulumi.type_token("huaweicloud:rms/advancedQuery:AdvancedQuery")
+@pulumi.type_token("huaweicloud:Rms/advancedQuery:AdvancedQuery")
 class AdvancedQuery(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -208,11 +210,10 @@ class AdvancedQuery(pulumi.CustomResource):
 
         The RMS advanced query can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/advancedQuery:AdvancedQuery test <id>
+        $ pulumi import huaweicloud:Rms/advancedQuery:AdvancedQuery test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -250,11 +251,10 @@ class AdvancedQuery(pulumi.CustomResource):
 
         The RMS advanced query can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/advancedQuery:AdvancedQuery test <id>
+        $ pulumi import huaweicloud:Rms/advancedQuery:AdvancedQuery test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AdvancedQueryArgs args: The arguments to use to populate this resource's properties.
@@ -291,7 +291,7 @@ class AdvancedQuery(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["type"] = type
         super(AdvancedQuery, __self__).__init__(
-            'huaweicloud:rms/advancedQuery:AdvancedQuery',
+            'huaweicloud:Rms/advancedQuery:AdvancedQuery',
             resource_name,
             __props__,
             opts)

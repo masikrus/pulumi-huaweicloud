@@ -82,7 +82,7 @@ def get_tag_policy_services(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_tag_policy_services()
+    test = huaweicloud.Organizations.get_tag_policy_services()
     ```
 
 
@@ -92,7 +92,7 @@ def get_tag_policy_services(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getTagPolicyServices:getTagPolicyServices', __args__, opts=opts, typ=GetTagPolicyServicesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getTagPolicyServices:getTagPolicyServices', __args__, opts=opts, typ=GetTagPolicyServicesResult).value
 
     return AwaitableGetTagPolicyServicesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_tag_policy_services_output(region: Optional[pulumi.Input[Optional[_built
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_tag_policy_services()
+    test = huaweicloud.Organizations.get_tag_policy_services()
     ```
 
 
@@ -119,7 +119,7 @@ def get_tag_policy_services_output(region: Optional[pulumi.Input[Optional[_built
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getTagPolicyServices:getTagPolicyServices', __args__, opts=opts, typ=GetTagPolicyServicesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getTagPolicyServices:getTagPolicyServices', __args__, opts=opts, typ=GetTagPolicyServicesResult)
     return __ret__.apply(lambda __response__: GetTagPolicyServicesResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

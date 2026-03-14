@@ -177,7 +177,7 @@ def get_asset_ports(category: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_asset_ports(host_id=host_id)
+    test = huaweicloud.Hss.get_asset_ports(host_id=host_id)
     ```
 
 
@@ -218,7 +218,7 @@ def get_asset_ports(category: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAssetPorts:getAssetPorts', __args__, opts=opts, typ=GetAssetPortsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAssetPorts:getAssetPorts', __args__, opts=opts, typ=GetAssetPortsResult).value
 
     return AwaitableGetAssetPortsResult(
         category=pulumi.get(__ret__, 'category'),
@@ -253,7 +253,7 @@ def get_asset_ports_output(category: Optional[pulumi.Input[Optional[_builtins.st
 
     config = pulumi.Config()
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_asset_ports(host_id=host_id)
+    test = huaweicloud.Hss.get_asset_ports(host_id=host_id)
     ```
 
 
@@ -294,7 +294,7 @@ def get_asset_ports_output(category: Optional[pulumi.Input[Optional[_builtins.st
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAssetPorts:getAssetPorts', __args__, opts=opts, typ=GetAssetPortsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAssetPorts:getAssetPorts', __args__, opts=opts, typ=GetAssetPortsResult)
     return __ret__.apply(lambda __response__: GetAssetPortsResult(
         category=pulumi.get(__response__, 'category'),
         data_lists=pulumi.get(__response__, 'data_lists'),

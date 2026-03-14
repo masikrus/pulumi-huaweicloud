@@ -27,10 +27,13 @@ class GetPoolsResult:
     """
     A collection of values returned by getPools.
     """
-    def __init__(__self__, any_port_enable=None, connection_drain=None, description=None, enterprise_project_id=None, healthmonitor_id=None, id=None, ip_version=None, lb_method=None, listener_id=None, loadbalancer_id=None, member_address=None, member_deletion_protection_enable=None, member_device_id=None, member_instance_id=None, name=None, pool_health=None, pool_id=None, pools=None, protection_status=None, protocol=None, public_border_group=None, quic_cid_len=None, quic_cid_offset=None, region=None, type=None, vpc_id=None):
+    def __init__(__self__, any_port_enable=None, az_affinity=None, connection_drain=None, description=None, enterprise_project_id=None, healthmonitor_id=None, id=None, ip_version=None, lb_method=None, listener_id=None, loadbalancer_id=None, member_address=None, member_deletion_protection_enable=None, member_device_id=None, member_instance_id=None, name=None, pool_health=None, pool_id=None, pools=None, protection_status=None, protocol=None, public_border_group=None, quic_cid_len=None, quic_cid_offset=None, region=None, type=None, vpc_id=None):
         if any_port_enable and not isinstance(any_port_enable, str):
             raise TypeError("Expected argument 'any_port_enable' to be a str")
         pulumi.set(__self__, "any_port_enable", any_port_enable)
+        if az_affinity and not isinstance(az_affinity, str):
+            raise TypeError("Expected argument 'az_affinity' to be a str")
+        pulumi.set(__self__, "az_affinity", az_affinity)
         if connection_drain and not isinstance(connection_drain, str):
             raise TypeError("Expected argument 'connection_drain' to be a str")
         pulumi.set(__self__, "connection_drain", connection_drain)
@@ -114,6 +117,15 @@ class GetPoolsResult:
         Whether forward to same port for a backend server group is enabled
         """
         return pulumi.get(self, "any_port_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="azAffinity")
+    def az_affinity(self) -> Optional[_builtins.str]:
+        """
+        Indicates how AZ affinity is configured for the backend server group.
+        The az_affinity structure is documented below.
+        """
+        return pulumi.get(self, "az_affinity")
 
     @_builtins.property
     @pulumi.getter(name="connectionDrain")
@@ -291,6 +303,7 @@ class AwaitableGetPoolsResult(GetPoolsResult):
             yield self
         return GetPoolsResult(
             any_port_enable=self.any_port_enable,
+            az_affinity=self.az_affinity,
             connection_drain=self.connection_drain,
             description=self.description,
             enterprise_project_id=self.enterprise_project_id,
@@ -319,6 +332,7 @@ class AwaitableGetPoolsResult(GetPoolsResult):
 
 
 def get_pools(any_port_enable: Optional[_builtins.str] = None,
+              az_affinity: Optional[_builtins.str] = None,
               connection_drain: Optional[_builtins.str] = None,
               description: Optional[_builtins.str] = None,
               enterprise_project_id: Optional[_builtins.str] = None,
@@ -362,6 +376,8 @@ def get_pools(any_port_enable: Optional[_builtins.str] = None,
            Value options:
            + **false**: Disable this option.
            + **true**: Enable this option.
+    :param _builtins.str az_affinity: Specifies whether AZ affinity of a backend server group is enabled.
+           Value options: **enable=true**, **enable=false**.
     :param _builtins.str connection_drain: Specifies whether delayed logout is enabled. Value options:
            + **false**: Disable this option.
            + **true**: Enable this option.
@@ -398,6 +414,7 @@ def get_pools(any_port_enable: Optional[_builtins.str] = None,
     """
     __args__ = dict()
     __args__['anyPortEnable'] = any_port_enable
+    __args__['azAffinity'] = az_affinity
     __args__['connectionDrain'] = connection_drain
     __args__['description'] = description
     __args__['enterpriseProjectId'] = enterprise_project_id
@@ -426,6 +443,7 @@ def get_pools(any_port_enable: Optional[_builtins.str] = None,
 
     return AwaitableGetPoolsResult(
         any_port_enable=pulumi.get(__ret__, 'any_port_enable'),
+        az_affinity=pulumi.get(__ret__, 'az_affinity'),
         connection_drain=pulumi.get(__ret__, 'connection_drain'),
         description=pulumi.get(__ret__, 'description'),
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -452,6 +470,7 @@ def get_pools(any_port_enable: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 def get_pools_output(any_port_enable: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                     az_affinity: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                      connection_drain: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                      description: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                      enterprise_project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
@@ -495,6 +514,8 @@ def get_pools_output(any_port_enable: Optional[pulumi.Input[Optional[_builtins.s
            Value options:
            + **false**: Disable this option.
            + **true**: Enable this option.
+    :param _builtins.str az_affinity: Specifies whether AZ affinity of a backend server group is enabled.
+           Value options: **enable=true**, **enable=false**.
     :param _builtins.str connection_drain: Specifies whether delayed logout is enabled. Value options:
            + **false**: Disable this option.
            + **true**: Enable this option.
@@ -531,6 +552,7 @@ def get_pools_output(any_port_enable: Optional[pulumi.Input[Optional[_builtins.s
     """
     __args__ = dict()
     __args__['anyPortEnable'] = any_port_enable
+    __args__['azAffinity'] = az_affinity
     __args__['connectionDrain'] = connection_drain
     __args__['description'] = description
     __args__['enterpriseProjectId'] = enterprise_project_id
@@ -558,6 +580,7 @@ def get_pools_output(any_port_enable: Optional[pulumi.Input[Optional[_builtins.s
     __ret__ = pulumi.runtime.invoke_output('huaweicloud:DedicatedElb/getPools:getPools', __args__, opts=opts, typ=GetPoolsResult)
     return __ret__.apply(lambda __response__: GetPoolsResult(
         any_port_enable=pulumi.get(__response__, 'any_port_enable'),
+        az_affinity=pulumi.get(__response__, 'az_affinity'),
         connection_drain=pulumi.get(__response__, 'connection_drain'),
         description=pulumi.get(__response__, 'description'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

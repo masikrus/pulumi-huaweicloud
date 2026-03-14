@@ -27,6 +27,7 @@ class DataFlowControlPolicyArgs:
                  scope_value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataFlowControlPolicy resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the data flow control policy. The length must not
                exceed `256`, and only Chinese characters, letters, numbers, and the following characters are allowed: `_?'#().,&%@!-**`.
         :param pulumi.Input[_builtins.int] limit: Specifies the size of the data forwarding flow control, in tps. Integers with valid values
@@ -167,6 +168,7 @@ class _DataFlowControlPolicyState:
                  scope_value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataFlowControlPolicy resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the data flow control policy. The length must not
                exceed `256`, and only Chinese characters, letters, numbers, and the following characters are allowed: `_?'#().,&%@!-**`.
         :param pulumi.Input[_builtins.int] limit: Specifies the size of the data forwarding flow control, in tps. Integers with valid values
@@ -342,11 +344,10 @@ class DataFlowControlPolicy(pulumi.CustomResource):
 
         The data flow control policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/dataFlowControlPolicy:DataFlowControlPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -414,11 +415,10 @@ class DataFlowControlPolicy(pulumi.CustomResource):
 
         The data flow control policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/dataFlowControlPolicy:DataFlowControlPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataFlowControlPolicyArgs args: The arguments to use to populate this resource's properties.

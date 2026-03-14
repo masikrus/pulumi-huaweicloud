@@ -70,8 +70,8 @@ class MediaAssetThumbnail(dict):
         :param _builtins.int max_length: Specifies the size of the longest side of the screenshot. Unit: pixel.
                The width dimension is calculated by scaling the dimension proportional to the original video pixels.
                Changing this creates a new resource.
-        :param _builtins.int time: Specifies the screenshot time interval (unit: second). The value range is `1` to `12`.
-               Required when `type` is **time**. Changing this creates a new resource.
+        :param _builtins.int time: Specifies the screenshot time interval (unit: second). The value range is `1` to
+               `12`. Required when `type` is **time**. Changing this creates a new resource.
         """
         pulumi.set(__self__, "type", type)
         if aspect_ratio is not None:
@@ -149,8 +149,8 @@ class MediaAssetThumbnail(dict):
     @pulumi.getter
     def time(self) -> Optional[_builtins.int]:
         """
-        Specifies the screenshot time interval (unit: second). The value range is `1` to `12`.
-        Required when `type` is **time**. Changing this creates a new resource.
+        Specifies the screenshot time interval (unit: second). The value range is `1` to
+        `12`. Required when `type` is **time**. Changing this creates a new resource.
         """
         return pulumi.get(self, "time")
 

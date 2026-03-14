@@ -27,6 +27,7 @@ class ProtectionPolicyArgs:
                  verification_mobile: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ProtectionPolicy resource.
+
         :param pulumi.Input[_builtins.bool] protection_enabled: Specifies whether to enable operation protection.
         :param pulumi.Input['ProtectionPolicySelfManagementArgs'] self_management: Specifies the attributes IAM users can modify.
                The object structure is documented below.
@@ -113,6 +114,7 @@ class _ProtectionPolicyState:
                  verification_mobile: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProtectionPolicy resources.
+
         :param pulumi.Input[_builtins.bool] protection_enabled: Specifies whether to enable operation protection.
         :param pulumi.Input['ProtectionPolicySelfManagementArgs'] self_management: Specifies the attributes IAM users can modify.
                The object structure is documented below.
@@ -217,6 +219,13 @@ class ProtectionPolicy(pulumi.CustomResource):
                  verification_mobile: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Manages the account protection policy within HuaweiCloud.
+
+        > **NOTE:**
+          You *must* have admin privileges to use this resource.\\
+          This resource overwrites an existing configuration, make sure one resource per account.\\
+          During action `terraform destroy` it sets values the same as defaults for this resource.
+
         ## Example Usage
 
         ### Self-Verification
@@ -250,11 +259,10 @@ class ProtectionPolicy(pulumi.CustomResource):
 
         Identity protection policy can be imported using the account ID or domain ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/protectionPolicy:ProtectionPolicy example <your account ID>
+        $ terraform import huaweicloud_identity_protection_policy.example <your account ID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -277,6 +285,13 @@ class ProtectionPolicy(pulumi.CustomResource):
                  args: ProtectionPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages the account protection policy within HuaweiCloud.
+
+        > **NOTE:**
+          You *must* have admin privileges to use this resource.\\
+          This resource overwrites an existing configuration, make sure one resource per account.\\
+          During action `terraform destroy` it sets values the same as defaults for this resource.
+
         ## Example Usage
 
         ### Self-Verification
@@ -310,11 +325,10 @@ class ProtectionPolicy(pulumi.CustomResource):
 
         Identity protection policy can be imported using the account ID or domain ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/protectionPolicy:ProtectionPolicy example <your account ID>
+        $ terraform import huaweicloud_identity_protection_policy.example <your account ID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProtectionPolicyArgs args: The arguments to use to populate this resource's properties.

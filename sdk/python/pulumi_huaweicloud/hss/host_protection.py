@@ -28,6 +28,7 @@ class HostProtectionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a HostProtection resource.
+
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode for host protection.  
                The valid values are as follows:
                + **prePaid**: The yearly/monthly billing mode.
@@ -193,6 +194,7 @@ class _HostProtectionState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HostProtection resources.
+
         :param pulumi.Input[_builtins.str] agent_id: The agent ID installed on the host.
         :param pulumi.Input[_builtins.str] agent_status: The agent status of the host. The value can be **installed**, **not_installed**, **online**,
                **offline**, **install_failed**, or **installing**.
@@ -493,7 +495,7 @@ class _HostProtectionState:
         pulumi.set(self, "version", value)
 
 
-@pulumi.type_token("huaweicloud:hss/hostProtection:HostProtection")
+@pulumi.type_token("huaweicloud:Hss/hostProtection:HostProtection")
 class HostProtection(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -514,39 +516,16 @@ class HostProtection(pulumi.CustomResource):
 
         The host protection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/hostProtection:HostProtection test <id>
+        $ pulumi import huaweicloud:Hss/hostProtection:HostProtection test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `quota_id`, `is_wait_host_available`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_host_protection" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              quota_id, is_wait_host_available,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -590,39 +569,16 @@ class HostProtection(pulumi.CustomResource):
 
         The host protection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/hostProtection:HostProtection test <id>
+        $ pulumi import huaweicloud:Hss/hostProtection:HostProtection test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `quota_id`, `is_wait_host_available`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_host_protection" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              quota_id, is_wait_host_available,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param HostProtectionArgs args: The arguments to use to populate this resource's properties.
@@ -679,7 +635,7 @@ class HostProtection(pulumi.CustomResource):
             __props__.__dict__["private_ip"] = None
             __props__.__dict__["status"] = None
         super(HostProtection, __self__).__init__(
-            'huaweicloud:hss/hostProtection:HostProtection',
+            'huaweicloud:Hss/hostProtection:HostProtection',
             resource_name,
             __props__,
             opts)

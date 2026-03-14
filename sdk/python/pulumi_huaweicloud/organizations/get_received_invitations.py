@@ -82,7 +82,7 @@ def get_received_invitations(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_received_invitations()
+    test = huaweicloud.Organizations.get_received_invitations()
     ```
 
 
@@ -92,7 +92,7 @@ def get_received_invitations(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getReceivedInvitations:getReceivedInvitations', __args__, opts=opts, typ=GetReceivedInvitationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getReceivedInvitations:getReceivedInvitations', __args__, opts=opts, typ=GetReceivedInvitationsResult).value
 
     return AwaitableGetReceivedInvitationsResult(
         handshakes=pulumi.get(__ret__, 'handshakes'),
@@ -109,7 +109,7 @@ def get_received_invitations_output(region: Optional[pulumi.Input[Optional[_buil
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_received_invitations()
+    test = huaweicloud.Organizations.get_received_invitations()
     ```
 
 
@@ -119,7 +119,7 @@ def get_received_invitations_output(region: Optional[pulumi.Input[Optional[_buil
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getReceivedInvitations:getReceivedInvitations', __args__, opts=opts, typ=GetReceivedInvitationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getReceivedInvitations:getReceivedInvitations', __args__, opts=opts, typ=GetReceivedInvitationsResult)
     return __ret__.apply(lambda __response__: GetReceivedInvitationsResult(
         handshakes=pulumi.get(__response__, 'handshakes'),
         id=pulumi.get(__response__, 'id'),

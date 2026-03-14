@@ -265,7 +265,7 @@ def get_playbook_audit_logs(action_id: Optional[_builtins.str] = None,
     workspace_id = config.require_object("workspaceId")
     start_time = config.require_object("startTime")
     end_time = config.require_object("endTime")
-    test = huaweicloud.secmaster.get_playbook_audit_logs(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_audit_logs(workspace_id=workspace_id,
         start_time=start_time,
         end_time=end_time)
     ```
@@ -310,7 +310,7 @@ def get_playbook_audit_logs(action_id: Optional[_builtins.str] = None,
     __args__['triggerType'] = trigger_type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getPlaybookAuditLogs:getPlaybookAuditLogs', __args__, opts=opts, typ=GetPlaybookAuditLogsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getPlaybookAuditLogs:getPlaybookAuditLogs', __args__, opts=opts, typ=GetPlaybookAuditLogsResult).value
 
     return AwaitableGetPlaybookAuditLogsResult(
         action_id=pulumi.get(__ret__, 'action_id'),
@@ -359,7 +359,7 @@ def get_playbook_audit_logs_output(action_id: Optional[pulumi.Input[Optional[_bu
     workspace_id = config.require_object("workspaceId")
     start_time = config.require_object("startTime")
     end_time = config.require_object("endTime")
-    test = huaweicloud.secmaster.get_playbook_audit_logs(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_audit_logs(workspace_id=workspace_id,
         start_time=start_time,
         end_time=end_time)
     ```
@@ -404,7 +404,7 @@ def get_playbook_audit_logs_output(action_id: Optional[pulumi.Input[Optional[_bu
     __args__['triggerType'] = trigger_type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getPlaybookAuditLogs:getPlaybookAuditLogs', __args__, opts=opts, typ=GetPlaybookAuditLogsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getPlaybookAuditLogs:getPlaybookAuditLogs', __args__, opts=opts, typ=GetPlaybookAuditLogsResult)
     return __ret__.apply(lambda __response__: GetPlaybookAuditLogsResult(
         action_id=pulumi.get(__response__, 'action_id'),
         action_name=pulumi.get(__response__, 'action_name'),

@@ -34,6 +34,7 @@ class BandwidthArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Bandwidth resource.
+
         :param pulumi.Input[_builtins.int] size: Specifies the size of the Shared Bandwidth.
                If `charge_mode` is **bandwidth**, the value ranges from 5 Mbit/s to 2000 Mbit/s.
                If `charge_mode` is **95peak_plus**, the value ranges from 300 Mbit/s to 2000 Mbit/s.
@@ -264,6 +265,7 @@ class _BandwidthState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Bandwidth resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
                Valid values are **true** and **false**. Defaults to **false**.
         :param pulumi.Input[_builtins.str] bandwidth_type: Specifies the bandwidth type.
@@ -585,39 +587,16 @@ class Bandwidth(pulumi.CustomResource):
 
         Shared Bandwidths can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/bandwidth:Bandwidth bandwidth_1 7117d38e-4c8f-4624-a505-bd96b97d024c
         ```
 
         Note that the imported state may not be identical to your resource definition, due to payment attributes missing from
-
         the API response.
-
         The missing attributes include: `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a Shared Bandwidth.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpc_bandwidth" "bandwidth_1" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -678,39 +657,16 @@ class Bandwidth(pulumi.CustomResource):
 
         Shared Bandwidths can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/bandwidth:Bandwidth bandwidth_1 7117d38e-4c8f-4624-a505-bd96b97d024c
         ```
 
         Note that the imported state may not be identical to your resource definition, due to payment attributes missing from
-
         the API response.
-
         The missing attributes include: `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a Shared Bandwidth.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpc_bandwidth" "bandwidth_1" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param BandwidthArgs args: The arguments to use to populate this resource's properties.

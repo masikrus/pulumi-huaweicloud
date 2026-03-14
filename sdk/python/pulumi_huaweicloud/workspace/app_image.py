@@ -26,6 +26,7 @@ class AppImageArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppImage resource.
+
         :param pulumi.Input[_builtins.str] server_id: Specifies the image server ID for generating a private image.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the image.
@@ -135,6 +136,7 @@ class _AppImageState:
                  server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppImage resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the image.
                Changing this creates a new resource.
                The description contain a maximum of `1,024` characters. The carriage return characters and angle brackets (< and >) are
@@ -266,6 +268,7 @@ class AppImage(pulumi.CustomResource):
             description=generated_image_description)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the image.
@@ -309,6 +312,7 @@ class AppImage(pulumi.CustomResource):
             name=generated_image_name,
             description=generated_image_description)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppImageArgs args: The arguments to use to populate this resource's properties.

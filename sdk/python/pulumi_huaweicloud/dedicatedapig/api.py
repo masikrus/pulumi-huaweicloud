@@ -36,22 +36,27 @@ class ApiArgs:
                  failure_response: Optional[pulumi.Input[_builtins.str]] = None,
                  func_graph: Optional[pulumi.Input['ApiFuncGraphArgs']] = None,
                  func_graph_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyArgs']]]] = None,
+                 func_graph_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyOrderArgs']]]] = None,
                  is_send_fg_body_base64: Optional[pulumi.Input[_builtins.bool]] = None,
                  matching: Optional[pulumi.Input[_builtins.str]] = None,
                  mock: Optional[pulumi.Input['ApiMockArgs']] = None,
                  mock_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyArgs']]]] = None,
+                 mock_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyOrderArgs']]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  request_params: Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamArgs']]]] = None,
+                 request_params_orders: Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamsOrderArgs']]]] = None,
                  response_id: Optional[pulumi.Input[_builtins.str]] = None,
                  security_authentication: Optional[pulumi.Input[_builtins.str]] = None,
                  simple_authentication: Optional[pulumi.Input[_builtins.bool]] = None,
                  success_response: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  web: Optional[pulumi.Input['ApiWebArgs']] = None,
-                 web_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyArgs']]]] = None):
+                 web_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyArgs']]]] = None,
+                 web_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyOrderArgs']]]] = None):
         """
         The set of arguments for constructing a Api resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the APIG group to which the API belongs.  
                Changing this will create a new API resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies an ID of the APIG dedicated instance to which the API belongs
@@ -98,6 +103,7 @@ class ApiArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyArgs']]] func_graph_policies: Specifies the Mock policy backends.  
                The maximum blocks of the policy is 5.
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyOrderArgs']]] func_graph_policy_orders: The origin list of function graph policies that used to reorder the 'func_graph_policy' parameter.
         :param pulumi.Input[_builtins.bool] is_send_fg_body_base64: Specifies whether to perform base64 encoding on the body for interaction
                with FunctionGraph.
                Defaults to **true**.
@@ -114,6 +120,7 @@ class ApiArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyArgs']]] mock_policies: Specifies the Mock policy backends.  
                The maximum blocks of the policy is 5.
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyOrderArgs']]] mock_policy_orders: The origin list of mock policies that used to reorder the 'mock_policy' parameter.
         :param pulumi.Input[_builtins.str] name: Specifies the backend policy name.  
                The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
                It must start with a letter.
@@ -121,6 +128,7 @@ class ApiArgs:
                If omitted, the provider-level region will be used. Changing this will create a new API resource.
         :param pulumi.Input[Sequence[pulumi.Input['ApiRequestParamArgs']]] request_params: Specifies the configurations of the front-end parameters.  
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ApiRequestParamsOrderArgs']]] request_params_orders: The origin list of request parameters that used to reorder the 'request_params' parameter.
         :param pulumi.Input[_builtins.str] response_id: Specifies the APIG group response ID.
         :param pulumi.Input[_builtins.str] security_authentication: Specifies the security authentication mode of the API request.  
                The valid values are **NONE**, **APP**, **IAM** and **AUTHORIZER**, defaults to **NONE**.
@@ -137,6 +145,7 @@ class ApiArgs:
                
                <a name="apig_api_request_params"></a>
                The `request_params` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyOrderArgs']]] web_policy_orders: The origin list of web policies that used to reorder the 'web_policy' parameter.
         """
         pulumi.set(__self__, "group_id", group_id)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -162,6 +171,8 @@ class ApiArgs:
             pulumi.set(__self__, "func_graph", func_graph)
         if func_graph_policies is not None:
             pulumi.set(__self__, "func_graph_policies", func_graph_policies)
+        if func_graph_policy_orders is not None:
+            pulumi.set(__self__, "func_graph_policy_orders", func_graph_policy_orders)
         if is_send_fg_body_base64 is not None:
             pulumi.set(__self__, "is_send_fg_body_base64", is_send_fg_body_base64)
         if matching is not None:
@@ -170,12 +181,16 @@ class ApiArgs:
             pulumi.set(__self__, "mock", mock)
         if mock_policies is not None:
             pulumi.set(__self__, "mock_policies", mock_policies)
+        if mock_policy_orders is not None:
+            pulumi.set(__self__, "mock_policy_orders", mock_policy_orders)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if request_params is not None:
             pulumi.set(__self__, "request_params", request_params)
+        if request_params_orders is not None:
+            pulumi.set(__self__, "request_params_orders", request_params_orders)
         if response_id is not None:
             pulumi.set(__self__, "response_id", response_id)
         if security_authentication is not None:
@@ -190,6 +205,8 @@ class ApiArgs:
             pulumi.set(__self__, "web", web)
         if web_policies is not None:
             pulumi.set(__self__, "web_policies", web_policies)
+        if web_policy_orders is not None:
+            pulumi.set(__self__, "web_policy_orders", web_policy_orders)
 
     @_builtins.property
     @pulumi.getter(name="groupId")
@@ -403,6 +420,18 @@ class ApiArgs:
         pulumi.set(self, "func_graph_policies", value)
 
     @_builtins.property
+    @pulumi.getter(name="funcGraphPolicyOrders")
+    def func_graph_policy_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyOrderArgs']]]]:
+        """
+        The origin list of function graph policies that used to reorder the 'func_graph_policy' parameter.
+        """
+        return pulumi.get(self, "func_graph_policy_orders")
+
+    @func_graph_policy_orders.setter
+    def func_graph_policy_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyOrderArgs']]]]):
+        pulumi.set(self, "func_graph_policy_orders", value)
+
+    @_builtins.property
     @pulumi.getter(name="isSendFgBodyBase64")
     def is_send_fg_body_base64(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -463,6 +492,18 @@ class ApiArgs:
         pulumi.set(self, "mock_policies", value)
 
     @_builtins.property
+    @pulumi.getter(name="mockPolicyOrders")
+    def mock_policy_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyOrderArgs']]]]:
+        """
+        The origin list of mock policies that used to reorder the 'mock_policy' parameter.
+        """
+        return pulumi.get(self, "mock_policy_orders")
+
+    @mock_policy_orders.setter
+    def mock_policy_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyOrderArgs']]]]):
+        pulumi.set(self, "mock_policy_orders", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -501,6 +542,18 @@ class ApiArgs:
     @request_params.setter
     def request_params(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamArgs']]]]):
         pulumi.set(self, "request_params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="requestParamsOrders")
+    def request_params_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamsOrderArgs']]]]:
+        """
+        The origin list of request parameters that used to reorder the 'request_params' parameter.
+        """
+        return pulumi.get(self, "request_params_orders")
+
+    @request_params_orders.setter
+    def request_params_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamsOrderArgs']]]]):
+        pulumi.set(self, "request_params_orders", value)
 
     @_builtins.property
     @pulumi.getter(name="responseId")
@@ -595,6 +648,18 @@ class ApiArgs:
     def web_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyArgs']]]]):
         pulumi.set(self, "web_policies", value)
 
+    @_builtins.property
+    @pulumi.getter(name="webPolicyOrders")
+    def web_policy_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyOrderArgs']]]]:
+        """
+        The origin list of web policies that used to reorder the 'web_policy' parameter.
+        """
+        return pulumi.get(self, "web_policy_orders")
+
+    @web_policy_orders.setter
+    def web_policy_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyOrderArgs']]]]):
+        pulumi.set(self, "web_policy_orders", value)
+
 
 @pulumi.input_type
 class _ApiState:
@@ -608,17 +673,20 @@ class _ApiState:
                  failure_response: Optional[pulumi.Input[_builtins.str]] = None,
                  func_graph: Optional[pulumi.Input['ApiFuncGraphArgs']] = None,
                  func_graph_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyArgs']]]] = None,
+                 func_graph_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyOrderArgs']]]] = None,
                  group_id: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  is_send_fg_body_base64: Optional[pulumi.Input[_builtins.bool]] = None,
                  matching: Optional[pulumi.Input[_builtins.str]] = None,
                  mock: Optional[pulumi.Input['ApiMockArgs']] = None,
                  mock_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyArgs']]]] = None,
+                 mock_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyOrderArgs']]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  registered_at: Optional[pulumi.Input[_builtins.str]] = None,
                  request_method: Optional[pulumi.Input[_builtins.str]] = None,
                  request_params: Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamArgs']]]] = None,
+                 request_params_orders: Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamsOrderArgs']]]] = None,
                  request_path: Optional[pulumi.Input[_builtins.str]] = None,
                  request_protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  response_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -629,9 +697,11 @@ class _ApiState:
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  web: Optional[pulumi.Input['ApiWebArgs']] = None,
-                 web_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyArgs']]]] = None):
+                 web_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyArgs']]]] = None,
+                 web_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyOrderArgs']]]] = None):
         """
         Input properties used for looking up and filtering Api resources.
+
         :param pulumi.Input[_builtins.str] authorizer_id: Specifies the ID of the backend custom authorization.
                
                <a name="apig_api_conditions"></a>
@@ -658,6 +728,7 @@ class _ApiState:
         :param pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyArgs']]] func_graph_policies: Specifies the Mock policy backends.  
                The maximum blocks of the policy is 5.
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyOrderArgs']]] func_graph_policy_orders: The origin list of function graph policies that used to reorder the 'func_graph_policy' parameter.
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the APIG group to which the API belongs.  
                Changing this will create a new API resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies an ID of the APIG dedicated instance to which the API belongs
@@ -678,6 +749,7 @@ class _ApiState:
         :param pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyArgs']]] mock_policies: Specifies the Mock policy backends.  
                The maximum blocks of the policy is 5.
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyOrderArgs']]] mock_policy_orders: The origin list of mock policies that used to reorder the 'mock_policy' parameter.
         :param pulumi.Input[_builtins.str] name: Specifies the backend policy name.  
                The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
                It must start with a letter.
@@ -688,6 +760,7 @@ class _ApiState:
                The valid types are **GET**, **POST**, **PUT**, **DELETE**, **HEAD**, **PATCH**, **OPTIONS** and **ANY**.
         :param pulumi.Input[Sequence[pulumi.Input['ApiRequestParamArgs']]] request_params: Specifies the configurations of the front-end parameters.  
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ApiRequestParamsOrderArgs']]] request_params_orders: The origin list of request parameters that used to reorder the 'request_params' parameter.
         :param pulumi.Input[_builtins.str] request_path: Specifies the request address, which can contain a maximum of `512` characters,
                the request parameters enclosed with brackets ({}).
                + The address can contain special characters, such as asterisks (*), percent signs (%), hyphens (-), and
@@ -719,6 +792,7 @@ class _ApiState:
                
                <a name="apig_api_request_params"></a>
                The `request_params` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyOrderArgs']]] web_policy_orders: The origin list of web policies that used to reorder the 'web_policy' parameter.
         """
         if authorizer_id is not None:
             pulumi.set(__self__, "authorizer_id", authorizer_id)
@@ -738,6 +812,8 @@ class _ApiState:
             pulumi.set(__self__, "func_graph", func_graph)
         if func_graph_policies is not None:
             pulumi.set(__self__, "func_graph_policies", func_graph_policies)
+        if func_graph_policy_orders is not None:
+            pulumi.set(__self__, "func_graph_policy_orders", func_graph_policy_orders)
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
         if instance_id is not None:
@@ -750,6 +826,8 @@ class _ApiState:
             pulumi.set(__self__, "mock", mock)
         if mock_policies is not None:
             pulumi.set(__self__, "mock_policies", mock_policies)
+        if mock_policy_orders is not None:
+            pulumi.set(__self__, "mock_policy_orders", mock_policy_orders)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region is not None:
@@ -760,6 +838,8 @@ class _ApiState:
             pulumi.set(__self__, "request_method", request_method)
         if request_params is not None:
             pulumi.set(__self__, "request_params", request_params)
+        if request_params_orders is not None:
+            pulumi.set(__self__, "request_params_orders", request_params_orders)
         if request_path is not None:
             pulumi.set(__self__, "request_path", request_path)
         if request_protocol is not None:
@@ -782,6 +862,8 @@ class _ApiState:
             pulumi.set(__self__, "web", web)
         if web_policies is not None:
             pulumi.set(__self__, "web_policies", web_policies)
+        if web_policy_orders is not None:
+            pulumi.set(__self__, "web_policy_orders", web_policy_orders)
 
     @_builtins.property
     @pulumi.getter(name="authorizerId")
@@ -909,6 +991,18 @@ class _ApiState:
         pulumi.set(self, "func_graph_policies", value)
 
     @_builtins.property
+    @pulumi.getter(name="funcGraphPolicyOrders")
+    def func_graph_policy_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyOrderArgs']]]]:
+        """
+        The origin list of function graph policies that used to reorder the 'func_graph_policy' parameter.
+        """
+        return pulumi.get(self, "func_graph_policy_orders")
+
+    @func_graph_policy_orders.setter
+    def func_graph_policy_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyOrderArgs']]]]):
+        pulumi.set(self, "func_graph_policy_orders", value)
+
+    @_builtins.property
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -995,6 +1089,18 @@ class _ApiState:
         pulumi.set(self, "mock_policies", value)
 
     @_builtins.property
+    @pulumi.getter(name="mockPolicyOrders")
+    def mock_policy_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyOrderArgs']]]]:
+        """
+        The origin list of mock policies that used to reorder the 'mock_policy' parameter.
+        """
+        return pulumi.get(self, "mock_policy_orders")
+
+    @mock_policy_orders.setter
+    def mock_policy_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyOrderArgs']]]]):
+        pulumi.set(self, "mock_policy_orders", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1058,6 +1164,18 @@ class _ApiState:
     @request_params.setter
     def request_params(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamArgs']]]]):
         pulumi.set(self, "request_params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="requestParamsOrders")
+    def request_params_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamsOrderArgs']]]]:
+        """
+        The origin list of request parameters that used to reorder the 'request_params' parameter.
+        """
+        return pulumi.get(self, "request_params_orders")
+
+    @request_params_orders.setter
+    def request_params_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiRequestParamsOrderArgs']]]]):
+        pulumi.set(self, "request_params_orders", value)
 
     @_builtins.property
     @pulumi.getter(name="requestPath")
@@ -1211,6 +1329,18 @@ class _ApiState:
     def web_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyArgs']]]]):
         pulumi.set(self, "web_policies", value)
 
+    @_builtins.property
+    @pulumi.getter(name="webPolicyOrders")
+    def web_policy_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyOrderArgs']]]]:
+        """
+        The origin list of web policies that used to reorder the 'web_policy' parameter.
+        """
+        return pulumi.get(self, "web_policy_orders")
+
+    @web_policy_orders.setter
+    def web_policy_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyOrderArgs']]]]):
+        pulumi.set(self, "web_policy_orders", value)
+
 
 @pulumi.type_token("huaweicloud:DedicatedApig/api:Api")
 class Api(pulumi.CustomResource):
@@ -1227,16 +1357,19 @@ class Api(pulumi.CustomResource):
                  failure_response: Optional[pulumi.Input[_builtins.str]] = None,
                  func_graph: Optional[pulumi.Input[Union['ApiFuncGraphArgs', 'ApiFuncGraphArgsDict']]] = None,
                  func_graph_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyArgs', 'ApiFuncGraphPolicyArgsDict']]]]] = None,
+                 func_graph_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyOrderArgs', 'ApiFuncGraphPolicyOrderArgsDict']]]]] = None,
                  group_id: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  is_send_fg_body_base64: Optional[pulumi.Input[_builtins.bool]] = None,
                  matching: Optional[pulumi.Input[_builtins.str]] = None,
                  mock: Optional[pulumi.Input[Union['ApiMockArgs', 'ApiMockArgsDict']]] = None,
                  mock_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyArgs', 'ApiMockPolicyArgsDict']]]]] = None,
+                 mock_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyOrderArgs', 'ApiMockPolicyOrderArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  request_method: Optional[pulumi.Input[_builtins.str]] = None,
                  request_params: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamArgs', 'ApiRequestParamArgsDict']]]]] = None,
+                 request_params_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamsOrderArgs', 'ApiRequestParamsOrderArgsDict']]]]] = None,
                  request_path: Optional[pulumi.Input[_builtins.str]] = None,
                  request_protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  response_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1247,6 +1380,7 @@ class Api(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  web: Optional[pulumi.Input[Union['ApiWebArgs', 'ApiWebArgsDict']]] = None,
                  web_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiWebPolicyArgs', 'ApiWebPolicyArgsDict']]]]] = None,
+                 web_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiWebPolicyOrderArgs', 'ApiWebPolicyOrderArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages an APIG API resource within HuaweiCloud.
@@ -1302,6 +1436,7 @@ class Api(pulumi.CustomResource):
         $ pulumi import huaweicloud:DedicatedApig/api:Api test <instance_id>/<name>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] authorizer_id: Specifies the ID of the backend custom authorization.
@@ -1330,6 +1465,7 @@ class Api(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyArgs', 'ApiFuncGraphPolicyArgsDict']]]] func_graph_policies: Specifies the Mock policy backends.  
                The maximum blocks of the policy is 5.
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyOrderArgs', 'ApiFuncGraphPolicyOrderArgsDict']]]] func_graph_policy_orders: The origin list of function graph policies that used to reorder the 'func_graph_policy' parameter.
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the APIG group to which the API belongs.  
                Changing this will create a new API resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies an ID of the APIG dedicated instance to which the API belongs
@@ -1350,6 +1486,7 @@ class Api(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyArgs', 'ApiMockPolicyArgsDict']]]] mock_policies: Specifies the Mock policy backends.  
                The maximum blocks of the policy is 5.
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyOrderArgs', 'ApiMockPolicyOrderArgsDict']]]] mock_policy_orders: The origin list of mock policies that used to reorder the 'mock_policy' parameter.
         :param pulumi.Input[_builtins.str] name: Specifies the backend policy name.  
                The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
                It must start with a letter.
@@ -1359,6 +1496,7 @@ class Api(pulumi.CustomResource):
                The valid types are **GET**, **POST**, **PUT**, **DELETE**, **HEAD**, **PATCH**, **OPTIONS** and **ANY**.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamArgs', 'ApiRequestParamArgsDict']]]] request_params: Specifies the configurations of the front-end parameters.  
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamsOrderArgs', 'ApiRequestParamsOrderArgsDict']]]] request_params_orders: The origin list of request parameters that used to reorder the 'request_params' parameter.
         :param pulumi.Input[_builtins.str] request_path: Specifies the request address, which can contain a maximum of `512` characters,
                the request parameters enclosed with brackets ({}).
                + The address can contain special characters, such as asterisks (*), percent signs (%), hyphens (-), and
@@ -1389,6 +1527,7 @@ class Api(pulumi.CustomResource):
                
                <a name="apig_api_request_params"></a>
                The `request_params` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiWebPolicyOrderArgs', 'ApiWebPolicyOrderArgsDict']]]] web_policy_orders: The origin list of web policies that used to reorder the 'web_policy' parameter.
         """
         ...
     @overload
@@ -1450,6 +1589,7 @@ class Api(pulumi.CustomResource):
         $ pulumi import huaweicloud:DedicatedApig/api:Api test <instance_id>/<name>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ApiArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1474,16 +1614,19 @@ class Api(pulumi.CustomResource):
                  failure_response: Optional[pulumi.Input[_builtins.str]] = None,
                  func_graph: Optional[pulumi.Input[Union['ApiFuncGraphArgs', 'ApiFuncGraphArgsDict']]] = None,
                  func_graph_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyArgs', 'ApiFuncGraphPolicyArgsDict']]]]] = None,
+                 func_graph_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyOrderArgs', 'ApiFuncGraphPolicyOrderArgsDict']]]]] = None,
                  group_id: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  is_send_fg_body_base64: Optional[pulumi.Input[_builtins.bool]] = None,
                  matching: Optional[pulumi.Input[_builtins.str]] = None,
                  mock: Optional[pulumi.Input[Union['ApiMockArgs', 'ApiMockArgsDict']]] = None,
                  mock_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyArgs', 'ApiMockPolicyArgsDict']]]]] = None,
+                 mock_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyOrderArgs', 'ApiMockPolicyOrderArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  request_method: Optional[pulumi.Input[_builtins.str]] = None,
                  request_params: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamArgs', 'ApiRequestParamArgsDict']]]]] = None,
+                 request_params_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamsOrderArgs', 'ApiRequestParamsOrderArgsDict']]]]] = None,
                  request_path: Optional[pulumi.Input[_builtins.str]] = None,
                  request_protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  response_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1494,6 +1637,7 @@ class Api(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  web: Optional[pulumi.Input[Union['ApiWebArgs', 'ApiWebArgsDict']]] = None,
                  web_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiWebPolicyArgs', 'ApiWebPolicyArgsDict']]]]] = None,
+                 web_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiWebPolicyOrderArgs', 'ApiWebPolicyOrderArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1512,6 +1656,7 @@ class Api(pulumi.CustomResource):
             __props__.__dict__["failure_response"] = failure_response
             __props__.__dict__["func_graph"] = func_graph
             __props__.__dict__["func_graph_policies"] = func_graph_policies
+            __props__.__dict__["func_graph_policy_orders"] = func_graph_policy_orders
             if group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'group_id'")
             __props__.__dict__["group_id"] = group_id
@@ -1522,12 +1667,14 @@ class Api(pulumi.CustomResource):
             __props__.__dict__["matching"] = matching
             __props__.__dict__["mock"] = mock
             __props__.__dict__["mock_policies"] = mock_policies
+            __props__.__dict__["mock_policy_orders"] = mock_policy_orders
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
             if request_method is None and not opts.urn:
                 raise TypeError("Missing required property 'request_method'")
             __props__.__dict__["request_method"] = request_method
             __props__.__dict__["request_params"] = request_params
+            __props__.__dict__["request_params_orders"] = request_params_orders
             if request_path is None and not opts.urn:
                 raise TypeError("Missing required property 'request_path'")
             __props__.__dict__["request_path"] = request_path
@@ -1544,6 +1691,7 @@ class Api(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["web"] = web
             __props__.__dict__["web_policies"] = web_policies
+            __props__.__dict__["web_policy_orders"] = web_policy_orders
             __props__.__dict__["registered_at"] = None
             __props__.__dict__["updated_at"] = None
         super(Api, __self__).__init__(
@@ -1565,17 +1713,20 @@ class Api(pulumi.CustomResource):
             failure_response: Optional[pulumi.Input[_builtins.str]] = None,
             func_graph: Optional[pulumi.Input[Union['ApiFuncGraphArgs', 'ApiFuncGraphArgsDict']]] = None,
             func_graph_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyArgs', 'ApiFuncGraphPolicyArgsDict']]]]] = None,
+            func_graph_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyOrderArgs', 'ApiFuncGraphPolicyOrderArgsDict']]]]] = None,
             group_id: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.str]] = None,
             is_send_fg_body_base64: Optional[pulumi.Input[_builtins.bool]] = None,
             matching: Optional[pulumi.Input[_builtins.str]] = None,
             mock: Optional[pulumi.Input[Union['ApiMockArgs', 'ApiMockArgsDict']]] = None,
             mock_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyArgs', 'ApiMockPolicyArgsDict']]]]] = None,
+            mock_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyOrderArgs', 'ApiMockPolicyOrderArgsDict']]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             registered_at: Optional[pulumi.Input[_builtins.str]] = None,
             request_method: Optional[pulumi.Input[_builtins.str]] = None,
             request_params: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamArgs', 'ApiRequestParamArgsDict']]]]] = None,
+            request_params_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamsOrderArgs', 'ApiRequestParamsOrderArgsDict']]]]] = None,
             request_path: Optional[pulumi.Input[_builtins.str]] = None,
             request_protocol: Optional[pulumi.Input[_builtins.str]] = None,
             response_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1586,7 +1737,8 @@ class Api(pulumi.CustomResource):
             type: Optional[pulumi.Input[_builtins.str]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
             web: Optional[pulumi.Input[Union['ApiWebArgs', 'ApiWebArgsDict']]] = None,
-            web_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiWebPolicyArgs', 'ApiWebPolicyArgsDict']]]]] = None) -> 'Api':
+            web_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiWebPolicyArgs', 'ApiWebPolicyArgsDict']]]]] = None,
+            web_policy_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApiWebPolicyOrderArgs', 'ApiWebPolicyOrderArgsDict']]]]] = None) -> 'Api':
         """
         Get an existing Api resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1620,6 +1772,7 @@ class Api(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyArgs', 'ApiFuncGraphPolicyArgsDict']]]] func_graph_policies: Specifies the Mock policy backends.  
                The maximum blocks of the policy is 5.
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiFuncGraphPolicyOrderArgs', 'ApiFuncGraphPolicyOrderArgsDict']]]] func_graph_policy_orders: The origin list of function graph policies that used to reorder the 'func_graph_policy' parameter.
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the APIG group to which the API belongs.  
                Changing this will create a new API resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies an ID of the APIG dedicated instance to which the API belongs
@@ -1640,6 +1793,7 @@ class Api(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyArgs', 'ApiMockPolicyArgsDict']]]] mock_policies: Specifies the Mock policy backends.  
                The maximum blocks of the policy is 5.
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiMockPolicyOrderArgs', 'ApiMockPolicyOrderArgsDict']]]] mock_policy_orders: The origin list of mock policies that used to reorder the 'mock_policy' parameter.
         :param pulumi.Input[_builtins.str] name: Specifies the backend policy name.  
                The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
                It must start with a letter.
@@ -1650,6 +1804,7 @@ class Api(pulumi.CustomResource):
                The valid types are **GET**, **POST**, **PUT**, **DELETE**, **HEAD**, **PATCH**, **OPTIONS** and **ANY**.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamArgs', 'ApiRequestParamArgsDict']]]] request_params: Specifies the configurations of the front-end parameters.  
                The object structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiRequestParamsOrderArgs', 'ApiRequestParamsOrderArgsDict']]]] request_params_orders: The origin list of request parameters that used to reorder the 'request_params' parameter.
         :param pulumi.Input[_builtins.str] request_path: Specifies the request address, which can contain a maximum of `512` characters,
                the request parameters enclosed with brackets ({}).
                + The address can contain special characters, such as asterisks (*), percent signs (%), hyphens (-), and
@@ -1681,6 +1836,7 @@ class Api(pulumi.CustomResource):
                
                <a name="apig_api_request_params"></a>
                The `request_params` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApiWebPolicyOrderArgs', 'ApiWebPolicyOrderArgsDict']]]] web_policy_orders: The origin list of web policies that used to reorder the 'web_policy' parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1695,17 +1851,20 @@ class Api(pulumi.CustomResource):
         __props__.__dict__["failure_response"] = failure_response
         __props__.__dict__["func_graph"] = func_graph
         __props__.__dict__["func_graph_policies"] = func_graph_policies
+        __props__.__dict__["func_graph_policy_orders"] = func_graph_policy_orders
         __props__.__dict__["group_id"] = group_id
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["is_send_fg_body_base64"] = is_send_fg_body_base64
         __props__.__dict__["matching"] = matching
         __props__.__dict__["mock"] = mock
         __props__.__dict__["mock_policies"] = mock_policies
+        __props__.__dict__["mock_policy_orders"] = mock_policy_orders
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
         __props__.__dict__["registered_at"] = registered_at
         __props__.__dict__["request_method"] = request_method
         __props__.__dict__["request_params"] = request_params
+        __props__.__dict__["request_params_orders"] = request_params_orders
         __props__.__dict__["request_path"] = request_path
         __props__.__dict__["request_protocol"] = request_protocol
         __props__.__dict__["response_id"] = response_id
@@ -1717,6 +1876,7 @@ class Api(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["web"] = web
         __props__.__dict__["web_policies"] = web_policies
+        __props__.__dict__["web_policy_orders"] = web_policy_orders
         return Api(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1809,6 +1969,14 @@ class Api(pulumi.CustomResource):
         return pulumi.get(self, "func_graph_policies")
 
     @_builtins.property
+    @pulumi.getter(name="funcGraphPolicyOrders")
+    def func_graph_policy_orders(self) -> pulumi.Output[Sequence['outputs.ApiFuncGraphPolicyOrder']]:
+        """
+        The origin list of function graph policies that used to reorder the 'func_graph_policy' parameter.
+        """
+        return pulumi.get(self, "func_graph_policy_orders")
+
+    @_builtins.property
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1871,6 +2039,14 @@ class Api(pulumi.CustomResource):
         return pulumi.get(self, "mock_policies")
 
     @_builtins.property
+    @pulumi.getter(name="mockPolicyOrders")
+    def mock_policy_orders(self) -> pulumi.Output[Sequence['outputs.ApiMockPolicyOrder']]:
+        """
+        The origin list of mock policies that used to reorder the 'mock_policy' parameter.
+        """
+        return pulumi.get(self, "mock_policy_orders")
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1914,6 +2090,14 @@ class Api(pulumi.CustomResource):
         The object structure is documented below.
         """
         return pulumi.get(self, "request_params")
+
+    @_builtins.property
+    @pulumi.getter(name="requestParamsOrders")
+    def request_params_orders(self) -> pulumi.Output[Sequence['outputs.ApiRequestParamsOrder']]:
+        """
+        The origin list of request parameters that used to reorder the 'request_params' parameter.
+        """
+        return pulumi.get(self, "request_params_orders")
 
     @_builtins.property
     @pulumi.getter(name="requestPath")
@@ -2022,4 +2206,12 @@ class Api(pulumi.CustomResource):
         The `request_params` block supports:
         """
         return pulumi.get(self, "web_policies")
+
+    @_builtins.property
+    @pulumi.getter(name="webPolicyOrders")
+    def web_policy_orders(self) -> pulumi.Output[Sequence['outputs.ApiWebPolicyOrder']]:
+        """
+        The origin list of web policies that used to reorder the 'web_policy' parameter.
+        """
+        return pulumi.get(self, "web_policy_orders")
 

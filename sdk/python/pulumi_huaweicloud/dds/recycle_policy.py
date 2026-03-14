@@ -23,6 +23,7 @@ class RecyclePolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RecyclePolicy resource.
+
         :param pulumi.Input[_builtins.int] retention_period_in_days: Specifies the policy retention duration in days.
                Value ranges from **1** to **7**.
                
@@ -74,6 +75,7 @@ class _RecyclePolicyState:
                  retention_period_in_days: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RecyclePolicy resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -140,6 +142,7 @@ class RecyclePolicy(pulumi.CustomResource):
         test = huaweicloud.dds.RecyclePolicy("test", retention_period_in_days=7)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -168,6 +171,7 @@ class RecyclePolicy(pulumi.CustomResource):
 
         test = huaweicloud.dds.RecyclePolicy("test", retention_period_in_days=7)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RecyclePolicyArgs args: The arguments to use to populate this resource's properties.

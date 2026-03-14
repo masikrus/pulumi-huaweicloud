@@ -30,6 +30,7 @@ class InspectorHostArgs:
                  ssh_credential_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InspectorHost resource.
+
         :param pulumi.Input[_builtins.str] ip: Specifies the host IP.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] os_type: Specifies the host os type. Valid values are **windows** and **linux**.
@@ -165,6 +166,7 @@ class _InspectorHostState:
                  ssh_credential_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InspectorHost resources.
+
         :param pulumi.Input[_builtins.int] auth_status: Indicates the auth status.
                Value can be as follows:
                + **-1**: unknown
@@ -344,7 +346,7 @@ class _InspectorHostState:
         pulumi.set(self, "ssh_credential_id", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/inspectorHost:InspectorHost")
+@pulumi.type_token("huaweicloud:Codearts/inspectorHost:InspectorHost")
 class InspectorHost(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -382,11 +384,10 @@ class InspectorHost(pulumi.CustomResource):
 
         The host can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/inspectorHost:InspectorHost test <id>
+        $ pulumi import huaweicloud:Codearts/inspectorHost:InspectorHost test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -435,11 +436,10 @@ class InspectorHost(pulumi.CustomResource):
 
         The host can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/inspectorHost:InspectorHost test <id>
+        $ pulumi import huaweicloud:Codearts/inspectorHost:InspectorHost test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InspectorHostArgs args: The arguments to use to populate this resource's properties.
@@ -487,7 +487,7 @@ class InspectorHost(pulumi.CustomResource):
             __props__.__dict__["last_scan_id"] = None
             __props__.__dict__["last_scan_infos"] = None
         super(InspectorHost, __self__).__init__(
-            'huaweicloud:codearts/inspectorHost:InspectorHost',
+            'huaweicloud:Codearts/inspectorHost:InspectorHost',
             resource_name,
             __props__,
             opts)

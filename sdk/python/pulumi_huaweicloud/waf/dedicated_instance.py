@@ -35,8 +35,9 @@ class DedicatedInstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a DedicatedInstance resource.
+
         :param pulumi.Input[_builtins.str] available_zone: Specifies the available zone name for the dedicated instance. It can be
-               obtained through this data source `get_availability_zones`. Changing this will create a new instance.
+               obtained through this data source `index_get_availability_zones`. Changing this will create a new instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups: Specifies the security group of the instance. This is an array of
                security group IDs. Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] specification_code: Specifies the specification code of instance.
@@ -105,7 +106,7 @@ class DedicatedInstanceArgs:
     def available_zone(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the available zone name for the dedicated instance. It can be
-        obtained through this data source `get_availability_zones`. Changing this will create a new instance.
+        obtained through this data source `index_get_availability_zones`. Changing this will create a new instance.
         """
         return pulumi.get(self, "available_zone")
 
@@ -319,11 +320,12 @@ class _DedicatedInstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DedicatedInstance resources.
+
         :param pulumi.Input[_builtins.int] access_status: The access status of the instance. `0`: inaccessible, `1`: accessible.
         :param pulumi.Input[_builtins.bool] anti_affinity: Specifies whether to enable anti-affinity. This field is valid only
                when `res_tenant` is set to **true**. Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] available_zone: Specifies the available zone name for the dedicated instance. It can be
-               obtained through this data source `get_availability_zones`. Changing this will create a new instance.
+               obtained through this data source `index_get_availability_zones`. Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] cpu_architecture: Specifies the ECS CPU architecture of instance. Defaults to **x86**.
                Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] ecs_flavor: Specifies the flavor of the ECS used by the WAF instance. Flavors can be
@@ -434,7 +436,7 @@ class _DedicatedInstanceState:
     def available_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the available zone name for the dedicated instance. It can be
-        obtained through this data source `get_availability_zones`. Changing this will create a new instance.
+        obtained through this data source `index_get_availability_zones`. Changing this will create a new instance.
         """
         return pulumi.get(self, "available_zone")
 
@@ -746,52 +748,28 @@ class DedicatedInstance(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/dedicatedInstance:DedicatedInstance test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/dedicatedInstance:DedicatedInstance test <id>/<enterprise_project_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `res_tenant`, `anti_affinity`, and `tags`. It is generally recommended
-
         running `pulumi preview` after importing the resource. You can then decide if changes should be applied to the resource,
-
         or the resource definition should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_waf_dedicated_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              res_tenant, anti_affinity, tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] anti_affinity: Specifies whether to enable anti-affinity. This field is valid only
                when `res_tenant` is set to **true**. Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] available_zone: Specifies the available zone name for the dedicated instance. It can be
-               obtained through this data source `get_availability_zones`. Changing this will create a new instance.
+               obtained through this data source `index_get_availability_zones`. Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] cpu_architecture: Specifies the ECS CPU architecture of instance. Defaults to **x86**.
                Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] ecs_flavor: Specifies the flavor of the ECS used by the WAF instance. Flavors can be
@@ -901,45 +879,21 @@ class DedicatedInstance(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/dedicatedInstance:DedicatedInstance test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/dedicatedInstance:DedicatedInstance test <id>/<enterprise_project_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `res_tenant`, `anti_affinity`, and `tags`. It is generally recommended
-
         running `pulumi preview` after importing the resource. You can then decide if changes should be applied to the resource,
-
         or the resource definition should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_waf_dedicated_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              res_tenant, anti_affinity, tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DedicatedInstanceArgs args: The arguments to use to populate this resource's properties.
@@ -1048,7 +1002,7 @@ class DedicatedInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] anti_affinity: Specifies whether to enable anti-affinity. This field is valid only
                when `res_tenant` is set to **true**. Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] available_zone: Specifies the available zone name for the dedicated instance. It can be
-               obtained through this data source `get_availability_zones`. Changing this will create a new instance.
+               obtained through this data source `index_get_availability_zones`. Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] cpu_architecture: Specifies the ECS CPU architecture of instance. Defaults to **x86**.
                Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] ecs_flavor: Specifies the flavor of the ECS used by the WAF instance. Flavors can be
@@ -1137,7 +1091,7 @@ class DedicatedInstance(pulumi.CustomResource):
     def available_zone(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the available zone name for the dedicated instance. It can be
-        obtained through this data source `get_availability_zones`. Changing this will create a new instance.
+        obtained through this data source `index_get_availability_zones`. Changing this will create a new instance.
         """
         return pulumi.get(self, "available_zone")
 

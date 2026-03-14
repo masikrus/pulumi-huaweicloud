@@ -27,6 +27,7 @@ class TaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Task resource.
+
         :param pulumi.Input[_builtins.int] project_id: Specifies the CPTS project ID which the task belongs to.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] benchmark_concurrency: Specifies benchmark concurrency of the task, the value range is `0` to
@@ -149,6 +150,7 @@ class _TaskState:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Task resources.
+
         :param pulumi.Input[_builtins.int] benchmark_concurrency: Specifies benchmark concurrency of the task, the value range is `0` to
                `2,000,000`. The default value is `100`. Reference for the calculation of the number of concurrent users.
                `Number of concurrent users` = `benchmark concurrency` * `concurrency ratio`.
@@ -312,39 +314,16 @@ class Task(pulumi.CustomResource):
 
         Tasks can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cpts/task:Task test 1090
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `operation`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cpts_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              operation,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -390,39 +369,16 @@ class Task(pulumi.CustomResource):
 
         Tasks can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cpts/task:Task test 1090
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `operation`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cpts_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              operation,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param TaskArgs args: The arguments to use to populate this resource's properties.

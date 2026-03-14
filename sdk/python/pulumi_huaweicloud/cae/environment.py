@@ -26,6 +26,7 @@ class EnvironmentArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Environment resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies the additional attributes of the environment.  
                Changing this creates a new resource.
                The required keys are as follows:
@@ -157,6 +158,7 @@ class _EnvironmentState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Environment resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies the additional attributes of the environment.  
                Changing this creates a new resource.
                The required keys are as follows:
@@ -320,7 +322,7 @@ class _EnvironmentState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:cae/environment:Environment")
+@pulumi.type_token("huaweicloud:Cae/environment:Environment")
 class Environment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -362,11 +364,10 @@ class Environment(pulumi.CustomResource):
 
         The environment can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cae/environment:Environment test <id>
+        $ pulumi import huaweicloud:Cae/environment:Environment test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -432,11 +433,10 @@ class Environment(pulumi.CustomResource):
 
         The environment can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cae/environment:Environment test <id>
+        $ pulumi import huaweicloud:Cae/environment:Environment test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EnvironmentArgs args: The arguments to use to populate this resource's properties.
@@ -476,7 +476,7 @@ class Environment(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Environment, __self__).__init__(
-            'huaweicloud:cae/environment:Environment',
+            'huaweicloud:Cae/environment:Environment',
             resource_name,
             __props__,
             opts)

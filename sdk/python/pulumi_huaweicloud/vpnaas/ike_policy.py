@@ -306,7 +306,7 @@ class _IkePolicyState:
         pulumi.set(self, "value_specs", value)
 
 
-@pulumi.type_token("huaweicloud:vpnaas/ikePolicy:IkePolicy")
+@pulumi.type_token("huaweicloud:Vpnaas/ikePolicy:IkePolicy")
 class IkePolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -326,6 +326,7 @@ class IkePolicy(pulumi.CustomResource):
                  __props__=None):
         """
         Create a IkePolicy resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -337,6 +338,7 @@ class IkePolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a IkePolicy resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param IkePolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -384,7 +386,7 @@ class IkePolicy(pulumi.CustomResource):
             __props__.__dict__["tenant_id"] = tenant_id
             __props__.__dict__["value_specs"] = value_specs
         super(IkePolicy, __self__).__init__(
-            'huaweicloud:vpnaas/ikePolicy:IkePolicy',
+            'huaweicloud:Vpnaas/ikePolicy:IkePolicy',
             resource_name,
             __props__,
             opts)

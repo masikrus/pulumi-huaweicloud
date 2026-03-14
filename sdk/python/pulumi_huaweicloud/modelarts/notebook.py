@@ -33,6 +33,7 @@ class NotebookArgs:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Notebook resource.
+
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID. The options are as follows:
                - **modelarts.vm.cpu.2u**: General-purpose Intel CPU specifications, suitable for data exploration and algorithm
                discovery.
@@ -247,6 +248,7 @@ class _NotebookState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Notebook resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_access_ips: Specifies public IP addresses that are allowed for remote SSH access.
                If the parameter is not specified, all IP addresses will be allowed for remote SSH access.
         :param pulumi.Input[_builtins.bool] auto_stop_enabled: Whether enabled the notebook instance to automatically stop.
@@ -656,11 +658,10 @@ class Notebook(pulumi.CustomResource):
 
         The notebook can be imported by `id`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/notebook:Notebook test b11b407c-e604-4e8d-8bc4-92398320b847
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -734,11 +735,10 @@ class Notebook(pulumi.CustomResource):
 
         The notebook can be imported by `id`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/notebook:Notebook test b11b407c-e604-4e8d-8bc4-92398320b847
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NotebookArgs args: The arguments to use to populate this resource's properties.

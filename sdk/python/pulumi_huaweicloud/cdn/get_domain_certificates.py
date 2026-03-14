@@ -45,7 +45,7 @@ class GetDomainCertificatesResult:
     @pulumi.getter(name="domainCertificates")
     def domain_certificates(self) -> Sequence['outputs.GetDomainCertificatesDomainCertificateResult']:
         """
-        The list of certificates information bound to accelerate domain.
+        The list of certificates that are associated with the queried domain.
         The domain_certificates structure is documented below.
         """
         return pulumi.get(self, "domain_certificates")
@@ -85,7 +85,7 @@ def get_domain_certificates(enterprise_project_id: Optional[_builtins.str] = Non
                             name: Optional[_builtins.str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainCertificatesResult:
     """
-    Use this data source to get the list of domains bound to HTTPS certificate of CDN.
+    Use this data source to get the list of domains bound to HTTPS certificate of CDN within HuaweiCloud.
 
     ## Example Usage
 
@@ -99,10 +99,10 @@ def get_domain_certificates(enterprise_project_id: Optional[_builtins.str] = Non
     ```
 
 
-    :param _builtins.str enterprise_project_id: Specifies the enterprise project that the datesource belongs to.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the resource belongs.
            This parameter is valid only when the enterprise project function is enabled.
            The value **all** indicates all projects. This parameter is mandatory when you use an IAM user.
-    :param _builtins.str name: Specifies the name of the acceleration domain.
+    :param _builtins.str name: Specifies the name of the domain.
     """
     __args__ = dict()
     __args__['enterpriseProjectId'] = enterprise_project_id
@@ -119,7 +119,7 @@ def get_domain_certificates_output(enterprise_project_id: Optional[pulumi.Input[
                                    name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDomainCertificatesResult]:
     """
-    Use this data source to get the list of domains bound to HTTPS certificate of CDN.
+    Use this data source to get the list of domains bound to HTTPS certificate of CDN within HuaweiCloud.
 
     ## Example Usage
 
@@ -133,10 +133,10 @@ def get_domain_certificates_output(enterprise_project_id: Optional[pulumi.Input[
     ```
 
 
-    :param _builtins.str enterprise_project_id: Specifies the enterprise project that the datesource belongs to.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the resource belongs.
            This parameter is valid only when the enterprise project function is enabled.
            The value **all** indicates all projects. This parameter is mandatory when you use an IAM user.
-    :param _builtins.str name: Specifies the name of the acceleration domain.
+    :param _builtins.str name: Specifies the name of the domain.
     """
     __args__ = dict()
     __args__['enterpriseProjectId'] = enterprise_project_id

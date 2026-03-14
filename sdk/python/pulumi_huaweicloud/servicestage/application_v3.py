@@ -26,6 +26,7 @@ class ApplicationV3Args:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ApplicationV3 resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the application.  
                The value can contain a maximum of `128` characters.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the application belongs.
@@ -131,6 +132,7 @@ class _ApplicationV3State:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ApplicationV3 resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the application, in RFC3339 format.
         :param pulumi.Input[_builtins.str] creator: The creator name of the application.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the application.  
@@ -306,11 +308,10 @@ class ApplicationV3(pulumi.CustomResource):
 
         Applications can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/applicationV3:ApplicationV3 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -359,11 +360,10 @@ class ApplicationV3(pulumi.CustomResource):
 
         Applications can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/applicationV3:ApplicationV3 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationV3Args args: The arguments to use to populate this resource's properties.

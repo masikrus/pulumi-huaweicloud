@@ -121,7 +121,7 @@ def get_public_scripts(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_public_scripts()
+    test = huaweicloud.Coc.get_public_scripts()
     ```
 
 
@@ -144,7 +144,7 @@ def get_public_scripts(name: Optional[_builtins.str] = None,
     __args__['riskLevel'] = risk_level
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getPublicScripts:getPublicScripts', __args__, opts=opts, typ=GetPublicScriptsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getPublicScripts:getPublicScripts', __args__, opts=opts, typ=GetPublicScriptsResult).value
 
     return AwaitableGetPublicScriptsResult(
         datas=pulumi.get(__ret__, 'datas'),
@@ -167,7 +167,7 @@ def get_public_scripts_output(name: Optional[pulumi.Input[Optional[_builtins.str
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_public_scripts()
+    test = huaweicloud.Coc.get_public_scripts()
     ```
 
 
@@ -190,7 +190,7 @@ def get_public_scripts_output(name: Optional[pulumi.Input[Optional[_builtins.str
     __args__['riskLevel'] = risk_level
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getPublicScripts:getPublicScripts', __args__, opts=opts, typ=GetPublicScriptsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getPublicScripts:getPublicScripts', __args__, opts=opts, typ=GetPublicScriptsResult)
     return __ret__.apply(lambda __response__: GetPublicScriptsResult(
         datas=pulumi.get(__response__, 'datas'),
         id=pulumi.get(__response__, 'id'),

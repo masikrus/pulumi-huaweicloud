@@ -35,6 +35,7 @@ class MonitorArgs:
                  url_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Monitor resource.
+
         :param pulumi.Input[_builtins.int] interval: Specifies the interval between health checks, in seconds.
                Value ranges from `1` to `50`.
         :param pulumi.Input[_builtins.int] max_retries: Specifies the number of consecutive health checks when the health check result of
@@ -61,7 +62,8 @@ class MonitorArgs:
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether the health check is enabled.
                + **true(default)**: Health check is enabled.
                + **false**: Health check is disabled.
-        :param pulumi.Input[_builtins.str] http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to **GET**.
+        :param pulumi.Input[_builtins.str] http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to
+               **GET**.
         :param pulumi.Input[_builtins.int] max_retries_down: Specifies the number of consecutive health checks when the health check result of
                a backend server changes from ONLINE to OFFLINE. The value ranges from `1` to `10`, and the default value is `3`.
         :param pulumi.Input[_builtins.str] name: Specifies the health check name.
@@ -213,7 +215,8 @@ class MonitorArgs:
     @pulumi.getter(name="httpMethod")
     def http_method(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to **GET**.
+        Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to
+        **GET**.
         """
         return pulumi.get(self, "http_method")
 
@@ -328,6 +331,7 @@ class _MonitorState:
                  url_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Monitor resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the monitor.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name that HTTP requests are sent to during the health check.
                The domain name consists of 1 to 100 characters, can contain only digits, letters, hyphens (-), and periods (.) and
@@ -337,7 +341,8 @@ class _MonitorState:
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether the health check is enabled.
                + **true(default)**: Health check is enabled.
                + **false**: Health check is disabled.
-        :param pulumi.Input[_builtins.str] http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to **GET**.
+        :param pulumi.Input[_builtins.str] http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to
+               **GET**.
         :param pulumi.Input[_builtins.int] interval: Specifies the interval between health checks, in seconds.
                Value ranges from `1` to `50`.
         :param pulumi.Input[_builtins.int] max_retries: Specifies the number of consecutive health checks when the health check result of
@@ -456,7 +461,8 @@ class _MonitorState:
     @pulumi.getter(name="httpMethod")
     def http_method(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to **GET**.
+        Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to
+        **GET**.
         """
         return pulumi.get(self, "http_method")
 
@@ -683,11 +689,10 @@ class Monitor(pulumi.CustomResource):
 
         ELB monitor can be imported using the monitor `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/monitor:Monitor test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -699,7 +704,8 @@ class Monitor(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether the health check is enabled.
                + **true(default)**: Health check is enabled.
                + **false**: Health check is disabled.
-        :param pulumi.Input[_builtins.str] http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to **GET**.
+        :param pulumi.Input[_builtins.str] http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to
+               **GET**.
         :param pulumi.Input[_builtins.int] interval: Specifies the interval between health checks, in seconds.
                Value ranges from `1` to `50`.
         :param pulumi.Input[_builtins.int] max_retries: Specifies the number of consecutive health checks when the health check result of
@@ -771,11 +777,10 @@ class Monitor(pulumi.CustomResource):
 
         ELB monitor can be imported using the monitor `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/monitor:Monitor test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MonitorArgs args: The arguments to use to populate this resource's properties.
@@ -883,7 +888,8 @@ class Monitor(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether the health check is enabled.
                + **true(default)**: Health check is enabled.
                + **false**: Health check is disabled.
-        :param pulumi.Input[_builtins.str] http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to **GET**.
+        :param pulumi.Input[_builtins.str] http_method: Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to
+               **GET**.
         :param pulumi.Input[_builtins.int] interval: Specifies the interval between health checks, in seconds.
                Value ranges from `1` to `50`.
         :param pulumi.Input[_builtins.int] max_retries: Specifies the number of consecutive health checks when the health check result of
@@ -979,7 +985,8 @@ class Monitor(pulumi.CustomResource):
     @pulumi.getter(name="httpMethod")
     def http_method(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to **GET**.
+        Specifies the HTTP method. Value options: **GET**, **HEAD**, **POST**. Defaults to
+        **GET**.
         """
         return pulumi.get(self, "http_method")
 

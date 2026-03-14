@@ -192,7 +192,7 @@ def get_workspaces(create_time_end: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     name = config.require_object("name")
-    test = huaweicloud.secmaster.get_workspaces(name=name)
+    test = huaweicloud.Secmaster.get_workspaces(name=name)
     ```
 
 
@@ -220,7 +220,7 @@ def get_workspaces(create_time_end: Optional[_builtins.str] = None,
     __args__['viewBindId'] = view_bind_id
     __args__['viewBindName'] = view_bind_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getWorkspaces:getWorkspaces', __args__, opts=opts, typ=GetWorkspacesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getWorkspaces:getWorkspaces', __args__, opts=opts, typ=GetWorkspacesResult).value
 
     return AwaitableGetWorkspacesResult(
         create_time_end=pulumi.get(__ret__, 'create_time_end'),
@@ -257,7 +257,7 @@ def get_workspaces_output(create_time_end: Optional[pulumi.Input[Optional[_built
 
     config = pulumi.Config()
     name = config.require_object("name")
-    test = huaweicloud.secmaster.get_workspaces(name=name)
+    test = huaweicloud.Secmaster.get_workspaces(name=name)
     ```
 
 
@@ -285,7 +285,7 @@ def get_workspaces_output(create_time_end: Optional[pulumi.Input[Optional[_built
     __args__['viewBindId'] = view_bind_id
     __args__['viewBindName'] = view_bind_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getWorkspaces:getWorkspaces', __args__, opts=opts, typ=GetWorkspacesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getWorkspaces:getWorkspaces', __args__, opts=opts, typ=GetWorkspacesResult)
     return __ret__.apply(lambda __response__: GetWorkspacesResult(
         create_time_end=pulumi.get(__response__, 'create_time_end'),
         create_time_start=pulumi.get(__response__, 'create_time_start'),

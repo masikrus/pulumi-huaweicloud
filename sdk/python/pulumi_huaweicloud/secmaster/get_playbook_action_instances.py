@@ -105,7 +105,7 @@ def get_playbook_action_instances(playbook_instance_id: Optional[_builtins.str] 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     playbook_instance_id = config.require_object("playbookInstanceId")
-    test = huaweicloud.secmaster.get_playbook_action_instances(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_action_instances(workspace_id=workspace_id,
         playbook_instance_id=playbook_instance_id)
     ```
 
@@ -120,7 +120,7 @@ def get_playbook_action_instances(playbook_instance_id: Optional[_builtins.str] 
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getPlaybookActionInstances:getPlaybookActionInstances', __args__, opts=opts, typ=GetPlaybookActionInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getPlaybookActionInstances:getPlaybookActionInstances', __args__, opts=opts, typ=GetPlaybookActionInstancesResult).value
 
     return AwaitableGetPlaybookActionInstancesResult(
         action_instances=pulumi.get(__ret__, 'action_instances'),
@@ -144,7 +144,7 @@ def get_playbook_action_instances_output(playbook_instance_id: Optional[pulumi.I
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     playbook_instance_id = config.require_object("playbookInstanceId")
-    test = huaweicloud.secmaster.get_playbook_action_instances(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_action_instances(workspace_id=workspace_id,
         playbook_instance_id=playbook_instance_id)
     ```
 
@@ -159,7 +159,7 @@ def get_playbook_action_instances_output(playbook_instance_id: Optional[pulumi.I
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getPlaybookActionInstances:getPlaybookActionInstances', __args__, opts=opts, typ=GetPlaybookActionInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getPlaybookActionInstances:getPlaybookActionInstances', __args__, opts=opts, typ=GetPlaybookActionInstancesResult)
     return __ret__.apply(lambda __response__: GetPlaybookActionInstancesResult(
         action_instances=pulumi.get(__response__, 'action_instances'),
         id=pulumi.get(__response__, 'id'),

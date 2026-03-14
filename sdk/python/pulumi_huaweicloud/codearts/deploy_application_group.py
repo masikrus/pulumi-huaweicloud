@@ -25,6 +25,7 @@ class DeployApplicationGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployApplicationGroup resource.
+
         :param pulumi.Input[_builtins.str] project_id: Specifies the project ID for CodeArts service.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the application group name.
@@ -110,6 +111,7 @@ class _DeployApplicationGroupState:
                  updated_by: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployApplicationGroup resources.
+
         :param pulumi.Input[_builtins.int] application_count: Indicates the total number of applications in the group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] childrens: Indicates the child group name list.
         :param pulumi.Input[_builtins.str] created_by: Indicates the ID of the group creator.
@@ -271,7 +273,7 @@ class _DeployApplicationGroupState:
         pulumi.set(self, "updated_by", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployApplicationGroup:DeployApplicationGroup")
+@pulumi.type_token("huaweicloud:Codearts/deployApplicationGroup:DeployApplicationGroup")
 class DeployApplicationGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -321,11 +323,10 @@ class DeployApplicationGroup(pulumi.CustomResource):
 
         The application group can be imported using the `project_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployApplicationGroup:DeployApplicationGroup test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployApplicationGroup:DeployApplicationGroup test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -383,11 +384,10 @@ class DeployApplicationGroup(pulumi.CustomResource):
 
         The application group can be imported using the `project_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployApplicationGroup:DeployApplicationGroup test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployApplicationGroup:DeployApplicationGroup test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeployApplicationGroupArgs args: The arguments to use to populate this resource's properties.
@@ -430,7 +430,7 @@ class DeployApplicationGroup(pulumi.CustomResource):
             __props__.__dict__["path"] = None
             __props__.__dict__["updated_by"] = None
         super(DeployApplicationGroup, __self__).__init__(
-            'huaweicloud:codearts/deployApplicationGroup:DeployApplicationGroup',
+            'huaweicloud:Codearts/deployApplicationGroup:DeployApplicationGroup',
             resource_name,
             __props__,
             opts)

@@ -28,6 +28,7 @@ class PartitionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Partition resource.
+
         :param pulumi.Input[_builtins.str] category: Specifies the category of the partition. Changing this parameter will create
                a new resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID. Changing this parameter will create a new resource.
@@ -158,6 +159,7 @@ class _PartitionState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Partition resources.
+
         :param pulumi.Input[_builtins.str] category: Specifies the category of the partition. Changing this parameter will create
                a new resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID. Changing this parameter will create a new resource.
@@ -311,11 +313,10 @@ class Partition(pulumi.CustomResource):
 
         The CCE partition can be imported using the `cluster_id` and `name` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/partition:Partition atest <cluster_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -359,11 +360,10 @@ class Partition(pulumi.CustomResource):
 
         The CCE partition can be imported using the `cluster_id` and `name` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/partition:Partition atest <cluster_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PartitionArgs args: The arguments to use to populate this resource's properties.

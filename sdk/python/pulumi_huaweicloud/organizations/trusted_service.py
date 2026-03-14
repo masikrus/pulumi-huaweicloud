@@ -22,6 +22,7 @@ class TrustedServiceArgs:
                  service: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a TrustedService resource.
+
         :param pulumi.Input[_builtins.str] service: Specifies the name of the trusted service principal.
                
                Changing this parameter will create a new resource.
@@ -50,6 +51,7 @@ class _TrustedServiceState:
                  service: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TrustedService resources.
+
         :param pulumi.Input[_builtins.str] enabled_at: Indicates the date when the trusted service was integrated with Organizations.
         :param pulumi.Input[_builtins.str] service: Specifies the name of the trusted service principal.
                
@@ -87,7 +89,7 @@ class _TrustedServiceState:
         pulumi.set(self, "service", value)
 
 
-@pulumi.type_token("huaweicloud:organizations/trustedService:TrustedService")
+@pulumi.type_token("huaweicloud:Organizations/trustedService:TrustedService")
 class TrustedService(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -111,11 +113,10 @@ class TrustedService(pulumi.CustomResource):
 
         The organizations trusted service can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/trustedService:TrustedService test <id>
+        $ pulumi import huaweicloud:Organizations/trustedService:TrustedService test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -145,11 +146,10 @@ class TrustedService(pulumi.CustomResource):
 
         The organizations trusted service can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/trustedService:TrustedService test <id>
+        $ pulumi import huaweicloud:Organizations/trustedService:TrustedService test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TrustedServiceArgs args: The arguments to use to populate this resource's properties.
@@ -181,7 +181,7 @@ class TrustedService(pulumi.CustomResource):
             __props__.__dict__["service"] = service
             __props__.__dict__["enabled_at"] = None
         super(TrustedService, __self__).__init__(
-            'huaweicloud:organizations/trustedService:TrustedService',
+            'huaweicloud:Organizations/trustedService:TrustedService',
             resource_name,
             __props__,
             opts)

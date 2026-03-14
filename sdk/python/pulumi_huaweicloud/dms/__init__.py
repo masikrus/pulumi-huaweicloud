@@ -6,9 +6,15 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .consumer_group_topic_batch_delete import *
 from .get_az import *
 from .get_az_v1 import *
+from .get_consumer_group_members import *
+from .get_consumer_group_message_offsets import *
+from .get_consumer_group_topics import *
 from .get_flavors import *
+from .get_instance_coordinators import *
+from .get_instance_upgrade_information import *
 from .get_instances import *
 from .get_kafka_background_tasks import *
 from .get_kafka_consumer_groups import *
@@ -24,6 +30,7 @@ from .get_kafka_users import *
 from .get_kafkav2_smart_connect_tasks import *
 from .get_maintainwindow import *
 from .get_maintainwindow_v1 import *
+from .get_maintainwindows import *
 from .get_product import *
 from .get_product_v1 import *
 from .get_rabbitmq_background_tasks import *
@@ -38,12 +45,15 @@ from .get_rabbitmq_vhosts import *
 from .get_rocketmq_availability_zones import *
 from .get_rocketmq_background_tasks import *
 from .get_rocketmq_broker import *
+from .get_rocketmq_brokers import *
 from .get_rocketmq_consumer_group_access_users import *
+from .get_rocketmq_consumer_group_topics import *
 from .get_rocketmq_consumer_groups import *
 from .get_rocketmq_consumers import *
 from .get_rocketmq_dead_letter_messages import *
 from .get_rocketmq_extend_flavors import *
 from .get_rocketmq_flavors import *
+from .get_rocketmq_instance_diagnoses import *
 from .get_rocketmq_instance_nodes import *
 from .get_rocketmq_instances import *
 from .get_rocketmq_message_traces import *
@@ -54,9 +64,18 @@ from .get_rocketmq_topic_access_users import *
 from .get_rocketmq_topic_consumer_groups import *
 from .get_rocketmq_topics import *
 from .get_rocketmq_users import *
+from .get_tags import *
+from .get_topic_broker_disk_usages import *
+from .get_topic_quotas import *
+from .get_volume_auto_expand_configuration import *
 from .group import *
 from .group_v1 import *
 from .instance import *
+from .instance_batch_action import *
+from .instance_diagnosis import *
+from .instance_public_access_switch import *
+from .instance_rebalance_log import *
+from .instance_upgrade import *
 from .instance_v1 import *
 from .kafka_background_task_delete import *
 from .kafka_consumer_group import *
@@ -95,5 +114,10 @@ from .rocketmq_migration_task import *
 from .rocketmq_node_batch_restart import *
 from .rocketmq_topic import *
 from .rocketmq_user import *
+from .smart_connector_validate import *
+from .topic_message_batch_delete import *
+from .topic_quota import *
+from .user_password_reset import *
+from .volume_auto_expand_configuration import *
 from ._inputs import *
 from . import outputs

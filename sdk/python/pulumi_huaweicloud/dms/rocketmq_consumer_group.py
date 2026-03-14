@@ -30,6 +30,7 @@ class RocketmqConsumerGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RocketmqConsumerGroup resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the rocketMQ instance.
                
                Changing this parameter will create a new resource.
@@ -202,6 +203,7 @@ class _RocketmqConsumerGroupState:
                  retry_max_times: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RocketmqConsumerGroup resources.
+
         :param pulumi.Input[_builtins.bool] broadcast: Specifies whether to broadcast of the consumer group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] brokers: Specifies the list of associated brokers of the consumer group.
                It's only valid when RocketMQ instance version is **4.8.0**.
@@ -426,11 +428,10 @@ class RocketmqConsumerGroup(pulumi.CustomResource):
 
         The rocketmq consumer group can be imported using the rocketMQ instance ID and group name separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqConsumerGroup:RocketmqConsumerGroup test 8d3c7938-dc47-4937-a30f-c80de381c5e3/group_1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -509,11 +510,10 @@ class RocketmqConsumerGroup(pulumi.CustomResource):
 
         The rocketmq consumer group can be imported using the rocketMQ instance ID and group name separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqConsumerGroup:RocketmqConsumerGroup test 8d3c7938-dc47-4937-a30f-c80de381c5e3/group_1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RocketmqConsumerGroupArgs args: The arguments to use to populate this resource's properties.

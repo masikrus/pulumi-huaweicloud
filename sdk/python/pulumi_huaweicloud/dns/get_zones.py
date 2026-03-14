@@ -211,8 +211,6 @@ def get_zones(enterprise_project_id: Optional[_builtins.str] = None,
 
     :param _builtins.str enterprise_project_id: Specifies the enterprise project ID which the zone associated.
     :param _builtins.str name: Specifies the name of the zone to be queried. Fuzzy matching will work.
-    :param _builtins.str region: Specifies the region in which to query the data source.
-           If omitted, the provider-level region will be used.
     :param _builtins.str router_id: Specifies the ID of the VPC associated with the private zone.  
            This parameter is available only when the `zone_type` parameter is set to **private**.
     :param _builtins.str search_mode: Specifies the search mode for `name`. Valid values are as follows:
@@ -303,8 +301,6 @@ def get_zones_output(enterprise_project_id: Optional[pulumi.Input[Optional[_buil
 
     :param _builtins.str enterprise_project_id: Specifies the enterprise project ID which the zone associated.
     :param _builtins.str name: Specifies the name of the zone to be queried. Fuzzy matching will work.
-    :param _builtins.str region: Specifies the region in which to query the data source.
-           If omitted, the provider-level region will be used.
     :param _builtins.str router_id: Specifies the ID of the VPC associated with the private zone.  
            This parameter is available only when the `zone_type` parameter is set to **private**.
     :param _builtins.str search_mode: Specifies the search mode for `name`. Valid values are as follows:

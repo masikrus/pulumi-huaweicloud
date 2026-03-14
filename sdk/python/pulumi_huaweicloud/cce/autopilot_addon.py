@@ -29,6 +29,7 @@ class AutopilotAddonArgs:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AutopilotAddon resource.
+
         :param pulumi.Input[_builtins.str] addon_template_name: Specifies the name of the add-on template to be installed,
                for example, **coredns**.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
@@ -167,6 +168,7 @@ class _AutopilotAddonState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AutopilotAddon resources.
+
         :param pulumi.Input[_builtins.str] addon_template_name: Specifies the name of the add-on template to be installed,
                for example, **coredns**.
         :param pulumi.Input[_builtins.str] alias: Specifies the add-on alias.
@@ -384,39 +386,16 @@ class AutopilotAddon(pulumi.CustomResource):
 
         The autopilot add-on can be imported using the add-on ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Cce/autopilotAddon:AutopilotAddon  huaweicloud_cce_autopilot_addon.myaddon <addon_id>
+         $ pulumi import huaweicloud:Cce/autopilotAddon:AutopilotAddon myaddon <addon_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `values`. It is generally
-
         recommended running `pulumi preview` after importing a add-on. You can then decide if changes should be applied to
-
         the add-on, or the resource definition should be updated to align with the add-on. Also you can ignore changes as
-
         below.
 
-        hcl
-
-        resource "huaweicloud_cce_autopilot_addon" "myaddon" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              values
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -469,39 +448,16 @@ class AutopilotAddon(pulumi.CustomResource):
 
         The autopilot add-on can be imported using the add-on ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Cce/autopilotAddon:AutopilotAddon  huaweicloud_cce_autopilot_addon.myaddon <addon_id>
+         $ pulumi import huaweicloud:Cce/autopilotAddon:AutopilotAddon myaddon <addon_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `values`. It is generally
-
         recommended running `pulumi preview` after importing a add-on. You can then decide if changes should be applied to
-
         the add-on, or the resource definition should be updated to align with the add-on. Also you can ignore changes as
-
         below.
 
-        hcl
-
-        resource "huaweicloud_cce_autopilot_addon" "myaddon" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              values
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AutopilotAddonArgs args: The arguments to use to populate this resource's properties.

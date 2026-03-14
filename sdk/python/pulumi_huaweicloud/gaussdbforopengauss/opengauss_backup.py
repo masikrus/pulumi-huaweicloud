@@ -27,6 +27,7 @@ class OpengaussBackupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussBackup resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the backup. It contains up to `256` characters
                and cannot contain the following special characters: **>!<"&'=**.
@@ -109,6 +110,7 @@ class _OpengaussBackupState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussBackup resources.
+
         :param pulumi.Input[_builtins.str] begin_time: Indicates the backup start time in the **yyyy-mm-ddThh:mm:ssZ** format.
         :param pulumi.Input[Sequence[pulumi.Input['OpengaussBackupDatastoreArgs']]] datastores: Indicates the database information.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the backup. It contains up to `256` characters
@@ -285,11 +287,10 @@ class OpengaussBackup(pulumi.CustomResource):
 
         The GaussDB OpenGauss backup can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussBackup:OpengaussBackup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -328,11 +329,10 @@ class OpengaussBackup(pulumi.CustomResource):
 
         The GaussDB OpenGauss backup can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussBackup:OpengaussBackup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussBackupArgs args: The arguments to use to populate this resource's properties.

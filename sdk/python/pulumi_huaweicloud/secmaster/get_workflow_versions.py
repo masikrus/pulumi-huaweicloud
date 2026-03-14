@@ -118,7 +118,7 @@ def get_workflow_versions(region: Optional[_builtins.str] = None,
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     workflow_id = config.require_object("workflowId")
-    test = huaweicloud.secmaster.get_workflow_versions(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_workflow_versions(workspace_id=workspace_id,
         workflow_id=workflow_id)
     ```
 
@@ -127,8 +127,6 @@ def get_workflow_versions(region: Optional[_builtins.str] = None,
            If omitted, the provider-level region will be used.
     :param _builtins.str status: Specifies the workflow version status.
            The value can be **pending_submit**, **pending_approval**, **not_activated**, **activated** or **rejected**.
-           
-           activated,pending_approval,not_activated，pending_submit，rejected
     :param _builtins.str workflow_id: Specifies the workflow ID.
     :param _builtins.str workspace_id: Specifies the workspace ID.
     """
@@ -138,7 +136,7 @@ def get_workflow_versions(region: Optional[_builtins.str] = None,
     __args__['workflowId'] = workflow_id
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getWorkflowVersions:getWorkflowVersions', __args__, opts=opts, typ=GetWorkflowVersionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getWorkflowVersions:getWorkflowVersions', __args__, opts=opts, typ=GetWorkflowVersionsResult).value
 
     return AwaitableGetWorkflowVersionsResult(
         datas=pulumi.get(__ret__, 'datas'),
@@ -164,7 +162,7 @@ def get_workflow_versions_output(region: Optional[pulumi.Input[Optional[_builtin
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     workflow_id = config.require_object("workflowId")
-    test = huaweicloud.secmaster.get_workflow_versions(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_workflow_versions(workspace_id=workspace_id,
         workflow_id=workflow_id)
     ```
 
@@ -173,8 +171,6 @@ def get_workflow_versions_output(region: Optional[pulumi.Input[Optional[_builtin
            If omitted, the provider-level region will be used.
     :param _builtins.str status: Specifies the workflow version status.
            The value can be **pending_submit**, **pending_approval**, **not_activated**, **activated** or **rejected**.
-           
-           activated,pending_approval,not_activated，pending_submit，rejected
     :param _builtins.str workflow_id: Specifies the workflow ID.
     :param _builtins.str workspace_id: Specifies the workspace ID.
     """
@@ -184,7 +180,7 @@ def get_workflow_versions_output(region: Optional[pulumi.Input[Optional[_builtin
     __args__['workflowId'] = workflow_id
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getWorkflowVersions:getWorkflowVersions', __args__, opts=opts, typ=GetWorkflowVersionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getWorkflowVersions:getWorkflowVersions', __args__, opts=opts, typ=GetWorkflowVersionsResult)
     return __ret__.apply(lambda __response__: GetWorkflowVersionsResult(
         datas=pulumi.get(__response__, 'datas'),
         id=pulumi.get(__response__, 'id'),

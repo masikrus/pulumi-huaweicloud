@@ -33,6 +33,7 @@ class PlaybookVersionArgs:
                  trigger_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PlaybookVersion resource.
+
         :param pulumi.Input[_builtins.str] dataclass_id: Specifies the data class ID of the playbook version.
         :param pulumi.Input[_builtins.str] playbook_id: Specifies playbook ID of the playbook version.
                
@@ -254,6 +255,7 @@ class _PlaybookVersionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PlaybookVersion resources.
+
         :param pulumi.Input[_builtins.str] action_strategy: Specifies the action strategy of the playbook version.
                The value can be **ASYNC**.
         :param pulumi.Input[_builtins.str] approve_name: Indicates the approver name.
@@ -605,7 +607,7 @@ class _PlaybookVersionState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/playbookVersion:PlaybookVersion")
+@pulumi.type_token("huaweicloud:Secmaster/playbookVersion:PlaybookVersion")
 class PlaybookVersion(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -655,14 +657,12 @@ class PlaybookVersion(pulumi.CustomResource):
         ## Import
 
         The playbook version can be imported using the workspace ID, the playbook ID and the playbook version ID,
-
         separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/playbookVersion:PlaybookVersion test <workspace_id>/<playbook_id>/<playbook_version_id>
+        $ pulumi import huaweicloud:Secmaster/playbookVersion:PlaybookVersion test <workspace_id>/<playbook_id>/<playbook_version_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -723,14 +723,12 @@ class PlaybookVersion(pulumi.CustomResource):
         ## Import
 
         The playbook version can be imported using the workspace ID, the playbook ID and the playbook version ID,
-
         separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/playbookVersion:PlaybookVersion test <workspace_id>/<playbook_id>/<playbook_version_id>
+        $ pulumi import huaweicloud:Secmaster/playbookVersion:PlaybookVersion test <workspace_id>/<playbook_id>/<playbook_version_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PlaybookVersionArgs args: The arguments to use to populate this resource's properties.
@@ -797,7 +795,7 @@ class PlaybookVersion(pulumi.CustomResource):
             __props__.__dict__["version"] = None
             __props__.__dict__["version_type"] = None
         super(PlaybookVersion, __self__).__init__(
-            'huaweicloud:secmaster/playbookVersion:PlaybookVersion',
+            'huaweicloud:Secmaster/playbookVersion:PlaybookVersion',
             resource_name,
             __props__,
             opts)

@@ -27,6 +27,7 @@ class DatakeyWithoutPlaintextArgs:
                  sequence: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatakeyWithoutPlaintext resource.
+
         :param pulumi.Input[_builtins.str] key_id: Specifies the key ID.
                The valid length is `36` bytes, meeting regular match **^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$**.
                For example: **0d0466b0-e727-4d9c-b35d-f84bb474a37f**.
@@ -151,6 +152,7 @@ class _DatakeyWithoutPlaintextState:
                  sequence: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatakeyWithoutPlaintext resources.
+
         :param pulumi.Input[_builtins.str] cipher_text: The encrypted ciphertext, Base64 encoded.
         :param pulumi.Input[_builtins.str] datakey_length: Specifies the bit length of the datakey.
                The valid value must be a multiple of `8`, ranging from `8` to `8,192`.
@@ -309,6 +311,7 @@ class DatakeyWithoutPlaintext(pulumi.CustomResource):
         test = huaweicloud.dew.DatakeyWithoutPlaintext("test", key_id=key_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] datakey_length: Specifies the bit length of the datakey.
@@ -351,6 +354,7 @@ class DatakeyWithoutPlaintext(pulumi.CustomResource):
         key_id = config.require_object("keyId")
         test = huaweicloud.dew.DatakeyWithoutPlaintext("test", key_id=key_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatakeyWithoutPlaintextArgs args: The arguments to use to populate this resource's properties.

@@ -41,6 +41,7 @@ class DeviceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Device resource.
+
         :param pulumi.Input[_builtins.str] node_id: Specifies the node ID, which contains `4` to `256` characters.
                The node ID can be IMEI, MAC address, or serial number. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] product_id: Specifies the product ID which the device belongs to.
@@ -421,6 +422,7 @@ class _DeviceState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Device resources.
+
         :param pulumi.Input[_builtins.str] auth_type: The authentication type of device. The options are as follows:
                + **SECRET**: Use a secret for identity authentication.
                + **CERTIFICATES**: Use an x.509 certificate for identity authentication.
@@ -906,41 +908,17 @@ class Device(pulumi.CustomResource):
 
         Devices can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/device:Device test 10022532f4f94f26b01daa1e424853e1
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `force_disconnect`, `extension_info`, `shadow`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_iotda_device" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              force_disconnect, extension_info, shadow,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1059,41 +1037,17 @@ class Device(pulumi.CustomResource):
 
         Devices can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/device:Device test 10022532f4f94f26b01daa1e424853e1
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `force_disconnect`, `extension_info`, `shadow`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_iotda_device" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              force_disconnect, extension_info, shadow,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DeviceArgs args: The arguments to use to populate this resource's properties.

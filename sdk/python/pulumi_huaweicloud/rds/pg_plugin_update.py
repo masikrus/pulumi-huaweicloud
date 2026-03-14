@@ -26,6 +26,7 @@ class PgPluginUpdateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgPluginUpdate resource.
+
         :param pulumi.Input[_builtins.str] database_name: Specifies the database name.
         :param pulumi.Input[_builtins.str] extension_name: Specifies the extension name.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
@@ -109,6 +110,7 @@ class _PgPluginUpdateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PgPluginUpdate resources.
+
         :param pulumi.Input[_builtins.str] database_name: Specifies the database name.
         :param pulumi.Input[_builtins.str] extension_name: Specifies the extension name.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
@@ -220,6 +222,7 @@ class PgPluginUpdate(pulumi.CustomResource):
             extension_name=extension_name)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] database_name: Specifies the database name.
@@ -256,6 +259,7 @@ class PgPluginUpdate(pulumi.CustomResource):
             database_name=database_name,
             extension_name=extension_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PgPluginUpdateArgs args: The arguments to use to populate this resource's properties.

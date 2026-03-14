@@ -119,7 +119,7 @@ def get_rasp_policies(enterprise_project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_rasp_policies()
+    test = huaweicloud.Hss.get_rasp_policies()
     ```
 
 
@@ -143,7 +143,7 @@ def get_rasp_policies(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['policyName'] = policy_name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getRaspPolicies:getRaspPolicies', __args__, opts=opts, typ=GetRaspPoliciesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getRaspPolicies:getRaspPolicies', __args__, opts=opts, typ=GetRaspPoliciesResult).value
 
     return AwaitableGetRaspPoliciesResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -166,7 +166,7 @@ def get_rasp_policies_output(enterprise_project_id: Optional[pulumi.Input[Option
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_rasp_policies()
+    test = huaweicloud.Hss.get_rasp_policies()
     ```
 
 
@@ -190,7 +190,7 @@ def get_rasp_policies_output(enterprise_project_id: Optional[pulumi.Input[Option
     __args__['policyName'] = policy_name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getRaspPolicies:getRaspPolicies', __args__, opts=opts, typ=GetRaspPoliciesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getRaspPolicies:getRaspPolicies', __args__, opts=opts, typ=GetRaspPoliciesResult)
     return __ret__.apply(lambda __response__: GetRaspPoliciesResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

@@ -32,6 +32,7 @@ class AlarmGroupRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlarmGroupRule resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['AlarmGroupRuleDetailArgs']]] details: Specifies the grouping conditions list.
                The detail structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_bies: Specifies the combine notifications.
@@ -203,6 +204,7 @@ class _AlarmGroupRuleState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlarmGroupRule resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the rule create time.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the rule.
         :param pulumi.Input[Sequence[pulumi.Input['AlarmGroupRuleDetailArgs']]] details: Specifies the grouping conditions list.
@@ -464,11 +466,10 @@ class AlarmGroupRule(pulumi.CustomResource):
 
         The rule can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmGroupRule:AlarmGroupRule test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -554,11 +555,10 @@ class AlarmGroupRule(pulumi.CustomResource):
 
         The rule can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmGroupRule:AlarmGroupRule test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlarmGroupRuleArgs args: The arguments to use to populate this resource's properties.

@@ -10,8 +10,11 @@ from .access_policy import *
 from .client_ca_certificate import *
 from .connection import *
 from .connection_health_check import *
+from .connection_reset import *
 from .customer_gateway import *
 from .gateway import *
+from .gateway_job_delete import *
+from .gateway_upgrade import *
 from .get_access_policies import *
 from .get_connection_health_checks import *
 from .get_connection_logs import *
@@ -19,10 +22,12 @@ from .get_connections import *
 from .get_customer_gateways import *
 from .get_gateway_availability_zones import *
 from .get_gateway_availability_zones_v51 import *
+from .get_gateway_jobs import *
 from .get_gateway_route_tables import *
 from .get_gateways import *
 from .get_p2c_gateway_availability_zones import *
 from .get_p2c_gateway_connections import *
+from .get_p2c_gateway_jobs import *
 from .get_p2c_gateways import *
 from .get_quotas import *
 from .get_resource_instances import *
@@ -31,6 +36,8 @@ from .get_tags import *
 from .get_user_groups import *
 from .get_users import *
 from .p2c_gateway_connection_disconnect import *
+from .p2c_gateway_job_delete import *
+from .p2c_gateway_upgrade import *
 from .server import *
 from .user import *
 from .user_group import *

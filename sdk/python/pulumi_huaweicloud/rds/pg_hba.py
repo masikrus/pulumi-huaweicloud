@@ -27,6 +27,7 @@ class PgHbaArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgHba resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['PgHbaHostBasedAuthenticationArgs']]] host_based_authentications: Specifies the list of host based authentications.
                The host_based_authentications structure is documented below.
                
@@ -103,6 +104,7 @@ class _PgHbaState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PgHba resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['PgHbaHostBasedAuthenticationArgs']]] host_based_authentications: Specifies the list of host based authentications.
                The host_based_authentications structure is documented below.
                
@@ -209,11 +211,10 @@ class PgHba(pulumi.CustomResource):
 
         The rds PostgreSQL hba can be imported using the `instance_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgHba:PgHba test <instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -258,11 +259,10 @@ class PgHba(pulumi.CustomResource):
 
         The rds PostgreSQL hba can be imported using the `instance_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgHba:PgHba test <instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PgHbaArgs args: The arguments to use to populate this resource's properties.

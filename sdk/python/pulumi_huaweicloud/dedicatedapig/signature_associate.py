@@ -25,6 +25,7 @@ class SignatureAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SignatureAssociate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the APIs and the
                signature belong.
                Changing this will create a new resource.
@@ -102,6 +103,7 @@ class _SignatureAssociateState:
                  signature_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SignatureAssociate resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the APIs and the
                signature belong.
                Changing this will create a new resource.
@@ -209,14 +211,12 @@ class SignatureAssociate(pulumi.CustomResource):
         ## Import
 
         Associate resources can be imported using their `signature_id` and the APIG dedicated instance ID to which the signature
-
         belongs, separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/signatureAssociate:SignatureAssociate test <instance_id>/<signature_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -260,14 +260,12 @@ class SignatureAssociate(pulumi.CustomResource):
         ## Import
 
         Associate resources can be imported using their `signature_id` and the APIG dedicated instance ID to which the signature
-
         belongs, separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/signatureAssociate:SignatureAssociate test <instance_id>/<signature_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SignatureAssociateArgs args: The arguments to use to populate this resource's properties.

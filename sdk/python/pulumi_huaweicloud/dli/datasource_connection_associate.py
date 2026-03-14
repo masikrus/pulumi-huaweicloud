@@ -24,6 +24,7 @@ class DatasourceConnectionAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatasourceConnectionAssociate resource.
+
         :param pulumi.Input[_builtins.str] connection_id: Specifies the ID of the datasource **enhanced** connection to be
                associated.
                Changing this parameter will create a new resource.
@@ -84,6 +85,7 @@ class _DatasourceConnectionAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatasourceConnectionAssociate resources.
+
         :param pulumi.Input[_builtins.str] connection_id: Specifies the ID of the datasource **enhanced** connection to be
                associated.
                Changing this parameter will create a new resource.
@@ -174,11 +176,10 @@ class DatasourceConnectionAssociate(pulumi.CustomResource):
 
         The associate relationship can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/datasourceConnectionAssociate:DatasourceConnectionAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -221,11 +222,10 @@ class DatasourceConnectionAssociate(pulumi.CustomResource):
 
         The associate relationship can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/datasourceConnectionAssociate:DatasourceConnectionAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatasourceConnectionAssociateArgs args: The arguments to use to populate this resource's properties.

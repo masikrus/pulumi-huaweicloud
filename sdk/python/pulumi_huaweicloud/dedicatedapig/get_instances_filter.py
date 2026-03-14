@@ -132,7 +132,7 @@ def get_instances_filter(matches: Optional[Sequence[Union['GetInstancesFilterMat
     test = huaweicloud.DedicatedApig.get_instances_filter(tags=[{
         "key": entry["value"]["key"],
         "values": entry["value"]["values"],
-    } for entry in [{"key": k, "value": v} for k, v in tags]])
+    } for entry in [{"key": k, "value": v} for k, v in tags.items()]])
     ```
 
 
@@ -195,7 +195,7 @@ def get_instances_filter_output(matches: Optional[pulumi.Input[Optional[Sequence
     test = huaweicloud.DedicatedApig.get_instances_filter(tags=[{
         "key": entry["value"]["key"],
         "values": entry["value"]["values"],
-    } for entry in [{"key": k, "value": v} for k, v in tags]])
+    } for entry in [{"key": k, "value": v} for k, v in tags.items()]])
     ```
 
 

@@ -95,7 +95,7 @@ def get_resource_aggregator_policy_assignments(aggregator_id: Optional[_builtins
 
     config = pulumi.Config()
     aggregator_id = config.require_object("aggregatorId")
-    test = huaweicloud.rms.get_resource_aggregator_policy_assignments(aggregator_id=aggregator_id)
+    test = huaweicloud.Rms.get_resource_aggregator_policy_assignments(aggregator_id=aggregator_id)
     ```
 
 
@@ -109,7 +109,7 @@ def get_resource_aggregator_policy_assignments(aggregator_id: Optional[_builtins
     __args__['aggregatorId'] = aggregator_id
     __args__['filter'] = filter
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceAggregatorPolicyAssignments:getResourceAggregatorPolicyAssignments', __args__, opts=opts, typ=GetResourceAggregatorPolicyAssignmentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceAggregatorPolicyAssignments:getResourceAggregatorPolicyAssignments', __args__, opts=opts, typ=GetResourceAggregatorPolicyAssignmentsResult).value
 
     return AwaitableGetResourceAggregatorPolicyAssignmentsResult(
         aggregator_id=pulumi.get(__ret__, 'aggregator_id'),
@@ -130,7 +130,7 @@ def get_resource_aggregator_policy_assignments_output(aggregator_id: Optional[pu
 
     config = pulumi.Config()
     aggregator_id = config.require_object("aggregatorId")
-    test = huaweicloud.rms.get_resource_aggregator_policy_assignments(aggregator_id=aggregator_id)
+    test = huaweicloud.Rms.get_resource_aggregator_policy_assignments(aggregator_id=aggregator_id)
     ```
 
 
@@ -144,7 +144,7 @@ def get_resource_aggregator_policy_assignments_output(aggregator_id: Optional[pu
     __args__['aggregatorId'] = aggregator_id
     __args__['filter'] = filter
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceAggregatorPolicyAssignments:getResourceAggregatorPolicyAssignments', __args__, opts=opts, typ=GetResourceAggregatorPolicyAssignmentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceAggregatorPolicyAssignments:getResourceAggregatorPolicyAssignments', __args__, opts=opts, typ=GetResourceAggregatorPolicyAssignmentsResult)
     return __ret__.apply(lambda __response__: GetResourceAggregatorPolicyAssignmentsResult(
         aggregator_id=pulumi.get(__response__, 'aggregator_id'),
         assignments=pulumi.get(__response__, 'assignments'),

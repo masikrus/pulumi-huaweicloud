@@ -26,6 +26,7 @@ class WebtamperProtectionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WebtamperProtection resource.
+
         :param pulumi.Input[_builtins.str] host_id: Specifies the host ID for the web tamper protection.
                Changing this parameter will create a new resource.
                
@@ -139,6 +140,7 @@ class _WebtamperProtectionState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WebtamperProtection resources.
+
         :param pulumi.Input[_builtins.int] anti_tampering_times: The number of defended tampering attacks.
         :param pulumi.Input[_builtins.int] detect_tampering_times: The number of detected tampering attacks.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
@@ -387,7 +389,7 @@ class _WebtamperProtectionState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:hss/webtamperProtection:WebtamperProtection")
+@pulumi.type_token("huaweicloud:Hss/webtamperProtection:WebtamperProtection")
 class WebtamperProtection(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -425,41 +427,17 @@ class WebtamperProtection(pulumi.CustomResource):
 
         The web tamper protection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/webtamperProtection:WebtamperProtection test <id>
+        $ pulumi import huaweicloud:Hss/webtamperProtection:WebtamperProtection test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `quota_id`, `is_dynamics_protect`,
-
         `enterprise_project_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_webtamper_protection" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              quota_id, is_dynamics_protect, enterprise_project_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -509,41 +487,17 @@ class WebtamperProtection(pulumi.CustomResource):
 
         The web tamper protection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/webtamperProtection:WebtamperProtection test <id>
+        $ pulumi import huaweicloud:Hss/webtamperProtection:WebtamperProtection test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `quota_id`, `is_dynamics_protect`,
-
         `enterprise_project_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_webtamper_protection" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              quota_id, is_dynamics_protect, enterprise_project_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param WebtamperProtectionArgs args: The arguments to use to populate this resource's properties.
@@ -592,7 +546,7 @@ class WebtamperProtection(pulumi.CustomResource):
             __props__.__dict__["public_ip"] = None
             __props__.__dict__["rasp_protect_status"] = None
         super(WebtamperProtection, __self__).__init__(
-            'huaweicloud:hss/webtamperProtection:WebtamperProtection',
+            'huaweicloud:Hss/webtamperProtection:WebtamperProtection',
             resource_name,
             __props__,
             opts)

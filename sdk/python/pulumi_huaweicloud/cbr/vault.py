@@ -43,9 +43,11 @@ class VaultArgs:
                  policy_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  resources: Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourceArgs']]]] = None,
+                 resources_origins: Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourcesOriginArgs']]]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Vault resource.
+
         :param pulumi.Input[_builtins.str] protection_type: Specifies the protection type of the CBR vault.
                The valid values are **backup** and **replication**. Vaults of type **disk** don't support **replication**.
                Changing this will create a new vault.
@@ -107,13 +109,57 @@ class VaultArgs:
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this will create a new vault.
         :param pulumi.Input[Sequence[pulumi.Input['VaultPolicyArgs']]] policies: Specifies the policy details to associate with the CBR vault.
-               The object structure is documented below.
+               The policy structure is documented below.
         :param pulumi.Input[_builtins.str] policy_id: schema:Deprecated; Using parameter 'policy' instead.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the CBR vault. If omitted, the
                provider-level region will be used. Changing this will create a new vault.
         :param pulumi.Input[Sequence[pulumi.Input['VaultResourceArgs']]] resources: Specifies an array of one or more resources to attach to the CBR vault.  
                This feature is not supported for the **vmware** type and the **file** type.
-               The object structure is documented below.
+               The resources structure is documented below.
+               
+               > This parameter supports incremental management and only manages locally configured resource binding information
+               (you can append resource bindings through other methods). However, if you want to delete a remote configuration
+               using TerraForm, you must first synchronize the remote configuration to your local machine via an update operation
+               (Currently, it is not supported to trigger changes solely by adding remote objects. For example, if
+               \\[**A**, **B**\\] is configured in local, and \\[**C**\\] is configured in remote through other ways, then
+               \\[**A**, **B**, **C**\\] will exist on the remote finally. To delete **C**, **C** must first be synchronized in the
+               update operations of other objects, such as updating locally to \\[**A**, **C**] (deleting **B**, synchronizing
+               **C**). Only then can **C** be deleted in the next change.) before you can delete it locally in the next change.
+               
+               > If resources are configured remotely and the local state has omitted resources, a query executed after the command
+               `terraform refresh` or other resource changes will synchronize all resource configurations from the remote service
+               to the local state. That means the next time the local's resources are changed from omitted resources to with
+               values, the terminal will display the following message. Don't worry, this resource will only be created
+               incrementally. No existing data will be deleted from the remote repository.<br>
+               To avoid confusion caused by Terraform display issues, it is recommended to only operate on the last element of the
+               list during updates (adding and deleting elements at the end).
+               
+               ```bash
+               Terraform will perform the following actions:
+               
+               # huaweicloud_cbr_vault.test will be updated in-place
+               ~ resource "huaweicloud_cbr_vault" "test" {
+               id                    = "d84968a7-5cec-40ad-aba2-741a1a339d79"
+               name                  = "tf_test_vault"
+               tags                  = {}
+               # (19 unchanged attributes hidden)
+               
+               ~ resources {
+               ~ excludes  = [
+               + "2a7659b3-ce29-4bfe-add7-0ddae04a545f",
+               ]
+               ~ server_id = "1bb8b1df-67f2-462d-b7d0-db1d300309b3" -> "537062a2-93dd-44ec-9130-5530a1a79931"
+               # (1 unchanged attribute hidden)
+               }
+               }
+               
+               Plan: 0 to add, 1 to change, 0 to destroy.
+               ```
+               
+               > For disk backups of cloud server types, at least one disk must be reserved for each cloud server, not all disks
+               can be configured in excludes.
+        :param pulumi.Input[Sequence[pulumi.Input['VaultResourcesOriginArgs']]] resources_origins: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'resources'.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the CBR vault.
         """
         pulumi.set(__self__, "protection_type", protection_type)
@@ -160,6 +206,8 @@ class VaultArgs:
             pulumi.set(__self__, "region", region)
         if resources is not None:
             pulumi.set(__self__, "resources", resources)
+        if resources_origins is not None:
+            pulumi.set(__self__, "resources_origins", resources_origins)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -425,7 +473,7 @@ class VaultArgs:
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VaultPolicyArgs']]]]:
         """
         Specifies the policy details to associate with the CBR vault.
-        The object structure is documented below.
+        The policy structure is documented below.
         """
         return pulumi.get(self, "policies")
 
@@ -464,13 +512,68 @@ class VaultArgs:
         """
         Specifies an array of one or more resources to attach to the CBR vault.  
         This feature is not supported for the **vmware** type and the **file** type.
-        The object structure is documented below.
+        The resources structure is documented below.
+
+        > This parameter supports incremental management and only manages locally configured resource binding information
+        (you can append resource bindings through other methods). However, if you want to delete a remote configuration
+        using TerraForm, you must first synchronize the remote configuration to your local machine via an update operation
+        (Currently, it is not supported to trigger changes solely by adding remote objects. For example, if
+        \\[**A**, **B**\\] is configured in local, and \\[**C**\\] is configured in remote through other ways, then
+        \\[**A**, **B**, **C**\\] will exist on the remote finally. To delete **C**, **C** must first be synchronized in the
+        update operations of other objects, such as updating locally to \\[**A**, **C**] (deleting **B**, synchronizing
+        **C**). Only then can **C** be deleted in the next change.) before you can delete it locally in the next change.
+
+        > If resources are configured remotely and the local state has omitted resources, a query executed after the command
+        `terraform refresh` or other resource changes will synchronize all resource configurations from the remote service
+        to the local state. That means the next time the local's resources are changed from omitted resources to with
+        values, the terminal will display the following message. Don't worry, this resource will only be created
+        incrementally. No existing data will be deleted from the remote repository.<br>
+        To avoid confusion caused by Terraform display issues, it is recommended to only operate on the last element of the
+        list during updates (adding and deleting elements at the end).
+
+        ```bash
+        Terraform will perform the following actions:
+
+        # huaweicloud_cbr_vault.test will be updated in-place
+        ~ resource "huaweicloud_cbr_vault" "test" {
+        id                    = "d84968a7-5cec-40ad-aba2-741a1a339d79"
+        name                  = "tf_test_vault"
+        tags                  = {}
+        # (19 unchanged attributes hidden)
+
+        ~ resources {
+        ~ excludes  = [
+        + "2a7659b3-ce29-4bfe-add7-0ddae04a545f",
+        ]
+        ~ server_id = "1bb8b1df-67f2-462d-b7d0-db1d300309b3" -> "537062a2-93dd-44ec-9130-5530a1a79931"
+        # (1 unchanged attribute hidden)
+        }
+        }
+
+        Plan: 0 to add, 1 to change, 0 to destroy.
+        ```
+
+        > For disk backups of cloud server types, at least one disk must be reserved for each cloud server, not all disks
+        can be configured in excludes.
         """
         return pulumi.get(self, "resources")
 
     @resources.setter
     def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourceArgs']]]]):
         pulumi.set(self, "resources", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourcesOrigins")
+    def resources_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourcesOriginArgs']]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'resources'.
+        """
+        return pulumi.get(self, "resources_origins")
+
+    @resources_origins.setter
+    def resources_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourcesOriginArgs']]]]):
+        pulumi.set(self, "resources_origins", value)
 
     @_builtins.property
     @pulumi.getter
@@ -509,6 +612,7 @@ class _VaultState:
                  protection_type: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  resources: Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourceArgs']]]] = None,
+                 resources_origins: Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourcesOriginArgs']]]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  spec_code: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
@@ -518,6 +622,7 @@ class _VaultState:
                  used: Optional[pulumi.Input[_builtins.float]] = None):
         """
         Input properties used for looking up and filtering Vault resources.
+
         :param pulumi.Input[_builtins.float] allocated: The allocated capacity of the vault, in GB.
         :param pulumi.Input[_builtins.bool] auto_bind: Specifies whether automatic association is enabled. Defaults to **false**.
         :param pulumi.Input[_builtins.bool] auto_expand: Specifies to enable auto capacity expansion for the backup protection type vault.
@@ -566,7 +671,7 @@ class _VaultState:
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this will create a new vault.
         :param pulumi.Input[Sequence[pulumi.Input['VaultPolicyArgs']]] policies: Specifies the policy details to associate with the CBR vault.
-               The object structure is documented below.
+               The policy structure is documented below.
         :param pulumi.Input[_builtins.str] policy_id: schema:Deprecated; Using parameter 'policy' instead.
         :param pulumi.Input[_builtins.str] protection_type: Specifies the protection type of the CBR vault.
                The valid values are **backup** and **replication**. Vaults of type **disk** don't support **replication**.
@@ -575,7 +680,51 @@ class _VaultState:
                provider-level region will be used. Changing this will create a new vault.
         :param pulumi.Input[Sequence[pulumi.Input['VaultResourceArgs']]] resources: Specifies an array of one or more resources to attach to the CBR vault.  
                This feature is not supported for the **vmware** type and the **file** type.
-               The object structure is documented below.
+               The resources structure is documented below.
+               
+               > This parameter supports incremental management and only manages locally configured resource binding information
+               (you can append resource bindings through other methods). However, if you want to delete a remote configuration
+               using TerraForm, you must first synchronize the remote configuration to your local machine via an update operation
+               (Currently, it is not supported to trigger changes solely by adding remote objects. For example, if
+               \\[**A**, **B**\\] is configured in local, and \\[**C**\\] is configured in remote through other ways, then
+               \\[**A**, **B**, **C**\\] will exist on the remote finally. To delete **C**, **C** must first be synchronized in the
+               update operations of other objects, such as updating locally to \\[**A**, **C**] (deleting **B**, synchronizing
+               **C**). Only then can **C** be deleted in the next change.) before you can delete it locally in the next change.
+               
+               > If resources are configured remotely and the local state has omitted resources, a query executed after the command
+               `terraform refresh` or other resource changes will synchronize all resource configurations from the remote service
+               to the local state. That means the next time the local's resources are changed from omitted resources to with
+               values, the terminal will display the following message. Don't worry, this resource will only be created
+               incrementally. No existing data will be deleted from the remote repository.<br>
+               To avoid confusion caused by Terraform display issues, it is recommended to only operate on the last element of the
+               list during updates (adding and deleting elements at the end).
+               
+               ```bash
+               Terraform will perform the following actions:
+               
+               # huaweicloud_cbr_vault.test will be updated in-place
+               ~ resource "huaweicloud_cbr_vault" "test" {
+               id                    = "d84968a7-5cec-40ad-aba2-741a1a339d79"
+               name                  = "tf_test_vault"
+               tags                  = {}
+               # (19 unchanged attributes hidden)
+               
+               ~ resources {
+               ~ excludes  = [
+               + "2a7659b3-ce29-4bfe-add7-0ddae04a545f",
+               ]
+               ~ server_id = "1bb8b1df-67f2-462d-b7d0-db1d300309b3" -> "537062a2-93dd-44ec-9130-5530a1a79931"
+               # (1 unchanged attribute hidden)
+               }
+               }
+               
+               Plan: 0 to add, 1 to change, 0 to destroy.
+               ```
+               
+               > For disk backups of cloud server types, at least one disk must be reserved for each cloud server, not all disks
+               can be configured in excludes.
+        :param pulumi.Input[Sequence[pulumi.Input['VaultResourcesOriginArgs']]] resources_origins: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'resources'.
         :param pulumi.Input[_builtins.int] size: Specifies the vault capacity, in GB. The valid value range is `1` to `10,485,760`.
                
                > You cannot update `size` if the vault is **prePaid** mode.
@@ -638,6 +787,8 @@ class _VaultState:
             pulumi.set(__self__, "region", region)
         if resources is not None:
             pulumi.set(__self__, "resources", resources)
+        if resources_origins is not None:
+            pulumi.set(__self__, "resources_origins", resources_origins)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if spec_code is not None:
@@ -880,7 +1031,7 @@ class _VaultState:
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VaultPolicyArgs']]]]:
         """
         Specifies the policy details to associate with the CBR vault.
-        The object structure is documented below.
+        The policy structure is documented below.
         """
         return pulumi.get(self, "policies")
 
@@ -933,13 +1084,68 @@ class _VaultState:
         """
         Specifies an array of one or more resources to attach to the CBR vault.  
         This feature is not supported for the **vmware** type and the **file** type.
-        The object structure is documented below.
+        The resources structure is documented below.
+
+        > This parameter supports incremental management and only manages locally configured resource binding information
+        (you can append resource bindings through other methods). However, if you want to delete a remote configuration
+        using TerraForm, you must first synchronize the remote configuration to your local machine via an update operation
+        (Currently, it is not supported to trigger changes solely by adding remote objects. For example, if
+        \\[**A**, **B**\\] is configured in local, and \\[**C**\\] is configured in remote through other ways, then
+        \\[**A**, **B**, **C**\\] will exist on the remote finally. To delete **C**, **C** must first be synchronized in the
+        update operations of other objects, such as updating locally to \\[**A**, **C**] (deleting **B**, synchronizing
+        **C**). Only then can **C** be deleted in the next change.) before you can delete it locally in the next change.
+
+        > If resources are configured remotely and the local state has omitted resources, a query executed after the command
+        `terraform refresh` or other resource changes will synchronize all resource configurations from the remote service
+        to the local state. That means the next time the local's resources are changed from omitted resources to with
+        values, the terminal will display the following message. Don't worry, this resource will only be created
+        incrementally. No existing data will be deleted from the remote repository.<br>
+        To avoid confusion caused by Terraform display issues, it is recommended to only operate on the last element of the
+        list during updates (adding and deleting elements at the end).
+
+        ```bash
+        Terraform will perform the following actions:
+
+        # huaweicloud_cbr_vault.test will be updated in-place
+        ~ resource "huaweicloud_cbr_vault" "test" {
+        id                    = "d84968a7-5cec-40ad-aba2-741a1a339d79"
+        name                  = "tf_test_vault"
+        tags                  = {}
+        # (19 unchanged attributes hidden)
+
+        ~ resources {
+        ~ excludes  = [
+        + "2a7659b3-ce29-4bfe-add7-0ddae04a545f",
+        ]
+        ~ server_id = "1bb8b1df-67f2-462d-b7d0-db1d300309b3" -> "537062a2-93dd-44ec-9130-5530a1a79931"
+        # (1 unchanged attribute hidden)
+        }
+        }
+
+        Plan: 0 to add, 1 to change, 0 to destroy.
+        ```
+
+        > For disk backups of cloud server types, at least one disk must be reserved for each cloud server, not all disks
+        can be configured in excludes.
         """
         return pulumi.get(self, "resources")
 
     @resources.setter
     def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourceArgs']]]]):
         pulumi.set(self, "resources", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourcesOrigins")
+    def resources_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourcesOriginArgs']]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'resources'.
+        """
+        return pulumi.get(self, "resources_origins")
+
+    @resources_origins.setter
+    def resources_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VaultResourcesOriginArgs']]]]):
+        pulumi.set(self, "resources_origins", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1061,12 +1267,17 @@ class Vault(pulumi.CustomResource):
                  protection_type: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VaultResourceArgs', 'VaultResourceArgsDict']]]]] = None,
+                 resources_origins: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VaultResourcesOriginArgs', 'VaultResourcesOriginArgsDict']]]]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a CBR vault resource within HuaweiCloud.
+        Manages a CBR vault resource within HuaweiCloud.\\
+        This resource supports managing disk (EVS volume) resources at the server or disk level under a vault.
+
+        > There are some limitations to the use of parameter `resources`, and please carefully read the parameter descriptions
+           and notes.
 
         ## Example Usage
 
@@ -1247,39 +1458,16 @@ class Vault(pulumi.CustomResource):
 
         Vaults can be imported by their `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/vault:Vault test 01c33779-7c83-4182-8b6b-24a671fcedf8
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a vault.
-
         You can then decide if changes should be applied to the vault, or the resource definition should be updated to align
-
         with the vault. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cbr_vault" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1330,7 +1518,7 @@ class Vault(pulumi.CustomResource):
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this will create a new vault.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VaultPolicyArgs', 'VaultPolicyArgsDict']]]] policies: Specifies the policy details to associate with the CBR vault.
-               The object structure is documented below.
+               The policy structure is documented below.
         :param pulumi.Input[_builtins.str] policy_id: schema:Deprecated; Using parameter 'policy' instead.
         :param pulumi.Input[_builtins.str] protection_type: Specifies the protection type of the CBR vault.
                The valid values are **backup** and **replication**. Vaults of type **disk** don't support **replication**.
@@ -1339,7 +1527,51 @@ class Vault(pulumi.CustomResource):
                provider-level region will be used. Changing this will create a new vault.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VaultResourceArgs', 'VaultResourceArgsDict']]]] resources: Specifies an array of one or more resources to attach to the CBR vault.  
                This feature is not supported for the **vmware** type and the **file** type.
-               The object structure is documented below.
+               The resources structure is documented below.
+               
+               > This parameter supports incremental management and only manages locally configured resource binding information
+               (you can append resource bindings through other methods). However, if you want to delete a remote configuration
+               using TerraForm, you must first synchronize the remote configuration to your local machine via an update operation
+               (Currently, it is not supported to trigger changes solely by adding remote objects. For example, if
+               \\[**A**, **B**\\] is configured in local, and \\[**C**\\] is configured in remote through other ways, then
+               \\[**A**, **B**, **C**\\] will exist on the remote finally. To delete **C**, **C** must first be synchronized in the
+               update operations of other objects, such as updating locally to \\[**A**, **C**] (deleting **B**, synchronizing
+               **C**). Only then can **C** be deleted in the next change.) before you can delete it locally in the next change.
+               
+               > If resources are configured remotely and the local state has omitted resources, a query executed after the command
+               `terraform refresh` or other resource changes will synchronize all resource configurations from the remote service
+               to the local state. That means the next time the local's resources are changed from omitted resources to with
+               values, the terminal will display the following message. Don't worry, this resource will only be created
+               incrementally. No existing data will be deleted from the remote repository.<br>
+               To avoid confusion caused by Terraform display issues, it is recommended to only operate on the last element of the
+               list during updates (adding and deleting elements at the end).
+               
+               ```bash
+               Terraform will perform the following actions:
+               
+               # huaweicloud_cbr_vault.test will be updated in-place
+               ~ resource "huaweicloud_cbr_vault" "test" {
+               id                    = "d84968a7-5cec-40ad-aba2-741a1a339d79"
+               name                  = "tf_test_vault"
+               tags                  = {}
+               # (19 unchanged attributes hidden)
+               
+               ~ resources {
+               ~ excludes  = [
+               + "2a7659b3-ce29-4bfe-add7-0ddae04a545f",
+               ]
+               ~ server_id = "1bb8b1df-67f2-462d-b7d0-db1d300309b3" -> "537062a2-93dd-44ec-9130-5530a1a79931"
+               # (1 unchanged attribute hidden)
+               }
+               }
+               
+               Plan: 0 to add, 1 to change, 0 to destroy.
+               ```
+               
+               > For disk backups of cloud server types, at least one disk must be reserved for each cloud server, not all disks
+               can be configured in excludes.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VaultResourcesOriginArgs', 'VaultResourcesOriginArgsDict']]]] resources_origins: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'resources'.
         :param pulumi.Input[_builtins.int] size: Specifies the vault capacity, in GB. The valid value range is `1` to `10,485,760`.
                
                > You cannot update `size` if the vault is **prePaid** mode.
@@ -1360,7 +1592,11 @@ class Vault(pulumi.CustomResource):
                  args: VaultArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a CBR vault resource within HuaweiCloud.
+        Manages a CBR vault resource within HuaweiCloud.\\
+        This resource supports managing disk (EVS volume) resources at the server or disk level under a vault.
+
+        > There are some limitations to the use of parameter `resources`, and please carefully read the parameter descriptions
+           and notes.
 
         ## Example Usage
 
@@ -1541,39 +1777,16 @@ class Vault(pulumi.CustomResource):
 
         Vaults can be imported by their `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/vault:Vault test 01c33779-7c83-4182-8b6b-24a671fcedf8
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a vault.
-
         You can then decide if changes should be applied to the vault, or the resource definition should be updated to align
-
         with the vault. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cbr_vault" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param VaultArgs args: The arguments to use to populate this resource's properties.
@@ -1610,6 +1823,7 @@ class Vault(pulumi.CustomResource):
                  protection_type: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VaultResourceArgs', 'VaultResourceArgsDict']]]]] = None,
+                 resources_origins: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VaultResourcesOriginArgs', 'VaultResourcesOriginArgsDict']]]]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1644,6 +1858,7 @@ class Vault(pulumi.CustomResource):
             __props__.__dict__["protection_type"] = protection_type
             __props__.__dict__["region"] = region
             __props__.__dict__["resources"] = resources
+            __props__.__dict__["resources_origins"] = resources_origins
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
@@ -1687,6 +1902,7 @@ class Vault(pulumi.CustomResource):
             protection_type: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VaultResourceArgs', 'VaultResourceArgsDict']]]]] = None,
+            resources_origins: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VaultResourcesOriginArgs', 'VaultResourcesOriginArgsDict']]]]] = None,
             size: Optional[pulumi.Input[_builtins.int]] = None,
             spec_code: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1749,7 +1965,7 @@ class Vault(pulumi.CustomResource):
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this will create a new vault.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VaultPolicyArgs', 'VaultPolicyArgsDict']]]] policies: Specifies the policy details to associate with the CBR vault.
-               The object structure is documented below.
+               The policy structure is documented below.
         :param pulumi.Input[_builtins.str] policy_id: schema:Deprecated; Using parameter 'policy' instead.
         :param pulumi.Input[_builtins.str] protection_type: Specifies the protection type of the CBR vault.
                The valid values are **backup** and **replication**. Vaults of type **disk** don't support **replication**.
@@ -1758,7 +1974,51 @@ class Vault(pulumi.CustomResource):
                provider-level region will be used. Changing this will create a new vault.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VaultResourceArgs', 'VaultResourceArgsDict']]]] resources: Specifies an array of one or more resources to attach to the CBR vault.  
                This feature is not supported for the **vmware** type and the **file** type.
-               The object structure is documented below.
+               The resources structure is documented below.
+               
+               > This parameter supports incremental management and only manages locally configured resource binding information
+               (you can append resource bindings through other methods). However, if you want to delete a remote configuration
+               using TerraForm, you must first synchronize the remote configuration to your local machine via an update operation
+               (Currently, it is not supported to trigger changes solely by adding remote objects. For example, if
+               \\[**A**, **B**\\] is configured in local, and \\[**C**\\] is configured in remote through other ways, then
+               \\[**A**, **B**, **C**\\] will exist on the remote finally. To delete **C**, **C** must first be synchronized in the
+               update operations of other objects, such as updating locally to \\[**A**, **C**] (deleting **B**, synchronizing
+               **C**). Only then can **C** be deleted in the next change.) before you can delete it locally in the next change.
+               
+               > If resources are configured remotely and the local state has omitted resources, a query executed after the command
+               `terraform refresh` or other resource changes will synchronize all resource configurations from the remote service
+               to the local state. That means the next time the local's resources are changed from omitted resources to with
+               values, the terminal will display the following message. Don't worry, this resource will only be created
+               incrementally. No existing data will be deleted from the remote repository.<br>
+               To avoid confusion caused by Terraform display issues, it is recommended to only operate on the last element of the
+               list during updates (adding and deleting elements at the end).
+               
+               ```bash
+               Terraform will perform the following actions:
+               
+               # huaweicloud_cbr_vault.test will be updated in-place
+               ~ resource "huaweicloud_cbr_vault" "test" {
+               id                    = "d84968a7-5cec-40ad-aba2-741a1a339d79"
+               name                  = "tf_test_vault"
+               tags                  = {}
+               # (19 unchanged attributes hidden)
+               
+               ~ resources {
+               ~ excludes  = [
+               + "2a7659b3-ce29-4bfe-add7-0ddae04a545f",
+               ]
+               ~ server_id = "1bb8b1df-67f2-462d-b7d0-db1d300309b3" -> "537062a2-93dd-44ec-9130-5530a1a79931"
+               # (1 unchanged attribute hidden)
+               }
+               }
+               
+               Plan: 0 to add, 1 to change, 0 to destroy.
+               ```
+               
+               > For disk backups of cloud server types, at least one disk must be reserved for each cloud server, not all disks
+               can be configured in excludes.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VaultResourcesOriginArgs', 'VaultResourcesOriginArgsDict']]]] resources_origins: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'resources'.
         :param pulumi.Input[_builtins.int] size: Specifies the vault capacity, in GB. The valid value range is `1` to `10,485,760`.
                
                > You cannot update `size` if the vault is **prePaid** mode.
@@ -1801,6 +2061,7 @@ class Vault(pulumi.CustomResource):
         __props__.__dict__["protection_type"] = protection_type
         __props__.__dict__["region"] = region
         __props__.__dict__["resources"] = resources
+        __props__.__dict__["resources_origins"] = resources_origins
         __props__.__dict__["size"] = size
         __props__.__dict__["spec_code"] = spec_code
         __props__.__dict__["status"] = status
@@ -1973,7 +2234,7 @@ class Vault(pulumi.CustomResource):
     def policies(self) -> pulumi.Output[Sequence['outputs.VaultPolicy']]:
         """
         Specifies the policy details to associate with the CBR vault.
-        The object structure is documented below.
+        The policy structure is documented below.
         """
         return pulumi.get(self, "policies")
 
@@ -2006,13 +2267,64 @@ class Vault(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def resources(self) -> pulumi.Output[Sequence['outputs.VaultResource']]:
+    def resources(self) -> pulumi.Output[Optional[Sequence['outputs.VaultResource']]]:
         """
         Specifies an array of one or more resources to attach to the CBR vault.  
         This feature is not supported for the **vmware** type and the **file** type.
-        The object structure is documented below.
+        The resources structure is documented below.
+
+        > This parameter supports incremental management and only manages locally configured resource binding information
+        (you can append resource bindings through other methods). However, if you want to delete a remote configuration
+        using TerraForm, you must first synchronize the remote configuration to your local machine via an update operation
+        (Currently, it is not supported to trigger changes solely by adding remote objects. For example, if
+        \\[**A**, **B**\\] is configured in local, and \\[**C**\\] is configured in remote through other ways, then
+        \\[**A**, **B**, **C**\\] will exist on the remote finally. To delete **C**, **C** must first be synchronized in the
+        update operations of other objects, such as updating locally to \\[**A**, **C**] (deleting **B**, synchronizing
+        **C**). Only then can **C** be deleted in the next change.) before you can delete it locally in the next change.
+
+        > If resources are configured remotely and the local state has omitted resources, a query executed after the command
+        `terraform refresh` or other resource changes will synchronize all resource configurations from the remote service
+        to the local state. That means the next time the local's resources are changed from omitted resources to with
+        values, the terminal will display the following message. Don't worry, this resource will only be created
+        incrementally. No existing data will be deleted from the remote repository.<br>
+        To avoid confusion caused by Terraform display issues, it is recommended to only operate on the last element of the
+        list during updates (adding and deleting elements at the end).
+
+        ```bash
+        Terraform will perform the following actions:
+
+        # huaweicloud_cbr_vault.test will be updated in-place
+        ~ resource "huaweicloud_cbr_vault" "test" {
+        id                    = "d84968a7-5cec-40ad-aba2-741a1a339d79"
+        name                  = "tf_test_vault"
+        tags                  = {}
+        # (19 unchanged attributes hidden)
+
+        ~ resources {
+        ~ excludes  = [
+        + "2a7659b3-ce29-4bfe-add7-0ddae04a545f",
+        ]
+        ~ server_id = "1bb8b1df-67f2-462d-b7d0-db1d300309b3" -> "537062a2-93dd-44ec-9130-5530a1a79931"
+        # (1 unchanged attribute hidden)
+        }
+        }
+
+        Plan: 0 to add, 1 to change, 0 to destroy.
+        ```
+
+        > For disk backups of cloud server types, at least one disk must be reserved for each cloud server, not all disks
+        can be configured in excludes.
         """
         return pulumi.get(self, "resources")
+
+    @_builtins.property
+    @pulumi.getter(name="resourcesOrigins")
+    def resources_origins(self) -> pulumi.Output[Sequence['outputs.VaultResourcesOrigin']]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'resources'.
+        """
+        return pulumi.get(self, "resources_origins")
 
     @_builtins.property
     @pulumi.getter

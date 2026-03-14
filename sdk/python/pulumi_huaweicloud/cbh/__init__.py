@@ -7,14 +7,22 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .asset_agency_authorization import *
+from .change_instance_type import *
+from .delete_fault_instance import *
 from .get_availability_zones import *
 from .get_flavors import *
 from .get_instance_admin_url import *
 from .get_instance_ecs_quota import *
 from .get_instance_login_url import *
+from .get_instance_om_url import *
 from .get_instance_quota import *
 from .get_instance_tags import *
 from .get_instances import *
+from .get_instances_by_tags import *
 from .ha_instance import *
 from .instance import *
+from .reset_login_mode import *
+from .rollback_instance import *
+from .upgrade_instance import *
+from ._inputs import *
 from . import outputs

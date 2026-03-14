@@ -120,7 +120,7 @@ def get_alert_rule_templates_v2(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_alert_rule_templates_v2(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_alert_rule_templates_v2(workspace_id=workspace_id)
     ```
 
 
@@ -137,7 +137,7 @@ def get_alert_rule_templates_v2(region: Optional[_builtins.str] = None,
     __args__['templateName'] = template_name
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getAlertRuleTemplatesV2:getAlertRuleTemplatesV2', __args__, opts=opts, typ=GetAlertRuleTemplatesV2Result).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getAlertRuleTemplatesV2:getAlertRuleTemplatesV2', __args__, opts=opts, typ=GetAlertRuleTemplatesV2Result).value
 
     return AwaitableGetAlertRuleTemplatesV2Result(
         id=pulumi.get(__ret__, 'id'),
@@ -162,7 +162,7 @@ def get_alert_rule_templates_v2_output(region: Optional[pulumi.Input[Optional[_b
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_alert_rule_templates_v2(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_alert_rule_templates_v2(workspace_id=workspace_id)
     ```
 
 
@@ -179,7 +179,7 @@ def get_alert_rule_templates_v2_output(region: Optional[pulumi.Input[Optional[_b
     __args__['templateName'] = template_name
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getAlertRuleTemplatesV2:getAlertRuleTemplatesV2', __args__, opts=opts, typ=GetAlertRuleTemplatesV2Result)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getAlertRuleTemplatesV2:getAlertRuleTemplatesV2', __args__, opts=opts, typ=GetAlertRuleTemplatesV2Result)
     return __ret__.apply(lambda __response__: GetAlertRuleTemplatesV2Result(
         id=pulumi.get(__response__, 'id'),
         records=pulumi.get(__response__, 'records'),

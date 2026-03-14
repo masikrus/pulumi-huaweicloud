@@ -27,6 +27,7 @@ class AddressGroupArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AddressGroup resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the associated CIDR block.
                
                <a name="address_group_associated_listeners"></a>
@@ -118,6 +119,7 @@ class _AddressGroupState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AddressGroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the CIDR block associated with the IP address group.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the associated CIDR block.
                
@@ -244,7 +246,7 @@ class _AddressGroupState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:ga/addressGroup:AddressGroup")
+@pulumi.type_token("huaweicloud:Ga/addressGroup:AddressGroup")
 class AddressGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -285,11 +287,10 @@ class AddressGroup(pulumi.CustomResource):
 
         The IP address group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/addressGroup:AddressGroup test <id>
+        $ pulumi import huaweicloud:Ga/addressGroup:AddressGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -342,11 +343,10 @@ class AddressGroup(pulumi.CustomResource):
 
         The IP address group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/addressGroup:AddressGroup test <id>
+        $ pulumi import huaweicloud:Ga/addressGroup:AddressGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AddressGroupArgs args: The arguments to use to populate this resource's properties.
@@ -384,7 +384,7 @@ class AddressGroup(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(AddressGroup, __self__).__init__(
-            'huaweicloud:ga/addressGroup:AddressGroup',
+            'huaweicloud:Ga/addressGroup:AddressGroup',
             resource_name,
             __props__,
             opts)

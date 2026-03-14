@@ -55,6 +55,7 @@ class AutopilotClusterArgs:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AutopilotCluster resource.
+
         :param pulumi.Input['AutopilotClusterContainerNetworkArgs'] container_network: Specifies the container network of the cluster.
                The container_network structure is documented below.
         :param pulumi.Input[_builtins.str] flavor: Specifies the cluster flavor. Only **cce.autopilot.cluster** is supported.
@@ -711,6 +712,7 @@ class _AutopilotClusterState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AutopilotCluster resources.
+
         :param pulumi.Input[_builtins.str] alias: Specifies the alias of the cluster. Enter 4 to 128 characters starting
                with a lowercase letter and not ending with a hyphen (-). Only lowercase letters, digits, and hyphens (-) are allowed.
                If not specified, the alias is the same as the cluster name.
@@ -1489,41 +1491,17 @@ class AutopilotCluster(pulumi.CustomResource):
 
         The autopilot cluster can be imported using the cluster ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Cce/autopilotCluster:AutopilotCluster  huaweicloud_cce_autopilot_cluster.mycluster <cluster_id>
+         $ pulumi import huaweicloud:Cce/autopilotCluster:AutopilotCluster mycluster <cluster_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `enable_snat`, `enable_swr_image_access`, `eip_id`, `delete_efs`, `delete_eni`, `delete_net`, `delete_obs`, `delete_sfs30`
-
         and `lts_reclaim_policy`. It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition should be updated to align
-
         with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cce_autopilot_cluster" "mycluster" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enable_snat, delete_efs, delete_obs,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1679,41 +1657,17 @@ class AutopilotCluster(pulumi.CustomResource):
 
         The autopilot cluster can be imported using the cluster ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Cce/autopilotCluster:AutopilotCluster  huaweicloud_cce_autopilot_cluster.mycluster <cluster_id>
+         $ pulumi import huaweicloud:Cce/autopilotCluster:AutopilotCluster mycluster <cluster_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `enable_snat`, `enable_swr_image_access`, `eip_id`, `delete_efs`, `delete_eni`, `delete_net`, `delete_obs`, `delete_sfs30`
-
         and `lts_reclaim_policy`. It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition should be updated to align
-
         with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cce_autopilot_cluster" "mycluster" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enable_snat, delete_efs, delete_obs,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AutopilotClusterArgs args: The arguments to use to populate this resource's properties.

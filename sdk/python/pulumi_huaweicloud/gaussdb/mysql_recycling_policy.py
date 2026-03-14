@@ -23,6 +23,7 @@ class MysqlRecyclingPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlRecyclingPolicy resource.
+
         :param pulumi.Input[_builtins.str] retention_period_in_days: Specifies the retention period, in days. Value ranges: **1** to **7**.
         :param pulumi.Input[_builtins.str] region: The region in which to create the recycling policy resource. If omitted, the
                provider-level region will be used. Changing this creates a new GaussDB MySQL instance resource.
@@ -64,6 +65,7 @@ class _MysqlRecyclingPolicyState:
                  retention_period_in_days: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlRecyclingPolicy resources.
+
         :param pulumi.Input[_builtins.str] region: The region in which to create the recycling policy resource. If omitted, the
                provider-level region will be used. Changing this creates a new GaussDB MySQL instance resource.
         :param pulumi.Input[_builtins.str] retention_period_in_days: Specifies the retention period, in days. Value ranges: **1** to **7**.
@@ -124,11 +126,10 @@ class MysqlRecyclingPolicy(pulumi.CustomResource):
 
         The GaussDB MySQL recycling policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlRecyclingPolicy:MysqlRecyclingPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -158,11 +159,10 @@ class MysqlRecyclingPolicy(pulumi.CustomResource):
 
         The GaussDB MySQL recycling policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlRecyclingPolicy:MysqlRecyclingPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlRecyclingPolicyArgs args: The arguments to use to populate this resource's properties.

@@ -33,6 +33,7 @@ class Kafkav2SmartConnectTaskArgs:
                  topics_regex: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Kafkav2SmartConnectTask resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the kafka instance ID.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] task_name: Specifies the smart connect task name.
@@ -56,8 +57,8 @@ class Kafkav2SmartConnectTaskArgs:
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] topics: Specifies the topic names list of the smart connect task.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] topics_regex: Specifies the regular expression of topic name for the smart connect task.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] topics_regex: Specifies the regular expression of topic name for the smart connect
+               task. Changing this parameter will create a new resource.
                
                > Exactly one of `topics`, `topics_regex` should be specified.
         """
@@ -206,8 +207,8 @@ class Kafkav2SmartConnectTaskArgs:
     @pulumi.getter(name="topicsRegex")
     def topics_regex(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the regular expression of topic name for the smart connect task.
-        Changing this parameter will create a new resource.
+        Specifies the regular expression of topic name for the smart connect
+        task. Changing this parameter will create a new resource.
 
         > Exactly one of `topics`, `topics_regex` should be specified.
         """
@@ -235,6 +236,7 @@ class _Kafkav2SmartConnectTaskState:
                  topics_regex: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Kafkav2SmartConnectTask resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time of the smart connect task.
         :param pulumi.Input['Kafkav2SmartConnectTaskDestinationTaskArgs'] destination_task: Specifies the destination configuration of a smart connect task.
                The destination_task structure is documented below.
@@ -260,8 +262,8 @@ class _Kafkav2SmartConnectTaskState:
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] topics: Specifies the topic names list of the smart connect task.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] topics_regex: Specifies the regular expression of topic name for the smart connect task.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] topics_regex: Specifies the regular expression of topic name for the smart connect
+               task. Changing this parameter will create a new resource.
                
                > Exactly one of `topics`, `topics_regex` should be specified.
         """
@@ -440,8 +442,8 @@ class _Kafkav2SmartConnectTaskState:
     @pulumi.getter(name="topicsRegex")
     def topics_regex(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the regular expression of topic name for the smart connect task.
-        Changing this parameter will create a new resource.
+        Specifies the regular expression of topic name for the smart connect
+        task. Changing this parameter will create a new resource.
 
         > Exactly one of `topics`, `topics_regex` should be specified.
         """
@@ -537,43 +539,20 @@ class Kafkav2SmartConnectTask(pulumi.CustomResource):
 
         ## Import
 
-        The kafka smart connect task can be imported using the kafka instance `instance_id` and `task_id` separated by a slash, e.g.
-
-        bash
+        The kafka smart connect task can be imported using the kafka instance `instance_id` and `task_id` separated by a slash,
+        e.g.
 
         ```sh
         $ pulumi import huaweicloud:Dms/kafkav2SmartConnectTask:Kafkav2SmartConnectTask test <instance_id>/<task_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from
-
         the API response. The missing attributes include: `start_later`, `destination_task.0.access_key`,
-
         `destination_task.0.secret_key` and `source_task.0.password`. It is generally recommended running `pulumi preview`
-
         after importing a kafka smart connect task. You can then decide if changes should be applied to the kafka smart connect
-
         task, or the resource definition should be updated to align with the kafka smart connect task. Also you can ignore
-
         changes as below.
 
-        hcl
-
-        resource "huaweicloud_dms_kafkav2_smart_connect_task" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              destination_task.0.access_key, destination_task.0.secret_key, source_task.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -600,8 +579,8 @@ class Kafkav2SmartConnectTask(pulumi.CustomResource):
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] topics: Specifies the topic names list of the smart connect task.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] topics_regex: Specifies the regular expression of topic name for the smart connect task.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] topics_regex: Specifies the regular expression of topic name for the smart connect
+               task. Changing this parameter will create a new resource.
                
                > Exactly one of `topics`, `topics_regex` should be specified.
         """
@@ -679,43 +658,20 @@ class Kafkav2SmartConnectTask(pulumi.CustomResource):
 
         ## Import
 
-        The kafka smart connect task can be imported using the kafka instance `instance_id` and `task_id` separated by a slash, e.g.
-
-        bash
+        The kafka smart connect task can be imported using the kafka instance `instance_id` and `task_id` separated by a slash,
+        e.g.
 
         ```sh
         $ pulumi import huaweicloud:Dms/kafkav2SmartConnectTask:Kafkav2SmartConnectTask test <instance_id>/<task_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from
-
         the API response. The missing attributes include: `start_later`, `destination_task.0.access_key`,
-
         `destination_task.0.secret_key` and `source_task.0.password`. It is generally recommended running `pulumi preview`
-
         after importing a kafka smart connect task. You can then decide if changes should be applied to the kafka smart connect
-
         task, or the resource definition should be updated to align with the kafka smart connect task. Also you can ignore
-
         changes as below.
 
-        hcl
-
-        resource "huaweicloud_dms_kafkav2_smart_connect_task" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              destination_task.0.access_key, destination_task.0.secret_key, source_task.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param Kafkav2SmartConnectTaskArgs args: The arguments to use to populate this resource's properties.
@@ -821,8 +777,8 @@ class Kafkav2SmartConnectTask(pulumi.CustomResource):
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] topics: Specifies the topic names list of the smart connect task.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] topics_regex: Specifies the regular expression of topic name for the smart connect task.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] topics_regex: Specifies the regular expression of topic name for the smart connect
+               task. Changing this parameter will create a new resource.
                
                > Exactly one of `topics`, `topics_regex` should be specified.
         """
@@ -950,8 +906,8 @@ class Kafkav2SmartConnectTask(pulumi.CustomResource):
     @pulumi.getter(name="topicsRegex")
     def topics_regex(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the regular expression of topic name for the smart connect task.
-        Changing this parameter will create a new resource.
+        Specifies the regular expression of topic name for the smart connect
+        task. Changing this parameter will create a new resource.
 
         > Exactly one of `topics`, `topics_regex` should be specified.
         """

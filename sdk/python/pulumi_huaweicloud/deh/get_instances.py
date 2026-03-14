@@ -196,7 +196,7 @@ def get_instances(availability_zone: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.deh.get_instances()
+    test = huaweicloud.Deh.get_instances()
     ```
 
 
@@ -225,7 +225,7 @@ def get_instances(availability_zone: Optional[_builtins.str] = None,
     __args__['state'] = state
     __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:deh/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Deh/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
 
     return AwaitableGetInstancesResult(
         availability_zone=pulumi.get(__ret__, 'availability_zone'),
@@ -260,7 +260,7 @@ def get_instances_output(availability_zone: Optional[pulumi.Input[Optional[_buil
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.deh.get_instances()
+    test = huaweicloud.Deh.get_instances()
     ```
 
 
@@ -289,7 +289,7 @@ def get_instances_output(availability_zone: Optional[pulumi.Input[Optional[_buil
     __args__['state'] = state
     __args__['tags'] = tags
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:deh/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Deh/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
     return __ret__.apply(lambda __response__: GetInstancesResult(
         availability_zone=pulumi.get(__response__, 'availability_zone'),
         dedicated_host_id=pulumi.get(__response__, 'dedicated_host_id'),

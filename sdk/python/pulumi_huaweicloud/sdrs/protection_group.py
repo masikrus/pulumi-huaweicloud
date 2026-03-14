@@ -30,6 +30,7 @@ class ProtectionGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ProtectionGroup resource.
+
         :param pulumi.Input[_builtins.str] domain_id: Specifies the ID of an active-active domain.
                You can search `domain_id` with data source `sdrs_get_domain`.
                
@@ -222,6 +223,7 @@ class _ProtectionGroupState:
                  target_availability_zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProtectionGroup resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of a protection group. The description can
                contain a maximum of 64 characters. The value angle brackets (<) and (>) are not allowed.
                
@@ -404,7 +406,7 @@ class _ProtectionGroupState:
         pulumi.set(self, "target_availability_zone", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/protectionGroup:ProtectionGroup")
+@pulumi.type_token("huaweicloud:Sdrs/protectionGroup:ProtectionGroup")
 class ProtectionGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -433,7 +435,7 @@ class ProtectionGroup(pulumi.CustomResource):
         source_availability_zone = config.require_object("sourceAvailabilityZone")
         target_availability_zone = config.require_object("targetAvailabilityZone")
         source_vpc_id = config.require_object("sourceVpcId")
-        test = huaweicloud.sdrs.get_domain()
+        test = huaweicloud.Sdrs.get_domain()
         test_protection_group = huaweicloud.sdrs.ProtectionGroup("test",
             name="test_protection_group",
             description="test description",
@@ -447,11 +449,10 @@ class ProtectionGroup(pulumi.CustomResource):
 
         The SDRS protection group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/protectionGroup:ProtectionGroup test <id>
+        $ pulumi import huaweicloud:Sdrs/protectionGroup:ProtectionGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -506,7 +507,7 @@ class ProtectionGroup(pulumi.CustomResource):
         source_availability_zone = config.require_object("sourceAvailabilityZone")
         target_availability_zone = config.require_object("targetAvailabilityZone")
         source_vpc_id = config.require_object("sourceVpcId")
-        test = huaweicloud.sdrs.get_domain()
+        test = huaweicloud.Sdrs.get_domain()
         test_protection_group = huaweicloud.sdrs.ProtectionGroup("test",
             name="test_protection_group",
             description="test description",
@@ -520,11 +521,10 @@ class ProtectionGroup(pulumi.CustomResource):
 
         The SDRS protection group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:sdrs/protectionGroup:ProtectionGroup test <id>
+        $ pulumi import huaweicloud:Sdrs/protectionGroup:ProtectionGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProtectionGroupArgs args: The arguments to use to populate this resource's properties.
@@ -577,7 +577,7 @@ class ProtectionGroup(pulumi.CustomResource):
                 raise TypeError("Missing required property 'target_availability_zone'")
             __props__.__dict__["target_availability_zone"] = target_availability_zone
         super(ProtectionGroup, __self__).__init__(
-            'huaweicloud:sdrs/protectionGroup:ProtectionGroup',
+            'huaweicloud:Sdrs/protectionGroup:ProtectionGroup',
             resource_name,
             __props__,
             opts)

@@ -94,7 +94,7 @@ def get_user_groups(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     vpn_server_id = config.require_object("vpnServerId")
-    test = huaweicloud.vpn.get_user_groups(vpn_server_id=vpn_server_id)
+    test = huaweicloud.Vpn.get_user_groups(vpn_server_id=vpn_server_id)
     ```
 
 
@@ -106,7 +106,7 @@ def get_user_groups(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['vpnServerId'] = vpn_server_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getUserGroups:getUserGroups', __args__, opts=opts, typ=GetUserGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getUserGroups:getUserGroups', __args__, opts=opts, typ=GetUserGroupsResult).value
 
     return AwaitableGetUserGroupsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -127,7 +127,7 @@ def get_user_groups_output(region: Optional[pulumi.Input[Optional[_builtins.str]
 
     config = pulumi.Config()
     vpn_server_id = config.require_object("vpnServerId")
-    test = huaweicloud.vpn.get_user_groups(vpn_server_id=vpn_server_id)
+    test = huaweicloud.Vpn.get_user_groups(vpn_server_id=vpn_server_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_user_groups_output(region: Optional[pulumi.Input[Optional[_builtins.str]
     __args__['region'] = region
     __args__['vpnServerId'] = vpn_server_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getUserGroups:getUserGroups', __args__, opts=opts, typ=GetUserGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getUserGroups:getUserGroups', __args__, opts=opts, typ=GetUserGroupsResult)
     return __ret__.apply(lambda __response__: GetUserGroupsResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

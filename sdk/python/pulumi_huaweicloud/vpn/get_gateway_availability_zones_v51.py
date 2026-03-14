@@ -82,7 +82,7 @@ def get_gateway_availability_zones_v51(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.vpn.get_gateway_availability_zones_v51()
+    test = huaweicloud.Vpn.get_gateway_availability_zones_v51()
     ```
 
 
@@ -92,7 +92,7 @@ def get_gateway_availability_zones_v51(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getGatewayAvailabilityZonesV51:getGatewayAvailabilityZonesV51', __args__, opts=opts, typ=GetGatewayAvailabilityZonesV51Result).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getGatewayAvailabilityZonesV51:getGatewayAvailabilityZonesV51', __args__, opts=opts, typ=GetGatewayAvailabilityZonesV51Result).value
 
     return AwaitableGetGatewayAvailabilityZonesV51Result(
         availability_zones=pulumi.get(__ret__, 'availability_zones'),
@@ -109,7 +109,7 @@ def get_gateway_availability_zones_v51_output(region: Optional[pulumi.Input[Opti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.vpn.get_gateway_availability_zones_v51()
+    test = huaweicloud.Vpn.get_gateway_availability_zones_v51()
     ```
 
 
@@ -119,7 +119,7 @@ def get_gateway_availability_zones_v51_output(region: Optional[pulumi.Input[Opti
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getGatewayAvailabilityZonesV51:getGatewayAvailabilityZonesV51', __args__, opts=opts, typ=GetGatewayAvailabilityZonesV51Result)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getGatewayAvailabilityZonesV51:getGatewayAvailabilityZonesV51', __args__, opts=opts, typ=GetGatewayAvailabilityZonesV51Result)
     return __ret__.apply(lambda __response__: GetGatewayAvailabilityZonesV51Result(
         availability_zones=pulumi.get(__response__, 'availability_zones'),
         id=pulumi.get(__response__, 'id'),

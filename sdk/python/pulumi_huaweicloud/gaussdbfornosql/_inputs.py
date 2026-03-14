@@ -43,25 +43,20 @@ __all__ = [
     'RedisInstanceNodeArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class CassandraInstanceBackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the backup time window. Automated backups will be triggered during the
-        backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
-        HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
-        value: 08:00-09:00, 03:00-04:00.
-        """
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days to retain the generated backup files. The value ranges from
-        0 to 35. If this parameter is set to 0, the automated backup policy is not set. If this parameter is not transferred,
-        the automated backup policy is enabled by default. Backup files are stored for seven days by default.
-        """
-elif False:
-    CassandraInstanceBackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class CassandraInstanceBackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the backup time window. Automated backups will be triggered during the
+    backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
+    HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
+    value: 08:00-09:00, 03:00-04:00.
+    """
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days to retain the generated backup files. The value ranges from
+    0 to 35. If this parameter is set to 0, the automated backup policy is not set. If this parameter is not transferred,
+    the automated backup policy is enabled by default. Backup files are stored for seven days by default.
+    """
 
 @pulumi.input_type
 class CassandraInstanceBackupStrategyArgs:
@@ -111,25 +106,22 @@ class CassandraInstanceBackupStrategyArgs:
         pulumi.set(self, "keep_days", value)
 
 
-if not MYPY:
-    class CassandraInstanceDatastoreArgsDict(TypedDict):
-        engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the database engine. Only "GeminiDB-Cassandra" is supported now.
-        Changing this parameter will create a new resource.
-        """
-        storage_engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the storage engine. Only "rocksDB" is supported now.
-        Changing this parameter will create a new resource.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the database version.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    CassandraInstanceDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class CassandraInstanceDatastoreArgsDict(TypedDict):
+    engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the database engine. Only "GeminiDB-Cassandra" is supported now.
+    Changing this parameter will create a new resource.
+    """
+    storage_engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the storage engine. Only "rocksDB" is supported now.
+    Changing this parameter will create a new resource.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the database version.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class CassandraInstanceDatastoreArgs:
@@ -189,32 +181,29 @@ class CassandraInstanceDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class CassandraInstanceNodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the instance name, which can be the same as an existing instance name. The value
-        must be `4` to `64` characters in length and start with a letter. It is case-sensitive and can contain only letters,
-        digits, hyphens (-), and underscores (_).
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of a node.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        support_reduce: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the node support reduce or not.
-        """
-elif False:
-    CassandraInstanceNodeArgsDict: TypeAlias = Mapping[str, Any]
+class CassandraInstanceNodeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance name, which can be the same as an existing instance name. The value
+    must be `4` to `64` characters in length and start with a letter. It is case-sensitive and can contain only letters,
+    digits, hyphens (-), and underscores (_).
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of a node.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    support_reduce: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the node support reduce or not.
+    """
 
 @pulumi.input_type
 class CassandraInstanceNodeArgs:
@@ -307,23 +296,20 @@ class CassandraInstanceNodeArgs:
         pulumi.set(self, "support_reduce", value)
 
 
-if not MYPY:
-    class InfluxInstanceBackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the backup time window. Automated backups will be triggered during the
-        backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
-        HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
-        value: 08:00-09:00, 03:00-04:00.
-        """
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days to retain the generated backup files. The value ranges from
-        `0` to `35`. If this parameter is set to `0`, the automated backup policy is not set. If this parameter is not
-        transferred, the automated backup policy is enabled by default. Backup files are stored for seven days by default.
-        """
-elif False:
-    InfluxInstanceBackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class InfluxInstanceBackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the backup time window. Automated backups will be triggered during the
+    backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
+    HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
+    value: 08:00-09:00, 03:00-04:00.
+    """
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days to retain the generated backup files. The value ranges from
+    `0` to `35`. If this parameter is set to `0`, the automated backup policy is not set. If this parameter is not
+    transferred, the automated backup policy is enabled by default. Backup files are stored for seven days by default.
+    """
 
 @pulumi.input_type
 class InfluxInstanceBackupStrategyArgs:
@@ -373,25 +359,22 @@ class InfluxInstanceBackupStrategyArgs:
         pulumi.set(self, "keep_days", value)
 
 
-if not MYPY:
-    class InfluxInstanceDatastoreArgsDict(TypedDict):
-        engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the database engine. Only **influxdb** is supported now.
-        Changing this parameter will create a new resource.
-        """
-        storage_engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the storage engine. Only **rocksDB** is supported now.
-        Changing this parameter will create a new resource.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the database version.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    InfluxInstanceDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class InfluxInstanceDatastoreArgsDict(TypedDict):
+    engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the database engine. Only **influxdb** is supported now.
+    Changing this parameter will create a new resource.
+    """
+    storage_engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the storage engine. Only **rocksDB** is supported now.
+    Changing this parameter will create a new resource.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the database version.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class InfluxInstanceDatastoreArgs:
@@ -451,32 +434,29 @@ class InfluxInstanceDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class InfluxInstanceNodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the instance name, which can be the same as an existing instance name. The
-        value must be `4` to `64` characters in length and start with a letter. It is case-sensitive and can contain only
-        letters, digits, hyphens (-), and underscores (_).
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of a node.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        support_reduce: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the node support reduce or not.
-        """
-elif False:
-    InfluxInstanceNodeArgsDict: TypeAlias = Mapping[str, Any]
+class InfluxInstanceNodeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance name, which can be the same as an existing instance name. The
+    value must be `4` to `64` characters in length and start with a letter. It is case-sensitive and can contain only
+    letters, digits, hyphens (-), and underscores (_).
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of a node.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    support_reduce: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the node support reduce or not.
+    """
 
 @pulumi.input_type
 class InfluxInstanceNodeArgs:
@@ -569,23 +549,20 @@ class InfluxInstanceNodeArgs:
         pulumi.set(self, "support_reduce", value)
 
 
-if not MYPY:
-    class MongoInstanceBackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the backup time window. Automated backups will be triggered during the
-        backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
-        HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
-        value: 08:00-09:00, 03:00-04:00.
-        """
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days to retain the generated backup files. The value ranges from
-        `0` to `35`. If this parameter is set to `0`, the automated backup policy is not set. If this parameter is not
-        transferred, the automated backup policy is enabled by default. Backup files are stored for seven days by default.
-        """
-elif False:
-    MongoInstanceBackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class MongoInstanceBackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the backup time window. Automated backups will be triggered during the
+    backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
+    HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
+    value: 08:00-09:00, 03:00-04:00.
+    """
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days to retain the generated backup files. The value ranges from
+    `0` to `35`. If this parameter is set to `0`, the automated backup policy is not set. If this parameter is not
+    transferred, the automated backup policy is enabled by default. Backup files are stored for seven days by default.
+    """
 
 @pulumi.input_type
 class MongoInstanceBackupStrategyArgs:
@@ -635,22 +612,19 @@ class MongoInstanceBackupStrategyArgs:
         pulumi.set(self, "keep_days", value)
 
 
-if not MYPY:
-    class MongoInstanceDatastoreArgsDict(TypedDict):
-        engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the database engine. Only **mongodb** is supported now.
-        """
-        storage_engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the storage engine. Only **rocksDB** is supported now.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the database version.
-        """
-elif False:
-    MongoInstanceDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class MongoInstanceDatastoreArgsDict(TypedDict):
+    engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the database engine. Only **mongodb** is supported now.
+    """
+    storage_engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the storage engine. Only **rocksDB** is supported now.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the database version.
+    """
 
 @pulumi.input_type
 class MongoInstanceDatastoreArgs:
@@ -704,32 +678,29 @@ class MongoInstanceDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class MongoInstanceNodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the instance name, which can be the same as an existing instance name. The
-        value must be `4` to `64` characters in length and start with a letter. It is case-sensitive and can contain only
-        letters, digits, hyphens (-), and underscores (_).
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of a node.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        support_reduce: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the node support reduce or not.
-        """
-elif False:
-    MongoInstanceNodeArgsDict: TypeAlias = Mapping[str, Any]
+class MongoInstanceNodeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance name, which can be the same as an existing instance name. The
+    value must be `4` to `64` characters in length and start with a letter. It is case-sensitive and can contain only
+    letters, digits, hyphens (-), and underscores (_).
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of a node.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    support_reduce: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the node support reduce or not.
+    """
 
 @pulumi.input_type
 class MongoInstanceNodeArgs:
@@ -822,20 +793,17 @@ class MongoInstanceNodeArgs:
         pulumi.set(self, "support_reduce", value)
 
 
-if not MYPY:
-    class RedisInstanceAvailabilityZoneDetailArgsDict(TypedDict):
-        primary_availability_zone: pulumi.Input[_builtins.str]
-        """
-        Specifies the primary AZ, it must be a single AZ and be
-        different from the standby AZ. Changing this parameter will create a new resource.
-        """
-        secondary_availability_zone: pulumi.Input[_builtins.str]
-        """
-        Specifies the standby AZ, it must be a single AZ and be
-        different from the primary AZ. Changing this parameter will create a new resource.
-        """
-elif False:
-    RedisInstanceAvailabilityZoneDetailArgsDict: TypeAlias = Mapping[str, Any]
+class RedisInstanceAvailabilityZoneDetailArgsDict(TypedDict):
+    primary_availability_zone: pulumi.Input[_builtins.str]
+    """
+    Specifies the primary AZ, it must be a single AZ and be
+    different from the standby AZ. Changing this parameter will create a new resource.
+    """
+    secondary_availability_zone: pulumi.Input[_builtins.str]
+    """
+    Specifies the standby AZ, it must be a single AZ and be
+    different from the primary AZ. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class RedisInstanceAvailabilityZoneDetailArgs:
@@ -878,23 +846,20 @@ class RedisInstanceAvailabilityZoneDetailArgs:
         pulumi.set(self, "secondary_availability_zone", value)
 
 
-if not MYPY:
-    class RedisInstanceBackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the backup time window. Automated backups will be triggered during the
-        backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
-        HH value must be `1` greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
-        value: **08:00-09:00**, **03:00-04:00**.
-        """
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days to retain the generated backup files. The value ranges from
-        0 to 35. If this parameter is set to `0`, the automated backup policy is not set. If this parameter is not transferred,
-        the automated backup policy is enabled by default. Backup files are stored for seven days by default.
-        """
-elif False:
-    RedisInstanceBackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class RedisInstanceBackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the backup time window. Automated backups will be triggered during the
+    backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
+    HH value must be `1` greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
+    value: **08:00-09:00**, **03:00-04:00**.
+    """
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days to retain the generated backup files. The value ranges from
+    0 to 35. If this parameter is set to `0`, the automated backup policy is not set. If this parameter is not transferred,
+    the automated backup policy is enabled by default. Backup files are stored for seven days by default.
+    """
 
 @pulumi.input_type
 class RedisInstanceBackupStrategyArgs:
@@ -944,25 +909,22 @@ class RedisInstanceBackupStrategyArgs:
         pulumi.set(self, "keep_days", value)
 
 
-if not MYPY:
-    class RedisInstanceDatastoreArgsDict(TypedDict):
-        engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the database engine. Only "redis" is supported now.
-        Changing this parameter will create a new resource.
-        """
-        storage_engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the storage engine. Only "rocksDB" is supported now.
-        Changing this parameter will create a new resource.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the database version. Only "5.0" is supported now.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    RedisInstanceDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class RedisInstanceDatastoreArgsDict(TypedDict):
+    engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the database engine. Only "redis" is supported now.
+    Changing this parameter will create a new resource.
+    """
+    storage_engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the storage engine. Only "rocksDB" is supported now.
+    Changing this parameter will create a new resource.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the database version. Only "5.0" is supported now.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class RedisInstanceDatastoreArgs:
@@ -1022,36 +984,33 @@ class RedisInstanceDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class RedisInstanceNodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the instance name, which can be the same as an existing instance name. The value
-        must be `4` to `64` characters in length and start with a letter. It is case-sensitive and can contain only letters,
-        digits, hyphens (-), and underscores (_). Chinese characters must be in UTF-8 or Unicode format.
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of a node.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the public IP address of a node.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        support_reduce: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the node support reduce or not.
-        """
-elif False:
-    RedisInstanceNodeArgsDict: TypeAlias = Mapping[str, Any]
+class RedisInstanceNodeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance name, which can be the same as an existing instance name. The value
+    must be `4` to `64` characters in length and start with a letter. It is case-sensitive and can contain only letters,
+    digits, hyphens (-), and underscores (_). Chinese characters must be in UTF-8 or Unicode format.
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of a node.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the public IP address of a node.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    support_reduce: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the node support reduce or not.
+    """
 
 @pulumi.input_type
 class RedisInstanceNodeArgs:

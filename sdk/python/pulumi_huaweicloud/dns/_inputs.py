@@ -23,8 +23,12 @@ __all__ = [
     'ResolverRuleIpAddressArgsDict',
     'ResolverRuleVpcArgs',
     'ResolverRuleVpcArgsDict',
+    'ZoneAuthorizationRecordArgs',
+    'ZoneAuthorizationRecordArgsDict',
     'ZoneDnssecInfoArgs',
     'ZoneDnssecInfoArgsDict',
+    'ZoneRetrievalRecordArgs',
+    'ZoneRetrievalRecordArgsDict',
     'ZoneRouterArgs',
     'ZoneRouterArgsDict',
     'ZoneV2DnssecInfoArgs',
@@ -43,24 +47,19 @@ __all__ = [
     'GetTagsFilterTagsAnyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class EndpointAssignmentAssignmentArgsDict(TypedDict):
-        ip_address: pulumi.Input[_builtins.str]
-        """
-        Specifies the IP address associated with the endpoint.
-        """
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the subnet ID to which the IP address belongs.
-        """
-        ip_address_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address associated with the endpoint.
-        """
-elif False:
-    EndpointAssignmentAssignmentArgsDict: TypeAlias = Mapping[str, Any]
+class EndpointAssignmentAssignmentArgsDict(TypedDict):
+    ip_address: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address associated with the endpoint.
+    """
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the subnet ID to which the IP address belongs.
+    """
+    ip_address_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address associated with the endpoint.
+    """
 
 @pulumi.input_type
 class EndpointAssignmentAssignmentArgs:
@@ -115,34 +114,31 @@ class EndpointAssignmentAssignmentArgs:
         pulumi.set(self, "ip_address_id", value)
 
 
-if not MYPY:
-    class EndpointIpAddressArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the subnet ID of the IP address.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creation time of the IP address.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address associated with the endpoint.
-        """
-        ip_address_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of IP address.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The latest update time of the IP address.
-        """
-elif False:
-    EndpointIpAddressArgsDict: TypeAlias = Mapping[str, Any]
+class EndpointIpAddressArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the subnet ID of the IP address.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creation time of the IP address.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address associated with the endpoint.
+    """
+    ip_address_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of IP address.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The latest update time of the IP address.
+    """
 
 @pulumi.input_type
 class EndpointIpAddressArgs:
@@ -246,14 +242,11 @@ class EndpointIpAddressArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class ResolverRuleIpAddressArgsDict(TypedDict):
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IP of the IP address.
-        """
-elif False:
-    ResolverRuleIpAddressArgsDict: TypeAlias = Mapping[str, Any]
+class ResolverRuleIpAddressArgsDict(TypedDict):
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP of the IP address.
+    """
 
 @pulumi.input_type
 class ResolverRuleIpAddressArgs:
@@ -278,22 +271,19 @@ class ResolverRuleIpAddressArgs:
         pulumi.set(self, "ip", value)
 
 
-if not MYPY:
-    class ResolverRuleVpcArgsDict(TypedDict):
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the VPC.
-        """
-        vpc_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The VPC ID.
-        """
-        vpc_region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region of the VPC.
-        """
-elif False:
-    ResolverRuleVpcArgsDict: TypeAlias = Mapping[str, Any]
+class ResolverRuleVpcArgsDict(TypedDict):
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the VPC.
+    """
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The VPC ID.
+    """
+    vpc_region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region of the VPC.
+    """
 
 @pulumi.input_type
 class ResolverRuleVpcArgs:
@@ -350,54 +340,100 @@ class ResolverRuleVpcArgs:
         pulumi.set(self, "vpc_region", value)
 
 
-if not MYPY:
-    class ZoneDnssecInfoArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
+class ZoneAuthorizationRecordArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host record of the TXT record.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The record value of the TXT record.
+    """
+
+@pulumi.input_type
+class ZoneAuthorizationRecordArgs:
+    def __init__(__self__, *,
+                 host: Optional[pulumi.Input[_builtins.str]] = None,
+                 value: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Indicates the creation time. Format is **yyyy-MM-dd'T'HH:mm:ss.SSS**.
+        :param pulumi.Input[_builtins.str] host: The host record of the TXT record.
+        :param pulumi.Input[_builtins.str] value: The record value of the TXT record.
         """
-        digest: NotRequired[pulumi.Input[_builtins.str]]
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates the digest.
+        The host record of the TXT record.
         """
-        digest_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "host", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates the digest algorithm.
+        The record value of the TXT record.
         """
-        digest_type: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the digest type.
-        """
-        ds_record: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the DS record.
-        """
-        flag: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the flag.
-        """
-        key_tag: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the key tag.
-        """
-        ksk_public_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the public key.
-        """
-        signature: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the signature algorithm.
-        """
-        signature_type: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the signature type.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the update time. Format is **yyyy-MM-dd'T'HH:mm:ss.SSS**.
-        """
-elif False:
-    ZoneDnssecInfoArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+
+class ZoneDnssecInfoArgsDict(TypedDict):
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the creation time. Format is **yyyy-MM-dd'T'HH:mm:ss.SSS**.
+    """
+    digest: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the digest.
+    """
+    digest_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the digest algorithm.
+    """
+    digest_type: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the digest type.
+    """
+    ds_record: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the DS record.
+    """
+    flag: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the flag.
+    """
+    key_tag: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the key tag.
+    """
+    ksk_public_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the public key.
+    """
+    signature: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the signature algorithm.
+    """
+    signature_type: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the signature type.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the update time. Format is **yyyy-MM-dd'T'HH:mm:ss.SSS**.
+    """
 
 @pulumi.input_type
 class ZoneDnssecInfoArgs:
@@ -582,18 +618,64 @@ class ZoneDnssecInfoArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class ZoneRouterArgsDict(TypedDict):
-        router_id: pulumi.Input[_builtins.str]
+class ZoneRetrievalRecordArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the record host.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the record value.
+    """
+
+@pulumi.input_type
+class ZoneRetrievalRecordArgs:
+    def __init__(__self__, *,
+                 host: Optional[pulumi.Input[_builtins.str]] = None,
+                 value: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Specifies the ID of the associated VPC.
+        :param pulumi.Input[_builtins.str] host: Indicates the record host.
+        :param pulumi.Input[_builtins.str] value: Indicates the record value.
         """
-        router_region: NotRequired[pulumi.Input[_builtins.str]]
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region of the VPC.
+        Indicates the record host.
         """
-elif False:
-    ZoneRouterArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "host", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the record value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+
+class ZoneRouterArgsDict(TypedDict):
+    router_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the associated VPC.
+    """
+    router_region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region of the VPC.
+    """
 
 @pulumi.input_type
 class ZoneRouterArgs:
@@ -633,54 +715,51 @@ class ZoneRouterArgs:
         pulumi.set(self, "router_region", value)
 
 
-if not MYPY:
-    class ZoneV2DnssecInfoArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the creation time. Format is **yyyy-MM-dd'T'HH:mm:ss.SSS**.
-        """
-        digest: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the digest.
-        """
-        digest_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the digest algorithm.
-        """
-        digest_type: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the digest type.
-        """
-        ds_record: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the DS record.
-        """
-        flag: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the flag.
-        """
-        key_tag: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the key tag.
-        """
-        ksk_public_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the public key.
-        """
-        signature: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the signature algorithm.
-        """
-        signature_type: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the signature type.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the update time. Format is **yyyy-MM-dd'T'HH:mm:ss.SSS**.
-        """
-elif False:
-    ZoneV2DnssecInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ZoneV2DnssecInfoArgsDict(TypedDict):
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the creation time. Format is **yyyy-MM-dd'T'HH:mm:ss.SSS**.
+    """
+    digest: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the digest.
+    """
+    digest_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the digest algorithm.
+    """
+    digest_type: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the digest type.
+    """
+    ds_record: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the DS record.
+    """
+    flag: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the flag.
+    """
+    key_tag: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the key tag.
+    """
+    ksk_public_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the public key.
+    """
+    signature: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the signature algorithm.
+    """
+    signature_type: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the signature type.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the update time. Format is **yyyy-MM-dd'T'HH:mm:ss.SSS**.
+    """
 
 @pulumi.input_type
 class ZoneV2DnssecInfoArgs:
@@ -865,18 +944,15 @@ class ZoneV2DnssecInfoArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class ZoneV2RouterArgsDict(TypedDict):
-        router_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the associated VPC.
-        """
-        router_region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region of the VPC.
-        """
-elif False:
-    ZoneV2RouterArgsDict: TypeAlias = Mapping[str, Any]
+class ZoneV2RouterArgsDict(TypedDict):
+    router_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the associated VPC.
+    """
+    router_region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region of the VPC.
+    """
 
 @pulumi.input_type
 class ZoneV2RouterArgs:
@@ -916,21 +992,18 @@ class ZoneV2RouterArgs:
         pulumi.set(self, "router_region", value)
 
 
-if not MYPY:
-    class GetTagsFilterMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of tag.
-        """
-        value: NotRequired[_builtins.str]
-        """
-        Specifies the value of the matching field.
+class GetTagsFilterMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of tag.
+    """
+    value: NotRequired[_builtins.str]
+    """
+    Specifies the value of the matching field.
 
-        <a name="block--tag_values"></a>
-        The `tag_values` block supports:
-        """
-elif False:
-    GetTagsFilterMatchArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--tag_values"></a>
+    The `tag_values` block supports:
+    """
 
 @pulumi.input_type
 class GetTagsFilterMatchArgs:
@@ -976,18 +1049,15 @@ class GetTagsFilterMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetTagsFilterNotTagArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the key of tag.
-        """
-        values: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the list of values of the tag.
-        """
-elif False:
-    GetTagsFilterNotTagArgsDict: TypeAlias = Mapping[str, Any]
+class GetTagsFilterNotTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the key of tag.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of values of the tag.
+    """
 
 @pulumi.input_type
 class GetTagsFilterNotTagArgs:
@@ -1028,18 +1098,15 @@ class GetTagsFilterNotTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetTagsFilterNotTagsAnyArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the key of tag.
-        """
-        values: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the list of values of the tag.
-        """
-elif False:
-    GetTagsFilterNotTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+class GetTagsFilterNotTagsAnyArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the key of tag.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of values of the tag.
+    """
 
 @pulumi.input_type
 class GetTagsFilterNotTagsAnyArgs:
@@ -1080,18 +1147,15 @@ class GetTagsFilterNotTagsAnyArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetTagsFilterTagArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the key of tag.
-        """
-        values: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the list of values of the tag.
-        """
-elif False:
-    GetTagsFilterTagArgsDict: TypeAlias = Mapping[str, Any]
+class GetTagsFilterTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the key of tag.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of values of the tag.
+    """
 
 @pulumi.input_type
 class GetTagsFilterTagArgs:
@@ -1132,18 +1196,15 @@ class GetTagsFilterTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetTagsFilterTagsAnyArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the key of tag.
-        """
-        values: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the list of values of the tag.
-        """
-elif False:
-    GetTagsFilterTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+class GetTagsFilterTagsAnyArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the key of tag.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of values of the tag.
+    """
 
 @pulumi.input_type
 class GetTagsFilterTagsAnyArgs:

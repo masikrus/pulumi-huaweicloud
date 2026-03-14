@@ -30,17 +30,18 @@ class OrganizationalAssignmentPackageArgs:
                  vars_structures: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationalAssignmentPackageVarsStructureArgs']]]] = None):
         """
         The set of arguments for constructing a OrganizationalAssignmentPackage resource.
+
         :param pulumi.Input[_builtins.str] organization_id: Specifies the ID of the organization.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_accounts: Specifies the excluded accounts for conformance package deployment.
         :param pulumi.Input[_builtins.str] name: Specifies the assignment package name. It contains `1` to `64` characters.
-        :param pulumi.Input[_builtins.str] template_body: Specifies the content of a custom assignment package. It contains `1` to
-               `51200` characters.
+        :param pulumi.Input[_builtins.str] template_body: Specifies the content of a custom assignment package. It contains `1`
+               to `51200` characters.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] template_key: Specifies the name of a predefined conformance package. It contains `1` to
-               `128` characters.
+        :param pulumi.Input[_builtins.str] template_key: Specifies the name of a predefined conformance package. It contains `1`
+               to `128` characters.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address of a conformance package. It contains `1` to
@@ -110,8 +111,8 @@ class OrganizationalAssignmentPackageArgs:
     @pulumi.getter(name="templateBody")
     def template_body(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the content of a custom assignment package. It contains `1` to
-        `51200` characters.
+        Specifies the content of a custom assignment package. It contains `1`
+        to `51200` characters.
 
         Changing this parameter will create a new resource.
         """
@@ -125,8 +126,8 @@ class OrganizationalAssignmentPackageArgs:
     @pulumi.getter(name="templateKey")
     def template_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the name of a predefined conformance package. It contains `1` to
-        `128` characters.
+        Specifies the name of a predefined conformance package. It contains `1`
+        to `128` characters.
 
         Changing this parameter will create a new resource.
         """
@@ -185,6 +186,7 @@ class _OrganizationalAssignmentPackageState:
                  vars_structures: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationalAssignmentPackageVarsStructureArgs']]]] = None):
         """
         Input properties used for looking up and filtering OrganizationalAssignmentPackage resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time of an organization conformance package.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_accounts: Specifies the excluded accounts for conformance package deployment.
         :param pulumi.Input[_builtins.str] name: Specifies the assignment package name. It contains `1` to `64` characters.
@@ -193,12 +195,12 @@ class _OrganizationalAssignmentPackageState:
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] owner_id: Indicates the creator of an organization conformance package.
-        :param pulumi.Input[_builtins.str] template_body: Specifies the content of a custom assignment package. It contains `1` to
-               `51200` characters.
+        :param pulumi.Input[_builtins.str] template_body: Specifies the content of a custom assignment package. It contains `1`
+               to `51200` characters.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] template_key: Specifies the name of a predefined conformance package. It contains `1` to
-               `128` characters.
+        :param pulumi.Input[_builtins.str] template_key: Specifies the name of a predefined conformance package. It contains `1`
+               to `128` characters.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address of a conformance package. It contains `1` to
@@ -314,8 +316,8 @@ class _OrganizationalAssignmentPackageState:
     @pulumi.getter(name="templateBody")
     def template_body(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the content of a custom assignment package. It contains `1` to
-        `51200` characters.
+        Specifies the content of a custom assignment package. It contains `1`
+        to `51200` characters.
 
         Changing this parameter will create a new resource.
         """
@@ -329,8 +331,8 @@ class _OrganizationalAssignmentPackageState:
     @pulumi.getter(name="templateKey")
     def template_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the name of a predefined conformance package. It contains `1` to
-        `128` characters.
+        Specifies the name of a predefined conformance package. It contains `1`
+        to `128` characters.
 
         Changing this parameter will create a new resource.
         """
@@ -385,7 +387,7 @@ class _OrganizationalAssignmentPackageState:
         pulumi.set(self, "vars_structures", value)
 
 
-@pulumi.type_token("huaweicloud:rms/organizationalAssignmentPackage:OrganizationalAssignmentPackage")
+@pulumi.type_token("huaweicloud:Rms/organizationalAssignmentPackage:OrganizationalAssignmentPackage")
 class OrganizationalAssignmentPackage(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -402,43 +404,41 @@ class OrganizationalAssignmentPackage(pulumi.CustomResource):
         """
         Manages RMS organizational assignment package resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        organization_id = config.require_object("organizationId")
+        test = huaweicloud.Rms.get_assignment_package_templates()
+        test_organizational_assignment_package = huaweicloud.rms.OrganizationalAssignmentPackage("test",
+            vars_structures=[{"key": k, "value": v} for k, v in test.templates[0].parameters.items()].apply(lambda entries: [{
+                "varKey": entry["value"].name,
+                "varValue": entry["value"].default_value,
+            } for entry in entries]),
+            organization_id=organization_id,
+            name="test",
+            template_key=test.templates[0].template_key)
+        ```
+
         ## Import
 
-        The RMS organizational assignment package can be imported using the `organization_id` and `id` separated by a slash, e.g.
-
-        bash
+        The RMS organizational assignment package can be imported using the `organization_id` and `id` separated by a slash,
+        e.g.
 
         ```sh
-        $ pulumi import huaweicloud:rms/organizationalAssignmentPackage:OrganizationalAssignmentPackage test <organization_id>/<id>
+        $ pulumi import huaweicloud:Rms/organizationalAssignmentPackage:OrganizationalAssignmentPackage test <organization_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template_key`,`template_body`,
-
         `template_uri`. It is generally recommended running `pulumi preview` after importing a RMS organizational assignment
-
         package. You can then decide if changes should be applied to the RMS organizational assignment package, or the resource
+        definition should be updated to align with the RMS organizational assignment package. Also you can ignore changes as
+        below.
 
-        definition should be updated to align with the RMS organizational assignment package. Also you can ignore changes as below.
-
-        hcl
-
-        resource "huaweicloud_rms_organizational_assignment_package" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_key, template_body, template_uri,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -447,12 +447,12 @@ class OrganizationalAssignmentPackage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: Specifies the ID of the organization.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] template_body: Specifies the content of a custom assignment package. It contains `1` to
-               `51200` characters.
+        :param pulumi.Input[_builtins.str] template_body: Specifies the content of a custom assignment package. It contains `1`
+               to `51200` characters.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] template_key: Specifies the name of a predefined conformance package. It contains `1` to
-               `128` characters.
+        :param pulumi.Input[_builtins.str] template_key: Specifies the name of a predefined conformance package. It contains `1`
+               to `128` characters.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address of a conformance package. It contains `1` to
@@ -475,43 +475,41 @@ class OrganizationalAssignmentPackage(pulumi.CustomResource):
         """
         Manages RMS organizational assignment package resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        organization_id = config.require_object("organizationId")
+        test = huaweicloud.Rms.get_assignment_package_templates()
+        test_organizational_assignment_package = huaweicloud.rms.OrganizationalAssignmentPackage("test",
+            vars_structures=[{"key": k, "value": v} for k, v in test.templates[0].parameters.items()].apply(lambda entries: [{
+                "varKey": entry["value"].name,
+                "varValue": entry["value"].default_value,
+            } for entry in entries]),
+            organization_id=organization_id,
+            name="test",
+            template_key=test.templates[0].template_key)
+        ```
+
         ## Import
 
-        The RMS organizational assignment package can be imported using the `organization_id` and `id` separated by a slash, e.g.
-
-        bash
+        The RMS organizational assignment package can be imported using the `organization_id` and `id` separated by a slash,
+        e.g.
 
         ```sh
-        $ pulumi import huaweicloud:rms/organizationalAssignmentPackage:OrganizationalAssignmentPackage test <organization_id>/<id>
+        $ pulumi import huaweicloud:Rms/organizationalAssignmentPackage:OrganizationalAssignmentPackage test <organization_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template_key`,`template_body`,
-
         `template_uri`. It is generally recommended running `pulumi preview` after importing a RMS organizational assignment
-
         package. You can then decide if changes should be applied to the RMS organizational assignment package, or the resource
+        definition should be updated to align with the RMS organizational assignment package. Also you can ignore changes as
+        below.
 
-        definition should be updated to align with the RMS organizational assignment package. Also you can ignore changes as below.
-
-        hcl
-
-        resource "huaweicloud_rms_organizational_assignment_package" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template_key, template_body, template_uri,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param OrganizationalAssignmentPackageArgs args: The arguments to use to populate this resource's properties.
@@ -558,7 +556,7 @@ class OrganizationalAssignmentPackage(pulumi.CustomResource):
             __props__.__dict__["owner_id"] = None
             __props__.__dict__["updated_at"] = None
         super(OrganizationalAssignmentPackage, __self__).__init__(
-            'huaweicloud:rms/organizationalAssignmentPackage:OrganizationalAssignmentPackage',
+            'huaweicloud:Rms/organizationalAssignmentPackage:OrganizationalAssignmentPackage',
             resource_name,
             __props__,
             opts)
@@ -593,12 +591,12 @@ class OrganizationalAssignmentPackage(pulumi.CustomResource):
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] owner_id: Indicates the creator of an organization conformance package.
-        :param pulumi.Input[_builtins.str] template_body: Specifies the content of a custom assignment package. It contains `1` to
-               `51200` characters.
+        :param pulumi.Input[_builtins.str] template_body: Specifies the content of a custom assignment package. It contains `1`
+               to `51200` characters.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] template_key: Specifies the name of a predefined conformance package. It contains `1` to
-               `128` characters.
+        :param pulumi.Input[_builtins.str] template_key: Specifies the name of a predefined conformance package. It contains `1`
+               to `128` characters.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] template_uri: Specifies the OBS address of a conformance package. It contains `1` to
@@ -684,8 +682,8 @@ class OrganizationalAssignmentPackage(pulumi.CustomResource):
     @pulumi.getter(name="templateBody")
     def template_body(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the content of a custom assignment package. It contains `1` to
-        `51200` characters.
+        Specifies the content of a custom assignment package. It contains `1`
+        to `51200` characters.
 
         Changing this parameter will create a new resource.
         """
@@ -695,8 +693,8 @@ class OrganizationalAssignmentPackage(pulumi.CustomResource):
     @pulumi.getter(name="templateKey")
     def template_key(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the name of a predefined conformance package. It contains `1` to
-        `128` characters.
+        Specifies the name of a predefined conformance package. It contains `1`
+        to `128` characters.
 
         Changing this parameter will create a new resource.
         """

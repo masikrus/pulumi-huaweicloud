@@ -25,24 +25,40 @@ class RabbitmqExchangeArgs:
                  instance_id: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
                  vhost: pulumi.Input[_builtins.str],
+                 arguments: Optional[pulumi.Input[_builtins.str]] = None,
                  durable: Optional[pulumi.Input[_builtins.bool]] = None,
                  internal: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RabbitmqExchange resource.
+
         :param pulumi.Input[_builtins.bool] auto_delete: Specifies whether to enable auto delete. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] type: Specifies the exchange type. Valid values are **direct**, **fanout**, **topic**
-               and **headers**. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] type: Specifies the routing type of the exchange.  
+               Changing this creates a new resource.
+               The valid values are as follows:
+               + **direct**
+               + **fanout**
+               + **topic**
+               + **headers**
+               + **x-delayed-message**
+               + **x-consistent-hash**
+               
+               Currently, only RabbitMQ `AMQP-0-9-1` exchange supports **x-delayed-message** and **x-consistent-hash**.
         :param pulumi.Input[_builtins.str] vhost: Specifies the vhost name. Changing this creates a new resource.
                
                > If `vhost` has slashes, please change them into **\\_\\_F_SLASH\\_\\_**.
+        :param pulumi.Input[_builtins.str] arguments: Specifies the argument configuration of the exchange, in JSON format.  
+               Changing this creates a new resource.
+               Currently, this parameter is available only when `type` is set to **x-delayed-message**.
         :param pulumi.Input[_builtins.bool] durable: Specifies whether to enable durable. Defaults to **false**.
                Changing this creates a new resource.
+               This parameter is only valid for RabbitMQ `3.x.x` exchange. It is enabled by default for RabbitMQ `AMQP-0-9-1` exchange.
         :param pulumi.Input[_builtins.bool] internal: Specifies whether the exchange is internal. Defaults to **false**.
                Changing this creates a new resource.
+               This parameter is only valid for RabbitMQ `3.x.x` exchange.
         :param pulumi.Input[_builtins.str] name: Specifies the exchange name. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: The region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this creates a new resource.
@@ -51,6 +67,8 @@ class RabbitmqExchangeArgs:
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "vhost", vhost)
+        if arguments is not None:
+            pulumi.set(__self__, "arguments", arguments)
         if durable is not None:
             pulumi.set(__self__, "durable", durable)
         if internal is not None:
@@ -89,8 +107,17 @@ class RabbitmqExchangeArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the exchange type. Valid values are **direct**, **fanout**, **topic**
-        and **headers**. Changing this creates a new resource.
+        Specifies the routing type of the exchange.  
+        Changing this creates a new resource.
+        The valid values are as follows:
+        + **direct**
+        + **fanout**
+        + **topic**
+        + **headers**
+        + **x-delayed-message**
+        + **x-consistent-hash**
+
+        Currently, only RabbitMQ `AMQP-0-9-1` exchange supports **x-delayed-message** and **x-consistent-hash**.
         """
         return pulumi.get(self, "type")
 
@@ -114,10 +141,25 @@ class RabbitmqExchangeArgs:
 
     @_builtins.property
     @pulumi.getter
+    def arguments(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the argument configuration of the exchange, in JSON format.  
+        Changing this creates a new resource.
+        Currently, this parameter is available only when `type` is set to **x-delayed-message**.
+        """
+        return pulumi.get(self, "arguments")
+
+    @arguments.setter
+    def arguments(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "arguments", value)
+
+    @_builtins.property
+    @pulumi.getter
     def durable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Specifies whether to enable durable. Defaults to **false**.
         Changing this creates a new resource.
+        This parameter is only valid for RabbitMQ `3.x.x` exchange. It is enabled by default for RabbitMQ `AMQP-0-9-1` exchange.
         """
         return pulumi.get(self, "durable")
 
@@ -131,6 +173,7 @@ class RabbitmqExchangeArgs:
         """
         Specifies whether the exchange is internal. Defaults to **false**.
         Changing this creates a new resource.
+        This parameter is only valid for RabbitMQ `3.x.x` exchange.
         """
         return pulumi.get(self, "internal")
 
@@ -167,6 +210,7 @@ class RabbitmqExchangeArgs:
 @pulumi.input_type
 class _RabbitmqExchangeState:
     def __init__(__self__, *,
+                 arguments: Optional[pulumi.Input[_builtins.str]] = None,
                  auto_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  bindings: Optional[pulumi.Input[Sequence[pulumi.Input['RabbitmqExchangeBindingArgs']]]] = None,
                  durable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -178,24 +222,41 @@ class _RabbitmqExchangeState:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RabbitmqExchange resources.
+
+        :param pulumi.Input[_builtins.str] arguments: Specifies the argument configuration of the exchange, in JSON format.  
+               Changing this creates a new resource.
+               Currently, this parameter is available only when `type` is set to **x-delayed-message**.
         :param pulumi.Input[_builtins.bool] auto_delete: Specifies whether to enable auto delete. Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['RabbitmqExchangeBindingArgs']]] bindings: Indicates the exchange bindings.
                The bindings structure is documented below.
         :param pulumi.Input[_builtins.bool] durable: Specifies whether to enable durable. Defaults to **false**.
                Changing this creates a new resource.
+               This parameter is only valid for RabbitMQ `3.x.x` exchange. It is enabled by default for RabbitMQ `AMQP-0-9-1` exchange.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.bool] internal: Specifies whether the exchange is internal. Defaults to **false**.
                Changing this creates a new resource.
+               This parameter is only valid for RabbitMQ `3.x.x` exchange.
         :param pulumi.Input[_builtins.str] name: Specifies the exchange name. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: The region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] type: Specifies the exchange type. Valid values are **direct**, **fanout**, **topic**
-               and **headers**. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] type: Specifies the routing type of the exchange.  
+               Changing this creates a new resource.
+               The valid values are as follows:
+               + **direct**
+               + **fanout**
+               + **topic**
+               + **headers**
+               + **x-delayed-message**
+               + **x-consistent-hash**
+               
+               Currently, only RabbitMQ `AMQP-0-9-1` exchange supports **x-delayed-message** and **x-consistent-hash**.
         :param pulumi.Input[_builtins.str] vhost: Specifies the vhost name. Changing this creates a new resource.
                
                > If `vhost` has slashes, please change them into **\\_\\_F_SLASH\\_\\_**.
         """
+        if arguments is not None:
+            pulumi.set(__self__, "arguments", arguments)
         if auto_delete is not None:
             pulumi.set(__self__, "auto_delete", auto_delete)
         if bindings is not None:
@@ -214,6 +275,20 @@ class _RabbitmqExchangeState:
             pulumi.set(__self__, "type", type)
         if vhost is not None:
             pulumi.set(__self__, "vhost", vhost)
+
+    @_builtins.property
+    @pulumi.getter
+    def arguments(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the argument configuration of the exchange, in JSON format.  
+        Changing this creates a new resource.
+        Currently, this parameter is available only when `type` is set to **x-delayed-message**.
+        """
+        return pulumi.get(self, "arguments")
+
+    @arguments.setter
+    def arguments(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "arguments", value)
 
     @_builtins.property
     @pulumi.getter(name="autoDelete")
@@ -246,6 +321,7 @@ class _RabbitmqExchangeState:
         """
         Specifies whether to enable durable. Defaults to **false**.
         Changing this creates a new resource.
+        This parameter is only valid for RabbitMQ `3.x.x` exchange. It is enabled by default for RabbitMQ `AMQP-0-9-1` exchange.
         """
         return pulumi.get(self, "durable")
 
@@ -272,6 +348,7 @@ class _RabbitmqExchangeState:
         """
         Specifies whether the exchange is internal. Defaults to **false**.
         Changing this creates a new resource.
+        This parameter is only valid for RabbitMQ `3.x.x` exchange.
         """
         return pulumi.get(self, "internal")
 
@@ -308,8 +385,17 @@ class _RabbitmqExchangeState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the exchange type. Valid values are **direct**, **fanout**, **topic**
-        and **headers**. Changing this creates a new resource.
+        Specifies the routing type of the exchange.  
+        Changing this creates a new resource.
+        The valid values are as follows:
+        + **direct**
+        + **fanout**
+        + **topic**
+        + **headers**
+        + **x-delayed-message**
+        + **x-consistent-hash**
+
+        Currently, only RabbitMQ `AMQP-0-9-1` exchange supports **x-delayed-message** and **x-consistent-hash**.
         """
         return pulumi.get(self, "type")
 
@@ -338,6 +424,7 @@ class RabbitmqExchange(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 arguments: Optional[pulumi.Input[_builtins.str]] = None,
                  auto_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  durable: Optional[pulumi.Input[_builtins.bool]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -351,6 +438,8 @@ class RabbitmqExchange(pulumi.CustomResource):
         Manages a DMS RabbitMQ exchange resource within HuaweiCloud.
 
         ## Example Usage
+
+        ### Create a RabbitMQ `3.x.x` exchange
 
         ```python
         import pulumi
@@ -370,38 +459,70 @@ class RabbitmqExchange(pulumi.CustomResource):
             internal=False)
         ```
 
+        ### Create a RabbitMQ `AMQP-0-9-1` exchange with arguments
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        vhost_name = config.require_object("vhostName")
+        exchange_name = config.require_object("exchangeName")
+        test = huaweicloud.dms.RabbitmqExchange("test",
+            instance_id=instance_id,
+            vhost=vhost_name,
+            name=exchange_name,
+            type="x-delayed-message",
+            auto_delete=True,
+            arguments=json.dumps({
+                "x-delayed-type": "header",
+            }))
+        ```
+
         ## Import
 
         The RabbitMQ exchange can be imported using the `instance_id`, `vhost` and `name` separated by slashes or commas, but if
-
         `name` contains slashes, the import ID can only be separated by commas e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqExchange:RabbitmqExchange test <instance_id>/<vhost>/<name>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqExchange:RabbitmqExchange test <instance_id>,<vhost>,<name>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] arguments: Specifies the argument configuration of the exchange, in JSON format.  
+               Changing this creates a new resource.
+               Currently, this parameter is available only when `type` is set to **x-delayed-message**.
         :param pulumi.Input[_builtins.bool] auto_delete: Specifies whether to enable auto delete. Changing this creates a new resource.
         :param pulumi.Input[_builtins.bool] durable: Specifies whether to enable durable. Defaults to **false**.
                Changing this creates a new resource.
+               This parameter is only valid for RabbitMQ `3.x.x` exchange. It is enabled by default for RabbitMQ `AMQP-0-9-1` exchange.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.bool] internal: Specifies whether the exchange is internal. Defaults to **false**.
                Changing this creates a new resource.
+               This parameter is only valid for RabbitMQ `3.x.x` exchange.
         :param pulumi.Input[_builtins.str] name: Specifies the exchange name. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: The region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] type: Specifies the exchange type. Valid values are **direct**, **fanout**, **topic**
-               and **headers**. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] type: Specifies the routing type of the exchange.  
+               Changing this creates a new resource.
+               The valid values are as follows:
+               + **direct**
+               + **fanout**
+               + **topic**
+               + **headers**
+               + **x-delayed-message**
+               + **x-consistent-hash**
+               
+               Currently, only RabbitMQ `AMQP-0-9-1` exchange supports **x-delayed-message** and **x-consistent-hash**.
         :param pulumi.Input[_builtins.str] vhost: Specifies the vhost name. Changing this creates a new resource.
                
                > If `vhost` has slashes, please change them into **\\_\\_F_SLASH\\_\\_**.
@@ -417,6 +538,8 @@ class RabbitmqExchange(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create a RabbitMQ `3.x.x` exchange
+
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
@@ -435,23 +558,41 @@ class RabbitmqExchange(pulumi.CustomResource):
             internal=False)
         ```
 
+        ### Create a RabbitMQ `AMQP-0-9-1` exchange with arguments
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        vhost_name = config.require_object("vhostName")
+        exchange_name = config.require_object("exchangeName")
+        test = huaweicloud.dms.RabbitmqExchange("test",
+            instance_id=instance_id,
+            vhost=vhost_name,
+            name=exchange_name,
+            type="x-delayed-message",
+            auto_delete=True,
+            arguments=json.dumps({
+                "x-delayed-type": "header",
+            }))
+        ```
+
         ## Import
 
         The RabbitMQ exchange can be imported using the `instance_id`, `vhost` and `name` separated by slashes or commas, but if
-
         `name` contains slashes, the import ID can only be separated by commas e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqExchange:RabbitmqExchange test <instance_id>/<vhost>/<name>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqExchange:RabbitmqExchange test <instance_id>,<vhost>,<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RabbitmqExchangeArgs args: The arguments to use to populate this resource's properties.
@@ -468,6 +609,7 @@ class RabbitmqExchange(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 arguments: Optional[pulumi.Input[_builtins.str]] = None,
                  auto_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  durable: Optional[pulumi.Input[_builtins.bool]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -485,6 +627,7 @@ class RabbitmqExchange(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RabbitmqExchangeArgs.__new__(RabbitmqExchangeArgs)
 
+            __props__.__dict__["arguments"] = arguments
             if auto_delete is None and not opts.urn:
                 raise TypeError("Missing required property 'auto_delete'")
             __props__.__dict__["auto_delete"] = auto_delete
@@ -512,6 +655,7 @@ class RabbitmqExchange(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            arguments: Optional[pulumi.Input[_builtins.str]] = None,
             auto_delete: Optional[pulumi.Input[_builtins.bool]] = None,
             bindings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RabbitmqExchangeBindingArgs', 'RabbitmqExchangeBindingArgsDict']]]]] = None,
             durable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -528,20 +672,34 @@ class RabbitmqExchange(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] arguments: Specifies the argument configuration of the exchange, in JSON format.  
+               Changing this creates a new resource.
+               Currently, this parameter is available only when `type` is set to **x-delayed-message**.
         :param pulumi.Input[_builtins.bool] auto_delete: Specifies whether to enable auto delete. Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RabbitmqExchangeBindingArgs', 'RabbitmqExchangeBindingArgsDict']]]] bindings: Indicates the exchange bindings.
                The bindings structure is documented below.
         :param pulumi.Input[_builtins.bool] durable: Specifies whether to enable durable. Defaults to **false**.
                Changing this creates a new resource.
+               This parameter is only valid for RabbitMQ `3.x.x` exchange. It is enabled by default for RabbitMQ `AMQP-0-9-1` exchange.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.bool] internal: Specifies whether the exchange is internal. Defaults to **false**.
                Changing this creates a new resource.
+               This parameter is only valid for RabbitMQ `3.x.x` exchange.
         :param pulumi.Input[_builtins.str] name: Specifies the exchange name. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: The region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] type: Specifies the exchange type. Valid values are **direct**, **fanout**, **topic**
-               and **headers**. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] type: Specifies the routing type of the exchange.  
+               Changing this creates a new resource.
+               The valid values are as follows:
+               + **direct**
+               + **fanout**
+               + **topic**
+               + **headers**
+               + **x-delayed-message**
+               + **x-consistent-hash**
+               
+               Currently, only RabbitMQ `AMQP-0-9-1` exchange supports **x-delayed-message** and **x-consistent-hash**.
         :param pulumi.Input[_builtins.str] vhost: Specifies the vhost name. Changing this creates a new resource.
                
                > If `vhost` has slashes, please change them into **\\_\\_F_SLASH\\_\\_**.
@@ -550,6 +708,7 @@ class RabbitmqExchange(pulumi.CustomResource):
 
         __props__ = _RabbitmqExchangeState.__new__(_RabbitmqExchangeState)
 
+        __props__.__dict__["arguments"] = arguments
         __props__.__dict__["auto_delete"] = auto_delete
         __props__.__dict__["bindings"] = bindings
         __props__.__dict__["durable"] = durable
@@ -560,6 +719,16 @@ class RabbitmqExchange(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["vhost"] = vhost
         return RabbitmqExchange(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter
+    def arguments(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the argument configuration of the exchange, in JSON format.  
+        Changing this creates a new resource.
+        Currently, this parameter is available only when `type` is set to **x-delayed-message**.
+        """
+        return pulumi.get(self, "arguments")
 
     @_builtins.property
     @pulumi.getter(name="autoDelete")
@@ -584,6 +753,7 @@ class RabbitmqExchange(pulumi.CustomResource):
         """
         Specifies whether to enable durable. Defaults to **false**.
         Changing this creates a new resource.
+        This parameter is only valid for RabbitMQ `3.x.x` exchange. It is enabled by default for RabbitMQ `AMQP-0-9-1` exchange.
         """
         return pulumi.get(self, "durable")
 
@@ -602,6 +772,7 @@ class RabbitmqExchange(pulumi.CustomResource):
         """
         Specifies whether the exchange is internal. Defaults to **false**.
         Changing this creates a new resource.
+        This parameter is only valid for RabbitMQ `3.x.x` exchange.
         """
         return pulumi.get(self, "internal")
 
@@ -626,8 +797,17 @@ class RabbitmqExchange(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the exchange type. Valid values are **direct**, **fanout**, **topic**
-        and **headers**. Changing this creates a new resource.
+        Specifies the routing type of the exchange.  
+        Changing this creates a new resource.
+        The valid values are as follows:
+        + **direct**
+        + **fanout**
+        + **topic**
+        + **headers**
+        + **x-delayed-message**
+        + **x-consistent-hash**
+
+        Currently, only RabbitMQ `AMQP-0-9-1` exchange supports **x-delayed-message** and **x-consistent-hash**.
         """
         return pulumi.get(self, "type")
 

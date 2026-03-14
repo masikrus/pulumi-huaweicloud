@@ -20,13 +20,21 @@ __all__ = ['ApplicationArgs', 'Application']
 class ApplicationArgs:
     def __init__(__self__, *,
                  environment_id: pulumi.Input[_builtins.str],
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Application resource.
+
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment to which the application
                belongs.
                Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which
+               the application belongs.
+               Changing this creates a new resource.
+               
+               > This parameter value must be the same as the enterprise project ID of the environment, if it is the default
+               enterprise project ID, it can be omitted. And this parameter is only valid for enterprise users.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the application.  
                The valid length is limited from `2` to `63`, only lowercase letters, digits and hyphens (-) are allowed.
                The name must start with a lowercase letter and end with a lowercase letter or a digit.
@@ -35,6 +43,8 @@ class ApplicationArgs:
                If omitted, the provider-level region will be used. Changing this creates a new resource.
         """
         pulumi.set(__self__, "environment_id", environment_id)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region is not None:
@@ -53,6 +63,23 @@ class ApplicationArgs:
     @environment_id.setter
     def environment_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "environment_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which
+        the application belongs.
+        Changing this creates a new resource.
+
+        > This parameter value must be the same as the enterprise project ID of the environment, if it is the default
+        enterprise project ID, it can be omitted. And this parameter is only valid for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -87,13 +114,21 @@ class ApplicationArgs:
 class _ApplicationState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Application resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the application, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which
+               the application belongs.
+               Changing this creates a new resource.
+               
+               > This parameter value must be the same as the enterprise project ID of the environment, if it is the default
+               enterprise project ID, it can be omitted. And this parameter is only valid for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment to which the application
                belongs.
                Changing this creates a new resource.
@@ -107,6 +142,8 @@ class _ApplicationState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if name is not None:
@@ -127,6 +164,23 @@ class _ApplicationState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which
+        the application belongs.
+        Changing this creates a new resource.
+
+        > This parameter value must be the same as the enterprise project ID of the environment, if it is the default
+        enterprise project ID, it can be omitted. And this parameter is only valid for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -183,12 +237,13 @@ class _ApplicationState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:cae/application:Application")
+@pulumi.type_token("huaweicloud:Cae/application:Application")
 class Application(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -214,14 +269,26 @@ class Application(pulumi.CustomResource):
 
         The application can be imported using `environment_id` and `id`, separated by a slash (/), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/application:Application test <environment_id>/<id>
+        ```
+
+        For the application with the `enterprise_project_id`, its enterprise project ID need to be specified additionanlly when
+        importing. All fields are separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/application:Application test <environment_id>/<id>
+        $ pulumi import huaweicloud:Cae/application:Application test <environment_id>/<id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which
+               the application belongs.
+               Changing this creates a new resource.
+               
+               > This parameter value must be the same as the enterprise project ID of the environment, if it is the default
+               enterprise project ID, it can be omitted. And this parameter is only valid for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment to which the application
                belongs.
                Changing this creates a new resource.
@@ -259,11 +326,17 @@ class Application(pulumi.CustomResource):
 
         The application can be imported using `environment_id` and `id`, separated by a slash (/), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/application:Application test <environment_id>/<id>
+        ```
+
+        For the application with the `enterprise_project_id`, its enterprise project ID need to be specified additionanlly when
+        importing. All fields are separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/application:Application test <environment_id>/<id>
+        $ pulumi import huaweicloud:Cae/application:Application test <environment_id>/<id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationArgs args: The arguments to use to populate this resource's properties.
@@ -280,6 +353,7 @@ class Application(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -292,6 +366,7 @@ class Application(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ApplicationArgs.__new__(ApplicationArgs)
 
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if environment_id is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_id'")
             __props__.__dict__["environment_id"] = environment_id
@@ -300,7 +375,7 @@ class Application(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(Application, __self__).__init__(
-            'huaweicloud:cae/application:Application',
+            'huaweicloud:Cae/application:Application',
             resource_name,
             __props__,
             opts)
@@ -310,6 +385,7 @@ class Application(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             environment_id: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -322,6 +398,12 @@ class Application(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the application, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which
+               the application belongs.
+               Changing this creates a new resource.
+               
+               > This parameter value must be the same as the enterprise project ID of the environment, if it is the default
+               enterprise project ID, it can be omitted. And this parameter is only valid for enterprise users.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment to which the application
                belongs.
                Changing this creates a new resource.
@@ -338,6 +420,7 @@ class Application(pulumi.CustomResource):
         __props__ = _ApplicationState.__new__(_ApplicationState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
@@ -351,6 +434,19 @@ class Application(pulumi.CustomResource):
         The creation time of the application, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which
+        the application belongs.
+        Changing this creates a new resource.
+
+        > This parameter value must be the same as the enterprise project ID of the environment, if it is the default
+        enterprise project ID, it can be omitted. And this parameter is only valid for enterprise users.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")

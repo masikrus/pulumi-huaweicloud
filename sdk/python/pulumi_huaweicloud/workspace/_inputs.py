@@ -55,12 +55,24 @@ __all__ = [
     'ApplicationApplicationFileStoreArgsDict',
     'ApplicationApplicationFileStoreBucketStoreArgs',
     'ApplicationApplicationFileStoreBucketStoreArgsDict',
+    'ApplicationBatchAuthorizeDelUserArgs',
+    'ApplicationBatchAuthorizeDelUserArgsDict',
+    'ApplicationBatchAuthorizeUserArgs',
+    'ApplicationBatchAuthorizeUserArgsDict',
+    'ApplicationBatchAutoInstallUserArgs',
+    'ApplicationBatchAutoInstallUserArgsDict',
+    'ApplicationBatchPublishApplicationArgs',
+    'ApplicationBatchPublishApplicationArgsDict',
     'ApplicationRuleDetailArgs',
     'ApplicationRuleDetailArgsDict',
     'ApplicationRuleDetailPathRuleArgs',
     'ApplicationRuleDetailPathRuleArgsDict',
     'ApplicationRuleDetailProductRuleArgs',
     'ApplicationRuleDetailProductRuleArgsDict',
+    'AssistAuthConfigurationObjectManagementObjectArgs',
+    'AssistAuthConfigurationObjectManagementObjectArgsDict',
+    'AssistAuthConfigurationObjectManagementObjectsOriginArgs',
+    'AssistAuthConfigurationObjectManagementObjectsOriginArgsDict',
     'DesktopDataVolumeArgs',
     'DesktopDataVolumeArgsDict',
     'DesktopNicArgs',
@@ -71,6 +83,8 @@ __all__ = [
     'DesktopPoolAutoscalePolicyArgsDict',
     'DesktopPoolDataVolumeArgs',
     'DesktopPoolDataVolumeArgsDict',
+    'DesktopPoolDataVolumesOrderArgs',
+    'DesktopPoolDataVolumesOrderArgsDict',
     'DesktopPoolProductArgs',
     'DesktopPoolProductArgsDict',
     'DesktopPoolRootVolumeArgs',
@@ -79,6 +93,16 @@ __all__ = [
     'DesktopPoolSecurityGroupArgsDict',
     'DesktopRootVolumeArgs',
     'DesktopRootVolumeArgsDict',
+    'DesktopUserBatchAttachDesktopArgs',
+    'DesktopUserBatchAttachDesktopArgsDict',
+    'DesktopUserBatchAttachDesktopAttachUserInfoArgs',
+    'DesktopUserBatchAttachDesktopAttachUserInfoArgsDict',
+    'DesktopUserBatchDetachDesktopArgs',
+    'DesktopUserBatchDetachDesktopArgsDict',
+    'DesktopUserBatchDetachDesktopDetachUserInfoArgs',
+    'DesktopUserBatchDetachDesktopDetachUserInfoArgsDict',
+    'GroupAuthorizationNotificationResendRecordArgs',
+    'GroupAuthorizationNotificationResendRecordArgsDict',
     'PolicyGroupPolicyArgs',
     'PolicyGroupPolicyArgsDict',
     'PolicyGroupPolicyAccessControlArgs',
@@ -93,6 +117,10 @@ __all__ = [
     'ServiceInfrastructureSecurityGroupArgsDict',
     'ServiceOtpConfigInfoArgs',
     'ServiceOtpConfigInfoArgsDict',
+    'SharedFolderAssignAddItemArgs',
+    'SharedFolderAssignAddItemArgsDict',
+    'SharedFolderAssignDelItemArgs',
+    'SharedFolderAssignDelItemArgsDict',
     'TerminalBindingBindingArgs',
     'TerminalBindingBindingArgsDict',
     'UserGroupUserArgs',
@@ -109,27 +137,22 @@ __all__ = [
     'GetDesktopTagsFilterTagsAnyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AccessPolicyBlacklistArgsDict(TypedDict):
-        object_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the object ID.
-        """
-        object_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the object type.
-        The valid values are as follows:
-        + **USER**
-        + **USERGROUP**
-        """
-        object_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The object name.
-        """
-elif False:
-    AccessPolicyBlacklistArgsDict: TypeAlias = Mapping[str, Any]
+class AccessPolicyBlacklistArgsDict(TypedDict):
+    object_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the object ID.
+    """
+    object_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the object type.
+    The valid values are as follows:
+    + **USER**
+    + **USERGROUP**
+    """
+    object_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The object name.
+    """
 
 @pulumi.input_type
 class AccessPolicyBlacklistArgs:
@@ -190,29 +213,26 @@ class AccessPolicyBlacklistArgs:
         pulumi.set(self, "object_name", value)
 
 
-if not MYPY:
-    class AppGroupAuthorizationAccountArgsDict(TypedDict):
-        account: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the user (group).
-        Changing this creates a new resource.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the object to be authorized.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **USER**
-        + **USER_GROUP**
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the user (group).
-        Changing this creates a new resource.
-        This parameter is required when `type` is set to **USER_GROUP**.
-        """
-elif False:
-    AppGroupAuthorizationAccountArgsDict: TypeAlias = Mapping[str, Any]
+class AppGroupAuthorizationAccountArgsDict(TypedDict):
+    account: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the user (group).
+    Changing this creates a new resource.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the object to be authorized.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **USER**
+    + **USER_GROUP**
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the user (group).
+    Changing this creates a new resource.
+    This parameter is required when `type` is set to **USER_GROUP**.
+    """
 
 @pulumi.input_type
 class AppGroupAuthorizationAccountArgs:
@@ -281,34 +301,31 @@ class AppGroupAuthorizationAccountArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class AppImageServerAuthorizeAccountArgsDict(TypedDict):
-        account: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the account.
-        Changing this creates a new resource.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the disk type of the image server.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **ESSD**: Extreme SSD type.
-        + **SSD**: Ultra-high I/O type.
-        + **GPSSD**: General purpose SSD type.
-        + **SAS**: High I/O type.
-        + **SATA**: Common I/O type.
-        """
-        domain: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the domain name of the Workspace service.
-        Changing this creates a new resource.
+class AppImageServerAuthorizeAccountArgsDict(TypedDict):
+    account: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the account.
+    Changing this creates a new resource.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the disk type of the image server.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **ESSD**: Extreme SSD type.
+    + **SSD**: Ultra-high I/O type.
+    + **GPSSD**: General purpose SSD type.
+    + **SAS**: High I/O type.
+    + **SATA**: Common I/O type.
+    """
+    domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain name of the Workspace service.
+    Changing this creates a new resource.
 
-        <a name="app_image_server_root_volume"></a>
-        The `root_volume` block supports:
-        """
-elif False:
-    AppImageServerAuthorizeAccountArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="app_image_server_root_volume"></a>
+    The `root_volume` block supports:
+    """
 
 @pulumi.input_type
 class AppImageServerAuthorizeAccountArgs:
@@ -387,30 +404,27 @@ class AppImageServerAuthorizeAccountArgs:
         pulumi.set(self, "domain", value)
 
 
-if not MYPY:
-    class AppImageServerRootVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the disk size of the image server, in GB.
-        Changing this creates a new resource.
-        The system disk size must be sufficient for the basic image and the application to be installed.
+class AppImageServerRootVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the disk size of the image server, in GB.
+    Changing this creates a new resource.
+    The system disk size must be sufficient for the basic image and the application to be installed.
 
-        <a name="app_image_server_route_policy"></a>
-        The `route_policy` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the disk type of the image server.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **ESSD**: Extreme SSD type.
-        + **SSD**: Ultra-high I/O type.
-        + **GPSSD**: General purpose SSD type.
-        + **SAS**: High I/O type.
-        + **SATA**: Common I/O type.
-        """
-elif False:
-    AppImageServerRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="app_image_server_route_policy"></a>
+    The `route_policy` block supports:
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the disk type of the image server.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **ESSD**: Extreme SSD type.
+    + **SSD**: Ultra-high I/O type.
+    + **GPSSD**: General purpose SSD type.
+    + **SAS**: High I/O type.
+    + **SATA**: Common I/O type.
+    """
 
 @pulumi.input_type
 class AppImageServerRootVolumeArgs:
@@ -473,31 +487,28 @@ class AppImageServerRootVolumeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class AppImageServerRoutePolicyArgsDict(TypedDict):
-        cpu_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the CPU usage of the server. The unit is `%`.  
-        Changing this creates a new resource.
-        The valid value ranges from `1` to `100`.
-        """
-        max_session: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of session connections of the server.
-        Changing this creates a new resource.
-        The maximum number of sessions is equal to the default number of sessions plus the number of additional sessions.
-        """
-        mem_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the memory usage of the server. The unit is `%`.  
-        Changing this creates a new resource.
-        The valid value ranges from `1` to `100`.
+class AppImageServerRoutePolicyArgsDict(TypedDict):
+    cpu_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the CPU usage of the server. The unit is `%`.  
+    Changing this creates a new resource.
+    The valid value ranges from `1` to `100`.
+    """
+    max_session: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of session connections of the server.
+    Changing this creates a new resource.
+    The maximum number of sessions is equal to the default number of sessions plus the number of additional sessions.
+    """
+    mem_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the memory usage of the server. The unit is `%`.  
+    Changing this creates a new resource.
+    The valid value ranges from `1` to `100`.
 
-        <a name="app_image_server_scheduler_hints"></a>
-        The `scheduler_hints` block supports:
-        """
-elif False:
-    AppImageServerRoutePolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="app_image_server_scheduler_hints"></a>
+    The `scheduler_hints` block supports:
+    """
 
 @pulumi.input_type
 class AppImageServerRoutePolicyArgs:
@@ -572,20 +583,17 @@ class AppImageServerRoutePolicyArgs:
         pulumi.set(self, "mem_threshold", value)
 
 
-if not MYPY:
-    class AppImageServerSchedulerHintsArgsDict(TypedDict):
-        dedicated_host_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the dedicate host.
-        Changing this creates a new resource.
-        """
-        tenancy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the dedicate host.
-        Changing this creates a new resource.
-        """
-elif False:
-    AppImageServerSchedulerHintsArgsDict: TypeAlias = Mapping[str, Any]
+class AppImageServerSchedulerHintsArgsDict(TypedDict):
+    dedicated_host_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the dedicate host.
+    Changing this creates a new resource.
+    """
+    tenancy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the dedicate host.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class AppImageServerSchedulerHintsArgs:
@@ -630,27 +638,24 @@ class AppImageServerSchedulerHintsArgs:
         pulumi.set(self, "tenancy", value)
 
 
-if not MYPY:
-    class AppNasStorageStorageMetadataArgsDict(TypedDict):
-        storage_class: pulumi.Input[_builtins.str]
-        """
-        Specifies the storage type.  
-        The valid values are as follows:
-        + **sfs**: SFS file system with v3.0 framework.
+class AppNasStorageStorageMetadataArgsDict(TypedDict):
+    storage_class: pulumi.Input[_builtins.str]
+    """
+    Specifies the storage type.  
+    The valid values are as follows:
+    + **sfs**: SFS file system with v3.0 framework.
 
-        Change this parameter will create a new resource.
-        """
-        storage_handle: pulumi.Input[_builtins.str]
-        """
-        Specifies the storage name.  
-        Change this parameter will create a new resource.
-        """
-        export_location: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The storage access URL.
-        """
-elif False:
-    AppNasStorageStorageMetadataArgsDict: TypeAlias = Mapping[str, Any]
+    Change this parameter will create a new resource.
+    """
+    storage_handle: pulumi.Input[_builtins.str]
+    """
+    Specifies the storage name.  
+    Change this parameter will create a new resource.
+    """
+    export_location: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The storage access URL.
+    """
 
 @pulumi.input_type
 class AppNasStorageStorageMetadataArgs:
@@ -715,26 +720,23 @@ class AppNasStorageStorageMetadataArgs:
         pulumi.set(self, "export_location", value)
 
 
-if not MYPY:
-    class AppPersonalFoldersAssignmentArgsDict(TypedDict):
-        attach: pulumi.Input[_builtins.str]
-        """
-        Specifies the object name of personal folder assignment.  
-        Change this parameter will create a new resource.
-        """
-        policy_statement_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the storage permission policy.  
-        Change this parameter will create a new resource.
-        """
-        attach_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of personal folder assignment.  
-        The valid value is **USER** (also default value).
-        Change this parameter will create a new resource.
-        """
-elif False:
-    AppPersonalFoldersAssignmentArgsDict: TypeAlias = Mapping[str, Any]
+class AppPersonalFoldersAssignmentArgsDict(TypedDict):
+    attach: pulumi.Input[_builtins.str]
+    """
+    Specifies the object name of personal folder assignment.  
+    Change this parameter will create a new resource.
+    """
+    policy_statement_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the storage permission policy.  
+    Change this parameter will create a new resource.
+    """
+    attach_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of personal folder assignment.  
+    The valid value is **USER** (also default value).
+    Change this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class AppPersonalFoldersAssignmentArgs:
@@ -797,38 +799,35 @@ class AppPersonalFoldersAssignmentArgs:
         pulumi.set(self, "attach_type", value)
 
 
-if not MYPY:
-    class AppPolicyGroupTargetArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the object ID.  
-        If the `type` is set to **USER**, the ID means the user ID.
-        If the `type` is set to **USERGROUP**, the ID means the user group ID.
-        If the `type` is set to **APPGROUP**, the ID means the APP group ID.
-        If the `type` is set to **OU**, the ID means the OU ID.
-        If the `type` is set to **ALL**, the ID fixed with string **default-apply-all-targets**.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the object name.  
-        If the `type` is set to **USER**, the name means the user name.
-        If the `type` is set to **USERGROUP**, the name means the user group name.
-        If the `type` is set to **APPGROUP**, the name means the APP group name.
-        If the `type` is set to **OU**, the name means the OU name.
-        If the `type` is set to **ALL**, the name fixed with string **All-Targets**.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the object type.  
-        The valid values are as follows:
-        + **USER**
-        + **USERGROUP**
-        + **APPGROUP**
-        + **OU**
-        + **ALL**
-        """
-elif False:
-    AppPolicyGroupTargetArgsDict: TypeAlias = Mapping[str, Any]
+class AppPolicyGroupTargetArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the object ID.  
+    If the `type` is set to **USER**, the ID means the user ID.
+    If the `type` is set to **USERGROUP**, the ID means the user group ID.
+    If the `type` is set to **APPGROUP**, the ID means the APP group ID.
+    If the `type` is set to **OU**, the ID means the OU ID.
+    If the `type` is set to **ALL**, the ID fixed with string **default-apply-all-targets**.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the object name.  
+    If the `type` is set to **USER**, the name means the user name.
+    If the `type` is set to **USERGROUP**, the name means the user group name.
+    If the `type` is set to **APPGROUP**, the name means the APP group name.
+    If the `type` is set to **OU**, the name means the OU name.
+    If the `type` is set to **ALL**, the name fixed with string **All-Targets**.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the object type.  
+    The valid values are as follows:
+    + **USER**
+    + **USERGROUP**
+    + **APPGROUP**
+    + **OU**
+    + **ALL**
+    """
 
 @pulumi.input_type
 class AppPolicyGroupTargetArgs:
@@ -914,16 +913,13 @@ class AppPolicyGroupTargetArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class AppScheduleTaskScheduleTaskPolicyArgsDict(TypedDict):
-        enforcement_enable: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether to forcefully execute the task when there are
-        active sessions.
-        Defaults to **false**.
-        """
-elif False:
-    AppScheduleTaskScheduleTaskPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class AppScheduleTaskScheduleTaskPolicyArgsDict(TypedDict):
+    enforcement_enable: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether to forcefully execute the task when there are
+    active sessions.
+    Defaults to **false**.
+    """
 
 @pulumi.input_type
 class AppScheduleTaskScheduleTaskPolicyArgs:
@@ -951,24 +947,21 @@ class AppScheduleTaskScheduleTaskPolicyArgs:
         pulumi.set(self, "enforcement_enable", value)
 
 
-if not MYPY:
-    class AppScheduleTaskTargetInfoArgsDict(TypedDict):
-        target_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the target object.
-        """
-        target_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the target object.  
-        The valid values are as follows:
-        + **SERVER**
-        + **SERVER_GROUP**
+class AppScheduleTaskTargetInfoArgsDict(TypedDict):
+    target_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the target object.
+    """
+    target_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the target object.  
+    The valid values are as follows:
+    + **SERVER**
+    + **SERVER_GROUP**
 
-        <a name="app_schedule_task_policy"></a>
-        The `schedule_task_policy` block supports:
-        """
-elif False:
-    AppScheduleTaskTargetInfoArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="app_schedule_task_policy"></a>
+    The `schedule_task_policy` block supports:
+    """
 
 @pulumi.input_type
 class AppScheduleTaskTargetInfoArgs:
@@ -1019,18 +1012,15 @@ class AppScheduleTaskTargetInfoArgs:
         pulumi.set(self, "target_type", value)
 
 
-if not MYPY:
-    class AppServerGroupFlavorArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the flavor.
-        """
-        links: NotRequired[pulumi.Input[Sequence[pulumi.Input['AppServerGroupFlavorLinkArgsDict']]]]
-        """
-        The quick link information for relevant tags corresponding to server specifications.
-        """
-elif False:
-    AppServerGroupFlavorArgsDict: TypeAlias = Mapping[str, Any]
+class AppServerGroupFlavorArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the flavor.
+    """
+    links: NotRequired[pulumi.Input[Sequence[pulumi.Input['AppServerGroupFlavorLinkArgsDict']]]]
+    """
+    The quick link information for relevant tags corresponding to server specifications.
+    """
 
 @pulumi.input_type
 class AppServerGroupFlavorArgs:
@@ -1071,18 +1061,15 @@ class AppServerGroupFlavorArgs:
         pulumi.set(self, "links", value)
 
 
-if not MYPY:
-    class AppServerGroupFlavorLinkArgsDict(TypedDict):
-        href: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The corresponding shortcut link.
-        """
-        rel: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The shortcut link tag name.
-        """
-elif False:
-    AppServerGroupFlavorLinkArgsDict: TypeAlias = Mapping[str, Any]
+class AppServerGroupFlavorLinkArgsDict(TypedDict):
+    href: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The corresponding shortcut link.
+    """
+    rel: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The shortcut link tag name.
+    """
 
 @pulumi.input_type
 class AppServerGroupFlavorLinkArgs:
@@ -1123,18 +1110,15 @@ class AppServerGroupFlavorLinkArgs:
         pulumi.set(self, "rel", value)
 
 
-if not MYPY:
-    class AppServerGroupIpVirtualArgsDict(TypedDict):
-        enable: pulumi.Input[_builtins.bool]
-        """
-        Whether to enable IP virtualization. Defaults to **false**.  
-        Changing this creates a new resource.
+class AppServerGroupIpVirtualArgsDict(TypedDict):
+    enable: pulumi.Input[_builtins.bool]
+    """
+    Whether to enable IP virtualization. Defaults to **false**.  
+    Changing this creates a new resource.
 
-        <a name="app_server_group_route_policy"></a>
-        The `route_policy` block supports:
-        """
-elif False:
-    AppServerGroupIpVirtualArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="app_server_group_route_policy"></a>
+    The `route_policy` block supports:
+    """
 
 @pulumi.input_type
 class AppServerGroupIpVirtualArgs:
@@ -1166,25 +1150,22 @@ class AppServerGroupIpVirtualArgs:
         pulumi.set(self, "enable", value)
 
 
-if not MYPY:
-    class AppServerGroupRoutePolicyArgsDict(TypedDict):
-        cpu_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The CPU usage of the server. The unit is `%`.  
-        The valid value ranges from `1` to `100`.
-        """
-        max_session: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of session connections of the server.  
-        The maximum number of sessions is equal to the default number of sessions plus the number of additional sessions.
-        """
-        mem_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The memory usage of the server. The unit is `%`.  
-        The valid value ranges from `1` to `100`.
-        """
-elif False:
-    AppServerGroupRoutePolicyArgsDict: TypeAlias = Mapping[str, Any]
+class AppServerGroupRoutePolicyArgsDict(TypedDict):
+    cpu_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The CPU usage of the server. The unit is `%`.  
+    The valid value ranges from `1` to `100`.
+    """
+    max_session: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of session connections of the server.  
+    The maximum number of sessions is equal to the default number of sessions plus the number of additional sessions.
+    """
+    mem_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The memory usage of the server. The unit is `%`.  
+    The valid value ranges from `1` to `100`.
+    """
 
 @pulumi.input_type
 class AppServerGroupRoutePolicyArgs:
@@ -1247,19 +1228,16 @@ class AppServerGroupRoutePolicyArgs:
         pulumi.set(self, "mem_threshold", value)
 
 
-if not MYPY:
-    class AppServerGroupScalingPolicyScalingPolicyBySessionArgsDict(TypedDict):
-        session_usage_threshold: pulumi.Input[_builtins.int]
-        """
-        Specifies the total session usage threshold of the server group.
-        """
-        shrink_after_session_idle_minutes: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of minutes to wait before releasing instances
-        with no session connections.
-        """
-elif False:
-    AppServerGroupScalingPolicyScalingPolicyBySessionArgsDict: TypeAlias = Mapping[str, Any]
+class AppServerGroupScalingPolicyScalingPolicyBySessionArgsDict(TypedDict):
+    session_usage_threshold: pulumi.Input[_builtins.int]
+    """
+    Specifies the total session usage threshold of the server group.
+    """
+    shrink_after_session_idle_minutes: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of minutes to wait before releasing instances
+    with no session connections.
+    """
 
 @pulumi.input_type
 class AppServerGroupScalingPolicyScalingPolicyBySessionArgs:
@@ -1300,29 +1278,26 @@ class AppServerGroupScalingPolicyScalingPolicyBySessionArgs:
         pulumi.set(self, "shrink_after_session_idle_minutes", value)
 
 
-if not MYPY:
-    class AppServerRootVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the disk size of the server, in GB.
-        Changing this creates a new resource.
+class AppServerRootVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the disk size of the server, in GB.
+    Changing this creates a new resource.
 
-        <a name="app_server_scheduler_hints"></a>
-        The `scheduler_hints` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the disk type of the server.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **ESSD**: Extreme SSD type.
-        + **SSD**: Ultra-high I/O type.
-        + **GPSSD**: General purpose SSD type.
-        + **SAS**: High I/O type.
-        + **SATA**: Common I/O type.
-        """
-elif False:
-    AppServerRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="app_server_scheduler_hints"></a>
+    The `scheduler_hints` block supports:
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the disk type of the server.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **ESSD**: Extreme SSD type.
+    + **SSD**: Ultra-high I/O type.
+    + **GPSSD**: General purpose SSD type.
+    + **SAS**: High I/O type.
+    + **SATA**: Common I/O type.
+    """
 
 @pulumi.input_type
 class AppServerRootVolumeArgs:
@@ -1383,21 +1358,18 @@ class AppServerRootVolumeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class AppServerSchedulerHintsArgsDict(TypedDict):
-        dedicated_host_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the dedicate host.
-        Changing this creates a new resource.
-        """
-        tenancy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the dedicate host.
-        Changing this creates a new resource.
-        Currently, only **dedicated** is supported.
-        """
-elif False:
-    AppServerSchedulerHintsArgsDict: TypeAlias = Mapping[str, Any]
+class AppServerSchedulerHintsArgsDict(TypedDict):
+    dedicated_host_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the dedicate host.
+    Changing this creates a new resource.
+    """
+    tenancy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the dedicate host.
+    Changing this creates a new resource.
+    Currently, only **dedicated** is supported.
+    """
 
 @pulumi.input_type
 class AppServerSchedulerHintsArgs:
@@ -1444,31 +1416,28 @@ class AppServerSchedulerHintsArgs:
         pulumi.set(self, "tenancy", value)
 
 
-if not MYPY:
-    class ApplicationApplicationFileStoreArgsDict(TypedDict):
-        store_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the store type of the application file.  
-        The valid values are as follows:
-        + **OBS**: Object Storage Service bucket store.
-        + **LINK**: External file link.
-        """
-        bucket_store: NotRequired[pulumi.Input['ApplicationApplicationFileStoreBucketStoreArgsDict']]
-        """
-        Specifies the OBS bucket store configuration.  
-        The bucket_store structure is documented below.
-        Required if the value of parameter `store_type` is **OBS**.
-        """
-        file_link: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the external file link.  
-        Required if the value of parameter `store_type` is **LINK**.
+class ApplicationApplicationFileStoreArgsDict(TypedDict):
+    store_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the store type of the application file.  
+    The valid values are as follows:
+    + **OBS**: Object Storage Service bucket store.
+    + **LINK**: External file link.
+    """
+    bucket_store: NotRequired[pulumi.Input['ApplicationApplicationFileStoreBucketStoreArgsDict']]
+    """
+    Specifies the OBS bucket store configuration.  
+    The bucket_store structure is documented below.
+    Required if the value of parameter `store_type` is **OBS**.
+    """
+    file_link: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the external file link.  
+    Required if the value of parameter `store_type` is **LINK**.
 
-        <a name="workspace_application_bucket_store"></a>
-        The `bucket_store` block supports:
-        """
-elif False:
-    ApplicationApplicationFileStoreArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="workspace_application_bucket_store"></a>
+    The `bucket_store` block supports:
+    """
 
 @pulumi.input_type
 class ApplicationApplicationFileStoreArgs:
@@ -1542,18 +1511,15 @@ class ApplicationApplicationFileStoreArgs:
         pulumi.set(self, "file_link", value)
 
 
-if not MYPY:
-    class ApplicationApplicationFileStoreBucketStoreArgsDict(TypedDict):
-        bucket_file_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the file path in the OBS bucket.
-        """
-        bucket_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the OBS bucket.
-        """
-elif False:
-    ApplicationApplicationFileStoreBucketStoreArgsDict: TypeAlias = Mapping[str, Any]
+class ApplicationApplicationFileStoreBucketStoreArgsDict(TypedDict):
+    bucket_file_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the file path in the OBS bucket.
+    """
+    bucket_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the OBS bucket.
+    """
 
 @pulumi.input_type
 class ApplicationApplicationFileStoreBucketStoreArgs:
@@ -1592,34 +1558,700 @@ class ApplicationApplicationFileStoreBucketStoreArgs:
         pulumi.set(self, "bucket_name", value)
 
 
-if not MYPY:
-    class ApplicationRuleDetailArgsDict(TypedDict):
-        scope: pulumi.Input[_builtins.str]
+class ApplicationBatchAuthorizeDelUserArgsDict(TypedDict):
+    account: pulumi.Input[_builtins.str]
+    """
+    Specifies the account name.
+    """
+    account_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the account type.  
+    The valid values are as follows:
+    + **SIMPLE** - Simple user.
+    + **USER_GROUP** - User group.
+    """
+    domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain name. Required for user groups.
+    """
+    platform_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the platform type.  
+    The valid values are as follows:
+    + **AD** - AD domain.
+    + **LOCAL** - LiteAs.
+    """
+
+@pulumi.input_type
+class ApplicationBatchAuthorizeDelUserArgs:
+    def __init__(__self__, *,
+                 account: pulumi.Input[_builtins.str],
+                 account_type: pulumi.Input[_builtins.str],
+                 domain: Optional[pulumi.Input[_builtins.str]] = None,
+                 platform_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Specifies the scope of the application rule.  
+        :param pulumi.Input[_builtins.str] account: Specifies the account name.
+        :param pulumi.Input[_builtins.str] account_type: Specifies the account type.  
+               The valid values are as follows:
+               + **SIMPLE** - Simple user.
+               + **USER_GROUP** - User group.
+        :param pulumi.Input[_builtins.str] domain: Specifies the domain name. Required for user groups.
+        :param pulumi.Input[_builtins.str] platform_type: Specifies the platform type.  
+               The valid values are as follows:
+               + **AD** - AD domain.
+               + **LOCAL** - LiteAs.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "account_type", account_type)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if platform_type is not None:
+            pulumi.set(__self__, "platform_type", platform_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the account name.
+        """
+        return pulumi.get(self, "account")
+
+    @account.setter
+    def account(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "account", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the account type.  
         The valid values are as follows:
-        + **PRODUCT**
-        + **PATH**
+        + **SIMPLE** - Simple user.
+        + **USER_GROUP** - User group.
         """
-        path_rule: NotRequired[pulumi.Input['ApplicationRuleDetailPathRuleArgsDict']]
-        """
-        Specifies the detail of the path rule.  
-        The path_rule structure is documented below.
+        return pulumi.get(self, "account_type")
 
-        > Required if the value of parameter `scope` is **PATH**.
+    @account_type.setter
+    def account_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "account_type", value)
 
-        <a name="workspace_application_product_rule_config"></a>
-        The `product_rule` block supports:
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        product_rule: NotRequired[pulumi.Input['ApplicationRuleDetailProductRuleArgsDict']]
+        Specifies the domain name. Required for user groups.
         """
-        Specifies the detail of the product rule.  
-        The product_rule structure is documented below.
+        return pulumi.get(self, "domain")
 
-        > Required if the value of parameter `scope` is **PRODUCT**.
+    @domain.setter
+    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "domain", value)
+
+    @_builtins.property
+    @pulumi.getter(name="platformType")
+    def platform_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-elif False:
-    ApplicationRuleDetailArgsDict: TypeAlias = Mapping[str, Any]
+        Specifies the platform type.  
+        The valid values are as follows:
+        + **AD** - AD domain.
+        + **LOCAL** - LiteAs.
+        """
+        return pulumi.get(self, "platform_type")
+
+    @platform_type.setter
+    def platform_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "platform_type", value)
+
+
+class ApplicationBatchAuthorizeUserArgsDict(TypedDict):
+    account: pulumi.Input[_builtins.str]
+    """
+    Specifies the account name.
+    """
+    account_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the account type.  
+    The valid values are as follows:
+    + **SIMPLE** - Simple user.
+    + **USER_GROUP** - User group.
+    """
+    domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain name. Required for user groups.
+    """
+    platform_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the platform type.  
+    The valid values are as follows:
+    + **AD** - AD domain.
+    + **LOCAL** - LiteAs.
+    """
+
+@pulumi.input_type
+class ApplicationBatchAuthorizeUserArgs:
+    def __init__(__self__, *,
+                 account: pulumi.Input[_builtins.str],
+                 account_type: pulumi.Input[_builtins.str],
+                 domain: Optional[pulumi.Input[_builtins.str]] = None,
+                 platform_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] account: Specifies the account name.
+        :param pulumi.Input[_builtins.str] account_type: Specifies the account type.  
+               The valid values are as follows:
+               + **SIMPLE** - Simple user.
+               + **USER_GROUP** - User group.
+        :param pulumi.Input[_builtins.str] domain: Specifies the domain name. Required for user groups.
+        :param pulumi.Input[_builtins.str] platform_type: Specifies the platform type.  
+               The valid values are as follows:
+               + **AD** - AD domain.
+               + **LOCAL** - LiteAs.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "account_type", account_type)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if platform_type is not None:
+            pulumi.set(__self__, "platform_type", platform_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the account name.
+        """
+        return pulumi.get(self, "account")
+
+    @account.setter
+    def account(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "account", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the account type.  
+        The valid values are as follows:
+        + **SIMPLE** - Simple user.
+        + **USER_GROUP** - User group.
+        """
+        return pulumi.get(self, "account_type")
+
+    @account_type.setter
+    def account_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "account_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain name. Required for user groups.
+        """
+        return pulumi.get(self, "domain")
+
+    @domain.setter
+    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "domain", value)
+
+    @_builtins.property
+    @pulumi.getter(name="platformType")
+    def platform_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the platform type.  
+        The valid values are as follows:
+        + **AD** - AD domain.
+        + **LOCAL** - LiteAs.
+        """
+        return pulumi.get(self, "platform_type")
+
+    @platform_type.setter
+    def platform_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "platform_type", value)
+
+
+class ApplicationBatchAutoInstallUserArgsDict(TypedDict):
+    account: pulumi.Input[_builtins.str]
+    """
+    Specifies the account name.  
+    The account format must be: account(group).
+    """
+    account_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the account type.  
+    The valid values are as follows:
+    + **SIMPLE** - Simple user.
+    + **USER_GROUP** - User group.
+    """
+    domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain name.  
+    Required for user groups, and defaults to local.com if not specified.
+    """
+    platform_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the platform type.  
+    The valid values are as follows:
+    + **AD** - AD domain.
+    + **LOCAL** - LiteAs.
+    """
+
+@pulumi.input_type
+class ApplicationBatchAutoInstallUserArgs:
+    def __init__(__self__, *,
+                 account: pulumi.Input[_builtins.str],
+                 account_type: pulumi.Input[_builtins.str],
+                 domain: Optional[pulumi.Input[_builtins.str]] = None,
+                 platform_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] account: Specifies the account name.  
+               The account format must be: account(group).
+        :param pulumi.Input[_builtins.str] account_type: Specifies the account type.  
+               The valid values are as follows:
+               + **SIMPLE** - Simple user.
+               + **USER_GROUP** - User group.
+        :param pulumi.Input[_builtins.str] domain: Specifies the domain name.  
+               Required for user groups, and defaults to local.com if not specified.
+        :param pulumi.Input[_builtins.str] platform_type: Specifies the platform type.  
+               The valid values are as follows:
+               + **AD** - AD domain.
+               + **LOCAL** - LiteAs.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "account_type", account_type)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if platform_type is not None:
+            pulumi.set(__self__, "platform_type", platform_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the account name.  
+        The account format must be: account(group).
+        """
+        return pulumi.get(self, "account")
+
+    @account.setter
+    def account(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "account", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the account type.  
+        The valid values are as follows:
+        + **SIMPLE** - Simple user.
+        + **USER_GROUP** - User group.
+        """
+        return pulumi.get(self, "account_type")
+
+    @account_type.setter
+    def account_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "account_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain name.  
+        Required for user groups, and defaults to local.com if not specified.
+        """
+        return pulumi.get(self, "domain")
+
+    @domain.setter
+    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "domain", value)
+
+    @_builtins.property
+    @pulumi.getter(name="platformType")
+    def platform_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the platform type.  
+        The valid values are as follows:
+        + **AD** - AD domain.
+        + **LOCAL** - LiteAs.
+        """
+        return pulumi.get(self, "platform_type")
+
+    @platform_type.setter
+    def platform_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "platform_type", value)
+
+
+class ApplicationBatchPublishApplicationArgsDict(TypedDict):
+    execute_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the execution path of the application.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the application.  
+    The application name allows visible characters or spaces, but cannot be all spaces.
+    The length range is `1` to `64` characters.
+    """
+    source_type: pulumi.Input[_builtins.int]
+    """
+    Specifies the type of the application.  
+    The valid values are as follows:
+    + **2**: Private image APP.
+    + **3**: Custom APP.
+    """
+    app_extended_info: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the extended information of the custom application.
+    """
+    command_param: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the command line parameters used to start
+    the application.
+    If the `sandbox_enable` is set to **true**, the path of the application to be started must be enclosed in
+    double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the application.
+    """
+    icon_index: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the icon index of the application.
+    """
+    icon_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path where the application icon is located.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the published application.
+    """
+    is_pre_boot: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable application pre-boot.  
+    Defaults to **false**.
+    """
+    publisher: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the publisher of the application.  
+    If the `sandbox_enable` is set to **true**, this parameter value is the publisher of the sandboxed application.
+    """
+    sandbox_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to run in sandbox mode.
+    Defaults to **false**.
+    """
+    source_image_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of image IDs to which the application
+    belongs.
+    The maximum length is `20`.
+    This parameter is required and available only when the `source_type` is `2`.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version of the application.
+    """
+    work_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the working directory of the application.
+    """
+
+@pulumi.input_type
+class ApplicationBatchPublishApplicationArgs:
+    def __init__(__self__, *,
+                 execute_path: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 source_type: pulumi.Input[_builtins.int],
+                 app_extended_info: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 command_param: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 icon_index: Optional[pulumi.Input[_builtins.int]] = None,
+                 icon_path: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_pre_boot: Optional[pulumi.Input[_builtins.bool]] = None,
+                 publisher: Optional[pulumi.Input[_builtins.str]] = None,
+                 sandbox_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 source_image_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None,
+                 work_path: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] execute_path: Specifies the execution path of the application.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the application.  
+               The application name allows visible characters or spaces, but cannot be all spaces.
+               The length range is `1` to `64` characters.
+        :param pulumi.Input[_builtins.int] source_type: Specifies the type of the application.  
+               The valid values are as follows:
+               + **2**: Private image APP.
+               + **3**: Custom APP.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] app_extended_info: Specifies the extended information of the custom application.
+        :param pulumi.Input[_builtins.str] command_param: Specifies the command line parameters used to start
+               the application.
+               If the `sandbox_enable` is set to **true**, the path of the application to be started must be enclosed in
+               double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
+        :param pulumi.Input[_builtins.str] description: Specifies the description of the application.
+        :param pulumi.Input[_builtins.int] icon_index: Specifies the icon index of the application.
+        :param pulumi.Input[_builtins.str] icon_path: Specifies the path where the application icon is located.
+        :param pulumi.Input[_builtins.str] id: The ID of the published application.
+        :param pulumi.Input[_builtins.bool] is_pre_boot: Specifies whether to enable application pre-boot.  
+               Defaults to **false**.
+        :param pulumi.Input[_builtins.str] publisher: Specifies the publisher of the application.  
+               If the `sandbox_enable` is set to **true**, this parameter value is the publisher of the sandboxed application.
+        :param pulumi.Input[_builtins.bool] sandbox_enable: Specifies whether to run in sandbox mode.
+               Defaults to **false**.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] source_image_ids: Specifies the list of image IDs to which the application
+               belongs.
+               The maximum length is `20`.
+               This parameter is required and available only when the `source_type` is `2`.
+        :param pulumi.Input[_builtins.str] version: Specifies the version of the application.
+        :param pulumi.Input[_builtins.str] work_path: Specifies the working directory of the application.
+        """
+        pulumi.set(__self__, "execute_path", execute_path)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "source_type", source_type)
+        if app_extended_info is not None:
+            pulumi.set(__self__, "app_extended_info", app_extended_info)
+        if command_param is not None:
+            pulumi.set(__self__, "command_param", command_param)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if icon_index is not None:
+            pulumi.set(__self__, "icon_index", icon_index)
+        if icon_path is not None:
+            pulumi.set(__self__, "icon_path", icon_path)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_pre_boot is not None:
+            pulumi.set(__self__, "is_pre_boot", is_pre_boot)
+        if publisher is not None:
+            pulumi.set(__self__, "publisher", publisher)
+        if sandbox_enable is not None:
+            pulumi.set(__self__, "sandbox_enable", sandbox_enable)
+        if source_image_ids is not None:
+            pulumi.set(__self__, "source_image_ids", source_image_ids)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+        if work_path is not None:
+            pulumi.set(__self__, "work_path", work_path)
+
+    @_builtins.property
+    @pulumi.getter(name="executePath")
+    def execute_path(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the execution path of the application.
+        """
+        return pulumi.get(self, "execute_path")
+
+    @execute_path.setter
+    def execute_path(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "execute_path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name of the application.  
+        The application name allows visible characters or spaces, but cannot be all spaces.
+        The length range is `1` to `64` characters.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the type of the application.  
+        The valid values are as follows:
+        + **2**: Private image APP.
+        + **3**: Custom APP.
+        """
+        return pulumi.get(self, "source_type")
+
+    @source_type.setter
+    def source_type(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "source_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="appExtendedInfo")
+    def app_extended_info(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the extended information of the custom application.
+        """
+        return pulumi.get(self, "app_extended_info")
+
+    @app_extended_info.setter
+    def app_extended_info(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "app_extended_info", value)
+
+    @_builtins.property
+    @pulumi.getter(name="commandParam")
+    def command_param(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the command line parameters used to start
+        the application.
+        If the `sandbox_enable` is set to **true**, the path of the application to be started must be enclosed in
+        double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
+        """
+        return pulumi.get(self, "command_param")
+
+    @command_param.setter
+    def command_param(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "command_param", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the description of the application.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iconIndex")
+    def icon_index(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the icon index of the application.
+        """
+        return pulumi.get(self, "icon_index")
+
+    @icon_index.setter
+    def icon_index(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "icon_index", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iconPath")
+    def icon_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the path where the application icon is located.
+        """
+        return pulumi.get(self, "icon_path")
+
+    @icon_path.setter
+    def icon_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "icon_path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the published application.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isPreBoot")
+    def is_pre_boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to enable application pre-boot.  
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "is_pre_boot")
+
+    @is_pre_boot.setter
+    def is_pre_boot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_pre_boot", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def publisher(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the publisher of the application.  
+        If the `sandbox_enable` is set to **true**, this parameter value is the publisher of the sandboxed application.
+        """
+        return pulumi.get(self, "publisher")
+
+    @publisher.setter
+    def publisher(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "publisher", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sandboxEnable")
+    def sandbox_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to run in sandbox mode.
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "sandbox_enable")
+
+    @sandbox_enable.setter
+    def sandbox_enable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "sandbox_enable", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceImageIds")
+    def source_image_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the list of image IDs to which the application
+        belongs.
+        The maximum length is `20`.
+        This parameter is required and available only when the `source_type` is `2`.
+        """
+        return pulumi.get(self, "source_image_ids")
+
+    @source_image_ids.setter
+    def source_image_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "source_image_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the version of the application.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="workPath")
+    def work_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the working directory of the application.
+        """
+        return pulumi.get(self, "work_path")
+
+    @work_path.setter
+    def work_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "work_path", value)
+
+
+class ApplicationRuleDetailArgsDict(TypedDict):
+    scope: pulumi.Input[_builtins.str]
+    """
+    Specifies the scope of the application rule.  
+    The valid values are as follows:
+    + **PRODUCT**
+    + **PATH**
+    """
+    path_rule: NotRequired[pulumi.Input['ApplicationRuleDetailPathRuleArgsDict']]
+    """
+    Specifies the detail of the path rule.  
+    The path_rule structure is documented below.
+
+    > Required if the value of parameter `scope` is **PATH**.
+
+    <a name="workspace_application_product_rule_config"></a>
+    The `product_rule` block supports:
+    """
+    product_rule: NotRequired[pulumi.Input['ApplicationRuleDetailProductRuleArgsDict']]
+    """
+    Specifies the detail of the product rule.  
+    The product_rule structure is documented below.
+
+    > Required if the value of parameter `scope` is **PRODUCT**.
+    """
 
 @pulumi.input_type
 class ApplicationRuleDetailArgs:
@@ -1699,14 +2331,11 @@ class ApplicationRuleDetailArgs:
         pulumi.set(self, "product_rule", value)
 
 
-if not MYPY:
-    class ApplicationRuleDetailPathRuleArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the path where the product is installed.
-        """
-elif False:
-    ApplicationRuleDetailPathRuleArgsDict: TypeAlias = Mapping[str, Any]
+class ApplicationRuleDetailPathRuleArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the path where the product is installed.
+    """
 
 @pulumi.input_type
 class ApplicationRuleDetailPathRuleArgs:
@@ -1730,58 +2359,55 @@ class ApplicationRuleDetailPathRuleArgs:
         pulumi.set(self, "path", value)
 
 
-if not MYPY:
-    class ApplicationRuleDetailProductRuleArgsDict(TypedDict):
-        identify_condition: pulumi.Input[_builtins.str]
-        """
-        Specifies the identify condition of the product rule.  
-        The valid values are as follows:
-        + **publisher**
-        + **product**
-        + **process**
-        """
-        process_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the process name of the product.  
-        Defaults to empty string, also you can configure this value as asterisk (*).
+class ApplicationRuleDetailProductRuleArgsDict(TypedDict):
+    identify_condition: pulumi.Input[_builtins.str]
+    """
+    Specifies the identify condition of the product rule.  
+    The valid values are as follows:
+    + **publisher**
+    + **product**
+    + **process**
+    """
+    process_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the process name of the product.  
+    Defaults to empty string, also you can configure this value as asterisk (*).
 
-        > At least one of `publisher`, `product_name` and `process_name` must be provided,
-        and both of them cannot be asterisk (*) or empty.
-        """
-        product_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the product.  
-        Defaults to empty string, also you can configure this value as asterisk (*).
+    > At least one of `publisher`, `product_name` and `process_name` must be provided,
+    and both of them cannot be asterisk (*) or empty.
+    """
+    product_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the product.  
+    Defaults to empty string, also you can configure this value as asterisk (*).
 
-        > At least one of `publisher`, `product_name` and `process_name` must be provided,
-        and both of them cannot be asterisk (*) or empty.
-        """
-        product_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the version of the product.
+    > At least one of `publisher`, `product_name` and `process_name` must be provided,
+    and both of them cannot be asterisk (*) or empty.
+    """
+    product_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version of the product.
 
-        <a name="workspace_application_path_rule_config"></a>
-        The `path_rule` block supports:
-        """
-        publisher: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the publisher of the product.  
-        Defaults to empty string, also you can configure this value as asterisk (*).
+    <a name="workspace_application_path_rule_config"></a>
+    The `path_rule` block supports:
+    """
+    publisher: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the publisher of the product.  
+    Defaults to empty string, also you can configure this value as asterisk (*).
 
-        > At least one of `publisher`, `product_name` and `process_name` must be provided,
-        and both of them cannot be asterisk (*) or empty.
-        """
-        support_os: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the list of the supported operating system types.  
-        Defaults to **Windows**
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the version of the product rule.
-        """
-elif False:
-    ApplicationRuleDetailProductRuleArgsDict: TypeAlias = Mapping[str, Any]
+    > At least one of `publisher`, `product_name` and `process_name` must be provided,
+    and both of them cannot be asterisk (*) or empty.
+    """
+    support_os: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the list of the supported operating system types.  
+    Defaults to **Windows**
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version of the product rule.
+    """
 
 @pulumi.input_type
 class ApplicationRuleDetailProductRuleArgs:
@@ -1941,42 +2567,229 @@ class ApplicationRuleDetailProductRuleArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class DesktopDataVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the size of system volume, in GB.
-        + For root volume, the valid value is range from `80` to `1,020`.
-        + For data volume, the valid value is range from `10` to `8,200`.
+class AssistAuthConfigurationObjectManagementObjectArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the binding object.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the binding object.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the binding object.  
+    The valid values are as follows:
+    + **USER** - User
+    + **USER_GROUP** - User group
+    + **ALL** - All users
+    """
 
-        <a name="desktop_nic"></a>
-        The `nic` block supports:
+@pulumi.input_type
+class AssistAuthConfigurationObjectManagementObjectArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 type: pulumi.Input[_builtins.str]):
         """
-        type: pulumi.Input[_builtins.str]
+        :param pulumi.Input[_builtins.str] id: Specifies the ID of the binding object.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the binding object.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the binding object.  
+               The valid values are as follows:
+               + **USER** - User
+               + **USER_GROUP** - User group
+               + **ALL** - All users
         """
-        Specifies the type of system volume.
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the ID of the binding object.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name of the binding object.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the type of the binding object.  
         The valid values are as follows:
-        + **SAS**: High I/O disk type.
-        + **SSD**: Ultra-high I/O disk type.
+        + **USER** - User
+        + **USER_GROUP** - User group
+        + **ALL** - All users
+        """
+        return pulumi.get(self, "type")
 
-        > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
-        error.
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+
+class AssistAuthConfigurationObjectManagementObjectsOriginArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the binding object.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the binding object.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the binding object.  
+    The valid values are as follows:
+    + **USER** - User
+    + **USER_GROUP** - User group
+    + **ALL** - All users
+    """
+
+@pulumi.input_type
+class AssistAuthConfigurationObjectManagementObjectsOriginArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
+        :param pulumi.Input[_builtins.str] id: Specifies the ID of the binding object.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the binding object.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the binding object.  
+               The valid values are as follows:
+               + **USER** - User
+               + **USER_GROUP** - User group
+               + **ALL** - All users
         """
-        The time that the volume was created.
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        device: NotRequired[pulumi.Input[_builtins.str]]
+        Specifies the ID of the binding object.
         """
-        The device location to which the volume is attached.
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        id: NotRequired[pulumi.Input[_builtins.str]]
+        Specifies the name of the binding object.
         """
-        The volume ID.
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    DesktopDataVolumeArgsDict: TypeAlias = Mapping[str, Any]
+        Specifies the type of the binding object.  
+        The valid values are as follows:
+        + **USER** - User
+        + **USER_GROUP** - User group
+        + **ALL** - All users
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class DesktopDataVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size of system volume, in GB.
+    + For root volume, the valid value is range from `80` to `1,020`.
+    + For data volume, the valid value is range from `10` to `8,200`.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of system volume.
+    The valid values are as follows:
+    + **SAS**: High I/O disk type.
+    + **SSD**: Ultra-high I/O disk type.
+    + **GPSSD**: General purpose SSD disk type.
+    + **GPSSD2**: General purpose SSD V2 disk type.
+
+    > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
+    error.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time that the volume was created.
+    """
+    device: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The device location to which the volume is attached.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume ID.
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the IOPS of the volume.  
+    which is the number of read and write operations per second.
+    This parameter is only valid for GPSSD2 type volumes.
+    The valid value is range from `3,000` to `12,800`.
+    """
+    kms_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the KMS key ID used to encrypt the volume.
+
+    <a name="desktop_nic"></a>
+    The `nic` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the desktop name.
+    The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+    The name must start with a letter or digit and cannot end with a hyphen.
+
+    > Some images will cause the names in `.tfstate` file to be set to uppercase.
+    Although this will not cause changes by terraform commands, special processing is required when subsequent
+    resources reference this field.
+
+    > Only desktops in the **ACTIVE** status support renaming.
+    """
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the throughput of the volume.  
+    which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+    This parameter is only valid for GPSSD2 type volumes.
+    The valid value is range from `125` to `1,000`.
+    """
 
 @pulumi.input_type
 class DesktopDataVolumeArgs:
@@ -1986,24 +2799,47 @@ class DesktopDataVolumeArgs:
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  device: Optional[pulumi.Input[_builtins.str]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 iops: Optional[pulumi.Input[_builtins.int]] = None,
+                 kms_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 throughput: Optional[pulumi.Input[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] size: Specifies the size of system volume, in GB.
                + For root volume, the valid value is range from `80` to `1,020`.
                + For data volume, the valid value is range from `10` to `8,200`.
-               
-               <a name="desktop_nic"></a>
-               The `nic` block supports:
         :param pulumi.Input[_builtins.str] type: Specifies the type of system volume.
                The valid values are as follows:
                + **SAS**: High I/O disk type.
                + **SSD**: Ultra-high I/O disk type.
+               + **GPSSD**: General purpose SSD disk type.
+               + **GPSSD2**: General purpose SSD V2 disk type.
                
                > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
                error.
         :param pulumi.Input[_builtins.str] created_at: The time that the volume was created.
         :param pulumi.Input[_builtins.str] device: The device location to which the volume is attached.
         :param pulumi.Input[_builtins.str] id: The volume ID.
+        :param pulumi.Input[_builtins.int] iops: Specifies the IOPS of the volume.  
+               which is the number of read and write operations per second.
+               This parameter is only valid for GPSSD2 type volumes.
+               The valid value is range from `3,000` to `12,800`.
+        :param pulumi.Input[_builtins.str] kms_id: Specifies the KMS key ID used to encrypt the volume.
+               
+               <a name="desktop_nic"></a>
+               The `nic` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the desktop name.
+               The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+               The name must start with a letter or digit and cannot end with a hyphen.
+               
+               > Some images will cause the names in `.tfstate` file to be set to uppercase.
+               Although this will not cause changes by terraform commands, special processing is required when subsequent
+               resources reference this field.
+               
+               > Only desktops in the **ACTIVE** status support renaming.
+        :param pulumi.Input[_builtins.int] throughput: Specifies the throughput of the volume.  
+               which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+               This parameter is only valid for GPSSD2 type volumes.
+               The valid value is range from `125` to `1,000`.
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
@@ -2013,8 +2849,14 @@ class DesktopDataVolumeArgs:
             pulumi.set(__self__, "device", device)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_id is not None:
+            pulumi.set(__self__, "kms_id", kms_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if throughput is not None:
+            pulumi.set(__self__, "throughput", throughput)
 
     @_builtins.property
     @pulumi.getter
@@ -2023,9 +2865,6 @@ class DesktopDataVolumeArgs:
         Specifies the size of system volume, in GB.
         + For root volume, the valid value is range from `80` to `1,020`.
         + For data volume, the valid value is range from `10` to `8,200`.
-
-        <a name="desktop_nic"></a>
-        The `nic` block supports:
         """
         return pulumi.get(self, "size")
 
@@ -2041,6 +2880,8 @@ class DesktopDataVolumeArgs:
         The valid values are as follows:
         + **SAS**: High I/O disk type.
         + **SSD**: Ultra-high I/O disk type.
+        + **GPSSD**: General purpose SSD disk type.
+        + **GPSSD2**: General purpose SSD V2 disk type.
 
         > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
         error.
@@ -2089,22 +2930,75 @@ class DesktopDataVolumeArgs:
 
     @_builtins.property
     @pulumi.getter
+    def iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the IOPS of the volume.  
+        which is the number of read and write operations per second.
+        This parameter is only valid for GPSSD2 type volumes.
+        The valid value is range from `3,000` to `12,800`.
+        """
+        return pulumi.get(self, "iops")
+
+    @iops.setter
+    def iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "iops", value)
+
+    @_builtins.property
+    @pulumi.getter(name="kmsId")
+    def kms_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the KMS key ID used to encrypt the volume.
+
+        <a name="desktop_nic"></a>
+        The `nic` block supports:
+        """
+        return pulumi.get(self, "kms_id")
+
+    @kms_id.setter
+    def kms_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kms_id", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the desktop name.
+        The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+        The name must start with a letter or digit and cannot end with a hyphen.
+
+        > Some images will cause the names in `.tfstate` file to be set to uppercase.
+        Although this will not cause changes by terraform commands, special processing is required when subsequent
+        resources reference this field.
+
+        > Only desktops in the **ACTIVE** status support renaming.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def throughput(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the throughput of the volume.  
+        which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+        This parameter is only valid for GPSSD2 type volumes.
+        The valid value is range from `125` to `1,000`.
+        """
+        return pulumi.get(self, "throughput")
 
-if not MYPY:
-    class DesktopNicArgsDict(TypedDict):
-        network_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the network ID of subnet resource.
-        """
-elif False:
-    DesktopNicArgsDict: TypeAlias = Mapping[str, Any]
+    @throughput.setter
+    def throughput(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "throughput", value)
+
+
+class DesktopNicArgsDict(TypedDict):
+    network_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the network ID of subnet resource.
+    """
 
 @pulumi.input_type
 class DesktopNicArgs:
@@ -2128,37 +3022,34 @@ class DesktopNicArgs:
         pulumi.set(self, "network_id", value)
 
 
-if not MYPY:
-    class DesktopPoolAuthorizedObjectArgsDict(TypedDict):
-        object_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the object.
-        """
-        object_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the object.
-        """
-        object_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the object.  
-        The valid values are as follows:
-        + **USER**
-        + **USER_GROUP**
-        """
-        user_group: pulumi.Input[_builtins.str]
-        """
-        Specifies the permission group to which the user belongs.  
-        The valid values are as follows:
-        + **sudo**: Linux administrator group.
-        + **default**: Linux default user group.
-        + **administrators**: Windows administrator group.
-        + **users**: Windows standard user group.
+class DesktopPoolAuthorizedObjectArgsDict(TypedDict):
+    object_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the object.
+    """
+    object_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the object.
+    """
+    object_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the object.  
+    The valid values are as follows:
+    + **USER**
+    + **USER_GROUP**
+    """
+    user_group: pulumi.Input[_builtins.str]
+    """
+    Specifies the permission group to which the user belongs.  
+    The valid values are as follows:
+    + **sudo**: Linux administrator group.
+    + **default**: Linux default user group.
+    + **administrators**: Windows administrator group.
+    + **users**: Windows standard user group.
 
-        <a name="desktop_pool_autoscale_policy"></a>
-        The `autoscale_policy` block supports:
-        """
-elif False:
-    DesktopPoolAuthorizedObjectArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="desktop_pool_autoscale_policy"></a>
+    The `autoscale_policy` block supports:
+    """
 
 @pulumi.input_type
 class DesktopPoolAuthorizedObjectArgs:
@@ -2249,36 +3140,32 @@ class DesktopPoolAuthorizedObjectArgs:
         pulumi.set(self, "user_group", value)
 
 
-if not MYPY:
-    class DesktopPoolAutoscalePolicyArgsDict(TypedDict):
-        autoscale_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of automatic scaling policy.  
-        The valid values are as follows:
-        + **ACCESS_CREATED**: Create desktops during accessing.
-        + **AUTO_CREATED**: Pre-creation desktops.
-        """
-        max_auto_created: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of automatically created desktops.  
-        The valid value ranges from `1` to `1,000`.
-        """
-        min_idle: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the desktops will be automatically created when the number of idle desktops is
-        less than this value.
-        The valid value ranges from `1` to `1,000`.
-        """
-        once_auto_created: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of desktops automatically created at one time.  
-        The valid value ranges from `1` to `100`.
+class DesktopPoolAutoscalePolicyArgsDict(TypedDict):
+    autoscale_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of automatic scaling policy.  
+    The valid values are as follows:
+    + **ACCESS_CREATED**: Create desktops during accessing.
+    + **AUTO_CREATED**: Pre-creation desktops.
+    """
+    max_auto_created: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of automatically created desktops.  
+    The valid value ranges from `1` to `1,000`.
+    """
+    min_idle: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the desktops will be automatically created when the number of idle desktops is
+    less than this value.
+    The valid value ranges from `1` to `1,000`.
 
-        <a name="desktop_pool_security_groups"></a>
-        The `security_groups` block supports:
-        """
-elif False:
-    DesktopPoolAutoscalePolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="desktop_pool_security_groups"></a>
+    The `security_groups` block supports:
+    """
+    once_auto_created: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of desktops automatically created at one time.
+    """
 
 @pulumi.input_type
 class DesktopPoolAutoscalePolicyArgs:
@@ -2297,11 +3184,10 @@ class DesktopPoolAutoscalePolicyArgs:
         :param pulumi.Input[_builtins.int] min_idle: Specifies the desktops will be automatically created when the number of idle desktops is
                less than this value.
                The valid value ranges from `1` to `1,000`.
-        :param pulumi.Input[_builtins.int] once_auto_created: Specifies the number of desktops automatically created at one time.  
-               The valid value ranges from `1` to `100`.
                
                <a name="desktop_pool_security_groups"></a>
                The `security_groups` block supports:
+        :param pulumi.Input[_builtins.int] once_auto_created: The number of desktops automatically created at one time.
         """
         if autoscale_type is not None:
             pulumi.set(__self__, "autoscale_type", autoscale_type)
@@ -2347,6 +3233,9 @@ class DesktopPoolAutoscalePolicyArgs:
         Specifies the desktops will be automatically created when the number of idle desktops is
         less than this value.
         The valid value ranges from `1` to `1,000`.
+
+        <a name="desktop_pool_security_groups"></a>
+        The `security_groups` block supports:
         """
         return pulumi.get(self, "min_idle")
 
@@ -2358,11 +3247,7 @@ class DesktopPoolAutoscalePolicyArgs:
     @pulumi.getter(name="onceAutoCreated")
     def once_auto_created(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the number of desktops automatically created at one time.  
-        The valid value ranges from `1` to `100`.
-
-        <a name="desktop_pool_security_groups"></a>
-        The `security_groups` block supports:
+        The number of desktops automatically created at one time.
         """
         return pulumi.get(self, "once_auto_created")
 
@@ -2371,30 +3256,27 @@ class DesktopPoolAutoscalePolicyArgs:
         pulumi.set(self, "once_auto_created", value)
 
 
-if not MYPY:
-    class DesktopPoolDataVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the size of the volume, in GB.
-        + For root volume, the valid value ranges from `80` to `1,020`.
-        + For data volume, the valid value ranges from `10` to `8,200`.
+class DesktopPoolDataVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size of the volume, in GB.
+    + For root volume, the valid value ranges from `80` to `1,020`.
+    + For data volume, the valid value ranges from `10` to `8,200`.
 
-        <a name="desktop_pool_authorized_objects"></a>
-        The `authorized_objects` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the volume.  
-        The valid values are as follows:
-        + **SAS**: High I/O disk type.
-        + **SSD**: Ultra-high I/O disk type.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the security group.
-        """
-elif False:
-    DesktopPoolDataVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="desktop_pool_authorized_objects"></a>
+    The `authorized_objects` block supports:
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the volume.  
+    The valid values are as follows:
+    + **SAS**: High I/O disk type.
+    + **SSD**: Ultra-high I/O disk type.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the security group.
+    """
 
 @pulumi.input_type
 class DesktopPoolDataVolumeArgs:
@@ -2465,39 +3347,109 @@ class DesktopPoolDataVolumeArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class DesktopPoolProductArgsDict(TypedDict):
-        charging_mode: NotRequired[pulumi.Input[_builtins.str]]
+class DesktopPoolDataVolumesOrderArgsDict(TypedDict):
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size of the volume, in GB.
+    + For root volume, the valid value ranges from `80` to `1,020`.
+    + For data volume, the valid value ranges from `10` to `8,200`.
+
+    <a name="desktop_pool_authorized_objects"></a>
+    The `authorized_objects` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the volume.  
+    The valid values are as follows:
+    + **SAS**: High I/O disk type.
+    + **SSD**: Ultra-high I/O disk type.
+    """
+
+@pulumi.input_type
+class DesktopPoolDataVolumesOrderArgs:
+    def __init__(__self__, *,
+                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        The product charging mode of the desktop pool.
-        + **0**: The yearly/monthly billing mode.
-        + **1**: The pay-per-use billing mode.
+        :param pulumi.Input[_builtins.int] size: Specifies the size of the volume, in GB.
+               + For root volume, the valid value ranges from `80` to `1,020`.
+               + For data volume, the valid value ranges from `10` to `8,200`.
+               
+               <a name="desktop_pool_authorized_objects"></a>
+               The `authorized_objects` block supports:
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the volume.  
+               The valid values are as follows:
+               + **SAS**: High I/O disk type.
+               + **SSD**: Ultra-high I/O disk type.
         """
-        cpu: NotRequired[pulumi.Input[_builtins.str]]
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The product CPU of the desktop pool.
+        Specifies the size of the volume, in GB.
+        + For root volume, the valid value ranges from `80` to `1,020`.
+        + For data volume, the valid value ranges from `10` to `8,200`.
+
+        <a name="desktop_pool_authorized_objects"></a>
+        The `authorized_objects` block supports:
         """
-        descriptions: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The product description of the desktop pool.
-        """
-        flavor_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The product specification ID of the desktop pool.
-        """
-        memory: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The product memory of the desktop pool.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the type of the volume.  
         The valid values are as follows:
         + **SAS**: High I/O disk type.
         + **SSD**: Ultra-high I/O disk type.
         """
-elif False:
-    DesktopPoolProductArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class DesktopPoolProductArgsDict(TypedDict):
+    charging_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The product charging mode of the desktop pool.
+    + **0**: The yearly/monthly billing mode.
+    + **1**: The pay-per-use billing mode.
+    """
+    cpu: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The product CPU of the desktop pool.
+    """
+    descriptions: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The product description of the desktop pool.
+    """
+    flavor_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The product specification ID of the desktop pool.
+    """
+    memory: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The product memory of the desktop pool.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the volume.  
+    The valid values are as follows:
+    + **SAS**: High I/O disk type.
+    + **SSD**: Ultra-high I/O disk type.
+    """
 
 @pulumi.input_type
 class DesktopPoolProductArgs:
@@ -2612,30 +3564,27 @@ class DesktopPoolProductArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class DesktopPoolRootVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the size of the volume, in GB.
-        + For root volume, the valid value ranges from `80` to `1,020`.
-        + For data volume, the valid value ranges from `10` to `8,200`.
+class DesktopPoolRootVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size of the volume, in GB.
+    + For root volume, the valid value ranges from `80` to `1,020`.
+    + For data volume, the valid value ranges from `10` to `8,200`.
 
-        <a name="desktop_pool_authorized_objects"></a>
-        The `authorized_objects` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the volume.  
-        The valid values are as follows:
-        + **SAS**: High I/O disk type.
-        + **SSD**: Ultra-high I/O disk type.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the security group.
-        """
-elif False:
-    DesktopPoolRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="desktop_pool_authorized_objects"></a>
+    The `authorized_objects` block supports:
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the volume.  
+    The valid values are as follows:
+    + **SAS**: High I/O disk type.
+    + **SSD**: Ultra-high I/O disk type.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the security group.
+    """
 
 @pulumi.input_type
 class DesktopPoolRootVolumeArgs:
@@ -2706,14 +3655,11 @@ class DesktopPoolRootVolumeArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class DesktopPoolSecurityGroupArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the security group.
-        """
-elif False:
-    DesktopPoolSecurityGroupArgsDict: TypeAlias = Mapping[str, Any]
+class DesktopPoolSecurityGroupArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the security group.
+    """
 
 @pulumi.input_type
 class DesktopPoolSecurityGroupArgs:
@@ -2737,42 +3683,70 @@ class DesktopPoolSecurityGroupArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class DesktopRootVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the size of system volume, in GB.
-        + For root volume, the valid value is range from `80` to `1,020`.
-        + For data volume, the valid value is range from `10` to `8,200`.
+class DesktopRootVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size of system volume, in GB.
+    + For root volume, the valid value is range from `80` to `1,020`.
+    + For data volume, the valid value is range from `10` to `8,200`.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of system volume.
+    The valid values are as follows:
+    + **SAS**: High I/O disk type.
+    + **SSD**: Ultra-high I/O disk type.
+    + **GPSSD**: General purpose SSD disk type.
+    + **GPSSD2**: General purpose SSD V2 disk type.
 
-        <a name="desktop_nic"></a>
-        The `nic` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of system volume.
-        The valid values are as follows:
-        + **SAS**: High I/O disk type.
-        + **SSD**: Ultra-high I/O disk type.
+    > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
+    error.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time that the volume was created.
+    """
+    device: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The device location to which the volume is attached.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume ID.
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the IOPS of the volume.  
+    which is the number of read and write operations per second.
+    This parameter is only valid for GPSSD2 type volumes.
+    The valid value is range from `3,000` to `12,800`.
+    """
+    kms_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the KMS key ID used to encrypt the volume.
 
-        > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
-        error.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time that the volume was created.
-        """
-        device: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The device location to which the volume is attached.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    DesktopRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="desktop_nic"></a>
+    The `nic` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the desktop name.
+    The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+    The name must start with a letter or digit and cannot end with a hyphen.
+
+    > Some images will cause the names in `.tfstate` file to be set to uppercase.
+    Although this will not cause changes by terraform commands, special processing is required when subsequent
+    resources reference this field.
+
+    > Only desktops in the **ACTIVE** status support renaming.
+    """
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the throughput of the volume.  
+    which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+    This parameter is only valid for GPSSD2 type volumes.
+    The valid value is range from `125` to `1,000`.
+    """
 
 @pulumi.input_type
 class DesktopRootVolumeArgs:
@@ -2782,24 +3756,47 @@ class DesktopRootVolumeArgs:
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  device: Optional[pulumi.Input[_builtins.str]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 iops: Optional[pulumi.Input[_builtins.int]] = None,
+                 kms_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 throughput: Optional[pulumi.Input[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] size: Specifies the size of system volume, in GB.
                + For root volume, the valid value is range from `80` to `1,020`.
                + For data volume, the valid value is range from `10` to `8,200`.
-               
-               <a name="desktop_nic"></a>
-               The `nic` block supports:
         :param pulumi.Input[_builtins.str] type: Specifies the type of system volume.
                The valid values are as follows:
                + **SAS**: High I/O disk type.
                + **SSD**: Ultra-high I/O disk type.
+               + **GPSSD**: General purpose SSD disk type.
+               + **GPSSD2**: General purpose SSD V2 disk type.
                
                > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
                error.
         :param pulumi.Input[_builtins.str] created_at: The time that the volume was created.
         :param pulumi.Input[_builtins.str] device: The device location to which the volume is attached.
         :param pulumi.Input[_builtins.str] id: The volume ID.
+        :param pulumi.Input[_builtins.int] iops: Specifies the IOPS of the volume.  
+               which is the number of read and write operations per second.
+               This parameter is only valid for GPSSD2 type volumes.
+               The valid value is range from `3,000` to `12,800`.
+        :param pulumi.Input[_builtins.str] kms_id: Specifies the KMS key ID used to encrypt the volume.
+               
+               <a name="desktop_nic"></a>
+               The `nic` block supports:
+        :param pulumi.Input[_builtins.str] name: Specifies the desktop name.
+               The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+               The name must start with a letter or digit and cannot end with a hyphen.
+               
+               > Some images will cause the names in `.tfstate` file to be set to uppercase.
+               Although this will not cause changes by terraform commands, special processing is required when subsequent
+               resources reference this field.
+               
+               > Only desktops in the **ACTIVE** status support renaming.
+        :param pulumi.Input[_builtins.int] throughput: Specifies the throughput of the volume.  
+               which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+               This parameter is only valid for GPSSD2 type volumes.
+               The valid value is range from `125` to `1,000`.
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
@@ -2809,8 +3806,14 @@ class DesktopRootVolumeArgs:
             pulumi.set(__self__, "device", device)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_id is not None:
+            pulumi.set(__self__, "kms_id", kms_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if throughput is not None:
+            pulumi.set(__self__, "throughput", throughput)
 
     @_builtins.property
     @pulumi.getter
@@ -2819,9 +3822,6 @@ class DesktopRootVolumeArgs:
         Specifies the size of system volume, in GB.
         + For root volume, the valid value is range from `80` to `1,020`.
         + For data volume, the valid value is range from `10` to `8,200`.
-
-        <a name="desktop_nic"></a>
-        The `nic` block supports:
         """
         return pulumi.get(self, "size")
 
@@ -2837,6 +3837,8 @@ class DesktopRootVolumeArgs:
         The valid values are as follows:
         + **SAS**: High I/O disk type.
         + **SSD**: Ultra-high I/O disk type.
+        + **GPSSD**: General purpose SSD disk type.
+        + **GPSSD2**: General purpose SSD V2 disk type.
 
         > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
         error.
@@ -2885,26 +3887,659 @@ class DesktopRootVolumeArgs:
 
     @_builtins.property
     @pulumi.getter
+    def iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the IOPS of the volume.  
+        which is the number of read and write operations per second.
+        This parameter is only valid for GPSSD2 type volumes.
+        The valid value is range from `3,000` to `12,800`.
+        """
+        return pulumi.get(self, "iops")
+
+    @iops.setter
+    def iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "iops", value)
+
+    @_builtins.property
+    @pulumi.getter(name="kmsId")
+    def kms_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the KMS key ID used to encrypt the volume.
+
+        <a name="desktop_nic"></a>
+        The `nic` block supports:
+        """
+        return pulumi.get(self, "kms_id")
+
+    @kms_id.setter
+    def kms_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kms_id", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the desktop name.
+        The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+        The name must start with a letter or digit and cannot end with a hyphen.
+
+        > Some images will cause the names in `.tfstate` file to be set to uppercase.
+        Although this will not cause changes by terraform commands, special processing is required when subsequent
+        resources reference this field.
+
+        > Only desktops in the **ACTIVE** status support renaming.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
 
-
-if not MYPY:
-    class PolicyGroupPolicyArgsDict(TypedDict):
-        access_control: pulumi.Input['PolicyGroupPolicyAccessControlArgsDict']
+    @_builtins.property
+    @pulumi.getter
+    def throughput(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the configuration of the access policy control.
-        The access_control structure is documented below.
-
-        <a name="policy_group_access_control"></a>
-        The `access_control` block supports:
+        Specifies the throughput of the volume.  
+        which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+        This parameter is only valid for GPSSD2 type volumes.
+        The valid value is range from `125` to `1,000`.
         """
-elif False:
-    PolicyGroupPolicyArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "throughput")
+
+    @throughput.setter
+    def throughput(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "throughput", value)
+
+
+class DesktopUserBatchAttachDesktopArgsDict(TypedDict):
+    attach_user_infos: NotRequired[pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchAttachDesktopAttachUserInfoArgsDict']]]]
+    """
+    The list of user information to be assigned.
+    """
+    computer_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The desktop name.
+    """
+    desktop_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the desktop to be assigned.
+    """
+    is_clear_data: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to clean up desktop data when binding.
+    """
+    user_email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The email of user.
+    """
+    user_group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Schema: required.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user to whom the desktop belongs.
+    """
+
+@pulumi.input_type
+class DesktopUserBatchAttachDesktopArgs:
+    def __init__(__self__, *,
+                 attach_user_infos: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchAttachDesktopAttachUserInfoArgs']]]] = None,
+                 computer_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 desktop_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_clear_data: Optional[pulumi.Input[_builtins.bool]] = None,
+                 user_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_group: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchAttachDesktopAttachUserInfoArgs']]] attach_user_infos: The list of user information to be assigned.
+        :param pulumi.Input[_builtins.str] computer_name: The desktop name.
+        :param pulumi.Input[_builtins.str] desktop_id: The ID of the desktop to be assigned.
+        :param pulumi.Input[_builtins.bool] is_clear_data: Whether to clean up desktop data when binding.
+        :param pulumi.Input[_builtins.str] user_email: The email of user.
+        :param pulumi.Input[_builtins.str] user_group: Schema: required.
+        :param pulumi.Input[_builtins.str] user_name: The user to whom the desktop belongs.
+        """
+        if attach_user_infos is not None:
+            pulumi.set(__self__, "attach_user_infos", attach_user_infos)
+        if computer_name is not None:
+            pulumi.set(__self__, "computer_name", computer_name)
+        if desktop_id is not None:
+            pulumi.set(__self__, "desktop_id", desktop_id)
+        if is_clear_data is not None:
+            pulumi.set(__self__, "is_clear_data", is_clear_data)
+        if user_email is not None:
+            pulumi.set(__self__, "user_email", user_email)
+        if user_group is not None:
+            pulumi.set(__self__, "user_group", user_group)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter(name="attachUserInfos")
+    def attach_user_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchAttachDesktopAttachUserInfoArgs']]]]:
+        """
+        The list of user information to be assigned.
+        """
+        return pulumi.get(self, "attach_user_infos")
+
+    @attach_user_infos.setter
+    def attach_user_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchAttachDesktopAttachUserInfoArgs']]]]):
+        pulumi.set(self, "attach_user_infos", value)
+
+    @_builtins.property
+    @pulumi.getter(name="computerName")
+    def computer_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The desktop name.
+        """
+        return pulumi.get(self, "computer_name")
+
+    @computer_name.setter
+    def computer_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "computer_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="desktopId")
+    def desktop_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the desktop to be assigned.
+        """
+        return pulumi.get(self, "desktop_id")
+
+    @desktop_id.setter
+    def desktop_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "desktop_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isClearData")
+    def is_clear_data(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to clean up desktop data when binding.
+        """
+        return pulumi.get(self, "is_clear_data")
+
+    @is_clear_data.setter
+    def is_clear_data(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_clear_data", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userEmail")
+    def user_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The email of user.
+        """
+        return pulumi.get(self, "user_email")
+
+    @user_email.setter
+    def user_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userGroup")
+    def user_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Schema: required.
+        """
+        return pulumi.get(self, "user_group")
+
+    @user_group.setter
+    def user_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The user to whom the desktop belongs.
+        """
+        return pulumi.get(self, "user_name")
+
+    @user_name.setter
+    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_name", value)
+
+
+class DesktopUserBatchAttachDesktopAttachUserInfoArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The object type.
+    """
+    user_group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user group to which the desktop user belongs.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The id of the user.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the desktop assignment object.
+    """
+
+@pulumi.input_type
+class DesktopUserBatchAttachDesktopAttachUserInfoArgs:
+    def __init__(__self__, *,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_group: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: The object type.
+        :param pulumi.Input[_builtins.str] user_group: The user group to which the desktop user belongs.
+        :param pulumi.Input[_builtins.str] user_id: The id of the user.
+        :param pulumi.Input[_builtins.str] user_name: The name of the desktop assignment object.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if user_group is not None:
+            pulumi.set(__self__, "user_group", user_group)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The object type.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userGroup")
+    def user_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The user group to which the desktop user belongs.
+        """
+        return pulumi.get(self, "user_group")
+
+    @user_group.setter
+    def user_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the desktop assignment object.
+        """
+        return pulumi.get(self, "user_name")
+
+    @user_name.setter
+    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_name", value)
+
+
+class DesktopUserBatchDetachDesktopArgsDict(TypedDict):
+    desktop_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the desktop to be detached.
+    """
+    detach_user_infos: NotRequired[pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchDetachDesktopDetachUserInfoArgsDict']]]]
+    """
+    The list of users to be detached.
+    """
+    is_detach_all_users: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to detach all users.
+    """
+
+@pulumi.input_type
+class DesktopUserBatchDetachDesktopArgs:
+    def __init__(__self__, *,
+                 desktop_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 detach_user_infos: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchDetachDesktopDetachUserInfoArgs']]]] = None,
+                 is_detach_all_users: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] desktop_id: The ID of the desktop to be detached.
+        :param pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchDetachDesktopDetachUserInfoArgs']]] detach_user_infos: The list of users to be detached.
+        :param pulumi.Input[_builtins.bool] is_detach_all_users: Whether to detach all users.
+        """
+        if desktop_id is not None:
+            pulumi.set(__self__, "desktop_id", desktop_id)
+        if detach_user_infos is not None:
+            pulumi.set(__self__, "detach_user_infos", detach_user_infos)
+        if is_detach_all_users is not None:
+            pulumi.set(__self__, "is_detach_all_users", is_detach_all_users)
+
+    @_builtins.property
+    @pulumi.getter(name="desktopId")
+    def desktop_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the desktop to be detached.
+        """
+        return pulumi.get(self, "desktop_id")
+
+    @desktop_id.setter
+    def desktop_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "desktop_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="detachUserInfos")
+    def detach_user_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchDetachDesktopDetachUserInfoArgs']]]]:
+        """
+        The list of users to be detached.
+        """
+        return pulumi.get(self, "detach_user_infos")
+
+    @detach_user_infos.setter
+    def detach_user_infos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopUserBatchDetachDesktopDetachUserInfoArgs']]]]):
+        pulumi.set(self, "detach_user_infos", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDetachAllUsers")
+    def is_detach_all_users(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to detach all users.
+        """
+        return pulumi.get(self, "is_detach_all_users")
+
+    @is_detach_all_users.setter
+    def is_detach_all_users(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_detach_all_users", value)
+
+
+class DesktopUserBatchDetachDesktopDetachUserInfoArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the object.
+    """
+    user_group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user group which the user belongs to.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the user.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the user or user group.
+    """
+
+@pulumi.input_type
+class DesktopUserBatchDetachDesktopDetachUserInfoArgs:
+    def __init__(__self__, *,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_group: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: The type of the object.
+        :param pulumi.Input[_builtins.str] user_group: The user group which the user belongs to.
+        :param pulumi.Input[_builtins.str] user_id: The ID of the user.
+        :param pulumi.Input[_builtins.str] user_name: The name of the user or user group.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if user_group is not None:
+            pulumi.set(__self__, "user_group", user_group)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The type of the object.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userGroup")
+    def user_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The user group which the user belongs to.
+        """
+        return pulumi.get(self, "user_group")
+
+    @user_group.setter
+    def user_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the user.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the user or user group.
+        """
+        return pulumi.get(self, "user_name")
+
+    @user_name.setter
+    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_name", value)
+
+
+class GroupAuthorizationNotificationResendRecordArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the authorization notification record or authorization
+    record.
+    """
+    account: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the authorized account.
+    """
+    account_auth_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the authorized object.
+    """
+    account_auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the authorized object.  
+    The valid values are as follows:
+    + **USER**
+    + **USER_GROUP**
+    """
+    app_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the application group.
+    """
+    app_group_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the application group.
+    """
+    mail_send_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of authorization notification.  
+    The valid values are as follows:
+    + **ADD_GROUP_AUTHORIZATION** - Add group authorization email.
+    + **DEL_GROUP_AUTHORIZATION** - Delete group authorization email.
+    + **ADD_GROUP_AUTHORIZATION_SMS** - Add group authorization SMS.
+    + **DEL_GROUP_AUTHORIZATION_SMS** - Delete group authorization SMS.
+
+    > The parameters `mail_send_type`, `account`, `account_auth_type`, `account_auth_name`, `app_group_id`, and
+    `app_group_name` are valid only if `is_notification_record` is set to **true**.
+    """
+
+@pulumi.input_type
+class GroupAuthorizationNotificationResendRecordArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[_builtins.str],
+                 account: Optional[pulumi.Input[_builtins.str]] = None,
+                 account_auth_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 account_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 app_group_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 app_group_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 mail_send_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] id: Specifies the ID of the authorization notification record or authorization
+               record.
+        :param pulumi.Input[_builtins.str] account: Specifies the name of the authorized account.
+        :param pulumi.Input[_builtins.str] account_auth_name: Specifies the name of the authorized object.
+        :param pulumi.Input[_builtins.str] account_auth_type: Specifies the type of the authorized object.  
+               The valid values are as follows:
+               + **USER**
+               + **USER_GROUP**
+        :param pulumi.Input[_builtins.str] app_group_id: Specifies the ID of the application group.
+        :param pulumi.Input[_builtins.str] app_group_name: Specifies the name of the application group.
+        :param pulumi.Input[_builtins.str] mail_send_type: Specifies the type of authorization notification.  
+               The valid values are as follows:
+               + **ADD_GROUP_AUTHORIZATION** - Add group authorization email.
+               + **DEL_GROUP_AUTHORIZATION** - Delete group authorization email.
+               + **ADD_GROUP_AUTHORIZATION_SMS** - Add group authorization SMS.
+               + **DEL_GROUP_AUTHORIZATION_SMS** - Delete group authorization SMS.
+               
+               > The parameters `mail_send_type`, `account`, `account_auth_type`, `account_auth_name`, `app_group_id`, and
+               `app_group_name` are valid only if `is_notification_record` is set to **true**.
+        """
+        pulumi.set(__self__, "id", id)
+        if account is not None:
+            pulumi.set(__self__, "account", account)
+        if account_auth_name is not None:
+            pulumi.set(__self__, "account_auth_name", account_auth_name)
+        if account_auth_type is not None:
+            pulumi.set(__self__, "account_auth_type", account_auth_type)
+        if app_group_id is not None:
+            pulumi.set(__self__, "app_group_id", app_group_id)
+        if app_group_name is not None:
+            pulumi.set(__self__, "app_group_name", app_group_name)
+        if mail_send_type is not None:
+            pulumi.set(__self__, "mail_send_type", mail_send_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the ID of the authorization notification record or authorization
+        record.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of the authorized account.
+        """
+        return pulumi.get(self, "account")
+
+    @account.setter
+    def account(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accountAuthName")
+    def account_auth_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of the authorized object.
+        """
+        return pulumi.get(self, "account_auth_name")
+
+    @account_auth_name.setter
+    def account_auth_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account_auth_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accountAuthType")
+    def account_auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the type of the authorized object.  
+        The valid values are as follows:
+        + **USER**
+        + **USER_GROUP**
+        """
+        return pulumi.get(self, "account_auth_type")
+
+    @account_auth_type.setter
+    def account_auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account_auth_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="appGroupId")
+    def app_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the application group.
+        """
+        return pulumi.get(self, "app_group_id")
+
+    @app_group_id.setter
+    def app_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "app_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="appGroupName")
+    def app_group_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of the application group.
+        """
+        return pulumi.get(self, "app_group_name")
+
+    @app_group_name.setter
+    def app_group_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "app_group_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mailSendType")
+    def mail_send_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the type of authorization notification.  
+        The valid values are as follows:
+        + **ADD_GROUP_AUTHORIZATION** - Add group authorization email.
+        + **DEL_GROUP_AUTHORIZATION** - Delete group authorization email.
+        + **ADD_GROUP_AUTHORIZATION_SMS** - Add group authorization SMS.
+        + **DEL_GROUP_AUTHORIZATION_SMS** - Delete group authorization SMS.
+
+        > The parameters `mail_send_type`, `account`, `account_auth_type`, `account_auth_name`, `app_group_id`, and
+        `app_group_name` are valid only if `is_notification_record` is set to **true**.
+        """
+        return pulumi.get(self, "mail_send_type")
+
+    @mail_send_type.setter
+    def mail_send_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mail_send_type", value)
+
+
+class PolicyGroupPolicyArgsDict(TypedDict):
+    access_control: pulumi.Input['PolicyGroupPolicyAccessControlArgsDict']
+    """
+    Specifies the configuration of the access policy control.
+    The access_control structure is documented below.
+
+    <a name="policy_group_access_control"></a>
+    The `access_control` block supports:
+    """
 
 @pulumi.input_type
 class PolicyGroupPolicyArgs:
@@ -2936,16 +4571,13 @@ class PolicyGroupPolicyArgs:
         pulumi.set(self, "access_control", value)
 
 
-if not MYPY:
-    class PolicyGroupPolicyAccessControlArgsDict(TypedDict):
-        ip_access_control: pulumi.Input[_builtins.str]
-        """
-        Specifies the IP access control.  
-        It consists of multiple groups of IP addresses and network masks, separated by ';',
-        and spliced together by '|' between IP addresses and network masks, e.g. `IP|mask;IP|mask;IP|mask`
-        """
-elif False:
-    PolicyGroupPolicyAccessControlArgsDict: TypeAlias = Mapping[str, Any]
+class PolicyGroupPolicyAccessControlArgsDict(TypedDict):
+    ip_access_control: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP access control.  
+    It consists of multiple groups of IP addresses and network masks, separated by ';',
+    and spliced together by '|' between IP addresses and network masks, e.g. `IP|mask;IP|mask;IP|mask`
+    """
 
 @pulumi.input_type
 class PolicyGroupPolicyAccessControlArgs:
@@ -2973,44 +4605,41 @@ class PolicyGroupPolicyAccessControlArgs:
         pulumi.set(self, "ip_access_control", value)
 
 
-if not MYPY:
-    class PolicyGroupTargetArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the target ID.  
-        If the `targets` type is **INSTANCE**, the ID means the SID of the desktop.
-        If the `targets` type is **USER**, the ID means the user ID.
-        If the `targets` type is **USERGROUP**, the ID means the user group ID.
-        If the `targets` type is **CLIENTIP**, the ID means the terminal IP address.
-        If the `targets` type is **OU**, the ID means the OUID.
-        If the `targets` type is **ALL**, the ID fixed with string **default-apply-all-targets**.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the target name.  
-        If the `targets` type is **INSTANCE**, the ID means the desktop name.
-        If the `targets` type is **USER**, the ID means the user name.
-        If the `targets` type is **USERGROUP**, the ID means the user group name.
-        If the `targets` type is **CLIENTIP**, the ID means the terminal IP address.
-        If the `targets` type is **OU**, the ID means the OU name.
-        If the `targets` type is **ALL**, the ID fixed with string **All-Targets**.
+class PolicyGroupTargetArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the target ID.  
+    If the `targets` type is **INSTANCE**, the ID means the SID of the desktop.
+    If the `targets` type is **USER**, the ID means the user ID.
+    If the `targets` type is **USERGROUP**, the ID means the user group ID.
+    If the `targets` type is **CLIENTIP**, the ID means the terminal IP address.
+    If the `targets` type is **OU**, the ID means the OUID.
+    If the `targets` type is **ALL**, the ID fixed with string **default-apply-all-targets**.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the target name.  
+    If the `targets` type is **INSTANCE**, the ID means the desktop name.
+    If the `targets` type is **USER**, the ID means the user name.
+    If the `targets` type is **USERGROUP**, the ID means the user group name.
+    If the `targets` type is **CLIENTIP**, the ID means the terminal IP address.
+    If the `targets` type is **OU**, the ID means the OU name.
+    If the `targets` type is **ALL**, the ID fixed with string **All-Targets**.
 
-        <a name="policy_group_policy"></a>
-        The `policy` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the target type.
-        The valid values are as follows:
-        + **INSTANCE**: Desktop.
-        + **USER**: User.
-        + **USERGROUP**: User group.
-        + **CLIENTIP**: Terminal IP address.
-        + **OU**: Organization unit.
-        + **ALL**: All desktops.
-        """
-elif False:
-    PolicyGroupTargetArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="policy_group_policy"></a>
+    The `policy` block supports:
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the target type.
+    The valid values are as follows:
+    + **INSTANCE**: Desktop.
+    + **USER**: User.
+    + **USERGROUP**: User group.
+    + **CLIENTIP**: Terminal IP address.
+    + **OU**: Organization unit.
+    + **ALL**: All desktops.
+    """
 
 @pulumi.input_type
 class PolicyGroupTargetArgs:
@@ -3108,56 +4737,53 @@ class PolicyGroupTargetArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ServiceAdDomainArgsDict(TypedDict):
-        active_domain_ip: pulumi.Input[_builtins.str]
-        """
-        Specifies the IP address of primary domain controller.
-        """
-        active_domain_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of primary domain controller.
-        """
-        admin_account: pulumi.Input[_builtins.str]
-        """
-        Specifies the domain administrator account.
-        It must be an existing domain administrator account on the AD server.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the domain name.
-        The domain name must be an existing domain name on the AD server, and the length cannot exceed `55`.
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        Specifies the account password of domain administrator.
-        """
-        active_dns_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the primary DNS IP address.
-        """
-        delete_computer_object: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to delete the corresponding computer object on AD
-        while deleting the desktop.
+class ServiceAdDomainArgsDict(TypedDict):
+    active_domain_ip: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address of primary domain controller.
+    """
+    active_domain_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of primary domain controller.
+    """
+    admin_account: pulumi.Input[_builtins.str]
+    """
+    Specifies the domain administrator account.
+    It must be an existing domain administrator account on the AD server.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the domain name.
+    The domain name must be an existing domain name on the AD server, and the length cannot exceed `55`.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    Specifies the account password of domain administrator.
+    """
+    active_dns_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the primary DNS IP address.
+    """
+    delete_computer_object: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to delete the corresponding computer object on AD
+    while deleting the desktop.
 
-        <a name="config_info"></a>
-        The `otp_config_info` block supports:
-        """
-        standby_dns_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the standby DNS IP address.
-        """
-        standby_domain_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IP address of the standby domain controller.
-        """
-        standby_domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the standby domain controller.
-        """
-elif False:
-    ServiceAdDomainArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="config_info"></a>
+    The `otp_config_info` block supports:
+    """
+    standby_dns_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the standby DNS IP address.
+    """
+    standby_domain_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP address of the standby domain controller.
+    """
+    standby_domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the standby domain controller.
+    """
 
 @pulumi.input_type
 class ServiceAdDomainArgs:
@@ -3333,19 +4959,16 @@ class ServiceAdDomainArgs:
         pulumi.set(self, "standby_domain_name", value)
 
 
-if not MYPY:
-    class ServiceDesktopSecurityGroupArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Security group ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the domain name.
-        The domain name must be an existing domain name on the AD server, and the length cannot exceed `55`.
-        """
-elif False:
-    ServiceDesktopSecurityGroupArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceDesktopSecurityGroupArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Security group ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain name.
+    The domain name must be an existing domain name on the AD server, and the length cannot exceed `55`.
+    """
 
 @pulumi.input_type
 class ServiceDesktopSecurityGroupArgs:
@@ -3388,19 +5011,16 @@ class ServiceDesktopSecurityGroupArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ServiceInfrastructureSecurityGroupArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Security group ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the domain name.
-        The domain name must be an existing domain name on the AD server, and the length cannot exceed `55`.
-        """
-elif False:
-    ServiceInfrastructureSecurityGroupArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceInfrastructureSecurityGroupArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Security group ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain name.
+    The domain name must be an existing domain name on the AD server, and the length cannot exceed `55`.
+    """
 
 @pulumi.input_type
 class ServiceInfrastructureSecurityGroupArgs:
@@ -3443,54 +5063,51 @@ class ServiceInfrastructureSecurityGroupArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ServiceOtpConfigInfoArgsDict(TypedDict):
-        enable: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether to enable auxiliary authentication.
-        """
-        receive_mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the verification code receiving mode.
-        + **VMFA**: Indicates virtual MFA device.
-        + **HMFA**: Indicates hardware MFA device.
-        """
-        app_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the auxiliary authentication server access account.
-        """
-        app_secret: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the authentication service access password.
-        """
-        auth_server_access_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the authentication service access mode.
-        + **INTERNET**: Indicates internet access.
-        + **DEDICATED**: Indicates dedicated access.
-        + **SYSTEM_DEFAULT**: Indicates system default.
-        """
-        auth_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the auxiliary authentication server address.
-        """
-        cert_content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the PEM format certificate content.
-        """
-        rule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies authentication application object.
-        + **INTERNET**: Indicates Internet access. Optional only when rule_type is **ACCESS_MODE**.
-        + **PRIVATE**: Indicates dedicated line access. Optional only when rule_type is **ACCESS_MODE**.
-        """
-        rule_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies authentication application object type.
-        + **ACCESS_MODE**: Indicates access type.
-        """
-elif False:
-    ServiceOtpConfigInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceOtpConfigInfoArgsDict(TypedDict):
+    enable: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether to enable auxiliary authentication.
+    """
+    receive_mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the verification code receiving mode.
+    + **VMFA**: Indicates virtual MFA device.
+    + **HMFA**: Indicates hardware MFA device.
+    """
+    app_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the auxiliary authentication server access account.
+    """
+    app_secret: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication service access password.
+    """
+    auth_server_access_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication service access mode.
+    + **INTERNET**: Indicates internet access.
+    + **DEDICATED**: Indicates dedicated access.
+    + **SYSTEM_DEFAULT**: Indicates system default.
+    """
+    auth_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the auxiliary authentication server address.
+    """
+    cert_content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the PEM format certificate content.
+    """
+    rule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies authentication application object.
+    + **INTERNET**: Indicates Internet access. Optional only when rule_type is **ACCESS_MODE**.
+    + **PRIVATE**: Indicates dedicated line access. Optional only when rule_type is **ACCESS_MODE**.
+    """
+    rule_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies authentication application object type.
+    + **ACCESS_MODE**: Indicates access type.
+    """
 
 @pulumi.input_type
 class ServiceOtpConfigInfoArgs:
@@ -3657,26 +5274,154 @@ class ServiceOtpConfigInfoArgs:
         pulumi.set(self, "rule_type", value)
 
 
-if not MYPY:
-    class TerminalBindingBindingArgsDict(TypedDict):
-        desktop_name: pulumi.Input[_builtins.str]
+class SharedFolderAssignAddItemArgsDict(TypedDict):
+    attach: pulumi.Input[_builtins.str]
+    """
+    Specifies the target.
+    """
+    attach_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the associated object type.  
+    The valid values are as follows:
+    + **USER** - User
+    + **USER_GROUP** - User group
+    """
+    policy_statement_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the policy ID.
+    """
+
+@pulumi.input_type
+class SharedFolderAssignAddItemArgs:
+    def __init__(__self__, *,
+                 attach: pulumi.Input[_builtins.str],
+                 attach_type: pulumi.Input[_builtins.str],
+                 policy_statement_id: pulumi.Input[_builtins.str]):
         """
-        Specifies the desktop name.
+        :param pulumi.Input[_builtins.str] attach: Specifies the target.
+        :param pulumi.Input[_builtins.str] attach_type: Specifies the associated object type.  
+               The valid values are as follows:
+               + **USER** - User
+               + **USER_GROUP** - User group
+        :param pulumi.Input[_builtins.str] policy_statement_id: Specifies the policy ID.
         """
-        mac: pulumi.Input[_builtins.str]
+        pulumi.set(__self__, "attach", attach)
+        pulumi.set(__self__, "attach_type", attach_type)
+        pulumi.set(__self__, "policy_statement_id", policy_statement_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def attach(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the MAC address.
+        Specifies the target.
         """
-        description: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "attach")
+
+    @attach.setter
+    def attach(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "attach", value)
+
+    @_builtins.property
+    @pulumi.getter(name="attachType")
+    def attach_type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the binding description.
+        Specifies the associated object type.  
+        The valid values are as follows:
+        + **USER** - User
+        + **USER_GROUP** - User group
         """
-        id: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "attach_type")
+
+    @attach_type.setter
+    def attach_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "attach_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="policyStatementId")
+    def policy_statement_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The ID of the binding policy.
+        Specifies the policy ID.
         """
-elif False:
-    TerminalBindingBindingArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "policy_statement_id")
+
+    @policy_statement_id.setter
+    def policy_statement_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "policy_statement_id", value)
+
+
+class SharedFolderAssignDelItemArgsDict(TypedDict):
+    attach: pulumi.Input[_builtins.str]
+    """
+    Specifies the target.
+    """
+    attach_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the associated object type.  
+    The valid values are as follows:
+    + **USER** - User
+    + **USER_GROUP** - User group
+    """
+
+@pulumi.input_type
+class SharedFolderAssignDelItemArgs:
+    def __init__(__self__, *,
+                 attach: pulumi.Input[_builtins.str],
+                 attach_type: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] attach: Specifies the target.
+        :param pulumi.Input[_builtins.str] attach_type: Specifies the associated object type.  
+               The valid values are as follows:
+               + **USER** - User
+               + **USER_GROUP** - User group
+        """
+        pulumi.set(__self__, "attach", attach)
+        pulumi.set(__self__, "attach_type", attach_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def attach(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the target.
+        """
+        return pulumi.get(self, "attach")
+
+    @attach.setter
+    def attach(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "attach", value)
+
+    @_builtins.property
+    @pulumi.getter(name="attachType")
+    def attach_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the associated object type.  
+        The valid values are as follows:
+        + **USER** - User
+        + **USER_GROUP** - User group
+        """
+        return pulumi.get(self, "attach_type")
+
+    @attach_type.setter
+    def attach_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "attach_type", value)
+
+
+class TerminalBindingBindingArgsDict(TypedDict):
+    desktop_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the desktop name.
+    """
+    mac: pulumi.Input[_builtins.str]
+    """
+    Specifies the MAC address.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the binding description.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the binding policy.
+    """
 
 @pulumi.input_type
 class TerminalBindingBindingArgs:
@@ -3747,35 +5492,32 @@ class TerminalBindingBindingArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class UserGroupUserArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the user ID to be added to the user group.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of user group.
-        """
-        email: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The email of user.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the user group name.  
-        > AD domain user group do not support renaming.
-        """
-        phone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The phone of user.
-        """
-        total_desktops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of desktops the user has.
-        """
-elif False:
-    UserGroupUserArgsDict: TypeAlias = Mapping[str, Any]
+class UserGroupUserArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the user ID to be added to the user group.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of user group.
+    """
+    email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The email of user.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user group name.  
+    > AD domain user group do not support renaming.
+    """
+    phone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The phone of user.
+    """
+    total_desktops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of desktops the user has.
+    """
 
 @pulumi.input_type
 class UserGroupUserArgs:
@@ -3881,19 +5623,16 @@ class UserGroupUserArgs:
         pulumi.set(self, "total_desktops", value)
 
 
-if not MYPY:
-    class GetDesktopTagsFilterMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the name of desktop property.
-        """
-        value: _builtins.str
-        """
-        Specifies the value of desktop property.  
-        When the key is resource_name, it is a fuzzy search.
-        """
-elif False:
-    GetDesktopTagsFilterMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetDesktopTagsFilterMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the name of desktop property.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of desktop property.  
+    When the key is resource_name, it is a fuzzy search.
+    """
 
 @pulumi.input_type
 class GetDesktopTagsFilterMatchArgs:
@@ -3934,21 +5673,18 @@ class GetDesktopTagsFilterMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetDesktopTagsFilterNotTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the name of desktop property.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of tag values that matched corresponding key.
+class GetDesktopTagsFilterNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the name of desktop property.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of tag values that matched corresponding key.
 
-        <a name="workspace_desktop_filter_match"></a>
-        The `match` block supports:
-        """
-elif False:
-    GetDesktopTagsFilterNotTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="workspace_desktop_filter_match"></a>
+    The `match` block supports:
+    """
 
 @pulumi.input_type
 class GetDesktopTagsFilterNotTagArgs:
@@ -3993,21 +5729,18 @@ class GetDesktopTagsFilterNotTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetDesktopTagsFilterNotTagsAnyArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the name of desktop property.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of tag values that matched corresponding key.
+class GetDesktopTagsFilterNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the name of desktop property.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of tag values that matched corresponding key.
 
-        <a name="workspace_desktop_filter_match"></a>
-        The `match` block supports:
-        """
-elif False:
-    GetDesktopTagsFilterNotTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="workspace_desktop_filter_match"></a>
+    The `match` block supports:
+    """
 
 @pulumi.input_type
 class GetDesktopTagsFilterNotTagsAnyArgs:
@@ -4052,21 +5785,18 @@ class GetDesktopTagsFilterNotTagsAnyArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetDesktopTagsFilterTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the name of desktop property.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of tag values that matched corresponding key.
+class GetDesktopTagsFilterTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the name of desktop property.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of tag values that matched corresponding key.
 
-        <a name="workspace_desktop_filter_match"></a>
-        The `match` block supports:
-        """
-elif False:
-    GetDesktopTagsFilterTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="workspace_desktop_filter_match"></a>
+    The `match` block supports:
+    """
 
 @pulumi.input_type
 class GetDesktopTagsFilterTagArgs:
@@ -4111,21 +5841,18 @@ class GetDesktopTagsFilterTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetDesktopTagsFilterTagsAnyArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the name of desktop property.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of tag values that matched corresponding key.
+class GetDesktopTagsFilterTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the name of desktop property.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of tag values that matched corresponding key.
 
-        <a name="workspace_desktop_filter_match"></a>
-        The `match` block supports:
-        """
-elif False:
-    GetDesktopTagsFilterTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="workspace_desktop_filter_match"></a>
+    The `match` block supports:
+    """
 
 @pulumi.input_type
 class GetDesktopTagsFilterTagsAnyArgs:

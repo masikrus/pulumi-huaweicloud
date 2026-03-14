@@ -32,6 +32,7 @@ class NotificationArgs:
                  smn_topic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Notification resource.
+
         :param pulumi.Input[_builtins.str] operation_type: Specifies the operation type, possible options include **complete** and
                **customized**.
         :param pulumi.Input[_builtins.str] agency_name: Specifies the cloud service agency name. The value can only be **cts_admin_trust**.
@@ -208,6 +209,7 @@ class _NotificationState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Notification resources.
+
         :param pulumi.Input[_builtins.str] agency_name: Specifies the cloud service agency name. The value can only be **cts_admin_trust**.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the notification.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether notification is enabled, defaults to true.
@@ -495,11 +497,10 @@ class Notification(pulumi.CustomResource):
 
         CTS notifications can be imported using `name`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cts/notification:Notification tracker your_notification
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -596,11 +597,10 @@ class Notification(pulumi.CustomResource):
 
         CTS notifications can be imported using `name`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cts/notification:Notification tracker your_notification
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NotificationArgs args: The arguments to use to populate this resource's properties.

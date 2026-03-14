@@ -118,7 +118,7 @@ def get_applications(code: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_applications()
+    test = huaweicloud.Coc.get_applications()
     ```
 
 
@@ -133,7 +133,7 @@ def get_applications(code: Optional[_builtins.str] = None,
     __args__['nameLike'] = name_like
     __args__['parentId'] = parent_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getApplications:getApplications', __args__, opts=opts, typ=GetApplicationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getApplications:getApplications', __args__, opts=opts, typ=GetApplicationsResult).value
 
     return AwaitableGetApplicationsResult(
         code=pulumi.get(__ret__, 'code'),
@@ -156,7 +156,7 @@ def get_applications_output(code: Optional[pulumi.Input[Optional[_builtins.str]]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_applications()
+    test = huaweicloud.Coc.get_applications()
     ```
 
 
@@ -171,7 +171,7 @@ def get_applications_output(code: Optional[pulumi.Input[Optional[_builtins.str]]
     __args__['nameLike'] = name_like
     __args__['parentId'] = parent_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getApplications:getApplications', __args__, opts=opts, typ=GetApplicationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getApplications:getApplications', __args__, opts=opts, typ=GetApplicationsResult)
     return __ret__.apply(lambda __response__: GetApplicationsResult(
         code=pulumi.get(__response__, 'code'),
         datas=pulumi.get(__response__, 'datas'),

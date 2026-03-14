@@ -30,6 +30,7 @@ class CustomAuthenticationArgs:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomAuthentication resource.
+
         :param pulumi.Input[_builtins.str] authorizer_name: Specifies the name of the custom authentication.
                The name contains a maximum of `128` characters, and only letters, digits, underscores (_), and hyphens (-)
                are allowed. The name must be unique.
@@ -227,6 +228,7 @@ class _CustomAuthenticationState:
                  update_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomAuthentication resources.
+
         :param pulumi.Input[_builtins.str] authorizer_name: Specifies the name of the custom authentication.
                The name contains a maximum of `128` characters, and only letters, digits, underscores (_), and hyphens (-)
                are allowed. The name must be unique.
@@ -510,11 +512,10 @@ class CustomAuthentication(pulumi.CustomResource):
 
         The custom authentication can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/customAuthentication:CustomAuthentication test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -592,11 +593,10 @@ class CustomAuthentication(pulumi.CustomResource):
 
         The custom authentication can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/customAuthentication:CustomAuthentication test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomAuthenticationArgs args: The arguments to use to populate this resource's properties.

@@ -115,7 +115,7 @@ def get_resource_rpo_statistics(end_time: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_resource_rpo_statistics()
+    test = huaweicloud.Sdrs.get_resource_rpo_statistics()
     ```
 
 
@@ -134,7 +134,7 @@ def get_resource_rpo_statistics(end_time: Optional[_builtins.str] = None,
     __args__['resourceType'] = resource_type
     __args__['startTime'] = start_time
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:sdrs/getResourceRpoStatistics:getResourceRpoStatistics', __args__, opts=opts, typ=GetResourceRpoStatisticsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Sdrs/getResourceRpoStatistics:getResourceRpoStatistics', __args__, opts=opts, typ=GetResourceRpoStatisticsResult).value
 
     return AwaitableGetResourceRpoStatisticsResult(
         end_time=pulumi.get(__ret__, 'end_time'),
@@ -157,7 +157,7 @@ def get_resource_rpo_statistics_output(end_time: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_resource_rpo_statistics()
+    test = huaweicloud.Sdrs.get_resource_rpo_statistics()
     ```
 
 
@@ -176,7 +176,7 @@ def get_resource_rpo_statistics_output(end_time: Optional[pulumi.Input[Optional[
     __args__['resourceType'] = resource_type
     __args__['startTime'] = start_time
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:sdrs/getResourceRpoStatistics:getResourceRpoStatistics', __args__, opts=opts, typ=GetResourceRpoStatisticsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Sdrs/getResourceRpoStatistics:getResourceRpoStatistics', __args__, opts=opts, typ=GetResourceRpoStatisticsResult)
     return __ret__.apply(lambda __response__: GetResourceRpoStatisticsResult(
         end_time=pulumi.get(__response__, 'end_time'),
         id=pulumi.get(__response__, 'id'),

@@ -27,6 +27,7 @@ class ArchitectureReviewerArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureReviewer resource.
+
         :param pulumi.Input[_builtins.str] user_id: Specifies the user ID of the architecture reviewer.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] user_name: Specifies the user name of the architecture reviewer.
@@ -141,6 +142,7 @@ class _ArchitectureReviewerState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureReviewer resources.
+
         :param pulumi.Input[_builtins.str] email: Specifies the email of the architecture reviewer.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] phone_number: Specifies the phone number of the architecture reviewer.
@@ -301,41 +303,17 @@ class ArchitectureReviewer(pulumi.CustomResource):
 
         The DataArts architecture reviewer can be imported using the `workspace_id` and `user_name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureReviewer:ArchitectureReviewer test <workspace_id>/<user_name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `email` and `phone_number`.
-
         It is generally recommended running `pulumi preview` after importing a reviewer.
-
         You can then decide if changes should be applied to the reviewer, or the resource definition should be updated to
-
         align with the reviewer. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_architecture_reviewer" "test"{
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              email, phone_number,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -385,41 +363,17 @@ class ArchitectureReviewer(pulumi.CustomResource):
 
         The DataArts architecture reviewer can be imported using the `workspace_id` and `user_name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureReviewer:ArchitectureReviewer test <workspace_id>/<user_name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `email` and `phone_number`.
-
         It is generally recommended running `pulumi preview` after importing a reviewer.
-
         You can then decide if changes should be applied to the reviewer, or the resource definition should be updated to
-
         align with the reviewer. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_architecture_reviewer" "test"{
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              email, phone_number,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ArchitectureReviewerArgs args: The arguments to use to populate this resource's properties.

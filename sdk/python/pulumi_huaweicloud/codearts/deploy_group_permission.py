@@ -27,6 +27,7 @@ class DeployGroupPermissionInitArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployGroupPermission resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the group ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] permission_name: Specifies the permission name.
@@ -143,6 +144,7 @@ class _DeployGroupPermissionState:
                  role_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployGroupPermission resources.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the group ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] permission_name: Specifies the permission name.
@@ -252,7 +254,7 @@ class _DeployGroupPermissionState:
         pulumi.set(self, "role_id", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployGroupPermission:DeployGroupPermission")
+@pulumi.type_token("huaweicloud:Codearts/deployGroupPermission:DeployGroupPermission")
 class DeployGroupPermission(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -289,14 +291,12 @@ class DeployGroupPermission(pulumi.CustomResource):
         ## Import
 
         The CodeArts deploy group permission resource can be imported using the `project_id`, `group_id`, `role_id` and
-
         `permission_name`, separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployGroupPermission:DeployGroupPermission test <project_id>/<group_id>/<role_id>/<permission_name>
+        $ pulumi import huaweicloud:Codearts/deployGroupPermission:DeployGroupPermission test <project_id>/<group_id>/<role_id>/<permission_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -345,14 +345,12 @@ class DeployGroupPermission(pulumi.CustomResource):
         ## Import
 
         The CodeArts deploy group permission resource can be imported using the `project_id`, `group_id`, `role_id` and
-
         `permission_name`, separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployGroupPermission:DeployGroupPermission test <project_id>/<group_id>/<role_id>/<permission_name>
+        $ pulumi import huaweicloud:Codearts/deployGroupPermission:DeployGroupPermission test <project_id>/<group_id>/<role_id>/<permission_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeployGroupPermissionInitArgs args: The arguments to use to populate this resource's properties.
@@ -399,7 +397,7 @@ class DeployGroupPermission(pulumi.CustomResource):
                 raise TypeError("Missing required property 'role_id'")
             __props__.__dict__["role_id"] = role_id
         super(DeployGroupPermission, __self__).__init__(
-            'huaweicloud:codearts/deployGroupPermission:DeployGroupPermission',
+            'huaweicloud:Codearts/deployGroupPermission:DeployGroupPermission',
             resource_name,
             __props__,
             opts)

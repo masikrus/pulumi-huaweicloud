@@ -31,6 +31,7 @@ class ContainerKubernetesClusterProtectionEnableArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ContainerKubernetesClusterProtectionEnable resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the cluster.
         :param pulumi.Input[_builtins.str] cluster_name: Specifies the name of the cluster to protect.
         :param pulumi.Input[_builtins.str] cce_protection_type: Specifies the CCE protection type. Options:
@@ -234,6 +235,7 @@ class _ContainerKubernetesClusterProtectionEnableState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ContainerKubernetesClusterProtectionEnable resources.
+
         :param pulumi.Input[_builtins.str] cce_protection_type: Specifies the CCE protection type. Options:
                + **cluster_level**: Cluster-level protection.
                + **node_level**: Node-level protection.
@@ -440,7 +442,7 @@ class _ContainerKubernetesClusterProtectionEnableState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:hss/containerKubernetesClusterProtectionEnable:ContainerKubernetesClusterProtectionEnable")
+@pulumi.type_token("huaweicloud:Hss/containerKubernetesClusterProtectionEnable:ContainerKubernetesClusterProtectionEnable")
 class ContainerKubernetesClusterProtectionEnable(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -491,6 +493,7 @@ class ContainerKubernetesClusterProtectionEnable(pulumi.CustomResource):
                 "wait_protect",
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -565,6 +568,7 @@ class ContainerKubernetesClusterProtectionEnable(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ContainerKubernetesClusterProtectionEnableArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -615,7 +619,7 @@ class ContainerKubernetesClusterProtectionEnable(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["protect_status"] = None
         super(ContainerKubernetesClusterProtectionEnable, __self__).__init__(
-            'huaweicloud:hss/containerKubernetesClusterProtectionEnable:ContainerKubernetesClusterProtectionEnable',
+            'huaweicloud:Hss/containerKubernetesClusterProtectionEnable:ContainerKubernetesClusterProtectionEnable',
             resource_name,
             __props__,
             opts)

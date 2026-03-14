@@ -24,6 +24,7 @@ class TurboArgs:
                  size: pulumi.Input[_builtins.int],
                  subnet_id: pulumi.Input[_builtins.str],
                  vpc_id: pulumi.Input[_builtins.str],
+                 auto_create_security_group_rules: Optional[pulumi.Input[_builtins.str]] = None,
                  auto_renew: Optional[pulumi.Input[_builtins.str]] = None,
                  backup_id: Optional[pulumi.Input[_builtins.str]] = None,
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -43,6 +44,7 @@ class TurboArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Turbo resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone where the file system is located.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] security_group_id: Specifies the security group ID.
@@ -65,6 +67,11 @@ class TurboArgs:
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the network ID of the subnet. Changing this will create a new
                resource.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID. Changing this will create a new resource.
+        :param pulumi.Input[_builtins.str] auto_create_security_group_rules: Specifies whether to automatically create security
+               group rules. **true** means automatically create security group rules.
+               **false** means not automatically create security group rules. Defaults to **true**.
+               This field cannot be edited individually. Editing this field alone will not make any changes to the resource.
+               Editing this field will only take effect when the `security_group_id` field is changed.
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.  
                The valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID.
@@ -121,6 +128,8 @@ class TurboArgs:
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "vpc_id", vpc_id)
+        if auto_create_security_group_rules is not None:
+            pulumi.set(__self__, "auto_create_security_group_rules", auto_create_security_group_rules)
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
         if backup_id is not None:
@@ -232,6 +241,22 @@ class TurboArgs:
     @vpc_id.setter
     def vpc_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "vpc_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="autoCreateSecurityGroupRules")
+    def auto_create_security_group_rules(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether to automatically create security
+        group rules. **true** means automatically create security group rules.
+        **false** means not automatically create security group rules. Defaults to **true**.
+        This field cannot be edited individually. Editing this field alone will not make any changes to the resource.
+        Editing this field will only take effect when the `security_group_id` field is changed.
+        """
+        return pulumi.get(self, "auto_create_security_group_rules")
+
+    @auto_create_security_group_rules.setter
+    def auto_create_security_group_rules(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "auto_create_security_group_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="autoRenew")
@@ -474,6 +499,7 @@ class TurboArgs:
 @pulumi.input_type
 class _TurboState:
     def __init__(__self__, *,
+                 auto_create_security_group_rules: Optional[pulumi.Input[_builtins.str]] = None,
                  auto_renew: Optional[pulumi.Input[_builtins.str]] = None,
                  availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  available_capacity: Optional[pulumi.Input[_builtins.str]] = None,
@@ -502,6 +528,12 @@ class _TurboState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Turbo resources.
+
+        :param pulumi.Input[_builtins.str] auto_create_security_group_rules: Specifies whether to automatically create security
+               group rules. **true** means automatically create security group rules.
+               **false** means not automatically create security group rules. Defaults to **true**.
+               This field cannot be edited individually. Editing this field alone will not make any changes to the resource.
+               Editing this field will only take effect when the `security_group_id` field is changed.
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.  
                The valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone where the file system is located.
@@ -579,6 +611,8 @@ class _TurboState:
         :param pulumi.Input[_builtins.str] version: The version ID of the SFS Turbo file system.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID. Changing this will create a new resource.
         """
+        if auto_create_security_group_rules is not None:
+            pulumi.set(__self__, "auto_create_security_group_rules", auto_create_security_group_rules)
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
         if availability_zone is not None:
@@ -631,6 +665,22 @@ class _TurboState:
             pulumi.set(__self__, "version", version)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter(name="autoCreateSecurityGroupRules")
+    def auto_create_security_group_rules(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether to automatically create security
+        group rules. **true** means automatically create security group rules.
+        **false** means not automatically create security group rules. Defaults to **true**.
+        This field cannot be edited individually. Editing this field alone will not make any changes to the resource.
+        Editing this field will only take effect when the `security_group_id` field is changed.
+        """
+        return pulumi.get(self, "auto_create_security_group_rules")
+
+    @auto_create_security_group_rules.setter
+    def auto_create_security_group_rules(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "auto_create_security_group_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="autoRenew")
@@ -1001,6 +1051,7 @@ class Turbo(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_create_security_group_rules: Optional[pulumi.Input[_builtins.str]] = None,
                  auto_renew: Optional[pulumi.Input[_builtins.str]] = None,
                  availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  backup_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1104,42 +1155,25 @@ class Turbo(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turbo:Turbo test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to payment attributes missing from
-
         the API response.
-
-        The missing attributes include: `charging_mode`, `period_unit`, `period`, `auto_renew`.
-
+        The missing attributes include: `charging_mode`, `period_unit`, `period`, `auto_renew`,
+        `auto_create_security_group_rules`, `dedicated_flavor`, `dedicated_storage_id`.
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sfs_turbo" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] auto_create_security_group_rules: Specifies whether to automatically create security
+               group rules. **true** means automatically create security group rules.
+               **false** means not automatically create security group rules. Defaults to **true**.
+               This field cannot be edited individually. Editing this field alone will not make any changes to the resource.
+               Editing this field will only take effect when the `security_group_id` field is changed.
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.  
                The valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone where the file system is located.
@@ -1299,39 +1333,17 @@ class Turbo(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turbo:Turbo test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to payment attributes missing from
-
         the API response.
-
-        The missing attributes include: `charging_mode`, `period_unit`, `period`, `auto_renew`.
-
+        The missing attributes include: `charging_mode`, `period_unit`, `period`, `auto_renew`,
+        `auto_create_security_group_rules`, `dedicated_flavor`, `dedicated_storage_id`.
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_sfs_turbo" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param TurboArgs args: The arguments to use to populate this resource's properties.
@@ -1348,6 +1360,7 @@ class Turbo(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_create_security_group_rules: Optional[pulumi.Input[_builtins.str]] = None,
                  auto_renew: Optional[pulumi.Input[_builtins.str]] = None,
                  availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  backup_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1379,6 +1392,7 @@ class Turbo(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TurboArgs.__new__(TurboArgs)
 
+            __props__.__dict__["auto_create_security_group_rules"] = auto_create_security_group_rules
             __props__.__dict__["auto_renew"] = auto_renew
             if availability_zone is None and not opts.urn:
                 raise TypeError("Missing required property 'availability_zone'")
@@ -1425,6 +1439,7 @@ class Turbo(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auto_create_security_group_rules: Optional[pulumi.Input[_builtins.str]] = None,
             auto_renew: Optional[pulumi.Input[_builtins.str]] = None,
             availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
             available_capacity: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1458,6 +1473,11 @@ class Turbo(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] auto_create_security_group_rules: Specifies whether to automatically create security
+               group rules. **true** means automatically create security group rules.
+               **false** means not automatically create security group rules. Defaults to **true**.
+               This field cannot be edited individually. Editing this field alone will not make any changes to the resource.
+               Editing this field will only take effect when the `security_group_id` field is changed.
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.  
                The valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone where the file system is located.
@@ -1539,6 +1559,7 @@ class Turbo(pulumi.CustomResource):
 
         __props__ = _TurboState.__new__(_TurboState)
 
+        __props__.__dict__["auto_create_security_group_rules"] = auto_create_security_group_rules
         __props__.__dict__["auto_renew"] = auto_renew
         __props__.__dict__["availability_zone"] = availability_zone
         __props__.__dict__["available_capacity"] = available_capacity
@@ -1566,6 +1587,18 @@ class Turbo(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         __props__.__dict__["vpc_id"] = vpc_id
         return Turbo(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="autoCreateSecurityGroupRules")
+    def auto_create_security_group_rules(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies whether to automatically create security
+        group rules. **true** means automatically create security group rules.
+        **false** means not automatically create security group rules. Defaults to **true**.
+        This field cannot be edited individually. Editing this field alone will not make any changes to the resource.
+        Editing this field will only take effect when the `security_group_id` field is changed.
+        """
+        return pulumi.get(self, "auto_create_security_group_rules")
 
     @_builtins.property
     @pulumi.getter(name="autoRenew")

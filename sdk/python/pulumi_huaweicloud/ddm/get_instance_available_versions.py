@@ -141,7 +141,7 @@ def get_instance_available_versions(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.ddm.get_instance_available_versions(instance_id=instance_id)
+    test = huaweicloud.Ddm.get_instance_available_versions(instance_id=instance_id)
     ```
 
 
@@ -153,7 +153,7 @@ def get_instance_available_versions(instance_id: Optional[_builtins.str] = None,
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getInstanceAvailableVersions:getInstanceAvailableVersions', __args__, opts=opts, typ=GetInstanceAvailableVersionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getInstanceAvailableVersions:getInstanceAvailableVersions', __args__, opts=opts, typ=GetInstanceAvailableVersionsResult).value
 
     return AwaitableGetInstanceAvailableVersionsResult(
         current_favored_version=pulumi.get(__ret__, 'current_favored_version'),
@@ -178,7 +178,7 @@ def get_instance_available_versions_output(instance_id: Optional[pulumi.Input[_b
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.ddm.get_instance_available_versions(instance_id=instance_id)
+    test = huaweicloud.Ddm.get_instance_available_versions(instance_id=instance_id)
     ```
 
 
@@ -190,7 +190,7 @@ def get_instance_available_versions_output(instance_id: Optional[pulumi.Input[_b
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getInstanceAvailableVersions:getInstanceAvailableVersions', __args__, opts=opts, typ=GetInstanceAvailableVersionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getInstanceAvailableVersions:getInstanceAvailableVersions', __args__, opts=opts, typ=GetInstanceAvailableVersionsResult)
     return __ret__.apply(lambda __response__: GetInstanceAvailableVersionsResult(
         current_favored_version=pulumi.get(__response__, 'current_favored_version'),
         current_version=pulumi.get(__response__, 'current_version'),

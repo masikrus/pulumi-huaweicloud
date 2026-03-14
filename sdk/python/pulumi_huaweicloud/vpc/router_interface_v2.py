@@ -25,6 +25,7 @@ class RouterInterfaceV2Args:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RouterInterfaceV2 resource.
+
         :param pulumi.Input[_builtins.str] router_id: ID of the router this interface belongs to. Changing this creates a new
                router interface.
         :param pulumi.Input[_builtins.str] port_id: ID of the port this interface connects to. Changing this creates a new router
@@ -106,6 +107,7 @@ class _RouterInterfaceV2State:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RouterInterfaceV2 resources.
+
         :param pulumi.Input[_builtins.str] port_id: ID of the port this interface connects to. Changing this creates a new router
                interface.
         :param pulumi.Input[_builtins.str] region: The region in which to create the V2 networking client. A networking client is
@@ -220,11 +222,11 @@ class RouterInterfaceV2(pulumi.CustomResource):
 
         Router Interfaces can be imported using the port `id`, e.g.
 
-        $ openstack port list --router <router name or id>
-
         ```sh
-        $ pulumi import huaweicloud:Vpc/routerInterfaceV2:RouterInterfaceV2 int_1 <port id from above output>
+        $ openstack port list --router <router name or id>
+        $ terraform import huaweicloud_networking_router_interface_v2.int_1 <port id from above output>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -274,11 +276,11 @@ class RouterInterfaceV2(pulumi.CustomResource):
 
         Router Interfaces can be imported using the port `id`, e.g.
 
-        $ openstack port list --router <router name or id>
-
         ```sh
-        $ pulumi import huaweicloud:Vpc/routerInterfaceV2:RouterInterfaceV2 int_1 <port id from above output>
+        $ openstack port list --router <router name or id>
+        $ terraform import huaweicloud_networking_router_interface_v2.int_1 <port id from above output>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RouterInterfaceV2Args args: The arguments to use to populate this resource's properties.

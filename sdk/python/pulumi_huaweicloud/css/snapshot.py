@@ -25,6 +25,7 @@ class SnapshotArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Snapshot resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS cluster where index data is to be backed up.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of a snapshot. The value contains 0 to 256
@@ -115,6 +116,7 @@ class _SnapshotState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Snapshot resources.
+
         :param pulumi.Input[_builtins.str] backup_type: Indicates the snapshot creation mode, the value should be "manual" or "automated".
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS cluster where index data is to be backed up.
                Changing this parameter will create a new resource.
@@ -271,11 +273,10 @@ class Snapshot(pulumi.CustomResource):
 
         This resource can be imported by specifying the CSS cluster ID and snapshot ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/snapshot:Snapshot snapshot_1 <cluster_id>/<snapshot_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -319,11 +320,10 @@ class Snapshot(pulumi.CustomResource):
 
         This resource can be imported by specifying the CSS cluster ID and snapshot ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/snapshot:Snapshot snapshot_1 <cluster_id>/<snapshot_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class EndpointArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Endpoint resource.
+
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the ID of the subnet to which the endpoint belongs.
                
                Changing this parameter will create a new resource.
@@ -134,6 +135,7 @@ class _EndpointState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Endpoint resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the endpoint.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the endpoint.
         :param pulumi.Input[_builtins.str] domain: The domain of the endpoint.
@@ -325,11 +327,10 @@ class Endpoint(pulumi.CustomResource):
 
         The endpoint can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/endpoint:Endpoint test 32a6a33f-ac15-4548-a328-8dc91ed22c3c
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -377,11 +378,10 @@ class Endpoint(pulumi.CustomResource):
 
         The endpoint can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/endpoint:Endpoint test 32a6a33f-ac15-4548-a328-8dc91ed22c3c
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EndpointArgs args: The arguments to use to populate this resource's properties.

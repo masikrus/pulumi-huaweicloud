@@ -26,6 +26,7 @@ class AppNasStorageArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppNasStorage resource.
+
         :param pulumi.Input['AppNasStorageStorageMetadataArgs'] storage_metadata: Specifies the metadata of the corresponding storage.  
                The storage_metadata structure is documented below.
                
@@ -96,6 +97,7 @@ class _AppNasStorageState:
                  storage_metadata: Optional[pulumi.Input['AppNasStorageStorageMetadataArgs']] = None):
         """
         Input properties used for looking up and filtering AppNasStorage resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the NAS storage.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the NAS storage.  
                The valid length is limited from `1` to `128`, and allows visible characters or spaces, but cannot be all spaces.
@@ -209,19 +211,16 @@ class AppNasStorage(pulumi.CustomResource):
 
         NAS storages can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appNasStorage:AppNasStorage test <id>
         ```
 
         If the NAS storage ID is unknow, the NAS storage name can be used as an alternative to ID.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appNasStorage:AppNasStorage test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -268,19 +267,16 @@ class AppNasStorage(pulumi.CustomResource):
 
         NAS storages can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appNasStorage:AppNasStorage test <id>
         ```
 
         If the NAS storage ID is unknow, the NAS storage name can be used as an alternative to ID.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appNasStorage:AppNasStorage test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppNasStorageArgs args: The arguments to use to populate this resource's properties.

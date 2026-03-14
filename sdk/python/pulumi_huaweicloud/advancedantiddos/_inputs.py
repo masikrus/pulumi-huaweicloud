@@ -17,34 +17,31 @@ from .. import _utilities
 __all__ = [
     'ChangeSpecificationUpgradeDataArgs',
     'ChangeSpecificationUpgradeDataArgsDict',
+    'DomainCertificateCertInfoArgs',
+    'DomainCertificateCertInfoArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ChangeSpecificationUpgradeDataArgsDict(TypedDict):
-        basic_bandwidth: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the basic bandwidth (Gbps).
-        """
-        bind_domain_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the bind domain number.
-        """
-        elastic_bandwidth: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the elastic bandwidth (Gbps).
-        """
-        port_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port number.
-        """
-        service_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the service bandwidth (Mbps).
-        """
-elif False:
-    ChangeSpecificationUpgradeDataArgsDict: TypeAlias = Mapping[str, Any]
+class ChangeSpecificationUpgradeDataArgsDict(TypedDict):
+    basic_bandwidth: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the basic bandwidth (Gbps).
+    """
+    bind_domain_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the bind domain number.
+    """
+    elastic_bandwidth: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the elastic bandwidth (Gbps).
+    """
+    port_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port number.
+    """
+    service_bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the service bandwidth (Mbps).
+    """
 
 @pulumi.input_type
 class ChangeSpecificationUpgradeDataArgs:
@@ -131,5 +128,114 @@ class ChangeSpecificationUpgradeDataArgs:
     @service_bandwidth.setter
     def service_bandwidth(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "service_bandwidth", value)
+
+
+class DomainCertificateCertInfoArgsDict(TypedDict):
+    apply_domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The applicable domain.
+    """
+    cert_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the certificate name.
+    """
+    expire_status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The expiration status.
+    """
+    expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The expiration time.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The certificate ID.
+    """
+
+@pulumi.input_type
+class DomainCertificateCertInfoArgs:
+    def __init__(__self__, *,
+                 apply_domain: Optional[pulumi.Input[_builtins.str]] = None,
+                 cert_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 expire_status: Optional[pulumi.Input[_builtins.int]] = None,
+                 expire_time: Optional[pulumi.Input[_builtins.int]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] apply_domain: The applicable domain.
+        :param pulumi.Input[_builtins.str] cert_name: Specifies the certificate name.
+        :param pulumi.Input[_builtins.int] expire_status: The expiration status.
+        :param pulumi.Input[_builtins.int] expire_time: The expiration time.
+        :param pulumi.Input[_builtins.str] id: The certificate ID.
+        """
+        if apply_domain is not None:
+            pulumi.set(__self__, "apply_domain", apply_domain)
+        if cert_name is not None:
+            pulumi.set(__self__, "cert_name", cert_name)
+        if expire_status is not None:
+            pulumi.set(__self__, "expire_status", expire_status)
+        if expire_time is not None:
+            pulumi.set(__self__, "expire_time", expire_time)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="applyDomain")
+    def apply_domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The applicable domain.
+        """
+        return pulumi.get(self, "apply_domain")
+
+    @apply_domain.setter
+    def apply_domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "apply_domain", value)
+
+    @_builtins.property
+    @pulumi.getter(name="certName")
+    def cert_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the certificate name.
+        """
+        return pulumi.get(self, "cert_name")
+
+    @cert_name.setter
+    def cert_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cert_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expireStatus")
+    def expire_status(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The expiration status.
+        """
+        return pulumi.get(self, "expire_status")
+
+    @expire_status.setter
+    def expire_status(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "expire_status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expireTime")
+    def expire_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The expiration time.
+        """
+        return pulumi.get(self, "expire_time")
+
+    @expire_time.setter
+    def expire_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "expire_time", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The certificate ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
 
 

@@ -20,27 +20,27 @@ __all__ = ['CachePreheatArgs', 'CachePreheat']
 class CachePreheatArgs:
     def __init__(__self__, *,
                  urls: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  zh_url_encode: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a CachePreheat resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] urls: Specifies the URLs that need to be preheated.
                A URL must start with `http://` or `https://` and must contain the accelerated domain name.
                A URL can contain up to `4,096` characters. Enter up to `1,000` URLs and separate them by commas (,).
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the accelerated
-               domain name belongs. This parameter is only valid for enterprise users and is required when using Sub-account.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               resource belongs.
+               This parameter is only valid for enterprise users and is required when using sub-account.
                The value **all** represents all enterprise projects.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.bool] zh_url_encode: Specifies whether to encode Chinese characters in URLs before cache preheat.
+        :param pulumi.Input[_builtins.bool] zh_url_encode: Specifies whether to encode Chinese characters in URLs before cache
+               preheat.
                The value **false** indicates disabled, and **true** indicates enabled. After enabled, cache is preheated only for
                transcode URLs. Defaults to **false**.
-               
-               Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "urls", urls)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if zh_url_encode is not None:
@@ -53,8 +53,6 @@ class CachePreheatArgs:
         Specifies the URLs that need to be preheated.
         A URL must start with `http://` or `https://` and must contain the accelerated domain name.
         A URL can contain up to `4,096` characters. Enter up to `1,000` URLs and separate them by commas (,).
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "urls")
 
@@ -63,14 +61,22 @@ class CachePreheatArgs:
         pulumi.set(self, "urls", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the enterprise project ID to which the accelerated
-        domain name belongs. This parameter is only valid for enterprise users and is required when using Sub-account.
+        Specifies the ID of the enterprise project to which the
+        resource belongs.
+        This parameter is only valid for enterprise users and is required when using sub-account.
         The value **all** represents all enterprise projects.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -82,11 +88,10 @@ class CachePreheatArgs:
     @pulumi.getter(name="zhUrlEncode")
     def zh_url_encode(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to encode Chinese characters in URLs before cache preheat.
+        Specifies whether to encode Chinese characters in URLs before cache
+        preheat.
         The value **false** indicates disabled, and **true** indicates enabled. After enabled, cache is preheated only for
         transcode URLs. Defaults to **false**.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "zh_url_encode")
 
@@ -99,6 +104,7 @@ class CachePreheatArgs:
 class _CachePreheatState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  failed: Optional[pulumi.Input[_builtins.int]] = None,
                  processing: Optional[pulumi.Input[_builtins.int]] = None,
@@ -109,30 +115,31 @@ class _CachePreheatState:
                  zh_url_encode: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering CachePreheat resources.
-        :param pulumi.Input[_builtins.str] created_at: The creation time.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the accelerated
-               domain name belongs. This parameter is only valid for enterprise users and is required when using Sub-account.
+
+        :param pulumi.Input[_builtins.str] created_at: The creation time, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               resource belongs.
+               This parameter is only valid for enterprise users and is required when using sub-account.
                The value **all** represents all enterprise projects.
-               
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] failed: The number of URLs that failed to be processed.
         :param pulumi.Input[_builtins.int] processing: The number of URLs that are being processed.
-        :param pulumi.Input[_builtins.str] status: The task execution result. Possible values: **task_done** (successful) and **task_inprocess** (processing).
+        :param pulumi.Input[_builtins.str] status: The task execution result.
+               + **task_done**: successful.
+               + **task_inprocess**: processing.
         :param pulumi.Input[_builtins.int] succeed: The number of URLs processed.
         :param pulumi.Input[_builtins.int] total: The total number of URLs in historical tasks.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] urls: Specifies the URLs that need to be preheated.
                A URL must start with `http://` or `https://` and must contain the accelerated domain name.
                A URL can contain up to `4,096` characters. Enter up to `1,000` URLs and separate them by commas (,).
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.bool] zh_url_encode: Specifies whether to encode Chinese characters in URLs before cache preheat.
+        :param pulumi.Input[_builtins.bool] zh_url_encode: Specifies whether to encode Chinese characters in URLs before cache
+               preheat.
                The value **false** indicates disabled, and **true** indicates enabled. After enabled, cache is preheated only for
                transcode URLs. Defaults to **false**.
-               
-               Changing this parameter will create a new resource.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if failed is not None:
@@ -154,7 +161,7 @@ class _CachePreheatState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The creation time.
+        The creation time, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
 
@@ -163,14 +170,22 @@ class _CachePreheatState:
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the enterprise project ID to which the accelerated
-        domain name belongs. This parameter is only valid for enterprise users and is required when using Sub-account.
+        Specifies the ID of the enterprise project to which the
+        resource belongs.
+        This parameter is only valid for enterprise users and is required when using sub-account.
         The value **all** represents all enterprise projects.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -206,7 +221,9 @@ class _CachePreheatState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The task execution result. Possible values: **task_done** (successful) and **task_inprocess** (processing).
+        The task execution result.
+        + **task_done**: successful.
+        + **task_inprocess**: processing.
         """
         return pulumi.get(self, "status")
 
@@ -245,8 +262,6 @@ class _CachePreheatState:
         Specifies the URLs that need to be preheated.
         A URL must start with `http://` or `https://` and must contain the accelerated domain name.
         A URL can contain up to `4,096` characters. Enter up to `1,000` URLs and separate them by commas (,).
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "urls")
 
@@ -258,11 +273,10 @@ class _CachePreheatState:
     @pulumi.getter(name="zhUrlEncode")
     def zh_url_encode(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to encode Chinese characters in URLs before cache preheat.
+        Specifies whether to encode Chinese characters in URLs before cache
+        preheat.
         The value **false** indicates disabled, and **true** indicates enabled. After enabled, cache is preheated only for
         transcode URLs. Defaults to **false**.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "zh_url_encode")
 
@@ -277,6 +291,7 @@ class CachePreheat(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zh_url_encode: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -295,23 +310,20 @@ class CachePreheat(pulumi.CustomResource):
         test = huaweicloud.cdn.CachePreheat("test", urls=urls)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the accelerated
-               domain name belongs. This parameter is only valid for enterprise users and is required when using Sub-account.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               resource belongs.
+               This parameter is only valid for enterprise users and is required when using sub-account.
                The value **all** represents all enterprise projects.
-               
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] urls: Specifies the URLs that need to be preheated.
                A URL must start with `http://` or `https://` and must contain the accelerated domain name.
                A URL can contain up to `4,096` characters. Enter up to `1,000` URLs and separate them by commas (,).
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.bool] zh_url_encode: Specifies whether to encode Chinese characters in URLs before cache preheat.
+        :param pulumi.Input[_builtins.bool] zh_url_encode: Specifies whether to encode Chinese characters in URLs before cache
+               preheat.
                The value **false** indicates disabled, and **true** indicates enabled. After enabled, cache is preheated only for
                transcode URLs. Defaults to **false**.
-               
-               Changing this parameter will create a new resource.
         """
         ...
     @overload
@@ -333,6 +345,7 @@ class CachePreheat(pulumi.CustomResource):
         test = huaweicloud.cdn.CachePreheat("test", urls=urls)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param CachePreheatArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -348,6 +361,7 @@ class CachePreheat(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zh_url_encode: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -360,6 +374,7 @@ class CachePreheat(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CachePreheatArgs.__new__(CachePreheatArgs)
 
+            __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if urls is None and not opts.urn:
                 raise TypeError("Missing required property 'urls'")
@@ -382,6 +397,7 @@ class CachePreheat(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             failed: Optional[pulumi.Input[_builtins.int]] = None,
             processing: Optional[pulumi.Input[_builtins.int]] = None,
@@ -397,33 +413,32 @@ class CachePreheat(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] created_at: The creation time.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the accelerated
-               domain name belongs. This parameter is only valid for enterprise users and is required when using Sub-account.
+        :param pulumi.Input[_builtins.str] created_at: The creation time, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               resource belongs.
+               This parameter is only valid for enterprise users and is required when using sub-account.
                The value **all** represents all enterprise projects.
-               
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] failed: The number of URLs that failed to be processed.
         :param pulumi.Input[_builtins.int] processing: The number of URLs that are being processed.
-        :param pulumi.Input[_builtins.str] status: The task execution result. Possible values: **task_done** (successful) and **task_inprocess** (processing).
+        :param pulumi.Input[_builtins.str] status: The task execution result.
+               + **task_done**: successful.
+               + **task_inprocess**: processing.
         :param pulumi.Input[_builtins.int] succeed: The number of URLs processed.
         :param pulumi.Input[_builtins.int] total: The total number of URLs in historical tasks.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] urls: Specifies the URLs that need to be preheated.
                A URL must start with `http://` or `https://` and must contain the accelerated domain name.
                A URL can contain up to `4,096` characters. Enter up to `1,000` URLs and separate them by commas (,).
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.bool] zh_url_encode: Specifies whether to encode Chinese characters in URLs before cache preheat.
+        :param pulumi.Input[_builtins.bool] zh_url_encode: Specifies whether to encode Chinese characters in URLs before cache
+               preheat.
                The value **false** indicates disabled, and **true** indicates enabled. After enabled, cache is preheated only for
                transcode URLs. Defaults to **false**.
-               
-               Changing this parameter will create a new resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _CachePreheatState.__new__(_CachePreheatState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["failed"] = failed
         __props__.__dict__["processing"] = processing
@@ -438,19 +453,23 @@ class CachePreheat(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:
         """
-        The creation time.
+        The creation time, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the enterprise project ID to which the accelerated
-        domain name belongs. This parameter is only valid for enterprise users and is required when using Sub-account.
+        Specifies the ID of the enterprise project to which the
+        resource belongs.
+        This parameter is only valid for enterprise users and is required when using sub-account.
         The value **all** represents all enterprise projects.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -474,7 +493,9 @@ class CachePreheat(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
-        The task execution result. Possible values: **task_done** (successful) and **task_inprocess** (processing).
+        The task execution result.
+        + **task_done**: successful.
+        + **task_inprocess**: processing.
         """
         return pulumi.get(self, "status")
 
@@ -501,8 +522,6 @@ class CachePreheat(pulumi.CustomResource):
         Specifies the URLs that need to be preheated.
         A URL must start with `http://` or `https://` and must contain the accelerated domain name.
         A URL can contain up to `4,096` characters. Enter up to `1,000` URLs and separate them by commas (,).
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "urls")
 
@@ -510,11 +529,10 @@ class CachePreheat(pulumi.CustomResource):
     @pulumi.getter(name="zhUrlEncode")
     def zh_url_encode(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Specifies whether to encode Chinese characters in URLs before cache preheat.
+        Specifies whether to encode Chinese characters in URLs before cache
+        preheat.
         The value **false** indicates disabled, and **true** indicates enabled. After enabled, cache is preheated only for
         transcode URLs. Defaults to **false**.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "zh_url_encode")
 

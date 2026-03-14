@@ -30,6 +30,7 @@ class PvcArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Pvc resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] access_modes: Specifies the desired access modes the volume should have.
                The valid values are as follows:
                + **ReadWriteOnce**: The volume can be mounted as read-write by a single node.
@@ -211,6 +212,7 @@ class _PvcState:
                  storage_class_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pvc resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] access_modes: Specifies the desired access modes the volume should have.
                The valid values are as follows:
                + **ReadWriteOnce**: The volume can be mounted as read-write by a single node.
@@ -504,39 +506,16 @@ class Pvc(pulumi.CustomResource):
 
         CCE PVC can be imported using the cluster ID, namespace and ID separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/pvc:Pvc test 5c20fdad-7288-11eb-b817-0255ac10158b/default/fa540f3b-12d9-40e5-8268-04bcfed95a46
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `annotations`.
-
         It is generally recommended running `pulumi preview` after importing a PVC.
-
         You can then decide if changes should be applied to the PVC, or the resource
-
         definition should be updated to align with the PVC. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cce_pvc" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              annotations,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -645,39 +624,16 @@ class Pvc(pulumi.CustomResource):
 
         CCE PVC can be imported using the cluster ID, namespace and ID separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/pvc:Pvc test 5c20fdad-7288-11eb-b817-0255ac10158b/default/fa540f3b-12d9-40e5-8268-04bcfed95a46
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `annotations`.
-
         It is generally recommended running `pulumi preview` after importing a PVC.
-
         You can then decide if changes should be applied to the PVC, or the resource
-
         definition should be updated to align with the PVC. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cce_pvc" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              annotations,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PvcArgs args: The arguments to use to populate this resource's properties.

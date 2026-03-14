@@ -30,6 +30,7 @@ class KafkaPartitionReassignArgs:
                  time_estimate: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a KafkaPartitionReassign resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS kafka instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['KafkaPartitionReassignReassignmentArgs']]] reassignments: Specifies the reassignment plan.
@@ -174,6 +175,7 @@ class _KafkaPartitionReassignState:
                  time_estimate: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering KafkaPartitionReassign resources.
+
         :param pulumi.Input[_builtins.int] execute_at: Specifies the schedule time. The value is a UNIX timestamp, in **ms**.
                It's required if `is_schedule` is **true**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS kafka instance ID.
@@ -419,6 +421,7 @@ class KafkaPartitionReassign(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] execute_at: Specifies the schedule time. The value is a UNIX timestamp, in **ms**.
@@ -515,6 +518,7 @@ class KafkaPartitionReassign(pulumi.CustomResource):
                 "replication_factor": 1,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaPartitionReassignArgs args: The arguments to use to populate this resource's properties.

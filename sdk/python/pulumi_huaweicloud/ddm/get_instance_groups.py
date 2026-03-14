@@ -95,7 +95,7 @@ def get_instance_groups(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     ddm_instance_id = config.require_object("ddmInstanceId")
-    test = huaweicloud.ddm.get_instance_groups(instance_id=ddm_instance_id)
+    test = huaweicloud.Ddm.get_instance_groups(instance_id=ddm_instance_id)
     ```
 
 
@@ -107,7 +107,7 @@ def get_instance_groups(instance_id: Optional[_builtins.str] = None,
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getInstanceGroups:getInstanceGroups', __args__, opts=opts, typ=GetInstanceGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getInstanceGroups:getInstanceGroups', __args__, opts=opts, typ=GetInstanceGroupsResult).value
 
     return AwaitableGetInstanceGroupsResult(
         group_lists=pulumi.get(__ret__, 'group_lists'),
@@ -128,7 +128,7 @@ def get_instance_groups_output(instance_id: Optional[pulumi.Input[_builtins.str]
 
     config = pulumi.Config()
     ddm_instance_id = config.require_object("ddmInstanceId")
-    test = huaweicloud.ddm.get_instance_groups(instance_id=ddm_instance_id)
+    test = huaweicloud.Ddm.get_instance_groups(instance_id=ddm_instance_id)
     ```
 
 
@@ -140,7 +140,7 @@ def get_instance_groups_output(instance_id: Optional[pulumi.Input[_builtins.str]
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getInstanceGroups:getInstanceGroups', __args__, opts=opts, typ=GetInstanceGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getInstanceGroups:getInstanceGroups', __args__, opts=opts, typ=GetInstanceGroupsResult)
     return __ret__.apply(lambda __response__: GetInstanceGroupsResult(
         group_lists=pulumi.get(__response__, 'group_lists'),
         id=pulumi.get(__response__, 'id'),

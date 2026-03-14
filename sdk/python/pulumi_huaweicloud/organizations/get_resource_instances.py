@@ -116,7 +116,7 @@ def get_resource_instances(matches: Optional[Sequence[Union['GetResourceInstance
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_resource_instances(resource_type="organizations:accounts")
+    test = huaweicloud.Organizations.get_resource_instances(resource_type="organizations:accounts")
     ```
 
 
@@ -142,7 +142,7 @@ def get_resource_instances(matches: Optional[Sequence[Union['GetResourceInstance
     __args__['tags'] = tags
     __args__['withoutAnyTag'] = without_any_tag
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult).value
 
     return AwaitableGetResourceInstancesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -165,7 +165,7 @@ def get_resource_instances_output(matches: Optional[pulumi.Input[Optional[Sequen
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_resource_instances(resource_type="organizations:accounts")
+    test = huaweicloud.Organizations.get_resource_instances(resource_type="organizations:accounts")
     ```
 
 
@@ -191,7 +191,7 @@ def get_resource_instances_output(matches: Optional[pulumi.Input[Optional[Sequen
     __args__['tags'] = tags
     __args__['withoutAnyTag'] = without_any_tag
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult)
     return __ret__.apply(lambda __response__: GetResourceInstancesResult(
         id=pulumi.get(__response__, 'id'),
         matches=pulumi.get(__response__, 'matches'),

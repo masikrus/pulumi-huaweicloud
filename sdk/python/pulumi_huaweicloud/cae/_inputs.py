@@ -49,32 +49,27 @@ __all__ = [
     'TimerRuleComponentArgsDict',
 ]
 
-MYPY = False
+class ComponentActionMetadataArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the action name.  
+    The valid values are as follows:
+    + **deploy**
+    + **configure**
+    + **upgrade**
+    + **rollback**
+    + **start**
+    + **restart**
+    + **stop**
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the key/value pairs parameters related to the component to be operated.  
+    Currently, only `version` is supported.
 
-if not MYPY:
-    class ComponentActionMetadataArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the action name.  
-        The valid values are as follows:
-        + **deploy**
-        + **configure**
-        + **upgrade**
-        + **rollback**
-        + **start**
-        + **restart**
-        + **stop**
-        """
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the key/value pairs parameters related to the component to be operated.  
-        Currently, only `version` is supported.
-
-        > If the `annotations` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-        you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
-        """
-elif False:
-    ComponentActionMetadataArgsDict: TypeAlias = Mapping[str, Any]
+    > If the `annotations` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+    you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
+    """
 
 @pulumi.input_type
 class ComponentActionMetadataArgs:
@@ -94,8 +89,8 @@ class ComponentActionMetadataArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies the key/value pairs parameters related to the component to be operated.  
                Currently, only `version` is supported.
                
-               > If the `annotations` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-               you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
+               > If the `annotations` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+               you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         pulumi.set(__self__, "name", name)
         if annotations is not None:
@@ -128,8 +123,8 @@ class ComponentActionMetadataArgs:
         Specifies the key/value pairs parameters related to the component to be operated.  
         Currently, only `version` is supported.
 
-        > If the `annotations` parameter specified in this resource is inconsistent with the `cae.Component` resource,
-        you can handle the changes in the `cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
+        > If the `annotations` parameter specified in this resource is inconsistent with the `Cae.Component` resource,
+        you can handle the changes in the `Cae.Component` resource by `lifecycle.ignore_changes` or manual synchronization.
         """
         return pulumi.get(self, "annotations")
 
@@ -138,20 +133,17 @@ class ComponentActionMetadataArgs:
         pulumi.set(self, "annotations", value)
 
 
-if not MYPY:
-    class ComponentConfigurationArgsDict(TypedDict):
-        data: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration detail, in JSON format.  
-        Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationData).
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the component configuration.  
-        Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationItem).
-        """
-elif False:
-    ComponentConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentConfigurationArgsDict(TypedDict):
+    data: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration detail, in JSON format.  
+    Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationData).
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the component configuration.  
+    Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationItem).
+    """
 
 @pulumi.input_type
 class ComponentConfigurationArgs:
@@ -194,20 +186,17 @@ class ComponentConfigurationArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ComponentConfigurationsItemArgsDict(TypedDict):
-        data: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration detail, in JSON format.  
-        Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationData).
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the configuration.  
-        Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationItem).
-        """
-elif False:
-    ComponentConfigurationsItemArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentConfigurationsItemArgsDict(TypedDict):
+    data: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration detail, in JSON format.  
+    Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationData).
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the configuration.  
+    Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationItem).
+    """
 
 @pulumi.input_type
 class ComponentConfigurationsItemArgs:
@@ -250,18 +239,15 @@ class ComponentConfigurationsItemArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ComponentDeploymentMetadataArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The action name.
-        """
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        The key/value pairs parameters related to the component to be operated.
-        """
-elif False:
-    ComponentDeploymentMetadataArgsDict: TypeAlias = Mapping[str, Any]
+class ComponentDeploymentMetadataArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The action name.
+    """
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The key/value pairs parameters related to the component to be operated.
+    """
 
 @pulumi.input_type
 class ComponentDeploymentMetadataArgs:
@@ -301,25 +287,22 @@ class ComponentDeploymentMetadataArgs:
         pulumi.set(self, "annotations", value)
 
 
-if not MYPY:
-    class ComponentMetadataArgsDict(TypedDict):
-        annotations: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
-        """
-        Specifies the key/value pairs parameters related to the component.
-        Currently, only `version` is supported and required.
-        The format is `A.B.C` or `A.B.C.D`, A, B, C and D must be integer. e.g.`1.0.0` or `1.0.0.0`
+class ComponentMetadataArgsDict(TypedDict):
+    annotations: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
+    """
+    Specifies the key/value pairs parameters related to the component.
+    Currently, only `version` is supported and required.
+    The format is `A.B.C` or `A.B.C.D`, A, B, C and D must be integer. e.g.`1.0.0` or `1.0.0.0`
 
-        <a name="component_spec"></a>
-        The `spec` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the component.
-        The name can contain `4` to `32` characters, only lowercase letters, digits, and hyphens (-) allowed.
-        The name must start with a lowercase letter and end with lowercase letters and digits.
-        """
-elif False:
-    ComponentMetadataArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_spec"></a>
+    The `spec` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the component.
+    The name can contain `4` to `32` characters, only lowercase letters, digits, and hyphens (-) allowed.
+    The name must start with a lowercase letter and end with lowercase letters and digits.
+    """
 
 @pulumi.input_type
 class ComponentMetadataArgs:
@@ -372,37 +355,34 @@ class ComponentMetadataArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ComponentSpecArgsDict(TypedDict):
-        replica: pulumi.Input[_builtins.int]
-        """
-        Specifies the instance number of the component. The valid value ranges from `1` to `99`.
-        """
-        resource_limit: pulumi.Input['ComponentSpecResourceLimitArgsDict']
-        """
-        Specifies instance specification corresponding to the component.
-        The resource_limit structure is documented below.
-        """
-        runtime: pulumi.Input[_builtins.str]
-        """
-        Specifies the component runtime to match. The valid values are **Docker**, **Java8**,
-        **Java11**, **Java17**, **Tomcat8**, **Tomcat9**, **Python3**, **Nodejs8**, **Nodejs14**, **Nodejs16**, and **Php7**.
-        """
-        source: pulumi.Input['ComponentSpecSourceArgsDict']
-        """
-        Specifies the code source configuration information corresponding to the component.
-        The source structure is documented below.
-        """
-        build: NotRequired[pulumi.Input['ComponentSpecBuildArgsDict']]
-        """
-        Specifies the build information of the code source corresponding to the component.
-        The build structure is documented below.
+class ComponentSpecArgsDict(TypedDict):
+    replica: pulumi.Input[_builtins.int]
+    """
+    Specifies the instance number of the component. The valid value ranges from `1` to `99`.
+    """
+    resource_limit: pulumi.Input['ComponentSpecResourceLimitArgsDict']
+    """
+    Specifies instance specification corresponding to the component.
+    The resource_limit structure is documented below.
+    """
+    runtime: pulumi.Input[_builtins.str]
+    """
+    Specifies the component runtime to match. The valid values are **Docker**, **Java8**,
+    **Java11**, **Java17**, **Tomcat8**, **Tomcat9**, **Python3**, **Nodejs8**, **Nodejs14**, **Nodejs16**, and **Php7**.
+    """
+    source: pulumi.Input['ComponentSpecSourceArgsDict']
+    """
+    Specifies the code source configuration information corresponding to the component.
+    The source structure is documented below.
+    """
+    build: NotRequired[pulumi.Input['ComponentSpecBuildArgsDict']]
+    """
+    Specifies the build information of the code source corresponding to the component.
+    The build structure is documented below.
 
-        <a name="component_spec_resource_limit"></a>
-        The `resource_limit` block supports:
-        """
-elif False:
-    ComponentSpecArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_spec_resource_limit"></a>
+    The `resource_limit` block supports:
+    """
 
 @pulumi.input_type
 class ComponentSpecArgs:
@@ -501,34 +481,31 @@ class ComponentSpecArgs:
         pulumi.set(self, "build", value)
 
 
-if not MYPY:
-    class ComponentSpecBuildArgsDict(TypedDict):
-        archive: pulumi.Input['ComponentSpecBuildArchiveArgsDict']
-        """
-        Specifies product configuration after building the code source corresponding to component.
-        The archive structure is documented below.
-        """
-        parameters: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
-        """
-        Specifies the key/value pairs configuration information required to build the code source
-        corresponding to the component.
-        It is required when `source.type` is **code** or **softwarePackage**.
-        + **base_image**: Base image address.
-        + **build_cmd**: Custom build command.
-        + **dockerfile_content**: Custom dockerfile content.
-        + **dockerfile_path**: Custom dockerfile file path.
-        + **artifact_name**: Select and run the specified JAR package from multiple JAR packages generated during Maven build.
-        The JAR package end with **.jar**. Fuzzy match is supported. e.g. `demo-1.0.jar`, `demo*.jar`.
+class ComponentSpecBuildArgsDict(TypedDict):
+    archive: pulumi.Input['ComponentSpecBuildArchiveArgsDict']
+    """
+    Specifies product configuration after building the code source corresponding to component.
+    The archive structure is documented below.
+    """
+    parameters: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
+    """
+    Specifies the key/value pairs configuration information required to build the code source
+    corresponding to the component.
+    It is required when `source.type` is **code** or **softwarePackage**.
+    + **base_image**: Base image address.
+    + **build_cmd**: Custom build command.
+    + **dockerfile_content**: Custom dockerfile content.
+    + **dockerfile_path**: Custom dockerfile file path.
+    + **artifact_name**: Select and run the specified JAR package from multiple JAR packages generated during Maven build.
+    The JAR package end with **.jar**. Fuzzy match is supported. e.g. `demo-1.0.jar`, `demo*.jar`.
 
-        > `build_cmd`, `dockerfile_path` and `artifact_name` parameters are valid only when `source.type` is set to `code`.
-        `dockerfile_path` and `artifact_name` parameters can't be set at the same time.
-        `dockerfile_content` is valid only when `source.type` is set to `softwarePackage`.
+    > `build_cmd`, `dockerfile_path` and `artifact_name` parameters are valid only when `source.type` is set to `code`.
+    `dockerfile_path` and `artifact_name` parameters can't be set at the same time.
+    `dockerfile_content` is valid only when `source.type` is set to `softwarePackage`.
 
-        <a name="component_spec_build_archive"></a>
-        The `archive` block supports:
-        """
-elif False:
-    ComponentSpecBuildArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_spec_build_archive"></a>
+    The `archive` block supports:
+    """
 
 @pulumi.input_type
 class ComponentSpecBuildArgs:
@@ -599,18 +576,15 @@ class ComponentSpecBuildArgs:
         pulumi.set(self, "parameters", value)
 
 
-if not MYPY:
-    class ComponentSpecBuildArchiveArgsDict(TypedDict):
-        artifact_namespace: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the SWR organization after the code source
-        corresponding to component is built.
+class ComponentSpecBuildArchiveArgsDict(TypedDict):
+    artifact_namespace: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the SWR organization after the code source
+    corresponding to component is built.
 
-        <a name="component_configurations"></a>
-        The `configurations` block supports:
-        """
-elif False:
-    ComponentSpecBuildArchiveArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_configurations"></a>
+    The `configurations` block supports:
+    """
 
 @pulumi.input_type
 class ComponentSpecBuildArchiveArgs:
@@ -642,23 +616,20 @@ class ComponentSpecBuildArchiveArgs:
         pulumi.set(self, "artifact_namespace", value)
 
 
-if not MYPY:
-    class ComponentSpecResourceLimitArgsDict(TypedDict):
-        cpu: pulumi.Input[_builtins.str]
-        """
-        Specifies CPU core. The valid values are **500m**, **1000m** and **2000m**.
-        """
-        memory: pulumi.Input[_builtins.str]
-        """
-        Specifies memory size. The valid values are **1Gi**, **2Gi** and **4Gi**.
+class ComponentSpecResourceLimitArgsDict(TypedDict):
+    cpu: pulumi.Input[_builtins.str]
+    """
+    Specifies CPU core. The valid values are **500m**, **1000m** and **2000m**.
+    """
+    memory: pulumi.Input[_builtins.str]
+    """
+    Specifies memory size. The valid values are **1Gi**, **2Gi** and **4Gi**.
 
-        > If `cpu` parameter is set to `500m`, this parameter cannot be set to `4Gi`.
+    > If `cpu` parameter is set to `500m`, this parameter cannot be set to `4Gi`.
 
-        <a name="component_spec_source"></a>
-        The `source` block supports:
-        """
-elif False:
-    ComponentSpecResourceLimitArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_spec_source"></a>
+    The `source` block supports:
+    """
 
 @pulumi.input_type
 class ComponentSpecResourceLimitArgs:
@@ -707,40 +678,37 @@ class ComponentSpecResourceLimitArgs:
         pulumi.set(self, "memory", value)
 
 
-if not MYPY:
-    class ComponentSpecSourceArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the component configuration.  
-        Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationItem).
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies code source URL corresponding to the component.
-        + When `type` is **image**, the URL represents image URL.
-        + When `type` is **code**, the URL represents Git URL.
-        + When `type` is **softwarePackage**, the URL represents software package URL.
-        """
-        code: NotRequired[pulumi.Input['ComponentSpecSourceCodeArgsDict']]
-        """
-        Specifies code source repository.
-        The code structure is documented below.
+class ComponentSpecSourceArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the component configuration.  
+    Please following [reference documentation](https://support.huaweicloud.com/api-cae/CreateComponentConfiguration.html#CreateComponentConfiguration__request_ConfigurationItem).
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies code source URL corresponding to the component.
+    + When `type` is **image**, the URL represents image URL.
+    + When `type` is **code**, the URL represents Git URL.
+    + When `type` is **softwarePackage**, the URL represents software package URL.
+    """
+    code: NotRequired[pulumi.Input['ComponentSpecSourceCodeArgsDict']]
+    """
+    Specifies code source repository.
+    The code structure is documented below.
 
-        <a name="component_spec_source_code"></a>
-        The `code` block supports:
-        """
-        sub_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the subtype corresponding to the code source.
-        If the `source.type` is set to `code`, the `sub_type` parameter means different code repositories.
-        The valid values are `DevCloud`, `GitHub`, `GitLab`, `Gitee` and `Bitbucket`.
-        If the `source.type` is set to `softwarePackage`, the `sub_type` parameter means different software package repositories.
-        The valid values are `BinObs` and `BinDevCloud`.
+    <a name="component_spec_source_code"></a>
+    The `code` block supports:
+    """
+    sub_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subtype corresponding to the code source.
+    If the `source.type` is set to `code`, the `sub_type` parameter means different code repositories.
+    The valid values are `DevCloud`, `GitHub`, `GitLab`, `Gitee` and `Bitbucket`.
+    If the `source.type` is set to `softwarePackage`, the `sub_type` parameter means different software package repositories.
+    The valid values are `BinObs` and `BinDevCloud`.
 
-        > The parameter is required when `source.type` is set to `code` or `softwarePackage`.
-        """
-elif False:
-    ComponentSpecSourceArgsDict: TypeAlias = Mapping[str, Any]
+    > The parameter is required when `source.type` is set to `code` or `softwarePackage`.
+    """
 
 @pulumi.input_type
 class ComponentSpecSourceArgs:
@@ -839,25 +807,22 @@ class ComponentSpecSourceArgs:
         pulumi.set(self, "sub_type", value)
 
 
-if not MYPY:
-    class ComponentSpecSourceCodeArgsDict(TypedDict):
-        auth_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of authorization corresponding to the code source.
-        """
-        branch: pulumi.Input[_builtins.str]
-        """
-        Specifies the branch name of code source repository.
-        """
-        namespace: pulumi.Input[_builtins.str]
-        """
-        Specifies the username or organization corresponding to the code source repository.
+class ComponentSpecSourceCodeArgsDict(TypedDict):
+    auth_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of authorization corresponding to the code source.
+    """
+    branch: pulumi.Input[_builtins.str]
+    """
+    Specifies the branch name of code source repository.
+    """
+    namespace: pulumi.Input[_builtins.str]
+    """
+    Specifies the username or organization corresponding to the code source repository.
 
-        <a name="component_spec_build"></a>
-        The `build` block supports:
-        """
-elif False:
-    ComponentSpecSourceCodeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_spec_build"></a>
+    The `build` block supports:
+    """
 
 @pulumi.input_type
 class ComponentSpecSourceCodeArgs:
@@ -917,42 +882,39 @@ class ComponentSpecSourceCodeArgs:
         pulumi.set(self, "namespace", value)
 
 
-if not MYPY:
-    class NotificationRuleNotificationArgsDict(TypedDict):
-        endpoint: pulumi.Input[_builtins.str]
-        """
-        Specifies the endpoint of the event notification.
-        Changing this creates a new resource.
-        + If `notification.type` is set to **sms**, the endpoint is a phone number.
-        + If `notification.type` is set to **email**, the endpoint is a email address.
-        + If `notification.type` is set to **wechat**, the endpoint is a webhook address starting with
-        `https://qyapi.weixin.qq.com/cgi-bin/webhook/send`.
-        you want to use this parameter, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html)
-        to submit a service ticket to apply for it.
-        For details about how to obtain a WeCom subscription endpoint, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/smn_faq/smn_faq_0027.html).
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol of the event notification.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **sms**
-        + **email**
-        + **wechat**
-        """
-        template: pulumi.Input[_builtins.str]
-        """
-        Specifies the template language of the event notification.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **EN**
-        + **ZH**
+class NotificationRuleNotificationArgsDict(TypedDict):
+    endpoint: pulumi.Input[_builtins.str]
+    """
+    Specifies the endpoint of the event notification.
+    Changing this creates a new resource.
+    + If `notification.type` is set to **sms**, the endpoint is a phone number.
+    + If `notification.type` is set to **email**, the endpoint is a email address.
+    + If `notification.type` is set to **wechat**, the endpoint is a webhook address starting with
+    `https://qyapi.weixin.qq.com/cgi-bin/webhook/send`.
+    you want to use this parameter, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html)
+    to submit a service ticket to apply for it.
+    For details about how to obtain a WeCom subscription endpoint, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/smn_faq/smn_faq_0027.html).
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol of the event notification.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **sms**
+    + **email**
+    + **wechat**
+    """
+    template: pulumi.Input[_builtins.str]
+    """
+    Specifies the template language of the event notification.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **EN**
+    + **ZH**
 
-        <a name="notification_rule_scope"></a>
-        The `scope` block supports:
-        """
-elif False:
-    NotificationRuleNotificationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="notification_rule_scope"></a>
+    The `scope` block supports:
+    """
 
 @pulumi.input_type
 class NotificationRuleNotificationArgs:
@@ -1046,35 +1008,32 @@ class NotificationRuleNotificationArgs:
         pulumi.set(self, "template", value)
 
 
-if not MYPY:
-    class NotificationRuleScopeArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the trigger.  
-        The valid values are as follows:
-        + **accumulative**
-        + **immediately**
-        """
-        applications: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of the applications IDs.  
-        This parameter is required and available only when the `scope.type` parameter is set to **applications**.
-        """
-        components: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of the components IDs.  
-        This parameter is required and available only when the `scope.type` parameter is set to **components**.
+class NotificationRuleScopeArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the trigger.  
+    The valid values are as follows:
+    + **accumulative**
+    + **immediately**
+    """
+    applications: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of the applications IDs.  
+    This parameter is required and available only when the `scope.type` parameter is set to **applications**.
+    """
+    components: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of the components IDs.  
+    This parameter is required and available only when the `scope.type` parameter is set to **components**.
 
-        <a name="notification_rule_trigger_policy"></a>
-        The `trigger_policy` block supports:
-        """
-        environments: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of the environment IDs.  
-        This parameter is required and available only when the `scope.type` parameter is set to **environments**.
-        """
-elif False:
-    NotificationRuleScopeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="notification_rule_trigger_policy"></a>
+    The `trigger_policy` block supports:
+    """
+    environments: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of the environment IDs.  
+    This parameter is required and available only when the `scope.type` parameter is set to **environments**.
+    """
 
 @pulumi.input_type
 class NotificationRuleScopeArgs:
@@ -1164,40 +1123,37 @@ class NotificationRuleScopeArgs:
         pulumi.set(self, "environments", value)
 
 
-if not MYPY:
-    class NotificationRuleTriggerPolicyArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the trigger.  
-        The valid values are as follows:
-        + **accumulative**
-        + **immediately**
-        """
-        count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of times the event occurred.  
-        The valid value ranges from `1` to `100`.
-        This parameter is required and available only when the `trigger_policy.type` parameter is set to **accumulative**.
-        """
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the condition of the event notification.  
-        The valid values are **>** and **>=**.
-        This parameter is required and available only when the `trigger_policy.type` parameter is set to **accumulative**.
-        """
-        period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the trigger period of the event. The unit is second.  
-        This parameter is required and available only when the `trigger_policy.type` parameter is set to **accumulative**.
-        The valid values are as follows:
-        + **300**
-        + **1200**
-        + **3600**
-        + **14400**
-        + **86400**
-        """
-elif False:
-    NotificationRuleTriggerPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class NotificationRuleTriggerPolicyArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the trigger.  
+    The valid values are as follows:
+    + **accumulative**
+    + **immediately**
+    """
+    count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of times the event occurred.  
+    The valid value ranges from `1` to `100`.
+    This parameter is required and available only when the `trigger_policy.type` parameter is set to **accumulative**.
+    """
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the condition of the event notification.  
+    The valid values are **>** and **>=**.
+    This parameter is required and available only when the `trigger_policy.type` parameter is set to **accumulative**.
+    """
+    period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the trigger period of the event. The unit is second.  
+    This parameter is required and available only when the `trigger_policy.type` parameter is set to **accumulative**.
+    The valid values are as follows:
+    + **300**
+    + **1200**
+    + **3600**
+    + **14400**
+    + **86400**
+    """
 
 @pulumi.input_type
 class NotificationRuleTriggerPolicyArgs:
@@ -1297,18 +1253,15 @@ class NotificationRuleTriggerPolicyArgs:
         pulumi.set(self, "period", value)
 
 
-if not MYPY:
-    class TimerRuleApplicationArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the component.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the component.
-        """
-elif False:
-    TimerRuleApplicationArgsDict: TypeAlias = Mapping[str, Any]
+class TimerRuleApplicationArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the component.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the component.
+    """
 
 @pulumi.input_type
 class TimerRuleApplicationArgs:
@@ -1348,18 +1301,15 @@ class TimerRuleApplicationArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class TimerRuleComponentArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the component.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the component.
-        """
-elif False:
-    TimerRuleComponentArgsDict: TypeAlias = Mapping[str, Any]
+class TimerRuleComponentArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the component.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the component.
+    """
 
 @pulumi.input_type
 class TimerRuleComponentArgs:

@@ -30,6 +30,7 @@ class ListenerV2Args:
                  default_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
                  default_tls_container_ref: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  http2_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  insert_headers: Optional[pulumi.Input['ListenerV2InsertHeadersArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -64,6 +65,8 @@ class ListenerV2Args:
             pulumi.set(__self__, "default_tls_container_ref", default_tls_container_ref)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if http2_enable is not None:
             pulumi.set(__self__, "http2_enable", http2_enable)
         if insert_headers is not None:
@@ -172,6 +175,15 @@ class ListenerV2Args:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter(name="http2Enable")
     def http2_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         return pulumi.get(self, "http2_enable")
@@ -273,6 +285,7 @@ class _ListenerV2State:
                  default_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
                  default_tls_container_ref: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  http2_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  insert_headers: Optional[pulumi.Input['ListenerV2InsertHeadersArgs']] = None,
                  loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -310,6 +323,8 @@ class _ListenerV2State:
             pulumi.set(__self__, "default_tls_container_ref", default_tls_container_ref)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if http2_enable is not None:
             pulumi.set(__self__, "http2_enable", http2_enable)
         if insert_headers is not None:
@@ -406,6 +421,15 @@ class _ListenerV2State:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
 
     @_builtins.property
     @pulumi.getter(name="http2Enable")
@@ -547,6 +571,7 @@ class ListenerV2(pulumi.CustomResource):
                  default_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
                  default_tls_container_ref: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  http2_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  insert_headers: Optional[pulumi.Input[Union['ListenerV2InsertHeadersArgs', 'ListenerV2InsertHeadersArgsDict']]] = None,
                  loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -563,6 +588,7 @@ class ListenerV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a ListenerV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -574,6 +600,7 @@ class ListenerV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ListenerV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ListenerV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -595,6 +622,7 @@ class ListenerV2(pulumi.CustomResource):
                  default_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
                  default_tls_container_ref: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  http2_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  insert_headers: Optional[pulumi.Input[Union['ListenerV2InsertHeadersArgs', 'ListenerV2InsertHeadersArgsDict']]] = None,
                  loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -623,6 +651,7 @@ class ListenerV2(pulumi.CustomResource):
             __props__.__dict__["default_pool_id"] = default_pool_id
             __props__.__dict__["default_tls_container_ref"] = default_tls_container_ref
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["http2_enable"] = http2_enable
             __props__.__dict__["insert_headers"] = insert_headers
             if loadbalancer_id is None and not opts.urn:
@@ -661,6 +690,7 @@ class ListenerV2(pulumi.CustomResource):
             default_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
             default_tls_container_ref: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             http2_enable: Optional[pulumi.Input[_builtins.bool]] = None,
             insert_headers: Optional[pulumi.Input[Union['ListenerV2InsertHeadersArgs', 'ListenerV2InsertHeadersArgsDict']]] = None,
             loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -694,6 +724,7 @@ class ListenerV2(pulumi.CustomResource):
         __props__.__dict__["default_pool_id"] = default_pool_id
         __props__.__dict__["default_tls_container_ref"] = default_tls_container_ref
         __props__.__dict__["description"] = description
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["http2_enable"] = http2_enable
         __props__.__dict__["insert_headers"] = insert_headers
         __props__.__dict__["loadbalancer_id"] = loadbalancer_id
@@ -746,6 +777,11 @@ class ListenerV2(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter(name="http2Enable")

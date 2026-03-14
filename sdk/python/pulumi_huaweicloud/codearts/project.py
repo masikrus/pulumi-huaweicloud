@@ -28,6 +28,7 @@ class ProjectArgs:
                  template_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Project resource.
+
         :param pulumi.Input[_builtins.str] type: The type of project.  
                The valid values are **scrum**, **xboard**, **basic**, **phoenix**.
                
@@ -174,6 +175,7 @@ class _ProjectState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Project resources.
+
         :param pulumi.Input[_builtins.int] archive: Whether the project is archived.
         :param pulumi.Input[_builtins.str] description: The description about the project.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID of the project.  
@@ -351,7 +353,7 @@ class _ProjectState:
         pulumi.set(self, "type", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/project:Project")
+@pulumi.type_token("huaweicloud:Codearts/project:Project")
 class Project(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -383,11 +385,10 @@ class Project(pulumi.CustomResource):
 
         The project can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/project:Project test 0ce123456a00f2591fabc00385ff1234
+        $ pulumi import huaweicloud:Codearts/project:Project test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -435,11 +436,10 @@ class Project(pulumi.CustomResource):
 
         The project can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/project:Project test 0ce123456a00f2591fabc00385ff1234
+        $ pulumi import huaweicloud:Codearts/project:Project test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectArgs args: The arguments to use to populate this resource's properties.
@@ -485,7 +485,7 @@ class Project(pulumi.CustomResource):
             __props__.__dict__["project_code"] = None
             __props__.__dict__["project_num_id"] = None
         super(Project, __self__).__init__(
-            'huaweicloud:codearts/project:Project',
+            'huaweicloud:Codearts/project:Project',
             resource_name,
             __props__,
             opts)

@@ -125,7 +125,7 @@ def get_baseline_check_results(condition: Optional[Mapping[str, _builtins.str]] 
     workspace_id = config.require_object("workspaceId")
     from_date = config.require_object("fromDate")
     to_date = config.require_object("toDate")
-    test = huaweicloud.secmaster.get_baseline_check_results(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_baseline_check_results(workspace_id=workspace_id,
         from_date=from_date,
         to_date=to_date)
     ```
@@ -147,7 +147,7 @@ def get_baseline_check_results(condition: Optional[Mapping[str, _builtins.str]] 
     __args__['toDate'] = to_date
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getBaselineCheckResults:getBaselineCheckResults', __args__, opts=opts, typ=GetBaselineCheckResultsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getBaselineCheckResults:getBaselineCheckResults', __args__, opts=opts, typ=GetBaselineCheckResultsResult).value
 
     return AwaitableGetBaselineCheckResultsResult(
         baseline_check_results=pulumi.get(__ret__, 'baseline_check_results'),
@@ -176,7 +176,7 @@ def get_baseline_check_results_output(condition: Optional[pulumi.Input[Optional[
     workspace_id = config.require_object("workspaceId")
     from_date = config.require_object("fromDate")
     to_date = config.require_object("toDate")
-    test = huaweicloud.secmaster.get_baseline_check_results(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_baseline_check_results(workspace_id=workspace_id,
         from_date=from_date,
         to_date=to_date)
     ```
@@ -198,7 +198,7 @@ def get_baseline_check_results_output(condition: Optional[pulumi.Input[Optional[
     __args__['toDate'] = to_date
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getBaselineCheckResults:getBaselineCheckResults', __args__, opts=opts, typ=GetBaselineCheckResultsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getBaselineCheckResults:getBaselineCheckResults', __args__, opts=opts, typ=GetBaselineCheckResultsResult)
     return __ret__.apply(lambda __response__: GetBaselineCheckResultsResult(
         baseline_check_results=pulumi.get(__response__, 'baseline_check_results'),
         condition=pulumi.get(__response__, 'condition'),

@@ -27,6 +27,7 @@ class DataEncryptDecryptArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataEncryptDecrypt resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type.
                Changing this will create a new resource.
                The valid values are as follow:
@@ -183,6 +184,7 @@ class _DataEncryptDecryptState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataEncryptDecrypt resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type.
                Changing this will create a new resource.
                The valid values are as follow:
@@ -426,6 +428,7 @@ class DataEncryptDecrypt(pulumi.CustomResource):
             cipher_text=cipher_text)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the operation type.
@@ -503,6 +506,7 @@ class DataEncryptDecrypt(pulumi.CustomResource):
             action="decrypt",
             cipher_text=cipher_text)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataEncryptDecryptArgs args: The arguments to use to populate this resource's properties.

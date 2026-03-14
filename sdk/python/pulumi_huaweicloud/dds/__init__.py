@@ -11,11 +11,13 @@ from .audit_log_policy import *
 from .backup import *
 from .collection_restore import *
 from .database_role import *
+from .database_upgrade import *
 from .database_user import *
 from .get_audit_log_links import *
 from .get_audit_logs import *
 from .get_backup_download_links import *
 from .get_backups import *
+from .get_connection_statistics import *
 from .get_database_roles import *
 from .get_database_users import *
 from .get_database_versions import *
@@ -24,10 +26,14 @@ from .get_error_log_links import *
 from .get_error_logs import *
 from .get_flavors import *
 from .get_flavors_v3 import *
+from .get_instance_disk_usage import *
 from .get_instance_parameter_modification_records import *
 from .get_instances import *
+from .get_instances_by_tags import *
 from .get_instant_tasks import *
+from .get_kill_op_rules import *
 from .get_migrate_availability_zones import *
+from .get_node_sessions import *
 from .get_parameter_templates import *
 from .get_pt_applicable_instances import *
 from .get_pt_application_records import *
@@ -42,6 +48,7 @@ from .get_slow_log_links import *
 from .get_slow_logs import *
 from .get_ssl_cert_download_links import *
 from .get_storage_types import *
+from .get_tags import *
 from .instance import *
 from .instance_eip_associate import *
 from .instance_flavor_update import *
@@ -54,6 +61,7 @@ from .instance_restore import *
 from .instance_storage_space_update import *
 from .instance_v3 import *
 from .lts_log import *
+from .node_session_kill import *
 from .parameter_template import *
 from .parameter_template_apply import *
 from .parameter_template_compare import *

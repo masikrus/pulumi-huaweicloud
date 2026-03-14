@@ -82,7 +82,7 @@ def get_p2c_gateways(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.vpn.get_p2c_gateways()
+    test = huaweicloud.Vpn.get_p2c_gateways()
     ```
 
 
@@ -92,7 +92,7 @@ def get_p2c_gateways(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getP2cGateways:getP2cGateways', __args__, opts=opts, typ=GetP2cGatewaysResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getP2cGateways:getP2cGateways', __args__, opts=opts, typ=GetP2cGatewaysResult).value
 
     return AwaitableGetP2cGatewaysResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_p2c_gateways_output(region: Optional[pulumi.Input[Optional[_builtins.str
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.vpn.get_p2c_gateways()
+    test = huaweicloud.Vpn.get_p2c_gateways()
     ```
 
 
@@ -119,7 +119,7 @@ def get_p2c_gateways_output(region: Optional[pulumi.Input[Optional[_builtins.str
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getP2cGateways:getP2cGateways', __args__, opts=opts, typ=GetP2cGatewaysResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getP2cGateways:getP2cGateways', __args__, opts=opts, typ=GetP2cGatewaysResult)
     return __ret__.apply(lambda __response__: GetP2cGatewaysResult(
         id=pulumi.get(__response__, 'id'),
         p2c_vpn_gateways=pulumi.get(__response__, 'p2c_vpn_gateways'),

@@ -35,6 +35,7 @@ class SecurityPermissionSetPrivilegeArgs:
                  table_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityPermissionSetPrivilege resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] actions: Specifies the list of granted permissions. The valid length is limited from `1` to `32`,
                The valid permissions are documented below.
         :param pulumi.Input[_builtins.str] cluster_name: Specifies the cluster name corresponding to the granted data source.
@@ -321,6 +322,7 @@ class _SecurityPermissionSetPrivilegeState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityPermissionSetPrivilege resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] actions: Specifies the list of granted permissions. The valid length is limited from `1` to `32`,
                The valid permissions are documented below.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID corresponding to the granted data source.
@@ -688,41 +690,17 @@ class SecurityPermissionSetPrivilege(pulumi.CustomResource):
 
         The resource can be imported using `workspace_id`, `permission_set_id` and `id`, separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/securityPermissionSetPrivilege:SecurityPermissionSetPrivilege test <workspace_id>/<permission_set_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `connection_id`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_security_permission_set_privilege" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              connection_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -819,41 +797,17 @@ class SecurityPermissionSetPrivilege(pulumi.CustomResource):
 
         The resource can be imported using `workspace_id`, `permission_set_id` and `id`, separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/securityPermissionSetPrivilege:SecurityPermissionSetPrivilege test <workspace_id>/<permission_set_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `connection_id`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_security_permission_set_privilege" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              connection_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param SecurityPermissionSetPrivilegeArgs args: The arguments to use to populate this resource's properties.

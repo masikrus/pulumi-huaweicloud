@@ -29,6 +29,7 @@ class AnalyzerArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Analyzer resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the type of the analyzer.
                The value can be: **account**, **organization**, **account_unused_access** and **organization_unused_access**.
         :param pulumi.Input['AnalyzerConfigurationArgs'] configuration: Specifies the configuration of the analyzer.
@@ -132,6 +133,7 @@ class AnalyzerArgs:
 @pulumi.input_type
 class _AnalyzerState:
     def __init__(__self__, *,
+                 analyzer_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  configuration: Optional[pulumi.Input['AnalyzerConfigurationArgs']] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
@@ -143,10 +145,11 @@ class _AnalyzerState:
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  status_reasons: Optional[pulumi.Input[Sequence[pulumi.Input['AnalyzerStatusReasonArgs']]]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Analyzer resources.
+
+        :param pulumi.Input[_builtins.str] analyzer_urn: The resource analyzer identifier.
         :param pulumi.Input['AnalyzerConfigurationArgs'] configuration: Specifies the configuration of the analyzer.
                The configuration structure is documented below.
         :param pulumi.Input[_builtins.str] created_at: The time when the analyzer was created.
@@ -165,8 +168,9 @@ class _AnalyzerState:
                The `configuration` block supports:
         :param pulumi.Input[_builtins.str] type: Specifies the type of the analyzer.
                The value can be: **account**, **organization**, **account_unused_access** and **organization_unused_access**.
-        :param pulumi.Input[_builtins.str] urn: The resource analyzer identifier.
         """
+        if analyzer_urn is not None:
+            pulumi.set(__self__, "analyzer_urn", analyzer_urn)
         if configuration is not None:
             pulumi.set(__self__, "configuration", configuration)
         if created_at is not None:
@@ -191,8 +195,18 @@ class _AnalyzerState:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
             pulumi.set(__self__, "type", type)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="analyzerUrn")
+    def analyzer_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The resource analyzer identifier.
+        """
+        return pulumi.get(self, "analyzer_urn")
+
+    @analyzer_urn.setter
+    def analyzer_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "analyzer_urn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -342,20 +356,8 @@ class _AnalyzerState:
     def type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "type", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The resource analyzer identifier.
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:access/analyzer:Analyzer")
+@pulumi.type_token("huaweicloud:Access/analyzer:Analyzer")
 class Analyzer(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -392,11 +394,10 @@ class Analyzer(pulumi.CustomResource):
 
         Analyzers can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:access/analyzer:Analyzer test 3b7e65af-e75b-4d78-ac75-2a87924cd2a2
+        $ pulumi import huaweicloud:Access/analyzer:Analyzer test 3b7e65af-e75b-4d78-ac75-2a87924cd2a2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -442,11 +443,10 @@ class Analyzer(pulumi.CustomResource):
 
         Analyzers can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:access/analyzer:Analyzer test 3b7e65af-e75b-4d78-ac75-2a87924cd2a2
+        $ pulumi import huaweicloud:Access/analyzer:Analyzer test 3b7e65af-e75b-4d78-ac75-2a87924cd2a2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AnalyzerArgs args: The arguments to use to populate this resource's properties.
@@ -486,15 +486,15 @@ class Analyzer(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["analyzer_urn"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["last_analyzed_resource"] = None
             __props__.__dict__["last_resource_analyzed_at"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["status_reasons"] = None
-            __props__.__dict__["urn"] = None
         super(Analyzer, __self__).__init__(
-            'huaweicloud:access/analyzer:Analyzer',
+            'huaweicloud:Access/analyzer:Analyzer',
             resource_name,
             __props__,
             opts)
@@ -503,6 +503,7 @@ class Analyzer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            analyzer_urn: Optional[pulumi.Input[_builtins.str]] = None,
             configuration: Optional[pulumi.Input[Union['AnalyzerConfigurationArgs', 'AnalyzerConfigurationArgsDict']]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
@@ -514,8 +515,7 @@ class Analyzer(pulumi.CustomResource):
             status: Optional[pulumi.Input[_builtins.str]] = None,
             status_reasons: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AnalyzerStatusReasonArgs', 'AnalyzerStatusReasonArgsDict']]]]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'Analyzer':
+            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Analyzer':
         """
         Get an existing Analyzer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -523,6 +523,7 @@ class Analyzer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] analyzer_urn: The resource analyzer identifier.
         :param pulumi.Input[Union['AnalyzerConfigurationArgs', 'AnalyzerConfigurationArgsDict']] configuration: Specifies the configuration of the analyzer.
                The configuration structure is documented below.
         :param pulumi.Input[_builtins.str] created_at: The time when the analyzer was created.
@@ -541,12 +542,12 @@ class Analyzer(pulumi.CustomResource):
                The `configuration` block supports:
         :param pulumi.Input[_builtins.str] type: Specifies the type of the analyzer.
                The value can be: **account**, **organization**, **account_unused_access** and **organization_unused_access**.
-        :param pulumi.Input[_builtins.str] urn: The resource analyzer identifier.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AnalyzerState.__new__(_AnalyzerState)
 
+        __props__.__dict__["analyzer_urn"] = analyzer_urn
         __props__.__dict__["configuration"] = configuration
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["enable_force_new"] = enable_force_new
@@ -559,8 +560,15 @@ class Analyzer(pulumi.CustomResource):
         __props__.__dict__["status_reasons"] = status_reasons
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
-        __props__.__dict__["urn"] = urn
         return Analyzer(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="analyzerUrn")
+    def analyzer_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The resource analyzer identifier.
+        """
+        return pulumi.get(self, "analyzer_urn")
 
     @_builtins.property
     @pulumi.getter
@@ -661,12 +669,4 @@ class Analyzer(pulumi.CustomResource):
         The value can be: **account**, **organization**, **account_unused_access** and **organization_unused_access**.
         """
         return pulumi.get(self, "type")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        The resource analyzer identifier.
-        """
-        return pulumi.get(self, "urn")
 

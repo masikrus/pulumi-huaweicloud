@@ -26,6 +26,7 @@ class EipAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EipAssociate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of ECS instance to associated with.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] bandwidth_id: Specifies the **shared** bandwidth ID to associate.
@@ -128,6 +129,7 @@ class _EipAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EipAssociate resources.
+
         :param pulumi.Input[_builtins.str] bandwidth_id: Specifies the **shared** bandwidth ID to associate.
                It's **mandatory** when you want to associate the ECS instance with a specified shared bandwidth.
                Changing this creates a new resource.
@@ -256,12 +258,12 @@ class EipAssociate(pulumi.CustomResource):
         ## Import
 
         This resource can be imported using the related `eip address` or `bandwidth_id`, `instance_id` and `fixed_ip`,
-
         separated by slashes, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Ecs/eipAssociate:EipAssociate bind <eip address or bandwidth_id>/<instance_id>/<fixed_ip>
+        $ terraform import huaweicloud_compute_eip_associate.bind <eip address or bandwidth_id>/<instance_id>/<fixed_ip>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -293,12 +295,12 @@ class EipAssociate(pulumi.CustomResource):
         ## Import
 
         This resource can be imported using the related `eip address` or `bandwidth_id`, `instance_id` and `fixed_ip`,
-
         separated by slashes, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Ecs/eipAssociate:EipAssociate bind <eip address or bandwidth_id>/<instance_id>/<fixed_ip>
+        $ terraform import huaweicloud_compute_eip_associate.bind <eip address or bandwidth_id>/<instance_id>/<fixed_ip>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EipAssociateArgs args: The arguments to use to populate this resource's properties.

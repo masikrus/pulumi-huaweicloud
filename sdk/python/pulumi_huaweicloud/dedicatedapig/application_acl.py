@@ -26,6 +26,7 @@ class ApplicationAclArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApplicationAcl resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application to which the ACL rules belong.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the application
@@ -136,6 +137,7 @@ class _ApplicationAclState:
                  values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ApplicationAcl resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application to which the ACL rules belong.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the application
@@ -274,14 +276,12 @@ class ApplicationAcl(pulumi.CustomResource):
         ## Import
 
         ACL rules can be imported using the related dedicate instance ID (`instance_id`) and the resource ID (`id`, also the
-
         `application_id`) and the ID of the , separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/applicationAcl:ApplicationAcl test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -332,14 +332,12 @@ class ApplicationAcl(pulumi.CustomResource):
         ## Import
 
         ACL rules can be imported using the related dedicate instance ID (`instance_id`) and the resource ID (`id`, also the
-
         `application_id`) and the ID of the , separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/applicationAcl:ApplicationAcl test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationAclArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class InstanceEipAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceEipAssociate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of an RDS instance.
         :param pulumi.Input[_builtins.str] public_ip: Specifies the EIP address to be bound.
         :param pulumi.Input[_builtins.str] public_ip_id: Specifies the EIP ID.
@@ -109,6 +110,7 @@ class _InstanceEipAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceEipAssociate resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of an RDS instance.
         :param pulumi.Input[_builtins.str] public_ip: Specifies the EIP address to be bound.
         :param pulumi.Input[_builtins.str] public_ip_id: Specifies the EIP ID.
@@ -220,11 +222,10 @@ class InstanceEipAssociate(pulumi.CustomResource):
 
         The RDS instance eip associate can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/instanceEipAssociate:InstanceEipAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -263,11 +264,10 @@ class InstanceEipAssociate(pulumi.CustomResource):
 
         The RDS instance eip associate can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/instanceEipAssociate:InstanceEipAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceEipAssociateArgs args: The arguments to use to populate this resource's properties.

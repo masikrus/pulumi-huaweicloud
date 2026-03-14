@@ -28,6 +28,7 @@ class MysqlTableRestoreArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlTableRestore resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the GaussDB mysql instance ID.
                
                Changing this creates a new resource.
@@ -145,6 +146,7 @@ class _MysqlTableRestoreState:
                  restore_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlTableRestore resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the GaussDB mysql instance ID.
                
                Changing this creates a new resource.
@@ -312,6 +314,7 @@ class MysqlTableRestore(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the GaussDB mysql instance ID.
@@ -386,6 +389,7 @@ class MysqlTableRestore(pulumi.CustomResource):
                 },
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlTableRestoreArgs args: The arguments to use to populate this resource's properties.

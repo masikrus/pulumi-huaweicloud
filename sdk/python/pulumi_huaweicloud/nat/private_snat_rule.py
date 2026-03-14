@@ -30,6 +30,7 @@ class PrivateSnatRuleArgs:
                  transit_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PrivateSnatRule resource.
+
         :param pulumi.Input[_builtins.str] gateway_id: Specifies the private NAT gateway ID to which the SNAT rule belongs.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] cidr: Specifies the CIDR block of the match rule.  
@@ -174,6 +175,7 @@ class _PrivateSnatRuleState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateSnatRule resources.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the CIDR block of the match rule.  
                Changing this will create a new resource.
                Exactly one of `cidr` and `subnet_id` must be set.
@@ -434,39 +436,16 @@ class PrivateSnatRule(pulumi.CustomResource):
 
         The private SNAT rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/privateSnatRule:PrivateSnatRule test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `transit_ip_ids`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_nat_private_snat_rule" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              transit_ip_ids,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -535,39 +514,16 @@ class PrivateSnatRule(pulumi.CustomResource):
 
         The private SNAT rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/privateSnatRule:PrivateSnatRule test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `transit_ip_ids`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_nat_private_snat_rule" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              transit_ip_ids,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PrivateSnatRuleArgs args: The arguments to use to populate this resource's properties.

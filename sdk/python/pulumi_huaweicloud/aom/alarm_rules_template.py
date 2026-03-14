@@ -30,6 +30,7 @@ class AlarmRulesTemplateArgs:
                  templating: Optional[pulumi.Input['AlarmRulesTemplateTemplatingArgs']] = None):
         """
         The set of arguments for constructing a AlarmRulesTemplate resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListArgs']]] alarm_template_spec_lists: Specifies the alarm template spec list.
                The alarm_template_spec_list structure is documented below.
         :param pulumi.Input[_builtins.str] type: Specifies the type.
@@ -166,6 +167,7 @@ class _AlarmRulesTemplateState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlarmRulesTemplate resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListArgs']]] alarm_template_spec_lists: Specifies the alarm template spec list.
                The alarm_template_spec_list structure is documented below.
         :param pulumi.Input[_builtins.str] created_at: The create time of the template.
@@ -337,15 +339,133 @@ class AlarmRulesTemplate(pulumi.CustomResource):
         """
         Manages an AOM cloud alarm rules template resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        name = config.require_object("name")
+        action_rule_id = config.require_object("actionRuleId")
+        test = huaweicloud.aom.AlarmRulesTemplate("test",
+            name=name,
+            type="statics",
+            description="test",
+            alarm_template_spec_lists=[
+                {
+                    "related_cloud_service": "CCEFromProm",
+                    "alarm_notifications": [{
+                        "notificationType": "direct",
+                        "notificationEnable": True,
+                        "bindNotificationRuleId": action_rule_id,
+                    }],
+                    "alarm_template_spec_items": [
+                        {
+                            "alarm_rule_name": "cce_event",
+                            "alarm_rule_type": "event",
+                            "event_alarm_spec": {
+                                "event_source": "CCE",
+                                "monitor_objects": [{
+                                    "event_name": "扩容节点超时##ScaleUpTimedOut;数据卷扩容失败##VolumeResizeFailed",
+                                }],
+                                "monitor_object_templates": ["clusterId"],
+                                "trigger_conditions": [
+                                    {
+                                        "trigger_type": "immediately",
+                                        "event_name": "扩容节点超时##ScaleUpTimedOut",
+                                        "thresholds": {
+                                            "Critical": 2,
+                                        },
+                                    },
+                                    {
+                                        "trigger_type": "accumulative",
+                                        "event_name": "数据卷扩容失败##VolumeResizeFailed",
+                                        "aggregation_window": 300,
+                                        "frequency": "600",
+                                        "operator": ">=",
+                                        "thresholds": {
+                                            "Info": 5,
+                                        },
+                                    },
+                                ],
+                            },
+                        },
+                        {
+                            "alarm_rule_name": "cce_metric",
+                            "alarm_rule_type": "metric",
+                            "metric_alarm_spec": {
+                                "monitor_type": "promql",
+                                "recovery_conditions": {
+                                    "recovery_timeframe": 1,
+                                },
+                                "trigger_conditions": [{
+                                    "metric_query_mode": "NATIVE_PROM",
+                                    "promql": "increase(kube_pod_container_status_restarts_total[5m]) > 3",
+                                    "trigger_times": "3",
+                                    "trigger_type": "FIXED_RATE",
+                                    "aggregation_window": "1m",
+                                    "trigger_interval": "30s",
+                                    "aggregation_type": "average",
+                                    "operator": ">",
+                                    "promql_for": "1m",
+                                    "thresholds": {
+                                        "Critical": "1",
+                                    },
+                                }],
+                            },
+                        },
+                    ],
+                },
+                {
+                    "related_cloud_service": "DRS",
+                    "alarm_notifications": [{
+                        "notificationType": "direct",
+                    }],
+                    "alarm_template_spec_items": [{
+                        "alarm_rule_name": "drs",
+                        "alarm_rule_type": "metric",
+                        "metric_alarm_spec": {
+                            "monitor_type": "resource",
+                            "recovery_conditions": {
+                                "recovery_timeframe": 1,
+                            },
+                            "trigger_conditions": [{
+                                "metric_query_mode": "PROM",
+                                "metric_name": "huaweicloud_sys_drs_cpu_util",
+                                "promql": "label_replace(avg_over_time(duration{}[59999ms]),\\"__name__\\",\\"duration\\",\\"\\",\\"\\")",
+                                "trigger_times": "3",
+                                "trigger_type": "FIXED_RATE",
+                                "aggregation_window": "1m",
+                                "trigger_interval": "30s",
+                                "aggregation_type": "average",
+                                "operator": ">",
+                                "metric_statistic_method": "single",
+                                "thresholds": {
+                                    "Critical": "1",
+                                },
+                            }],
+                        },
+                    }],
+                },
+            ],
+            templating={
+                "lists": [{
+                    "name": "key",
+                    "type": "constant",
+                    "query": "value",
+                }],
+            })
+        ```
+
         ## Import
 
         The template can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmRulesTemplate:AlarmRulesTemplate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -374,15 +494,133 @@ class AlarmRulesTemplate(pulumi.CustomResource):
         """
         Manages an AOM cloud alarm rules template resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        name = config.require_object("name")
+        action_rule_id = config.require_object("actionRuleId")
+        test = huaweicloud.aom.AlarmRulesTemplate("test",
+            name=name,
+            type="statics",
+            description="test",
+            alarm_template_spec_lists=[
+                {
+                    "related_cloud_service": "CCEFromProm",
+                    "alarm_notifications": [{
+                        "notificationType": "direct",
+                        "notificationEnable": True,
+                        "bindNotificationRuleId": action_rule_id,
+                    }],
+                    "alarm_template_spec_items": [
+                        {
+                            "alarm_rule_name": "cce_event",
+                            "alarm_rule_type": "event",
+                            "event_alarm_spec": {
+                                "event_source": "CCE",
+                                "monitor_objects": [{
+                                    "event_name": "扩容节点超时##ScaleUpTimedOut;数据卷扩容失败##VolumeResizeFailed",
+                                }],
+                                "monitor_object_templates": ["clusterId"],
+                                "trigger_conditions": [
+                                    {
+                                        "trigger_type": "immediately",
+                                        "event_name": "扩容节点超时##ScaleUpTimedOut",
+                                        "thresholds": {
+                                            "Critical": 2,
+                                        },
+                                    },
+                                    {
+                                        "trigger_type": "accumulative",
+                                        "event_name": "数据卷扩容失败##VolumeResizeFailed",
+                                        "aggregation_window": 300,
+                                        "frequency": "600",
+                                        "operator": ">=",
+                                        "thresholds": {
+                                            "Info": 5,
+                                        },
+                                    },
+                                ],
+                            },
+                        },
+                        {
+                            "alarm_rule_name": "cce_metric",
+                            "alarm_rule_type": "metric",
+                            "metric_alarm_spec": {
+                                "monitor_type": "promql",
+                                "recovery_conditions": {
+                                    "recovery_timeframe": 1,
+                                },
+                                "trigger_conditions": [{
+                                    "metric_query_mode": "NATIVE_PROM",
+                                    "promql": "increase(kube_pod_container_status_restarts_total[5m]) > 3",
+                                    "trigger_times": "3",
+                                    "trigger_type": "FIXED_RATE",
+                                    "aggregation_window": "1m",
+                                    "trigger_interval": "30s",
+                                    "aggregation_type": "average",
+                                    "operator": ">",
+                                    "promql_for": "1m",
+                                    "thresholds": {
+                                        "Critical": "1",
+                                    },
+                                }],
+                            },
+                        },
+                    ],
+                },
+                {
+                    "related_cloud_service": "DRS",
+                    "alarm_notifications": [{
+                        "notificationType": "direct",
+                    }],
+                    "alarm_template_spec_items": [{
+                        "alarm_rule_name": "drs",
+                        "alarm_rule_type": "metric",
+                        "metric_alarm_spec": {
+                            "monitor_type": "resource",
+                            "recovery_conditions": {
+                                "recovery_timeframe": 1,
+                            },
+                            "trigger_conditions": [{
+                                "metric_query_mode": "PROM",
+                                "metric_name": "huaweicloud_sys_drs_cpu_util",
+                                "promql": "label_replace(avg_over_time(duration{}[59999ms]),\\"__name__\\",\\"duration\\",\\"\\",\\"\\")",
+                                "trigger_times": "3",
+                                "trigger_type": "FIXED_RATE",
+                                "aggregation_window": "1m",
+                                "trigger_interval": "30s",
+                                "aggregation_type": "average",
+                                "operator": ">",
+                                "metric_statistic_method": "single",
+                                "thresholds": {
+                                    "Critical": "1",
+                                },
+                            }],
+                        },
+                    }],
+                },
+            ],
+            templating={
+                "lists": [{
+                    "name": "key",
+                    "type": "constant",
+                    "query": "value",
+                }],
+            })
+        ```
+
         ## Import
 
         The template can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/alarmRulesTemplate:AlarmRulesTemplate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlarmRulesTemplateArgs args: The arguments to use to populate this resource's properties.

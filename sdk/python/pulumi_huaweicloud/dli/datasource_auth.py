@@ -35,6 +35,7 @@ class DatasourceAuthArgs:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatasourceAuth resource.
+
         :param pulumi.Input[_builtins.str] type: Data source type.  
                The options are as follows:
                + **passwd**: Password.
@@ -299,6 +300,7 @@ class _DatasourceAuthState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatasourceAuth resources.
+
         :param pulumi.Input[_builtins.str] certificate_location: Path of the security cluster certificate.  
                Currently, only OBS paths and CER files are supported.
                
@@ -663,41 +665,17 @@ class DatasourceAuth(pulumi.CustomResource):
 
         The DLI datasource authentication can be imported using `id` which equals the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/datasourceAuth:DatasourceAuth test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `password`, `truststore_password`, `keystore_password`, `key_password`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dli_datasource_auth" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, truststore_password, keystore_password, key_password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -821,41 +799,17 @@ class DatasourceAuth(pulumi.CustomResource):
 
         The DLI datasource authentication can be imported using `id` which equals the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/datasourceAuth:DatasourceAuth test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `password`, `truststore_password`, `keystore_password`, `key_password`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dli_datasource_auth" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, truststore_password, keystore_password, key_password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DatasourceAuthArgs args: The arguments to use to populate this resource's properties.

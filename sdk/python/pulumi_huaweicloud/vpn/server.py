@@ -34,6 +34,7 @@ class ServerArgs:
                  tunnel_protocol: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Server resource.
+
         :param pulumi.Input[_builtins.str] client_cidr: Specifies the client CIDR block. A virtual IP address on this CIDR block will be
                assigned to a client for establishing a connection. The value is in the format of dotted decimal notation/mask,
                for example, **192.168.1.0/24**. The client CIDR block cannot conflict with the routes in the default route table of
@@ -278,6 +279,7 @@ class _ServerState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Server resources.
+
         :param pulumi.Input[_builtins.str] client_auth_type: Specifies the client authentication mode.
                Value can be as follows:
                + **CERT**: certificate authentication
@@ -579,7 +581,7 @@ class _ServerState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/server:Server")
+@pulumi.type_token("huaweicloud:Vpn/server:Server")
 class Server(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -629,47 +631,59 @@ class Server(pulumi.CustomResource):
             })
         ```
 
+        ### create a server, and client auth type is CERT
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        p2c_vgw_id = config.require_object("p2cVgwId")
+        local_subnets = config.require_object("localSubnets")
+        client_cidr = config.require_object("clientCidr")
+        server_certificate_id = config.require_object("serverCertificateId")
+        test = huaweicloud.vpn.Server("test",
+            p2c_vgw_id=p2c_vgw_id,
+            local_subnets=local_subnets,
+            client_cidr=client_cidr,
+            client_auth_type="CERT",
+            server_certificate={
+                "id": server_certificate_id,
+            },
+            ssl_options={
+                "protocol": "TCP",
+                "port": 443,
+                "encryption_algorithm": "AES-128-GCM",
+                "is_compressed": False,
+            },
+            client_ca_certificates=[{
+                "name": "test-cert",
+                "content": std.index.trimsuffix(input=\"\"\"-----BEGIN CERTIFICATE-----
+        YOUR CERT CONTENT
+        -----END CERTIFICATE-----
+        \"\"\",
+                    suffix="\\n")["result"],
+            }])
+        ```
+
         ## Import
 
         The server can be imported using `p2c_vgw_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/server:Server test <p2c_vgw_id>/<id>
+        $ pulumi import huaweicloud:Vpn/server:Server test <p2c_vgw_id>/<id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `client_ca_certificates` and `os_type`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the server, or the resource definition should be updated to
-
         align with the server. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_server" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              client_ca_certificates, os_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -753,47 +767,59 @@ class Server(pulumi.CustomResource):
             })
         ```
 
+        ### create a server, and client auth type is CERT
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        p2c_vgw_id = config.require_object("p2cVgwId")
+        local_subnets = config.require_object("localSubnets")
+        client_cidr = config.require_object("clientCidr")
+        server_certificate_id = config.require_object("serverCertificateId")
+        test = huaweicloud.vpn.Server("test",
+            p2c_vgw_id=p2c_vgw_id,
+            local_subnets=local_subnets,
+            client_cidr=client_cidr,
+            client_auth_type="CERT",
+            server_certificate={
+                "id": server_certificate_id,
+            },
+            ssl_options={
+                "protocol": "TCP",
+                "port": 443,
+                "encryption_algorithm": "AES-128-GCM",
+                "is_compressed": False,
+            },
+            client_ca_certificates=[{
+                "name": "test-cert",
+                "content": std.index.trimsuffix(input=\"\"\"-----BEGIN CERTIFICATE-----
+        YOUR CERT CONTENT
+        -----END CERTIFICATE-----
+        \"\"\",
+                    suffix="\\n")["result"],
+            }])
+        ```
+
         ## Import
 
         The server can be imported using `p2c_vgw_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/server:Server test <p2c_vgw_id>/<id>
+        $ pulumi import huaweicloud:Vpn/server:Server test <p2c_vgw_id>/<id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `client_ca_certificates` and `os_type`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the server, or the resource definition should be updated to
-
         align with the server. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_server" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              client_ca_certificates, os_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ServerArgs args: The arguments to use to populate this resource's properties.
@@ -853,7 +879,7 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Server, __self__).__init__(
-            'huaweicloud:vpn/server:Server',
+            'huaweicloud:Vpn/server:Server',
             resource_name,
             __props__,
             opts)

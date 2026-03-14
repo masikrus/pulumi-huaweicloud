@@ -25,6 +25,7 @@ class VolumeMetadataArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VolumeMetadata resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                
                > When updating the `metadata` parameter, all existing key-value pairs will be overwritten.
@@ -99,6 +100,7 @@ class _VolumeMetadataState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VolumeMetadata resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                
                > When updating the `metadata` parameter, all existing key-value pairs will be overwritten.
@@ -180,6 +182,9 @@ class VolumeMetadata(pulumi.CustomResource):
         """
         Use this resource to manage EVS volume metadata within HuaweiCloud.
 
+        ## Example Usage
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
@@ -198,6 +203,9 @@ class VolumeMetadata(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Use this resource to manage EVS volume metadata within HuaweiCloud.
+
+        ## Example Usage
+
 
         :param str resource_name: The name of the resource.
         :param VolumeMetadataArgs args: The arguments to use to populate this resource's properties.

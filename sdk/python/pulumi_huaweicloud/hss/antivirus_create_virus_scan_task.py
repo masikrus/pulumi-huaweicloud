@@ -29,6 +29,7 @@ class AntivirusCreateVirusScanTaskArgs:
                  task_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AntivirusCreateVirusScanTask resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies disposal action.  
                The valid values are as follows:
                + **auto**: Automatic disposal.
@@ -185,6 +186,7 @@ class _AntivirusCreateVirusScanTaskState:
                  task_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AntivirusCreateVirusScanTask resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies disposal action.  
                The valid values are as follows:
                + **auto**: Automatic disposal.
@@ -332,7 +334,7 @@ class _AntivirusCreateVirusScanTaskState:
         pulumi.set(self, "task_name", value)
 
 
-@pulumi.type_token("huaweicloud:hss/antivirusCreateVirusScanTask:AntivirusCreateVirusScanTask")
+@pulumi.type_token("huaweicloud:Hss/antivirusCreateVirusScanTask:AntivirusCreateVirusScanTask")
 class AntivirusCreateVirusScanTask(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -370,6 +372,7 @@ class AntivirusCreateVirusScanTask(pulumi.CustomResource):
             action=action,
             host_ids=host_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -425,6 +428,7 @@ class AntivirusCreateVirusScanTask(pulumi.CustomResource):
             host_ids=host_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param AntivirusCreateVirusScanTaskArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -474,7 +478,7 @@ class AntivirusCreateVirusScanTask(pulumi.CustomResource):
                 raise TypeError("Missing required property 'task_name'")
             __props__.__dict__["task_name"] = task_name
         super(AntivirusCreateVirusScanTask, __self__).__init__(
-            'huaweicloud:hss/antivirusCreateVirusScanTask:AntivirusCreateVirusScanTask',
+            'huaweicloud:Hss/antivirusCreateVirusScanTask:AntivirusCreateVirusScanTask',
             resource_name,
             __props__,
             opts)

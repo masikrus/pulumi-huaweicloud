@@ -142,7 +142,7 @@ def get_scripts(creator: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_scripts()
+    test = huaweicloud.Coc.get_scripts()
     ```
 
 
@@ -167,7 +167,7 @@ def get_scripts(creator: Optional[_builtins.str] = None,
     __args__['riskLevel'] = risk_level
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getScripts:getScripts', __args__, opts=opts, typ=GetScriptsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getScripts:getScripts', __args__, opts=opts, typ=GetScriptsResult).value
 
     return AwaitableGetScriptsResult(
         creator=pulumi.get(__ret__, 'creator'),
@@ -192,7 +192,7 @@ def get_scripts_output(creator: Optional[pulumi.Input[Optional[_builtins.str]]] 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_scripts()
+    test = huaweicloud.Coc.get_scripts()
     ```
 
 
@@ -217,7 +217,7 @@ def get_scripts_output(creator: Optional[pulumi.Input[Optional[_builtins.str]]] 
     __args__['riskLevel'] = risk_level
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getScripts:getScripts', __args__, opts=opts, typ=GetScriptsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getScripts:getScripts', __args__, opts=opts, typ=GetScriptsResult)
     return __ret__.apply(lambda __response__: GetScriptsResult(
         creator=pulumi.get(__response__, 'creator'),
         datas=pulumi.get(__response__, 'datas'),

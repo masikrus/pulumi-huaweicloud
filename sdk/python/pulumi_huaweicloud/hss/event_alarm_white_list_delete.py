@@ -30,6 +30,7 @@ class EventAlarmWhiteListDeleteArgs:
                  restore_alarm: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a EventAlarmWhiteListDelete resource.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.  
                This parameter is valid only when the enterprise project is enabled.
                The default value is **0**, indicating the default enterprise project.
@@ -263,6 +264,7 @@ class _EventAlarmWhiteListDeleteState:
                  restore_alarm: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering EventAlarmWhiteListDelete resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['EventAlarmWhiteListDeleteDataListArgs']]] data_lists: Specifies the details of deleting the alarm white list.
                The data_list structure is documented below.
                
@@ -485,7 +487,7 @@ class _EventAlarmWhiteListDeleteState:
         pulumi.set(self, "restore_alarm", value)
 
 
-@pulumi.type_token("huaweicloud:hss/eventAlarmWhiteListDelete:EventAlarmWhiteListDelete")
+@pulumi.type_token("huaweicloud:Hss/eventAlarmWhiteListDelete:EventAlarmWhiteListDelete")
 class EventAlarmWhiteListDelete(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -541,6 +543,7 @@ class EventAlarmWhiteListDelete(pulumi.CustomResource):
                 "description": description,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -659,6 +662,7 @@ class EventAlarmWhiteListDelete(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param EventAlarmWhiteListDeleteArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -700,7 +704,7 @@ class EventAlarmWhiteListDelete(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["restore_alarm"] = restore_alarm
         super(EventAlarmWhiteListDelete, __self__).__init__(
-            'huaweicloud:hss/eventAlarmWhiteListDelete:EventAlarmWhiteListDelete',
+            'huaweicloud:Hss/eventAlarmWhiteListDelete:EventAlarmWhiteListDelete',
             resource_name,
             __props__,
             opts)

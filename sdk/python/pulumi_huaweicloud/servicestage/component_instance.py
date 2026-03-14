@@ -36,12 +36,13 @@ class ComponentInstanceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ComponentInstance resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID to which the instance belongs.
                Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] component_id: Specifies the component ID to build (deploy).
                Changing this will create a new instance.
-        :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID in which the component to build (deployed).
-               Changing this will create a new instance.
+        :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID in which the component to
+               build (deployed). Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the resource specifications, which can be obtained by using data source or
                the customize resource specifications.
                The format of customize resource specifications is **CUSTOM-xxG:xxC-xxC:xxGi-xxGi**.
@@ -75,8 +76,8 @@ class ComponentInstanceArgs:
                <a name="servicestage_refer_resource"></a>
                The `refer_resource` block supports:
         :param pulumi.Input[_builtins.str] name: Specifies the configuration item.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create (deploy) the ServiceStage (component) instance.
-               If omitted, the provider-level region will be used. Changing this will create a new instance.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create (deploy) the ServiceStage (component)
+               instance. If omitted, the provider-level region will be used. Changing this will create a new instance.
         """
         pulumi.set(__self__, "application_id", application_id)
         pulumi.set(__self__, "component_id", component_id)
@@ -128,8 +129,8 @@ class ComponentInstanceArgs:
     @pulumi.getter(name="environmentId")
     def environment_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the environment ID in which the component to build (deployed).
-        Changing this will create a new instance.
+        Specifies the environment ID in which the component to
+        build (deployed). Changing this will create a new instance.
         """
         return pulumi.get(self, "environment_id")
 
@@ -273,8 +274,8 @@ class ComponentInstanceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create (deploy) the ServiceStage (component) instance.
-        If omitted, the provider-level region will be used. Changing this will create a new instance.
+        Specifies the region in which to create (deploy) the ServiceStage (component)
+        instance. If omitted, the provider-level region will be used. Changing this will create a new instance.
         """
         return pulumi.get(self, "region")
 
@@ -302,6 +303,7 @@ class _ComponentInstanceState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ComponentInstance resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID to which the instance belongs.
                Changing this will create a new instance.
         :param pulumi.Input[Sequence[pulumi.Input['ComponentInstanceArtifactArgs']]] artifacts: Specifies the component artifact settings.
@@ -317,8 +319,8 @@ class _ComponentInstanceState:
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the instance.
                The description can contain a maximum of `128` characters.
-        :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID in which the component to build (deployed).
-               Changing this will create a new instance.
+        :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID in which the component to
+               build (deployed). Changing this will create a new instance.
         :param pulumi.Input[Sequence[pulumi.Input['ComponentInstanceExternalAccessArgs']]] external_accesses: Specifies the configuration of the external network access.
                The object structure is documented below.
                
@@ -338,8 +340,8 @@ class _ComponentInstanceState:
         :param pulumi.Input[_builtins.str] name: Specifies the configuration item.
         :param pulumi.Input[Sequence[pulumi.Input['ComponentInstanceReferResourceArgs']]] refer_resources: Specifies the deployed resources.
                The object structure is documented below.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create (deploy) the ServiceStage (component) instance.
-               If omitted, the provider-level region will be used. Changing this will create a new instance.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create (deploy) the ServiceStage (component)
+               instance. If omitted, the provider-level region will be used. Changing this will create a new instance.
         :param pulumi.Input[_builtins.int] replica: Specifies the number of instance replicas.
                Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] status: The instance status, which supports:
@@ -454,8 +456,8 @@ class _ComponentInstanceState:
     @pulumi.getter(name="environmentId")
     def environment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the environment ID in which the component to build (deployed).
-        Changing this will create a new instance.
+        Specifies the environment ID in which the component to
+        build (deployed). Changing this will create a new instance.
         """
         return pulumi.get(self, "environment_id")
 
@@ -530,8 +532,8 @@ class _ComponentInstanceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create (deploy) the ServiceStage (component) instance.
-        If omitted, the provider-level region will be used. Changing this will create a new instance.
+        Specifies the region in which to create (deploy) the ServiceStage (component)
+        instance. If omitted, the provider-level region will be used. Changing this will create a new instance.
         """
         return pulumi.get(self, "region")
 
@@ -719,11 +721,10 @@ class ComponentInstance(pulumi.CustomResource):
 
         Instances can be imported using their related `application_id`, `component_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/componentInstance:ComponentInstance test 4e65a759-e7b1-4e9e-8277-857f8e261f3c/4e65a759-e7b1-4e9e-8277-857f8e261f3c/c0a13d88-d4e3-11ec-93a9-0255ac101d30
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -742,8 +743,8 @@ class ComponentInstance(pulumi.CustomResource):
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the instance.
                The description can contain a maximum of `128` characters.
-        :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID in which the component to build (deployed).
-               Changing this will create a new instance.
+        :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID in which the component to
+               build (deployed). Changing this will create a new instance.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ComponentInstanceExternalAccessArgs', 'ComponentInstanceExternalAccessArgsDict']]]] external_accesses: Specifies the configuration of the external network access.
                The object structure is documented below.
                
@@ -763,8 +764,8 @@ class ComponentInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Specifies the configuration item.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ComponentInstanceReferResourceArgs', 'ComponentInstanceReferResourceArgsDict']]]] refer_resources: Specifies the deployed resources.
                The object structure is documented below.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create (deploy) the ServiceStage (component) instance.
-               If omitted, the provider-level region will be used. Changing this will create a new instance.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create (deploy) the ServiceStage (component)
+               instance. If omitted, the provider-level region will be used. Changing this will create a new instance.
         :param pulumi.Input[_builtins.int] replica: Specifies the number of instance replicas.
                Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] version: Specifies the version number.
@@ -891,11 +892,10 @@ class ComponentInstance(pulumi.CustomResource):
 
         Instances can be imported using their related `application_id`, `component_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/componentInstance:ComponentInstance test 4e65a759-e7b1-4e9e-8277-857f8e261f3c/4e65a759-e7b1-4e9e-8277-857f8e261f3c/c0a13d88-d4e3-11ec-93a9-0255ac101d30
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ComponentInstanceArgs args: The arguments to use to populate this resource's properties.
@@ -1008,8 +1008,8 @@ class ComponentInstance(pulumi.CustomResource):
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the instance.
                The description can contain a maximum of `128` characters.
-        :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID in which the component to build (deployed).
-               Changing this will create a new instance.
+        :param pulumi.Input[_builtins.str] environment_id: Specifies the environment ID in which the component to
+               build (deployed). Changing this will create a new instance.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ComponentInstanceExternalAccessArgs', 'ComponentInstanceExternalAccessArgsDict']]]] external_accesses: Specifies the configuration of the external network access.
                The object structure is documented below.
                
@@ -1029,8 +1029,8 @@ class ComponentInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Specifies the configuration item.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ComponentInstanceReferResourceArgs', 'ComponentInstanceReferResourceArgsDict']]]] refer_resources: Specifies the deployed resources.
                The object structure is documented below.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create (deploy) the ServiceStage (component) instance.
-               If omitted, the provider-level region will be used. Changing this will create a new instance.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create (deploy) the ServiceStage (component)
+               instance. If omitted, the provider-level region will be used. Changing this will create a new instance.
         :param pulumi.Input[_builtins.int] replica: Specifies the number of instance replicas.
                Changing this will create a new instance.
         :param pulumi.Input[_builtins.str] status: The instance status, which supports:
@@ -1116,8 +1116,8 @@ class ComponentInstance(pulumi.CustomResource):
     @pulumi.getter(name="environmentId")
     def environment_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the environment ID in which the component to build (deployed).
-        Changing this will create a new instance.
+        Specifies the environment ID in which the component to
+        build (deployed). Changing this will create a new instance.
         """
         return pulumi.get(self, "environment_id")
 
@@ -1172,8 +1172,8 @@ class ComponentInstance(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the region in which to create (deploy) the ServiceStage (component) instance.
-        If omitted, the provider-level region will be used. Changing this will create a new instance.
+        Specifies the region in which to create (deploy) the ServiceStage (component)
+        instance. If omitted, the provider-level region will be used. Changing this will create a new instance.
         """
         return pulumi.get(self, "region")
 

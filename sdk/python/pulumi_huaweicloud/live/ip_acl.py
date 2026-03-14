@@ -25,6 +25,7 @@ class IpAclArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IpAcl resource.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the authentication mode.
                The options are as follows:
                + **WHITE**: IP address whitelist authentication.
@@ -106,6 +107,7 @@ class _IpAclState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IpAcl resources.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the authentication mode.
                The options are as follows:
                + **WHITE**: IP address whitelist authentication.
@@ -215,11 +217,10 @@ class IpAcl(pulumi.CustomResource):
 
         The Live IP address acl resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/ipAcl:IpAcl test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -263,11 +264,10 @@ class IpAcl(pulumi.CustomResource):
 
         The Live IP address acl resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/ipAcl:IpAcl test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IpAclArgs args: The arguments to use to populate this resource's properties.

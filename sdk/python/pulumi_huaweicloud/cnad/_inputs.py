@@ -21,72 +21,67 @@ __all__ = [
     'AdvancedProtectedObjectProtectedObjectArgsDict',
 ]
 
-MYPY = False
+class AdvancedPolicyAssociateProtectedObjectArgsDict(TypedDict):
+    block_threshold: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the block threshold of the protected object.
+    """
+    clean_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the clean threshold of the protected object.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the protected object.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance ID. You can find it through data source
+    `cnad_get_advanced_instances`.
 
-if not MYPY:
-    class AdvancedPolicyAssociateProtectedObjectArgsDict(TypedDict):
-        block_threshold: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the block threshold of the protected object.
-        """
-        clean_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the clean threshold of the protected object.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of the protected object.
-        """
-        instance_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the instance ID. You can find it through data source
-        `cnad_get_advanced_instances`.
-
-        Changing this parameter will create a new resource.
-        """
-        instance_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the instance name of the protected object.
-        """
-        instance_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the instance version of the protected object.
-        + **cnad_pro**: Professional Edition.
-        + **cnad_ip**: Standard Edition.
-        + **cnad_ep**: Platinum Edition.
-        + **cnad_full_high**: Unlimited Protection Advanced Edition.
-        + **cnad_vic**: On demand Version.
-        + **cnad_intl_ep**: International Station Platinum Edition.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the IP of the protected object.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of the protected object.
-        """
-        policy_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the policy name of the protected object.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the region to which the protected object belongs.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the status of the protected object.
-        + **0**: Normal.
-        + **1**: Cleaning in progress.
-        + **2**: In a black hole.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the type of the protected object.
-        """
-elif False:
-    AdvancedPolicyAssociateProtectedObjectArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
+    instance_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the instance name of the protected object.
+    """
+    instance_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the instance version of the protected object.
+    + **cnad_pro**: Professional Edition.
+    + **cnad_ip**: Standard Edition.
+    + **cnad_ep**: Platinum Edition.
+    + **cnad_full_high**: Unlimited Protection Advanced Edition.
+    + **cnad_vic**: On demand Version.
+    + **cnad_intl_ep**: International Station Platinum Edition.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the IP of the protected object.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of the protected object.
+    """
+    policy_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the policy name of the protected object.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the region to which the protected object belongs.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the status of the protected object.
+    + **0**: Normal.
+    + **1**: Cleaning in progress.
+    + **2**: In a black hole.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the type of the protected object.
+    """
 
 @pulumi.input_type
 class AdvancedPolicyAssociateProtectedObjectArgs:
@@ -311,76 +306,73 @@ class AdvancedPolicyAssociateProtectedObjectArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class AdvancedProtectedObjectProtectedObjectArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the protected object. The field must be the ID of the Elastic IP,
-        which in the same region with the CNAD advanced instance. You can find it through data source
-        `cnad_get_advanced_available_objects`.
-        """
-        ip_address: pulumi.Input[_builtins.str]
-        """
-        Specifies the IP of the protected object. The field must be the IP of the Elastic
-        IP, which in the same region with the CNAD advanced instance. You can find it through data source
-        `cnad_get_advanced_available_objects`. This field and `id` must belong to the same protected object.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the protected object. Valid values are **VPN**, **NAT**, **VIP**,
-        **CCI**, **EIP**, **ELB**, **REROUTING_IP**, **SubEni** and **NetInterFace**. You can find it through data source
-        `cnad_get_advanced_available_objects`. This field and `id` must belong to the same protected object.
-        """
-        block_threshold: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The blocking threshold of the protected object.
-        """
-        clean_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The cleaning threshold of the protected object.
-        """
-        instance_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the CNAD advanced instance ID in which to bind protected
-        objects. You can find it through data source `cnad_get_advanced_instances`.
+class AdvancedProtectedObjectProtectedObjectArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the protected object. The field must be the ID of the Elastic IP,
+    which in the same region with the CNAD advanced instance. You can find it through data source
+    `cnad_get_advanced_available_objects`.
+    """
+    ip_address: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP of the protected object. The field must be the IP of the Elastic
+    IP, which in the same region with the CNAD advanced instance. You can find it through data source
+    `cnad_get_advanced_available_objects`. This field and `id` must belong to the same protected object.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the protected object. Valid values are **VPN**, **NAT**, **VIP**,
+    **CCI**, **EIP**, **ELB**, **REROUTING_IP**, **SubEni** and **NetInterFace**. You can find it through data source
+    `cnad_get_advanced_available_objects`. This field and `id` must belong to the same protected object.
+    """
+    block_threshold: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The blocking threshold of the protected object.
+    """
+    clean_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The cleaning threshold of the protected object.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CNAD advanced instance ID in which to bind protected
+    objects. You can find it through data source `cnad_get_advanced_instances`.
 
-        Changing this parameter will create a new resource.
-        """
-        instance_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The instance name which the protected object belongs to.
-        """
-        instance_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The instance version which the protected object belongs to.
-        + **cnad_pro**: Professional Edition.
-        + **cnad_ip**: Standard Edition.
-        + **cnad_ep**: Platinum Edition.
-        + **cnad_full_high**: Unlimited Protection Advanced Edition.
-        + **cnad_vic**: On demand Version.
-        + **cnad_intl_ep**: International Station Platinum Edition.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the protected object.
-        """
-        policy_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The policy name which the protected object binding.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region to which the protected object belongs.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The status of the protected object.
-        + **0**: Normal.
-        + **1**: Cleaning in progress.
-        + **2**: In a black hole.
-        """
-elif False:
-    AdvancedProtectedObjectProtectedObjectArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
+    instance_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The instance name which the protected object belongs to.
+    """
+    instance_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The instance version which the protected object belongs to.
+    + **cnad_pro**: Professional Edition.
+    + **cnad_ip**: Standard Edition.
+    + **cnad_ep**: Platinum Edition.
+    + **cnad_full_high**: Unlimited Protection Advanced Edition.
+    + **cnad_vic**: On demand Version.
+    + **cnad_intl_ep**: International Station Platinum Edition.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the protected object.
+    """
+    policy_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The policy name which the protected object binding.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region to which the protected object belongs.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The status of the protected object.
+    + **0**: Normal.
+    + **1**: Cleaning in progress.
+    + **2**: In a black hole.
+    """
 
 @pulumi.input_type
 class AdvancedProtectedObjectProtectedObjectArgs:

@@ -27,6 +27,7 @@ class ContainerKubernetesSyncMccsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ContainerKubernetesSyncMccs resource.
+
         :param pulumi.Input[_builtins.int] total_num: Specifies the total number of clusters to synchronize.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerKubernetesSyncMccsDataListArgs']]] data_lists: Specifies the list of clusters to synchronize.
                The data_list structure is documented below.
@@ -120,6 +121,7 @@ class _ContainerKubernetesSyncMccsState:
                  total_num: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ContainerKubernetesSyncMccs resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ContainerKubernetesSyncMccsDataListArgs']]] data_lists: Specifies the list of clusters to synchronize.
                The data_list structure is documented below.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project that the server
@@ -205,7 +207,7 @@ class _ContainerKubernetesSyncMccsState:
         pulumi.set(self, "total_num", value)
 
 
-@pulumi.type_token("huaweicloud:hss/containerKubernetesSyncMccs:ContainerKubernetesSyncMccs")
+@pulumi.type_token("huaweicloud:Hss/containerKubernetesSyncMccs:ContainerKubernetesSyncMccs")
 class ContainerKubernetesSyncMccs(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -244,6 +246,7 @@ class ContainerKubernetesSyncMccs(pulumi.CustomResource):
                 },
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -298,6 +301,7 @@ class ContainerKubernetesSyncMccs(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ContainerKubernetesSyncMccsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -333,7 +337,7 @@ class ContainerKubernetesSyncMccs(pulumi.CustomResource):
                 raise TypeError("Missing required property 'total_num'")
             __props__.__dict__["total_num"] = total_num
         super(ContainerKubernetesSyncMccs, __self__).__init__(
-            'huaweicloud:hss/containerKubernetesSyncMccs:ContainerKubernetesSyncMccs',
+            'huaweicloud:Hss/containerKubernetesSyncMccs:ContainerKubernetesSyncMccs',
             resource_name,
             __props__,
             opts)

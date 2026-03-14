@@ -119,7 +119,7 @@ def get_pipeline_modules(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_pipeline_modules()
+    test = huaweicloud.Codearts.get_pipeline_modules()
     ```
 
 
@@ -135,7 +135,7 @@ def get_pipeline_modules(name: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineModules:getPipelineModules', __args__, opts=opts, typ=GetPipelineModulesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineModules:getPipelineModules', __args__, opts=opts, typ=GetPipelineModulesResult).value
 
     return AwaitableGetPipelineModulesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -158,7 +158,7 @@ def get_pipeline_modules_output(name: Optional[pulumi.Input[Optional[_builtins.s
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_pipeline_modules()
+    test = huaweicloud.Codearts.get_pipeline_modules()
     ```
 
 
@@ -174,7 +174,7 @@ def get_pipeline_modules_output(name: Optional[pulumi.Input[Optional[_builtins.s
     __args__['region'] = region
     __args__['tags'] = tags
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineModules:getPipelineModules', __args__, opts=opts, typ=GetPipelineModulesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineModules:getPipelineModules', __args__, opts=opts, typ=GetPipelineModulesResult)
     return __ret__.apply(lambda __response__: GetPipelineModulesResult(
         id=pulumi.get(__response__, 'id'),
         modules=pulumi.get(__response__, 'modules'),

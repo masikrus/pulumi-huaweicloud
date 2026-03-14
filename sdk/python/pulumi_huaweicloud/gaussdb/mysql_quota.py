@@ -26,6 +26,7 @@ class MysqlQuotaArgs:
                  vcpus_quota: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a MysqlQuota resource.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.int] instance_quota: Specifies the instance quantity quota. Value range: **-1** to **100000**. The value
@@ -133,6 +134,7 @@ class _MysqlQuotaState:
                  vcpus_quota: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering MysqlQuota resources.
+
         :param pulumi.Input[_builtins.int] availability_instance_quota: Indicates the remaining instance quota.
         :param pulumi.Input[_builtins.int] availability_ram_quota: Indicates the remaining memory quota.
         :param pulumi.Input[_builtins.int] availability_vcpus_quota: Indicates the remaining vCPU quota.
@@ -321,11 +323,10 @@ class MysqlQuota(pulumi.CustomResource):
 
         The GaussDB MySQL quota can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlQuota:MysqlQuota test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -371,11 +372,10 @@ class MysqlQuota(pulumi.CustomResource):
 
         The GaussDB MySQL quota can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlQuota:MysqlQuota test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlQuotaArgs args: The arguments to use to populate this resource's properties.

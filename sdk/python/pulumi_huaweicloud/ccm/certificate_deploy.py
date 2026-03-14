@@ -28,6 +28,7 @@ class CertificateDeployArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CertificateDeploy resource.
+
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the CCM SSL certificate ID to be deployed.
                Changing this parameter will create a new resource.
                
@@ -145,6 +146,7 @@ class _CertificateDeployState:
                  service_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CertificateDeploy resources.
+
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the CCM SSL certificate ID to be deployed.
                Changing this parameter will create a new resource.
                
@@ -255,7 +257,7 @@ class _CertificateDeployState:
         pulumi.set(self, "service_name", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/certificateDeploy:CertificateDeploy")
+@pulumi.type_token("huaweicloud:Ccm/certificateDeploy:CertificateDeploy")
 class CertificateDeploy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -334,6 +336,7 @@ class CertificateDeploy(pulumi.CustomResource):
                 "id": elb_certificate_id,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -433,6 +436,7 @@ class CertificateDeploy(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param CertificateDeployArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -474,7 +478,7 @@ class CertificateDeploy(pulumi.CustomResource):
                 raise TypeError("Missing required property 'service_name'")
             __props__.__dict__["service_name"] = service_name
         super(CertificateDeploy, __self__).__init__(
-            'huaweicloud:ccm/certificateDeploy:CertificateDeploy',
+            'huaweicloud:Ccm/certificateDeploy:CertificateDeploy',
             resource_name,
             __props__,
             opts)

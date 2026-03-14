@@ -307,7 +307,7 @@ def get_war_rooms(admins: Optional[Sequence[_builtins.str]] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_war_rooms()
+    test = huaweicloud.Coc.get_war_rooms()
     ```
 
 
@@ -374,7 +374,7 @@ def get_war_rooms(admins: Optional[Sequence[_builtins.str]] = None,
     __args__['warRoomNum'] = war_room_num
     __args__['warRoomNums'] = war_room_nums
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getWarRooms:getWarRooms', __args__, opts=opts, typ=GetWarRoomsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getWarRooms:getWarRooms', __args__, opts=opts, typ=GetWarRoomsResult).value
 
     return AwaitableGetWarRoomsResult(
         admins=pulumi.get(__ret__, 'admins'),
@@ -430,7 +430,7 @@ def get_war_rooms_output(admins: Optional[pulumi.Input[Optional[Sequence[_builti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_war_rooms()
+    test = huaweicloud.Coc.get_war_rooms()
     ```
 
 
@@ -497,7 +497,7 @@ def get_war_rooms_output(admins: Optional[pulumi.Input[Optional[Sequence[_builti
     __args__['warRoomNum'] = war_room_num
     __args__['warRoomNums'] = war_room_nums
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getWarRooms:getWarRooms', __args__, opts=opts, typ=GetWarRoomsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getWarRooms:getWarRooms', __args__, opts=opts, typ=GetWarRoomsResult)
     return __ret__.apply(lambda __response__: GetWarRoomsResult(
         admins=pulumi.get(__response__, 'admins'),
         closed_num=pulumi.get(__response__, 'closed_num'),

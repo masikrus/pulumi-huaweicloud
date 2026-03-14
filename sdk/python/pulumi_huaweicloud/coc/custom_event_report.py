@@ -37,6 +37,7 @@ class CustomEventReportArgs:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomEventReport resource.
+
         :param pulumi.Input[_builtins.str] alarm_desc: Specifies the alarm description.
         :param pulumi.Input[_builtins.str] alarm_id: Specifies the alarm ID.
         :param pulumi.Input[_builtins.str] alarm_level: Specifies the alarm level.
@@ -308,6 +309,7 @@ class _CustomEventReportState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomEventReport resources.
+
         :param pulumi.Input[_builtins.str] additional: Specifies the additional alarm information.
                
                > The value of `additional` is a json string.
@@ -567,7 +569,7 @@ class _CustomEventReportState:
         pulumi.set(self, "url", value)
 
 
-@pulumi.type_token("huaweicloud:coc/customEventReport:CustomEventReport")
+@pulumi.type_token("huaweicloud:Coc/customEventReport:CustomEventReport")
 class CustomEventReport(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -622,6 +624,7 @@ class CustomEventReport(pulumi.CustomResource):
                 "key": "test",
             }))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -689,6 +692,7 @@ class CustomEventReport(pulumi.CustomResource):
                 "key": "test",
             }))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomEventReportArgs args: The arguments to use to populate this resource's properties.
@@ -765,7 +769,7 @@ class CustomEventReport(pulumi.CustomResource):
             __props__.__dict__["time"] = time
             __props__.__dict__["url"] = url
         super(CustomEventReport, __self__).__init__(
-            'huaweicloud:coc/customEventReport:CustomEventReport',
+            'huaweicloud:Coc/customEventReport:CustomEventReport',
             resource_name,
             __props__,
             opts)

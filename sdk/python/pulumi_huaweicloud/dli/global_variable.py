@@ -25,6 +25,7 @@ class GlobalVariableArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GlobalVariable resource.
+
         :param pulumi.Input[_builtins.str] value: The value of Global variable.
         :param pulumi.Input[_builtins.bool] is_sensitive: Whether to set a variable as a sensitive variable. The default value is **false**.
                
@@ -110,6 +111,7 @@ class _GlobalVariableState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GlobalVariable resources.
+
         :param pulumi.Input[_builtins.bool] is_sensitive: Whether to set a variable as a sensitive variable. The default value is **false**.
                
                Changing this parameter will create a new resource.
@@ -216,11 +218,10 @@ class GlobalVariable(pulumi.CustomResource):
 
         The global variable can be imported using the `id` which equals the name, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/globalVariable:GlobalVariable test demo_name
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -260,11 +261,10 @@ class GlobalVariable(pulumi.CustomResource):
 
         The global variable can be imported using the `id` which equals the name, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/globalVariable:GlobalVariable test demo_name
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GlobalVariableArgs args: The arguments to use to populate this resource's properties.

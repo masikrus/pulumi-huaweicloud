@@ -123,8 +123,8 @@ def get_organizational_policy_assignments(assignment_id: Optional[_builtins.str]
 
     config = pulumi.Config()
     policy_assignment_name = config.require_object("policyAssignmentName")
-    test = huaweicloud.organizations.get_organization()
-    test_get_organizational_policy_assignments = huaweicloud.rms.get_organizational_policy_assignments(organization_id=test.id,
+    test = huaweicloud.Organizations.get_organization()
+    test_get_organizational_policy_assignments = huaweicloud.Rms.get_organizational_policy_assignments(organization_id=test.id,
         name=policy_assignment_name)
     ```
 
@@ -140,7 +140,7 @@ def get_organizational_policy_assignments(assignment_id: Optional[_builtins.str]
     __args__['organizationId'] = organization_id
     __args__['policyDefinitionId'] = policy_definition_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getOrganizationalPolicyAssignments:getOrganizationalPolicyAssignments', __args__, opts=opts, typ=GetOrganizationalPolicyAssignmentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getOrganizationalPolicyAssignments:getOrganizationalPolicyAssignments', __args__, opts=opts, typ=GetOrganizationalPolicyAssignmentsResult).value
 
     return AwaitableGetOrganizationalPolicyAssignmentsResult(
         assignment_id=pulumi.get(__ret__, 'assignment_id'),
@@ -165,8 +165,8 @@ def get_organizational_policy_assignments_output(assignment_id: Optional[pulumi.
 
     config = pulumi.Config()
     policy_assignment_name = config.require_object("policyAssignmentName")
-    test = huaweicloud.organizations.get_organization()
-    test_get_organizational_policy_assignments = huaweicloud.rms.get_organizational_policy_assignments(organization_id=test.id,
+    test = huaweicloud.Organizations.get_organization()
+    test_get_organizational_policy_assignments = huaweicloud.Rms.get_organizational_policy_assignments(organization_id=test.id,
         name=policy_assignment_name)
     ```
 
@@ -182,7 +182,7 @@ def get_organizational_policy_assignments_output(assignment_id: Optional[pulumi.
     __args__['organizationId'] = organization_id
     __args__['policyDefinitionId'] = policy_definition_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getOrganizationalPolicyAssignments:getOrganizationalPolicyAssignments', __args__, opts=opts, typ=GetOrganizationalPolicyAssignmentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getOrganizationalPolicyAssignments:getOrganizationalPolicyAssignments', __args__, opts=opts, typ=GetOrganizationalPolicyAssignmentsResult)
     return __ret__.apply(lambda __response__: GetOrganizationalPolicyAssignmentsResult(
         assignment_id=pulumi.get(__response__, 'assignment_id'),
         assignments=pulumi.get(__response__, 'assignments'),

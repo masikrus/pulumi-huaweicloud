@@ -29,6 +29,7 @@ class InstancePublicAccessArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstancePublicAccess resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance.
         :param pulumi.Input[_builtins.str] elb_id: Specifies the ID of the load balancer bound for public access. This
                parameter is mandatory when **Redis 4.0** or later is used.
@@ -139,6 +140,7 @@ class _InstancePublicAccessState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstancePublicAccess resources.
+
         :param pulumi.Input[_builtins.str] eip_address: Indicates the address of the EIP.
         :param pulumi.Input[_builtins.str] eip_id: Indicates the ID of the EIP.
         :param pulumi.Input[_builtins.str] elb_id: Specifies the ID of the load balancer bound for public access. This
@@ -317,39 +319,28 @@ class InstancePublicAccess(pulumi.CustomResource):
 
         The DCS instance public access can be imported using the `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/instancePublicAccess:InstancePublicAccess test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `publicip_id` and `enable_ssl`. It is
-
         generally recommended running `pulumi preview` after importing a resource. You can then decide if changes should be
-
         applied to the resource, or the resource definition should be updated to align with the resource. Also, you can ignore
-
         changes as below.
 
-        bash
-
+        ```sh
         resource "huaweicloud_dcs_instance_public_access" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               publicip_id, enable_ssl,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -390,39 +381,28 @@ class InstancePublicAccess(pulumi.CustomResource):
 
         The DCS instance public access can be imported using the `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/instancePublicAccess:InstancePublicAccess test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `publicip_id` and `enable_ssl`. It is
-
         generally recommended running `pulumi preview` after importing a resource. You can then decide if changes should be
-
         applied to the resource, or the resource definition should be updated to align with the resource. Also, you can ignore
-
         changes as below.
 
-        bash
-
+        ```sh
         resource "huaweicloud_dcs_instance_public_access" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               publicip_id, enable_ssl,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param InstancePublicAccessArgs args: The arguments to use to populate this resource's properties.

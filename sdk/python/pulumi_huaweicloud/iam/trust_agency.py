@@ -28,6 +28,14 @@ class TrustAgencyArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a TrustAgency resource.
+
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_names: The string list of one or more policy names that you would like to attach to
+               the trust agency.
+        :param pulumi.Input[_builtins.str] trust_policy: The trust policy of the trust agency.
+        :param pulumi.Input[_builtins.str] description: The description of the trust agency.
+        :param pulumi.Input[_builtins.int] duration: The validity period of a trust agency.
+        :param pulumi.Input[_builtins.str] name: The name of trust agency.
+        :param pulumi.Input[_builtins.str] path: The resource path.
         """
         pulumi.set(__self__, "policy_names", policy_names)
         pulumi.set(__self__, "trust_policy", trust_policy)
@@ -45,6 +53,10 @@ class TrustAgencyArgs:
     @_builtins.property
     @pulumi.getter(name="policyNames")
     def policy_names(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        The string list of one or more policy names that you would like to attach to
+        the trust agency.
+        """
         return pulumi.get(self, "policy_names")
 
     @policy_names.setter
@@ -54,6 +66,9 @@ class TrustAgencyArgs:
     @_builtins.property
     @pulumi.getter(name="trustPolicy")
     def trust_policy(self) -> pulumi.Input[_builtins.str]:
+        """
+        The trust policy of the trust agency.
+        """
         return pulumi.get(self, "trust_policy")
 
     @trust_policy.setter
@@ -63,6 +78,9 @@ class TrustAgencyArgs:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the trust agency.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -72,6 +90,9 @@ class TrustAgencyArgs:
     @_builtins.property
     @pulumi.getter
     def duration(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The validity period of a trust agency.
+        """
         return pulumi.get(self, "duration")
 
     @duration.setter
@@ -81,6 +102,9 @@ class TrustAgencyArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of trust agency.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -90,6 +114,9 @@ class TrustAgencyArgs:
     @_builtins.property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The resource path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -109,6 +136,7 @@ class TrustAgencyArgs:
 @pulumi.input_type
 class _TrustAgencyState:
     def __init__(__self__, *,
+                 trust_agency_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  duration: Optional[pulumi.Input[_builtins.int]] = None,
@@ -116,11 +144,22 @@ class _TrustAgencyState:
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  policy_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 trust_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 trust_policy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TrustAgency resources.
+
+        :param pulumi.Input[_builtins.str] trust_agency_urn: The uniform resource name of the trust agency.
+        :param pulumi.Input[_builtins.str] created_at: The time when the trust agency was created.
+        :param pulumi.Input[_builtins.str] description: The description of the trust agency.
+        :param pulumi.Input[_builtins.int] duration: The validity period of a trust agency.
+        :param pulumi.Input[_builtins.str] name: The name of trust agency.
+        :param pulumi.Input[_builtins.str] path: The resource path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_names: The string list of one or more policy names that you would like to attach to
+               the trust agency.
+        :param pulumi.Input[_builtins.str] trust_policy: The trust policy of the trust agency.
         """
+        if trust_agency_urn is not None:
+            pulumi.set(__self__, "trust_agency_urn", trust_agency_urn)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
@@ -137,12 +176,25 @@ class _TrustAgencyState:
             pulumi.set(__self__, "tags", tags)
         if trust_policy is not None:
             pulumi.set(__self__, "trust_policy", trust_policy)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="TrustAgencyUrn")
+    def trust_agency_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The uniform resource name of the trust agency.
+        """
+        return pulumi.get(self, "trust_agency_urn")
+
+    @trust_agency_urn.setter
+    def trust_agency_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "trust_agency_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The time when the trust agency was created.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -152,6 +204,9 @@ class _TrustAgencyState:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the trust agency.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -161,6 +216,9 @@ class _TrustAgencyState:
     @_builtins.property
     @pulumi.getter
     def duration(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The validity period of a trust agency.
+        """
         return pulumi.get(self, "duration")
 
     @duration.setter
@@ -170,6 +228,9 @@ class _TrustAgencyState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of trust agency.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -179,6 +240,9 @@ class _TrustAgencyState:
     @_builtins.property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The resource path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -188,6 +252,10 @@ class _TrustAgencyState:
     @_builtins.property
     @pulumi.getter(name="policyNames")
     def policy_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The string list of one or more policy names that you would like to attach to
+        the trust agency.
+        """
         return pulumi.get(self, "policy_names")
 
     @policy_names.setter
@@ -206,20 +274,14 @@ class _TrustAgencyState:
     @_builtins.property
     @pulumi.getter(name="trustPolicy")
     def trust_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The trust policy of the trust agency.
+        """
         return pulumi.get(self, "trust_policy")
 
     @trust_policy.setter
     def trust_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "trust_policy", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "urn")
-
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
 
 
 @pulumi.type_token("huaweicloud:Iam/trustAgency:TrustAgency")
@@ -238,8 +300,16 @@ class TrustAgency(pulumi.CustomResource):
                  __props__=None):
         """
         Create a TrustAgency resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] description: The description of the trust agency.
+        :param pulumi.Input[_builtins.int] duration: The validity period of a trust agency.
+        :param pulumi.Input[_builtins.str] name: The name of trust agency.
+        :param pulumi.Input[_builtins.str] path: The resource path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_names: The string list of one or more policy names that you would like to attach to
+               the trust agency.
+        :param pulumi.Input[_builtins.str] trust_policy: The trust policy of the trust agency.
         """
         ...
     @overload
@@ -249,6 +319,7 @@ class TrustAgency(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a TrustAgency resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param TrustAgencyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -291,8 +362,8 @@ class TrustAgency(pulumi.CustomResource):
             if trust_policy is None and not opts.urn:
                 raise TypeError("Missing required property 'trust_policy'")
             __props__.__dict__["trust_policy"] = trust_policy
+            __props__.__dict__["trust_agency_urn"] = None
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["urn"] = None
         super(TrustAgency, __self__).__init__(
             'huaweicloud:Iam/trustAgency:TrustAgency',
             resource_name,
@@ -303,6 +374,7 @@ class TrustAgency(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            trust_agency_urn: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             duration: Optional[pulumi.Input[_builtins.int]] = None,
@@ -310,8 +382,7 @@ class TrustAgency(pulumi.CustomResource):
             path: Optional[pulumi.Input[_builtins.str]] = None,
             policy_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            trust_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'TrustAgency':
+            trust_policy: Optional[pulumi.Input[_builtins.str]] = None) -> 'TrustAgency':
         """
         Get an existing TrustAgency resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -319,11 +390,21 @@ class TrustAgency(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] trust_agency_urn: The uniform resource name of the trust agency.
+        :param pulumi.Input[_builtins.str] created_at: The time when the trust agency was created.
+        :param pulumi.Input[_builtins.str] description: The description of the trust agency.
+        :param pulumi.Input[_builtins.int] duration: The validity period of a trust agency.
+        :param pulumi.Input[_builtins.str] name: The name of trust agency.
+        :param pulumi.Input[_builtins.str] path: The resource path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_names: The string list of one or more policy names that you would like to attach to
+               the trust agency.
+        :param pulumi.Input[_builtins.str] trust_policy: The trust policy of the trust agency.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _TrustAgencyState.__new__(_TrustAgencyState)
 
+        __props__.__dict__["trust_agency_urn"] = trust_agency_urn
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
         __props__.__dict__["duration"] = duration
@@ -332,37 +413,63 @@ class TrustAgency(pulumi.CustomResource):
         __props__.__dict__["policy_names"] = policy_names
         __props__.__dict__["tags"] = tags
         __props__.__dict__["trust_policy"] = trust_policy
-        __props__.__dict__["urn"] = urn
         return TrustAgency(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="TrustAgencyUrn")
+    def trust_agency_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The uniform resource name of the trust agency.
+        """
+        return pulumi.get(self, "trust_agency_urn")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:
+        """
+        The time when the trust agency was created.
+        """
         return pulumi.get(self, "created_at")
 
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The description of the trust agency.
+        """
         return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter
     def duration(self) -> pulumi.Output[_builtins.int]:
+        """
+        The validity period of a trust agency.
+        """
         return pulumi.get(self, "duration")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of trust agency.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter
     def path(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The resource path.
+        """
         return pulumi.get(self, "path")
 
     @_builtins.property
     @pulumi.getter(name="policyNames")
     def policy_names(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        The string list of one or more policy names that you would like to attach to
+        the trust agency.
+        """
         return pulumi.get(self, "policy_names")
 
     @_builtins.property
@@ -373,10 +480,8 @@ class TrustAgency(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="trustPolicy")
     def trust_policy(self) -> pulumi.Output[_builtins.str]:
+        """
+        The trust policy of the trust agency.
+        """
         return pulumi.get(self, "trust_policy")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        return pulumi.get(self, "urn")
 

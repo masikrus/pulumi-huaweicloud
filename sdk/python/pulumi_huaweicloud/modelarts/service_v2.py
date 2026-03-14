@@ -35,6 +35,7 @@ class ServiceV2Args:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceV2 resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ServiceV2GroupConfigArgs']]] group_configs: Specifies the instance group configurations of the service.  
                The group_configs structure is documented below.
                When the value of parameter `type` is **BATCH** or **EDGE**, only one group can be configured.
@@ -275,6 +276,7 @@ class _ServiceV2State:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceV2 resources.
+
         :param pulumi.Input[_builtins.str] deploy_type: Specifies the deploy type of the service.  
                The valid values are as follows:
                + **SINGLE**
@@ -647,11 +649,10 @@ class ServiceV2(pulumi.CustomResource):
 
         Service can be imported using resource `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/serviceV2:ServiceV2 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -776,11 +777,10 @@ class ServiceV2(pulumi.CustomResource):
 
         Service can be imported using resource `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/serviceV2:ServiceV2 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceV2Args args: The arguments to use to populate this resource's properties.

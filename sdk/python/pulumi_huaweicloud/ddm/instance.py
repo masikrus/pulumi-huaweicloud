@@ -43,6 +43,7 @@ class InstanceArgs:
                  time_zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: Specifies the list of availability zones.
                
                Changing this parameter will create a new resource.
@@ -441,6 +442,7 @@ class _InstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] access_ip: Indicates the address for accessing the DDM instance.
         :param pulumi.Input[_builtins.str] access_port: Indicates the port for accessing the DDM instance.
         :param pulumi.Input[_builtins.str] admin_password: Specifies the password of the administrator.
@@ -893,7 +895,7 @@ class _InstanceState:
         pulumi.set(self, "vpc_id", value)
 
 
-@pulumi.type_token("huaweicloud:ddm/instance:Instance")
+@pulumi.type_token("huaweicloud:Ddm/instance:Instance")
 class Instance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -951,11 +953,10 @@ class Instance(pulumi.CustomResource):
 
         The DDM instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ddm/instance:Instance test <id>
+        $ pulumi import huaweicloud:Ddm/instance:Instance test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1053,11 +1054,10 @@ class Instance(pulumi.CustomResource):
 
         The DDM instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ddm/instance:Instance test <id>
+        $ pulumi import huaweicloud:Ddm/instance:Instance test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -1145,7 +1145,7 @@ class Instance(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["adminPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Instance, __self__).__init__(
-            'huaweicloud:ddm/instance:Instance',
+            'huaweicloud:Ddm/instance:Instance',
             resource_name,
             __props__,
             opts)

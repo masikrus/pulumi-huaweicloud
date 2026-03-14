@@ -15,6 +15,20 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'AgencyAgencyArgs',
+    'AgencyAgencyArgsDict',
+    'BatchExportPrivateKeyKeypairArgs',
+    'BatchExportPrivateKeyKeypairArgsDict',
+    'BatchImportKeypairFailedKeypairArgs',
+    'BatchImportKeypairFailedKeypairArgsDict',
+    'BatchImportKeypairKeypairArgs',
+    'BatchImportKeypairKeypairArgsDict',
+    'BatchImportKeypairKeypairKeyProtectionArgs',
+    'BatchImportKeypairKeypairKeyProtectionArgsDict',
+    'BatchImportKeypairKeypairKeyProtectionEncryptionArgs',
+    'BatchImportKeypairKeypairKeyProtectionEncryptionArgsDict',
+    'BatchImportKeypairSucceededKeypairArgs',
+    'BatchImportKeypairSucceededKeypairArgsDict',
     'KeypairAssociateServerArgs',
     'KeypairAssociateServerArgsDict',
     'KeypairAssociateServerAuthArgs',
@@ -33,39 +47,738 @@ __all__ = [
     'GetSecretsByTagsTagArgsDict',
 ]
 
-MYPY = False
+class AgencyAgencyArgsDict(TypedDict):
+    agency_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The agency ID.
+    """
+    agency_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The agency name.
+    """
 
-if not MYPY:
-    class KeypairAssociateServerArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
+@pulumi.input_type
+class AgencyAgencyArgs:
+    def __init__(__self__, *,
+                 agency_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 agency_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Specifies ID of the ECS which need to associate (replace or reset) the SSH keypair.
+        :param pulumi.Input[_builtins.str] agency_id: The agency ID.
+        :param pulumi.Input[_builtins.str] agency_name: The agency name.
         """
-        auth: NotRequired[pulumi.Input['KeypairAssociateServerAuthArgsDict']]
-        """
-        Specifies the authentication information.
-        The auth structure is documented below.
-        """
-        disable_password: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the password is disabled.
-        The valid values are as follows:
-        + **true**: Indicates disable SSH login for virtual machines.
-        + **false**: Indicates enable SSH login for virtual machines. Defaults to **false**.
+        if agency_id is not None:
+            pulumi.set(__self__, "agency_id", agency_id)
+        if agency_name is not None:
+            pulumi.set(__self__, "agency_name", agency_name)
 
-        <a name="server_auth"></a>
-        The `auth` block supports:
+    @_builtins.property
+    @pulumi.getter(name="agencyId")
+    def agency_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        port: NotRequired[pulumi.Input[_builtins.int]]
+        The agency ID.
         """
-        Specifies the SSH listening port. The default value is `22`.
+        return pulumi.get(self, "agency_id")
 
-        > When the ECS is shut down, the operation (associate, disassociate, reset) `port` is fixed at `22` and cannot be configured.
-        At the same time, `auth` can not be set. When the ECS is turned on, the operation (associate,replace) `port` can be configured
-        and defaults to `22`, and `auth` is required, otherwise the operation will fail.
+    @agency_id.setter
+    def agency_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "agency_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-elif False:
-    KeypairAssociateServerArgsDict: TypeAlias = Mapping[str, Any]
+        The agency name.
+        """
+        return pulumi.get(self, "agency_name")
+
+    @agency_name.setter
+    def agency_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "agency_name", value)
+
+
+class BatchExportPrivateKeyKeypairArgsDict(TypedDict):
+    fingerprint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the fingerprint of the keypair.
+    """
+    frozen_state: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the frozen state of the keypair. Valid values are:
+    + **0**: normal, not frozen
+    + **1**: frozen due to common causes
+    + **2**: frozen by the public security bureau
+    + **3**: frozen due to common causes and by the public security bureau
+    + **4**: frozen due to violations
+    + **5**: frozen due to common causes and violations
+    + **6**: frozen by the public security bureau and due to violations
+    + **7**: frozen by the public security bureau and due to common causes and violations
+    + **8**: frozen due to lack of real-name authentication
+    + **9**: frozen due to common causes and lack of real-name authentication
+    + **10**: frozen by the public security bureau and due to lack of real-name authentication
+    """
+    is_key_protection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the key is protected.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SSH keypair name.
+    """
+    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the imported OpenSSH-formatted public key.
+    """
+    scope: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the scope of the keypair. Valid values are **domain** and **user**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SSH keypair type. Valid values are **ssh** and **x509**.
+    """
+
+@pulumi.input_type
+class BatchExportPrivateKeyKeypairArgs:
+    def __init__(__self__, *,
+                 fingerprint: Optional[pulumi.Input[_builtins.str]] = None,
+                 frozen_state: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_key_protection: Optional[pulumi.Input[_builtins.bool]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 scope: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] fingerprint: Specifies the fingerprint of the keypair.
+        :param pulumi.Input[_builtins.str] frozen_state: Specifies the frozen state of the keypair. Valid values are:
+               + **0**: normal, not frozen
+               + **1**: frozen due to common causes
+               + **2**: frozen by the public security bureau
+               + **3**: frozen due to common causes and by the public security bureau
+               + **4**: frozen due to violations
+               + **5**: frozen due to common causes and violations
+               + **6**: frozen by the public security bureau and due to violations
+               + **7**: frozen by the public security bureau and due to common causes and violations
+               + **8**: frozen due to lack of real-name authentication
+               + **9**: frozen due to common causes and lack of real-name authentication
+               + **10**: frozen by the public security bureau and due to lack of real-name authentication
+        :param pulumi.Input[_builtins.bool] is_key_protection: Specifies whether the key is protected.
+        :param pulumi.Input[_builtins.str] name: Specifies the SSH keypair name.
+        :param pulumi.Input[_builtins.str] public_key: Specifies the imported OpenSSH-formatted public key.
+        :param pulumi.Input[_builtins.str] scope: Specifies the scope of the keypair. Valid values are **domain** and **user**.
+        :param pulumi.Input[_builtins.str] type: Specifies the SSH keypair type. Valid values are **ssh** and **x509**.
+        """
+        if fingerprint is not None:
+            pulumi.set(__self__, "fingerprint", fingerprint)
+        if frozen_state is not None:
+            pulumi.set(__self__, "frozen_state", frozen_state)
+        if is_key_protection is not None:
+            pulumi.set(__self__, "is_key_protection", is_key_protection)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def fingerprint(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the fingerprint of the keypair.
+        """
+        return pulumi.get(self, "fingerprint")
+
+    @fingerprint.setter
+    def fingerprint(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "fingerprint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="frozenState")
+    def frozen_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the frozen state of the keypair. Valid values are:
+        + **0**: normal, not frozen
+        + **1**: frozen due to common causes
+        + **2**: frozen by the public security bureau
+        + **3**: frozen due to common causes and by the public security bureau
+        + **4**: frozen due to violations
+        + **5**: frozen due to common causes and violations
+        + **6**: frozen by the public security bureau and due to violations
+        + **7**: frozen by the public security bureau and due to common causes and violations
+        + **8**: frozen due to lack of real-name authentication
+        + **9**: frozen due to common causes and lack of real-name authentication
+        + **10**: frozen by the public security bureau and due to lack of real-name authentication
+        """
+        return pulumi.get(self, "frozen_state")
+
+    @frozen_state.setter
+    def frozen_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "frozen_state", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isKeyProtection")
+    def is_key_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the key is protected.
+        """
+        return pulumi.get(self, "is_key_protection")
+
+    @is_key_protection.setter
+    def is_key_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_key_protection", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the SSH keypair name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the imported OpenSSH-formatted public key.
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "public_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the scope of the keypair. Valid values are **domain** and **user**.
+        """
+        return pulumi.get(self, "scope")
+
+    @scope.setter
+    def scope(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "scope", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the SSH keypair type. Valid values are **ssh** and **x509**.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class BatchImportKeypairFailedKeypairArgsDict(TypedDict):
+    failed_reason: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The failed reason.
+    """
+    keypair_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The SSH keypair name.
+    """
+
+@pulumi.input_type
+class BatchImportKeypairFailedKeypairArgs:
+    def __init__(__self__, *,
+                 failed_reason: Optional[pulumi.Input[_builtins.str]] = None,
+                 keypair_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] failed_reason: The failed reason.
+        :param pulumi.Input[_builtins.str] keypair_name: The SSH keypair name.
+        """
+        if failed_reason is not None:
+            pulumi.set(__self__, "failed_reason", failed_reason)
+        if keypair_name is not None:
+            pulumi.set(__self__, "keypair_name", keypair_name)
+
+    @_builtins.property
+    @pulumi.getter(name="failedReason")
+    def failed_reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The failed reason.
+        """
+        return pulumi.get(self, "failed_reason")
+
+    @failed_reason.setter
+    def failed_reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "failed_reason", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keypairName")
+    def keypair_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The SSH keypair name.
+        """
+        return pulumi.get(self, "keypair_name")
+
+    @keypair_name.setter
+    def keypair_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "keypair_name", value)
+
+
+class BatchImportKeypairKeypairArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the SSH keypair name.
+    """
+    key_protection: NotRequired[pulumi.Input['BatchImportKeypairKeypairKeyProtectionArgsDict']]
+    """
+    Specifies the key protection configuration.
+    This parameter can be configured with at most one element.
+    The key_protection structure is documented below.
+
+    <a name="Struct_key_protection"></a>
+    The `key_protection` block supports:
+    """
+    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the imported OpenSSH-formatted public key.
+    """
+    scope: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the scope of the keypair. Valid values are **domain** and **user**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encryption type. Valid values are **kms** and **default**.
+    + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+    + **kms**: KMS encryption mode.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user ID of the keypair.
+    """
+
+@pulumi.input_type
+class BatchImportKeypairKeypairArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 key_protection: Optional[pulumi.Input['BatchImportKeypairKeypairKeyProtectionArgs']] = None,
+                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 scope: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Specifies the SSH keypair name.
+        :param pulumi.Input['BatchImportKeypairKeypairKeyProtectionArgs'] key_protection: Specifies the key protection configuration.
+               This parameter can be configured with at most one element.
+               The key_protection structure is documented below.
+               
+               <a name="Struct_key_protection"></a>
+               The `key_protection` block supports:
+        :param pulumi.Input[_builtins.str] public_key: Specifies the imported OpenSSH-formatted public key.
+        :param pulumi.Input[_builtins.str] scope: Specifies the scope of the keypair. Valid values are **domain** and **user**.
+        :param pulumi.Input[_builtins.str] type: Specifies the encryption type. Valid values are **kms** and **default**.
+               + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+               + **kms**: KMS encryption mode.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID of the keypair.
+        """
+        pulumi.set(__self__, "name", name)
+        if key_protection is not None:
+            pulumi.set(__self__, "key_protection", key_protection)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the SSH keypair name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyProtection")
+    def key_protection(self) -> Optional[pulumi.Input['BatchImportKeypairKeypairKeyProtectionArgs']]:
+        """
+        Specifies the key protection configuration.
+        This parameter can be configured with at most one element.
+        The key_protection structure is documented below.
+
+        <a name="Struct_key_protection"></a>
+        The `key_protection` block supports:
+        """
+        return pulumi.get(self, "key_protection")
+
+    @key_protection.setter
+    def key_protection(self, value: Optional[pulumi.Input['BatchImportKeypairKeypairKeyProtectionArgs']]):
+        pulumi.set(self, "key_protection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the imported OpenSSH-formatted public key.
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "public_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the scope of the keypair. Valid values are **domain** and **user**.
+        """
+        return pulumi.get(self, "scope")
+
+    @scope.setter
+    def scope(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "scope", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the encryption type. Valid values are **kms** and **default**.
+        + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+        + **kms**: KMS encryption mode.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the user ID of the keypair.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_id", value)
+
+
+class BatchImportKeypairKeypairKeyProtectionArgsDict(TypedDict):
+    encryption: pulumi.Input['BatchImportKeypairKeypairKeyProtectionEncryptionArgsDict']
+    """
+    Specifies the encryption configuration.
+    The encryption structure is documented below.
+
+    <a name="Struct_encryption"></a>
+    The `encryption` block supports:
+    """
+    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the private key of the keypair.
+    """
+
+@pulumi.input_type
+class BatchImportKeypairKeypairKeyProtectionArgs:
+    def __init__(__self__, *,
+                 encryption: pulumi.Input['BatchImportKeypairKeypairKeyProtectionEncryptionArgs'],
+                 private_key: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input['BatchImportKeypairKeypairKeyProtectionEncryptionArgs'] encryption: Specifies the encryption configuration.
+               The encryption structure is documented below.
+               
+               <a name="Struct_encryption"></a>
+               The `encryption` block supports:
+        :param pulumi.Input[_builtins.str] private_key: Specifies the private key of the keypair.
+        """
+        pulumi.set(__self__, "encryption", encryption)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+
+    @_builtins.property
+    @pulumi.getter
+    def encryption(self) -> pulumi.Input['BatchImportKeypairKeypairKeyProtectionEncryptionArgs']:
+        """
+        Specifies the encryption configuration.
+        The encryption structure is documented below.
+
+        <a name="Struct_encryption"></a>
+        The `encryption` block supports:
+        """
+        return pulumi.get(self, "encryption")
+
+    @encryption.setter
+    def encryption(self, value: pulumi.Input['BatchImportKeypairKeypairKeyProtectionEncryptionArgs']):
+        pulumi.set(self, "encryption", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the private key of the keypair.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+
+class BatchImportKeypairKeypairKeyProtectionEncryptionArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the encryption type. Valid values are **kms** and **default**.
+    + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+    + **kms**: KMS encryption mode.
+    """
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the KMS key ID.
+
+    > If `type` is set to **kms**, you must enter the KMS key name or ID.
+    """
+    kms_key_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the KMS key name.
+    """
+
+@pulumi.input_type
+class BatchImportKeypairKeypairKeyProtectionEncryptionArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 kms_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 kms_key_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: Specifies the encryption type. Valid values are **kms** and **default**.
+               + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+               + **kms**: KMS encryption mode.
+        :param pulumi.Input[_builtins.str] kms_key_id: Specifies the KMS key ID.
+               
+               > If `type` is set to **kms**, you must enter the KMS key name or ID.
+        :param pulumi.Input[_builtins.str] kms_key_name: Specifies the KMS key name.
+        """
+        pulumi.set(__self__, "type", type)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if kms_key_name is not None:
+            pulumi.set(__self__, "kms_key_name", kms_key_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the encryption type. Valid values are **kms** and **default**.
+        + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+        + **kms**: KMS encryption mode.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the KMS key ID.
+
+        > If `type` is set to **kms**, you must enter the KMS key name or ID.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyName")
+    def kms_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the KMS key name.
+        """
+        return pulumi.get(self, "kms_key_name")
+
+    @kms_key_name.setter
+    def kms_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kms_key_name", value)
+
+
+class BatchImportKeypairSucceededKeypairArgsDict(TypedDict):
+    fingerprint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The fingerprint of the keypair.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SSH keypair name.
+    """
+    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the private key of the keypair.
+    """
+    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the imported OpenSSH-formatted public key.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encryption type. Valid values are **kms** and **default**.
+    + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+    + **kms**: KMS encryption mode.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user ID of the keypair.
+    """
+
+@pulumi.input_type
+class BatchImportKeypairSucceededKeypairArgs:
+    def __init__(__self__, *,
+                 fingerprint: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] fingerprint: The fingerprint of the keypair.
+        :param pulumi.Input[_builtins.str] name: Specifies the SSH keypair name.
+        :param pulumi.Input[_builtins.str] private_key: Specifies the private key of the keypair.
+        :param pulumi.Input[_builtins.str] public_key: Specifies the imported OpenSSH-formatted public key.
+        :param pulumi.Input[_builtins.str] type: Specifies the encryption type. Valid values are **kms** and **default**.
+               + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+               + **kms**: KMS encryption mode.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID of the keypair.
+        """
+        if fingerprint is not None:
+            pulumi.set(__self__, "fingerprint", fingerprint)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def fingerprint(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The fingerprint of the keypair.
+        """
+        return pulumi.get(self, "fingerprint")
+
+    @fingerprint.setter
+    def fingerprint(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "fingerprint", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the SSH keypair name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the private key of the keypair.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the imported OpenSSH-formatted public key.
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "public_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the encryption type. Valid values are **kms** and **default**.
+        + **default**: The default encryption mode. Applicable to sites where KMS is not deployed.
+        + **kms**: KMS encryption mode.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the user ID of the keypair.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_id", value)
+
+
+class KeypairAssociateServerArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies ID of the ECS which need to associate (replace or reset) the SSH keypair.
+    """
+    auth: NotRequired[pulumi.Input['KeypairAssociateServerAuthArgsDict']]
+    """
+    Specifies the authentication information.
+    The auth structure is documented below.
+    """
+    disable_password: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the password is disabled.
+    The valid values are as follows:
+    + **true**: Indicates disable SSH login for virtual machines.
+    + **false**: Indicates enable SSH login for virtual machines. Defaults to **false**.
+
+    <a name="server_auth"></a>
+    The `auth` block supports:
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the SSH listening port. The default value is `22`.
+
+    > When the ECS is shut down, the operation (associate, disassociate, reset) `port` is fixed at `22` and cannot be configured.
+    At the same time, `auth` can not be set. When the ECS is turned on, the operation (associate,replace) `port` can be configured
+    and defaults to `22`, and `auth` is required, otherwise the operation will fail.
+    """
 
 @pulumi.input_type
 class KeypairAssociateServerArgs:
@@ -159,21 +872,18 @@ class KeypairAssociateServerArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class KeypairAssociateServerAuthArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the key depending on the `type`.
-        When the `type` is set to **password**, it represents the password.
-        When the `type` is set to **keypair**, it represents the private key.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the authentication type.
-        The valid values are **password** and **keypair**.
-        """
-elif False:
-    KeypairAssociateServerAuthArgsDict: TypeAlias = Mapping[str, Any]
+class KeypairAssociateServerAuthArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the key depending on the `type`.
+    When the `type` is set to **password**, it represents the password.
+    When the `type` is set to **keypair**, it represents the private key.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the authentication type.
+    The valid values are **password** and **keypair**.
+    """
 
 @pulumi.input_type
 class KeypairAssociateServerAuthArgs:
@@ -220,31 +930,28 @@ class KeypairAssociateServerAuthArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class KeypairDisassociateServerArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies ID of the ECS which need to disassociate the SSH keypair.
-        """
-        auth: NotRequired[pulumi.Input['KeypairDisassociateServerAuthArgsDict']]
-        """
-        Specifies the authentication information. This parameter is required for replacement
-        and not required for reset.
-        The auth structure is documented below.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the SSH listening port. The default value is `22`.
+class KeypairDisassociateServerArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies ID of the ECS which need to disassociate the SSH keypair.
+    """
+    auth: NotRequired[pulumi.Input['KeypairDisassociateServerAuthArgsDict']]
+    """
+    Specifies the authentication information. This parameter is required for replacement
+    and not required for reset.
+    The auth structure is documented below.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the SSH listening port. The default value is `22`.
 
-        > When the ECS is shut down, the disassociate `port` is fixed at `22` and cannot be configured.
-        At the same time, `auth` can not be set. When the ECS is turned on, the disassociate `port` can be
-        configured and defaults to `22`, and `auth` is required, otherwise the operation will fail.
+    > When the ECS is shut down, the disassociate `port` is fixed at `22` and cannot be configured.
+    At the same time, `auth` can not be set. When the ECS is turned on, the disassociate `port` can be
+    configured and defaults to `22`, and `auth` is required, otherwise the operation will fail.
 
-        <a name="server_auth"></a>
-        The `auth` block supports:
-        """
-elif False:
-    KeypairDisassociateServerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="server_auth"></a>
+    The `auth` block supports:
+    """
 
 @pulumi.input_type
 class KeypairDisassociateServerArgs:
@@ -318,21 +1025,18 @@ class KeypairDisassociateServerArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class KeypairDisassociateServerAuthArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the key depending on the `type`.
-        When the `type` is set to **password**, it represents the password.
-        When the `type` is set to **keypair**, it represents the private key.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of an authentication type.
-        The valid values are **password** and **keypair**.
-        """
-elif False:
-    KeypairDisassociateServerAuthArgsDict: TypeAlias = Mapping[str, Any]
+class KeypairDisassociateServerAuthArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the key depending on the `type`.
+    When the `type` is set to **password**, it represents the password.
+    When the `type` is set to **keypair**, it represents the private key.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of an authentication type.
+    The valid values are **password** and **keypair**.
+    """
 
 @pulumi.input_type
 class KeypairDisassociateServerAuthArgs:
@@ -379,19 +1083,16 @@ class KeypairDisassociateServerAuthArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class GetCustomKeysByTagsMatchArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the field to be matched, for example, **resource_name**.
-        """
-        value: NotRequired[_builtins.str]
-        """
-        Specifies the value to be matched. It contains a maximum of `255` characters and
-        cannot be empty.
-        """
-elif False:
-    GetCustomKeysByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetCustomKeysByTagsMatchArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched, for example, **resource_name**.
+    """
+    value: NotRequired[_builtins.str]
+    """
+    Specifies the value to be matched. It contains a maximum of `255` characters and
+    cannot be empty.
+    """
 
 @pulumi.input_type
 class GetCustomKeysByTagsMatchArgs:
@@ -434,21 +1135,18 @@ class GetCustomKeysByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetCustomKeysByTagsTagArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the field to be matched, for example, **resource_name**.
-        """
-        values: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the tag value set.
+class GetCustomKeysByTagsTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the field to be matched, for example, **resource_name**.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the tag value set.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetCustomKeysByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetCustomKeysByTagsTagArgs:
@@ -495,19 +1193,16 @@ class GetCustomKeysByTagsTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetSecretsByTagsMatchArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the search field, the valid value is **resource_name**.
-        """
-        value: NotRequired[_builtins.str]
-        """
-        Specifies the field for fuzzy match, maximum of `255` characters are allowed.
-        If it is left blank, a null value is returned.
-        """
-elif False:
-    GetSecretsByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetSecretsByTagsMatchArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the search field, the valid value is **resource_name**.
+    """
+    value: NotRequired[_builtins.str]
+    """
+    Specifies the field for fuzzy match, maximum of `255` characters are allowed.
+    If it is left blank, a null value is returned.
+    """
 
 @pulumi.input_type
 class GetSecretsByTagsMatchArgs:
@@ -550,23 +1245,20 @@ class GetSecretsByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetSecretsByTagsTagArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the search field, the valid value is **resource_name**.
-        """
-        values: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the set of tag values, the maximum of values is `10`.
-        If the tag list is empty, any value can be matched.
-        A search result matches only one value.
+class GetSecretsByTagsTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the search field, the valid value is **resource_name**.
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the set of tag values, the maximum of values is `10`.
+    If the tag list is empty, any value can be matched.
+    A search result matches only one value.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetSecretsByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetSecretsByTagsTagArgs:

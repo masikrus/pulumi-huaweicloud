@@ -21,19 +21,22 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 protocol: pulumi.Input[_builtins.str],
                  access_config: Optional[pulumi.Input['ProviderAccessConfigArgs']] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  sso_type: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Provider resource.
-        :param pulumi.Input[_builtins.str] protocol: Specifies the protocol of the identity provider.
-               Valid values are **saml** and **oidc**. Changing this creates a new resource.
+
         :param pulumi.Input['ProviderAccessConfigArgs'] access_config: Specifies the description of the identity provider.
                This field is required only if the protocol is set to *oidc*.
+               The access_config structure is documented below.
+               
+               <a name="identity_provider_access_config"></a>
+               The `access_config` block supports:
         :param pulumi.Input[_builtins.str] description: Specifies the description of the identity provider.
         :param pulumi.Input[_builtins.str] metadata: Specifies the metadata of the IDP(Identity Provider) server.
                To obtain the metadata file of your enterprise IDP, contact the enterprise administrator.
@@ -50,8 +53,18 @@ class ProviderArgs:
                The maximum length is `64` characters. Only letters, digits, underscores (_), and hyphens (-) are allowed.
                The name is unique, it is recommended to include domain name information.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] sso_type: Specifies the single sign-on type of the identity provider.
-               Valid values are as follows:
+        :param pulumi.Input[_builtins.str] protocol: Specifies the protocol of the identity provider.  
+               The valid values are as follows:
+               + **saml**: SAML protocol.
+               + **oidc**: OpenID Connect protocol.
+               
+               Changing this creates a new resource.
+               
+               ->**Note:** This parameter can be omitted during creation and using `Iam.ProviderConversion` and
+               `Iam.ProviderProtocol` resources to manage it. At the same time, please use
+               `lifecycle.ignore_changes` to ignore changes to `conversion_rules` under this management way.
+        :param pulumi.Input[_builtins.str] sso_type: Specifies the single sign-on type of the identity provider.  
+               The valid values are as follows:
                + **virtual_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically creates a virtual user
                and assigns permissions to the user based on identity conversion rules.
                + **iam_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically maps the external identity
@@ -69,7 +82,6 @@ class ProviderArgs:
                and External Identity ID in the SP to the same value.
         :param pulumi.Input[_builtins.bool] status: Enabled status for the identity provider. Defaults to true.
         """
-        pulumi.set(__self__, "protocol", protocol)
         if access_config is not None:
             pulumi.set(__self__, "access_config", access_config)
         if description is not None:
@@ -78,23 +90,12 @@ class ProviderArgs:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
         if sso_type is not None:
             pulumi.set(__self__, "sso_type", sso_type)
         if status is not None:
             pulumi.set(__self__, "status", status)
-
-    @_builtins.property
-    @pulumi.getter
-    def protocol(self) -> pulumi.Input[_builtins.str]:
-        """
-        Specifies the protocol of the identity provider.
-        Valid values are **saml** and **oidc**. Changing this creates a new resource.
-        """
-        return pulumi.get(self, "protocol")
-
-    @protocol.setter
-    def protocol(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="accessConfig")
@@ -102,6 +103,10 @@ class ProviderArgs:
         """
         Specifies the description of the identity provider.
         This field is required only if the protocol is set to *oidc*.
+        The access_config structure is documented below.
+
+        <a name="identity_provider_access_config"></a>
+        The `access_config` block supports:
         """
         return pulumi.get(self, "access_config")
 
@@ -159,11 +164,32 @@ class ProviderArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the protocol of the identity provider.  
+        The valid values are as follows:
+        + **saml**: SAML protocol.
+        + **oidc**: OpenID Connect protocol.
+
+        Changing this creates a new resource.
+
+        ->**Note:** This parameter can be omitted during creation and using `Iam.ProviderConversion` and
+        `Iam.ProviderProtocol` resources to manage it. At the same time, please use
+        `lifecycle.ignore_changes` to ignore changes to `conversion_rules` under this management way.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
     @pulumi.getter(name="ssoType")
     def sso_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the single sign-on type of the identity provider.
-        Valid values are as follows:
+        Specifies the single sign-on type of the identity provider.  
+        The valid values are as follows:
         + **virtual_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically creates a virtual user
         and assigns permissions to the user based on identity conversion rules.
         + **iam_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically maps the external identity
@@ -213,10 +239,15 @@ class _ProviderState:
                  status: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Provider resources.
+
         :param pulumi.Input['ProviderAccessConfigArgs'] access_config: Specifies the description of the identity provider.
                This field is required only if the protocol is set to *oidc*.
-        :param pulumi.Input[Sequence[pulumi.Input['ProviderConversionRuleArgs']]] conversion_rules: The identity conversion rules of the identity provider.
-               The object structure is documented below
+               The access_config structure is documented below.
+               
+               <a name="identity_provider_access_config"></a>
+               The `access_config` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input['ProviderConversionRuleArgs']]] conversion_rules: The identity conversion rules of the identity provider.  
+               The conversion_rules structure is documented below
         :param pulumi.Input[_builtins.str] description: Specifies the description of the identity provider.
         :param pulumi.Input[_builtins.str] login_link: The login link of the identity provider.
         :param pulumi.Input[_builtins.str] metadata: Specifies the metadata of the IDP(Identity Provider) server.
@@ -234,10 +265,18 @@ class _ProviderState:
                The maximum length is `64` characters. Only letters, digits, underscores (_), and hyphens (-) are allowed.
                The name is unique, it is recommended to include domain name information.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] protocol: Specifies the protocol of the identity provider.
-               Valid values are **saml** and **oidc**. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] sso_type: Specifies the single sign-on type of the identity provider.
-               Valid values are as follows:
+        :param pulumi.Input[_builtins.str] protocol: Specifies the protocol of the identity provider.  
+               The valid values are as follows:
+               + **saml**: SAML protocol.
+               + **oidc**: OpenID Connect protocol.
+               
+               Changing this creates a new resource.
+               
+               ->**Note:** This parameter can be omitted during creation and using `Iam.ProviderConversion` and
+               `Iam.ProviderProtocol` resources to manage it. At the same time, please use
+               `lifecycle.ignore_changes` to ignore changes to `conversion_rules` under this management way.
+        :param pulumi.Input[_builtins.str] sso_type: Specifies the single sign-on type of the identity provider.  
+               The valid values are as follows:
                + **virtual_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically creates a virtual user
                and assigns permissions to the user based on identity conversion rules.
                + **iam_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically maps the external identity
@@ -280,6 +319,10 @@ class _ProviderState:
         """
         Specifies the description of the identity provider.
         This field is required only if the protocol is set to *oidc*.
+        The access_config structure is documented below.
+
+        <a name="identity_provider_access_config"></a>
+        The `access_config` block supports:
         """
         return pulumi.get(self, "access_config")
 
@@ -291,8 +334,8 @@ class _ProviderState:
     @pulumi.getter(name="conversionRules")
     def conversion_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProviderConversionRuleArgs']]]]:
         """
-        The identity conversion rules of the identity provider.
-        The object structure is documented below
+        The identity conversion rules of the identity provider.  
+        The conversion_rules structure is documented below
         """
         return pulumi.get(self, "conversion_rules")
 
@@ -365,8 +408,16 @@ class _ProviderState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the protocol of the identity provider.
-        Valid values are **saml** and **oidc**. Changing this creates a new resource.
+        Specifies the protocol of the identity provider.  
+        The valid values are as follows:
+        + **saml**: SAML protocol.
+        + **oidc**: OpenID Connect protocol.
+
+        Changing this creates a new resource.
+
+        ->**Note:** This parameter can be omitted during creation and using `Iam.ProviderConversion` and
+        `Iam.ProviderProtocol` resources to manage it. At the same time, please use
+        `lifecycle.ignore_changes` to ignore changes to `conversion_rules` under this management way.
         """
         return pulumi.get(self, "protocol")
 
@@ -378,8 +429,8 @@ class _ProviderState:
     @pulumi.getter(name="ssoType")
     def sso_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the single sign-on type of the identity provider.
-        Valid values are as follows:
+        Specifies the single sign-on type of the identity provider.  
+        The valid values are as follows:
         + **virtual_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically creates a virtual user
         and assigns permissions to the user based on identity conversion rules.
         + **iam_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically maps the external identity
@@ -430,12 +481,27 @@ class Provider(pulumi.CustomResource):
                  status: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        Manages the identity providers within HuaweiCloud IAM service.
+        Manages an IAM providers resource within HuaweiCloud.
 
         > **NOTE:** 1. You *must* have admin privileges to use this resource.
           <br/>2. You can create up to 10 identity providers.
 
         ## Example Usage
+
+        ### Create a SAML protocol provider
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        name = config.require_object("name")
+        test = huaweicloud.iam.Provider("test",
+            name=name,
+            protocol="saml",
+            metadata=std.index.file(input="/usr/local/data/files/metadata.txt")["result"])
+        ```
 
         ### Create a OpenID Connect protocol provider
 
@@ -444,13 +510,16 @@ class Provider(pulumi.CustomResource):
         import json
         import pulumi_huaweicloud as huaweicloud
 
-        provider2 = huaweicloud.iam.Provider("provider_2",
-            name="example_com_provider_oidc",
+        config = pulumi.Config()
+        name = config.require_object("name")
+        client_id = config.require_object("clientId")
+        test = huaweicloud.iam.Provider("test",
+            name=name,
             protocol="oidc",
             access_config={
                 "access_type": "program_console",
                 "provider_url": "https://accounts.example.com",
-                "client_id": "your_client_id",
+                "client_id": client_id,
                 "authorization_endpoint": "https://accounts.example.com/o/oauth2/v2/auth",
                 "scopes": ["openid"],
                 "signing_key": json.dumps({
@@ -472,16 +541,19 @@ class Provider(pulumi.CustomResource):
 
         Identity provider can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/provider:Provider provider_1 example_com_provider_saml
+        $ pulumi import huaweicloud:Iam/provider:Provider test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ProviderAccessConfigArgs', 'ProviderAccessConfigArgsDict']] access_config: Specifies the description of the identity provider.
                This field is required only if the protocol is set to *oidc*.
+               The access_config structure is documented below.
+               
+               <a name="identity_provider_access_config"></a>
+               The `access_config` block supports:
         :param pulumi.Input[_builtins.str] description: Specifies the description of the identity provider.
         :param pulumi.Input[_builtins.str] metadata: Specifies the metadata of the IDP(Identity Provider) server.
                To obtain the metadata file of your enterprise IDP, contact the enterprise administrator.
@@ -498,10 +570,18 @@ class Provider(pulumi.CustomResource):
                The maximum length is `64` characters. Only letters, digits, underscores (_), and hyphens (-) are allowed.
                The name is unique, it is recommended to include domain name information.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] protocol: Specifies the protocol of the identity provider.
-               Valid values are **saml** and **oidc**. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] sso_type: Specifies the single sign-on type of the identity provider.
-               Valid values are as follows:
+        :param pulumi.Input[_builtins.str] protocol: Specifies the protocol of the identity provider.  
+               The valid values are as follows:
+               + **saml**: SAML protocol.
+               + **oidc**: OpenID Connect protocol.
+               
+               Changing this creates a new resource.
+               
+               ->**Note:** This parameter can be omitted during creation and using `Iam.ProviderConversion` and
+               `Iam.ProviderProtocol` resources to manage it. At the same time, please use
+               `lifecycle.ignore_changes` to ignore changes to `conversion_rules` under this management way.
+        :param pulumi.Input[_builtins.str] sso_type: Specifies the single sign-on type of the identity provider.  
+               The valid values are as follows:
                + **virtual_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically creates a virtual user
                and assigns permissions to the user based on identity conversion rules.
                + **iam_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically maps the external identity
@@ -523,15 +603,30 @@ class Provider(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the identity providers within HuaweiCloud IAM service.
+        Manages an IAM providers resource within HuaweiCloud.
 
         > **NOTE:** 1. You *must* have admin privileges to use this resource.
           <br/>2. You can create up to 10 identity providers.
 
         ## Example Usage
+
+        ### Create a SAML protocol provider
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        name = config.require_object("name")
+        test = huaweicloud.iam.Provider("test",
+            name=name,
+            protocol="saml",
+            metadata=std.index.file(input="/usr/local/data/files/metadata.txt")["result"])
+        ```
 
         ### Create a OpenID Connect protocol provider
 
@@ -540,13 +635,16 @@ class Provider(pulumi.CustomResource):
         import json
         import pulumi_huaweicloud as huaweicloud
 
-        provider2 = huaweicloud.iam.Provider("provider_2",
-            name="example_com_provider_oidc",
+        config = pulumi.Config()
+        name = config.require_object("name")
+        client_id = config.require_object("clientId")
+        test = huaweicloud.iam.Provider("test",
+            name=name,
             protocol="oidc",
             access_config={
                 "access_type": "program_console",
                 "provider_url": "https://accounts.example.com",
-                "client_id": "your_client_id",
+                "client_id": client_id,
                 "authorization_endpoint": "https://accounts.example.com/o/oauth2/v2/auth",
                 "scopes": ["openid"],
                 "signing_key": json.dumps({
@@ -568,11 +666,10 @@ class Provider(pulumi.CustomResource):
 
         Identity provider can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/provider:Provider provider_1 example_com_provider_saml
+        $ pulumi import huaweicloud:Iam/provider:Provider test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProviderArgs args: The arguments to use to populate this resource's properties.
@@ -609,8 +706,6 @@ class Provider(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
-            if protocol is None and not opts.urn:
-                raise TypeError("Missing required property 'protocol'")
             __props__.__dict__["protocol"] = protocol
             __props__.__dict__["sso_type"] = sso_type
             __props__.__dict__["status"] = status
@@ -644,8 +739,12 @@ class Provider(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ProviderAccessConfigArgs', 'ProviderAccessConfigArgsDict']] access_config: Specifies the description of the identity provider.
                This field is required only if the protocol is set to *oidc*.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderConversionRuleArgs', 'ProviderConversionRuleArgsDict']]]] conversion_rules: The identity conversion rules of the identity provider.
-               The object structure is documented below
+               The access_config structure is documented below.
+               
+               <a name="identity_provider_access_config"></a>
+               The `access_config` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderConversionRuleArgs', 'ProviderConversionRuleArgsDict']]]] conversion_rules: The identity conversion rules of the identity provider.  
+               The conversion_rules structure is documented below
         :param pulumi.Input[_builtins.str] description: Specifies the description of the identity provider.
         :param pulumi.Input[_builtins.str] login_link: The login link of the identity provider.
         :param pulumi.Input[_builtins.str] metadata: Specifies the metadata of the IDP(Identity Provider) server.
@@ -663,10 +762,18 @@ class Provider(pulumi.CustomResource):
                The maximum length is `64` characters. Only letters, digits, underscores (_), and hyphens (-) are allowed.
                The name is unique, it is recommended to include domain name information.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] protocol: Specifies the protocol of the identity provider.
-               Valid values are **saml** and **oidc**. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] sso_type: Specifies the single sign-on type of the identity provider.
-               Valid values are as follows:
+        :param pulumi.Input[_builtins.str] protocol: Specifies the protocol of the identity provider.  
+               The valid values are as follows:
+               + **saml**: SAML protocol.
+               + **oidc**: OpenID Connect protocol.
+               
+               Changing this creates a new resource.
+               
+               ->**Note:** This parameter can be omitted during creation and using `Iam.ProviderConversion` and
+               `Iam.ProviderProtocol` resources to manage it. At the same time, please use
+               `lifecycle.ignore_changes` to ignore changes to `conversion_rules` under this management way.
+        :param pulumi.Input[_builtins.str] sso_type: Specifies the single sign-on type of the identity provider.  
+               The valid values are as follows:
                + **virtual_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically creates a virtual user
                and assigns permissions to the user based on identity conversion rules.
                + **iam_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically maps the external identity
@@ -705,6 +812,10 @@ class Provider(pulumi.CustomResource):
         """
         Specifies the description of the identity provider.
         This field is required only if the protocol is set to *oidc*.
+        The access_config structure is documented below.
+
+        <a name="identity_provider_access_config"></a>
+        The `access_config` block supports:
         """
         return pulumi.get(self, "access_config")
 
@@ -712,8 +823,8 @@ class Provider(pulumi.CustomResource):
     @pulumi.getter(name="conversionRules")
     def conversion_rules(self) -> pulumi.Output[Sequence['outputs.ProviderConversionRule']]:
         """
-        The identity conversion rules of the identity provider.
-        The object structure is documented below
+        The identity conversion rules of the identity provider.  
+        The conversion_rules structure is documented below
         """
         return pulumi.get(self, "conversion_rules")
 
@@ -766,8 +877,16 @@ class Provider(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the protocol of the identity provider.
-        Valid values are **saml** and **oidc**. Changing this creates a new resource.
+        Specifies the protocol of the identity provider.  
+        The valid values are as follows:
+        + **saml**: SAML protocol.
+        + **oidc**: OpenID Connect protocol.
+
+        Changing this creates a new resource.
+
+        ->**Note:** This parameter can be omitted during creation and using `Iam.ProviderConversion` and
+        `Iam.ProviderProtocol` resources to manage it. At the same time, please use
+        `lifecycle.ignore_changes` to ignore changes to `conversion_rules` under this management way.
         """
         return pulumi.get(self, "protocol")
 
@@ -775,8 +894,8 @@ class Provider(pulumi.CustomResource):
     @pulumi.getter(name="ssoType")
     def sso_type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the single sign-on type of the identity provider.
-        Valid values are as follows:
+        Specifies the single sign-on type of the identity provider.  
+        The valid values are as follows:
         + **virtual_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically creates a virtual user
         and assigns permissions to the user based on identity conversion rules.
         + **iam_user_sso**: After a federated user logs in to HuaweiCloud, the system automatically maps the external identity

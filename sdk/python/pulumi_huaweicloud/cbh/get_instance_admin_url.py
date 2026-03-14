@@ -93,7 +93,7 @@ def get_instance_admin_url(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     server_id = config.require_object("serverId")
-    test = huaweicloud.cbh.get_instance_admin_url(server_id=server_id)
+    test = huaweicloud.Cbh.get_instance_admin_url(server_id=server_id)
     ```
 
 
@@ -107,7 +107,7 @@ def get_instance_admin_url(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['serverId'] = server_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cbh/getInstanceAdminUrl:getInstanceAdminUrl', __args__, opts=opts, typ=GetInstanceAdminUrlResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cbh/getInstanceAdminUrl:getInstanceAdminUrl', __args__, opts=opts, typ=GetInstanceAdminUrlResult).value
 
     return AwaitableGetInstanceAdminUrlResult(
         admin_url=pulumi.get(__ret__, 'admin_url'),
@@ -128,7 +128,7 @@ def get_instance_admin_url_output(region: Optional[pulumi.Input[Optional[_builti
 
     config = pulumi.Config()
     server_id = config.require_object("serverId")
-    test = huaweicloud.cbh.get_instance_admin_url(server_id=server_id)
+    test = huaweicloud.Cbh.get_instance_admin_url(server_id=server_id)
     ```
 
 
@@ -142,7 +142,7 @@ def get_instance_admin_url_output(region: Optional[pulumi.Input[Optional[_builti
     __args__['region'] = region
     __args__['serverId'] = server_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cbh/getInstanceAdminUrl:getInstanceAdminUrl', __args__, opts=opts, typ=GetInstanceAdminUrlResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cbh/getInstanceAdminUrl:getInstanceAdminUrl', __args__, opts=opts, typ=GetInstanceAdminUrlResult)
     return __ret__.apply(lambda __response__: GetInstanceAdminUrlResult(
         admin_url=pulumi.get(__response__, 'admin_url'),
         id=pulumi.get(__response__, 'id'),

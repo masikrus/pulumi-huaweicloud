@@ -26,6 +26,7 @@ class IncidentHandleArgs:
                  parameter: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a IncidentHandle resource.
+
         :param pulumi.Input[_builtins.str] incident_num: Specifies the incident number.
         :param pulumi.Input[_builtins.str] operate_key: Specifies the operation type.
                The following scenarios can be applied, and the default values are different in different scenarios:
@@ -141,6 +142,7 @@ class _IncidentHandleState:
                  parameter: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering IncidentHandle resources.
+
         :param pulumi.Input[_builtins.str] incident_num: Specifies the incident number.
         :param pulumi.Input[_builtins.str] operate_key: Specifies the operation type.
                The following scenarios can be applied, and the default values are different in different scenarios:
@@ -249,7 +251,7 @@ class _IncidentHandleState:
         pulumi.set(self, "parameter", value)
 
 
-@pulumi.type_token("huaweicloud:coc/incidentHandle:IncidentHandle")
+@pulumi.type_token("huaweicloud:Coc/incidentHandle:IncidentHandle")
 class IncidentHandle(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -280,6 +282,7 @@ class IncidentHandle(pulumi.CustomResource):
             operator=user_id,
             operate_key="acceptedIncident1")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -331,6 +334,7 @@ class IncidentHandle(pulumi.CustomResource):
             operate_key="acceptedIncident1")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param IncidentHandleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -372,7 +376,7 @@ class IncidentHandle(pulumi.CustomResource):
             __props__.__dict__["operator"] = operator
             __props__.__dict__["parameter"] = parameter
         super(IncidentHandle, __self__).__init__(
-            'huaweicloud:coc/incidentHandle:IncidentHandle',
+            'huaweicloud:Coc/incidentHandle:IncidentHandle',
             resource_name,
             __props__,
             opts)

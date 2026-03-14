@@ -29,6 +29,7 @@ class MetadataArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Metadata resource.
+
         :param pulumi.Input[_builtins.str] description: Metadata description.  
                
                Changing this parameter will create a new resource.
@@ -149,6 +150,7 @@ class _MetadataState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Metadata resources.
+
         :param pulumi.Input[_builtins.str] description: Metadata description.  
                
                Changing this parameter will create a new resource.
@@ -275,7 +277,7 @@ class _MetadataState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("huaweicloud:ges/metadata:Metadata")
+@pulumi.type_token("huaweicloud:Ges/metadata:Metadata")
 class Metadata(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -362,11 +364,10 @@ class Metadata(pulumi.CustomResource):
 
         The ges metadata can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ges/metadata:Metadata test 55b32ad9-1aba-407d-86cf-85f4f765d37a
+        $ pulumi import huaweicloud:Ges/metadata:Metadata test 55b32ad9-1aba-407d-86cf-85f4f765d37a
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -466,11 +467,10 @@ class Metadata(pulumi.CustomResource):
 
         The ges metadata can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ges/metadata:Metadata test 55b32ad9-1aba-407d-86cf-85f4f765d37a
+        $ pulumi import huaweicloud:Ges/metadata:Metadata test 55b32ad9-1aba-407d-86cf-85f4f765d37a
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MetadataArgs args: The arguments to use to populate this resource's properties.
@@ -516,7 +516,7 @@ class Metadata(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["status"] = None
         super(Metadata, __self__).__init__(
-            'huaweicloud:ges/metadata:Metadata',
+            'huaweicloud:Ges/metadata:Metadata',
             resource_name,
             __props__,
             opts)

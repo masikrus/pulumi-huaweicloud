@@ -27,6 +27,7 @@ class PeeringConnectArgs:
                  target_vpc_info: Optional[pulumi.Input['PeeringConnectTargetVpcInfoArgs']] = None):
         """
         The set of arguments for constructing a PeeringConnect resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: The id of cloud stream cluster. Changing this parameter will create a new
                resource.
         :param pulumi.Input[_builtins.str] name: The name of peering connection. Changing this parameter will create a new
@@ -106,6 +107,7 @@ class _PeeringConnectState:
                  target_vpc_info: Optional[pulumi.Input['PeeringConnectTargetVpcInfoArgs']] = None):
         """
         Input properties used for looking up and filtering PeeringConnect resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: The id of cloud stream cluster. Changing this parameter will create a new
                resource.
         :param pulumi.Input[_builtins.str] name: The name of peering connection. Changing this parameter will create a new
@@ -177,7 +179,7 @@ class _PeeringConnectState:
         pulumi.set(self, "target_vpc_info", value)
 
 
-@pulumi.type_token("huaweicloud:cs/peeringConnect:PeeringConnect")
+@pulumi.type_token("huaweicloud:Cs/peeringConnect:PeeringConnect")
 class PeeringConnect(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -217,6 +219,7 @@ class PeeringConnect(pulumi.CustomResource):
             },
             cluster_id=cluster.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -265,6 +268,7 @@ class PeeringConnect(pulumi.CustomResource):
             cluster_id=cluster.id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param PeeringConnectArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -300,7 +304,7 @@ class PeeringConnect(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["target_vpc_info"] = target_vpc_info
         super(PeeringConnect, __self__).__init__(
-            'huaweicloud:cs/peeringConnect:PeeringConnect',
+            'huaweicloud:Cs/peeringConnect:PeeringConnect',
             resource_name,
             __props__,
             opts)

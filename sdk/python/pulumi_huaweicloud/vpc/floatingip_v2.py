@@ -27,6 +27,7 @@ class FloatingipV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a FloatingipV2 resource.
+
         :param pulumi.Input[_builtins.str] fixed_ip: Fixed IP of the port to associate with this floating IP.
                Required if the port has multiple fixed IPs.
         :param pulumi.Input[_builtins.str] pool: The name of the pool from which to create the floating IP.
@@ -148,6 +149,7 @@ class _FloatingipV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering FloatingipV2 resources.
+
         :param pulumi.Input[_builtins.str] address: The actual floating IP address itself.
         :param pulumi.Input[_builtins.str] fixed_ip: Fixed IP of the port to associate with this floating IP.
                Required if the port has multiple fixed IPs.
@@ -303,11 +305,10 @@ class FloatingipV2(pulumi.CustomResource):
 
         Floating IPs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/floatingipV2:FloatingipV2 floatip_1 2c7f39f3-702b-48d1-940c-b50384177ee1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -348,11 +349,10 @@ class FloatingipV2(pulumi.CustomResource):
 
         Floating IPs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/floatingipV2:FloatingipV2 floatip_1 2c7f39f3-702b-48d1-940c-b50384177ee1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FloatingipV2Args args: The arguments to use to populate this resource's properties.

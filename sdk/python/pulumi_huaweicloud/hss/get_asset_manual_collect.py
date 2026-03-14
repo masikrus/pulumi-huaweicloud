@@ -126,7 +126,7 @@ def get_asset_manual_collect(enterprise_project_id: Optional[_builtins.str] = No
     config = pulumi.Config()
     type = config.require_object("type")
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_asset_manual_collect(type=type,
+    test = huaweicloud.Hss.get_asset_manual_collect(type=type,
         host_id=host_id)
     ```
 
@@ -156,7 +156,7 @@ def get_asset_manual_collect(enterprise_project_id: Optional[_builtins.str] = No
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAssetManualCollect:getAssetManualCollect', __args__, opts=opts, typ=GetAssetManualCollectResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAssetManualCollect:getAssetManualCollect', __args__, opts=opts, typ=GetAssetManualCollectResult).value
 
     return AwaitableGetAssetManualCollectResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -183,7 +183,7 @@ def get_asset_manual_collect_output(enterprise_project_id: Optional[pulumi.Input
     config = pulumi.Config()
     type = config.require_object("type")
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_asset_manual_collect(type=type,
+    test = huaweicloud.Hss.get_asset_manual_collect(type=type,
         host_id=host_id)
     ```
 
@@ -213,7 +213,7 @@ def get_asset_manual_collect_output(enterprise_project_id: Optional[pulumi.Input
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAssetManualCollect:getAssetManualCollect', __args__, opts=opts, typ=GetAssetManualCollectResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAssetManualCollect:getAssetManualCollect', __args__, opts=opts, typ=GetAssetManualCollectResult)
     return __ret__.apply(lambda __response__: GetAssetManualCollectResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         host_id=pulumi.get(__response__, 'host_id'),

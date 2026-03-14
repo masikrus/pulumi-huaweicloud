@@ -26,6 +26,7 @@ class ParameterConfigurationsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ParameterConfigurations resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['ParameterConfigurationsConfigurationArgs']]] configurations: Specifies the list of the DWS cluster parameter configurations.
@@ -94,6 +95,7 @@ class _ParameterConfigurationsState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ParameterConfigurations resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['ParameterConfigurationsConfigurationArgs']]] configurations: Specifies the list of the DWS cluster parameter configurations.
@@ -196,6 +198,7 @@ class ParameterConfigurations(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID.
@@ -244,6 +247,7 @@ class ParameterConfigurations(pulumi.CustomResource):
                 "value": parameter_value,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ParameterConfigurationsArgs args: The arguments to use to populate this resource's properties.

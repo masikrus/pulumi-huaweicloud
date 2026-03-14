@@ -37,6 +37,7 @@ class PipelineActionArgs:
                  variables: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineActionVariableArgs']]]] = None):
         """
         The set of arguments for constructing a PipelineAction resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action.
                Value can be as follows:
                + **run**: start a pipeline
@@ -302,6 +303,7 @@ class _PipelineActionState:
                  variables: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineActionVariableArgs']]]] = None):
         """
         Input properties used for looking up and filtering PipelineAction resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action.
                Value can be as follows:
                + **run**: start a pipeline
@@ -551,7 +553,7 @@ class _PipelineActionState:
         pulumi.set(self, "variables", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineAction:PipelineAction")
+@pulumi.type_token("huaweicloud:Codearts/pipelineAction:PipelineAction")
 class PipelineAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -831,6 +833,7 @@ class PipelineAction(pulumi.CustomResource):
             pipeline_id=pipeline_id,
             pipeline_run_id=pipeline_run_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1134,6 +1137,7 @@ class PipelineAction(pulumi.CustomResource):
             pipeline_run_id=pipeline_run_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param PipelineActionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1193,7 +1197,7 @@ class PipelineAction(pulumi.CustomResource):
             __props__.__dict__["step_run_id"] = step_run_id
             __props__.__dict__["variables"] = variables
         super(PipelineAction, __self__).__init__(
-            'huaweicloud:codearts/pipelineAction:PipelineAction',
+            'huaweicloud:Codearts/pipelineAction:PipelineAction',
             resource_name,
             __props__,
             opts)

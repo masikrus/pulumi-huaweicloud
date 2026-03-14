@@ -25,6 +25,7 @@ class SecurityGroupArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityGroup resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the iec security group. description must be
                0 to 64 characters in length, and does not contain angle brackets (<) and (>). Changing this parameter will creates a
                new iec security group resource.
@@ -74,6 +75,7 @@ class _SecurityGroupState:
                  security_group_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupSecurityGroupRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering SecurityGroup resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the iec security group. description must be
                0 to 64 characters in length, and does not contain angle brackets (<) and (>). Changing this parameter will creates a
                new iec security group resource.
@@ -159,11 +161,10 @@ class SecurityGroup(pulumi.CustomResource):
 
         IEC Security Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/securityGroup:SecurityGroup secgroup_test 2a02d1d3-437c-11eb-b721-fa163e8ac569
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -198,11 +199,10 @@ class SecurityGroup(pulumi.CustomResource):
 
         IEC Security Groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/securityGroup:SecurityGroup secgroup_test 2a02d1d3-437c-11eb-b721-fa163e8ac569
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecurityGroupArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class AppApplicationBatchAttachArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppApplicationBatchAttach resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] record_ids: Specifies the list of application record IDs to be attach.
         :param pulumi.Input[_builtins.str] server_id: Specifies the ID of the image server instance.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the Workspace APP is located.  
@@ -94,6 +95,7 @@ class _AppApplicationBatchAttachState:
                  uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppApplicationBatchAttach resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] record_ids: Specifies the list of application record IDs to be attach.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the Workspace APP is located.  
                Changing this creates a new resource.
@@ -201,6 +203,7 @@ class AppApplicationBatchAttach(pulumi.CustomResource):
             record_ids=record_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] record_ids: Specifies the list of application record IDs to be attach.
@@ -233,6 +236,7 @@ class AppApplicationBatchAttach(pulumi.CustomResource):
             server_id=server_id,
             record_ids=record_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppApplicationBatchAttachArgs args: The arguments to use to populate this resource's properties.

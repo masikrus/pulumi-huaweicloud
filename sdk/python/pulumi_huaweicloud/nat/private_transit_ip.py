@@ -26,6 +26,7 @@ class PrivateTransitIpArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PrivateTransitIp resource.
+
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the transit subnet ID to which the transit IP belongs.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the transit
@@ -128,6 +129,7 @@ class _PrivateTransitIpState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateTransitIp resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the transit IP for private NAT.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the transit
                IP belongs.
@@ -329,11 +331,10 @@ class PrivateTransitIp(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/privateTransitIp:PrivateTransitIp test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -380,11 +381,10 @@ class PrivateTransitIp(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/privateTransitIp:PrivateTransitIp test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrivateTransitIpArgs args: The arguments to use to populate this resource's properties.

@@ -43,6 +43,7 @@ class SiteConnectionV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SiteConnectionV2 resource.
+
         :param pulumi.Input[_builtins.str] ikepolicy_id: The ID of the IKE policy. Changing this creates a new connection.
         :param pulumi.Input[_builtins.str] ipsecpolicy_id: The ID of the IPsec policy. Changing this creates a new connection.
         :param pulumi.Input[_builtins.str] peer_address: The peer gateway public IPv4 or IPv6 address or FQDN.
@@ -391,6 +392,7 @@ class _SiteConnectionV2State:
                  vpnservice_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SiteConnectionV2 resources.
+
         :param pulumi.Input[_builtins.bool] admin_state_up: The administrative state of the resource. Can either be up(true) or down(false).
                Defaults to `true`. Changing this updates the administrative state of the existing connection.
         :param pulumi.Input[_builtins.str] description: The human-readable description for the connection. Changing this updates the description of
@@ -720,7 +722,7 @@ class _SiteConnectionV2State:
         pulumi.set(self, "vpnservice_id", value)
 
 
-@pulumi.type_token("huaweicloud:vpnaas/siteConnectionV2:SiteConnectionV2")
+@pulumi.type_token("huaweicloud:Vpnaas/siteConnectionV2:SiteConnectionV2")
 class SiteConnectionV2(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -771,11 +773,10 @@ class SiteConnectionV2(pulumi.CustomResource):
 
         Site Connections can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpnaas/siteConnectionV2:SiteConnectionV2 conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
+        $ pulumi import huaweicloud:Vpnaas/siteConnectionV2:SiteConnectionV2 conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -842,11 +843,10 @@ class SiteConnectionV2(pulumi.CustomResource):
 
         Site Connections can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpnaas/siteConnectionV2:SiteConnectionV2 conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
+        $ pulumi import huaweicloud:Vpnaas/siteConnectionV2:SiteConnectionV2 conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SiteConnectionV2Args args: The arguments to use to populate this resource's properties.
@@ -925,7 +925,7 @@ class SiteConnectionV2(pulumi.CustomResource):
                 raise TypeError("Missing required property 'vpnservice_id'")
             __props__.__dict__["vpnservice_id"] = vpnservice_id
         super(SiteConnectionV2, __self__).__init__(
-            'huaweicloud:vpnaas/siteConnectionV2:SiteConnectionV2',
+            'huaweicloud:Vpnaas/siteConnectionV2:SiteConnectionV2',
             resource_name,
             __props__,
             opts)

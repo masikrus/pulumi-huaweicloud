@@ -27,6 +27,7 @@ class TerminalBindingArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TerminalBinding resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['TerminalBindingBindingArgs']]] bindings: Specifies the terminal bindings configuration between MAC addresses and desktops.
                The blacklist structure is documented below.
         :param pulumi.Input[_builtins.bool] disabled_after_delete: Specifies whether disabled the binding function before destroy resource.
@@ -110,6 +111,7 @@ class _TerminalBindingState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TerminalBinding resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['TerminalBindingBindingArgs']]] bindings: Specifies the terminal bindings configuration between MAC addresses and desktops.
                The blacklist structure is documented below.
         :param pulumi.Input[_builtins.bool] disabled_after_delete: Specifies whether disabled the binding function before destroy resource.
@@ -224,8 +226,6 @@ class TerminalBinding(pulumi.CustomResource):
 
         Bindings can be imported using the resource `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/terminalBinding:TerminalBinding test <id>
         ```
@@ -233,12 +233,10 @@ class TerminalBinding(pulumi.CustomResource):
         Also you can using any UUID string to replace this ID in the import phase.
 
         Note that the imported state may not be identical to your resource definition, because of parameter
-
-        `disabled_after_delete` is not a remote parameter.
-
+        `disabled_after_delete` is not a remote parameter.\\
         It is generally recommended running `pulumi preview` after importing resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -287,8 +285,6 @@ class TerminalBinding(pulumi.CustomResource):
 
         Bindings can be imported using the resource `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/terminalBinding:TerminalBinding test <id>
         ```
@@ -296,12 +292,10 @@ class TerminalBinding(pulumi.CustomResource):
         Also you can using any UUID string to replace this ID in the import phase.
 
         Note that the imported state may not be identical to your resource definition, because of parameter
-
-        `disabled_after_delete` is not a remote parameter.
-
+        `disabled_after_delete` is not a remote parameter.\\
         It is generally recommended running `pulumi preview` after importing resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated.
+
 
         :param str resource_name: The name of the resource.
         :param TerminalBindingArgs args: The arguments to use to populate this resource's properties.

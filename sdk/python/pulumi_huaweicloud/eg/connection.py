@@ -30,6 +30,7 @@ class ConnectionArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Connection resource.
+
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the ID of the subnet to which the connection belongs.
                
                Changing this parameter will create a new resource.
@@ -177,8 +178,10 @@ class ConnectionArgs:
 @pulumi.input_type
 class _ConnectionState:
     def __init__(__self__, *,
+                 agency: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 flavors: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionFlavorArgs']]]] = None,
                  kafka_detail: Optional[pulumi.Input['ConnectionKafkaDetailArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -189,8 +192,12 @@ class _ConnectionState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Connection resources.
+
+        :param pulumi.Input[_builtins.str] agency: Indicates the user-delegated name used for private network target connection.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the connection.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the connection.
+        :param pulumi.Input[Sequence[pulumi.Input['ConnectionFlavorArgs']]] flavors: The configuration details of the kafka instance.  
+               The flavor structure is documented below.
         :param pulumi.Input['ConnectionKafkaDetailArgs'] kafka_detail: Specifies the configuration details of the kafka instance.
                This parameter is required when the `type` is set to **KAFKA**.
                
@@ -219,10 +226,14 @@ class _ConnectionState:
                
                Changing this parameter will create a new resource.
         """
+        if agency is not None:
+            pulumi.set(__self__, "agency", agency)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if flavors is not None:
+            pulumi.set(__self__, "flavors", flavors)
         if kafka_detail is not None:
             pulumi.set(__self__, "kafka_detail", kafka_detail)
         if name is not None:
@@ -239,6 +250,18 @@ class _ConnectionState:
             pulumi.set(__self__, "updated_at", updated_at)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def agency(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the user-delegated name used for private network target connection.
+        """
+        return pulumi.get(self, "agency")
+
+    @agency.setter
+    def agency(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "agency", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -263,6 +286,19 @@ class _ConnectionState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def flavors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionFlavorArgs']]]]:
+        """
+        The configuration details of the kafka instance.  
+        The flavor structure is documented below.
+        """
+        return pulumi.get(self, "flavors")
+
+    @flavors.setter
+    def flavors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionFlavorArgs']]]]):
+        pulumi.set(self, "flavors", value)
 
     @_builtins.property
     @pulumi.getter(name="kafkaDetail")
@@ -420,11 +456,10 @@ class Connection(pulumi.CustomResource):
 
         The connection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/connection:Connection test 3ea117f5-1ea3-4c27-af7f-c12c737f2ca4
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -487,11 +522,10 @@ class Connection(pulumi.CustomResource):
 
         The connection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/connection:Connection test 3ea117f5-1ea3-4c27-af7f-c12c737f2ca4
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConnectionArgs args: The arguments to use to populate this resource's properties.
@@ -535,7 +569,9 @@ class Connection(pulumi.CustomResource):
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
+            __props__.__dict__["agency"] = None
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["flavors"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Connection, __self__).__init__(
@@ -548,8 +584,10 @@ class Connection(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            agency: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            flavors: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionFlavorArgs', 'ConnectionFlavorArgsDict']]]]] = None,
             kafka_detail: Optional[pulumi.Input[Union['ConnectionKafkaDetailArgs', 'ConnectionKafkaDetailArgsDict']]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -565,8 +603,11 @@ class Connection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] agency: Indicates the user-delegated name used for private network target connection.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the connection.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the connection.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ConnectionFlavorArgs', 'ConnectionFlavorArgsDict']]]] flavors: The configuration details of the kafka instance.  
+               The flavor structure is documented below.
         :param pulumi.Input[Union['ConnectionKafkaDetailArgs', 'ConnectionKafkaDetailArgsDict']] kafka_detail: Specifies the configuration details of the kafka instance.
                This parameter is required when the `type` is set to **KAFKA**.
                
@@ -599,8 +640,10 @@ class Connection(pulumi.CustomResource):
 
         __props__ = _ConnectionState.__new__(_ConnectionState)
 
+        __props__.__dict__["agency"] = agency
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
+        __props__.__dict__["flavors"] = flavors
         __props__.__dict__["kafka_detail"] = kafka_detail
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
@@ -610,6 +653,14 @@ class Connection(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["vpc_id"] = vpc_id
         return Connection(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter
+    def agency(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the user-delegated name used for private network target connection.
+        """
+        return pulumi.get(self, "agency")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -626,6 +677,15 @@ class Connection(pulumi.CustomResource):
         Specifies the description of the connection.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def flavors(self) -> pulumi.Output[Sequence['outputs.ConnectionFlavor']]:
+        """
+        The configuration details of the kafka instance.  
+        The flavor structure is documented below.
+        """
+        return pulumi.get(self, "flavors")
 
     @_builtins.property
     @pulumi.getter(name="kafkaDetail")

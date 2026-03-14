@@ -29,6 +29,7 @@ class WorkspaceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Workspace resource.
+
         :param pulumi.Input[_builtins.str] auth_type: Authorization type.  
                Value options are as follows:
                + **public**: public access within the tenant.
@@ -169,6 +170,7 @@ class _WorkspaceState:
                  status_info: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Workspace resources.
+
         :param pulumi.Input[_builtins.str] auth_type: Authorization type.  
                Value options are as follows:
                + **public**: public access within the tenant.
@@ -380,11 +382,10 @@ class Workspace(pulumi.CustomResource):
 
         The Modelarts workspace can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/workspace:Workspace test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -455,11 +456,10 @@ class Workspace(pulumi.CustomResource):
 
         The Modelarts workspace can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/workspace:Workspace test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WorkspaceArgs args: The arguments to use to populate this resource's properties.

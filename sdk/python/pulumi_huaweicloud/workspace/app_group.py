@@ -26,6 +26,7 @@ class AppGroupArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppGroup resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the application group.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the application group.  
                The valid length is limited from `1` to `64`, only Chinese and English characters, digits, underscores (_) and
@@ -129,6 +130,7 @@ class _AppGroupState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppGroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the application group, in RFC3339 format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the application group.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the application group.  
@@ -266,11 +268,10 @@ class AppGroup(pulumi.CustomResource):
 
         The Workspace APP group resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appGroup:AppGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -311,11 +312,10 @@ class AppGroup(pulumi.CustomResource):
 
         The Workspace APP group resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appGroup:AppGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppGroupArgs args: The arguments to use to populate this resource's properties.

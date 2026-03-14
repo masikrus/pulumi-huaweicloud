@@ -28,6 +28,7 @@ class CrossRegionBackupStrategyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CrossRegionBackupStrategy resource.
+
         :param pulumi.Input[_builtins.str] backup_type: Specifies the backup type. Value options:
                + **auto**: open automated full backup.
                + **all**: open both automated full backup and automated incremental backup.
@@ -153,6 +154,7 @@ class _CrossRegionBackupStrategyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CrossRegionBackupStrategy resources.
+
         :param pulumi.Input[_builtins.str] backup_type: Specifies the backup type. Value options:
                + **auto**: open automated full backup.
                + **all**: open both automated full backup and automated incremental backup.
@@ -310,11 +312,10 @@ class CrossRegionBackupStrategy(pulumi.CustomResource):
 
         The RDS cross-region backup strategy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/crossRegionBackupStrategy:CrossRegionBackupStrategy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -363,11 +364,10 @@ class CrossRegionBackupStrategy(pulumi.CustomResource):
 
         The RDS cross-region backup strategy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/crossRegionBackupStrategy:CrossRegionBackupStrategy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CrossRegionBackupStrategyArgs args: The arguments to use to populate this resource's properties.

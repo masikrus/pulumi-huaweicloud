@@ -25,6 +25,7 @@ class KafkaSmartConnectTaskActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KafkaSmartConnectTaskAction resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the smart connect task action.
                Valid values are:
                + **pause**: Pause the task from running status.
@@ -110,6 +111,7 @@ class _KafkaSmartConnectTaskActionState:
                  task_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaSmartConnectTaskAction resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the smart connect task action.
                Valid values are:
                + **pause**: Pause the task from running status.
@@ -219,6 +221,7 @@ class KafkaSmartConnectTaskAction(pulumi.CustomResource):
             action=action)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the smart connect task action.
@@ -258,6 +261,7 @@ class KafkaSmartConnectTaskAction(pulumi.CustomResource):
             task_id=task_id,
             action=action)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaSmartConnectTaskActionArgs args: The arguments to use to populate this resource's properties.

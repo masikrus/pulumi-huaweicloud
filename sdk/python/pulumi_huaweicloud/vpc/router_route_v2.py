@@ -25,6 +25,7 @@ class RouterRouteV2Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RouterRouteV2 resource.
+
         :param pulumi.Input[_builtins.str] destination_cidr: CIDR block to match on the packet’s destination IP. Changing this
                creates a new routing entry.
         :param pulumi.Input[_builtins.str] next_hop: IP address of the next hop gateway. Changing this creates a new routing
@@ -104,6 +105,7 @@ class _RouterRouteV2State:
                  router_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RouterRouteV2 resources.
+
         :param pulumi.Input[_builtins.str] destination_cidr: CIDR block to match on the packet’s destination IP. Changing this
                creates a new routing entry.
         :param pulumi.Input[_builtins.str] next_hop: IP address of the next hop gateway. Changing this creates a new routing
@@ -229,14 +231,12 @@ class RouterRouteV2(pulumi.CustomResource):
         ## Import
 
         Routing entries can be imported using a combined ID using the following
-
         format: ``<router_id>-route-<destination_cidr>-<next_hop>``
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Vpc/routerRouteV2:RouterRouteV2 router_route_1 686fe248-386c-4f70-9f6c-281607dad079-route-10.0.1.0/24-192.168.199.25
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -297,14 +297,12 @@ class RouterRouteV2(pulumi.CustomResource):
         ## Import
 
         Routing entries can be imported using a combined ID using the following
-
         format: ``<router_id>-route-<destination_cidr>-<next_hop>``
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Vpc/routerRouteV2:RouterRouteV2 router_route_1 686fe248-386c-4f70-9f6c-281607dad079-route-10.0.1.0/24-192.168.199.25
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RouterRouteV2Args args: The arguments to use to populate this resource's properties.

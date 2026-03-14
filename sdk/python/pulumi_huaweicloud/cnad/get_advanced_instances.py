@@ -127,7 +127,7 @@ def get_advanced_instances(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_name = config.require_object("instanceName")
-    test = huaweicloud.cnad.get_advanced_instances(instance_name=instance_name)
+    test = huaweicloud.Cnad.get_advanced_instances(instance_name=instance_name)
     ```
 
 
@@ -153,7 +153,7 @@ def get_advanced_instances(instance_id: Optional[_builtins.str] = None,
     __args__['instanceType'] = instance_type
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cnad/getAdvancedInstances:getAdvancedInstances', __args__, opts=opts, typ=GetAdvancedInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cnad/getAdvancedInstances:getAdvancedInstances', __args__, opts=opts, typ=GetAdvancedInstancesResult).value
 
     return AwaitableGetAdvancedInstancesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -178,7 +178,7 @@ def get_advanced_instances_output(instance_id: Optional[pulumi.Input[Optional[_b
 
     config = pulumi.Config()
     instance_name = config.require_object("instanceName")
-    test = huaweicloud.cnad.get_advanced_instances(instance_name=instance_name)
+    test = huaweicloud.Cnad.get_advanced_instances(instance_name=instance_name)
     ```
 
 
@@ -204,7 +204,7 @@ def get_advanced_instances_output(instance_id: Optional[pulumi.Input[Optional[_b
     __args__['instanceType'] = instance_type
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cnad/getAdvancedInstances:getAdvancedInstances', __args__, opts=opts, typ=GetAdvancedInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cnad/getAdvancedInstances:getAdvancedInstances', __args__, opts=opts, typ=GetAdvancedInstancesResult)
     return __ret__.apply(lambda __response__: GetAdvancedInstancesResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),
