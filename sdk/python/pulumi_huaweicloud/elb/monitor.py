@@ -315,9 +315,6 @@ class _MonitorState:
                The value starts with a slash (/) and contains a maximum of 255 characters.
         """
         if admin_state_up is not None:
-            warnings.warn("""tenant_id is deprecated""", DeprecationWarning)
-            pulumi.log.warn("""admin_state_up is deprecated: tenant_id is deprecated""")
-        if admin_state_up is not None:
             pulumi.set(__self__, "admin_state_up", admin_state_up)
         if delay is not None:
             pulumi.set(__self__, "delay", delay)
